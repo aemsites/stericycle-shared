@@ -1,5 +1,5 @@
 # Shredit.com
-Edge Delivery Service for Shredit.com
+Edge Delivery Services impl for Shredit.com
 
 ## Environments
 - Preview: https://main--shredit--aemsites.hlx.page/
