@@ -1,5 +1,5 @@
-# Your Project's Title...
-Your project's description...
+# Shredit.com
+Edge Delivery Service for Shredit.com
 
 ## Environments
 - Preview: https://main--shredit--aemsites.hlx.page/
