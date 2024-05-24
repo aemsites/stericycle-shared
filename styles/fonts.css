@@ -15,3 +15,19 @@
   src: url('../fonts/roboto-regular.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
+@font-face {
+  font-family: lato-regular;
+  src: url("https://use.typekit.net/af/180254/00000000000000000001522c/27/l?fvd=n4&primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&v=3") format("woff2"),url("https://use.typekit.net/af/180254/00000000000000000001522c/27/d?fvd=n4&primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&v=3") format("woff");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400
+}
+
+@font-face {
+  font-family: lato-bold;
+  src: url("https://use.typekit.net/af/220823/000000000000000000015231/27/l?fvd=n7&primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&v=3") format("woff2"),url("https://use.typekit.net/af/220823/000000000000000000015231/27/d?fvd=n7&primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&v=3") format("woff");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700
+}

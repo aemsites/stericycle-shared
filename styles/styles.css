@@ -20,9 +20,9 @@
   --text-color: black;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback;
+  --body-font-family: "lato-regular", sans-serif;
   --heading-font-family: var(--body-font-family);
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+  --fixed-font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -38,7 +38,7 @@
   --heading-font-size-xs: 18px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 125px;
 }
 
 @font-face {
