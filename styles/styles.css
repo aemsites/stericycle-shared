@@ -225,12 +225,14 @@ main .block.gray-background {
 
 main .section.navy-background,
 main .block.navy-background {
-  background-color: var(--color-navy);
   --text-color: var(--color-white);
+
+  background-color: var(--color-navy);
 }
 
 main .section.blue-background,
 main .block.blue-background {
-  background-color: var(--color-blue);
   --text-color: var(--color-white);
+
+  background-color: var(--color-blue);
 }
