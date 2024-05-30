@@ -40,6 +40,7 @@ header nav[aria-expanded="true"] {
 @media (width >= 900px) {
   header nav {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 
@@ -149,8 +150,8 @@ header .nav-brand {
 }
 
 header nav .nav-brand img {
-  width: 128px;
-  height: auto;
+  width: auto;
+  height: 4.5rem;
 }
 
 /* sections */
@@ -160,6 +161,7 @@ header nav .nav-sections {
   display: none;
   visibility: hidden;
   background-color: var(--overlay-color);
+  font-size: .875rem;
 }
 
 header nav[aria-expanded="true"] .nav-sections {
@@ -168,7 +170,7 @@ header nav[aria-expanded="true"] .nav-sections {
   align-self: start;
 }
 
-header nav .nav-sections ul  {
+header nav .nav-sections ul, header nav .nav-tools ul  {
   list-style: none;
   padding-left: 0;
   font-size: var(--body-font-size-s);
@@ -184,7 +186,7 @@ header nav .nav-sections ul > li > ul {
 }
 
 header nav .nav-sections ul > li > ul > li {
-  font-weight: 500;
+  font-size: .875rem;
 }
 
 @media (width >= 900px) {
@@ -198,12 +200,13 @@ header nav .nav-sections ul > li > ul > li {
     align-self: unset;
   }
 
-  header nav .nav-sections .nav-drop {
+  header nav .nav-sections .nav-drop, header nav .nav-tools .nav-drop {
     position: relative;
     padding-right: 16px;
     cursor: pointer;
   }
 
+  /*
   header nav .nav-sections .nav-drop::after {
     content: '';
     display: inline-block;
@@ -217,6 +220,7 @@ header nav .nav-sections ul > li > ul > li {
     border-radius: 0 1px 0 0;
     border-width: 2px 2px 0 0;
   }
+   */
 
   header nav .nav-sections .nav-drop[aria-expanded="true"]::after {
     top: unset;
@@ -224,25 +228,25 @@ header nav .nav-sections ul > li > ul > li {
     transform: rotate(315deg);
   }
 
-  header nav .nav-sections ul {
+  header nav .nav-sections ul, header nav .nav-tools ul {
     display: flex;
     gap: 2em;
     margin: 0;
-    font-size: var(--body-font-size-xs);
+    font-size: .875rem;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li {
+  header nav .nav-sections .default-content-wrapper > ul > li, header nav .nav-tools .default-content-wrapper > ul > li {
     flex: 0 1 auto;
     position: relative;
     font-weight: 500;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul {
+  header nav .nav-sections .default-content-wrapper > ul > li > ul, header nav .nav-tools .default-content-wrapper > ul > li > ul {
     display: none;
     position: relative;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded="true"] > ul {
+  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded="true"] > ul, header nav .nav-tools .default-content-wrapper > ul > li[aria-expanded="true"] > ul {
     display: block;
     position: absolute;
     left: -1em;
@@ -253,7 +257,7 @@ header nav .nav-sections ul > li > ul > li {
     white-space: initial;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
+  header nav .nav-sections .default-content-wrapper > ul > li > ul::before, header nav .nav-tools .default-content-wrapper > ul > li > ul::before {
     content: '';
     position: absolute;
     top: -8px;
