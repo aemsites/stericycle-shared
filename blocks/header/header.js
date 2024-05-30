@@ -130,6 +130,20 @@ export default async function decorate(block) {
     });
   }
 
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    navTools.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navTool) => {
+      if (navTool.querySelector('ul')) navTool.classList.add('nav-drop');
+      navTool.addEventListener('click', () => {
+        if (isDesktop.matches) {
+          const expanded = navTool.getAttribute('aria-expanded') === 'true';
+          toggleAllNavSections(navTools);
+          navTool.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        }
+      });
+    });
+  }
+
   // hamburger for mobile
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
