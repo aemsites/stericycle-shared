@@ -12,12 +12,22 @@
 
 :root {
   /* colors */
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
-  --background-color: white;
-  --light-color: #eee;
-  --dark-color: #ccc;
-  --text-color: black;
+  --color-white: #fff;
+  --color-gray: #f2f6f7;
+  --color-dark-gray: #707271;
+  --color-black: #000;
+  --color-navy: #133b5c;
+  --color-blue: #006BB4;
+  --color-cyan: #40bbd5;
+  --color-orange: #ff5633;
+  --color-yellow: #ffc62b;
+
+  /* functional colors */
+  --color-background: var(--color-white);
+  --color-text: var(--color-black);
+  --color-heading: var(--color-text);
+  --color-link: #0075aa;
+  --color-link-hover: #006cb4;
 
   /* fonts */
   --body-font-family: "lato-regular", sans-serif;
@@ -64,8 +74,8 @@ body {
   margin: 0;
   font-family: var(--body-font-family);
   line-height: 1.6;
-  color: var(--text-color);
-  background-color: var(--background-color);
+  color: var(--color-text);
+  background-color: var(--color-background);
   display: none;
 }
 
@@ -82,6 +92,7 @@ h4, h5, h6 {
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
+  color: var(--color-heading);
   margin-top: 1em;
   margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
@@ -113,7 +124,7 @@ pre {
 }
 
 main pre {
-  background-color: var(--light-color);
+  background-color: var(--color-gray);
   padding: 1em;
   border-radius: .25em;
   overflow-x: auto;
@@ -122,13 +133,13 @@ main pre {
 
 /* links */
 a:any-link {
-  color: var(--link-color);
+  color: var(--color-link);
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
-  color: var(--link-hover-color);
+  color: var(--color-link-hover);
 }
 
 /* buttons */
@@ -143,8 +154,8 @@ a.button:any-link, button {
   font-style: normal;
   font-weight: 600;
   cursor: pointer;
-  color: var(--background-color);
-  background-color: var(--link-color);
+  color: var(--color-background);
+  background-color: var(--color-link);
   margin: 16px 0;
   white-space: nowrap;
   overflow: hidden;
@@ -153,19 +164,19 @@ a.button:any-link, button {
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
-  background-color: var(--link-hover-color);
+  background-color: var(--color-link-hover);
   cursor: pointer;
 }
 
 button:disabled, button:disabled:hover {
-  background-color: var(--light-color);
+  background-color: var(--color-gray);
   cursor: unset;
 }
 
 a.button.secondary, button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
-  color: var(--text-color)
+  color: var(--color-text)
 }
 
 main img {
@@ -204,7 +215,24 @@ main .section {
 }
 
 /* section metadata */
+
 main .section.light,
-main .section.highlight {
-  background-color: var(--light-color);
+main .section.highlight,
+main .section.gray-background,
+main .block.gray-background {
+  background-color: var(--color-gray);
+}
+
+main .section.navy-background,
+main .block.navy-background {
+  --text-color: var(--color-white);
+
+  background-color: var(--color-navy);
+}
+
+main .section.blue-background,
+main .block.blue-background {
+  --text-color: var(--color-white);
+
+  background-color: var(--color-blue);
 }
