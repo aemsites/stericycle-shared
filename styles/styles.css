@@ -78,23 +78,25 @@
   --color-link-hover: #006cb4;
 
   /* fonts */
-  --font-family-lato: Lato, 'Lato Fallback', sans-serif;
+  --font-family-lato: 'Lato', 'Lato Fallback', sans-serif;
   --font-family-body: var(--font-family-lato);
   --font-family-heading: var(--font-family-body);
   --font-family-fixed: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 18px;
-  --body-font-size-xs: 16px;
+  --body-font-size-l: 20px;
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
+  --body-font-size-xxs: 10px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 48px;
-  --heading-font-size-xl: 40px;
-  --heading-font-size-l: 32px;
-  --heading-font-size-m: 24px;
-  --heading-font-size-s: 20px;
-  --heading-font-size-xs: 18px;
+  --heading-font-size-xxl: 30px;
+  --heading-font-size-xl: 20px;
+  --heading-font-size-l: 18px;
+  --heading-font-size-m: 16px;
+  --heading-font-size-s: 14px;
+  --heading-font-size-xs: 12px;
 
   /* nav height */
   --nav-height: 64px;
@@ -109,12 +111,9 @@
 
 @media (width >= 900px) {
   :root {
-    --heading-font-size-xxl: 60px;
-    --heading-font-size-xl: 48px;
-    --heading-font-size-l: 36px;
-    --heading-font-size-m: 30px;
-    --heading-font-size-s: 24px;
-    --heading-font-size-xs: 22px;
+    --heading-font-size-xxl: 48px;
+    --heading-font-size-xl: 32px;
+    --heading-font-size-l: 26px;
   }
 }
 
