@@ -10,6 +10,54 @@
  * governing permissions and limitations under the License.
  */
 
+/* fallback fonts */
+
+@font-face {
+  font-family: 'Lato Fallback';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Arial');
+  ascent-override: 100.88%;
+  descent-override: 21.77%;
+  line-gap-override: 0.00%;
+  size-adjust: 97.84%;
+}
+
+@font-face {
+  font-family: 'Lato Fallback';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Arial Italic');
+  ascent-override: 108.48%;
+  descent-override: 23.41%;
+  line-gap-override: 0.00%;
+  size-adjust: 90.98%;
+}
+
+@font-face {
+  font-family: 'Lato Fallback';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Arial Bold');
+  ascent-override: 106.32%;
+  descent-override: 22.95%;
+  line-gap-override: 0.00%;
+  size-adjust: 92.83%;
+}
+
+@font-face {
+  font-family: 'Lato Fallback';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Arial Bold Italic');
+  ascent-override: 114.18%;
+  descent-override: 24.64%;
+  line-gap-override: 0.00%;
+  size-adjust: 86.44%;
+}
+
+/* styles */
+
 :root {
   /* colors */
   --color-white: #fff;
@@ -30,49 +78,42 @@
   --color-link-hover: #006cb4;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback;
-  --heading-font-family: var(--body-font-family);
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+  --font-family-lato: 'Lato', 'Lato Fallback', sans-serif;
+  --font-family-body: var(--font-family-lato);
+  --font-family-heading: var(--font-family-body);
+  --font-family-fixed: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 18px;
-  --body-font-size-xs: 16px;
+  --body-font-size-l: 20px;
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
+  --body-font-size-xxs: 10px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 48px;
-  --heading-font-size-xl: 40px;
-  --heading-font-size-l: 32px;
-  --heading-font-size-m: 24px;
-  --heading-font-size-s: 20px;
-  --heading-font-size-xs: 18px;
+  --heading-font-size-xxl: 30px;
+  --heading-font-size-xl: 20px;
+  --heading-font-size-l: 18px;
+  --heading-font-size-m: 16px;
+  --heading-font-size-s: 14px;
+  --heading-font-size-xs: 12px;
 
   /* nav height */
   --nav-height: 64px;
 }
 
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 100.06%;
-  ascent-override: 95%;
-  src: local('Arial');
-}
-
 @media (width >= 900px) {
   :root {
-    --heading-font-size-xxl: 60px;
-    --heading-font-size-xl: 48px;
-    --heading-font-size-l: 36px;
-    --heading-font-size-m: 30px;
-    --heading-font-size-s: 24px;
-    --heading-font-size-xs: 22px;
+    --heading-font-size-xxl: 48px;
+    --heading-font-size-xl: 32px;
+    --heading-font-size-l: 26px;
   }
 }
 
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
-  font-family: var(--body-font-family);
+  font-family: var(--font-family-body);
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-background);
@@ -89,7 +130,7 @@ header {
 
 h1, h2, h3,
 h4, h5, h6 {
-  font-family: var(--heading-font-family);
+  font-family: var(--font-family-heading);
   font-weight: 600;
   line-height: 1.25;
   color: var(--color-heading);
@@ -111,7 +152,7 @@ p, dl, ol, ul, pre, blockquote {
 }
 
 code, pre {
-  font-family: var(--fixed-font-family);
+  font-family: var(--font-family-fixed);
   font-size: var(--body-font-size-s);
 }
 
@@ -144,7 +185,7 @@ a:hover {
 
 /* buttons */
 a.button:any-link, button {
-  font-family: var(--body-font-family);
+  font-family: var(--font-family-body);
   display: inline-block;
   box-sizing: border-box;
   text-decoration: none;
