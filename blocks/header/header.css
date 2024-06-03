@@ -1,6 +1,6 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--color-background);
+  background-color: var(--color-background-header);
   color: #fff;
   width: 100%;
   z-index: 2;
@@ -40,7 +40,7 @@ header nav[aria-expanded="true"] {
 @media (width >= 900px) {
   header nav {
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
     justify-content: space-between;
   }
 
@@ -147,6 +147,8 @@ header .nav-brand {
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
+  align-items: center;
+  display: flex;
 }
 
 header nav .nav-brand img {
@@ -161,19 +163,19 @@ header nav .nav-sections {
   display: none;
   visibility: hidden;
   background-color: var(--overlay-color);
-  font-size: .875rem;
+  font-size: 16px;
 }
 
 header nav[aria-expanded="true"] .nav-sections {
   display: block;
   visibility: visible;
-  align-self: start;
+  align-self: flex-end;
 }
 
 header nav .nav-sections ul, header nav .nav-tools ul  {
   list-style: none;
   padding-left: 0;
-  font-size: var(--body-font-size-s);
+  font-size: var(--body-font-size-xxs);
   font-weight: 500;
 }
 
@@ -196,8 +198,8 @@ header nav .nav-sections ul > li > ul > li {
     white-space: nowrap;
   }
 
-  header nav[aria-expanded="true"] .nav-sections {
-    align-self: unset;
+  header nav[aria-expanded="true"] .nav-sections, header nav[aria-expanded="true"] .nav-tools {
+    align-self: flex-end;
   }
 
   header nav .nav-sections .nav-drop, header nav .nav-tools .nav-drop {
@@ -231,7 +233,16 @@ header nav .nav-sections ul > li > ul > li {
   header nav .nav-sections ul, header nav .nav-tools ul {
     display: flex;
     gap: 2em;
-    margin: 0;
+    font-size: .75rem;
+    flex-flow: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 1.7rem 0 0;
+  }
+
+  header nav .nav-tools ul {
+    margin-top: 0;
+    margin-bottom: 1.75rem;
     font-size: .875rem;
   }
 
@@ -239,6 +250,14 @@ header nav .nav-sections ul > li > ul > li {
     flex: 0 1 auto;
     position: relative;
     font-weight: 500;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li {
+    margin-right: 1rem;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li:last-of-type {
+    margin-right: 0;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul, header nav .nav-tools .default-content-wrapper > ul > li > ul {
@@ -277,4 +296,13 @@ header nav .nav-sections ul > li > ul > li {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+}
+
+.tel::before {
+  content: "";
+  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+  font-size: 1rem;
+  left: -1.25rem;
+  position: absolute;
+  display: block;
 }

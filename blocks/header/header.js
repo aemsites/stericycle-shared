@@ -119,6 +119,12 @@ export default async function decorate(block) {
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
+      if (navSection.querySelector('a')) {
+        if (navSection.querySelector('a').getAttribute('title').startsWith('Customer Service')
+            || navSection.querySelector('a').getAttribute('title').startsWith('Sales')) {
+          navSection.querySelector('a').classList.add('tel');
+        }
+      }
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
