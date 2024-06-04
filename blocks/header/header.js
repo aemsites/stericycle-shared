@@ -124,6 +124,10 @@ export default async function decorate(block) {
             || navSection.querySelector('a').getAttribute('title').startsWith('Sales')) {
           navSection.querySelector('a').classList.add('tel');
         }
+
+        if (navSection.querySelector('a').getAttribute('title').startsWith('Find Your')) {
+          navSection.querySelector('a').classList.add('loc');
+        }
       }
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {

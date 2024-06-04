@@ -256,6 +256,10 @@ header nav .nav-sections ul > li > ul > li {
     margin-right: 1rem;
   }
 
+  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
+    padding: 8px 0;
+  }
+
   header nav .nav-sections .default-content-wrapper > ul > li:last-of-type {
     margin-right: 0;
   }
@@ -287,10 +291,6 @@ header nav .nav-sections ul > li > ul > li {
     border-right: 8px solid transparent;
     border-bottom: 8px solid var(--color-gray);
   }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
-  }
 }
 
 /* tools */
@@ -302,6 +302,15 @@ header nav .nav-tools {
   content: "";
   font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
   font-size: 1rem;
+  left: -1.25rem;
+  position: absolute;
+  display: block;
+}
+
+.loc::before {
+  content: "";
+  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+  font-size: .75rem;
   left: -1.25rem;
   position: absolute;
   display: block;
