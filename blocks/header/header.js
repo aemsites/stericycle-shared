@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import {decorateButtons, getMetadata} from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -119,15 +119,19 @@ export default async function decorate(block) {
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('a')) {
-        if (navSection.querySelector('a').getAttribute('title').startsWith('Customer Service')
-            || navSection.querySelector('a').getAttribute('title').startsWith('Sales')) {
-          navSection.querySelector('a').classList.add('tel');
-        }
 
-        if (navSection.querySelector('a').getAttribute('title').startsWith('Find Your')) {
-          navSection.querySelector('a').classList.add('loc');
-        }
+      if (navSections.querySelector('span.icon-search')) {
+        navSections.addEventListener('click', () => {
+          console.log('search'); // put the search box stuff here
+        });
+      }
+
+      if (navSections.querySelector('li > strong')) {
+        const paragraph = document.createElement('p');
+        const btn = navSections.querySelector('li > strong').cloneNode(true);
+        paragraph.append(btn);
+        decorateButtons(paragraph);
+        navSections.querySelector('li > strong').replaceWith(paragraph);
       }
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
@@ -143,6 +147,18 @@ export default async function decorate(block) {
   const navTools = nav.querySelector('.nav-tools');
   if (navTools) {
     navTools.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navTool) => {
+
+      if (navTool.querySelector('a')) {
+        if (navTool.querySelector('a').getAttribute('title').startsWith('Customer Service')
+            || navTool.querySelector('a').getAttribute('title').startsWith('Sales')) {
+          navTool.querySelector('a').classList.add('tel');
+        }
+
+        if (navTool.querySelector('a').getAttribute('title').startsWith('Find Your')) {
+          navTool.querySelector('a').classList.add('loc');
+        }
+      }
+
       if (navTool.querySelector('ul')) navTool.classList.add('nav-drop');
       navTool.addEventListener('click', () => {
         if (isDesktop.matches) {
