@@ -101,8 +101,9 @@
   --heading-font-size-s: 14px;
   --heading-font-size-xs: 12px;
 
-  /* nav height */
+  /* misc */
   --nav-height: 64px;
+  --section-width: 990pt;
 }
 
 @media (width >= 900px) {
@@ -274,7 +275,7 @@ main .section {
 
 @media (width >= 900px) {
   .section > div {
-    max-width: 990pt;
+    max-width: var(--section-width);
     margin: auto;
   }
 }
