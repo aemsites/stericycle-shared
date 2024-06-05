@@ -3,5 +3,5 @@ Please always provide the [GitHub issue(s)](../issues) your PR is for, as well a
 Fix #<gh-issue-id>
 
 Test URLs:
-- Before: https://main--shredit--aemsites.aem.live/
-- After: https://<branch>--shredit--aemsites.aem.live/
+- Before: https://main--shredit--stericycle.aem.page/
+- After: https://<branch>--shredit--stericycle.aem.page/
