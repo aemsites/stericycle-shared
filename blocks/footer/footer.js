@@ -9,60 +9,62 @@ const isDesktop = window.matchMedia('(min-width: 992px)');
  * @param {Element} footer The footer element
  */
 function createMenuAccordion(footer) {
-  const menuListItems = footer.querySelectorAll(':scope > li');
-  // iterate the nodelist of li elements
-  menuListItems.forEach((item) => {
-    item.classList.add('footer-accordion');
-    // wrap the first link in a wrapper span
-    const itemTitle = item.childNodes[0];
-    // const itemTitle = item.childNodes[0].textContent.trim();
-    console.log(item.childNodes[0], 'item.childNodes[0]');
-    // remove the first text inside the li
-    item.childNodes[0].remove();
-    const footerAccordionLinkWrapper = document.createElement('span');
-    footerAccordionLinkWrapper.classList.add('footer-accordion-link-wrapper');
-    footerAccordionLinkWrapper.append(itemTitle);
-    item.prepend(footerAccordionLinkWrapper);
-    const footerAccordionContentWrapper = document.createElement('div');
-    footerAccordionContentWrapper.classList.add('footer-accordion-content-wrapper');
-    const footerAccordionContentInnerWrapper = document.createElement('div');
-    footerAccordionContentInnerWrapper.classList.add('footer-accordion-content-inner-wrapper');
-    footerAccordionContentWrapper.append(footerAccordionContentInnerWrapper);
+  footer.forEach((menu) => {
+    const menuListItems = menu.querySelectorAll(':scope > li');
+    // iterate the nodelist of li elements
+    menuListItems.forEach((item) => {
+      item.classList.add('footer-accordion');
+      // wrap the first link in a wrapper span
+      const itemTitle = item.childNodes[0];
+      // const itemTitle = item.childNodes[0].textContent.trim();
+      console.log(item.childNodes[0], 'item.childNodes[0]');
+      // remove the first text inside the li
+      item.childNodes[0].remove();
+      const footerAccordionLinkWrapper = document.createElement('span');
+      footerAccordionLinkWrapper.classList.add('footer-accordion-link-wrapper');
+      footerAccordionLinkWrapper.append(itemTitle);
+      item.prepend(footerAccordionLinkWrapper);
+      const footerAccordionContentWrapper = document.createElement('div');
+      footerAccordionContentWrapper.classList.add('footer-accordion-content-wrapper');
+      const footerAccordionContentInnerWrapper = document.createElement('div');
+      footerAccordionContentInnerWrapper.classList.add('footer-accordion-content-inner-wrapper');
+      footerAccordionContentWrapper.append(footerAccordionContentInnerWrapper);
 
-    // if there is accordion content, create a button to exand/collapse
-    const accordionContent = item.querySelector(':scope > ul');
-    if (accordionContent) {
-      accordionContent.classList.add('footer-accordion-content');
-      const accordionButton = document.createElement('button');
-      accordionButton.classList.add('footer-accordion-button');
-      accordionButton.innerHTML = '<span class="footer-accordion-button-icon">+</span>';
-      footerAccordionLinkWrapper.append(accordionButton);
+      // if there is accordion content, create a button to exand/collapse
+      const accordionContent = item.querySelector(':scope > ul');
+      if (accordionContent) {
+        accordionContent.classList.add('footer-accordion-content');
+        const accordionButton = document.createElement('button');
+        accordionButton.classList.add('footer-accordion-button');
+        accordionButton.innerHTML = '<span class="footer-accordion-button-icon">+</span>';
+        footerAccordionLinkWrapper.append(accordionButton);
 
-      // attach the event handler for the new button
-      footerAccordionLinkWrapper.addEventListener('click', () => {
-        console.log('before is desktop', isDesktop);
-        if (!isDesktop.matches) {
-          console.log('clicked');
-          if (footerAccordionContentWrapper.style.height) {
-            footerAccordionContentWrapper.style.height = null;
-            footerAccordionContentWrapper.setAttribute('aria-hidden', true);
-            footerAccordionContentWrapper.classList.remove('active');
-            footerAccordionLinkWrapper.classList.remove('active');
-            footerAccordionLinkWrapper.querySelector('.footer-accordion-button-icon').textContent = '+';
-          } else {
-            footerAccordionContentWrapper.setAttribute('aria-hidden', false);
-            footerAccordionContentWrapper.classList.add('active');
-            footerAccordionLinkWrapper.classList.add('active');
-            footerAccordionContentWrapper.style.height = `${accordionContent.scrollHeight + 40}px`;
-            footerAccordionLinkWrapper.querySelector('.footer-accordion-button-icon').textContent = '-';
+        // attach the event handler for the new button
+        footerAccordionLinkWrapper.addEventListener('click', () => {
+          console.log('before is desktop', isDesktop);
+          if (!isDesktop.matches) {
+            console.log('clicked');
+            if (footerAccordionContentWrapper.style.height) {
+              footerAccordionContentWrapper.style.height = null;
+              footerAccordionContentWrapper.setAttribute('aria-hidden', true);
+              footerAccordionContentWrapper.classList.remove('active');
+              footerAccordionLinkWrapper.classList.remove('active');
+              footerAccordionLinkWrapper.querySelector('.footer-accordion-button-icon').textContent = '+';
+            } else {
+              footerAccordionContentWrapper.setAttribute('aria-hidden', false);
+              footerAccordionContentWrapper.classList.add('active');
+              footerAccordionLinkWrapper.classList.add('active');
+              footerAccordionContentWrapper.style.height = `${accordionContent.scrollHeight + 40}px`;
+              footerAccordionLinkWrapper.querySelector('.footer-accordion-button-icon').textContent = '-';
+            }
           }
-        }
-      });
+        });
 
-      // wrap the accordion content in footerAccordionContentWrapper
-      item.insertBefore(footerAccordionContentWrapper, accordionContent);
-      footerAccordionContentInnerWrapper.append(accordionContent);
-    }
+        // wrap the accordion content in footerAccordionContentWrapper
+        item.insertBefore(footerAccordionContentWrapper, accordionContent);
+        footerAccordionContentInnerWrapper.append(accordionContent);
+      }
+    });
   });
 }
 
@@ -89,11 +91,13 @@ export default async function decorate(block) {
   // Loop through each <ul> element and add a unique class
   ulElements.forEach((ul, index) => {
     // Create a unique class name
-    const uniqueClassName = `footer-ul-${index + 1}`;
-
+    const numOfLis = ul.querySelectorAll("li").length;
+    const accordionContainer = numOfLis > 10 ? 'footer-accordion-container' : `footer-ul-${index + 1}`;
+    // const uniqueClassName = `footer-ul-${index + 1}`;
     // Add the unique class to the <ul> element
-    ul.classList.add(uniqueClassName);
+    ul.classList.add(accordionContainer);
   });
-  const firstUl = block.querySelector('.footer-ul-1');
-  createMenuAccordion(firstUl);
+  const accordionsContainer = block.querySelectorAll('.footer-accordion-container');
+  console.log(accordionsContainer, 'accordionsContainer');
+  createMenuAccordion(accordionsContainer);
 }
