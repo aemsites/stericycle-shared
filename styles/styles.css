@@ -73,7 +73,7 @@
   /* functional colors */
   --color-background: var(--color-white);
   --color-text: var(--color-black);
-  --color-heading: var(--color-text);
+  --color-heading: var(--color-black);
   --color-link: #0075aa;
   --color-link-hover: #006cb4;
 
@@ -107,6 +107,7 @@
     --heading-font-size-xxl: 48px;
     --heading-font-size-xl: 32px;
     --heading-font-size-l: 26px;
+    --heading-font-size-m: 20px;
   }
 }
 
@@ -114,8 +115,7 @@ body {
   font-size: var(--body-font-size-m);
   margin: 0;
   font-family: var(--font-family-body);
-  line-height: 1.6;
-  color: var(--color-text);
+  line-height: 20px;
   background-color: var(--color-background);
   display: none;
 }
@@ -134,7 +134,7 @@ h4, h5, h6 {
   font-weight: 600;
   line-height: 1.25;
   color: var(--color-heading);
-  margin-top: 1em;
+  margin-top: 0;
   margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
@@ -147,11 +147,12 @@ h5 { font-size: var(--heading-font-size-s) }
 h6 { font-size: var(--heading-font-size-xs) }
 
 p, dl, ol, ul, pre, blockquote {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  color: var(--color-text);
+  margin: 0;
 }
 
 code, pre {
+  color: var(--color-text);
   font-family: var(--font-family-fixed);
   font-size: var(--body-font-size-s);
 }
@@ -239,23 +240,23 @@ main img {
 
 /* sections */
 main .section {
-  padding: 64px 16px;
+  padding: 16px;
 }
 
 @media (width >= 600px) {
   main .section {
-    padding: 64px 32px;
+    padding: 32px;
   }
 }
 
 @media (width >= 900px) {
   .section > div {
-    max-width: 1200px;
+    max-width: 990pt;
     margin: auto;
   }
 }
 
-/* section metadata */
+/* section styles */
 
 main .section.light,
 main .section.highlight,
@@ -266,16 +267,23 @@ main .block.gray-background {
 
 main .section.navy-background,
 main .block.navy-background {
-  --text-color: var(--color-white);
-
   background-color: var(--color-navy);
 }
 
 main .section.blue-background,
 main .block.blue-background {
-  --text-color: var(--color-white);
-
   background-color: var(--color-blue);
+}
+
+main .invert-colors,
+main .section.navy-background,
+main .block.navy-background,
+main .section.blue-background,
+main .block.blue-background {
+  --color-text: var(--color-white);
+  --color-heading: var(--color-white);
+  --color-link: var(--color-white);
+  --color-link-hover: var(--color-white);
 }
 
 main .cyan-headings {
