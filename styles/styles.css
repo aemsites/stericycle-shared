@@ -277,3 +277,11 @@ main .block.blue-background {
 
   background-color: var(--color-blue);
 }
+
+main .cyan-headings {
+  --color-heading: var(--color-cyan);
+}
+
+main .blue-headings {
+  --color-heading: var(--color-blue);
+}
