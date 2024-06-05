@@ -1,4 +1,4 @@
-import {decorateButtons, getMetadata} from '../../scripts/aem.js';
+import { decorateButtons, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -119,9 +119,9 @@ export default async function decorate(block) {
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-
       if (navSections.querySelector('span.icon-search')) {
         navSections.addEventListener('click', () => {
+          // eslint-disable-next-line
           console.log('search'); // put the search box stuff here
         });
       }
@@ -147,13 +147,11 @@ export default async function decorate(block) {
   const navTools = nav.querySelector('.nav-tools');
   if (navTools) {
     navTools.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navTool) => {
-
       if (navTool.querySelector('a')) {
         if (navTool.querySelector('a').getAttribute('title').startsWith('Customer Service')
             || navTool.querySelector('a').getAttribute('title').startsWith('Sales')) {
           navTool.querySelector('a').classList.add('tel');
         }
-
         if (navTool.querySelector('a').getAttribute('title').startsWith('Find Your')) {
           navTool.querySelector('a').classList.add('loc');
         }
