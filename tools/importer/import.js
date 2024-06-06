@@ -30,17 +30,6 @@ function transformButtonToAnchors(main) {
   });
 }
 
-function transformTabs(main) {
-  main.querySelectorAll('div.tabs.panelcontainer').forEach((tabs) => {
-    const cells = [
-      ['Tabs'],
-      ['This will need to be manually transformed'],
-    ];
-    const tabBlock = WebImporter.DOMUtils.createTable(cells, document);
-    tabs.replaceWith(tabBlock);
-  });
-}
-
 function transformColumns(main) {
   main.querySelectorAll('div.cmp-pagesection div.columnrow > div.row').forEach((column) => {
     console.log('Transforming columns');
@@ -60,12 +49,8 @@ function transformColumns(main) {
 
     cells.push(row);
 
-    try {
-      const columnBlock = WebImporter.DOMUtils.createTable(cells, document);
-      column.replaceWith(columnBlock);
-    } catch (e) {
-      console.log(e);
-    }
+    const columnBlock = WebImporter.DOMUtils.createTable(cells, document);
+    column.replaceWith(columnBlock);
   });
 }
 
@@ -119,7 +104,6 @@ export default {
       'div.cmp-experiencefragment--footer',
     ]);
 
-    transformTabs(main);
     transformCards(main);
     transformColumns(main);
 
