@@ -72,6 +72,7 @@
 
   /* functional colors */
   --color-background: var(--color-white);
+  --color-background-header: #133b5c;
   --color-text: var(--color-black);
   --color-heading: var(--color-black);
   --color-link: #0075aa;
@@ -102,7 +103,7 @@
   --heading-font-size-xs: 12px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 125px;
 }
 
 @media (width >= 900px) {
