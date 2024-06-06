@@ -11,7 +11,67 @@
  */
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
+const baseDomain = 'https://main--shredit--stericycle.aem.page';
 
+function sanitizeURL(url) {
+  const newURL = baseDomain + url;
+
+  return newURL;
+}
+
+function transformButtonToAnchors(main) {
+  const aLink = main.querySelector('a.page-teaser__link--wrapper').href;
+  main.querySelectorAll('button.page-teaser__link').forEach((button) => {
+    const a = document.createElement('a');
+    a.href = sanitizeURL(aLink);
+    a.textContent = button.textContent;
+    a.setAttribute('aria-label', button.getAttribute('aria-label'));
+    button.replaceWith(a);
+  });
+}
+
+function transformColumns(main) {
+  main.querySelectorAll('div.cmp-pagesection div.columnrow > div.row').forEach((column) => {
+    console.log('Transforming columns');
+    const cells = [
+      ['Columns'],
+    ];
+
+    const row = [];
+
+    column.querySelectorAll('div.cmp-columnrow__item').forEach((item) => {
+      row.push(item);
+
+      if (item.querySelector('div.modalformcalltoaction > a.cmp-modal-form-cta')) {
+        cells[0] = ['Columns (cta)'];
+      }
+    });
+
+    cells.push(row);
+
+    const columnBlock = WebImporter.DOMUtils.createTable(cells, document);
+    column.replaceWith(columnBlock);
+  });
+}
+
+function transformCards(main) {
+  main.querySelectorAll('ul.cmp-teaserlist').forEach((teaser) => {
+    console.log('Transforming cards');
+    const cells = [
+      ['Cards'],
+    ];
+    teaser.querySelectorAll('li').forEach((item) => {
+      transformButtonToAnchors(item);
+      const img = item.querySelector('img.page-teaser__img');
+      const content = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back');
+      if (img) {
+        cells.push([img, content]);
+      }
+    });
+    const cardBlock = WebImporter.DOMUtils.createTable(cells, document);
+    teaser.replaceWith(cardBlock);
+  });
+}
 export default {
   /**
      * Apply DOM operations to the provided document and return
@@ -39,7 +99,13 @@ export default {
       '.footer',
       'iframe',
       'noscript',
+      'div.cmp-experiencefragment--footer-subscription-form',
+      'div.cmp-experiencefragment--modal-form',
+      'div.cmp-experiencefragment--footer',
     ]);
+
+    transformCards(main);
+    transformColumns(main);
 
     WebImporter.rules.createMetadata(main, document);
     WebImporter.rules.transformBackgroundImages(main, document);
