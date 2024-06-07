@@ -16,8 +16,6 @@ function createMenuAccordion(footer) {
       item.classList.add('footer-accordion');
       // wrap the first link in a wrapper span
       const itemTitle = item.childNodes[0];
-      // const itemTitle = item.childNodes[0].textContent.trim();
-      console.log(item.childNodes[0], 'item.childNodes[0]');
       // remove the first text inside the li
       item.childNodes[0].remove();
       const footerAccordionLinkWrapper = document.createElement('span');
@@ -41,9 +39,7 @@ function createMenuAccordion(footer) {
 
         // attach the event handler for the new button
         footerAccordionLinkWrapper.addEventListener('click', () => {
-          console.log('before is desktop', isDesktop);
           if (!isDesktop.matches) {
-            console.log('clicked');
             if (footerAccordionContentWrapper.style.height) {
               footerAccordionContentWrapper.style.height = null;
               footerAccordionContentWrapper.setAttribute('aria-hidden', true);
@@ -88,6 +84,7 @@ export default async function decorate(block) {
   // Select all <ul> elements within the .default-content-wrapper
   const ulElements = block.querySelectorAll('.default-content-wrapper > ul');
 
+
   // Loop through each <ul> element and add a unique class
   ulElements.forEach((ul, index) => {
     // Create a unique class name
@@ -98,6 +95,8 @@ export default async function decorate(block) {
     ul.classList.add(accordionContainer);
   });
   const accordionsContainer = block.querySelectorAll('.footer-accordion-container');
-  console.log(accordionsContainer, 'accordionsContainer');
   createMenuAccordion(accordionsContainer);
+  // Insert the columns-wrapper div inside the default-content-wrapper
+  const columnsWrapper = block.querySelector('.columns-wrapper');
+  block.querySelector('.default-content-wrapper > .footer-accordion-container').insertAdjacentElement('afterend', columnsWrapper);
 }
