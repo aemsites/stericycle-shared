@@ -29,8 +29,14 @@ main .hero-container {
   position: relative;
   max-width: var(--section-width);
   margin: auto;
+  padding: 28px 0;
 }
 
 .hero div.hero-content-container > div.hero-content {
-  width: 58.33333333%;
+  width: 58.3333%;
+}
+
+.hero div.hero-content-container > div.hero-content .button {
+  margin-top: 40px;
+  width: 200px;
 }

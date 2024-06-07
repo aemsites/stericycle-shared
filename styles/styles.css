@@ -144,7 +144,7 @@ h4, h5, h6 {
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { font-size: var(--heading-font-size-xxl) }
+h1 { font-size: var(--heading-font-size-xxl); line-height: 3.25rem; }
 h2 { font-size: var(--heading-font-size-xl) }
 h3 { font-size: var(--heading-font-size-l) }
 h4 { font-size: var(--heading-font-size-m) }
@@ -235,7 +235,7 @@ a.button.primary:hover, a.button.primary:focus, button.primary:hover, button.pri
 }
 
 a.button.secondary, button.secondary {
-  background-color: transparent;
+  background-color: var(--color-white);
   border-color: currentcolor;
   color: var(--color-button-secondary);
 }
