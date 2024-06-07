@@ -1,6 +1,7 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--color-background);
+  background-color: var(--color-background-header);
+  color: var(--color-white);
   width: 100%;
   z-index: 2;
   position: fixed;
@@ -9,23 +10,33 @@ header .nav-wrapper {
 header nav {
   box-sizing: border-box;
   display: grid;
-  grid-template:
-    'hamburger brand tools' var(--nav-height)
-    'sections sections sections' 1fr / auto 1fr auto;
+  grid-template-areas:
+    'brand tools'
+    'brand sections';
   align-items: center;
-  gap: 0 2em;
   margin: auto;
   max-width: 1264px;
   height: var(--nav-height);
-  padding: 0 1rem;
-  font-family: var(--body-font-family);
+  font-family: var(--font-family-body);
+}
+
+header nav ul {
+  color: unset;
+}
+
+header nav .nav-tools ul > li > span.icon-search {
+  display: flex;
+}
+
+header nav .icon-search > img {
+  filter: invert(1);
+  align-self: center;
+  height: 24px;
 }
 
 header nav[aria-expanded="true"] {
-  grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 50px 75px;
   overflow-y: auto;
   min-height: 100vh;
 }
@@ -38,8 +49,7 @@ header nav[aria-expanded="true"] {
 
 @media (width >= 900px) {
   header nav {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
   }
 
   header nav[aria-expanded="true"] {
@@ -61,8 +71,6 @@ header nav a:any-link {
 header nav .nav-hamburger {
   grid-area: hamburger;
   height: 22px;
-  display: flex;
-  align-items: center;
 }
 
 header nav .nav-hamburger button {
@@ -141,15 +149,15 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
 /* brand */
 header .nav-brand {
   grid-area: brand;
-  flex-basis: 128px;
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
+  align-items: center;
 }
 
 header nav .nav-brand img {
-  width: 128px;
-  height: auto;
+  width: auto;
+  height: 4.5rem;
 }
 
 /* sections */
@@ -159,18 +167,18 @@ header nav .nav-sections {
   display: none;
   visibility: hidden;
   background-color: var(--overlay-color);
+  font-size: 16px;
 }
 
 header nav[aria-expanded="true"] .nav-sections {
   display: block;
   visibility: visible;
-  align-self: start;
 }
 
-header nav .nav-sections ul  {
+header nav .nav-sections ul, header nav .nav-tools ul  {
   list-style: none;
   padding-left: 0;
-  font-size: var(--body-font-size-s);
+  font-size: var(--body-font-size-xxs);
   font-weight: 500;
 }
 
@@ -183,7 +191,7 @@ header nav .nav-sections ul > li > ul {
 }
 
 header nav .nav-sections ul > li > ul > li {
-  font-weight: 500;
+  font-size: .875rem;
 }
 
 @media (width >= 900px) {
@@ -193,28 +201,14 @@ header nav .nav-sections ul > li > ul > li {
     white-space: nowrap;
   }
 
-  header nav[aria-expanded="true"] .nav-sections {
-    align-self: unset;
+  header nav[aria-expanded="true"] .nav-sections, header nav[aria-expanded="true"] .nav-tools {
+    align-self: flex-end;
   }
 
-  header nav .nav-sections .nav-drop {
+  header nav .nav-sections .nav-drop, header nav .nav-tools .nav-drop {
     position: relative;
     padding-right: 16px;
     cursor: pointer;
-  }
-
-  header nav .nav-sections .nav-drop::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: .5em;
-    right: 2px;
-    transform: rotate(135deg);
-    width: 6px;
-    height: 6px;
-    border: 2px solid currentcolor;
-    border-radius: 0 1px 0 0;
-    border-width: 2px 2px 0 0;
   }
 
   header nav .nav-sections .nav-drop[aria-expanded="true"]::after {
@@ -223,25 +217,44 @@ header nav .nav-sections ul > li > ul > li {
     transform: rotate(315deg);
   }
 
-  header nav .nav-sections ul {
+  header nav .nav-sections ul, header nav .nav-tools ul {
     display: flex;
     gap: 2em;
-    margin: 0;
-    font-size: var(--body-font-size-xs);
+    font-size: .75rem;
+    flex-flow: nowrap;
+    align-items: center;
+    justify-content: flex-end;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li {
+  header nav .nav-tools ul {
+    margin-top: 0;
+    font-size: .75rem;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li, header nav .nav-tools .default-content-wrapper > ul > li {
     flex: 0 1 auto;
     position: relative;
     font-weight: 500;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul {
+  header nav .nav-sections .default-content-wrapper > ul > li {
+    margin-right: 1rem;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
+    padding: 8px 0;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li:last-of-type {
+    margin-right: 0;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > ul, header nav .nav-tools .default-content-wrapper > ul > li > ul {
     display: none;
     position: relative;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded="true"] > ul {
+  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded="true"] > ul, header nav .nav-tools .default-content-wrapper > ul > li[aria-expanded="true"] > ul {
     display: block;
     position: absolute;
     left: -1em;
@@ -252,7 +265,7 @@ header nav .nav-sections ul > li > ul > li {
     white-space: initial;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
+  header nav .nav-sections .default-content-wrapper > ul > li > ul::before, header nav .nav-tools .default-content-wrapper > ul > li > ul::before {
     content: '';
     position: absolute;
     top: -8px;
@@ -263,14 +276,28 @@ header nav .nav-sections ul > li > ul > li {
     border-right: 8px solid transparent;
     border-bottom: 8px solid var(--color-gray);
   }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
-  }
 }
 
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
   display: none;
+}
+
+.tel::before {
+  content: "";
+  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+  font-size: 1rem;
+  left: -1.25rem;
+  position: absolute;
+  display: block;
+}
+
+.loc::before {
+  content: "";
+  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+  font-size: .75rem;
+  left: -1.25rem;
+  position: absolute;
+  display: block;
 }
