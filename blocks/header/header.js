@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { decorateButtons, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -91,9 +91,10 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
+  const locale = window.location.pathname.split('/')[1] || 'en-us'; // default to us-en if no locale in path
   // load nav as fragment
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  const navPath = navMeta ? new URL(navMeta, window.location).pathname : `/${locale}/nav`;
   const fragment = await loadFragment(navPath);
 
   // decorate nav DOM
@@ -118,12 +119,50 @@ export default async function decorate(block) {
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
+      if (navSections.querySelector('span.icon-search')) {
+        navSections.addEventListener('click', () => {
+          // eslint-disable-next-line
+          console.log('search'); // put the search box stuff here
+        });
+      }
+
+      if (navSections.querySelector('li > strong')) {
+        const paragraph = document.createElement('p');
+        const btn = navSections.querySelector('li > strong').cloneNode(true);
+        paragraph.append(btn);
+        decorateButtons(paragraph);
+        navSections.querySelector('li > strong').replaceWith(paragraph);
+      }
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        }
+      });
+    });
+  }
+
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    navTools.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navTool) => {
+      if (navTool.querySelector('a')) {
+        if (navTool.querySelector('a').getAttribute('title').startsWith('Customer Service')
+            || navTool.querySelector('a').getAttribute('title').startsWith('Sales')) {
+          navTool.querySelector('a').classList.add('tel');
+        }
+        if (navTool.querySelector('a').getAttribute('title').startsWith('Find Your')) {
+          navTool.querySelector('a').classList.add('loc');
+        }
+      }
+
+      if (navTool.querySelector('ul')) navTool.classList.add('nav-drop');
+      navTool.addEventListener('click', () => {
+        if (isDesktop.matches) {
+          const expanded = navTool.getAttribute('aria-expanded') === 'true';
+          toggleAllNavSections(navTools);
+          navTool.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         }
       });
     });
