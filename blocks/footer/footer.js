@@ -85,11 +85,10 @@ export default async function decorate(block) {
   // Select all <ul> elements within the .default-content-wrapper
   const ulElements = block.querySelectorAll('.default-content-wrapper > ul');
 
-
   // Loop through each <ul> element and add a unique class
   ulElements.forEach((ul, index) => {
     // Create a unique class name
-    const numOfLis = ul.querySelectorAll("li").length;
+    const numOfLis = ul.querySelectorAll('li').length;
     const accordionContainer = numOfLis > 10 ? 'footer-accordion-container' : `footer-ul-${index + 1}`;
     // const uniqueClassName = `footer-ul-${index + 1}`;
     // Add the unique class to the <ul> element
