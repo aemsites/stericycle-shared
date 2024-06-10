@@ -85,8 +85,8 @@
   --font-family-lato: 'Lato', 'Lato Fallback', sans-serif;
   --font-family-body: var(--font-family-lato);
   --font-family-heading: var(--font-family-body);
+  --font-family-footer: var(--font-family-body);
   --font-family-fixed: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
-  --content-font-family: lato-regular, sans-serif;
 
   /* body sizes */
   --body-font-size-l: 20px;
@@ -105,6 +105,10 @@
 
   /* nav height */
   --nav-height: 125px;
+
+  /* font weights */
+  --lato-regular: 400;
+  --lato-bold: 700;
 }
 
 @media (width >= 900px) {
