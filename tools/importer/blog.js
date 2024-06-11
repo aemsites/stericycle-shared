@@ -19,74 +19,23 @@ function sanitizeURL(url) {
   return newURL;
 }
 
-function transformButtonToAnchors(main) {
-  const aLink = main.querySelector('a.page-teaser__link--wrapper').href;
-  main.querySelectorAll('button.page-teaser__link').forEach((button) => {
-    const a = document.createElement('a');
-    a.href = sanitizeURL(aLink);
-    a.textContent = button.textContent;
-    a.setAttribute('aria-label', button.getAttribute('aria-label'));
-    button.replaceWith(a);
-  });
+function getDocumentMetadata(name, document) {
+  const attr = name && name.includes(':') ? 'property' : 'name';
+  const meta = [...document.head.querySelectorAll(`meta[${attr}="${name}"]`)]
+    .map((m) => m.content)
+    .join(', ');
+  return meta || '';
 }
 
-function transformTabs(main) {
-  main.querySelectorAll('div.tabs.panelcontainer').forEach((tabs) => {
-    const cells = [
-      ['Tabs'],
-      ['This will need to be manually transformed'],
-    ];
-    const tabBlock = WebImporter.DOMUtils.createTable(cells, document);
-    tabs.replaceWith(tabBlock);
-  });
+function setMetadata(meta, document) {
+  meta.template = 'blog-page';
+  meta['twitter:title'] = meta.Title;
+  meta['twitter:description'] = meta.Description;
+  meta['og:type'] = 'website';
+  meta['og:locale'] = getDocumentMetadata('og:locale', document);
+  meta['og:url'] = getDocumentMetadata('og:url', document);
 }
 
-function transformColumns(main) {
-  main.querySelectorAll('div.cmp-pagesection div.columnrow > div.row').forEach((column) => {
-    console.log('Transforming columns');
-    const cells = [
-      ['Columns'],
-    ];
-
-    const row = [];
-
-    column.querySelectorAll('div.cmp-columnrow__item').forEach((item) => {
-      row.push(item);
-
-      if (item.querySelector('div.modalformcalltoaction > a.cmp-modal-form-cta')) {
-        cells[0] = ['Columns (cta)'];
-      }
-    });
-
-    cells.push(row);
-
-    try {
-      const columnBlock = WebImporter.DOMUtils.createTable(cells, document);
-      column.replaceWith(columnBlock);
-    } catch (e) {
-      console.log(e);
-    }
-  });
-}
-
-function transformCards(main) {
-  main.querySelectorAll('ul.cmp-teaserlist').forEach((teaser) => {
-    console.log('Transforming cards');
-    const cells = [
-      ['Cards'],
-    ];
-    teaser.querySelectorAll('li').forEach((item) => {
-      transformButtonToAnchors(item);
-      const img = item.querySelector('img.page-teaser__img');
-      const content = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back');
-      if (img) {
-        cells.push([img, content]);
-      }
-    });
-    const cardBlock = WebImporter.DOMUtils.createTable(cells, document);
-    teaser.replaceWith(cardBlock);
-  });
-}
 export default {
   /**
      * Apply DOM operations to the provided document and return
@@ -104,6 +53,10 @@ export default {
     // define the main element: the one that will be transformed to Markdown
     const main = document.body;
 
+    WebImporter.DOMUtils.remove(document, [
+      'script[src*="https://solutions.invocacdn.com/js/invoca-latest.min.js"]',
+    ]);
+
     // attempt to remove non-content elements
     WebImporter.DOMUtils.remove(main, [
       'header',
@@ -117,13 +70,18 @@ export default {
       'div.cmp-experiencefragment--footer-subscription-form',
       'div.cmp-experiencefragment--modal-form',
       'div.cmp-experiencefragment--footer',
+      'div.col-lg-3.cmp-columnrow__item',
+      'div#onetrust-consent-sdk',
     ]);
 
-    transformTabs(main);
-    transformCards(main);
-    transformColumns(main);
+    const meta = WebImporter.Blocks.getMetadata(document);
 
-    WebImporter.rules.createMetadata(main, document);
+    setMetadata(meta, document);
+
+    const mdb = WebImporter.Blocks.getMetadataBlock(document, meta);
+    // console.log(mdb);
+    main.append(mdb);
+
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
     WebImporter.rules.convertIcons(main, document);
