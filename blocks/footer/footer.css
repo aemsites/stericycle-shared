@@ -34,7 +34,7 @@ footer .footer {
 
 @media screen and (min-width: 1400px) {
   footer .footer {
-    max-width: 990pt;
+    max-width: 1320px;
   }
 }
 
@@ -52,7 +52,7 @@ footer .footer p {
 
 @media screen and (min-width: 768px) {
   footer .default-content-wrapper {
-    max-width: 45pc;
+    max-width: 720px;
   }
 }
 
@@ -570,7 +570,7 @@ footer .default-content-wrapper .columns.quote > div {
 
 @media screen and (min-width: 768px) {
   footer .columns-wrapper {
-    max-width: 45pc;
+    max-width: 720px;
   }
 }
 
@@ -756,7 +756,7 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
   margin: 0;
   border: 1px solid transparent;
   font-size: 1rem;
-  line-height: 2pc;
+  line-height: 32px;
   border-width: 2px;
   border-radius: 100px;
   width: 15%;
