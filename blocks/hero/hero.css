@@ -1,7 +1,7 @@
 main .hero-container > div {
   max-width: unset;
 }
-  
+
 main .hero-container {
   padding: 0;
 }
@@ -12,23 +12,31 @@ main .hero-container {
   min-height: 300px;
 }
 
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: white;
-}
-
-.hero picture {
+.hero picture.hero-background {
   position: absolute;
-  z-index: -1;
   inset: 0;
   object-fit: cover;
   box-sizing: border-box;
 }
 
-.hero img {
+.hero picture.hero-background > img {
   object-fit: cover;
   width: 100%;
   height: 100%;
+}
+
+.hero div.hero-content-container {
+  position: relative;
+  max-width: var(--section-width);
+  margin: auto;
+  padding: 28px 0;
+}
+
+.hero div.hero-content-container > div.hero-content {
+  width: 58.3333%;
+}
+
+.hero div.hero-content-container > div.hero-content .button {
+  margin-top: 40px;
+  width: 200px;
 }
