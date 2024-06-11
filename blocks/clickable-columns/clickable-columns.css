@@ -1,0 +1,48 @@
+.clickable-columns {
+  margin: 16px 0;
+}
+
+.clickable-columns > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.clickable-columns img {
+  width: 100%;
+}
+
+.clickable-columns > div > div {
+  padding: 24px;
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.clickable-columns > div > div:hover {
+  --color-heading: var(--color-blue);
+
+  box-shadow: 0 0.5rem 1rem rgba(0 0 0 / 15%);
+  background-color: var(--color-white);
+}
+
+.clickable-columns > div > .columns-img-col {
+  order: 0;
+}
+
+.clickable-columns > div > .columns-img-col img {
+  display: block;
+}
+
+@media (width >= 900px) {
+  .clickable-columns > div {
+    flex-direction: unset;
+    gap: 24px;
+  }
+
+  .clickable-columns > div > div {
+    flex: 1;
+    order: unset;
+  }
+}

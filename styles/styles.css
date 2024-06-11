@@ -314,10 +314,18 @@ main .block.blue-background {
   --color-link-hover: var(--color-white);
 }
 
+main .centered-text {
+  text-align: center;
+}
+
 main .cyan-headings {
   --color-heading: var(--color-cyan);
 }
 
 main .blue-headings {
   --color-heading: var(--color-blue);
+}
+
+main .navy-headings {
+  --color-heading: var(--color-navy);
 }
