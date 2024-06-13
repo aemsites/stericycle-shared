@@ -102,6 +102,14 @@
   --heading-font-size-s: 14px;
   --heading-font-size-xs: 12px;
 
+  /* icon sizes */
+  --icon-size-xs: 10px;
+  --icon-size-s: 20px;
+  --icon-size-m: 24px;
+  --icon-size-l: 32px;
+  --icon-size-xl: 60px;
+  --icon-size-xxl: 100px;
+
   /* misc */
   --nav-height: 125px;
   --section-width: 990pt;
@@ -328,4 +336,34 @@ main .blue-headings {
 
 main .navy-headings {
   --color-heading: var(--color-navy);
+}
+
+main .xs-icons .icon {
+  width: var(--icon-size-xs);
+  height: var(--icon-size-xs);
+}
+
+main .s-icons .icon {
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+}
+
+main .m-icons .icon {
+  width: var(--icon-size-m);
+  height: var(--icon-size-m);
+}
+
+main .l-icons .icon {
+  width: var(--icon-size-l);
+  height: var(--icon-size-l);
+}
+
+main .xl-icons .icon {
+  width: var(--icon-size-xl);
+  height: var(--icon-size-xl);
+}
+
+main .xxl-icons .icon {
+  width: var(--icon-size-xxl);
+  height: var(--icon-size-xxl);
 }
