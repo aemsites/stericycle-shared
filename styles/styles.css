@@ -106,7 +106,7 @@
   /* misc */
   --nav-height: 125px;
   --section-width: 990pt;
-  
+
   /* font weights */
   --lato-regular: 400;
   --lato-bold: 700;
@@ -325,4 +325,32 @@ main .cyan-headings {
 
 main .blue-headings {
   --color-heading: var(--color-blue);
+}
+
+/* blog styles */
+
+.blog-page div.related-content {
+  background-color: #f2f6f7;
+  width: 100%;
+}
+
+@media (width >= 992px) {
+  .blog-page div.section:first-of-type > div.default-content-wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .blog-page div.blog-content {
+    display: flex;
+    width: 75%;
+    flex-direction: column;
+  }
+
+  .blog-page div.related-content {
+    margin-left: 8.3333%;
+    display: flex;
+    width: 25%;
+    flex-direction: column;
+    background-color: #f2f6f7;
+  }
 }

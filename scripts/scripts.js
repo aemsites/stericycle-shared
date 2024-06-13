@@ -11,10 +11,19 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  getMetadata,
 } from './aem.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
+export function getLocale() {
+  const locale = getMetadata('locale');
+  if (locale && locale.length > 0) {
+    return locale;
+  }
+  // defaulting to en-us
+  return '/en-us';
+}
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
@@ -57,6 +66,24 @@ function buildAutoBlocks(main) {
   }
 }
 
+async function decorateBlog(main) {
+  if (main.parentElement && main.parentElement.matches('body[class="blog-page"]')) {
+    // console.log('Blog page detected');
+    const leftColumn = document.createElement('div');
+    leftColumn.classList.add('blog-content');
+    const rightColumn = document.createElement('div');
+    rightColumn.classList.add('related-content');
+    const rcHeader = document.createElement('h4');
+    rcHeader.classList.add('related-content-header');
+    rightColumn.append(rcHeader);
+
+    const defaultContent = main.querySelector('div.section > div.default-content-wrapper');
+    leftColumn.append(...defaultContent.childNodes);
+    defaultContent.prepend(rightColumn);
+    defaultContent.prepend(leftColumn);
+  }
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -69,6 +96,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateBlog(main);
 }
 
 /**
