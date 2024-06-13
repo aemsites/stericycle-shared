@@ -11,19 +11,10 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
-  getMetadata,
 } from './aem.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
-export function getLocale() {
-  const locale = getMetadata('locale');
-  if (locale && locale.length > 0) {
-    return locale;
-  }
-  // defaulting to en-us
-  return '/en-us';
-}
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
