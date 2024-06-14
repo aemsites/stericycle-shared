@@ -107,7 +107,7 @@
   --section-width: 990pt;
 }
 
-@media (width >= 900px) {
+@media (min-width: 900px) {
   :root {
     --heading-font-size-xxl: 48px;
     --heading-font-size-xl: 32px;
@@ -271,13 +271,13 @@ main .section {
   padding: 16px;
 }
 
-@media (width >= 600px) {
+@media (min-width: 600px) {
   main .section {
     padding: 32px;
   }
 }
 
-@media (width >= 900px) {
+@media (min-width: 900px) {
   .section > div {
     max-width: var(--section-width);
     margin: auto;

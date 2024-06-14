@@ -72,7 +72,7 @@
   margin-left: 4px;
 }
 
-@media (width >= 900px) {
+@media (min-width: 900px) {
   .flip-cards {
     display: flex;
   }
