@@ -28,7 +28,7 @@
   display: block;
 }
 
-@media (width >= 900px) {
+@media (min-width: 900px) {
   .clickable-columns > div {
     flex-direction: unset;
     gap: 24px;
