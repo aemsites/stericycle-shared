@@ -365,6 +365,8 @@ main .blue-headings {
     flex-direction: column;
     background-color: #f2f6f7;
   }
+}
+
 main .navy-headings {
   --color-heading: var(--color-navy);
 }
