@@ -334,7 +334,7 @@ main .blue-headings {
   width: 100%;
 }
 
-@media (width >= 992px) {
+@media (min-width: 992px) {
   .blog-page div.section:first-of-type > div.default-content-wrapper {
     display: flex;
     flex-direction: row;
