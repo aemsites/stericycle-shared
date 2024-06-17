@@ -85,6 +85,7 @@
   --font-family-lato: 'Lato', 'Lato Fallback', sans-serif;
   --font-family-body: var(--font-family-lato);
   --font-family-heading: var(--font-family-body);
+  --font-family-footer: var(--font-family-body);
   --font-family-fixed: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
@@ -102,9 +103,21 @@
   --heading-font-size-s: 14px;
   --heading-font-size-xs: 12px;
 
+  /* icon sizes */
+  --icon-size-xs: 10px;
+  --icon-size-s: 20px;
+  --icon-size-m: 24px;
+  --icon-size-l: 32px;
+  --icon-size-xl: 60px;
+  --icon-size-xxl: 100px;
+
   /* misc */
   --nav-height: 125px;
   --section-width: 990pt;
+
+  /* font weights */
+  --lato-regular: 400;
+  --lato-bold: 700;
 }
 
 @media (min-width: 900px) {
@@ -314,10 +327,48 @@ main .block.blue-background {
   --color-link-hover: var(--color-white);
 }
 
+main .centered-text {
+  text-align: center;
+}
+
 main .cyan-headings {
   --color-heading: var(--color-cyan);
 }
 
 main .blue-headings {
   --color-heading: var(--color-blue);
+}
+
+main .navy-headings {
+  --color-heading: var(--color-navy);
+}
+
+main .xs-icons .icon {
+  width: var(--icon-size-xs);
+  height: var(--icon-size-xs);
+}
+
+main .s-icons .icon {
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+}
+
+main .m-icons .icon {
+  width: var(--icon-size-m);
+  height: var(--icon-size-m);
+}
+
+main .l-icons .icon {
+  width: var(--icon-size-l);
+  height: var(--icon-size-l);
+}
+
+main .xl-icons .icon {
+  width: var(--icon-size-xl);
+  height: var(--icon-size-xl);
+}
+
+main .xxl-icons .icon {
+  width: var(--icon-size-xxl);
+  height: var(--icon-size-xxl);
 }
