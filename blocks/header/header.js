@@ -180,11 +180,11 @@ export default async function decorate(block) {
   menuDiv.className = 'menu-items';
   navSections.querySelectorAll('.default-content-wrapper > ul > li').forEach((navSection) => {
     const clonedNavSection = navSection.cloneNode(true);
-    if(clonedNavSection.classList.contains('nav-drop')) {
+    if (clonedNavSection.classList.contains('nav-drop')) {
       const nestedUl = clonedNavSection.querySelector('ul');
-      if(nestedUl) {
+      if (nestedUl) {
         nestedUl.style.display = 'none';
-      };
+      }
     }
 
     const aElement = clonedNavSection.querySelector('a');
@@ -194,7 +194,8 @@ export default async function decorate(block) {
     if (aElement) {
       className = aElement.textContent.trim().toLowerCase().replace(/ /g, '-');
     } else {
-      const textNode = Array.from(clonedNavSection.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
+      // eslint-disable-next-line max-len
+      const textNode = Array.from(clonedNavSection.childNodes).find((node) => node.nodeType === Node.TEXT_NODE);
       if (textNode) {
         className = textNode.nodeValue.trim().toLowerCase().replace(/ /g, '-');
       }
@@ -209,15 +210,15 @@ export default async function decorate(block) {
     menuDiv.appendChild(clonedNavSection);
   });
 
-  navTools.querySelectorAll('.default-content-wrapper > ul > li').forEach((navTool) => { 
+  navTools.querySelectorAll('.default-content-wrapper > ul > li').forEach((navTool) => {
     const clonedNavTool = navTool.cloneNode(true);
-    console.log('clonedNavTool', clonedNavTool);
+    // console.log('clonedNavTool', clonedNavTool);
     const lastFourLiElements = Array.from(clonedNavTool).slice(-4);
-    console.log('lastFourLiElements', lastFourLiElements);
+    // console.log('lastFourLiElements', lastFourLiElements);
 
-    lastFourLiElements.forEach(liElement => {
+    lastFourLiElements.forEach((liElement) => {
       const clonedLi = liElement.cloneNode(true);
-      console.log('clonedLi', clonedLi);
+      // console.log('clonedLi', clonedLi);
       menuDiv.appendChild(clonedLi);
     });
   });
@@ -230,28 +231,28 @@ export default async function decorate(block) {
       <span class="nav-hamburger-icon"></span>
     </button>`;
   hamburger.addEventListener('click', () => {
-      document.body.append(overlay);
-      toggleMenu(nav, navSections);
-      if (overlay) {
-        if (nav.getAttribute('aria-expanded') === 'true') {
-          setTimeout(() => {
-            overlay.classList.add('menu-open');
-          }, 0);
-          closeButton.addEventListener('click', () => {
-            const overlay = document.querySelector('.overlay');
-            overlay.classList.remove('menu-open');
-
-            // Find the nav element and set 'aria-expanded' to 'false'
-            const nav = document.querySelector('header nav');
-            nav.setAttribute('aria-expanded', 'false');
-
-            // Remove 'overflow-y: hidden' from the body tag
-            document.body.style.overflowY = '';
-          });
-        } else {
+    document.body.append(overlay);
+    toggleMenu(nav, navSections);
+    if (overlay) {
+      if (nav.getAttribute('aria-expanded') === 'true') {
+        setTimeout(() => {
+          overlay.classList.add('menu-open');
+        }, 0);
+        closeButton.addEventListener('click', () => {
+          // const overlay = document.querySelector('.overlay');
           overlay.classList.remove('menu-open');
-        }
+
+          // Find the nav element and set 'aria-expanded' to 'false'
+          // const nav = document.querySelector('header nav');
+          nav.setAttribute('aria-expanded', 'false');
+
+          // Remove 'overflow-y: hidden' from the body tag
+          document.body.style.overflowY = '';
+        });
+      } else {
+        overlay.classList.remove('menu-open');
       }
+    }
   });
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
