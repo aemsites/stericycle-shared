@@ -1,0 +1,136 @@
+.section.featuretable-container {
+  display: none;
+}
+
+@media screen and (min-width: 992px) {
+  .section.featuretable-container {
+    display: block;
+  }
+}
+
+.featuretable {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.featuretable-container .default-content-wrapper h2 {
+  color: #006cb4;
+  line-height: 38px;
+  margin-bottom: 24px;
+}
+
+.featuretable table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: var(--body-font-size-xs);
+}
+
+@media (width >= 600px) {
+  .featuretable table {
+    font-size: var(--body-font-size-s);
+  }
+}
+
+@media (width >= 900px) {
+  .featuretable table {
+    font-size: var(--body-font-size-m);
+    border: 6px solid #cccccc;
+  }
+}
+
+.featuretable table thead tr {
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  background-color: #006cb4;
+}
+
+.featuretable table thead tr p {
+  font-family: var(--font-family-lato);
+  color: var(--color-white);
+  line-height: 24px;
+  font-weight: 500;
+}
+
+
+.featuretable > table > thead > tr:nth-child(1) > th {
+  padding: 20px;
+  height: fit-content;
+  text-align: center;
+}
+
+.featuretable > table > thead > tr:nth-child(2) > td {
+  padding: 20px;
+  height: fit-content;
+}
+
+.featuretable > table > thead > tr:nth-child(2) > td:nth-child(n+2) {
+  text-align: center;
+}
+
+.featuretable table tbody tr {
+  border-bottom: 1px solid;
+}
+
+.featuretable table > tbody > tr > td {
+  padding: 20px;
+}
+
+.featuretable table > tbody > tr > td:nth-child(n+2) {
+  text-align: center;
+}
+
+.featuretable table > tbody > tr > td:nth-child(n+2) .icon {
+  height: 25px;
+  width: 25px;
+}
+
+.featuretable table > tbody > tr > td > p {
+  line-height: 24px;
+}
+
+.featuretable table > tbody > tr > td > p > a {
+  text-decoration: underline;
+}
+
+
+.featuretable table th {
+  font-weight: 700;
+}
+
+.featuretable table th,
+.featuretable table td {
+  padding: 8px 16px;
+}
+
+.featuretable table th:nth-child(1) {
+  width: 50%;
+}
+
+/* no header variant */
+.featuretable.no-header table tbody tr {
+  border-top: 1px solid;
+}
+
+/* striped variant */
+.featuretable.striped tbody tr:nth-child(odd) {
+  background-color: var(--overlay-background-color);
+}
+
+/* bordered variant */
+.featuretable.bordered table th,
+.featuretable.bordered table td {
+  border: 3px solid #cccccc;
+}
+
+.featuretable.bordered table th:nth-child(1) {
+  width: 44%;
+}
+
+.featuretable.bordered table th:nth-child(2) {
+  width: 42%;
+}
+
+.featuretable.bordered table th:nth-child(3) {
+  width: 14%;
+}
