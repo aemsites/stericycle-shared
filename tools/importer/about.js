@@ -33,6 +33,10 @@ function getPath(url){
   return path;
 }
 
+function getLocaleFromUrl(doc){
+    const match = doc.documentURI.match(/\/([a-z]{2,}(?:-[a-z]{2,})*)\//g);
+    return Object.hasOwn(match, 'length') && match.length >= 1 ? match[0].replaceAll('/', '') : null;
+  }
 
 function sanitizeURL(url) {
   const newURL = baseDomain + url;
@@ -41,31 +45,109 @@ function sanitizeURL(url) {
 }
 
 function getDocumentMetadata(name, document) {
-  const attr = name && name.includes(':') ? 'property' : 'name';
-  const meta = [...document.head.querySelectorAll(`meta[${attr}="${name}"]`)]
-    .map((m) => m.content)
-    .join(', ');
-  return meta || '';
+    const attr = name && name.includes(':') ? 'property' : 'name';
+    const meta = [...document.head.querySelectorAll(`meta[${attr}="${name}"]`)]
+      .map((m) => m.content)
+      .join(', ');
+    return meta || '';
 }
 
-function getLocaleFromUrl(doc){
-  const match = doc.documentURI.match(/\/([a-z]{2,}(?:-[a-z]{2,})*)\//g);
-  return Object.hasOwn(match, 'length') && match.length >= 1 ? match[0].replaceAll('/', '') : null;
+function transformButtonToAnchors(main) {
+  let aLink = main.querySelector('a.page-teaser__link--wrapper').href;
+  aLink = aLink.startsWith('http') ? new URL(aLink).pathname : aLink;
+  main.querySelectorAll('button.page-teaser__link').forEach((button) => {
+    const a = document.createElement('a');
+    a.href = sanitizeURL(aLink);
+    a.textContent = button.textContent;
+    a.setAttribute('aria-label', button.getAttribute('aria-label'));
+    button.replaceWith(a);
+  });
+}
+
+function transformTabs(main) {
+  main.querySelectorAll('div.tabs.panelcontainer').forEach((tabs) => {
+    const cells = [
+      ['Tabs'],
+      ['This will need to be manually transformed'],
+    ];
+    const tabBlock = WebImporter.DOMUtils.createTable(cells, document);
+    tabs.replaceWith(tabBlock);
+  });
+}
+
+function transformColumns(main) {
+  main.querySelectorAll('div.cmp-pagesection div.columnrow > div.row').forEach((column) => {
+    console.log('Transforming columns');
+    const cells = [
+      ['Columns'],
+    ];
+
+    const row = [];
+
+    column.querySelectorAll('div.cmp-columnrow__item').forEach((item) => {
+      row.push(item);
+
+      if (item.querySelector('div.modalformcalltoaction > a.cmp-modal-form-cta')) {
+        cells[0] = ['Columns (cta)'];
+      }
+    });
+
+    cells.push(row);
+
+    try {
+      const columnBlock = WebImporter.DOMUtils.createTable(cells, document);
+      column.replaceWith(columnBlock);
+    } catch (e) {
+      console.log(e);
+    }
+  });
+}
+
+function transformCards(main) {
+  main.querySelectorAll('ul.cmp-teaserlist').forEach((teaser) => {
+    const imgEls = [];
+    const titleEls = [];
+    const linkEls = [];
+    console.log('Transforming cards');
+    const cells = [
+      ['Flip Cards'],
+    ];
+    teaser.querySelectorAll('li').forEach((item) => {
+      transformButtonToAnchors(item);
+      const img = item.querySelector('img.page-teaser__img');
+      const title = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back h6.page-teaser__title.page-teaser__title--back');
+      const description = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back p.page-teaser__desc');
+      const link = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back a').href;
+
+      if (img && title) {
+        imgEls.push([img, title]);
+      }
+      if (title && description) {
+        titleEls.push([title, description]);
+      }
+      if (link) {
+        linkEls.push(link);
+      }
+    });
+    cells.push(imgEls, titleEls, linkEls);
+    const cardBlock = WebImporter.DOMUtils.createTable(cells, document);
+    teaser.replaceWith(cardBlock);
+  });
 }
 
 function setMetadata(meta, document) {
-  const url = new URL(document.documentURI).pathname;
-  const path = getPath(url);
-  meta.template = 'blog-page';
-  meta['twitter:title'] = meta.Title;
-  meta['twitter:description'] = meta.Description;
-  meta['og:type'] = 'website';
-  meta['locale'] = getLocaleFromUrl(document)
-  meta['og:url'] = getDocumentMetadata('og:url', document);
-  if(Object.hasOwn(TAGS, path)){
-    meta['tags'] = TAGS[path];
+    const url = new URL(document.documentURI).pathname;
+    const path = getPath(url);
+    meta.template = 'blog-page';
+    meta['twitter:title'] = meta.Title;
+    meta['twitter:description'] = meta.Description;
+    meta['og:type'] = 'website';
+    meta['locale'] = getLocaleFromUrl(document)
+    meta['og:url'] = getDocumentMetadata('og:url', document);
+    if(Object.hasOwn(TAGS, path) && TAGS[path] !== ''){
+      meta['tags'] = TAGS[path];
+    }
   }
-}
 
 export default {
   /**
@@ -84,10 +166,6 @@ export default {
     // define the main element: the one that will be transformed to Markdown
     const main = document.body;
 
-    WebImporter.DOMUtils.remove(document, [
-      'script[src*="https://solutions.invocacdn.com/js/invoca-latest.min.js"]',
-    ]);
-
     // attempt to remove non-content elements
     WebImporter.DOMUtils.remove(main, [
       'header',
@@ -102,8 +180,12 @@ export default {
       'div.cmp-experiencefragment--modal-form',
       'div.cmp-experiencefragment--footer',
       'div.col-lg-3.cmp-columnrow__item',
-      'div#onetrust-consent-sdk',
+      'div#onetrust-consent-sdk'
     ]);
+
+    transformTabs(main);
+    transformCards(main);
+    transformColumns(main);
 
     const meta = WebImporter.Blocks.getMetadata(document);
 
@@ -111,7 +193,6 @@ export default {
 
     const mdb = WebImporter.Blocks.getMetadataBlock(document, meta);
     main.append(mdb);
-
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
     WebImporter.rules.convertIcons(main, document);
