@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 4px;
-  margin: 16px 0;
+  margin: 4px 0;
   text-align: center;
   font-size: var(--body-font-size-s);
 }
