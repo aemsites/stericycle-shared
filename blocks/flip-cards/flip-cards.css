@@ -1,9 +1,4 @@
 .flip-cards {
-  --color-heading: var(--color-white);
-  --color-text: var(--color-white);
-  --color-link: var(--color-white);
-  --color-link-hover: var(--color-white);
-
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 4px;
@@ -30,18 +25,35 @@
 }
 
 .flip-cards > a > div > div {
+  --color-heading: var(--color-white);
+  --color-text: var(--color-white);
+  --color-link: var(--color-white);
+  --color-link-hover: var(--color-white);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 16px;
   height: 200px;
   box-sizing: border-box;
-  background-color: var(--color-navy);
   cursor: pointer;
+}
+
+.flip-cards > a > div > .flip-card-front {
+  background-color: var(--color-navy);
 }
 
 .flip-cards > a:hover > div > .flip-card-front {
   display: none;
+}
+
+.flip-cards.light > a > div > .flip-card-front {
+  --color-heading: var(--color-black);
+  --color-text: var(--color-black);
+  --color-link: var(--color-black);
+  --color-link-hover: var(--color-black);
+
+  background-color: var(--color-gray);
 }
 
 .flip-cards > a > div > .flip-card-back {
