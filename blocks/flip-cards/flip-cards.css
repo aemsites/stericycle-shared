@@ -1,0 +1,99 @@
+.flip-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  margin: 4px 0;
+  text-align: center;
+  font-size: var(--body-font-size-s);
+}
+
+.flip-cards a {
+  text-decoration: none;
+}
+
+.flip-cards img {
+  width: 100%;
+}
+
+.flip-cards h3, .flip-cards h4, .flip-cards h5, .flip-cards h6 {
+  font-size: 16px;
+}
+
+.flip-cards .icon {
+  width: 60px;
+  height: auto;
+}
+
+.flip-cards > a > div > div {
+  --color-heading: var(--color-white);
+  --color-text: var(--color-white);
+  --color-link: var(--color-white);
+  --color-link-hover: var(--color-white);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  height: 200px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.flip-cards > a > div > .flip-card-front {
+  background-color: var(--color-navy);
+}
+
+.flip-cards > a:hover > div > .flip-card-front {
+  display: none;
+}
+
+.flip-cards.light > a > div > .flip-card-front {
+  --color-heading: var(--color-black);
+  --color-text: var(--color-black);
+  --color-link: var(--color-black);
+  --color-link-hover: var(--color-black);
+
+  background-color: var(--color-gray);
+}
+
+.flip-cards > a > div > .flip-card-back {
+  background-color: var(--color-blue);
+  display: none;
+  justify-content: space-between;
+  padding: 16px 24px;
+}
+
+.flip-cards > a:hover > div > .flip-card-back {
+  display: flex;
+}
+
+.flip-cards > a > div > .flip-card-back > p {
+  text-align: left;
+  max-height: 100px;
+  overflow: hidden;
+}
+
+.flip-cards > a > div > .flip-card-back > p > span.fake-link {
+  text-decoration: underline;
+}
+
+.flip-cards > a > div > .flip-card-back > p > span.fake-link::after {
+  display: inline-block;
+  content: "\f054";
+  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+  margin-left: 4px;
+}
+
+@media (min-width: 900px) {
+  .flip-cards {
+    display: flex;
+  }
+
+  .flip-cards > a {
+    flex: 1;
+  }
+
+  .flip-cards > a > div > div {
+    height: 250px;
+  }
+}
