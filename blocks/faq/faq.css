@@ -8,13 +8,13 @@ main .section.faq-container {
 }
 
 .faq details {
-  border-top: 1px solid #dad6d6;
-  border-bottom: 1px solid #dad6d6;
+  border-top: 1px solid var(--color-light-silver);
+  border-bottom: 1px solid var(--color-light-silver);
 }
 
 .faq details + details {
   border-top: none;
-  border-bottom: 1px solid #dad6d6;
+  border-bottom: 1px solid var(--color-light-silver);
 }
 
 .faq details summary {
@@ -47,15 +47,15 @@ main .section.faq-container {
 }
 
 .faq details summary p {
-  color: #1a242b;
-  font-weight: 700;
-  font-size: 1rem;
+  color: var(--color-dark-gunmetal);
+  font-weight: var(--lato-bold);
+  font-size: var(--body-font-size-m);
   line-height: 16px;
 }
 
 @media screen and (min-width: 992px) {
   .faq details summary p {
-    font-size: 20px;
+    font-size: var(--body-font-size-l);
     font-weight: 600;
     line-height: 30px;
   }
@@ -67,11 +67,11 @@ main .section.faq-container {
   height: 2px;
   right: 1rem;
   top: calc(50% - 2px);
-  background: black;
+  background: var(--color-black);
 }
 
 .faq details summary span::after {
-  background: black;
+  background: var(--color-black);
   content: "";
   position: absolute;
   width: 2px;
@@ -154,8 +154,8 @@ main .section.faq-container {
 }
 
 .faq-container .default-content-wrapper > h2 {
-  color: #006cb4;
-  font-size: 1.25rem;
+  color: var(--color-blue);
+  font-size: var(--body-font-size-l);
   line-height: 1.625rem;
   letter-spacing: -.0009rem;
   margin-bottom: .5rem;
@@ -164,9 +164,9 @@ main .section.faq-container {
 
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper h2 {
-    color: #006cb4;
+    color: var(--color-blue);
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: var(--lato-bold);
     line-height: 2.375rem;
     letter-spacing: -.0009rem;
   }
@@ -174,7 +174,7 @@ main .section.faq-container {
 
 /* stylelint-disable-next-line no-descending-specificity */
 .faq-container .default-content-wrapper > p {
-  font-size: .625rem;
+  font-size: var(--body-font-size-xxs);
   line-height: .875rem;
   letter-spacing: -.0006rem;
   padding: 0 12px;
@@ -182,7 +182,7 @@ main .section.faq-container {
 
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper p {
-    font-size: .75rem;
+    font-size: var(--body-font-size-xs);
     line-height: 1.125rem;
   }
 }
