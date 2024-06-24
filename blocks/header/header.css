@@ -295,10 +295,38 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
     display: flex;
   }
 
+  .nav-tools ul li.nav-drop {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .nav-tools ul li.nav-drop:hover {
+    text-decoration: underline;
+  }
+
+  .nav-tools ul li.nav-drop::after {
+    content: '\2304';
+    font-size: 14px;
+    color: white;
+    margin-left: 5px;
+    align-items: center;
+    padding-bottom: 7px;
+  }
+
   header nav .icon-search > img {
     /* filter: invert(1); */
     align-self: center;
     height: 24px;
+  }
+
+  .icon-us-flag {
+    margin-right: 10px;
+    align-items: center;
+  }
+
+  .nav-drop::target-text {
+    margin-left: 5px;
   }
 
   header nav[aria-expanded="true"] {
@@ -368,6 +396,10 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
     margin-right: 1rem;
   }
 
+  header nav .nav-sections .nav-drop-content li ul li {
+    font-weight: 100;
+  }
+
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
     padding: 8px 0;
   }
@@ -376,32 +408,47 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
     margin-right: 0;
   }
 
+  header nav .nav-sections .nav-drop .nav-drop-content li ul li {
+    padding: 4px 0;
+  }
+
   header nav .nav-sections .default-content-wrapper > ul > li > ul, header nav .nav-tools .default-content-wrapper > ul > li > ul {
     display: none;
     position: relative;
   }
 
+  .nav-drop[aria-expanded="false"] .nav-drop-content li ul {
+    display: unset;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-tools ul li.nav-drop[aria-expanded="true"] ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    /* stylelint-disable-next-line color-function-notation */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 20%);
+    z-index: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 50px; /* Adjust width as needed */
+    height: auto;
+    color: black;
+}
+
   header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded="true"] > ul, header nav .nav-tools .default-content-wrapper > ul > li[aria-expanded="true"] > ul {
     display: block;
     position: absolute;
     left: -1em;
-    width: 200px;
     margin-top: 12px;
     padding: 1em;
     background-color: var(--color-gray);
     white-space: initial;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before, header nav .nav-tools .default-content-wrapper > ul > li > ul::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 8px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--color-gray);
   }
 
   /* tel icon */
@@ -428,6 +475,52 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
     margin-left: 40px;
     margin-right: unset;
   }
+
+  /* nav drop content */
+  header nav .nav-sections .nav-drop .nav-drop-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background-color: white;
+    z-index: 1;
+    padding: 20px;
+    margin: 0;
+    white-space: nowrap;
+    color: black;
+
+    /* min-width: 70vw; */
+    min-width: 600px;
+    left: -50%;
+    transform: translateX(-40%);
+    max-width: 90vw;
+    margin-top: 7px;
+    gap: 20px;
+  }
+
+  header nav .nav-sections .nav-drop:hover .nav-drop-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  header nav .nav-sections .nav-drop.last .nav-drop-content {
+    transform: translateX(-65%);
+    gap: 20px;
+  }
+
+  header nav .nav-sections .nav-drop.last .nav-drop-content li {
+    padding: 5px 0;
+  }
+
+  header nav .nav-sections .nav-drop:hover .nav-drop-content.single-column {
+    display: unset;
+    min-width: 300px;
+  }
+
+  header nav .nav-sections .nav-drop:hover .nav-drop-content.single-column li {
+    font-weight: 100;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -438,4 +531,8 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   header nav {
     height: 130px;
   }
+}
+
+header nav .section:last-child {
+  display: none;
 }
