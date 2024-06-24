@@ -344,6 +344,32 @@ main .blue-headings {
 .blog-page div.related-content {
   background-color: #f2f6f7;
   width: 100%;
+  padding: 32px;
+}
+
+.blog-page div.related-content h4 {
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+  text-align: center;
+  margin-bottom: .75rem;
+}
+
+.blog-page div.related-content ul {
+  list-style-type: none;
+  padding-left: unset;
+}
+
+.blog-page div.related-content h5 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  line-height: 24px;
+  font-size: 16px;
+}
+
+.blog-page div.related-content div.related-content-date {
+  padding-bottom: 1rem;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 @media (min-width: 992px) {
