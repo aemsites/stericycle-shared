@@ -301,3 +301,8 @@ header nav .nav-tools {
   position: absolute;
   display: block;
 }
+
+/* tmp hiding */
+header nav .section:last-child {
+  display: none;
+}
