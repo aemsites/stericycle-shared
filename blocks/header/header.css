@@ -301,3 +301,7 @@ header nav .nav-tools {
   position: absolute;
   display: block;
 }
+
+header nav .section:last-child {
+  display: none;
+}
