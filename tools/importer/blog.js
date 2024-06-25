@@ -11,34 +11,24 @@
  */
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
-const baseDomain = 'https://main--shredit--stericycle.aem.page';
 const req = new XMLHttpRequest();
 let tags = {};
-let TAGS = {};
+const TAGS = {};
 req.open('GET', '/tools/importer/shredit-meta.json', false);
 req.send(null);
-if(req.status === 200){
+if (req.status === 200) {
   tags = JSON.parse(req.responseText);
+}
+
+function getPath(url) {
+  const lastIndex = url.lastIndexOf('/');
+  return url.substring(lastIndex + 1);
 }
 
 tags.forEach((item) => {
   const path = getPath(item.Path);
-  const tags = item.Tags.replaceAll(';', ',');
-  TAGS[path] = tags;
-})
-
-function getPath(url){
-  const lastIndex = url.lastIndexOf("/");
-  const path = url.substring(lastIndex + 1);
-  return path;
-}
-
-
-function sanitizeURL(url) {
-  const newURL = baseDomain + url;
-
-  return newURL;
-}
+  TAGS[path] = item.Tags.replaceAll(';', ',');
+});
 
 function getDocumentMetadata(name, document) {
   const attr = name && name.includes(':') ? 'property' : 'name';
@@ -48,7 +38,7 @@ function getDocumentMetadata(name, document) {
   return meta || '';
 }
 
-function getLocaleFromUrl(doc){
+function getLocaleFromUrl(doc) {
   const match = doc.documentURI.match(/\/([a-z]{2,}(?:-[a-z]{2,})*)\//g);
   return Object.hasOwn(match, 'length') && match.length >= 1 ? match[0].replaceAll('/', '') : null;
 }
@@ -56,14 +46,17 @@ function getLocaleFromUrl(doc){
 function setMetadata(meta, document) {
   const url = new URL(document.documentURI).pathname;
   const path = getPath(url);
+  const pubDate = document.querySelector('p.cmp-calendarattributeprojection');
   meta.template = 'blog-page';
+  meta['media-type'] = 'Blogs'; // all pages should have a value for this
+  meta['publication-date'] = pubDate.innerText;
   meta['twitter:title'] = meta.Title;
   meta['twitter:description'] = meta.Description;
   meta['og:type'] = 'website';
-  meta['locale'] = getLocaleFromUrl(document)
+  meta.locale = getLocaleFromUrl(document);
   meta['og:url'] = getDocumentMetadata('og:url', document);
-  if(Object.hasOwn(TAGS, path)){
-    meta['tags'] = TAGS[path];
+  if (Object.hasOwn(TAGS, path)) {
+    meta.tags = TAGS[path];
   }
 }
 
