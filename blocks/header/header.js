@@ -86,6 +86,52 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
+function toggleSearchBarVisibility() {
+  // Toggle visibility and aria-expanded attribute
+  const searchBoxContainer = document.querySelector('.search-box-container');
+  if (searchBoxContainer.style.display === 'none') {
+    searchBoxContainer.style.display = 'flex';
+    const listItem = searchBoxContainer.closest('li');
+    if (listItem) listItem.setAttribute('aria-expanded', 'true');
+  } else {
+    searchBoxContainer.addEventListener('click', (e) => {
+      if (!e.target.classList.contains('close-button')) {
+        e.stopPropagation(); // Stop event propagation if not clicking on close button
+      }
+    });
+    searchBoxContainer.style.display = 'none';
+    const listItem = searchBoxContainer.closest('li');
+    if (listItem) listItem.setAttribute('aria-expanded', 'false');
+  }
+}
+
+function createAndAppendSearchBox() {
+  let searchBoxContainer = document.querySelector('.search-box-container');
+  if (!searchBoxContainer) {
+    const icon = document.querySelector('.icon-search');
+    searchBoxContainer = document.createElement('div');
+    searchBoxContainer.className = 'search-box-container';
+    searchBoxContainer.style.display = 'none'; // Initially hidden
+
+    const searchBox = document.createElement('input');
+    searchBox.type = 'text';
+    searchBox.placeholder = 'Search';
+    searchBox.className = 'search-box';
+    searchBox.addEventListener('click', (e) => {
+      e.stopPropagation(); // Stop event propagation
+    });
+
+    const closeButton = document.createElement('span');
+    closeButton.textContent = '×';
+    closeButton.className = 'close-button';
+
+    searchBoxContainer.appendChild(searchBox);
+    searchBoxContainer.appendChild(closeButton);
+    icon.parentNode.insertBefore(searchBoxContainer, icon.nextSibling);
+  }
+  toggleSearchBarVisibility();
+}
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -117,6 +163,22 @@ export default async function decorate(block) {
   }
 
   const navSections = nav.querySelector('.nav-sections');
+  if (navSections.querySelector('span.icon-search')) {
+    const searchBox = document.querySelector('.search-box-container');
+    navSections.addEventListener('click', () => {
+      const icon = navSections.querySelector('span.icon-search');
+      if (!icon) return;
+      const listItem = icon.closest('li');
+      if (!listItem) return;
+      if (!searchBox) {
+        createAndAppendSearchBox();
+      } else {
+        searchBox.style.display = 'none';
+        listItem.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSections.querySelector('li > strong')) {
