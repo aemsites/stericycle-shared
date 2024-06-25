@@ -353,9 +353,17 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
     height: 24px;
   }
 
-  .icon-us-flag {
+  .icon-us,
+  .icon-us ul li .icon {
     margin-right: 10px;
     align-items: center;
+    width: 100%;
+  }
+
+  .nav-drop ul li:has(span.icon) {
+    display: flex;
+    gap: 10px;
+    margin: 5px;
   }
 
   .nav-drop::target-text {
@@ -469,7 +477,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 50px; /* Adjust width as needed */
+    width: 60px;
     height: auto;
     color: black;
 }
