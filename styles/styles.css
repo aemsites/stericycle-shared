@@ -374,7 +374,7 @@ main .blue-headings {
 }
 
 .blog-page main .related-content {
-  background-color: #f2f6f7;
+  background-color: var(--color-gray);
   width: 100%;
   padding: 32px;
   box-sizing: border-box;
@@ -561,7 +561,7 @@ main .blue-headings {
     width: 25%;
     height: fit-content;
     flex-direction: column;
-    background-color: #f2f6f7;
+    background-color: var(--color-gray);
   }
 }
 
