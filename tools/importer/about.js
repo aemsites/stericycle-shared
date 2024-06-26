@@ -93,7 +93,7 @@ function transformColumns(main) {
     });
 
     cells.push(row);
-
+    column.after(document.createElement('hr'));
     try {
       const columnBlock = WebImporter.DOMUtils.createTable(cells, document);
       column.replaceWith(columnBlock);
@@ -101,6 +101,23 @@ function transformColumns(main) {
       console.log(e);
     }
   });
+
+
+}
+
+function transformFlipCardsUnderColumn(main){
+  const teaserlist = main.querySelectorAll('ul.cmp-teaserlist');
+
+  teaserlist.forEach((tl, idx, arr) => {
+    const pagesection = tl.closest('div.cmp-pagesection');
+    const title = tl.parentNode.previousElementSibling;
+    pagesection.parentNode.append(document.createElement('hr'));
+    pagesection.parentNode.append(title.cloneNode(true));
+    pagesection.parentNode.append(tl.cloneNode(true));
+    tl.remove();
+    title.remove();
+  })
+
 }
 
 function transformCards(main) {
@@ -118,12 +135,13 @@ function transformCards(main) {
       const title = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back h6.page-teaser__title.page-teaser__title--back');
       const description = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back p.page-teaser__desc');
       const link = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back a').href;
+      const titleh4 = document.createElement('h4').innerText = title.innerText;
 
       if (img && title) {
         imgEls.push([img, title]);
       }
-      if (title && description) {
-        titleEls.push([title, description]);
+      if (titleh4 && description) {
+        titleEls.push([titleh4, description]);
       }
       if (link) {
         linkEls.push(link);
@@ -180,12 +198,14 @@ export default {
       'div.cmp-experiencefragment--modal-form',
       'div.cmp-experiencefragment--footer',
       'div.col-lg-3.cmp-columnrow__item',
-      'div#onetrust-consent-sdk'
+      'div#onetrust-consent-sdk',
+      'div.related-content'
     ]);
 
     transformTabs(main);
+    transformFlipCardsUnderColumn(main);
     transformCards(main);
-    transformColumns(main);
+    //transformColumns(main);
 
     const meta = WebImporter.Blocks.getMetadata(document);
 
