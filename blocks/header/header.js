@@ -234,13 +234,75 @@ export default async function decorate(block) {
     });
   }
 
+  const mobileMenu = nav.querySelector('nav .section:last-child');
+  console.log(mobileMenu);
+  if (mobileMenu) {
+    mobileMenu.classList.add('mobile-menu');
+    mobileMenu.querySelector('ul').classList.add('mobile-menu-content');
+  }
+  const menuItems = nav.querySelectorAll('.mobile-menu-content > li');
+  menuItems.forEach((item) => {
+    item.classList.add('mobile-menu-item');
+    if (item.querySelector('ul')) {
+      item.classList.add('mobile-menu-item-drop');
+      item.querySelector('ul').classList.add('item-drop-content');
+    }
+    Array.from(item.childNodes).forEach((child) => {
+      // Check if the child is a text node and not just whitespace
+      if (child.nodeType === 3 && child.nodeValue.trim().length > 0) {
+        const span = document.createElement('span');
+        span.className = 'text';
+        span.textContent = child.nodeValue.trim();
+        item.replaceChild(span, child);
+      }
+    });
+    if (item.querySelector('span.icon-us')) {
+      const iconSpan = item.querySelector('span.icon-us');
+      const textSpan = item.querySelector('span.text');
+      if (iconSpan && textSpan) {
+        const newDiv = document.createElement('div');
+        newDiv.className = 'flag-icon';
+        if (iconSpan) { newDiv.appendChild(iconSpan); }
+        if (textSpan) { newDiv.appendChild(textSpan); }
+        item.prepend(newDiv);
+      }
+    }
+    if (item.querySelector('strong a')) {
+      const paragraph = document.createElement('p');
+      const btn = item.querySelector('strong').cloneNode(true);
+      paragraph.append(btn);
+      decorateButtons(paragraph);
+      item.querySelector('strong').replaceWith(paragraph);
+    }
+  });
+  const closeButton = document.createElement('button');
+  closeButton.className = 'close-btn';
+  closeButton.innerHTML = 'x';
+  mobileMenu.appendChild(closeButton);
+
   // hamburger for mobile
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
   hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
        <span class="nav-hamburger-icon"></span>
      </button>`;
-  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
+  hamburger.addEventListener('click', () => {
+    toggleMenu(nav, navSections);
+    if (mobileMenu) {
+      if (nav.getAttribute('aria-expanded') === 'true') {
+        setTimeout(() => {
+          mobileMenu.classList.add('mobile-menu-open');
+        }, 0);
+        closeButton.addEventListener('click', () => {
+          mobileMenu.classList.remove('mobile-menu-open');
+          nav.setAttribute('aria-expanded', 'false');
+          document.body.style.overflowY = '';
+        });
+      } else {
+        mobileMenu.classList.remove('mobile-menu-open');
+      }
+    }
+  });
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
   // prevent mobile nav behavior on window resize
