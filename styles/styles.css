@@ -351,7 +351,7 @@ main .blue-headings {
   margin-right: auto;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (min-width: 576px /* breakpoint-s */) {
   .blog-page main .default-content-wrapper {
     max-width: 540px;
     margin-left: auto;
@@ -360,13 +360,13 @@ main .blue-headings {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px /* breakpoint-m */) {
   .blog-page main .default-content-wrapper {
     max-width: 720px;
   }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 992px /* breakpoint-l */) {
   .blog-page main .default-content-wrapper {
     max-width: 960px;
     padding-bottom: 64px;
@@ -384,13 +384,13 @@ main .blue-headings {
   margin-bottom: 47px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px /* breakpoint-m */) {
   .blog-page main div.blog-content {
     margin-bottom: 63px;
   }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 992px /* breakpoint-l */) {
   .blog-page main div.blog-content {
     margin-bottom: 31px;
   }
@@ -412,7 +412,7 @@ main .blue-headings {
     font-weight: var(--lato-bold);
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px /* breakpoint-l */) {
   .blog-page main .blog-content h1 {
     font-size: 3rem;
     line-height: 3.25rem;
@@ -426,7 +426,7 @@ main .blue-headings {
     font-weight: var(--lato-bold);
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 992px /* breakpoint-l */) {
   .blog-page main .blog-content h2 {
     font-size: 2rem;
     line-height: 2.375rem;
@@ -440,7 +440,7 @@ main .blue-headings {
     font-weight: var(--lato-bold);
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 992px /* breakpoint-l */) {
   .blog-page main .blog-content h3 {
     font-size: 26px;
     line-height: 38px;
@@ -463,7 +463,7 @@ main .blue-headings {
   margin-bottom: 16px;
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 992px /* breakpoint-l */) {
   .blog-page main .related-content .related-content-teaser {
     margin-bottom: 0;
   }
@@ -504,7 +504,7 @@ main .blue-headings {
   margin-bottom: 40px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px /* breakpoint-l */) {
   .blog-page main .related-content .related-content-date {
     font-size: 12px;
     line-height: 18px;
@@ -524,7 +524,7 @@ main .blue-headings {
   text-align: center;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px /* breakpoint-l */) {
   .blog-page main .related-content h4 {
     font-size: 1.25rem;
     line-height: 1.875rem;
@@ -538,7 +538,7 @@ main .blue-headings {
   font-size: 16px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px /* breakpoint-l */) {
   .blog-page main .related-content h5 {
     line-height: 24px;
   }
