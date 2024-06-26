@@ -392,7 +392,7 @@ main .blue-headings {
 
 @media screen and (min-width: 992px) {
   .blog-page main div.blog-content {
-    margin-bottom: 63px;
+    margin-bottom: 31px;
   }
 }
 
@@ -440,6 +440,13 @@ main .blue-headings {
     font-weight: var(--lato-bold);
 }
 
+@media screen and (min-width: 992px) {
+  .blog-page main .blog-content h3 {
+    font-size: 26px;
+    line-height: 38px;
+  }
+}
+
 .blog-page main .blog-content h2, .blog-page main .blog-content h3 {
     margin-bottom: 12px;
 }
@@ -454,6 +461,12 @@ main .blue-headings {
 
 .blog-page main .related-content .related-content-teaser {
   margin-bottom: 16px;
+}
+
+@media screen and (min-width: 992px) {
+  .blog-page main .related-content .related-content-teaser {
+    margin-bottom: 0;
+  }
 }
 
 .blog-page main .related-content .related-content-teaser a > div {
@@ -491,6 +504,13 @@ main .blue-headings {
   margin-bottom: 40px;
 }
 
+@media (min-width: 992px) {
+  .blog-page main .related-content .related-content-date {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
 .blog-page main .related-content .related-content-teaser:last-child .related-content-date {
   margin-bottom: 24px;
 }
@@ -504,6 +524,13 @@ main .blue-headings {
   text-align: center;
 }
 
+@media (min-width: 992px) {
+  .blog-page main .related-content h4 {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+  }
+}
+
 .blog-page main .related-content h5 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -512,6 +539,10 @@ main .blue-headings {
 }
 
 @media (min-width: 992px) {
+  .blog-page main .related-content h5 {
+    line-height: 24px;
+  }
+
   .blog-page main .section:first-of-type > .default-content-wrapper {
     display: flex;
     flex-direction: row;
