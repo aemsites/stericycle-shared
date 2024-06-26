@@ -89,6 +89,10 @@
   --font-family-footer: var(--font-family-body);
   --font-family-fixed: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
+  /* font weights */
+  --lato-regular: 400;
+  --lato-bold: 700;
+
   /* body sizes */
   --body-font-size-l: 20px;
   --body-font-size-m: 16px;
@@ -114,19 +118,48 @@
 
   /* misc */
   --nav-height: 125px;
-  --section-width: 990pt;
 
-  /* font weights */
-  --lato-regular: 400;
-  --lato-bold: 700;
+  /* break points */
+  --breakpoint-s: 576px; /* <= mobile */
+  --breakpoint-m: 768px; /* <= tablet */
+  --breakpoint-l: 992px;
+  --breakpoint-xl: 1200px; /* <= desktop */
+  --breakpoint-xxl: 1400px;
+
+  /* content width */
+  --content-width-s: 540px;
+  --content-width-m: 720px;
+  --content-width-l: 960px;
+  --content-width-xl: 1140px;
+  --content-width-xxl: 1320px;
+  --section-width: var(--content-width-s);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 768px /* breakpoint-m */) {
+  :root {
+    --section-width: var(--content-width-m);
+  }
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
   :root {
     --heading-font-size-xxl: 48px;
     --heading-font-size-xl: 32px;
     --heading-font-size-l: 26px;
     --heading-font-size-m: 20px;
+    --section-width: var(--content-width-l);
+  }
+}
+
+@media (min-width: 1200px /* breakpoint-xl */) {
+  :root {
+    --section-width: var(--content-width-xl);
+  }
+}
+
+@media (min-width: 1400px /* breakpoint-xxl */) {
+  :root {
+    --section-width: var(--content-width-xxl);
   }
 }
 
@@ -280,22 +313,10 @@ main img {
   width: 100%;
 }
 
-/* sections */
-main .section {
-  padding: 16px;
-}
-
-@media (min-width: 600px) {
-  main .section {
-    padding: 32px;
-  }
-}
-
-@media (min-width: 900px) {
-  .section > div {
-    max-width: var(--section-width);
-    margin: auto;
-  }
+main .section > div {
+  max-width: var(--section-width);
+  margin: auto;
+  padding: 2rem 1.5rem;
 }
 
 /* section styles */
@@ -347,7 +368,7 @@ main .blue-headings {
   width: 100%;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px /* breakpoint-l */) {
   .blog-page div.section:first-of-type > div.default-content-wrapper {
     display: flex;
     flex-direction: row;
