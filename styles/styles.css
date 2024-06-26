@@ -70,6 +70,7 @@
   --color-cyan: #40bbd5;
   --color-orange: #ff5633;
   --color-yellow: #ffc62b;
+  --color-dark-gunmetal: #1a242b;
 
   /* functional colors */
   --color-background: var(--color-white);
