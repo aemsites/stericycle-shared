@@ -207,7 +207,7 @@ export default {
     transformTabs(main);
     transformFlipCardsUnderColumn(main);
     transformCards(main);
-    transformColumns(main);
+    //transformColumns(main);
 
     const meta = WebImporter.Blocks.getMetadata(document);
 
