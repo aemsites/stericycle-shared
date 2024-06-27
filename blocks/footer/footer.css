@@ -300,7 +300,7 @@ footer .default-content-wrapper ul.footer-ul-3 {
   }
 }
 
-footer ul[role='list'], ol[role='list'], li {
+footer ul[role='list'], footer ol[role='list'], footer li {
   list-style: none;
 }
 
