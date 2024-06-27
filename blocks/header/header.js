@@ -132,6 +132,28 @@ function createAndAppendSearchBox() {
   toggleSearchBarVisibility();
 }
 
+function hideAllSubNavs() {
+  const mobileMenuItem = document.querySelectorAll('.mobile-menu-item-drop');
+  const itemDropContent = document.querySelector('.item-drop-content');
+  itemDropContent.classList.remove('active');
+  mobileMenuItem.forEach((menuItem) => {
+    menuItem.classList.remove('block');
+    const aTag = menuItem.querySelector('.title > a'); // Select the a tag within newDiv
+    if (aTag) {
+      menuItem.removeChild(menuItem.querySelector('.title')); // Remove newDiv from item
+      menuItem.prepend(aTag); // Add the a tag directly to item
+    }
+  });
+  const menuItems = document.querySelectorAll('.mobile-menu-item');
+  menuItems.forEach((menuItem) => {
+    menuItem.classList.remove('remove');
+  });
+  const arrow = document.querySelectorAll('.arrow');
+  arrow.forEach((a) => {
+    a.classList.remove('remove');
+  });
+}
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -235,7 +257,6 @@ export default async function decorate(block) {
   }
 
   const mobileMenu = nav.querySelector('nav .section:last-child');
-  console.log(mobileMenu);
   if (mobileMenu) {
     mobileMenu.classList.add('mobile-menu');
     mobileMenu.querySelector('ul').classList.add('mobile-menu-content');
@@ -244,8 +265,48 @@ export default async function decorate(block) {
   menuItems.forEach((item) => {
     item.classList.add('mobile-menu-item');
     if (item.querySelector('ul')) {
-      item.classList.add('mobile-menu-item-drop');
-      item.querySelector('ul').classList.add('item-drop-content');
+      const arrow = document.createElement('button');
+      arrow.textContent = '>';
+      arrow.classList.add('arrow');
+
+      const backArrow = document.createElement('button');
+      backArrow.textContent = '<';
+      backArrow.classList.add('back-arrow');
+
+      const ul = item.querySelector('ul');
+
+      arrow.addEventListener('click', () => {
+        ul.classList.toggle('active');
+        item.prepend(backArrow);
+        const newDiv = document.createElement('div');
+        newDiv.className = 'title';
+        newDiv.append(backArrow);
+        newDiv.append(item.querySelector('a'));
+        item.prepend(newDiv);
+        mobileMenu.querySelectorAll('.mobile-menu-item').forEach((menuItem) => {
+          if (!menuItem.contains(ul)) {
+            menuItem.classList.add('remove');
+            arrow.classList.add('remove');
+          }
+        });
+        item.classList.add('block');
+      });
+      item.append(arrow);
+      backArrow.addEventListener('click', () => {
+        hideAllSubNavs();
+      });
+    }
+    mobileMenu.querySelectorAll(':scope li').forEach((menuItem) => {
+      if (menuItem.querySelector('ul')) {
+        menuItem.classList.add('mobile-menu-item-drop');
+        menuItem.querySelector('ul').classList.add('item-drop-content');
+      }
+    });
+
+    const checkNavSections = navSections.querySelector('ul');
+    const checkNavSectionsLi = checkNavSections.querySelectorAll('li.nav-drop');
+    if (checkNavSectionsLi.length > 0) {
+      checkNavSectionsLi[checkNavSectionsLi.length - 1].classList.add('last');
     }
     Array.from(item.childNodes).forEach((child) => {
       // Check if the child is a text node and not just whitespace
@@ -294,9 +355,9 @@ export default async function decorate(block) {
           mobileMenu.classList.add('mobile-menu-open');
         }, 0);
         closeButton.addEventListener('click', () => {
-          mobileMenu.classList.remove('mobile-menu-open');
           nav.setAttribute('aria-expanded', 'false');
           document.body.style.overflowY = '';
+          mobileMenu.classList.remove('mobile-menu-open');
         });
       } else {
         mobileMenu.classList.remove('mobile-menu-open');
