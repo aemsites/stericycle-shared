@@ -84,7 +84,7 @@
   margin-left: 4px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 992px /* breakpoint-l */) {
   .flip-cards {
     display: flex;
   }

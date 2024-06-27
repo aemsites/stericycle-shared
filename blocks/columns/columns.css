@@ -41,7 +41,7 @@
   border-color: var(--color-cyan);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 992px /* breakpoint-l */) {
   .columns > div {
     flex-direction: unset;
     gap: 24px;
