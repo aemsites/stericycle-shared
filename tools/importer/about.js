@@ -84,7 +84,7 @@ function transformColumns(main) {
 
     const row = [];
 
-    column.querySelectorAll('div.cmp-columnrow__item').forEach((item) => {
+    column.querySelectorAll('div.cmp-columnrow__item:not(.flipcard)').forEach((item) => {
       row.push(item);
 
       if (item.querySelector('div.modalformcalltoaction > a.cmp-modal-form-cta')) {
@@ -110,10 +110,12 @@ function transformFlipCardsUnderColumn(main){
 
   teaserlist.forEach((tl, idx, arr) => {
     const pagesection = tl.closest('div.cmp-pagesection');
+    const row = tl.closest('div.cmp-columnrow__item');
     const title = tl.parentNode.previousElementSibling;
     pagesection.parentNode.append(document.createElement('hr'));
     pagesection.parentNode.append(title.cloneNode(true));
     pagesection.parentNode.append(tl.cloneNode(true));
+    row.classList.add('flipcard');
     tl.remove();
     title.remove();
   })
@@ -205,7 +207,7 @@ export default {
     transformTabs(main);
     transformFlipCardsUnderColumn(main);
     transformCards(main);
-    //transformColumns(main);
+    transformColumns(main);
 
     const meta = WebImporter.Blocks.getMetadata(document);
 
