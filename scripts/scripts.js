@@ -15,15 +15,24 @@ import {
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
-export function containsOnlyNumbers(str) {
-  return !(/[a-zA-Z]/.test(str));
+export function convertExcelDate(excelDate) {
+  const secondsInDay = 86400;
+  const excelEpoch = new Date(1899, 11, 31);
+  const excelEpochAsUnixTimestamp = excelEpoch.getTime();
+  const missingLeapYearDay = secondsInDay * 1000;
+  const delta = excelEpochAsUnixTimestamp - missingLeapYearDay;
+  const excelTimestampAsUnixTimestamp = excelDate * secondsInDay * 1000;
+  const parsed = excelTimestampAsUnixTimestamp + delta;
+  return Number.isNaN(parsed) ? null : new Date(parsed);
 }
+
 /**
  * Converts excel datetime strings to a Date object
  * @returns {Date} Date object
  */
 export function getDateFromExcel(date) {
-  if (containsOnlyNumbers(date)) {
+  if (!Number.isNaN(date)) {
+    const jsDate = new Date((date - (25567 + 2)) * 86400 * 1000);
     const excelDate = +date > 99999
       ? new Date(+date * 1000)
       : new Date(Math.round((+date - (1 + 25567 + 1)) * 86400 * 1000));

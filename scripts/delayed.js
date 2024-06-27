@@ -33,9 +33,9 @@ async function loadRelatedContent() {
     teaserDate.className = 'related-content-date';
     const teaserTitle = document.createElement('h5');
     teaserTitle.innerText = post.title;
-    const pDate = getDateFromExcel(post.lastModified);
+    const pDate = getDateFromExcel(post.date);
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    teaserDate.innerText = `${months[pDate.getMonth()]} ${pDate.getDay()}, ${pDate.getFullYear()}`;
+    teaserDate.innerText = `${months[pDate.getMonth()]} ${pDate.getDate() + 1}, ${pDate.getFullYear()}`;
     const teaserPicture = document.createElement('picture');
     teaserDiv.append(teaserPicture);
     teaserDiv.append(teaserTitle);

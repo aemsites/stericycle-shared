@@ -347,6 +347,10 @@ main .blue-headings {
   padding: 32px;
 }
 
+.blog-page div.related-content img {
+  width: 100%;
+}
+
 .blog-page div.related-content h4 {
   font-size: 1.25rem;
   line-height: 1.875rem;
@@ -390,6 +394,9 @@ main .blue-headings {
     width: 25%;
     flex-direction: column;
     background-color: #f2f6f7;
+  }
+  .blog-page div.related-content img {
+    width: auto;;
   }
 }
 
