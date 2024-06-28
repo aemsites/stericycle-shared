@@ -61,8 +61,11 @@ function arraysHaveMatchingItem(array1, array2) {
 export async function getRelatedBlogContent(tags, limit) {
   const postarray = [];
   let count = 0;
-  const ptags = tags.replace('Blogs', 'bp'); // swap out Blog from the tag from the page to somthing arbitrary
-  const pageTags = JSON.stringify(ptags.split(','));
+  let pTags = 'Blogs';
+  if (tags) {
+    pTags = tags.replace('Blogs', 'bp'); // swap out Blog from the tag from the page to something arbitrary
+  }
+  const pageTags = JSON.stringify(pTags.split(','));
   const posts = await ffetch('/query-index.json').sheet('blog').all();
   posts.forEach((post) => {
     // if (containsTag(JSON.parse(post.tags), JSON.parse(post.tags))) {
