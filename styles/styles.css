@@ -62,6 +62,7 @@
   /* colors */
   --color-white: #fff;
   --color-gray: #f2f6f7;
+  --color-light-gray: #ccc;
   --color-dark-gray: #707271;
   --color-black: #000;
   --color-navy: #133b5c;
@@ -87,6 +88,10 @@
   --font-family-heading: var(--font-family-body);
   --font-family-footer: var(--font-family-body);
   --font-family-fixed: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+
+  /* font weights */
+  --lato-regular: 400;
+  --lato-bold: 700;
 
   /* body sizes */
   --body-font-size-l: 20px;
@@ -115,9 +120,6 @@
   --nav-height: 150px;
   --section-width: 990pt;
 
-  /* font weights */
-  --lato-regular: 400;
-  --lato-bold: 700;
 }
 
 @media (min-width: 900px) {
@@ -126,6 +128,19 @@
     --heading-font-size-xl: 32px;
     --heading-font-size-l: 26px;
     --heading-font-size-m: 20px;
+    --section-width: var(--content-width-l);
+  }
+}
+
+@media (min-width: 1200px /* breakpoint-xl */) {
+  :root {
+    --section-width: var(--content-width-xl);
+  }
+}
+
+@media (min-width: 1400px /* breakpoint-xxl */) {
+  :root {
+    --section-width: var(--content-width-xxl);
   }
 }
 
@@ -279,22 +294,10 @@ main img {
   width: 100%;
 }
 
-/* sections */
-main .section {
-  padding: 16px;
-}
-
-@media (min-width: 600px) {
-  main .section {
-    padding: 32px;
-  }
-}
-
-@media (min-width: 900px) {
-  .section > div {
-    max-width: var(--section-width);
-    margin: auto;
-  }
+main .section > div {
+  max-width: var(--section-width);
+  margin: auto;
+  padding: 2rem 1.5rem;
 }
 
 /* section styles */
@@ -346,7 +349,7 @@ main .blue-headings {
   width: 100%;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px /* breakpoint-l */) {
   .blog-page div.section:first-of-type > div.default-content-wrapper {
     display: flex;
     flex-direction: row;
@@ -399,4 +402,62 @@ main .xl-icons .icon {
 main .xxl-icons .icon {
   width: var(--icon-size-xxl);
   height: var(--icon-size-xxl);
+}
+
+main .list-style-more-space li {
+  padding-bottom: 1rem;
+}
+
+main .list-style-orange-triangles ul {
+  position: relative;
+  padding: 0;
+  margin: 0 0 0 3rem;
+  list-style: none;
+}
+
+main .list-style-orange-triangles ul > li::before {
+  position: absolute;
+  left: -25px;
+  margin-right: 0.75rem;
+  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+  content: "";
+  color: var(--color-orange);
+  font-size: 1.5rem;
+}
+
+main .list-style-big-numbers ol {
+  padding: 0;
+  list-style: none;
+  column-count: 2;
+  column-gap: 24px;
+  counter-reset: items;
+}
+
+main .list-style-big-numbers ol > li {
+  position: relative;
+  margin-bottom: 16px;
+  padding-left: 7rem;
+  padding-top: 40px;
+  counter-increment: items;
+}
+
+main .list-style-big-numbers ol > li::before {
+  display: block;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  max-height: 80px;
+  padding-right: 1rem;
+  border-width: 0 4px 0 0;
+  border-style: solid;
+  border-color: var(--color-orange);
+  content: "0" counter(items);
+  color: var(--color-cyan);
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 3.5rem;
+}
+
+main .list-style-big-numbers ol > li:nth-child(n+10)::before {
+  content: counter(items);
 }

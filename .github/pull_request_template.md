@@ -4,4 +4,6 @@ Fix #<gh-issue-id>
 
 Test URLs:
 - Before: https://main--shredit--stericycle.aem.page/
-- After: https://<branch>--shredit--stericycle.aem.page/
+- After: 
+  - https://<branch>--shredit--stericycle.aem.page/
+  - https://<branch>--stericycle-shared--aemsites.aem.page/
