@@ -105,6 +105,7 @@ function toggleSearchBarVisibility() {
   }
 }
 
+// Create and append search box to the nav
 function createAndAppendSearchBox() {
   let searchBoxContainer = document.querySelector('.search-box-container');
   if (!searchBoxContainer) {
@@ -132,16 +133,29 @@ function createAndAppendSearchBox() {
   toggleSearchBarVisibility();
 }
 
+// back navigation for mobile menu - WIP
 function hideAllSubNavs() {
   const mobileMenuItem = document.querySelectorAll('.mobile-menu-item-drop');
-  const itemDropContent = document.querySelector('.item-drop-content');
-  itemDropContent.classList.remove('active');
   mobileMenuItem.forEach((menuItem) => {
-    menuItem.classList.remove('block');
-    const aTag = menuItem.querySelector('.title > a'); // Select the a tag within newDiv
-    if (aTag) {
-      menuItem.removeChild(menuItem.querySelector('.title')); // Remove newDiv from item
-      menuItem.prepend(aTag); // Add the a tag directly to item
+    menuItem.classList.remove('active', 'remove', 'block');
+    const activeItem = menuItem.querySelectorAll('.item-drop-content.active');
+    activeItem.forEach((item) => {
+      item.classList.remove('active');
+    });
+    const nestedItemDropContents = menuItem.querySelectorAll('.item-drop-content');
+    nestedItemDropContents.forEach((dropContent) => {
+      dropContent.classList.remove('active');
+    });
+    let titleTag = menuItem.querySelector('.title > a'); // Select the a tag within newDiv
+    if (!titleTag) {
+      titleTag = menuItem.querySelector('.title > strong');
+    }
+    if (titleTag) {
+      const titleDiv = menuItem.querySelector('.title'); // Remove newDiv from item
+      if (titleDiv) {
+        menuItem.removeChild(titleDiv);
+        menuItem.prepend(titleTag);
+      }
     }
   });
   const menuItems = document.querySelectorAll('.mobile-menu-item');
@@ -152,6 +166,17 @@ function hideAllSubNavs() {
   arrow.forEach((a) => {
     a.classList.remove('remove');
   });
+}
+
+function hasParentWithClass(element, className) {
+  let parent = element.parentElement;
+  while (parent !== null) {
+    if (parent.classList.contains(className)) {
+      return true;
+    }
+    parent = parent.parentElement;
+  }
+  return false;
 }
 
 /**
@@ -256,33 +281,81 @@ export default async function decorate(block) {
     });
   }
 
+  // mobile menu
   const mobileMenu = nav.querySelector('nav .section:last-child');
   if (mobileMenu) {
     mobileMenu.classList.add('mobile-menu');
     mobileMenu.querySelector('ul').classList.add('mobile-menu-content');
   }
+
+  nav.querySelectorAll('.mobile-menu-content > li ul').forEach((ul) => {
+    ul.classList.add('item-drop-content');
+  });
+
   const menuItems = nav.querySelectorAll('.mobile-menu-content > li');
+  mobileMenu.querySelectorAll(':scope li').forEach((menuItem) => {
+    if (menuItem.querySelector('ul')) {
+      menuItem.classList.add('mobile-menu-item-drop');
+      menuItem.querySelector('ul').classList.add('item-drop-content');
+    }
+  });
+
+  // decorate mobile menu
   menuItems.forEach((item) => {
     item.classList.add('mobile-menu-item');
-    if (item.querySelector('ul')) {
-      const arrow = document.createElement('button');
-      arrow.textContent = '>';
-      arrow.classList.add('arrow');
+    const nestedUls = item.querySelectorAll('ul');
+    nestedUls.forEach((ul) => {
+      ul.classList.add('item-drop-content');
+      let arrow = ul.parentElement.querySelector('.arrow');
+      if (!arrow) {
+        arrow = document.createElement('button');
+        arrow.textContent = '>';
+        arrow.classList.add('arrow');
+        ul.parentElement.appendChild(arrow);
+      }
 
       const backArrow = document.createElement('button');
       backArrow.textContent = '<';
       backArrow.classList.add('back-arrow');
+      if (ul.classList.contains('active')) {
+        ul.classList.remove('active');
+      }
+      arrow.addEventListener('click', (e) => {
+        const currentElement = (e.currentTarget).parentElement;
 
-      const ul = item.querySelector('ul');
-
-      arrow.addEventListener('click', () => {
-        ul.classList.toggle('active');
-        item.prepend(backArrow);
+        currentElement.classList.add('active');
+        currentElement.querySelector('ul').classList.toggle('active');
+        const c = currentElement.querySelector('ul');
+        if (hasParentWithClass(currentElement, 'list')) {
+          c.classList.add('sublist');
+        } else {
+          c.classList.add('list');
+        }
+        Array.from(c.parentElement.parentElement.children).forEach((sibling) => {
+          if (!sibling.classList.contains('active')) {
+            sibling.classList.add('remove');
+          }
+        });
+        const existingTitle = item.querySelector('.title');
+        if (existingTitle) {
+          existingTitle.remove();
+        }
+        // Create a new title div
         const newDiv = document.createElement('div');
         newDiv.className = 'title';
         newDiv.append(backArrow);
-        newDiv.append(item.querySelector('a'));
+
+        const { firstChild } = item;
+        const anchorTag = item.querySelector('li > a:first-of-type');
+        if (anchorTag && anchorTag === firstChild) {
+          newDiv.append(anchorTag);
+        } else {
+          const text = currentElement.querySelector('strong');
+          newDiv.append(text);
+        }
         item.prepend(newDiv);
+
+        // hide other menu items
         mobileMenu.querySelectorAll('.mobile-menu-item').forEach((menuItem) => {
           if (!menuItem.contains(ul)) {
             menuItem.classList.add('remove');
@@ -291,16 +364,10 @@ export default async function decorate(block) {
         });
         item.classList.add('block');
       });
-      item.append(arrow);
       backArrow.addEventListener('click', () => {
+        // menu - backward navigation
         hideAllSubNavs();
       });
-    }
-    mobileMenu.querySelectorAll(':scope li').forEach((menuItem) => {
-      if (menuItem.querySelector('ul')) {
-        menuItem.classList.add('mobile-menu-item-drop');
-        menuItem.querySelector('ul').classList.add('item-drop-content');
-      }
     });
 
     const checkNavSections = navSections.querySelector('ul');

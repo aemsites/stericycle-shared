@@ -76,6 +76,18 @@ header nav .nav-brand img {
   border-bottom: 1px solid #ddd;
 }
 
+.item-drop-content.active .mobile-menu-item-drop.remove {
+  display: none;
+}
+
+.mobile-menu-item-drop.active {
+  padding: 0;
+}
+
+.item-drop-content.active .mobile-menu-item-drop.active {
+  padding: 0;
+}
+
 .nav-sections .default-content-wrapper ul li {
   display: none;
 }
