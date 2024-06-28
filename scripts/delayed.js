@@ -43,6 +43,7 @@ async function loadRelatedContent() {
     teaserDiv.append(teaserDate);
     const teaserImg = document.createElement('img');
     teaserImg.src = post.image;
+    teaserImg.alt = post.title;
     teaserPicture.append(teaserImg);
     teaserLink.setAttribute('aria-label', post.title);
     teaserLink.append(teaserDiv);
