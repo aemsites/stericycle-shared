@@ -1,8 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import { fetchPlaceholders, getMetadata, sampleRUM } from './aem.js';
-import ffetch from './ffetch.js';
 // eslint-disable-next-line import/no-cycle
-import { getDateFromExcel } from './scripts.js';
+import { getDateFromExcel, getRelatedBlogContent } from './scripts.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -18,7 +17,9 @@ function getLocale() {
 }
 
 async function loadRelatedContent() {
-  const posts = await ffetch('/query-index.json').limit(RELATED_LIMIT).sheet('blog').all();
+  // const postss = await ffetch('/query-index.json').limit(RELATED_LIMIT).sheet('blog').all();
+  // console.log(postss);
+  const posts = await getRelatedBlogContent(getMetadata('article:tag'), RELATED_LIMIT);
 
   const rcTeasers = document.createElement('ul');
   rcTeasers.className = 'related-content-teasers';
