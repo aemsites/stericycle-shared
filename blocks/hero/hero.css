@@ -6,9 +6,13 @@ main .hero-container {
   padding: 0;
 }
 
+.hero-wrapper {
+  padding: 0 !important;
+}
+
 .hero {
   position: relative;
-  padding: 32px;
+  padding: 2rem 1.5rem;
   min-height: 300px;
 }
 
