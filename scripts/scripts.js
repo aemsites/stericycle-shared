@@ -81,7 +81,7 @@ function getBlogBaseUrl(url) {
 
 async function decorateBlog(main) {
   if (main.parentElement && main.parentElement.matches('body[class="blog-page"]')) {
-    const blogBreadcrumb = getMetadata('blog-breadcrumb');
+    const blogBreadcrumb = getMetadata('blog-breadcrumb') || 'Blog';
     const { title } = document;
     const leftColumn = document.createElement('div');
     leftColumn.classList.add('blog-content');
