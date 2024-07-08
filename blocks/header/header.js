@@ -133,50 +133,196 @@ function createAndAppendSearchBox() {
   toggleSearchBarVisibility();
 }
 
-// back navigation for mobile menu - WIP
-function hideAllSubNavs() {
-  const mobileMenuItem = document.querySelectorAll('.mobile-menu-item-drop');
-  mobileMenuItem.forEach((menuItem) => {
-    menuItem.classList.remove('active', 'remove', 'block');
-    const activeItem = menuItem.querySelectorAll('.item-drop-content.active');
-    activeItem.forEach((item) => {
-      item.classList.remove('active');
+function handleForwardArrowClick(e, item, ul, arrow, backArrow, innerBackArrow, mobileMenu) {
+  const currentElementParent = (e.currentTarget).parentElement;
+  if (e.currentTarget.classList.contains('inner-arrow')) {
+    e.stopPropagation();
+
+    const listItems = item.querySelectorAll('.list-items');
+    listItems.forEach((listItem) => {
+      listItem.classList.remove('expand');
     });
-    const nestedItemDropContents = menuItem.querySelectorAll('.item-drop-content');
-    nestedItemDropContents.forEach((dropContent) => {
-      dropContent.classList.remove('active');
-    });
-    let titleTag = menuItem.querySelector('.title > a'); // Select the a tag within newDiv
-    if (!titleTag) {
-      titleTag = menuItem.querySelector('.title > strong');
-    }
-    if (titleTag) {
-      const titleDiv = menuItem.querySelector('.title'); // Remove newDiv from item
-      if (titleDiv) {
-        menuItem.removeChild(titleDiv);
-        menuItem.prepend(titleTag);
+    currentElementParent.classList.add('active');
+    e.currentTarget.classList.add('remove');
+    const parentMenuItem = e.currentTarget.closest('.list');
+    parentMenuItem.querySelectorAll('.list-items').forEach((list) => {
+      if (list !== currentElementParent) {
+        list.classList.add('remove');
       }
+    });
+    const existingTitle = item.querySelector('.title');
+    if (existingTitle) {
+      existingTitle.remove();
+    }
+
+    const title = item.querySelector('.list-items.active > strong');
+    const titleContent = title.cloneNode(true);
+    const newDiv = document.createElement('div');
+    newDiv.className = 'title';
+    newDiv.append(innerBackArrow);
+    newDiv.append(titleContent);
+    item.prepend(newDiv);
+    title.classList.add('remove');
+  }
+  const listElement = currentElementParent.querySelector('.list');
+  if (!listElement.classList.contains('active')) {
+    listElement.classList.add('active');
+  }
+
+  let titleContent;
+  const anchor = item.querySelector('li > a:first-of-type');
+
+  if (anchor && anchor === item.firstChild) {
+    titleContent = anchor.cloneNode(true);
+    anchor.classList.add('remove');
+  } else {
+    const textElement = currentElementParent.querySelector('strong');
+    titleContent = textElement ? textElement.cloneNode(true) : document.createTextNode('');
+  }
+
+  const existingTitle = item.querySelector('.title');
+  if (existingTitle) {
+    existingTitle.remove();
+  }
+
+  if (currentElementParent.querySelector('.flag-icon')) {
+    const title = document.createElement('strong');
+    const titleText = 'Country';
+    title.textContent = titleText;
+
+    const newDiv = document.createElement('div');
+    newDiv.className = 'title';
+    newDiv.append(backArrow);
+    newDiv.append(title);
+    item.prepend(newDiv);
+    currentElementParent.querySelector('.flag-icon').classList.add('remove');
+    Array.from(currentElementParent.querySelectorAll('.list .list-items')).forEach((it) => {
+      const iconSpan = it.querySelector('span.icon');
+      Array.from(it.childNodes).forEach((child) => {
+        if (child.nodeType === 3 && child.nodeValue.trim().length > 0) {
+          const span = document.createElement('span');
+          span.className = 'text';
+          span.textContent = child.nodeValue.trim();
+          child.replaceWith(span);
+        }
+      });
+
+      const textSpan = it.querySelector('span.text');
+      if (iconSpan && textSpan) {
+        const div = document.createElement('div');
+        div.className = 'flag-icon';
+        div.appendChild(iconSpan.cloneNode(true));
+        div.appendChild(textSpan.cloneNode(true));
+        it.innerHTML = '';
+        it.appendChild(div);
+      }
+    });
+  } else {
+    // Create a new title div
+    const newDiv = document.createElement('div');
+    newDiv.className = 'title';
+    newDiv.append(backArrow);
+    newDiv.append(titleContent);
+    item.prepend(newDiv);
+  }
+
+  // hide other menu items
+  mobileMenu.querySelectorAll('.mobile-menu-item').forEach((menuItem) => {
+    if (!menuItem.contains(ul)) {
+      menuItem.classList.add('remove');
+      arrow.classList.add('remove');
     }
   });
-  const menuItems = document.querySelectorAll('.mobile-menu-item');
-  menuItems.forEach((menuItem) => {
+  item.classList.add('block');
+}
+
+function handleBackArrowClick(e, backArrow) {
+  e.preventDefault();
+
+  const parentMenuItem = e.target.closest('.mobile-menu-item-drop');
+  const currentList = parentMenuItem.querySelector('.list.active');
+
+  const titleDiv = parentMenuItem.querySelector('.title');
+  if (titleDiv) {
+    titleDiv.remove();
+  }
+  if (parentMenuItem.querySelector('.flag-icon')) {
+    parentMenuItem.querySelector('.flag-icon').classList.remove('remove');
+  }
+  if (parentMenuItem.querySelector(':scope > a')) {
+    parentMenuItem.querySelector(':scope > a').classList.remove('remove');
+  }
+  parentMenuItem.querySelector(':scope > .arrow').classList.remove('remove');
+  if (currentList) {
+    currentList.classList.remove('active');
+    parentMenuItem.classList.remove('block');
+  }
+
+  // Show all menu items that were hidden
+  document.querySelectorAll('.mobile-menu-item.remove').forEach((menuItem) => {
     menuItem.classList.remove('remove');
   });
-  const arrow = document.querySelectorAll('.arrow');
-  arrow.forEach((a) => {
-    a.classList.remove('remove');
+  backArrow.classList.remove('active');
+}
+
+function handleInnerBackArrowClick(e, backArrow) {
+  e.preventDefault();
+  const parentMenuItem = e.target.closest('.mobile-menu-item-drop');
+
+  let titleContent;
+  const anchor = parentMenuItem.querySelector('li > a:first-of-type');
+  if (anchor) {
+    titleContent = anchor.cloneNode(true);
+    anchor.classList.add('remove');
+  }
+
+  const existingTitle = parentMenuItem.querySelector('.title');
+  if (existingTitle) {
+    existingTitle.remove();
+  }
+
+  // Create a new title div
+  const newDiv = document.createElement('div');
+  newDiv.className = 'title';
+  newDiv.append(backArrow);
+  newDiv.append(titleContent);
+  parentMenuItem.prepend(newDiv);
+
+  const currentList = parentMenuItem.querySelector('a');
+  if (currentList) {
+    currentList.classList.remove('remove');
+  }
+  parentMenuItem.querySelectorAll('.list-items').forEach((lit) => {
+    lit.classList.add('expand');
+    if (lit.classList.contains('remove')) {
+      lit.classList.remove('remove');
+    } else if (lit.classList.contains('active')) {
+      lit.querySelector('strong').classList.remove('remove');
+      lit.querySelector('.inner-arrow').classList.remove('remove');
+      if (lit.querySelector('.sublist')) {
+        lit.querySelector('.sublist').classList.remove('active');
+        lit.querySelector('.sublist').classList.add('remove');
+      }
+      lit.classList.remove('active');
+    }
   });
 }
 
-function hasParentWithClass(element, className) {
-  let parent = element.parentElement;
-  while (parent !== null) {
-    if (parent.classList.contains(className)) {
-      return true;
-    }
-    parent = parent.parentElement;
-  }
-  return false;
+// function to reset the classes of the DOM elements
+function resetDOMClasses(classesToRemove) {
+  const nav = document.getElementById('nav');
+  classesToRemove.forEach((className) => {
+    nav.querySelectorAll(`.${className}`).forEach((element) => {
+      if (!element.classList.contains('sublist')) {
+        element.classList.remove(className);
+      }
+      if (element.classList.contains('sublist', 'active')) {
+        element.classList.remove('active');
+        element.classList.add('remove');
+      }
+    });
+  });
+  nav.querySelector('.mobile-menu-item-drop .title').remove();
 }
 
 /**
@@ -288,86 +434,71 @@ export default async function decorate(block) {
     mobileMenu.querySelector('ul').classList.add('mobile-menu-content');
   }
 
-  nav.querySelectorAll('.mobile-menu-content > li ul').forEach((ul) => {
-    ul.classList.add('item-drop-content');
-  });
-
   const menuItems = nav.querySelectorAll('.mobile-menu-content > li');
-  mobileMenu.querySelectorAll(':scope li').forEach((menuItem) => {
-    if (menuItem.querySelector('ul')) {
-      menuItem.classList.add('mobile-menu-item-drop');
-      menuItem.querySelector('ul').classList.add('item-drop-content');
-    }
-  });
 
   // decorate mobile menu
   menuItems.forEach((item) => {
     item.classList.add('mobile-menu-item');
-    const nestedUls = item.querySelectorAll('ul');
-    nestedUls.forEach((ul) => {
-      ul.classList.add('item-drop-content');
-      let arrow = ul.parentElement.querySelector('.arrow');
-      if (!arrow) {
-        arrow = document.createElement('button');
-        arrow.textContent = '>';
-        arrow.classList.add('arrow');
-        ul.parentElement.appendChild(arrow);
+    if (item.querySelector('ul')) {
+      if (!item.classList.contains('mobile-menu-item-drop')) {
+        item.classList.add('mobile-menu-item-drop');
+      }
+      item.querySelectorAll(':scope > ul').forEach((ul) => {
+        ul.classList.add('list');
+      });
+    }
+    const list = item.querySelectorAll('.mobile-menu-item-drop > ul > li');
+    list.forEach((l) => {
+      l.classList.add('list-items');
+      const sublist = l.querySelector('ul');
+      if (sublist) {
+        l.classList.add('expand');
+        sublist.classList.add('sublist');
+        sublist.classList.add('remove');
+        sublist.querySelectorAll('li').forEach((sublistItem) => {
+          sublistItem.classList.add('sublist-items');
+        });
       }
 
       const backArrow = document.createElement('button');
-      backArrow.textContent = '<';
       backArrow.classList.add('back-arrow');
-      if (ul.classList.contains('active')) {
-        ul.classList.remove('active');
+      if (l.classList.contains('active')) {
+        l.classList.remove('active');
       }
-      arrow.addEventListener('click', (e) => {
-        const currentElement = (e.currentTarget).parentElement;
 
-        currentElement.classList.add('active');
-        currentElement.querySelector('ul').classList.toggle('active');
-        const c = currentElement.querySelector('ul');
-        if (hasParentWithClass(currentElement, 'list')) {
-          c.classList.add('sublist');
-        } else {
-          c.classList.add('list');
-        }
-        Array.from(c.parentElement.parentElement.children).forEach((sibling) => {
-          if (!sibling.classList.contains('active')) {
-            sibling.classList.add('remove');
-          }
-        });
-        const existingTitle = item.querySelector('.title');
-        if (existingTitle) {
-          existingTitle.remove();
-        }
-        // Create a new title div
-        const newDiv = document.createElement('div');
-        newDiv.className = 'title';
-        newDiv.append(backArrow);
+      const innerBackArrow = document.createElement('button');
+      innerBackArrow.classList.add('inner-back-arrow');
 
-        const { firstChild } = item;
-        const anchorTag = item.querySelector('li > a:first-of-type');
-        if (anchorTag && anchorTag === firstChild) {
-          newDiv.append(anchorTag);
-        } else {
-          const text = currentElement.querySelector('strong');
-          newDiv.append(text);
+      let arrow = l.parentElement.parentElement.querySelector('.arrow');
+      if (!arrow) {
+        arrow = document.createElement('button');
+        arrow.classList.add('arrow');
+        l.parentElement.parentElement.appendChild(arrow);
+        if (!arrow.dataset.listenerAdded) {
+          arrow.addEventListener('click', (e) => handleForwardArrowClick(e, item, l, arrow, backArrow, innerBackArrow, mobileMenu));
+          arrow.dataset.listenerAdded = 'true';
         }
-        item.prepend(newDiv);
+      }
+      if (l.querySelector('.sublist')) {
+        const subl = l.querySelector('.sublist');
+        const lArrow = document.createElement('button');
+        lArrow.classList.add('inner-arrow');
+        l.appendChild(lArrow);
+        if (!lArrow.dataset.listenerAdded) {
+          lArrow.addEventListener('click', (e) => {
+            subl.classList.remove('remove');
+            subl.classList.add('active');
+            handleForwardArrowClick(e, item, l, arrow, backArrow, innerBackArrow, mobileMenu);
+          });
+          lArrow.dataset.listenerAdded = 'true';
+        }
+      }
 
-        // hide other menu items
-        mobileMenu.querySelectorAll('.mobile-menu-item').forEach((menuItem) => {
-          if (!menuItem.contains(ul)) {
-            menuItem.classList.add('remove');
-            arrow.classList.add('remove');
-          }
-        });
-        item.classList.add('block');
-      });
-      backArrow.addEventListener('click', () => {
-        // menu - backward navigation
-        hideAllSubNavs();
-      });
+      // back arrow handling
+      backArrow.addEventListener('click', (e) => handleBackArrowClick(e, backArrow));
+
+      // inner back arrow handling
+      innerBackArrow.addEventListener('click', (e) => handleInnerBackArrowClick(e, backArrow));
     });
 
     const checkNavSections = navSections.querySelector('ul');
@@ -408,6 +539,25 @@ export default async function decorate(block) {
   closeButton.innerHTML = 'x';
   mobileMenu.appendChild(closeButton);
 
+  closeButton.addEventListener('click', () => {
+    nav.setAttribute('aria-expanded', 'false');
+    document.body.style.overflowY = '';
+    mobileMenu.classList.add('closing');
+    setTimeout(() => {
+      mobileMenu.classList.remove('mobile-menu-open');
+
+      if (mobileMenu.querySelector('.list.active')) {
+        const inactiveSublist = mobileMenu.querySelectorAll('.sublist.remove');
+        inactiveSublist.forEach((sublist) => {
+          sublist.classList.add('remove');
+        });
+        resetDOMClasses(['active', 'remove', 'block']);
+      } else {
+        resetDOMClasses(['active', 'remove', 'block', 'expand']);
+      }
+    }, 500);
+  });
+
   // hamburger for mobile
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
@@ -420,12 +570,8 @@ export default async function decorate(block) {
       if (nav.getAttribute('aria-expanded') === 'true') {
         setTimeout(() => {
           mobileMenu.classList.add('mobile-menu-open');
+          mobileMenu.classList.remove('closing');
         }, 0);
-        closeButton.addEventListener('click', () => {
-          nav.setAttribute('aria-expanded', 'false');
-          document.body.style.overflowY = '';
-          mobileMenu.classList.remove('mobile-menu-open');
-        });
       } else {
         mobileMenu.classList.remove('mobile-menu-open');
       }
