@@ -1,19 +1,79 @@
 import {
-  sampleRUM,
   buildBlock,
-  loadHeader,
-  loadFooter,
+  decorateBlocks,
   decorateButtons,
   decorateIcons,
   decorateSections,
-  decorateBlocks,
   decorateTemplateAndTheme,
-  waitForLCP,
   loadBlocks,
   loadCSS,
+  loadFooter,
+  loadHeader,
+  sampleRUM,
+  waitForLCP,
 } from './aem.js';
+import ffetch from './ffetch.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
+
+export function convertExcelDate(excelDate) {
+  const secondsInDay = 86400;
+  const excelEpoch = new Date(1899, 11, 31);
+  const excelEpochAsUnixTimestamp = excelEpoch.getTime();
+  const missingLeapYearDay = secondsInDay * 1000;
+  const delta = excelEpochAsUnixTimestamp - missingLeapYearDay;
+  const excelTimestampAsUnixTimestamp = excelDate * secondsInDay * 1000;
+  const parsed = excelTimestampAsUnixTimestamp + delta;
+  return Number.isNaN(parsed) ? null : new Date(parsed);
+}
+
+/**
+ * Converts excel datetime strings to a Date object
+ * @returns {Date} Date object
+ */
+export function getDateFromExcel(date) {
+  if (!Number.isNaN(date)) {
+    const excelDate = +date > 99999
+      ? new Date(+date * 1000)
+      : new Date(Math.round((+date - (1 + 25567 + 1)) * 86400 * 1000));
+    return excelDate;
+  }
+  return date;
+}
+
+function arraysHaveMatchingItem(array1, array2) {
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < array1.length; i++) {
+    if (array2.includes(array1[i])) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Get related blog content based on page tags. Currently doesn't filter out the existing page or
+ * fill up the array if there are not enough related posts
+ * @param {array} tags - tags from the page
+ * @param {number} limit - the max number of related posts to return
+ * @returns {Promise<*[]>}
+ */
+export async function getRelatedBlogContent(tags, limit) {
+  const postarray = [];
+  let count = 0;
+  const ptags = tags.replace('Blogs', 'bp'); // swap out Blog from the tag from the page to somthing arbitrary
+  const pageTags = JSON.stringify(ptags.split(','));
+  const posts = await ffetch('/query-index.json').sheet('blog').all();
+  posts.forEach((post) => {
+    // if (containsTag(JSON.parse(post.tags), JSON.parse(post.tags))) {
+    if (arraysHaveMatchingItem(JSON.parse(post.tags), pageTags) && count < limit) {
+      postarray.push(post);
+      // eslint-disable-next-line no-plusplus
+      count++;
+    }
+  });
+  return postarray;
+}
 
 /**
  * Builds hero block and prepends to main in a new section.
