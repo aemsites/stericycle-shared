@@ -118,31 +118,12 @@
   --icon-size-xxl: 100px;
 
   /* misc */
-  --nav-height: 125px;
+  --nav-height: 150px;
+  --section-width: 990pt;
 
-  /* break points */
-  --breakpoint-s: 576px; /* <= mobile */
-  --breakpoint-m: 768px; /* <= tablet */
-  --breakpoint-l: 992px;
-  --breakpoint-xl: 1200px; /* <= desktop */
-  --breakpoint-xxl: 1400px;
-
-  /* content width */
-  --content-width-s: 540px;
-  --content-width-m: 720px;
-  --content-width-l: 960px;
-  --content-width-xl: 1140px;
-  --content-width-xxl: 1320px;
-  --section-width: var(--content-width-s);
 }
 
-@media (min-width: 768px /* breakpoint-m */) {
-  :root {
-    --section-width: var(--content-width-m);
-  }
-}
-
-@media (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 900px) {
   :root {
     --heading-font-size-xxl: 48px;
     --heading-font-size-xl: 32px;
