@@ -68,3 +68,9 @@ div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card .blog-link
     color: var(--color-dark-gray);
     font-weight: 400;
 }
+
+div.blog-card-section a.button.secondary, button.secondary {
+    background-color: var(--color-blue);
+    border-color: currentcolor;
+    color: var(--color-white);
+}
