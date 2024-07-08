@@ -59,4 +59,7 @@ async function loadRelatedContent() {
   rcHeader.insertAdjacentElement('afterend', rcTeasers);
 }
 
-await loadRelatedContent();
+// load this only on blog pages
+if (document.querySelector('body.blog-page')) {
+  await loadRelatedContent();
+}
