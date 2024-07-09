@@ -558,6 +558,31 @@ export default async function decorate(block) {
     }, 500);
   });
 
+  // telephone icon for mobile
+  if (window.matchMedia('(max-width: 900px)')) {
+    let isDivCreated = false;
+    navTools.addEventListener('click', () => {
+      if (!isDivCreated) {
+        const telItems = navTools.querySelectorAll('.tel');
+        const newDiv = document.createElement('div');
+        newDiv.className = 'tel-item';
+        telItems.forEach((telItem) => {
+          const tel = telItem.cloneNode(true);
+          newDiv.appendChild(tel);
+        });
+        navTools.prepend(newDiv);
+        newDiv.classList.add('active');
+        isDivCreated = true;
+      } else {
+        const newDiv = document.querySelector('.tel-item');
+        if (newDiv) {
+          newDiv.remove();
+          isDivCreated = false;
+        }
+      }
+    });
+  }
+
   // hamburger for mobile
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');

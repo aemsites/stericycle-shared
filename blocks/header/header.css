@@ -107,6 +107,7 @@ header nav .nav-brand img {
 .nav-tools {
   order: 2;
   position: relative;
+  cursor: pointer;
 }
 
 .nav-tools::after {
@@ -196,6 +197,22 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   top: unset;
   bottom: 3px;
   transform: rotate(-45deg);
+}
+
+/* tel items */
+.tel-item.active {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  min-width: 100%;
+  background-color: white;
+  padding: 2rem 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 /* Search box */
@@ -363,6 +380,11 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   display: block;
 }
 
+.tel-item.active a {
+  position: relative;
+  color: black;
+}
+
 .list.active li a {
   text-decoration: none;
   color: #000;
@@ -448,6 +470,25 @@ strong.remove {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
+.tel::before {
+  content: "";
+  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+  font-size: 1rem;
+  left: -1.25rem;
+  position: absolute;
+  display: block;
+}
+
+.tel-item.active a::before {
+  color: black;
+  content: "";
+  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+  font-size: 1rem;
+  left: -1.25rem;
+  position: absolute;
+  display: block;
+}
+
 @media (min-width: 900px) {
   header nav .nav-hamburger {
     display: none;
@@ -521,6 +562,10 @@ strong.remove {
 
   header nav .nav-tools ul > li > span.icon-search {
     display: flex;
+  }
+
+  .nav-tools {
+    cursor: unset;
   }
 
   .nav-tools ul li.nav-drop {
