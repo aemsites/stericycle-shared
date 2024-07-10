@@ -3,6 +3,10 @@ div.blog-filter-container {
     flex-direction: row;
 }
 
+div.blog-filter-container h3 {
+    color: var(--color-blue);
+}
+
 div.blog-filter-container > div.facet {
     width: 25%;
     margin-right: 2rem;
