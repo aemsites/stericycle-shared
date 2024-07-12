@@ -564,6 +564,7 @@ main .list-style-orange-triangles ul {
 
 .blog-page main .related-content .related-content-teaser {
   margin-bottom: 16px;
+  list-style-type: none;
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
