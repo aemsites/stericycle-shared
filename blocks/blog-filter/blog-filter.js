@@ -1,5 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { getDateFromExcel } from '../../scripts/scripts.js';
+import {fetchPlaceholders, getMetadata} from '../../scripts/aem.js';
 
 async function getResults() {
   const postArray = [];
@@ -20,7 +21,7 @@ async function getFacets() {
   facets.forEach((facet) => {
     const tags = facet.tags.split(',');
     tags.forEach((tag) => {
-      const cleanTag = tag.trim().replaceAll(/["\[\]]/g, '');
+      const cleanTag = tag.trim().replaceAll(/["[\]]/g, '');
       // toss out blog tags and empty ones
       if (cleanTag === 'Blogs' || cleanTag === '') {
         return;
@@ -43,28 +44,43 @@ const formatDate = (date) => date.toLocaleDateString('en-US', {
   day: '2-digit',
 });
 
+function getLocale() {
+  const locale = getMetadata('locale');
+  if (locale && locale.length > 0) {
+    return locale;
+  }
+  // defaulting to en-us
+  return 'en-us';
+}
+
 export default async function decorate(block) {
   const facets = await getFacets();
+  const ph = await fetchPlaceholders(`/${getLocale()}`);
+  const { blogtopic } = ph;
   const facetDiv = document.createElement('div');
   facetDiv.classList.add('facet');
   const facetList = document.createElement('ul');
   const facetLI = document.createElement('li');
   const topicHead = document.createElement('div');
-  topicHead.innerText = 'TOPIC';
+  const chevron = document.createElement('i');
+  chevron.classList.add('fa-chevron-down');
+  topicHead.innerText = blogtopic;
+  topicHead.append(chevron);
   facetLI.append(topicHead);
   facetList.append(facetLI);
   const facetUL = document.createElement('ul');
-  facetList.append(facetUL);
+  facetLI.append(facetUL);
   facets.tags.forEach((facet) => {
     const facetItem = document.createElement('li');
     const topic = document.createElement('div');
+    topic.classList.add('facet-group');
     const checkbox = document.createElement('input');
-    const span = document.createElement('span');
-    span.innerText = `${facet.tag} (${facet.count})`;
+    const label = document.createElement('label');
+    label.innerText = `${facet.tag} (${facet.count})`;
     checkbox.type = 'checkbox';
     checkbox.value = facet.tag;
     topic.append(checkbox);
-    topic.append(span);
+    topic.append(label);
     facetItem.append(topic);
     facetUL.append(facetItem);
   });

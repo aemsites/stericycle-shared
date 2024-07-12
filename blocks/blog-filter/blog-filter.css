@@ -13,6 +13,52 @@ div.blog-filter-container > div.facet {
     min-width: 25%;
 }
 
+div.blog-filter-container > div.facet ul {
+    margin: 0;
+    padding-left: 0;
+}
+
+div.blog-filter-container > div.facet ul > li > div {
+    display: flex;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    padding-right: 3.125rem;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+div.blog-filter-container > div.facet ul > li > div.facet-group {
+    display: inline-block;
+}
+
+div.blog-filter-container > div.facet ul > li > div.facet-group > input[type="checkbox"] {
+    height: 1rem;
+    border: .1rem solid #1a242b;
+    border-radius: 10%;
+    vertical-align: bottom;
+}
+
+div.blog-filter-container > div.facet ul > li > div > i {
+    display: inline-block;
+    font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+    text-transform: uppercase;
+    font-style: normal;
+}
+
+div.blog-filter-container > div.facet ul > li > div>  i::before {
+    content: "";
+    font-size: .5rem;
+}
+
+div.blog-filter-container > div.facet ul > li > ul > li {
+
+}
+
+div.blog-filter-container > div.facet li {
+    list-style: none;
+}
+
 div.blog-filter-container > div.results ul {
     list-style: none;
     padding-left: unset;
