@@ -82,9 +82,12 @@ export async function getRelatedBlogContent(tags, limit) {
  */
 function buildHeroBlock(main) {
   const firstSection = main.querySelector('div');
-  const picture = firstSection.children[0]?.firstElementChild;
-  const h1 = firstSection.children[1];
-  if (!picture.matches('picture') || !h1?.matches('h1')) {
+  const h1 = firstSection.querySelector('h1');
+  if (!h1) {
+    return;
+  }
+  const picture = h1.previousElementSibling?.querySelector('picture') || h1.nextElementSibling?.querySelector('picture');
+  if (!picture) {
     return;
   }
 
@@ -111,7 +114,10 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   try {
-    buildHeroBlock(main);
+    if (!document.querySelector('body.blog-page')) {
+      // blog pages don't use the hero block
+      buildHeroBlock(main);
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
