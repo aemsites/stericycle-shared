@@ -1,4 +1,4 @@
-import { getDateFromExcel, getRelatedBlogContent } from '../../scripts/scripts.js';
+import { getRelatedBlogContent } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
   const latestPosts = document.createElement('div');

@@ -381,6 +381,13 @@ main .blue-headings {
   margin-bottom: .75rem;
 }
 
+main .list-style-orange-triangles ul {
+  position: relative;
+  padding: 0;
+  margin: 0 0 0 3rem;
+  list-style: none;
+}
+
 .blog-page div.related-content ul {
   list-style-type: none;
   padding-left: unset;
@@ -460,13 +467,6 @@ main .xxl-icons .icon {
 
 main .list-style-more-space li {
   padding-bottom: 1rem;
-}
-
-main .list-style-orange-triangles ul {
-  position: relative;
-  padding: 0;
-  margin: 0 0 0 3rem;
-  list-style: none;
 }
 
 main .list-style-orange-triangles ul > li::before {

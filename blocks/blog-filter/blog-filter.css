@@ -23,6 +23,11 @@ div.blog-filter-container > div.results {
     max-width: 75%;
 }
 
+div.blog-filter-container > div.facet div.facet-group {
+    white-space: nowrap;
+    margin: 1rem 0;
+}
+
 div.blog-filter-container > div.facet ul {
     margin: 0;
     padding-left: 0;
@@ -79,11 +84,6 @@ div.blog-filter-container > div.results ul {
 
 div.blog-filter-container > div.facet label {
     white-space: nowrap;
-}
-
-div.blog-filter-container > div.facet div.facet-group {
-    white-space: nowrap;
-    margin: 1rem 0;
 }
 
 div.blog-filter-container > div.facet div.facet-group > input {
