@@ -1,0 +1,188 @@
+main .section.faq-container {
+  padding: 32px;
+}
+
+.faq {
+  padding: 0 12px;
+  margin-bottom: 40px;
+}
+
+.faq details {
+  border-top: 1px solid var(--color-light-silver);
+  border-bottom: 1px solid var(--color-light-silver);
+}
+
+.faq details + details {
+  border-top: none;
+  border-bottom: 1px solid var(--color-light-silver);
+}
+
+.faq details summary {
+  position: relative;
+  padding: .75rem 2.5rem .75rem .5rem;
+  padding-right: 40px;
+  cursor: pointer;
+  list-style: none;
+  overflow: auto;
+  transition: background-color 0.2s;
+}
+
+@media screen and (min-width: 992px) {
+  .faq details summary {
+    padding-right: 48px;
+  }
+}
+
+.faq details[open] summary {
+  padding: .5rem 2.5rem .5rem .5rem;
+}
+
+.faq details summary:focus,
+.faq details summary:hover {
+  background-color: var(--dark-color);
+}
+
+.faq details summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq details summary p {
+  color: var(--color-dark-gunmetal);
+  font-weight: var(--lato-bold);
+  font-size: var(--body-font-size-m);
+  line-height: 16px;
+}
+
+@media screen and (min-width: 992px) {
+  .faq details summary p {
+    font-size: var(--body-font-size-l);
+    font-weight: 600;
+    line-height: 30px;
+  }
+}
+
+.faq details summary span {
+  position: absolute;
+  width: 1rem;
+  height: 2px;
+  right: 1rem;
+  top: calc(50% - 2px);
+  background: var(--color-black);
+}
+
+.faq details summary span::after {
+  background: var(--color-black);
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 1rem;
+  top: -7px;
+  left: 7px;
+  transition: all .3s ease-in-out;
+}
+
+.faq details[open] summary span::after {
+  transform: rotate(90deg);
+}
+
+.faq details[open] summary::after {
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+/* Initial state of the .faq-item-body */
+.faq-item-body {
+  max-height: 0;
+  overflow: hidden;
+}
+
+/* Keyframes for opening animation */
+@keyframes open-animation {
+  from {
+    padding: .125rem 1rem 1rem;
+    max-height: 0;
+  }
+
+  to {
+    padding: .125rem .5rem .5rem;
+    max-height: 5000vh;
+  }
+}
+
+/* Keyframes for closing animation */
+@keyframes close-animation {
+  from {
+    padding: .125rem .5rem .5rem;
+    max-height: 5000vh;
+  }
+
+  to {
+    padding: .125rem 1rem 1rem;
+    max-height: 0;
+  }
+}
+
+/* Applying keyframes when the details element is opened */
+.faq-item.open .faq-item-body {
+  animation: open-animation .3s ease-in-out forwards;
+}
+
+/* Applying keyframes when the details element is closed */
+.faq-item.close .faq-item-body {
+  animation: close-animation .3s ease-in-out forwards;
+}
+
+.faq details[open] .faq-item-body p {
+  margin-bottom: 24px;
+}
+
+.faq details[open] .faq-item-body p > a {
+  text-decoration: underline;
+}
+
+.faq-container .default-content-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.faq-container .default-content-wrapper:last-child {
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 992px) {
+  .faq-container .default-content-wrapper {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.faq-container .default-content-wrapper > h2 {
+  color: var(--color-blue);
+  font-size: var(--body-font-size-l);
+  line-height: 1.625rem;
+  letter-spacing: -.0009rem;
+  margin-bottom: .5rem;
+  padding: 0 12px;
+}
+
+@media screen and (min-width: 992px) {
+  .faq-container .default-content-wrapper h2 {
+    color: var(--color-blue);
+    font-size: 2rem;
+    font-weight: var(--lato-bold);
+    line-height: 2.375rem;
+    letter-spacing: -.0009rem;
+  }
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.faq-container .default-content-wrapper > p {
+  font-size: var(--body-font-size-xxs);
+  line-height: .875rem;
+  letter-spacing: -.0006rem;
+  padding: 0 12px;
+}
+
+@media screen and (min-width: 992px) {
+  .faq-container .default-content-wrapper p {
+    font-size: var(--body-font-size-xs);
+    line-height: 1.125rem;
+  }
+}
