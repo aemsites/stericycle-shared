@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { getDateFromExcel } from '../../scripts/scripts.js';
-import {fetchPlaceholders, getMetadata} from '../../scripts/aem.js';
+import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 
 async function getResults() {
   const postArray = [];
@@ -53,42 +53,7 @@ function getLocale() {
   return 'en-us';
 }
 
-export default async function decorate(block) {
-  const facets = await getFacets();
-  const ph = await fetchPlaceholders(`/${getLocale()}`);
-  const { blogtopic } = ph;
-  const facetDiv = document.createElement('div');
-  facetDiv.classList.add('facet');
-  const facetList = document.createElement('ul');
-  const facetLI = document.createElement('li');
-  const topicHead = document.createElement('div');
-  const chevron = document.createElement('i');
-  chevron.classList.add('fa-chevron-down');
-  topicHead.innerText = blogtopic;
-  topicHead.append(chevron);
-  facetLI.append(topicHead);
-  facetList.append(facetLI);
-  const facetUL = document.createElement('ul');
-  facetLI.append(facetUL);
-  facets.tags.forEach((facet) => {
-    const facetItem = document.createElement('li');
-    const topic = document.createElement('div');
-    topic.classList.add('facet-group');
-    const checkbox = document.createElement('input');
-    const label = document.createElement('label');
-    label.innerText = `${facet.tag} (${facet.count})`;
-    checkbox.type = 'checkbox';
-    checkbox.value = facet.tag;
-    topic.append(checkbox);
-    topic.append(label);
-    facetItem.append(topic);
-    facetUL.append(facetItem);
-  });
-  facetDiv.append(facetList);
-  const resultsDiv = document.createElement('div');
-  resultsDiv.classList.add('results');
-  const resultsList = document.createElement('ul');
-  const posts = await getResults();
+function decorateResults(posts, list) {
   posts.forEach((post) => {
     const item = document.createElement('li');
     item.classList.add('list-item');
@@ -113,8 +78,72 @@ export default async function decorate(block) {
     item.append(itemLeft);
     itemRight.append(heading, categoryDiv, dateDiv);
     item.append(itemRight);
-    resultsList.append(item);
+    list.append(item);
   });
+}
+
+async function updateResults(checkboxValue) {
+  const postArray = [];
+  const posts = await ffetch('/query-index.json').sheet('blog')
+    .map((post) => ({
+      tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
+      title: post.title, // Include the title
+      date: post.date, // Include the date
+      image: post.image, // Include the image
+    }))
+    .filter((post) => post.tags.includes(checkboxValue))
+    .limit(10)
+    .all();
+  posts.forEach((post) => {
+    postArray.push(post);
+  });
+  const bfc = document.querySelector('div.blog-filter-container> div.results> ul');
+  bfc.innerHTML = '';
+  decorateResults(postArray, bfc);
+}
+
+export default async function decorate(block) {
+  const facets = await getFacets();
+  const ph = await fetchPlaceholders(`/${getLocale()}`);
+  const { blogtopic } = ph;
+  const facetDiv = document.createElement('div');
+  facetDiv.classList.add('facet');
+  const facetList = document.createElement('ul');
+  const facetLI = document.createElement('li');
+  const topicHead = document.createElement('div');
+  topicHead.classList.add('topic-head');
+  const chevron = document.createElement('i');
+  chevron.classList.add('fa-chevron-down');
+  topicHead.innerText = blogtopic;
+  topicHead.append(chevron);
+  facetLI.append(topicHead);
+  facetList.append(facetLI);
+  const facetUL = document.createElement('ul');
+  facetLI.append(facetUL);
+  facets.tags.forEach((facet) => {
+    const facetItem = document.createElement('li');
+    const topic = document.createElement('div');
+    topic.classList.add('facet-group');
+    const checkbox = document.createElement('input');
+    const label = document.createElement('label');
+    label.innerText = `${facet.tag} (${facet.count})`;
+    checkbox.type = 'checkbox';
+    checkbox.value = facet.tag;
+    // create a listener for the checkbox
+    checkbox.addEventListener('change', (cb) => {
+      updateResults(cb.target.value);
+    });
+    topic.append(checkbox);
+    topic.append(label);
+    facetItem.append(topic);
+    facetUL.append(facetItem);
+  });
+  facetDiv.append(facetList);
+  const resultsDiv = document.createElement('div');
+  resultsDiv.classList.add('results');
+  const resultsList = document.createElement('ul');
+  const posts = await getResults();
+  decorateResults(posts, resultsList);
   resultsDiv.append(resultsList);
   const blogFilterContainer = document.createElement('div');
   blogFilterContainer.classList.add('blog-filter-container');
