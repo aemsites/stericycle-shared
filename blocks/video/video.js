@@ -25,7 +25,7 @@ function embedYoutube(url, replacePlaceholder, autoplay) {
   }
 
   const temp = document.createElement('div');
-  temp.innerHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+  temp.innerHTML = `<div>
       <iframe src="https://www.youtube.com${vid ? `/embed/${vid}?rel=0&v=${vid}${suffix}` : embed}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" 
       allow="autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="lazy"></iframe>
     </div>`;
@@ -43,9 +43,8 @@ function embedVimeo(url, replacePlaceholder, autoplay) {
     suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
   }
   const temp = document.createElement('div');
-  temp.innerHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+  temp.innerHTML = `<div>
       <iframe src="https://player.vimeo.com/video/${video}${suffix}" 
-      style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" 
       frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen  
       title="Content from Vimeo" loading="lazy"></iframe>
     </div>`;
@@ -62,10 +61,9 @@ function embedWistia(url, replacePlaceholder, autoplay) {
     suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
   }
   const temp = document.createElement('div');
-  temp.innerHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+  temp.innerHTML = `<div>
   <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed" 
-  name="wistia_embed" src="${url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href}${suffix}" width="400" height="225"></iframe>`;
-
+  name="wistia_embed" src="${url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href}${suffix}"></iframe>`;
   return temp.children.item(0);
 }
 
@@ -116,6 +114,7 @@ const loadVideoEmbed = (block, link, replacePlaceholder, autoplay) => {
   } else if (isWistia) {
     embedEl = embedWistia(url, replacePlaceholder, autoplay);
   }
+  embedEl.className = 'video-iframe';
   block.replaceChildren(embedEl);
 
   block.dataset.embedIsLoaded = true;
