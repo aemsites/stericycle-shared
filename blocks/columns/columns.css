@@ -52,3 +52,13 @@
     order: unset;
   }
 }
+
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.columns-container {
+  padding: 32px 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.columns-container > div {
+  padding: 0 32px;
+}
