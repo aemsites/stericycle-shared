@@ -2,19 +2,19 @@ export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
 
-  if(block.classList.contains('downloadables')){
+  if (block.classList.contains('downloadables')) {
     [...block.children].forEach((row) => {
       [...row.children].forEach((col) => {
         const pic = col.querySelector('picture');
         const link = col.querySelector('a');
-        
-        if(pic && link){
+
+        if (pic && link) {
           link.innerHTML = '';
           link.appendChild(pic.cloneNode(true));
         }
         pic.remove();
-      })
-    })
+      });
+    });
   }
 
   // setup image columns
