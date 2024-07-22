@@ -62,3 +62,148 @@ main .section.columns-container {
 main .section.columns-container > div {
   padding: 0 32px;
 }
+
+/*  Shred-it’s 6 Step Security Protocol Section */
+main .section.step-security-protocol-section {
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+@media screen and (min-width: 576px /* breakpoint-s */) {
+  main .section.parallel-lines-decorator {
+    margin: 5rem 0 0;
+    position: relative;
+  }
+
+  .section.parallel-lines-decorator::before {
+    content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='232'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath fill='none' d='M0 0h340v232H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg data-name='2-Blade-element'%3E%3Cg data-name='Group 1068' clip-path='url(%23a)'%3E%3Cpath data-name='Path 3668' d='M286.694 158.425L69.479 15.359 0 15.438l220.68 142.987z' fill='%23ff5633'/%3E%3Cpath data-name='Path 3669' d='M341.411 232.261l-221.7-142.982-5.714.007 221.981 142.975z' fill='%23ff5633'/%3E%3Cpath data-name='Path 3670' d='M216.651 94.513L73.151-.002l-45.9.052 145.791 94.463z' fill='%2340bbd5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    display: block;
+    position: absolute;
+    top: -80px;
+    right: 0.25rem;
+    width: 340px;
+    height: 232px;
+  }
+
+  main .section.parallel-lines-decorator > div {
+    padding: 0 48px;
+  }
+
+}
+
+main .section.step-security-protocol-section > div > h2 {
+  padding: 0 12px;
+}
+
+
+@media screen and (min-width: 576px /* breakpoint-s */) {
+  main .section.step-security-protocol-section > div > h2 {
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+    letter-spacing: -.0009rem;
+  }
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  main .section.step-security-protocol-section > div > h2 {
+    font-size: 32px;
+    line-height: 38px;
+    letter-spacing: -0.015px;
+  }
+}
+
+main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border {
+  margin: 0;
+  padding: 0 12px;
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    grid-gap: 24px;
+    padding-top: 34px;
+  }
+}
+
+main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border > div {
+  margin-bottom: 24px;
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border > div {
+    margin-bottom: 0;
+  }
+
+  main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border > div:first-child  {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border > div:nth-child(2) {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+
+  main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border > div:nth-child(3) {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+}
+
+main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border > div:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border > div > div {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border > div > div > h3 {
+  color: var(--color-cyan);
+  font-size: 2.5rem;
+  line-height: 3.25rem;
+  letter-spacing: -.0094rem;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border > div > div > p {
+  border-color: var(--color-orange);
+  border-width: 0 0 0 4px;
+  border-style: solid;
+  padding-left: 24px;
+  padding-bottom: 16px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border > div:last-child > div > p {
+  margin-bottom: 0;
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border > div > div > p {
+    margin: 0 0 16px;
+    padding-bottom: 0;
+    border: none;
+  }
+
+  main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border > div > div > h3 {
+    margin: 0;
+    font-size: 4rem;
+    height: 80px;
+    line-height: 3.6rem;
+    border-color: var(--color-orange);
+    border-width: 0 4px 0 0;
+    border-style: solid;
+    padding-left: 0;
+  }
+
+  main .section.step-security-protocol-section > div > .columns.blue-number-orange-accent-border > div > div > h3 > strong {
+    padding-right: 6px;
+    display: block;
+    height: 80px;
+  }
+}
