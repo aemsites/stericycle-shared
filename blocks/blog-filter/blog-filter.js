@@ -111,6 +111,13 @@ async function updateResults(checkboxValue) {
   const bfc = document.querySelector('div.blog-filter-container> div.results> ul');
   bfc.innerHTML = '';
   decorateResults(postArray, bfc);
+
+  const checkboxes = document.querySelectorAll('div.blog-filter-container div.facet input[type="checkbox"]');
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.value !== checkboxValue) {
+      checkbox.checked = false;
+    }
+  });
 }
 
 export default async function decorate(block) {

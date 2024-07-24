@@ -39,6 +39,14 @@ div.blog-filter-container > div.results {
     width: 100%;
 }
 
+div.blog-filter-container > div.facet ul > li > div > i {
+    display: none;
+}
+
+div.blog-filter-container div.results div.item-date {
+    font-size: .75rem;
+}
+
 @media screen and (min-width: 992px) {
     div.blog-filter-container h3 {
         font-size: 1.625rem;
@@ -48,6 +56,10 @@ div.blog-filter-container > div.results {
         display: flex;
         flex-flow: row;
         flex-direction: column;
+    }
+
+    div.blog-filter-container div.results div.item-date {
+        font-size: unset;
     }
 
     div.blog-filter-container > div.blog-filter-wrapper > div.blog-filter-container {
@@ -79,6 +91,13 @@ div.blog-filter-container > div.results {
     div.blog-filter-container > div.results {
         width: 75%;
         max-width: 75%;
+    }
+
+    div.blog-filter-container > div.facet ul > li > div > i {
+        display: inline-block;
+        font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+        text-transform: uppercase;
+        font-style: normal;
     }
 }
 
@@ -117,13 +136,6 @@ div.blog-filter-container > div.facet ul > li > div.facet-group > input[type="ch
     vertical-align: bottom;
     margin-right: 1rem;
     width: 1rem;
-}
-
-div.blog-filter-container > div.facet ul > li > div > i {
-    display: inline-block;
-    font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
-    text-transform: uppercase;
-    font-style: normal;
 }
 
 div.blog-filter-container > div.facet ul > li > div>  i::before {
@@ -167,17 +179,20 @@ div.blog-filter-container > div.results ul > li {
 }
 
 div.blog-filter-container > div.results ul > li div.item-left {
+    width: 10rem;
     display: flex;
-    flex-direction: column;
+    overflow: hidden;
 }
 
 div.blog-filter-container > div.results ul > li div.item-right {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 div.blog-filter-container > div.results img {
     width: 160px;
-    height: 100%;
+    height: auto;
     object-fit: cover;
+    overflow: hidden;
 }
