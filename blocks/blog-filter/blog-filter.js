@@ -120,7 +120,7 @@ async function updateResults(checkboxValue) {
   });
 }
 
-function clickChevron(elm) {
+function clickChevron() {
   const fl = document.querySelector('ul.facet-list');
   if (fl.classList.contains('slideout')) {
     fl.classList.remove('slideout');
@@ -148,7 +148,7 @@ export default async function decorate(block) {
   const chevron = document.createElement('i');
   chevron.classList.add('fa-chevron-down');
   chevron.addEventListener('click', () => {
-    clickChevron(chevron);
+    clickChevron();
   });
   topicHead.innerText = blogtopic;
   topicHead.append(chevron);
