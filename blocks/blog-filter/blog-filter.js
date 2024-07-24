@@ -53,6 +53,11 @@ function getLocale() {
   return 'en-us';
 }
 
+function toggleFacets() {
+  const facets = document.querySelector('div.blog-filter-container > div.facet > ul');
+  facets.style.display = facets.style.display === 'none' ? 'unset' : 'none';
+}
+
 function decorateResults(posts, list) {
   posts.forEach((post) => {
     const item = document.createElement('li');
@@ -72,7 +77,7 @@ function decorateResults(posts, list) {
     heading.classList.add('item-title');
     const headingLink = document.createElement('a');
     headingLink.href = post.path;
-    headingLink.attributes['aria-label'] = post.title;
+    headingLink.setAttribute('aria-label', post.title);
     headingLink.innerText = post.title;
     heading.append(headingLink);
     dateDiv.classList.add('item-date');
@@ -112,9 +117,12 @@ export default async function decorate(block) {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const { blogtopic } = ph;
   const facetDiv = document.createElement('div');
-  const mobileFiler = document.createElement('i');
-  mobileFiler.classList.add('filter-icon');
-  facetDiv.append(mobileFiler);
+  const mobileFilter = document.createElement('i');
+  mobileFilter.classList.add('filter-icon');
+  mobileFilter.addEventListener('click', () => {
+    toggleFacets();
+  });
+  facetDiv.append(mobileFilter);
   facetDiv.classList.add('facet');
   const facetList = document.createElement('ul');
   const facetLI = document.createElement('li');
