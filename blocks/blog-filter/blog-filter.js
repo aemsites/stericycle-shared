@@ -120,6 +120,15 @@ async function updateResults(checkboxValue) {
   });
 }
 
+function clickChevron(elm) {
+  const fl = document.querySelector('ul.facet-list');
+  if (fl.classList.contains('slideout')) {
+    fl.classList.remove('slideout');
+  } else {
+    fl.classList.add('slideout');
+  }
+}
+
 export default async function decorate(block) {
   const facets = await getFacets();
   const ph = await fetchPlaceholders(`/${getLocale()}`);
@@ -138,11 +147,15 @@ export default async function decorate(block) {
   topicHead.classList.add('topic-head');
   const chevron = document.createElement('i');
   chevron.classList.add('fa-chevron-down');
+  chevron.addEventListener('click', () => {
+    clickChevron(chevron);
+  });
   topicHead.innerText = blogtopic;
   topicHead.append(chevron);
   facetLI.append(topicHead);
   facetList.append(facetLI);
   const facetUL = document.createElement('ul');
+  facetUL.classList.add('facet-list');
   facetLI.append(facetUL);
   facets.tags.forEach((facet) => {
     const facetItem = document.createElement('li');

@@ -47,6 +47,13 @@ div.blog-filter-container div.results div.item-date {
     font-size: .75rem;
 }
 
+.slideout {
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: height .35s ease;
+    transition: max-height .35s ease;
+}
+
 @media screen and (min-width: 992px) {
     div.blog-filter-container h3 {
         font-size: 1.625rem;

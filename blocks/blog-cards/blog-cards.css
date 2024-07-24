@@ -15,6 +15,7 @@ div.blog-card-section div.latest-posts ul {
     list-style: none;
     padding-left: unset;
     display: flex;
+    flex-direction: column;
 }
 
 div.blog-card-section div.latest-posts ul > li {
@@ -73,4 +74,13 @@ div.blog-card-section a.button.secondary, button.secondary {
     background-color: var(--color-blue);
     border-color: currentcolor;
     color: var(--color-white);
+}
+
+@media screen and (min-width: 992px) {
+    div.blog-card-section div.latest-posts ul {
+        list-style: none;
+        padding-left: unset;
+        display: flex;
+        flex-direction: row;
+    }
 }
