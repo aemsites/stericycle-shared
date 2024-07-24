@@ -83,6 +83,7 @@ function decorateResults(posts, list) {
     dateDiv.classList.add('item-date');
     dateDiv.innerText = formatDate(getDateFromExcel(post.date));
     const image = document.createElement('img');
+    image.alt = post.title;
     itemLeft.append(image);
     image.src = post.image;
     item.append(itemLeft);
