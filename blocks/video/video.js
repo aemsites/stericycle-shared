@@ -25,8 +25,8 @@ function embedYoutube(url, replacePlaceholder, autoplay) {
   }
 
   const temp = document.createElement('div');
-  temp.innerHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-      <iframe src="https://www.youtube.com${vid ? `/embed/${vid}?rel=0&v=${vid}${suffix}` : embed}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" 
+  temp.innerHTML = `<div>
+      <iframe src="https://www.youtube.com${vid ? `/embed/${vid}?rel=0&v=${vid}${suffix}` : embed}" 
       allow="autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="lazy"></iframe>
     </div>`;
   return temp.children.item(0);
@@ -43,12 +43,27 @@ function embedVimeo(url, replacePlaceholder, autoplay) {
     suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
   }
   const temp = document.createElement('div');
-  temp.innerHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+  temp.innerHTML = `<div>
       <iframe src="https://player.vimeo.com/video/${video}${suffix}" 
-      style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" 
       frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen  
       title="Content from Vimeo" loading="lazy"></iframe>
     </div>`;
+  return temp.children.item(0);
+}
+
+function embedWistia(url, replacePlaceholder, autoplay) {
+  let suffix = '';
+  if (replacePlaceholder || autoplay) {
+    const suffixParams = {
+      autoplay: '1',
+      background: autoplay ? '1' : '0',
+    };
+    suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
+  }
+  const temp = document.createElement('div');
+  temp.innerHTML = `<div>
+  <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed" 
+  name="wistia_embed" src="${url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href}${suffix}"></iframe>`;
   return temp.children.item(0);
 }
 
@@ -87,6 +102,7 @@ const loadVideoEmbed = (block, link, replacePlaceholder, autoplay) => {
   const isYoutube = link.includes('youtube') || link.includes('youtu.be');
   const isVimeo = link.includes('vimeo');
   const isMp4 = link.includes('.mp4');
+  const isWistia = link.includes('wistia');
 
   let embedEl;
   if (isYoutube) {
@@ -95,7 +111,10 @@ const loadVideoEmbed = (block, link, replacePlaceholder, autoplay) => {
     embedEl = embedVimeo(url, replacePlaceholder, autoplay);
   } else if (isMp4) {
     embedEl = getVideoElement(link, replacePlaceholder, autoplay);
+  } else if (isWistia) {
+    embedEl = embedWistia(url, replacePlaceholder, autoplay);
   }
+  embedEl.className = 'video-iframe';
   block.replaceChildren(embedEl);
 
   block.dataset.embedIsLoaded = true;

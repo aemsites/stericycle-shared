@@ -2,8 +2,12 @@ main .section.faq-container {
   padding: 32px;
 }
 
-.faq {
+main .section.faq-container > div {
   padding: 0 12px;
+}
+
+.faq {
+  padding: 0;
   margin-bottom: 40px;
 }
 
@@ -159,7 +163,7 @@ main .section.faq-container {
   line-height: 1.625rem;
   letter-spacing: -.0009rem;
   margin-bottom: .5rem;
-  padding: 0 12px;
+  padding: 0;
 }
 
 @media screen and (min-width: 992px) {
