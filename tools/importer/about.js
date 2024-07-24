@@ -14,29 +14,28 @@
 const baseDomain = 'https://main--shredit--stericycle.aem.page';
 const req = new XMLHttpRequest();
 let tags = {};
-let TAGS = {};
+const TAGS = {};
 req.open('GET', '/tools/importer/shredit-meta.json', false);
 req.send(null);
-if(req.status === 200){
+if (req.status === 200) {
   tags = JSON.parse(req.responseText);
 }
 
-tags.forEach((item) => {
-  const path = getPath(item.Path);
-  const tags = item.Tags.replaceAll(';', ',');
-  TAGS[path] = tags;
-})
-
-function getPath(url){
-  const lastIndex = url.lastIndexOf("/");
+function getPath(url) {
+  const lastIndex = url.lastIndexOf('/');
   const path = url.substring(lastIndex + 1);
   return path;
 }
 
-function getLocaleFromUrl(doc){
-    const match = doc.documentURI.match(/\/([a-z]{2,}(?:-[a-z]{2,})*)\//g);
-    return Object.hasOwn(match, 'length') && match.length >= 1 ? match[0].replaceAll('/', '') : null;
-  }
+tags.forEach((item) => {
+  const path = getPath(item.Path);
+  TAGS[path] = item.Tags.replaceAll(';', ',');
+});
+
+function getLocaleFromUrl(doc) {
+  const match = doc.documentURI.match(/\/([a-z]{2,}(?:-[a-z]{2,})*)\//g);
+  return Object.hasOwn(match, 'length') && match.length >= 1 ? match[0].replaceAll('/', '') : null;
+}
 
 function sanitizeURL(url) {
   const newURL = baseDomain + url;
@@ -45,11 +44,11 @@ function sanitizeURL(url) {
 }
 
 function getDocumentMetadata(name, document) {
-    const attr = name && name.includes(':') ? 'property' : 'name';
-    const meta = [...document.head.querySelectorAll(`meta[${attr}="${name}"]`)]
-      .map((m) => m.content)
-      .join(', ');
-    return meta || '';
+  const attr = name && name.includes(':') ? 'property' : 'name';
+  const meta = [...document.head.querySelectorAll(`meta[${attr}="${name}"]`)]
+    .map((m) => m.content)
+    .join(', ');
+  return meta || '';
 }
 
 function transformButtonToAnchors(main) {
@@ -101,14 +100,12 @@ function transformColumns(main) {
       console.log(e);
     }
   });
-
-
 }
 
-function transformFlipCardsUnderColumn(main){
+function transformFlipCardsUnderColumn(main) {
   const teaserlist = main.querySelectorAll('ul.cmp-teaserlist');
 
-  teaserlist.forEach((tl, idx, arr) => {
+  teaserlist.forEach((tl) => {
     const pagesection = tl.closest('div.cmp-pagesection');
     const row = tl.closest('div.cmp-columnrow__item');
     const title = tl.parentNode.previousElementSibling;
@@ -118,8 +115,7 @@ function transformFlipCardsUnderColumn(main){
     row.classList.add('flipcard');
     tl.remove();
     title.remove();
-  })
-
+  });
 }
 
 function transformCards(main) {
@@ -137,6 +133,7 @@ function transformCards(main) {
       const title = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back h6.page-teaser__title.page-teaser__title--back');
       const description = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back p.page-teaser__desc');
       const link = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back a').href;
+      // eslint-disable-next-line no-multi-assign
       const titleh4 = document.createElement('h4').innerText = title.innerText;
 
       if (img && title) {
@@ -156,18 +153,18 @@ function transformCards(main) {
 }
 
 function setMetadata(meta, document) {
-    const url = new URL(document.documentURI).pathname;
-    const path = getPath(url);
-    meta.template = 'blog-page';
-    meta['twitter:title'] = meta.Title;
-    meta['twitter:description'] = meta.Description;
-    meta['og:type'] = 'website';
-    meta['locale'] = getLocaleFromUrl(document)
-    meta['og:url'] = getDocumentMetadata('og:url', document);
-    if(Object.hasOwn(TAGS, path) && TAGS[path] !== ''){
-      meta['tags'] = TAGS[path];
-    }
+  const url = new URL(document.documentURI).pathname;
+  const path = getPath(url);
+  meta.template = 'blog-page';
+  meta['twitter:title'] = meta.Title;
+  meta['twitter:description'] = meta.Description;
+  meta['og:type'] = 'website';
+  meta.locale = getLocaleFromUrl(document);
+  meta['og:url'] = getDocumentMetadata('og:url', document);
+  if (Object.hasOwn(TAGS, path) && TAGS[path] !== '') {
+    meta.tags = TAGS[path];
   }
+}
 
 export default {
   /**
@@ -201,7 +198,7 @@ export default {
       'div.cmp-experiencefragment--footer',
       'div.col-lg-3.cmp-columnrow__item',
       'div#onetrust-consent-sdk',
-      'div.related-content'
+      'div.related-content',
     ]);
 
     transformTabs(main);
