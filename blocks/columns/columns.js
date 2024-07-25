@@ -1,32 +1,30 @@
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
-
-  if (block.classList.contains('downloadables')) {
-    [...block.children].forEach((row) => {
-      [...row.children].forEach((col) => {
-        const pic = col.querySelector('picture');
-        const link = col.querySelector('a');
-
-        if (pic && link) {
-          link.innerHTML = '';
-          link.appendChild(pic.cloneNode(true));
-        }
-        pic.remove();
-      });
-    });
-  }
+  let downloadableColumns = false;
 
   // setup image columns
   [...block.children].forEach((row) => {
     [...row.children].forEach((col) => {
       const pic = col.querySelector('picture');
+      const link = col.querySelector('a');
+
+      if(pic && link && link.title && link.href === link.innerText){
+        link.innerHTML = '';
+        link.appendChild(pic.cloneNode(true));
+        pic.remove();
+        downloadableColumns = true;
+      }
+
       if (pic) {
         const picWrapper = pic.closest('div');
         if (picWrapper && picWrapper.children.length === 1) {
           // picture is only content in column
           picWrapper.classList.add('columns-img-col');
         }
+      }
+      if(downloadableColumns){
+        block.classList.add('centered-text');
       }
     });
   });
