@@ -124,6 +124,20 @@ function buildAutoBlocks(main) {
   }
 }
 
+function modifyBigNumberList(main) {
+  const bigNumberList = main.querySelectorAll('.list-style-big-numbers');
+  bigNumberList.forEach((list) => {
+    const listItems = list.querySelectorAll('li');
+    listItems.forEach((item) => {
+      // wrap the text content of the list item in the span
+      const span = document.createElement('span');
+      span.innerHTML = item.innerHTML;
+      item.innerHTML = '';
+      item.append(span);
+    });
+  });
+}
+
 function getBlogBaseUrl(url) {
   try {
     const urlObj = new URL(url);
@@ -205,6 +219,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateBlog(main);
+  modifyBigNumberList(main);
 }
 
 /**
