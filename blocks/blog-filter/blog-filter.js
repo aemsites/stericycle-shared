@@ -93,7 +93,18 @@ function decorateResults(posts, list) {
   });
 }
 
-async function updateResults(checkboxValue) {
+/*
+    * This function checks if the checkbox is checked and if the tag is included in the post
+    * @param {Object} cbox - the checkbox that was clicked
+ */
+function filterTags(cbox, includes) {
+  if (cbox.checked === false) {
+    return true;
+  }
+  return includes;
+}
+
+async function updateResults(checkboxChange) {
   const postArray = [];
   const posts = await ffetch('/query-index.json').sheet('blog')
     .map((post) => ({
@@ -102,7 +113,7 @@ async function updateResults(checkboxValue) {
       date: post.date, // Include the date
       image: post.image, // Include the image
     }))
-    .filter((post) => post.tags.includes(checkboxValue))
+    .filter((post) => filterTags(checkboxChange, post.tags.includes(checkboxChange.value)))
     .limit(10)
     .all();
   posts.forEach((post) => {
@@ -114,7 +125,7 @@ async function updateResults(checkboxValue) {
 
   const checkboxes = document.querySelectorAll('div.blog-filter-container div.facet input[type="checkbox"]');
   checkboxes.forEach((checkbox) => {
-    if (checkbox.value !== checkboxValue) {
+    if (checkbox.value !== checkboxChange.value) {
       checkbox.checked = false;
     }
   });
@@ -168,7 +179,7 @@ export default async function decorate(block) {
     checkbox.value = facet.tag;
     // create a listener for the checkbox
     checkbox.addEventListener('change', (cb) => {
-      updateResults(cb.target.value);
+      updateResults(cb.target);
     });
     topic.append(checkbox);
     topic.append(label);
