@@ -52,6 +52,15 @@ function arraysHaveMatchingItem(array1, array2) {
   return false;
 }
 
+export function getLocale() {
+  const locale = getMetadata('locale');
+  if (locale && locale.length > 0) {
+    return locale;
+  }
+  // defaulting to en-us
+  return 'en-us';
+}
+
 /**
  * Get related blog content based on page tags. Currently doesn't filter out the existing page or
  * fill up the array if there are not enough related posts

@@ -1,0 +1,19 @@
+div.paginated-list-wrapper > ul {
+    list-style: none;
+    margin-left: 0;
+    margin-bottom: 1rem;
+}
+
+div.paginated-list-wrapper > ul > li {
+    border-bottom: 1px solid var(--color-gray);
+    margin-bottom: .75rem;
+    padding-bottom: .75rem;
+}
+
+div.paginated-list-wrapper > ul > li  h4 {
+    font-size: 1rem;
+}
+
+div.paginated-list-wrapper > ul > li span.date-published {
+    font-size: .75rem;
+}
