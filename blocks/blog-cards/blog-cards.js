@@ -1,4 +1,5 @@
 import { getRelatedBlogContent } from '../../scripts/scripts.js';
+import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default async function decorate(block) {
   const latestPosts = document.createElement('div');
@@ -15,14 +16,10 @@ export default async function decorate(block) {
     const teaserTitle = document.createElement('h5');
     teaserTitle.innerText = post.title;
     teaserBlog.innerHTML = '<a href="#">BLOGS</a>';
-    const teaserPicture = document.createElement('picture');
-    teaserDiv.append(teaserPicture);
+    const tp = createOptimizedPicture(post.image, post.title);
+    teaserDiv.append(tp);
     teaserDiv.append(teaserTitle);
     teaserDiv.append(teaserBlog);
-    const teaserImg = document.createElement('img');
-    teaserImg.src = post.image;
-    teaserImg.alt = post.title;
-    teaserPicture.append(teaserImg);
     teaser.append(teaserDiv);
     teaser.className = 'related-content-teaser';
     const readMeButton = document.createElement('p');
@@ -36,7 +33,6 @@ export default async function decorate(block) {
     boldText.append(buttonLink);
     readMeButton.append(boldText);
     teaserDiv.append(readMeButton);
-
     blogTeasers.append(teaser);
   });
   latestPosts.append(blogTeasers);

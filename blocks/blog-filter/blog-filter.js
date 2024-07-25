@@ -96,6 +96,7 @@ function decorateResults(posts, list) {
 /*
     * This function checks if the checkbox is checked and if the tag is included in the post
     * @param {Object} cbox - the checkbox that was clicked
+    * @param {Boolean} includes - if the tag is included in the post
  */
 function filterTags(cbox, includes) {
   if (cbox.checked === false) {
