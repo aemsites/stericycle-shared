@@ -62,7 +62,3 @@ main .section.columns-container {
 main .section.columns-container > div {
   padding: 0 32px;
 }
-
-.columns.downloadables {
-  text-align: center;
-}
