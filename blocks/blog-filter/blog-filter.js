@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { getDateFromExcel } from '../../scripts/scripts.js';
-import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
+import { createOptimizedPicture, fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 
 async function getResults() {
   const postArray = [];
@@ -82,10 +82,8 @@ function decorateResults(posts, list) {
     heading.append(headingLink);
     dateDiv.classList.add('item-date');
     dateDiv.innerText = formatDate(getDateFromExcel(post.date));
-    const image = document.createElement('img');
-    image.alt = post.title;
-    itemLeft.append(image);
-    image.src = post.image;
+    const img = createOptimizedPicture(post.image, post.title);
+    itemLeft.append(img);
     item.append(itemLeft);
     itemRight.append(heading, categoryDiv, dateDiv);
     item.append(itemRight);
