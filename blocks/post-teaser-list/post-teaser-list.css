@@ -1,0 +1,40 @@
+.post-teaser-list > .teaser-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+}
+
+.post-teaser-list > .teaser-list > .teaser {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-teaser-list > .teaser-list > .teaser > .teaser-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.post-teaser-list > .teaser-list > .teaser > .teaser-content a.button {
+  margin: 0;
+}
+
+.post-teaser-list > .teaser-list > .teaser > .teaser-content > .teaser-title {
+  flex: 1;
+  margin-bottom: 16px;
+  color: var(--color-text);
+  font-weight: 700;
+  line-height: 1.5rem;
+  letter-spacing: .0006rem;
+}
+
+.post-teaser-list > .teaser-list > .teaser > .teaser-content > .teaser-category {
+  color: var(--color-dark-gray);
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}

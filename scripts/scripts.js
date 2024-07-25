@@ -77,6 +77,30 @@ export async function getRelatedBlogContent(tags, limit) {
 }
 
 /**
+ * Get the latest posts. Currently doesn't filter out the existing page or
+ * fill up the array if there are not enough related posts
+ * @param {array} tags - tags from the page
+ * @param {number} limit - the max number of related posts to return
+ * @returns {Promise<*[]>}
+ */
+export async function getLatestPosts(tags, limit) {
+  const postarray = [];
+  let count = 0;
+  const pageTags = JSON.stringify(tags.split(','));
+  // TODO: use sheet containing all posts
+  const posts = await ffetch('/query-index.json').sheet('blog').all();
+  posts.forEach((post) => {
+    // if (containsTag(JSON.parse(post.tags), JSON.parse(post.tags))) {
+    if (arraysHaveMatchingItem(JSON.parse(post.tags), pageTags) && count < limit) {
+      postarray.push(post);
+      // eslint-disable-next-line no-plusplus
+      count++;
+    }
+  });
+  return postarray;
+}
+
+/**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */
