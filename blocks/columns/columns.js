@@ -9,7 +9,7 @@ export default function decorate(block) {
       const pic = col.querySelector('picture');
       const link = col.querySelector('a');
 
-      if(pic && link && link.title && link.href === link.innerText){
+      if (pic && link && link.title && link.href === link.innerText) {
         link.innerHTML = '';
         link.appendChild(pic.cloneNode(true));
         pic.remove();
@@ -23,7 +23,7 @@ export default function decorate(block) {
           picWrapper.classList.add('columns-img-col');
         }
       }
-      if(downloadableColumns){
+      if (downloadableColumns) {
         block.classList.add('centered-text');
       }
     });
