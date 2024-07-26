@@ -9,7 +9,8 @@ export default function decorate(block) {
       const pic = col.querySelector('picture');
       const link = col.querySelector('a');
 
-      if (pic && link && link.href && new URL(link.href).pathname === new URL(link.innerText).pathname) {
+      if (pic && link && link.href
+        && new URL(link.href).pathname === new URL(link.innerText).pathname) {
         link.innerHTML = '';
         link.appendChild(pic.cloneNode(true));
         pic.remove();
