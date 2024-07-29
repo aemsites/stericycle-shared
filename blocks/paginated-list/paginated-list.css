@@ -68,3 +68,22 @@ div.paginated-list-wrapper ul.pagination-controls li > button:not(:disabled) {
     color: unset;
     margin-right: .5rem;
 }
+
+@media (min-width: 992px /* breakpoint-l */) {
+    div.paginated-list-wrapper > ul:not(.pagination-controls) > li {
+        display: grid;
+        grid-template:
+            [row1-start] "first image" [row1-end]
+            [row2-start] "second image" [row2-end]
+            [row2-start] "third image" [row2-end] / auto 10rem;
+        column-gap: 1rem;
+        grid-template-areas:
+            "first image"
+            "second image"
+            "third image";
+    }
+
+    div.paginated-list-wrapper > ul > li > a {
+        grid-area: image;
+    }
+}

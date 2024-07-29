@@ -4,21 +4,6 @@ import { getDateFromExcel, getLocale } from '../../scripts/scripts.js';
 
 const sessionKey = 'press-releases';
 
-async function getResults(sheet) {
-  let postArray = [];
-  const storedPosts = sessionStorage.getItem(sessionKey);
-
-  if (storedPosts) {
-    postArray = JSON.parse(storedPosts);
-  } else {
-    const posts = await ffetch('/query-index.json').sheet(sheet)
-      .all();
-    postArray = posts;
-    sessionStorage.setItem(sessionKey, JSON.stringify(postArray));
-  }
-  return postArray;
-}
-
 const formatDate = (date) => date.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
@@ -28,7 +13,7 @@ const formatDate = (date) => date.toLocaleDateString('en-US', {
 const itemsPerPage = 10;
 let currentPage = 1;
 
-async function buildPagination(ul, controls, sheet, page) {
+async function buildPagination(ul, controls, sheet, page, ph) {
   const storedPosts = sessionStorage.getItem(sessionKey);
   let releases = [];
   if (!storedPosts) {
@@ -48,6 +33,11 @@ async function buildPagination(ul, controls, sheet, page) {
   controls.innerHTML = ''; // Clear previous controls
   paginatedReleases.forEach((release) => {
     const listItem = document.createElement('li');
+    const type = document.createElement('a');
+    type.href = window.location.pathname;
+    type.textContent = ph.pressreleases;
+    type.classList.add('type');
+    listItem.append(type);
     const title = document.createElement('h4');
     const titleA = document.createElement('a');
     titleA.href = release.path;
@@ -94,7 +84,7 @@ export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   const prList = document.createElement('ul');
   const pagination = document.createElement('ul');
-  await buildPagination(prList, pagination, cfg.sheet, currentPage);
+  await buildPagination(prList, pagination, cfg.sheet, currentPage, ph);
   block.replaceWith(prList);
   prList.insertAdjacentElement('afterend', pagination);
 }
