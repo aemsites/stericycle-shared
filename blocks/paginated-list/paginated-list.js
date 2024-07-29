@@ -60,8 +60,8 @@ async function buildPagination(ul, controls, sheet, page, ph) {
   buttonPrev.classList.add('fa-chevron-left');
   buttonPrev.disabled = page === 1;
   buttonPrev.addEventListener('click', () => {
-    currentPage--;
-    buildPagination(ul, controls, sheet, currentPage);
+    currentPage -= 1;
+    buildPagination(ul, controls, sheet, currentPage, ph);
   });
 
   const next = document.createElement('li');
@@ -70,8 +70,8 @@ async function buildPagination(ul, controls, sheet, page, ph) {
   buttonNext.disabled = page === totalPages;
   buttonNext.classList.add('fa-chevron-right');
   buttonNext.addEventListener('click', () => {
-    currentPage++;
-    buildPagination(ul, controls, sheet, currentPage);
+    currentPage += 1;
+    buildPagination(ul, controls, sheet, currentPage, ph);
   });
 
   controls.append(prev, next);

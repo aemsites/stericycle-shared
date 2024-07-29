@@ -34,13 +34,13 @@ div.paginated-list-wrapper ul.pagination-controls {
     list-style: none outside none;
 }
 
-.fa-chevron-left:before {
+.fa-chevron-left::before {
     content: "";
     font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
     margin-right: 8px;
 }
 
-.fa-chevron-right:after {
+.fa-chevron-right::after {
     content: "";
     font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
     margin-left: 8px;
@@ -49,7 +49,7 @@ div.paginated-list-wrapper ul.pagination-controls {
 div.paginated-list-wrapper ul.pagination-controls li > button:disabled {
     border: unset;
     background-color: unset;
-    color: rgba(16, 16, 16, 0.3);
+    color: rgb(16 16 16 / 30%);
     margin-right: .5rem;
     font-size: inherit;
 }
@@ -57,7 +57,7 @@ div.paginated-list-wrapper ul.pagination-controls li > button:disabled {
 div.paginated-list-wrapper ul.pagination-controls li > button:enabled {
     border: unset;
     background-color: unset;
-    color: rgba(16, 16, 16, 0.3);
+    color: rgb(16 16 16 / 30%);
     margin-right: .5rem;
     font-size: inherit;
 }
