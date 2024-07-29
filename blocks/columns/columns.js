@@ -12,8 +12,7 @@ export default function decorate(block) {
       if (pic && link && link.href
         && new URL(link.href).pathname === new URL(link.innerText).pathname) {
         link.innerHTML = '';
-        link.appendChild(pic.cloneNode(true));
-        pic.remove();
+        link.appendChild(pic);
         downloadableColumns = true;
       }
 
