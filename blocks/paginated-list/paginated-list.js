@@ -25,45 +25,29 @@ const formatDate = (date) => date.toLocaleDateString('en-US', {
   day: '2-digit',
 });
 
-async function buildPagination(ul, sheet) {
+const itemsPerPage = 10;
+let currentPage = 1;
+
+async function buildPagination(ul, controls, sheet, page) {
   const storedPosts = sessionStorage.getItem(sessionKey);
   let releases = [];
   if (!storedPosts) {
-    const posts = await ffetch('/query-index.json').sheet(sheet)
-      .all();
+    const posts = await ffetch('/query-index.json').sheet(sheet).all();
     sessionStorage.setItem(sessionKey, JSON.stringify(posts));
     releases = posts;
   } else {
     releases = JSON.parse(storedPosts);
   }
-  console.log(releases.length);
-  const prev = document.createElement('li');
-  const buttonPrev = document.createElement('button');
-  buttonPrev.textContent = 'Previous';
-  const next = document.createElement('li');
-  const buttonNext = document.createElement('button');
-  buttonNext.textContent = 'Next';
-  prev.append(buttonPrev);
-  next.append(buttonNext);
-  ul.append(prev, next);
-}
 
-export default async function decorate(block) {
-  const ph = await fetchPlaceholders(`/${getLocale()}`);
-  const cfg = readBlockConfig(block);
-  const prList = document.createElement('ul');
-  const paginationControls = document.createElement('div');
-  paginationControls.classList.add('pagination-controls');
-  const pcl = document.createElement('ul');
-  await buildPagination(pcl, cfg.sheet); // we can probably delay this
-  paginationControls.append(pcl);
-  const releases = await getResults(cfg.sheet);
-  releases.forEach((release) => {
+  const totalPages = Math.ceil(releases.length / itemsPerPage);
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const paginatedReleases = releases.slice(start, end);
+
+  ul.innerHTML = ''; // Clear previous items
+  controls.innerHTML = ''; // Clear previous controls
+  paginatedReleases.forEach((release) => {
     const listItem = document.createElement('li');
-    const prTitle = document.createElement('a');
-    prTitle.href = window.location.pathname;
-    prTitle.textContent = ph.pressreleases || 'Press Releases';
-    listItem.append(prTitle);
     const title = document.createElement('h4');
     const titleA = document.createElement('a');
     titleA.href = release.path;
@@ -75,8 +59,42 @@ export default async function decorate(block) {
     prSpan.textContent = formatDate(getDateFromExcel(release.date));
     prSpan.classList.add('date-published');
     listItem.append(prSpan);
-    prList.appendChild(listItem);
+    ul.appendChild(listItem);
   });
+
+  controls.classList.add('pagination-controls');
+
+  const prev = document.createElement('li');
+  const buttonPrev = document.createElement('button');
+  buttonPrev.textContent = 'Previous';
+  buttonPrev.classList.add('fa-chevron-left');
+  buttonPrev.disabled = page === 1;
+  buttonPrev.addEventListener('click', () => {
+    currentPage--;
+    buildPagination(ul, controls, sheet, currentPage);
+  });
+
+  const next = document.createElement('li');
+  const buttonNext = document.createElement('button');
+  buttonNext.textContent = 'Next';
+  buttonNext.disabled = page === totalPages;
+  buttonNext.classList.add('fa-chevron-right');
+  buttonNext.addEventListener('click', () => {
+    currentPage++;
+    buildPagination(ul, controls, sheet, currentPage);
+  });
+
+  controls.append(prev, next);
+  prev.append(buttonPrev);
+  next.append(buttonNext);
+}
+
+export default async function decorate(block) {
+  const ph = await fetchPlaceholders(`/${getLocale()}`);
+  const cfg = readBlockConfig(block);
+  const prList = document.createElement('ul');
+  const pagination = document.createElement('ul');
+  await buildPagination(prList, pagination, cfg.sheet, currentPage);
   block.replaceWith(prList);
-  prList.insertAdjacentElement('afterend', paginationControls);
+  prList.insertAdjacentElement('afterend', pagination);
 }

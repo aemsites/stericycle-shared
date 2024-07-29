@@ -10,10 +10,61 @@ div.paginated-list-wrapper > ul > li {
     padding-bottom: .75rem;
 }
 
+div.paginated-list-wrapper > ul.pagination-controls > li {
+    border-bottom: unset;
+    margin-bottom: unset;
+    padding-bottom: unset;
+}
+
+div.paginated-list-wrapper > ul.pagination-controls > li:first-of-type {
+    margin-left: auto;
+}
+
 div.paginated-list-wrapper > ul > li  h4 {
     font-size: 1rem;
 }
 
 div.paginated-list-wrapper > ul > li span.date-published {
     font-size: .75rem;
+}
+
+div.paginated-list-wrapper ul.pagination-controls {
+    display: flex;
+    flex-direction: row;
+    list-style: none outside none;
+}
+
+.fa-chevron-left:before {
+    content: "";
+    font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+    margin-right: 8px;
+}
+
+.fa-chevron-right:after {
+    content: "";
+    font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+    margin-left: 8px;
+}
+
+div.paginated-list-wrapper ul.pagination-controls li > button:disabled {
+    border: unset;
+    background-color: unset;
+    color: rgba(16, 16, 16, 0.3);
+    margin-right: .5rem;
+    font-size: inherit;
+}
+
+div.paginated-list-wrapper ul.pagination-controls li > button:enabled {
+    border: unset;
+    background-color: unset;
+    color: rgba(16, 16, 16, 0.3);
+    margin-right: .5rem;
+    font-size: inherit;
+}
+
+div.paginated-list-wrapper ul.pagination-controls li > button:not(:disabled) {
+    border: unset;
+    background-color: unset;
+    color: unset;
+    margin-right: .5rem;
 }
