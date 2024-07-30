@@ -1,7 +1,7 @@
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
-  let downloadableColumns = false;
+  let isImageLink = false;
 
   // setup image columns
   [...block.children].forEach((row) => {
@@ -13,7 +13,7 @@ export default function decorate(block) {
         && new URL(link.href).pathname === new URL(link.innerText).pathname) {
         link.innerHTML = '';
         link.appendChild(pic);
-        downloadableColumns = true;
+        isImageLink = true;
       }
 
       if (pic) {
@@ -23,7 +23,7 @@ export default function decorate(block) {
           picWrapper.classList.add('columns-img-col');
         }
       }
-      if (downloadableColumns) {
+      if (isImageLink) {
         block.classList.add('centered-text');
       }
     });
