@@ -53,13 +53,13 @@
   width: 100%;
   margin: 0;
 }
+
 .cards > ul > li > .card-body > hr {
   margin: 1rem 0;
   border: 0.5px solid #b2b1b1;
   opacity: .25;
   color: inherit;
 }
-
 
 @media (min-width: 992px /* breakpoint-l */) {
   .cards > ul {
