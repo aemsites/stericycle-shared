@@ -1,0 +1,109 @@
+.fa-chevron-right::after {
+    content: "";
+    font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+    margin-left: 8px;
+}
+
+.fa-chevron-left::before {
+    content: "";
+    font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+    margin-right: 8px;
+}
+
+div.searchbar > form > div.search-container {
+    display: flex;
+    height: 100%;
+}
+
+div.searchbar > form > div.search-container > input[type=text] {
+    height: 50px;
+    border: 1px solid #1a242b;
+    border-radius: 0;
+    color: #1a242b;
+    padding: 0 9pt;
+    width: 100%;
+}
+
+div.searchbar > form > div.search-container > input[type=text]::placeholder {
+    color: #1a242b;
+    font-size: 1.125rem;
+    font-weight: 400;
+}
+
+div.searchbar > form > div.search-container > button {
+    display: inline-block;
+    position: relative;
+    left: -55px;
+    top: 0;
+    border: unset;
+    box-sizing: unset;
+    padding: 2px 5px;
+    font-size: 1.125rem;
+    line-height: unset;
+    margin-right: -30px;
+    font-weight: unset;
+    cursor: pointer;
+    background: transparent;
+    width: 30px;
+}
+
+div.searchbar > form > div.search-container > button::before {
+    font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+    content: "";
+    color: var(--color-black);
+}
+
+div.searchresults > ul {
+    list-style: none;
+    margin-left: 0;
+    margin-bottom: 1rem;
+}
+
+div.searchresults > ul > li {
+    border-bottom: 1px solid var(--color-gray);
+    margin-bottom: .75rem;
+    padding-bottom: .75rem;
+}
+
+div.searchresults > ul.pagination-controls > li {
+    border-bottom: unset;
+    margin-bottom: unset;
+    padding-bottom: unset;
+}
+
+div.searchresults > ul.pagination-controls > li:first-of-type {
+    margin-left: auto;
+}
+
+div.searchresults > ul > li span.date-published {
+    display: none;
+}
+
+div.searchresults ul.pagination-controls {
+    display: flex;
+    flex-direction: row;
+    list-style: none outside none;
+}
+
+div.searchresults ul.pagination-controls li > button:disabled {
+    border: unset;
+    background-color: unset;
+    color: rgb(16 16 16 / 30%);
+    margin-right: .5rem;
+    font-size: inherit;
+}
+
+div.searchresults ul.pagination-controls li > button:enabled {
+    border: unset;
+    background-color: unset;
+    color: rgb(16 16 16 / 30%);
+    margin-right: .5rem;
+    font-size: inherit;
+}
+
+div.searchresults ul.pagination-controls li > button:not(:disabled) {
+    border: unset;
+    background-color: unset;
+    color: unset;
+    margin-right: .5rem;
+}

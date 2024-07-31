@@ -13,9 +13,25 @@ const formatDate = (date) => date.toLocaleDateString('en-US', {
 const itemsPerPage = 10;
 let currentPage = 1;
 
-async function buildPagination(ul, controls, sheet, page, ph) {
+export async function buildPagination(ul, controls, sheet, page, ph) {
   const storedPosts = sessionStorage.getItem(sessionKey);
   let releases = [];
+  const mediaTypeMap = {
+    'Press Releases': ph.pressreleases,
+    'Blogs': ph.blogs,
+    'videos': ph.videos,
+    'Info Sheets': ph.infosheets,
+    'Infographics': ph.infographics,
+  };
+
+  const mediaUrlMap = {
+    'Press Releases': ph.pressreleasesurl,
+    'Blogs': ph.blogsurl,
+    'videos': ph.videos,
+    'Info Sheets': ph.infosheetsurl,
+    'Infographics': ph.infographicsurl,
+  };
+
   if (!storedPosts) {
     const posts = await ffetch('/query-index.json').sheet(sheet).all();
     sessionStorage.setItem(sessionKey, JSON.stringify(posts));
@@ -31,24 +47,32 @@ async function buildPagination(ul, controls, sheet, page, ph) {
 
   ul.innerHTML = ''; // Clear previous items
   controls.innerHTML = ''; // Clear previous controls
-  paginatedReleases.forEach((release) => {
+  paginatedReleases.forEach((pagedItem) => {
     const listItem = document.createElement('li');
     const type = document.createElement('a');
     type.href = window.location.pathname;
-    type.textContent = ph.pressreleases;
+    console.log(pagedItem['media-type']);
+    const mediaType = pagedItem['media-type'];
+    if (mediaTypeMap[mediaType]) {
+      type.textContent = mediaTypeMap[mediaType];
+      type.href = mediaUrlMap[mediaType];
+    }
     type.classList.add('type');
     listItem.append(type);
     const title = document.createElement('h4');
     const titleA = document.createElement('a');
-    titleA.href = release.path;
-    titleA.textContent = release.title;
-    titleA.title = release.title;
+    titleA.href = pagedItem.path;
+    titleA.textContent = pagedItem.title;
+    titleA.title = pagedItem.title;
     title.append(titleA);
     listItem.append(title);
-    const prSpan = document.createElement('span');
-    prSpan.textContent = formatDate(getDateFromExcel(release.date));
-    prSpan.classList.add('date-published');
-    listItem.append(prSpan);
+    const pagedDesc = document.createElement('div');
+    pagedDesc.classList.add('description');
+    pagedDesc.textContent = pagedItem.description;
+    const pagedSpan = document.createElement('span');
+    pagedSpan.textContent = formatDate(getDateFromExcel(pagedItem.date));
+    pagedSpan.classList.add('date-published');
+    listItem.append(pagedDesc, pagedSpan);
     ul.appendChild(listItem);
   });
 
