@@ -2,6 +2,10 @@ main .hero-container > div {
   max-width: unset;
 }
 
+main div.hero.block > div:first-of-type {
+  display: flex;
+}
+
 main .hero-container {
   padding: 0;
 }
@@ -30,13 +34,14 @@ main .hero-container {
 }
 
 .hero div.hero-content-container {
+  top: 50px;
   position: relative;
   max-width: var(--section-width);
   margin: auto;
   padding: 28px 0;
   align-items: center;
   display: flex;
-  height: 232px;
+  width: 100%;
 }
 
 .hero div.hero-content-container > div.hero-content {
