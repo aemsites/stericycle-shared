@@ -1,0 +1,37 @@
+div.section.infographic-container {
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+    overflow: visible;
+}
+
+div.section.infographic-container > div.infographic-wrapper {
+    width: 25%;
+    position: sticky;
+    margin-left: 8.33%;
+    padding-right: calc(1.5rem * 0.5);
+    padding-left: calc(1.5rem * 0.5);
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+    margin-bottom: unset;
+    top: 120px;
+}
+
+div.section.infographic-container > div.infographic-wrapper > div.ig-container {
+    background-color: #f2f6f7;
+    width: 100%;
+    padding: 2rem 3rem;
+}
+
+div.section.infographic-container > div.infographic-wrapper > div.ig-container h4 {
+    text-align: center;
+}
+
+div.section.infographic-container > div.infographic-wrapper > div.ig-container p.button-container {
+    text-align: center;
+}
+
+div.section.infographic-container > div.infographic-wrapper > div.ig-container p.button-container a.button {
+    width: 100%;
+}
