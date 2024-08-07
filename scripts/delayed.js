@@ -17,8 +17,6 @@ function getLocale() {
 }
 
 async function loadRelatedContent() {
-  // const postss = await ffetch('/query-index.json').limit(RELATED_LIMIT).sheet('blog').all();
-  // console.log(postss);
   const posts = await getRelatedBlogContent(getMetadata('article:tag'), RELATED_LIMIT);
 
   const rcTeasers = document.createElement('ul');
