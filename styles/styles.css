@@ -11,7 +11,7 @@
  */
 
 /* fallback fonts */
-
+/* stylelint-disable no-descending-specificity */
 @font-face {
   font-family: 'Lato Fallback';
   font-style: normal;
@@ -340,6 +340,12 @@ main .block.blue-background {
   background-color: var(--color-blue);
 }
 
+main .section.orange-background {
+  background-position: center center;
+  background-size: auto;
+  background-image: url("/content/dam/shred-it/test-images/industry/media_1c223bfaf2ff9af3f7e5858c517481772c46f1625.png");
+}
+
 main .invert-colors,
 main .section.navy-background,
 main .block.navy-background,
@@ -497,13 +503,13 @@ main .list-style-orange-triangles ul {
     font-size: 2rem;
     line-height: 2.375rem;
   }
-}
 
-.blog-page main .blog-content h3 {
-    font-size: 1.125rem;
-    line-height: 1.375rem;
-    letter-spacing: .0006rem;
-    font-weight: var(--lato-bold);
+  .blog-page main .blog-content h3 {
+      font-size: 1.125rem;
+      line-height: 1.375rem;
+      letter-spacing: .0006rem;
+      font-weight: var(--lato-bold);
+  }
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
@@ -740,39 +746,262 @@ main .list-style-orange-triangles ul > li::before {
   font-size: 1.5rem;
 }
 
+main .list-style-big-numbers h2 {
+  padding: 0 12px;
+  list-style: none;
+  counter-reset: items;
+}
+
 main .list-style-big-numbers ol {
   padding: 0;
   list-style: none;
-  column-count: 2;
-  column-gap: 24px;
   counter-reset: items;
 }
 
 main .list-style-big-numbers ol > li {
   position: relative;
-  margin-bottom: 16px;
-  padding-left: 7rem;
-  padding-top: 40px;
+  margin-bottom: 24px;
   counter-increment: items;
+  padding: 0 12px;
 }
+
+main .list-style-big-numbers ol > li:last-child {
+  margin-bottom: 0;
+}
+
 
 main .list-style-big-numbers ol > li::before {
   display: block;
-  position: absolute;
-  left: 0;
+  position: relative;
   height: 100%;
   max-height: 80px;
-  padding-right: 1rem;
-  border-width: 0 4px 0 0;
-  border-style: solid;
-  border-color: var(--color-orange);
   content: "0" counter(items);
   color: var(--color-cyan);
   font-weight: 700;
-  font-size: 4rem;
-  line-height: 3.5rem;
+  font-size: 2.5rem;
+  line-height: 3.25rem;
+  letter-spacing: -.0094rem;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+main .list-style-big-numbers ol > li > span {
+  display: table-cell;
+  vertical-align: middle;
+  border-color: var(--color-orange);
+  border-width: 0 0 0 4px;
+  border-style: solid;
+  height: 80px;
+  padding-left: 24px;
+  padding-bottom: 16px;
+  margin-top: 16px;
 }
 
 main .list-style-big-numbers ol > li:nth-child(n+10)::before {
   content: counter(items);
+}
+
+/* Page Section with Background Image - Orange Background */
+main .list-with-background-image > .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px 32px;
+}
+
+@media screen and (min-width: 576px /* breakpoint-s */) {
+  main .list-with-background-image > .default-content-wrapper {
+    padding: 16px 0;
+  }
+}
+
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  main .list-with-background-image > .default-content-wrapper {
+    display: grid;
+    grid-template-columns: 16.66% repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 0;
+  }
+}
+
+main .list-with-background-image > div > h2 {
+  font-family: var(--font-family-body);
+  font-weight: var(--lato-bold);
+  font-size: var(--body-font-size-l);
+  line-height: 26px;
+  color: var(--color-navy);
+  margin: 1rem 0;
+  padding: 0 47px;
+}
+
+@media screen and (min-width: 576px /* breakpoint-s */) {
+  main .list-with-background-image > div > h2 {
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  main .list-with-background-image > div > h2 {
+    grid-area: 1 / 2 / 2 / 5;
+    color: var(--color-navy);
+    font-size: 2rem;
+    line-height: 2.375rem;
+    letter-spacing: -.0009rem;
+    font-weight: var(--lato-bold);
+    padding: 0 12px;
+  }
+}
+
+main .list-with-background-image > div > p {
+  padding: 0 47px;
+}
+
+@media screen and (min-width: 576px /* breakpoint-s */) {
+  main .list-with-background-image > div > p {
+    padding: 0;
+  }
+}
+
+main .list-with-background-image > div > p:has(img) {
+  width: fit-content;
+}
+
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  main .list-with-background-image > div > p:has(img):first-child {
+    grid-area: 1 / 1 / 4 / 2;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+main .list-with-background-image > div > p:nth-of-type(2) {
+  margin-bottom: 16px;
+}
+
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  main .list-with-background-image > div > p:nth-of-type(2) {
+    grid-area: 2 / 2 / 3 / 5;
+    padding: 0 12px;
+    line-height: 24px;
+  }
+}
+
+main .list-with-background-image > div > ul {
+  margin-top: 32px;
+  margin-left: 63px;
+  margin-right: 47px;
+  padding-left: 24px;
+}
+
+@media screen and (min-width: 576px /* breakpoint-s */) {
+  main .list-with-background-image > div > ul {
+    margin-left: 16px;
+    margin-top: 32px;
+  }
+}
+
+@media screen and (min-width: 992px /* breakpoint-s */) {
+  main .list-with-background-image > div > ul {
+    margin-left: 28px;
+  }
+}
+
+main .list-with-background-image > div > ul:first-of-type {
+  margin-top: 32px;
+}
+
+main .list-with-background-image > div > p:has(img) > span {
+  width: fit-content;
+  height: 100%;
+  max-height: 189px;
+}
+
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  main .list-with-background-image > div > p:has(img) > span {
+    width: 100%;
+    margin: 0;
+    padding: 0 12px;
+    max-height: 233.32px;
+  }
+}
+
+main .list-with-background-image > div > ul > li {
+  padding-bottom: 16px;
+}
+
+main .list-with-background-image ul > li::before {
+  left: 0;
+  margin-right: 0;
+}
+
+main .list-with-background-image > div > ul > li:last-child {
+  padding-bottom: 0;
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  main .list-style-big-numbers ol {
+    padding: 0;
+    list-style: none;
+    column-count: 2;
+    column-gap: 24px;
+    counter-reset: items;
+  }
+
+  main .list-style-big-numbers ol > li {
+    position: relative;
+    margin-bottom: 16px;
+    padding-left: 7rem;
+    padding-top: 24px;
+    counter-increment: items;
+  }
+
+  main .list-style-big-numbers ol > li::before {
+    display: block;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    max-height: 80px;
+    padding-right: 1rem;
+    border-width: 0 4px 0 0;
+    border-style: solid;
+    border-color: var(--color-orange);
+    content: "0" counter(items);
+    color: var(--color-cyan);
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 3.5rem;
+  }
+
+  main .list-style-big-numbers ol > li:nth-child(n+10)::before {
+    content: counter(items);
+  }
+
+  main .list-style-big-numbers ol > li > span {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+}
+
+/*  Parallel Lines Decorator Section */
+@media screen and (min-width: 576px /* breakpoint-s */) {
+  main .parallel-lines-decorator {
+    margin: 5rem 0 0;
+    position: relative;
+  }
+
+  main .parallel-lines-decorator::before {
+    content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='232'%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath fill='none' d='M0 0h340v232H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg data-name='2-Blade-element'%3E%3Cg data-name='Group 1068' clip-path='url(%23a)'%3E%3Cpath data-name='Path 3668' d='M286.694 158.425L69.479 15.359 0 15.438l220.68 142.987z' fill='%23ff5633'/%3E%3Cpath data-name='Path 3669' d='M341.411 232.261l-221.7-142.982-5.714.007 221.981 142.975z' fill='%23ff5633'/%3E%3Cpath data-name='Path 3670' d='M216.651 94.513L73.151-.002l-45.9.052 145.791 94.463z' fill='%2340bbd5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    display: block;
+    position: absolute;
+    top: -80px;
+    right: 0.25rem;
+    width: 340px;
+    height: 232px;
+  }
+
+  main .parallel-lines-decorator > div {
+    padding: 32px 48px;
+  }
 }
