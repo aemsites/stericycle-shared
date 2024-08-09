@@ -2,6 +2,10 @@ main .hero-container > div {
   max-width: unset;
 }
 
+main div.hero.block > div:first-of-type {
+  display: flex;
+}
+
 main .hero-container {
   padding: 0;
 }
@@ -12,8 +16,8 @@ main .hero-container {
 
 .hero {
   position: relative;
-  padding: 2rem 1.5rem;
-  min-height: 300px;
+  padding: 2rem 0;
+  min-height: 232px;
 }
 
 .hero picture.hero-background {
@@ -30,17 +34,35 @@ main .hero-container {
 }
 
 .hero div.hero-content-container {
+  top: 50px;
   position: relative;
   max-width: var(--section-width);
   margin: auto;
   padding: 28px 0;
+  align-items: center;
+  display: flex;
+  width: 100%;
 }
 
 .hero div.hero-content-container > div.hero-content {
   width: 58.3333%;
 }
 
-.hero div.hero-content-container > div.hero-content .button {
-  margin-top: 40px;
-  width: 200px;
+.hero div.hero-content-container > div.hero-content > h1 {
+  margin-bottom: 1rem;
+}
+
+.hero div.hero-content p.button-container > a {
+  border: unset;
+  width: unset;
+  font-weight: unset;
+  padding: unset;
+  margin: unset;
+  text-decoration: none;
+}
+
+.hero div.hero-content p.button-container > a:hover {
+  background-color: unset;
+  color: unset;
+  text-decoration: underline;
 }
