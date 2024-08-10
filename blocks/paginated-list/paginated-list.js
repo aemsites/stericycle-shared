@@ -2,7 +2,7 @@ import { readBlockConfig, fetchPlaceholders } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
 import { getDateFromExcel, getLocale } from '../../scripts/scripts.js';
 
-const sessionKey = 'press-releases';
+let sessionKey = 'press-releases';
 
 const formatDate = (date) => date.toLocaleDateString('en-US', {
   year: 'numeric',
@@ -35,7 +35,7 @@ async function buildPagination(ul, controls, sheet, page, ph) {
     const listItem = document.createElement('li');
     const type = document.createElement('a');
     type.href = window.location.pathname;
-    type.textContent = ph.pressreleases;
+    type.textContent = ph.pressreleases; // this will need to be replaced with a dynamic value
     type.classList.add('type');
     listItem.append(type);
     const title = document.createElement('h4');
@@ -82,6 +82,7 @@ async function buildPagination(ul, controls, sheet, page, ph) {
 export default async function decorate(block) {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const cfg = readBlockConfig(block);
+  sessionKey = cfg.sheet;
   const prList = document.createElement('ul');
   const pagination = document.createElement('ul');
   await buildPagination(prList, pagination, cfg.sheet, currentPage, ph);
