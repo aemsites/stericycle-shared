@@ -489,7 +489,7 @@ strong.remove {
   display: block;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 992px) {
   header nav .nav-hamburger {
     display: none;
     visibility: hidden;
