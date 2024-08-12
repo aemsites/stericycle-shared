@@ -71,8 +71,11 @@ export function getLocale() {
 export async function getRelatedBlogContent(tags, limit) {
   const postarray = [];
   let count = 0;
-  const ptags = tags.replace('Blogs', 'bp'); // swap out Blog from the tag from the page to somthing arbitrary
-  const pageTags = JSON.stringify(ptags.split(','));
+  let pTags = 'Blogs';
+  if (tags) {
+    pTags = tags.replace('Blogs', 'bp'); // swap out Blog from the tag from the page to something arbitrary
+  }
+  const pageTags = JSON.stringify(pTags.split(','));
   const posts = await ffetch('/query-index.json').sheet('blog').all();
   posts.forEach((post) => {
     // if (containsTag(JSON.parse(post.tags), JSON.parse(post.tags))) {
@@ -131,6 +134,20 @@ function buildAutoBlocks(main) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
+}
+
+function modifyBigNumberList(main) {
+  const bigNumberList = main.querySelectorAll('.list-style-big-numbers');
+  bigNumberList.forEach((list) => {
+    const listItems = list.querySelectorAll('li');
+    listItems.forEach((item) => {
+      // wrap the text content of the list item in the span
+      const span = document.createElement('span');
+      span.innerHTML = item.innerHTML;
+      item.innerHTML = '';
+      item.append(span);
+    });
+  });
 }
 
 function getBlogBaseUrl(url) {
@@ -214,6 +231,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateBlog(main);
+  modifyBigNumberList(main);
 }
 
 /**

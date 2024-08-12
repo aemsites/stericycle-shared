@@ -187,8 +187,7 @@ function handleForwardArrowClick(e, item, ul, arrow, backArrow, innerBackArrow, 
 
   if (currentElementParent.querySelector('.flag-icon')) {
     const title = document.createElement('strong');
-    const titleText = 'Country';
-    title.textContent = titleText;
+    title.textContent = 'Country';
 
     const newDiv = document.createElement('div');
     newDiv.className = 'title';
@@ -473,6 +472,7 @@ export default async function decorate(block) {
       if (!arrow) {
         arrow = document.createElement('button');
         arrow.classList.add('arrow');
+        arrow.setAttribute('aria-label', 'Arrow Button');
         l.parentElement.parentElement.appendChild(arrow);
         if (!arrow.dataset.listenerAdded) {
           arrow.addEventListener('click', (e) => handleForwardArrowClick(e, item, l, arrow, backArrow, innerBackArrow, mobileMenu));
