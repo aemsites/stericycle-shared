@@ -2,6 +2,9 @@ export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
   let isImageLink = false;
+  if (block.querySelector('img')) {
+    block.classList.add('columns-has-image');
+  }
 
   // setup image columns
   [...block.children].forEach((row) => {
