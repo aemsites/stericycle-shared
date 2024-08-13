@@ -179,7 +179,7 @@ body.appear {
 }
 
 header {
-  height: var(--nav-height);
+  max-height: var(--nav-height);
 }
 
 h1, h2, h3,

@@ -1,7 +1,8 @@
-/* header and nav layout */
+/* header and nav layout 
 header {
   height: 80px;
 }
+*/
 
 header .nav-wrapper {
   background-color: var(--color-background-header);
@@ -10,8 +11,6 @@ header .nav-wrapper {
   z-index: 2;
   position: fixed;
   max-height: 200vh;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
 }
 
 header nav {
@@ -492,14 +491,14 @@ strong.remove {
   display: block;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 992px) {
   header nav .nav-hamburger {
     display: none;
     visibility: hidden;
   }
 
   .header-wrapper {
-    height: 150px;
+    max-height: 150px;
   }
 
   .nav-tools::after {
@@ -513,8 +512,18 @@ strong.remove {
       'brand tools'
       'brand sections';
     align-items: center;
-    max-width: 1400px;
     font-family: var(--font-family-body);
+    margin: auto;
+    height: unset;
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    padding-right: calc(var(--bs-gutter-x)*0.5);
+    padding-left: calc(var(--bs-gutter-x)*0.5);
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 60pc;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
   header nav ul {
@@ -629,7 +638,7 @@ strong.remove {
 
   header nav[aria-expanded="true"] {
     grid-template-columns: 1fr 4fr;
-    grid-template-rows: 60px 60px;
+    /*grid-template-rows: 60px 60px;*/
     overflow-y: none;
     min-height: 100vh;
     min-height: 0;
@@ -769,7 +778,7 @@ strong.remove {
 
   header nav .nav-sections .default-content-wrapper,
   header nav .nav-tools .default-content-wrapper {
-    margin-left: 40px;
+    /*margin-left: 40px;*/
     margin-right: unset;
   }
 
@@ -839,9 +848,16 @@ strong.remove {
 
   header nav {
     height: 130px;
+    max-width: 855pt;
   }
 
   .search-box-container {
     top: 130px;
+  }
+}
+
+@media(min-width: 1400px) {
+  header nav {
+      max-width:990pt;
   }
 }
