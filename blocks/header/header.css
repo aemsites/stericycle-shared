@@ -525,7 +525,9 @@ strong.remove {
     margin: auto;
     height: 150px;
     font-family: var(--font-family-body);
-    max-width: 63.75rem;
+    max-width: 60pc;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
   header nav ul {
@@ -534,13 +536,20 @@ strong.remove {
 
   header nav .nav-sections ul {
     gap: 0.5rem;
-    font-size: 0.85rem;
+    line-height: 2rem;
+    z-index: 1;
+    border-bottom: 2px solid transparent;
+    padding: 0;
+    font-family: lato-regular, sans-serif;
+    font-size: .875rem;
   }
 
   header nav .nav-tools ul {
     margin-top: 0;
     gap: 2.3rem;
     visibility: unset;
+    line-height: 1.5rem;
+    font-size: .75rem;
   }
 
   header nav .nav-sections ul li {
@@ -549,12 +558,11 @@ strong.remove {
   }
 
   header nav .nav-tools ul li {
-    font-size: var(--body-font-size-xs);
     justify-self: flex-end;
   }
 
   header nav .nav-sections ul > li {
-    font-weight: 700;
+    font-weight: 500;
   }
 
   header nav .nav-sections ul > li > ul > li {
@@ -676,7 +684,7 @@ strong.remove {
 
   header nav .nav-brand img {
     width: auto;
-    height: 4rem;
+    height: 4.5rem;
   }
 
   header nav .nav-sections ul, header nav .nav-tools ul  {
