@@ -119,7 +119,7 @@
   --icon-size-xxl: 100px;
 
   /* misc */
-  --nav-height: 150px;
+  --nav-height: 5rem;
 
   /* break points */
   --breakpoint-s: 576px; /* <= mobile */
@@ -150,12 +150,14 @@
     --heading-font-size-l: 26px;
     --heading-font-size-m: 20px;
     --section-width: var(--content-width-l);
+    --nav-height: 9.375rem;
   }
 }
 
 @media (min-width: 1200px /* breakpoint-xl */) {
   :root {
     --section-width: var(--content-width-xl);
+    --nav-height: 8.125rem;
   }
 }
 
@@ -180,6 +182,7 @@ body.appear {
 
 header {
   height: var(--nav-height);
+  visibility: hidden;
 }
 
 h1, h2, h3,
