@@ -150,6 +150,29 @@ function modifyBigNumberList(main) {
   });
 }
 
+function decorateSectionTemplates(main) {
+  const imageSections = main.querySelectorAll('.section.with-image');
+  imageSections.forEach((section) => {
+    // get picture
+    const picture = section.querySelector('div.default-content-wrapper:first-child > p > picture');
+    if (!(picture?.parentElement.childElementCount === 1)) {
+      return; // no valid section image found
+    }
+    // get or create picture wrapper
+    let pictureWrapper;
+    if (picture.parentElement.parentElement.childElementCount === 1) {
+      pictureWrapper = picture.parentElement.parentElement;
+    } else {
+      pictureWrapper = document.createElement('div');
+      pictureWrapper.classList.add('default-content-wrapper');
+      pictureWrapper.append(picture.parentElement);
+    }
+    pictureWrapper.classList.add('section-image-wrapper');
+    // move picture wrapper to section level
+    section.prepend(pictureWrapper);
+  });
+}
+
 function getBlogBaseUrl(url) {
   try {
     const urlObj = new URL(url);
@@ -229,6 +252,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionTemplates(main);
   decorateBlocks(main);
   decorateBlog(main);
   modifyBigNumberList(main);

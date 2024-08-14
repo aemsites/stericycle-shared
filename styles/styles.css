@@ -379,6 +379,19 @@ main .list-style-orange-triangles ul {
   list-style: none;
 }
 
+main .section.with-image {
+  display: grid;
+  grid-template-columns: 41.6667% 1fr;
+}
+
+main .section.with-image > div {
+  grid-column: 2;
+}
+
+main .section.with-image > div.section-image-wrapper:first-child {
+  grid-column: 1;
+}
+
 /* blog styles */
 
 .blog-page main .section {
