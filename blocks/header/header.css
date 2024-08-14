@@ -547,9 +547,9 @@ strong.remove {
   header nav .nav-tools ul {
     margin-top: 0;
     gap: 2.3rem;
-    visibility: unset;
     line-height: 1.5rem;
     font-size: .75rem;
+    visibility: unset;
   }
 
   header nav .nav-sections ul li {
