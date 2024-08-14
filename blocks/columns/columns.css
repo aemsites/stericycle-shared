@@ -75,6 +75,11 @@
     order: unset;
   }
 
+  .columns.orange-accent-border.columns-has-image > div > div,
+  .columns.cyan-accent-border.columns-has-image > div > div {
+    justify-content: unset;
+  }
+
   .columns.orange-accent-border.columns-has-image > div > div:first-of-type,
   .columns.cyan-accent-border.columns-has-image > div > div:first-of-type {
     padding-left: 0;
