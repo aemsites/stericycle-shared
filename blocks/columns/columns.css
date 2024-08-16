@@ -5,6 +5,7 @@
 .columns > div {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
 }
 
 .columns img {
@@ -26,19 +27,41 @@
   display: block;
 }
 
-.columns.orange-accent-border > div > div,
-.columns.cyan-accent-border > div > div {
-  border-width: 0 0 0 4px;
-  border-style: solid;
-  padding-left: 24px;
+.columns.columns-has-image > div {
+  justify-content: unset;
 }
 
-.columns.orange-accent-border > div > div {
+.columns.orange-accent-border > div > div,
+.columns.cyan-accent-border > div > div,
+.columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img)),
+.columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img)) {
+  border-width: 0 0 0 4px;
+  border-style: solid;
+  padding-left: 1.5rem;
+}
+
+.columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img)),
+.columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img)) {
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.columns.orange-accent-border > div > div,
+.columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img)) {
   border-color: var(--color-orange);
 }
 
-.columns.cyan-accent-border > div > div {
+.columns.cyan-accent-border > div > div,
+.columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img)) {
   border-color: var(--color-cyan);
+}
+
+.columns.orange-accent-border.columns-has-image > div > div,
+.columns.cyan-accent-border.columns-has-image > div > div {
+  border: unset;
+  padding-left: 0;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
@@ -50,6 +73,16 @@
   .columns > div > div {
     flex: 1;
     order: unset;
+  }
+
+  .columns.orange-accent-border.columns-has-image > div > div,
+  .columns.cyan-accent-border.columns-has-image > div > div {
+    justify-content: unset;
+  }
+
+  .columns.orange-accent-border.columns-has-image > div > div:first-of-type,
+  .columns.cyan-accent-border.columns-has-image > div > div:first-of-type {
+    padding-left: 0;
   }
 }
 

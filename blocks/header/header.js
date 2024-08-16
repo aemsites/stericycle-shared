@@ -2,7 +2,7 @@ import { decorateButtons, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
+const isDesktop = window.matchMedia('(min-width: 992px)');
 
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
@@ -559,9 +559,9 @@ export default async function decorate(block) {
   });
 
   // telephone icon for mobile
-  if (window.matchMedia('(max-width: 900px)')) {
-    let isDivCreated = false;
-    navTools.addEventListener('click', () => {
+  let isDivCreated = false;
+  navTools.addEventListener('click', () => {
+    if (!isDesktop.matches) {
       if (!isDivCreated) {
         const telItems = navTools.querySelectorAll('.tel');
         const newDiv = document.createElement('div');
@@ -580,8 +580,8 @@ export default async function decorate(block) {
           isDivCreated = false;
         }
       }
-    });
-  }
+    }
+  });
 
   // hamburger for mobile
   const hamburger = document.createElement('div');
@@ -611,4 +611,5 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+  block.parentElement.classList.add('appear');
 }
