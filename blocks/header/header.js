@@ -332,7 +332,8 @@ export default async function decorate(block) {
   const locale = window.location.pathname.split('/')[1] || 'en-us'; // default to us-en if no locale in path
   // load nav as fragment
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : `/${locale}/nav`;
+  // todo remove below comment, only for testing purpose
+  const navPath = ('/drafts/piyush/nav') || (navMeta ? new URL(navMeta, window.location).pathname : `/${locale}/nav`);
   const fragment = await loadFragment(navPath);
 
   // decorate nav DOM
