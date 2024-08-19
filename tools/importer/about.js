@@ -12,6 +12,30 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 const baseDomain = 'https://main--shredit--stericycle.aem.page';
+const req = new XMLHttpRequest();
+let tags = {};
+const TAGS = {};
+req.open('GET', '/tools/importer/shredit-meta.json', false);
+req.send(null);
+if (req.status === 200) {
+  tags = JSON.parse(req.responseText);
+}
+
+function getPath(url) {
+  const lastIndex = url.lastIndexOf('/');
+  const path = url.substring(lastIndex + 1);
+  return path;
+}
+
+tags.forEach((item) => {
+  const path = getPath(item.Path);
+  TAGS[path] = item.Tags.replaceAll(';', ',');
+});
+
+function getLocaleFromUrl(doc) {
+  const match = doc.documentURI.match(/\/([a-z]{2,}(?:-[a-z]{2,})*)\//g);
+  return Object.hasOwn(match, 'length') && match.length >= 1 ? match[0].replaceAll('/', '') : null;
+}
 
 function sanitizeURL(url) {
   const newURL = baseDomain + url;
@@ -19,8 +43,17 @@ function sanitizeURL(url) {
   return newURL;
 }
 
+function getDocumentMetadata(name, document) {
+  const attr = name && name.includes(':') ? 'property' : 'name';
+  const meta = [...document.head.querySelectorAll(`meta[${attr}="${name}"]`)]
+    .map((m) => m.content)
+    .join(', ');
+  return meta || '';
+}
+
 function transformButtonToAnchors(main) {
-  const aLink = main.querySelector('a.page-teaser__link--wrapper').href;
+  let aLink = main.querySelector('a.page-teaser__link--wrapper').href;
+  aLink = aLink.startsWith('http') ? new URL(aLink).pathname : aLink;
   main.querySelectorAll('button.page-teaser__link').forEach((button) => {
     const a = document.createElement('a');
     a.href = sanitizeURL(aLink);
@@ -50,7 +83,7 @@ function transformColumns(main) {
 
     const row = [];
 
-    column.querySelectorAll('div.cmp-columnrow__item').forEach((item) => {
+    column.querySelectorAll('div.cmp-columnrow__item:not(.flipcard)').forEach((item) => {
       row.push(item);
 
       if (item.querySelector('div.modalformcalltoaction > a.cmp-modal-form-cta')) {
@@ -59,7 +92,7 @@ function transformColumns(main) {
     });
 
     cells.push(row);
-
+    column.after(document.createElement('hr'));
     try {
       const columnBlock = WebImporter.DOMUtils.createTable(cells, document);
       column.replaceWith(columnBlock);
@@ -69,24 +102,70 @@ function transformColumns(main) {
   });
 }
 
+function transformFlipCardsUnderColumn(main) {
+  const teaserlist = main.querySelectorAll('ul.cmp-teaserlist');
+
+  teaserlist.forEach((tl) => {
+    const pagesection = tl.closest('div.cmp-pagesection');
+    const row = tl.closest('div.cmp-columnrow__item');
+    const title = tl.parentNode.previousElementSibling;
+    pagesection.parentNode.append(document.createElement('hr'));
+    pagesection.parentNode.append(title.cloneNode(true));
+    pagesection.parentNode.append(tl.cloneNode(true));
+    row.classList.add('flipcard');
+    tl.remove();
+    title.remove();
+  });
+}
+
 function transformCards(main) {
   main.querySelectorAll('ul.cmp-teaserlist').forEach((teaser) => {
+    const imgEls = [];
+    const titleEls = [];
+    const linkEls = [];
     console.log('Transforming cards');
     const cells = [
-      ['Cards'],
+      ['Flip Cards'],
     ];
     teaser.querySelectorAll('li').forEach((item) => {
       transformButtonToAnchors(item);
       const img = item.querySelector('img.page-teaser__img');
-      const content = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back');
-      if (img) {
-        cells.push([img, content]);
+      const title = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back h6.page-teaser__title.page-teaser__title--back');
+      const description = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back p.page-teaser__desc');
+      const link = item.querySelector('div.page-teaser--desktop div.page-teaser__content.page-teaser__content--back a').href;
+      // eslint-disable-next-line no-multi-assign
+      const titleh4 = document.createElement('h4').innerText = title.innerText;
+
+      if (img && title) {
+        imgEls.push([img, title]);
+      }
+      if (titleh4 && description) {
+        titleEls.push([titleh4, description]);
+      }
+      if (link) {
+        linkEls.push(link);
       }
     });
+    cells.push(imgEls, titleEls, linkEls);
     const cardBlock = WebImporter.DOMUtils.createTable(cells, document);
     teaser.replaceWith(cardBlock);
   });
 }
+
+function setMetadata(meta, document) {
+  const url = new URL(document.documentURI).pathname;
+  const path = getPath(url);
+  meta.template = 'blog-page';
+  meta['twitter:title'] = meta.Title;
+  meta['twitter:description'] = meta.Description;
+  meta['og:type'] = 'website';
+  meta.locale = getLocaleFromUrl(document);
+  meta['og:url'] = getDocumentMetadata('og:url', document);
+  if (Object.hasOwn(TAGS, path) && TAGS[path] !== '') {
+    meta.tags = TAGS[path];
+  }
+}
+
 export default {
   /**
      * Apply DOM operations to the provided document and return
@@ -117,13 +196,22 @@ export default {
       'div.cmp-experiencefragment--footer-subscription-form',
       'div.cmp-experiencefragment--modal-form',
       'div.cmp-experiencefragment--footer',
+      'div.col-lg-3.cmp-columnrow__item',
+      'div#onetrust-consent-sdk',
+      'div.related-content',
     ]);
 
     transformTabs(main);
+    transformFlipCardsUnderColumn(main);
     transformCards(main);
     transformColumns(main);
 
-    WebImporter.rules.createMetadata(main, document);
+    const meta = WebImporter.Blocks.getMetadata(document);
+
+    setMetadata(meta, document);
+
+    const mdb = WebImporter.Blocks.getMetadataBlock(document, meta);
+    main.append(mdb);
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
     WebImporter.rules.convertIcons(main, document);

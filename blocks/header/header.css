@@ -1,6 +1,11 @@
 /* header and nav layout */
 header {
   height: 80px;
+  visibility: hidden;
+}
+
+header.appear {
+  visibility: visible;
 }
 
 header .nav-wrapper {
@@ -17,9 +22,10 @@ header nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
-  max-width: 1400px;
   height: 80px;
   font-family: var(--font-family-body);
+  max-width: 33.75rem;
+  margin: auto;
 }
 
 .nav-sections,
@@ -489,7 +495,13 @@ strong.remove {
   display: block;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 768px) {
+  header nav {
+    max-width: 45rem;
+  }
+}
+
+@media (min-width: 992px) {
   header nav .nav-hamburger {
     display: none;
     visibility: hidden;
@@ -511,9 +523,11 @@ strong.remove {
       'brand sections';
     align-items: center;
     margin: auto;
-    max-width: 1400px;
     height: 150px;
     font-family: var(--font-family-body);
+    max-width: 60pc;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
   header nav ul {
@@ -522,23 +536,33 @@ strong.remove {
 
   header nav .nav-sections ul {
     gap: 0.5rem;
-    font-size: 0.85rem;
+    line-height: 2rem;
+    z-index: 1;
+    border-bottom: 2px solid transparent;
+    padding: 0;
+    font-family: lato-regular, sans-serif;
+    font-size: .875rem;
   }
 
   header nav .nav-tools ul {
     margin-top: 0;
     gap: 2.3rem;
+    line-height: 1.5rem;
+    font-size: .75rem;
     visibility: unset;
   }
 
-  header nav .nav-sections ul li,
-  header nav .nav-tools ul li {
-    font-size: 0.8rem;
+  header nav .nav-sections ul li {
+    font-size: var(--body-font-size-s);
     justify-content: flex-end;
   }
 
+  header nav .nav-tools ul li {
+    justify-self: flex-end;
+  }
+
   header nav .nav-sections ul > li {
-    font-weight: 700;
+    font-weight: 500;
   }
 
   header nav .nav-sections ul > li > ul > li {
@@ -553,6 +577,7 @@ strong.remove {
     flex: 1 1 auto;
     background-color: var(--overlay-color);
     font-size: 16px;
+    justify-content: flex-end;
   }
 
   .nav-sections .default-content-wrapper ul li,
@@ -587,6 +612,10 @@ strong.remove {
     padding-bottom: 7px;
   }
 
+  header .icon img {
+    width: 80%;
+  }
+
   header nav .icon-search > img {
     /* filter: invert(1); */
     align-self: center;
@@ -597,6 +626,10 @@ strong.remove {
     margin-right: 10px;
     align-items: center;
     width: 100%;
+  }
+
+  header .icon {
+    margin-right: 0;
   }
 
   .list-items .icon {
@@ -621,7 +654,6 @@ strong.remove {
 
   header nav[aria-expanded="true"] {
     grid-template-columns: 1fr 4fr;
-    grid-template-rows: 60px 60px;
     overflow-y: none;
     min-height: 100vh;
     min-height: 0;
@@ -634,6 +666,7 @@ strong.remove {
 
   header nav p a.button.primary {
     margin: 0;
+    font-size: var(--body-font-size-m);
   }
 
   header nav a:any-link {
@@ -651,7 +684,7 @@ strong.remove {
 
   header nav .nav-brand img {
     width: auto;
-    height: 4rem;
+    height: 4.5rem;
   }
 
   header nav .nav-sections ul, header nav .nav-tools ul  {
@@ -675,6 +708,7 @@ strong.remove {
   header nav .nav-tools {
     display: flex;
     grid-area: tools;
+    justify-content: flex-end;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li, header nav .nav-tools .default-content-wrapper > ul > li {
@@ -745,7 +779,7 @@ strong.remove {
   .tel::before {
     content: "";
     font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
-    font-size: 1rem;
+    font-size: var(--body-font-size-xs);
     left: -1.25rem;
     position: absolute;
     display: block;
@@ -830,9 +864,16 @@ strong.remove {
 
   header nav {
     height: 130px;
+    max-width: 75rem;
   }
 
   .search-box-container {
     top: 130px;
+  }
+}
+
+@media (min-width: 1400px) {
+  header nav {
+    max-width: 86.25rem;
   }
 }

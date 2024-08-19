@@ -1,0 +1,86 @@
+div.blog-card-section {
+    background-size: cover;
+    background-position: top center;
+    background-image: url("/icons/SID-Resources-Center-Gray_Desktop.svg");
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+div.blog-card-section > div.default-content-wrapper, div.blog-card-section > div.default-content-wrapper > h1 {
+    padding-bottom: unset;
+    margin-bottom: unset;
+}
+
+div.blog-card-section div.latest-posts ul {
+    list-style: none;
+    padding-left: unset;
+    display: flex;
+    flex-direction: column;
+}
+
+div.blog-card-section div.latest-posts ul > li {
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    padding-right: calc(1.5rem * 0.5);
+    padding-left: calc(1.5rem * 0.5);
+    flex: 1 0 0;
+}
+
+div.blog-card-section div.latest-posts ul > li:first-of-type {
+    padding-left: 0;
+}
+
+div.blog-card-section div.latest-posts ul > li:last-of-type {
+    padding-right: 0;
+}
+
+div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-white);
+    box-shadow: 0 0 4px 0 rgb(0 0 0 / 25%);
+    height: 100%;
+}
+
+div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card p.button-container {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card h5 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+}
+
+div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card .blog-link {
+    font-size: .75rem;
+    line-height: .875rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: auto;
+}
+
+div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card .blog-link a {
+    color: var(--color-dark-gray);
+    font-weight: 400;
+}
+
+div.blog-card-section a.button.secondary, button.secondary {
+    background-color: var(--color-blue);
+    border-color: currentcolor;
+    color: var(--color-white);
+}
+
+@media screen and (min-width: 992px) {
+    div.blog-card-section div.latest-posts ul {
+        list-style: none;
+        padding-left: unset;
+        display: flex;
+        flex-direction: row;
+    }
+}
