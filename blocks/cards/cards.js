@@ -23,7 +23,7 @@ export default function decorate(block) {
         cardBody.append(cardSection);
 
         if (isFirstSection) {
-          // create card-head
+          // create card head
           if (cardSection.firstElementChild?.querySelector('span.icon')) {
             const cardHead = document.createElement('div');
             cardHead.classList.add('card-head');
