@@ -109,6 +109,39 @@ function buildHeroBlock(main) {
 }
 
 /**
+ * Builds section with metadata position set to sidebar..
+ */
+function buildSidebarSection() {
+  const section = document.createElement('div');
+  const metadata = document.createElement('div');
+  metadata.classList.add('section-metadata');
+  section.append(metadata);
+
+  const row = document.createElement('div');
+
+  const positionKey = document.createElement('div');
+  positionKey.textContent = 'Position';
+  row.append(positionKey);
+
+  const positionValue = document.createElement('div');
+  positionValue.textContent = 'Sidebar';
+  row.append(positionValue);
+
+  metadata.append(row);
+  return section;
+}
+
+/**
+ * Builds service location template auto blocks and add them to the page.
+ * @param {Element} main The container element
+ */
+function buildServiceLocationAutoBlocks(main) {
+  const formSection = buildSidebarSection();
+  formSection.prepend(buildBlock('get-a-quote-form', { elems: [] }));
+  main.prepend(formSection);
+}
+
+/**
  * load fonts.css and set a session storage flag
  */
 async function loadFonts() {
@@ -130,6 +163,9 @@ function buildAutoBlocks(main) {
       // blog pages don't use the hero block
       buildHeroBlock(main);
     }
+    if (document.querySelector('body.service-location-page')) {
+      buildServiceLocationAutoBlocks(main);
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -148,6 +184,30 @@ function modifyBigNumberList(main) {
       item.append(span);
     });
   });
+}
+
+async function decorateSidebarTemplate(main) {
+  const bodyWrapper = document.createElement('div');
+  bodyWrapper.classList.add('body-wrapper');
+  main.append(bodyWrapper);
+
+  const leftColumn = document.createElement('div');
+  leftColumn.classList.add('page-content');
+  const rightColumn = document.createElement('div');
+  rightColumn.classList.add('page-sidebar');
+
+  const sections = main.parentElement.querySelectorAll('main > div.section');
+  sections.forEach((section) => {
+    if (section.attributes.getNamedItem('data-position')?.value.toLowerCase() === 'sidebar') {
+      rightColumn.append(section);
+      section.attributes.removeNamedItem('data-position');
+    } else if (!section.classList.contains('hero-container')) {
+      leftColumn.append(section);
+    }
+  });
+
+  bodyWrapper.append(leftColumn);
+  bodyWrapper.append(rightColumn);
 }
 
 function getBlogBaseUrl(url) {
@@ -171,7 +231,7 @@ function getBlogBaseUrl(url) {
   }
 }
 
-async function decorateBlog(main) {
+async function decorateBlogTemplate(main) {
   if (main.parentElement && main.parentElement.matches('body[class="blog-page"]')) {
     const blogBreadcrumb = getMetadata('blog-breadcrumb') || 'Blog';
     const { title } = document;
@@ -218,6 +278,13 @@ async function decorateBlog(main) {
   }
 }
 
+async function decorateServiceLocationTemplate(main) {
+  if (main.parentElement && main.parentElement.matches('body[class="service-location-page"]')) {
+    main.parentElement.classList.add('with-sidebar');
+    await decorateSidebarTemplate(main);
+  }
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -230,7 +297,8 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
-  decorateBlog(main);
+  decorateBlogTemplate(main);
+  decorateServiceLocationTemplate(main);
   modifyBigNumberList(main);
 }
 
@@ -265,6 +333,10 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadBlocks(main);
+  if (doc.querySelector('body.with-sidebar')) {
+    await loadBlocks(main.querySelector('div.page-content'));
+    await loadBlocks(main.querySelector('div.page-sidebar'));
+  }
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
