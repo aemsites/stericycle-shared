@@ -1,5 +1,5 @@
 import { getLatestPosts } from '../../scripts/scripts.js';
-import { decorateButtons } from '../../scripts/aem.js';
+import { decorateButtons, readBlockConfig } from '../../scripts/aem.js';
 
 function createPostLink(post) {
   const anchor = document.createElement('a');
@@ -9,34 +9,12 @@ function createPostLink(post) {
 }
 
 export default function decorate(block) {
-  getLatestPosts('Blogs', 4).then((posts) => {
-    console.log(posts);
+  const { type } = readBlockConfig(block);
+  block.innerHTML = '';
+  getLatestPosts(type, 4).then((posts) => {
     const list = document.createElement('ul');
     list.classList.add('teaser-list');
     posts.forEach((post) => {
-      // const teaserLink = document.createElement('a');
-      // const teaserDiv = document.createElement('div');
-      // const teaserDate = document.createElement('div');
-      // teaserDate.className = 'related-content-date';
-      // const teaserTitle = document.createElement('h5');
-      // teaserTitle.innerText = post.title;
-      // const pDate = getDateFromExcel(post.date);
-      // const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      // teaserDate.innerText = `${months[pDate.getMonth()]} ${pDate.getDate() + 1}, ${pDate.getFullYear()}`;
-      // const teaserPicture = document.createElement('picture');
-      // teaserDiv.append(teaserPicture);
-      // teaserDiv.append(teaserTitle);
-      // teaserDiv.append(teaserDate);
-      // const teaserImg = document.createElement('img');
-      // teaserImg.src = post.image;
-      // teaserImg.alt = post.title;
-      // teaserPicture.append(teaserImg);
-      // teaserLink.setAttribute('aria-label', post.title);
-      // teaserLink.append(teaserDiv);
-      // teaser.append(teaserLink);
-      // teaserLink.href = post.path;
-      // teaser.className = 'related-content-teaser';
-
       // create teaser
       const teaser = document.createElement('li');
       teaser.classList.add('teaser');
