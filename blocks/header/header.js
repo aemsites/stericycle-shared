@@ -2,7 +2,7 @@ import { decorateButtons, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
+const isDesktop = window.matchMedia('(min-width: 992px)');
 
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
@@ -187,8 +187,7 @@ function handleForwardArrowClick(e, item, ul, arrow, backArrow, innerBackArrow, 
 
   if (currentElementParent.querySelector('.flag-icon')) {
     const title = document.createElement('strong');
-    const titleText = 'Country';
-    title.textContent = titleText;
+    title.textContent = 'Country';
 
     const newDiv = document.createElement('div');
     newDiv.className = 'title';
@@ -473,6 +472,7 @@ export default async function decorate(block) {
       if (!arrow) {
         arrow = document.createElement('button');
         arrow.classList.add('arrow');
+        arrow.setAttribute('aria-label', 'Arrow Button');
         l.parentElement.parentElement.appendChild(arrow);
         if (!arrow.dataset.listenerAdded) {
           arrow.addEventListener('click', (e) => handleForwardArrowClick(e, item, l, arrow, backArrow, innerBackArrow, mobileMenu));
@@ -559,9 +559,9 @@ export default async function decorate(block) {
   });
 
   // telephone icon for mobile
-  if (window.matchMedia('(max-width: 900px)')) {
-    let isDivCreated = false;
-    navTools.addEventListener('click', () => {
+  let isDivCreated = false;
+  navTools.addEventListener('click', () => {
+    if (!isDesktop.matches) {
       if (!isDivCreated) {
         const telItems = navTools.querySelectorAll('.tel');
         const newDiv = document.createElement('div');
@@ -580,8 +580,8 @@ export default async function decorate(block) {
           isDivCreated = false;
         }
       }
-    });
-  }
+    }
+  });
 
   // hamburger for mobile
   const hamburger = document.createElement('div');
@@ -611,4 +611,5 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+  block.parentElement.classList.add('appear');
 }
