@@ -170,7 +170,6 @@ function decorateSectionTemplates(main) {
     pictureWrapper.classList.add('section-image-wrapper');
     // move picture wrapper to section level
     section.prepend(pictureWrapper);
-
     // create a content wrapper
     const contentWrapper = document.createElement('div');
     contentWrapper.classList.add('section-content-wrapper');
