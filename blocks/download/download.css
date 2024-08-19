@@ -1,10 +1,10 @@
-div.section.infographic-container {
+div.section.download-container {
     align-items: flex-start;
     height: 100%;
     overflow: visible;
 }
 
-div.section.infographic-container > div.infographic-wrapper {
+div.section.download-container > div.download-wrapper {
     width: 100%;
     padding-right: calc(1.5rem * 0.5);
     padding-left: calc(1.5rem * 0.5);
@@ -15,33 +15,33 @@ div.section.infographic-container > div.infographic-wrapper {
     top: 120px;
 }
 
-div.section.infographic-container > div.infographic-wrapper > div.ig-container {
+div.section.download-container > div.download-wrapper > div.ig-container {
     background-color: #f2f6f7;
     width: 100%;
     padding: 2rem 3rem;
 }
 
-div.section.infographic-container > div.infographic-wrapper > div.ig-container h4 {
+div.section.download-container > div.download-wrapper > div.ig-container h4 {
     text-align: center;
 }
 
-div.section.infographic-container > div.infographic-wrapper > div.ig-container p.button-container {
+div.section.download-container > div.download-wrapper > div.ig-container p.button-container {
     text-align: center;
 }
 
-div.section.infographic-container > div.infographic-wrapper > div.ig-container p.button-container a.button {
+div.section.download-container > div.download-wrapper > div.ig-container p.button-container a.button {
     width: 100%;
 }
 
 @media screen and (min-width: 992px) {
-    div.section.infographic-container {
+    div.section.download-container {
         display: flex;
         align-items: flex-start;
         height: 100%;
         overflow: visible;
     }
 
-    div.section.infographic-container > div.infographic-wrapper {
+    div.section.download-container > div.download-wrapper {
         width: 25%;
         position: sticky;
         margin-left: 8.33%;
