@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3000" height="540" viewBox="0 0 3000 540">
+  <defs>
+    <clipPath id="clip-SID-Resources-Center-Gray_Desktop">
+      <rect width="3000" height="540"/>
+    </clipPath>
+  </defs>
+  <g id="SID-Resources-Center-Gray_Desktop" clip-path="url(#clip-SID-Resources-Center-Gray_Desktop)">
+    <rect width="3000" height="540" fill="#fff"/>
+    <rect id="Rectangle_33" data-name="Rectangle 33" width="3000" height="540" fill="#f2f6f7"/>
+    <g id="Group_1292" data-name="Group 1292" transform="translate(1818.871 -181.13)">
+      <g id="Group_444" data-name="Group 444" transform="translate(0 0)">
+        <path id="Path_3435" data-name="Path 3435" d="M0,0,370.218,236.857l127.984-.093L123.193,0Z" fill="#ff5633"/>
+      </g>
+      <g id="Group_445" data-name="Group 445" transform="translate(310.299 124.683)">
+        <path id="Path_3436" data-name="Path 3436" d="M0,0,375.428,236.1l10.526-.006L10.133,0Z" fill="#ff5633"/>
+      </g>
+    </g>
+    <g id="Group_1290" data-name="Group 1290" transform="translate(675.998 492.969)">
+      <path id="Path_3437" data-name="Path 3437" d="M0,0,205.892,135.608l65.857-.075L62.573,0Z" fill="#ff5633"/>
+    </g>
+    <g id="Group_1291" data-name="Group 1291" transform="translate(734.001 508.531)">
+      <path id="Path_3437-2" data-name="Path 3437" d="M0,0,205.892,135.608l65.857-.075L62.573,0Z" fill="#40bbd5"/>
+    </g>
+    <g id="Group_1293" data-name="Group 1293" transform="translate(-355.282 -303.13)">
+      <g id="Group_444-2" data-name="Group 444" transform="translate(161.282 136)">
+        <path id="Path_3435-2" data-name="Path 3435" d="M0,0,370.218,236.857l127.984-.093L123.193,0Z" fill="#40bbd5"/>
+      </g>
+    </g>
+  </g>
+</svg>
