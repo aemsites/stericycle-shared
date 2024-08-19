@@ -1,14 +1,11 @@
 div.section.infographic-container {
-    display: flex;
     align-items: flex-start;
     height: 100%;
     overflow: visible;
 }
 
 div.section.infographic-container > div.infographic-wrapper {
-    width: 25%;
-    position: sticky;
-    margin-left: 8.33%;
+    width: 100%;
     padding-right: calc(1.5rem * 0.5);
     padding-left: calc(1.5rem * 0.5);
     display: flex;
@@ -34,4 +31,19 @@ div.section.infographic-container > div.infographic-wrapper > div.ig-container p
 
 div.section.infographic-container > div.infographic-wrapper > div.ig-container p.button-container a.button {
     width: 100%;
+}
+
+@media screen and (min-width: 992px) {
+    div.section.infographic-container {
+        display: flex;
+        align-items: flex-start;
+        height: 100%;
+        overflow: visible;
+    }
+
+    div.section.infographic-container > div.infographic-wrapper {
+        width: 25%;
+        position: sticky;
+        margin-left: 8.33%;
+    }
 }
