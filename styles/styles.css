@@ -364,12 +364,25 @@ main .centered-text {
   text-align: center;
 }
 
+main .centered-headings h1,
+main .centered-headings h2,
+main .centered-headings h3,
+main .centered-headings h4,
+main .centered-headings h5,
+main .centered-headings h6 {
+  text-align: center;
+}
+
 main .cyan-headings {
   --color-heading: var(--color-cyan);
 }
 
 main .blue-headings {
   --color-heading: var(--color-blue);
+}
+
+main .navy-headings {
+  --color-heading: var(--color-navy);
 }
 
 main .list-style-orange-triangles ul {
@@ -742,10 +755,6 @@ body.resource-center p {
   .blog-page div.related-content img {
     width: auto;;
   }
-}
-
-main .navy-headings {
-  --color-heading: var(--color-navy);
 }
 
 main .xs-icons .icon {
