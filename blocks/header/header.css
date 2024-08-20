@@ -824,6 +824,7 @@ strong.remove {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    margin-top: 0;
   }
 
   header nav .nav-sections .nav-drop.last .nav-drop-content {
