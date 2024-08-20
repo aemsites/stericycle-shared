@@ -379,6 +379,49 @@ main .list-style-orange-triangles ul {
   list-style: none;
 }
 
+/* resource center styles */
+
+body.resource-center > main > div.section {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+@media (min-width: 576px) {
+  body.resource-center > main > div.section {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  body.resource-center > main > div.section {
+    max-width: 45pc;
+  }
+}
+
+@media (min-width: 992px) {
+  body.resource-center > main > div.section {
+    max-width: 60pc;
+  }
+}
+
+@media (min-width: 1200px) {
+  body.resource-center > main > div.section {
+    max-width: 855pt;
+  }
+}
+
+@media (min-width: 1400px) {
+  body.resource-center > main > div.section {
+    max-width: 990pt;
+  }
+}
+
+body.resource-center p {
+  margin-bottom: 1rem;
+}
+
 /* blog styles */
 
 .blog-page main .section {
