@@ -52,6 +52,30 @@ function transformQuote(main) {
   });
 }
 
+function transformSimpleCTA(main) {
+  main.querySelectorAll('div.cmp-experiencefragment--purge-ecommerce-cta').forEach((cta) => {
+    const text = cta.querySelector('div.text > h4').textContent;
+    const action = cta.querySelector('div.linkcalltoaction > a');
+    const cells = [
+      ['Simple CTA'],
+      [text, action],
+    ];
+    const flipCardsBlock = WebImporter.DOMUtils.createTable(cells, document);
+    cta.replaceWith(flipCardsBlock);
+  });
+}
+
+function transformFlipCards(main) {
+  main.querySelectorAll('div.hoverstateteaserlist').forEach((flipCards) => {
+    const cells = [
+      ['Flip Cards'],
+      ['TBD'],
+    ];
+    const flipCardsBlock = WebImporter.DOMUtils.createTable(cells, document);
+    flipCards.replaceWith(flipCardsBlock);
+  });
+}
+
 function transformTeaserList(main) {
   main.querySelectorAll('div.teaserlist').forEach((teaserList) => {
     const cells = [
@@ -60,6 +84,33 @@ function transformTeaserList(main) {
     ];
     const teaserListBlock = WebImporter.DOMUtils.createTable(cells, document);
     teaserList.replaceWith(teaserListBlock);
+  });
+}
+
+function transformHeadingsIntoSections(element, position) {
+  element.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach((heading) => {
+    const divider = document.createElement('P');
+    divider.textContent = '---';
+    heading.insertAdjacentElement('beforebegin', divider);
+
+    if (position != null) {
+      const cells = [
+        ['Section Metadata'],
+        ['Position', position],
+      ];
+      const sectionMetadata = WebImporter.DOMUtils.createTable(cells, document);
+      heading.insertAdjacentElement('beforebegin', sectionMetadata);
+    }
+  });
+}
+
+function transformSidebar(main) {
+  // remove get-a-quote-block; this will get auto-blocked
+  main.querySelector('#sidebar-marker > .cmp-container > div:first-of-type').remove();
+
+  // turn sidebar items into sections
+  main.querySelectorAll('#sidebar-marker > .cmp-container > div').forEach((sidebarItem) => {
+    transformHeadingsIntoSections(sidebarItem, 'Sidebar');
   });
 }
 
@@ -106,9 +157,16 @@ export default {
       '#ot-sdk-btn-floating',
     ]);
 
+    // transform blocks
     transformHero(main);
+    transformSimpleCTA(main);
     transformQuote(main);
+    transformFlipCards(main);
     transformTeaserList(main);
+
+    // transform layout
+    main.querySelector('div.col-lg-3.order-2.offset-lg-1.d-lg-none.d-md-none.cmp-columnrow__item').remove(); // remove duplicate details
+    transformSidebar(main);
 
     const mdb = WebImporter.Blocks.getMetadataBlock(document, meta);
     main.append(mdb);
