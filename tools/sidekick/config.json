@@ -1,5 +1,6 @@
 {
   "project": "Stericycle",
+  "host": "https://main--stericycle-shared--aemsites.hlx.page",
   "plugins": [
     {
       "id": "asset-library",
