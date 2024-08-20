@@ -1,30 +1,20 @@
-async function getHtml(url) {
-  let html;
+async function getQueryIdx(url) {
+  let json;
   const page = await fetch(url);
   if (page.ok) {
-    html = await page.text();
+    json = await page.json();
   } else {
-    html = '';
+    json = { data: [] };
   }
-  const retEl = document.createElement('div');
-  retEl.innerHTML = html;
-  return retEl;
-}
-
-function getDocumentMetadata(name, document) {
-  const attr = name && name.includes(':') ? 'property' : 'name';
-  const meta = [...document.querySelectorAll(`meta[${attr}="${name}"]`)]
-    .map((m) => m.content)
-    .join(', ');
-  return meta || '';
+  return json;
 }
 
 export default async function decorate(block) {
   const cols = [...block.firstElementChild.children];
   const rows = [...block.children];
-  const fronts = [];
-  const backs = [];
-  const links = [];
+  let fronts = [];
+  let backs = [];
+  let links = [];
 
   block.classList.add(`.flip-cards-${cols.length}-cols`);
 
@@ -33,35 +23,54 @@ export default async function decorate(block) {
     return;
   }
 
+  const lookupTable = {};
   const pages = block.querySelectorAll('a');
-  const pageWorkQueue = [];
-  pages.forEach((page) => pageWorkQueue.push(getHtml(page.href)));
+  const queryIdx = (await getQueryIdx('/query-index.json')).data;
 
-  const doms = await Promise.all(pageWorkQueue);
-
-  doms.forEach((dom, idx) => {
-    const cardFront = document.createElement('div');
-    const cardBack = document.createElement('div');
-    const icon = rows[0].children.item(0);
-    const titleh3 = document.createElement('h3');
-    const titleh4 = document.createElement('h4');
-    titleh3.innerText = getDocumentMetadata('og:title', dom);
-    titleh4.innerText = titleh3.innerText;
-    const desc = document.createElement('p');
-    desc.innerText = getDocumentMetadata('og:description', dom);
-    const link = pages[idx];
-
-    if (icon && titleh3 && titleh4 && desc && link) {
-      cardFront.appendChild(icon);
-      cardFront.appendChild(titleh3);
-      cardBack.appendChild(titleh4);
-      cardBack.appendChild(desc);
-
-      fronts.push(cardFront);
-      backs.push(cardBack);
-      links.push(link);
+  queryIdx.forEach((item) => {
+    if (Object.hasOwn(item, 'path') && Object.hasOwn(item, 'title') && Object.hasOwn(item, 'description')) {
+      const { path, title, description } = item;
+      lookupTable[path] = { title, description };
     }
   });
+
+  pages.forEach((page, idx) => {
+    const pagePath = new URL(page.href).pathname;
+    const cardFront = document.createElement('div');
+    const cardBack = document.createElement('div');
+    const link = pages[idx];
+    if (Object.hasOwn(lookupTable, pagePath)) {
+      const cardDetails = lookupTable[pagePath];
+      const icon = rows[0].children.item(0);
+      const titleh3 = document.createElement('h3');
+      const titleh4 = document.createElement('h4');
+      titleh3.textContent = cardDetails.title;
+      titleh4.textContent = cardDetails.title;
+      const desc = document.createElement('p');
+      desc.textContent = cardDetails.description;
+      if (icon) {
+        cardFront.appendChild(icon);
+      }
+      if (titleh3) {
+        cardFront.appendChild(titleh3);
+      }
+      if (titleh4) {
+        cardBack.appendChild(titleh4);
+      }
+      if (desc) {
+        cardBack.appendChild(desc);
+      }
+    }
+    fronts.push(cardFront);
+    backs.push(cardBack);
+    links.push(link);
+  });
+
+  if (fronts.length === 0 && backs.lengths === 0 && links.lengths === 0) {
+    fronts = [...rows[0].children];
+    backs = rows[1] ? [...rows[1].children] : [];
+    links = rows[2] ? [...rows[2].children] : [];
+  }
 
   // decorate backs
   backs.forEach((card) => {
