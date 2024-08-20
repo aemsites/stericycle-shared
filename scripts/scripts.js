@@ -109,7 +109,7 @@ function buildHeroBlock(main) {
 }
 
 /**
- * Builds section with metadata position set to sidebar..
+ * Builds section with metadata position set to sidebar.
  */
 function buildSidebarSection() {
   const section = document.createElement('div');
@@ -139,6 +139,20 @@ function buildServiceLocationAutoBlocks(main) {
   const formSection = buildSidebarSection();
   formSection.prepend(buildBlock('get-a-quote-form', { elems: [] }));
   main.prepend(formSection);
+
+  const ctaSection = document.createElement('div');
+  ctaSection.append(buildBlock('simple-cta', { elems: [] }));
+  main.append(ctaSection);
+
+  const flipCardsSection = document.createElement('div');
+  const flipCardsConfig = document.createElement('div');
+  flipCardsSection.append(buildBlock('flip-cards', { elems: [flipCardsConfig] }));
+  main.append(flipCardsSection);
+
+  const teaserSection = document.createElement('div');
+  const teaserConfig = document.createElement('div');
+  teaserSection.append(buildBlock('post-teaser-list', { elems: [teaserConfig] }));
+  main.append(teaserSection);
 }
 
 /**
