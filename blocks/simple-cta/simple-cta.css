@@ -1,7 +1,3 @@
-main .section.simple-cta-container > div {
-  padding: 0 1.5rem;
-}
-
 .simple-cta {
   background: var(--color-honolulu-blue);
   margin-bottom: 48px;
@@ -12,6 +8,10 @@ main .section.simple-cta-container > div {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+}
+
+main .section.simple-cta-container > div {
+  padding: 0 1.5rem;
 }
 
 .simple-cta > div > div:first-of-type {
@@ -29,7 +29,7 @@ main .section.simple-cta-container > div {
   color: var(--color-white);
   font-size: .9375rem;
   line-height: 1.5625rem;
-  letter-spacing: .00078125rem;
+  letter-spacing: .0008rem;
   font-weight: var(--lato-bold);
   margin-bottom: 1.5rem;
 }
