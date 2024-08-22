@@ -20,14 +20,19 @@ function sanitizeURL(url) {
 }
 
 function transformButtonToAnchors(main) {
-  const aLink = main.querySelector('a.page-teaser__link--wrapper').href;
-  main.querySelectorAll('button.page-teaser__link').forEach((button) => {
-    const a = document.createElement('a');
-    a.href = sanitizeURL(aLink);
-    a.textContent = button.textContent;
-    a.setAttribute('aria-label', button.getAttribute('aria-label'));
-    button.replaceWith(a);
-  });
+  const aLinkElement = main.querySelector('a.page-teaser__link--wrapper');
+  if (aLinkElement) {
+    const aLink = aLinkElement.href;
+    main.querySelectorAll('button.page-teaser__link').forEach((button) => {
+      const a = document.createElement('a');
+      a.href = sanitizeURL(aLink);
+      a.textContent = button.textContent;
+      a.setAttribute('aria-label', button.getAttribute('aria-label'));
+      button.replaceWith(a);
+    });
+  } else {
+    console.log('No anchor link found for transformation.');
+  }
 }
 
 function transformTabs(main) {
