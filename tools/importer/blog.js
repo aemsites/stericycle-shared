@@ -60,6 +60,16 @@ function setMetadata(meta, document) {
   }
 }
 
+function fixDynamicMedia(main, document) {
+  const dmImages = main.querySelectorAll('div[data-cmp-is="image"]');
+  dmImages.forEach((img) => {
+    const source = img.getAttribute('data-cmp-src').replace('&width={width}', '');
+    const newImg = document.createElement('img');
+    newImg.src = source;
+    img.append(newImg);
+  });
+}
+
 export default {
   /**
      * Apply DOM operations to the provided document and return
@@ -80,6 +90,8 @@ export default {
     WebImporter.DOMUtils.remove(document, [
       'script[src*="https://solutions.invocacdn.com/js/invoca-latest.min.js"]',
     ]);
+
+    fixDynamicMedia(main, document);
 
     // attempt to remove non-content elements
     WebImporter.DOMUtils.remove(main, [

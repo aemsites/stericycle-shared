@@ -5,9 +5,9 @@ import {
   decorateIcons,
   decorateSections,
   decorateTemplateAndTheme,
+  getMetadata,
   loadBlocks,
   loadCSS,
-  getMetadata,
   loadFooter,
   loadHeader,
   sampleRUM,
@@ -69,6 +69,8 @@ export function getLocale() {
  * @returns {Promise<*[]>}
  */
 export async function getRelatedBlogContent(tags, limit) {
+  const sessionKey = 'blog-posts';
+  const storedPosts = sessionStorage.getItem(sessionKey);
   const postarray = [];
   let count = 0;
   let pTags = 'Blogs';
@@ -76,7 +78,14 @@ export async function getRelatedBlogContent(tags, limit) {
     pTags = tags.replace('Blogs', 'bp'); // swap out Blog from the tag from the page to something arbitrary
   }
   const pageTags = JSON.stringify(pTags.split(','));
-  const posts = await ffetch('/query-index.json').sheet('blog').all();
+
+  let posts = [];
+  if (!storedPosts) {
+    posts = await ffetch('/query-index.json').sheet('blog').all();
+    sessionStorage.setItem(sessionKey, JSON.stringify(posts));
+  } else {
+    posts = JSON.parse(storedPosts);
+  }
   posts.forEach((post) => {
     // if (containsTag(JSON.parse(post.tags), JSON.parse(post.tags))) {
     if (arraysHaveMatchingItem(JSON.parse(post.tags), pageTags) && count < limit) {
@@ -85,6 +94,10 @@ export async function getRelatedBlogContent(tags, limit) {
       count++;
     }
   });
+
+  if (postarray.length === 0) {
+    postarray.push(posts[0], posts[1], posts[2], posts[3]);
+  }
   return postarray;
 }
 
@@ -174,6 +187,41 @@ function modifyBigNumberList(main) {
   });
 }
 
+function decorateSectionTemplates(main) {
+  const imageSections = main.querySelectorAll('.section.with-image');
+  imageSections.forEach((section) => {
+    // get picture
+    const picture = section.querySelector('div.default-content-wrapper:first-child > p > picture');
+    if (!(picture?.parentElement.childElementCount === 1)) {
+      return; // no valid section image found
+    }
+    // get or create picture wrapper
+    let pictureWrapper;
+    if (picture.parentElement.parentElement.childElementCount === 1) {
+      pictureWrapper = picture.parentElement.parentElement;
+    } else {
+      pictureWrapper = document.createElement('div');
+      pictureWrapper.classList.add('default-content-wrapper');
+      pictureWrapper.append(picture.parentElement);
+    }
+    pictureWrapper.classList.add('section-image-wrapper');
+    // move picture wrapper to section level
+    section.prepend(pictureWrapper);
+    // create a content wrapper
+    const contentWrapper = document.createElement('div');
+    contentWrapper.classList.add('section-content-wrapper');
+    Array.from(section.childNodes).forEach((node) => {
+      if (node !== pictureWrapper) {
+        contentWrapper.appendChild(node);
+      }
+    });
+    if (!section.contains(pictureWrapper)) {
+      section.appendChild(pictureWrapper);
+    }
+    section.appendChild(contentWrapper);
+  });
+}
+
 function getBlogBaseUrl(url) {
   try {
     const urlObj = new URL(url);
@@ -256,6 +304,7 @@ export function decorateMain(main) {
   decorateBlocks(main);
   decorateBlog(main);
   modifyBigNumberList(main);
+  decorateSectionTemplates(main);
 }
 
 /**
