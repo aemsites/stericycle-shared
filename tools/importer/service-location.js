@@ -12,6 +12,15 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
+function setMetadata(meta, document) {
+  // check for hero element to determine template
+  if (document.querySelector('div.pagehero')) {
+    meta.template = 'service-location-page';
+  } else {
+    meta.template = 'service-location-page-2';
+  }
+}
+
 function transformHero(main) {
   const hero = main.querySelector('div.pagehero');
   if (!hero) {
@@ -25,15 +34,6 @@ function transformHero(main) {
   const sidebar = hero.querySelector('div.contentcontainer.position-absolute.w-100');
   sidebar.id = 'sidebar-marker';
   hero.parentElement.append(sidebar);
-}
-
-function setMetadata(meta, document) {
-  // check for hero element to determine template
-  if (document.querySelector('div.pagehero')) {
-    meta.template = 'service-location-page';
-  } else {
-    meta.template = 'service-location-page-2';
-  }
 }
 
 function transformQuote(main) {
@@ -54,36 +54,39 @@ function transformQuote(main) {
 
 function transformSimpleCTA(main) {
   main.querySelectorAll('div.cmp-experiencefragment--purge-ecommerce-cta').forEach((cta) => {
-    const text = cta.querySelector('div.text > h4').textContent;
-    const action = cta.querySelector('div.linkcalltoaction > a');
-    const cells = [
-      ['Simple CTA'],
-      [text, action],
-    ];
-    const flipCardsBlock = WebImporter.DOMUtils.createTable(cells, document);
-    cta.replaceWith(flipCardsBlock);
+    // const text = cta.querySelector('div.text > h4').textContent;
+    // const action = cta.querySelector('div.linkcalltoaction > a');
+    // const cells = [
+    //   ['Simple CTA'],
+    //   [text, action],
+    // ];
+    // const flipCardsBlock = WebImporter.DOMUtils.createTable(cells, document);
+    // cta.replaceWith(flipCardsBlock);
+    cta.remove();
   });
 }
 
 function transformFlipCards(main) {
   main.querySelectorAll('div.hoverstateteaserlist').forEach((flipCards) => {
-    const cells = [
-      ['Flip Cards'],
-      ['TBD'],
-    ];
-    const flipCardsBlock = WebImporter.DOMUtils.createTable(cells, document);
-    flipCards.replaceWith(flipCardsBlock);
+    // const cells = [
+    //   ['Flip Cards'],
+    //   ['TBD'],
+    // ];
+    // const flipCardsBlock = WebImporter.DOMUtils.createTable(cells, document);
+    // flipCards.replaceWith(flipCardsBlock);
+    flipCards.remove();
   });
 }
 
 function transformTeaserList(main) {
   main.querySelectorAll('div.teaserlist').forEach((teaserList) => {
-    const cells = [
-      ['Post Teaser List'],
-      ['Type', 'Blogs'],
-    ];
-    const teaserListBlock = WebImporter.DOMUtils.createTable(cells, document);
-    teaserList.replaceWith(teaserListBlock);
+    // const cells = [
+    //   ['Post Teaser List'],
+    //   ['Type', 'Blogs'],
+    // ];
+    // const teaserListBlock = WebImporter.DOMUtils.createTable(cells, document);
+    // teaserList.replaceWith(teaserListBlock);
+    teaserList.remove();
   });
 }
 
@@ -111,6 +114,86 @@ function transformSidebar(main) {
   // turn sidebar items into sections
   main.querySelectorAll('#sidebar-marker > .cmp-container > div').forEach((sidebarItem) => {
     transformHeadingsIntoSections(sidebarItem, 'Sidebar');
+  });
+}
+
+function transformCards(main) {
+  // card rows
+  main.querySelectorAll('div.columnrow.aem-GridColumn--default--12 > div.row.cmp-columnrow').forEach((cardsWrapper) => {
+    const cards = cardsWrapper.querySelectorAll('div.cmp-columnrow__item > div.ss-border--box-shadow.ss-bg-color--white');
+    if (cards.length < 1) {
+      return;
+    }
+
+    // let cells = [];
+    // let hasDividers = false;
+    // cards.forEach((card) => {
+    //   card.querySelectorAll('div.horizontalrule').forEach((hr) => {
+    //     hasDividers = true;
+    //     hr.remove();
+    //   });
+    // });
+    // if (hasDividers) {
+    //   cells = [['Cards (dividers)'], ...cells];
+    // } else {
+    //   cells = [['Cards'], ...cells];
+    // }
+    // const cardsBlock = WebImporter.DOMUtils.createTable(cells, document);
+    // cardsWrapper.replaceWith(cardsBlock);
+    cardsWrapper.remove();
+  });
+
+  // full-width cards
+  main.querySelectorAll('div.aem-Grid--default--12 > div.ss-border--box-shadow.ss-bg-color--white').forEach((card) => {
+    // const cells = [
+    //   ['Cards (full width)'],
+    // ];
+    //
+    // const cmpRow = card.querySelector('div.row.cmp-columnrow');
+    // if (cmpRow) {
+    //   Array.from(cmpRow.children).forEach((item) => cells.push([item]));
+    // }
+    //
+    // const cardsBlock = WebImporter.DOMUtils.createTable(cells, document);
+    // card.replaceWith(cardsBlock);
+    card.remove();
+  });
+}
+
+function transformSections(main) {
+  main.querySelectorAll('div.pagesection').forEach((section) => {
+    const divider = document.createElement('P');
+    divider.textContent = '---';
+    section.insertAdjacentElement('beforebegin', divider);
+
+    if (section.classList.contains('ss-bg-color--gray')) {
+      const cells = [
+        ['Section Metadata'],
+        ['Style', 'gray background'],
+      ];
+      const sectionMetadata = WebImporter.DOMUtils.createTable(cells, document);
+      section.insertAdjacentElement('afterend', sectionMetadata);
+    }
+  });
+}
+
+function transformImageSection(main) {
+  main.querySelectorAll('div.columnrow.aem-GridColumn--default--12').forEach((imageSection) => {
+    const image = imageSection.querySelector('div.row.cmp-columnrow > div.col-lg-5.cmp-columnrow__item div.image');
+    if (!image) {
+      return;
+    }
+
+    const divider = document.createElement('P');
+    divider.textContent = '---';
+    imageSection.insertAdjacentElement('beforebegin', divider);
+
+    const cells = [
+      ['Section Metadata'],
+      ['Style', 'with image'],
+    ];
+    const sectionMetadata = WebImporter.DOMUtils.createTable(cells, document);
+    imageSection.insertAdjacentElement('afterend', sectionMetadata);
   });
 }
 
@@ -157,16 +240,23 @@ export default {
       '#ot-sdk-btn-floating',
     ]);
 
-    // transform blocks
-    transformHero(main);
-    transformSimpleCTA(main);
-    transformQuote(main);
-    transformFlipCards(main);
-    transformTeaserList(main);
+    if (meta.template === 'service-location-page') {
+      // transform blocks
+      transformHero(main);
+      transformSimpleCTA(main);
+      transformQuote(main);
+      transformFlipCards(main);
+      transformTeaserList(main);
 
-    // transform layout
-    main.querySelector('div.col-lg-3.order-2.offset-lg-1.d-lg-none.d-md-none.cmp-columnrow__item').remove(); // remove duplicate details
-    transformSidebar(main);
+      // transform layout
+      main.querySelector('div.col-lg-3.order-2.offset-lg-1.d-lg-none.d-md-none.cmp-columnrow__item').remove(); // remove duplicate details
+      transformSidebar(main);
+    } else if (meta.template === 'service-location-page-2') {
+      // transform layout
+      transformCards(main);
+      transformSections(main);
+      transformImageSection(main);
+    }
 
     const mdb = WebImporter.Blocks.getMetadataBlock(document, meta);
     main.append(mdb);
