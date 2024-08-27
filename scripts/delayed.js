@@ -17,7 +17,7 @@ function getLocale() {
 }
 
 async function loadRelatedContent() {
-  const posts = await getRelatedBlogContent(getMetadata('article:tag'), RELATED_LIMIT);
+  const posts = await getRelatedBlogContent(['Blogs'], getMetadata('article:tag'), RELATED_LIMIT);
 
   const rcTeasers = document.createElement('ul');
   rcTeasers.className = 'related-content-teasers';

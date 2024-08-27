@@ -1,4 +1,4 @@
-import { getLatestPosts } from '../../scripts/scripts.js';
+import { getRelatedBlogContent } from '../../scripts/scripts.js';
 import { decorateButtons, readBlockConfig } from '../../scripts/aem.js';
 
 function createPostLink(post) {
@@ -11,7 +11,7 @@ function createPostLink(post) {
 export default function decorate(block) {
   const { type } = readBlockConfig(block);
   block.innerHTML = '';
-  getLatestPosts(type, 4).then((posts) => {
+  getRelatedBlogContent(type.split(/,\s*]/), type, 4).then((posts) => {
     const list = document.createElement('ul');
     list.classList.add('teaser-list');
     posts.forEach((post) => {

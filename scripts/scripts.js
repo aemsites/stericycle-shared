@@ -64,65 +64,55 @@ export function getLocale() {
 /**
  * Get related blog content based on page tags. Currently doesn't filter out the existing page or
  * fill up the array if there are not enough related posts
- * @param {array} tags - tags from the page
+ * @param {array} types - related post type(s)
+ * @param {array} tags - related post tag(s)
  * @param {number} limit - the max number of related posts to return
  * @returns {Promise<*[]>}
  */
-export async function getRelatedBlogContent(tags, limit) {
-  const sessionKey = 'blog-posts';
-  const storedPosts = sessionStorage.getItem(sessionKey);
-  const postarray = [];
-  let count = 0;
-  let pTags = 'Blogs';
-  if (tags) {
-    pTags = tags.replace('Blogs', 'bp'); // swap out Blog from the tag from the page to something arbitrary
+export async function getRelatedBlogContent(types, tags, limit) {
+  const sheets = [];
+  let pTags = tags || [];
+  types.forEach((type) => {
+    // add sheet
+    let sheet = type.toLowerCase().replace(' ', '-');
+    if (sheet === 'blogs') {
+      sheet = 'blog'; // TODO: remove this after renaming sheet
+    }
+    sheets.push(sheet);
+    // replace duplicate tags with something arbitrary
+    pTags = pTags.replace(type, 'x');
+  });
+  if (sheets.length === 0) {
+    sheets.push('blogs'); // default
   }
   const pageTags = JSON.stringify(pTags.split(','));
 
+  // fetch all posts by type
   let posts = [];
-  if (!storedPosts) {
-    posts = await ffetch('/query-index.json').sheet('blog').all();
-    sessionStorage.setItem(sessionKey, JSON.stringify(posts));
-  } else {
-    posts = JSON.parse(storedPosts);
+  const fetchResults = await Promise.all(sheets.map(async (sheet) => ffetch('/query-index.json').sheet(sheet).all()));
+  fetchResults.forEach((fetchResult) => posts.push(...fetchResult));
+  if (types.length > 1) {
+    // this could become a performance problem with a huge volume of posts
+    posts = posts.sort((a, b) => b.date - a.date);
+    console.log(posts);
   }
-  posts.forEach((post) => {
-    // if (containsTag(JSON.parse(post.tags), JSON.parse(post.tags))) {
-    if (arraysHaveMatchingItem(JSON.parse(post.tags), pageTags) && count < limit) {
-      postarray.push(post);
-      // eslint-disable-next-line no-plusplus
-      count++;
-    }
-  });
 
-  if (postarray.length === 0) {
-    postarray.push(posts[0], posts[1], posts[2], posts[3]);
-  }
-  return postarray;
-}
-
-/**
- * Get the latest posts. Currently doesn't filter out the existing page or
- * fill up the array if there are not enough related posts
- * @param {array} tags - tags from the page
- * @param {number} limit - the max number of related posts to return
- * @returns {Promise<*[]>}
- */
-export async function getLatestPosts(tags, limit) {
-  const postarray = [];
+  // filter posts by tags
+  const filteredPosts = [];
   let count = 0;
-  const pageTags = JSON.stringify(tags.split(','));
-  // TODO: use sheet containing all posts
-  const posts = await ffetch('/query-index.json').sheet('blog').all();
   posts.forEach((post) => {
-    // if (containsTag(JSON.parse(post.tags), JSON.parse(post.tags))) {
-    if (arraysHaveMatchingItem(JSON.parse(post.tags), pageTags) && count < limit) {
-      postarray.push(post);
+    if ((!tags || arraysHaveMatchingItem(JSON.parse(post.tags), pageTags)) && count < limit) {
+      filteredPosts.push(post);
       // eslint-disable-next-line no-plusplus
       count++;
     }
   });
-  return postarray;
+
+  // fallback if no matching tags were found
+  if (filteredPosts.length === 0) {
+    filteredPosts.push(posts[0], posts[1], posts[2], posts[3]);
+  }
+  return filteredPosts;
 }
 
 /**
