@@ -62,16 +62,15 @@ export function getLocale() {
 }
 
 /**
- * Get related blog content based on page tags. Currently doesn't filter out the existing page or
+ * Get related posts based on page tags. Currently doesn't filter out the existing page or
  * fill up the array if there are not enough related posts
  * @param {array} types - related post type(s)
  * @param {array} tags - related post tag(s)
  * @param {number} limit - the max number of related posts to return
  * @returns {Promise<*[]>}
  */
-export async function getRelatedBlogContent(types, tags, limit) {
+export async function getRelatedPosts(types, tags, limit) {
   const sheets = [];
-  let pTags = tags || [];
   types.forEach((type) => {
     // add sheet
     let sheet = type.toLowerCase().replace(' ', '-');
@@ -79,13 +78,10 @@ export async function getRelatedBlogContent(types, tags, limit) {
       sheet = 'blog'; // TODO: remove this after renaming sheet
     }
     sheets.push(sheet);
-    // replace duplicate tags with something arbitrary
-    pTags = pTags.replace(type, 'x');
   });
   if (sheets.length === 0) {
-    sheets.push('blogs'); // default
+    sheets.push('blog'); // default
   }
-  const pageTags = JSON.stringify(pTags.split(','));
 
   // fetch all posts by type
   let posts = [];
@@ -94,19 +90,19 @@ export async function getRelatedBlogContent(types, tags, limit) {
   if (types.length > 1) {
     // this could become a performance problem with a huge volume of posts
     posts = posts.sort((a, b) => b.date - a.date);
-    console.log(posts);
   }
 
   // filter posts by tags
   const filteredPosts = [];
-  let count = 0;
-  posts.forEach((post) => {
-    if ((!tags || arraysHaveMatchingItem(JSON.parse(post.tags), pageTags)) && count < limit) {
-      filteredPosts.push(post);
-      // eslint-disable-next-line no-plusplus
-      count++;
-    }
-  });
+  if (tags) {
+    let count = 0;
+    posts.forEach((post) => {
+      if ((!tags || arraysHaveMatchingItem(post.tags, tags)) && count < limit) {
+        filteredPosts.push(post);
+        count += 1;
+      }
+    });
+  }
 
   // fallback if no matching tags were found
   if (filteredPosts.length === 0) {

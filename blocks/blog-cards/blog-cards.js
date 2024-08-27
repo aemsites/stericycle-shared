@@ -1,11 +1,11 @@
-import { getRelatedBlogContent } from '../../scripts/scripts.js';
+import { getRelatedPosts } from '../../scripts/scripts.js';
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default async function decorate(block) {
   const latestPosts = document.createElement('div');
   latestPosts.classList.add('latest-posts');
   const blogTeasers = document.createElement('ul');
-  const posts = await getRelatedBlogContent(['Blogs'], undefined, 4);
+  const posts = await getRelatedPosts(['Blogs'], undefined, 4);
 
   posts.forEach((post) => {
     const teaser = document.createElement('li');

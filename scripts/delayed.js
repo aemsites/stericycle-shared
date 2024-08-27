@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import { fetchPlaceholders, getMetadata, sampleRUM } from './aem.js';
 // eslint-disable-next-line import/no-cycle
-import { getDateFromExcel, getRelatedBlogContent } from './scripts.js';
+import { getDateFromExcel, getRelatedPosts } from './scripts.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -17,7 +17,8 @@ function getLocale() {
 }
 
 async function loadRelatedContent() {
-  const posts = await getRelatedBlogContent(['Blogs'], getMetadata('article:tag'), RELATED_LIMIT);
+  const tags = (getMetadata('article:tag') || '').split(/,\s*]/);
+  const posts = await getRelatedPosts(['Blogs'], tags, RELATED_LIMIT);
 
   const rcTeasers = document.createElement('ul');
   rcTeasers.className = 'related-content-teasers';
