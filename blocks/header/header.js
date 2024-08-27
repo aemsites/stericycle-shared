@@ -37,13 +37,34 @@ function focusNavSection() {
 }
 
 /**
- * Toggles all nav sections
+ * Toggles the expanded state of all navigation sections except for a specified excluded section.
+ *
+ * @param {HTMLElement} sections - The container element holding the navigation sections.
+ * @param {boolean} [expanded=false] - The desired expanded state
+ * @param {HTMLElement} [excludedLi=null] - The section to exclude from toggling.
+ */
+function toggleAllNavSections(sections, expanded = false, excludedLi = null) {
+  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
+    if (section !== excludedLi) {
+      section.setAttribute('aria-expanded', expanded);
+      const icon = section.querySelector('span.icon-search');
+      const searchBox = section.querySelector('.search-box-container');
+      if (icon && searchBox) {
+        searchBox.classList.toggle('unhide', expanded);
+        searchBox.classList.toggle('hide', !expanded);
+      }
+    }
+  });
+}
+
+/**
+ * Toggles all nav tools
  * @param {Element} sections The container element
  * @param {Boolean} expanded Whether the element should be expanded or collapsed
  */
-function toggleAllNavSections(sections, expanded = false) {
-  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
-    section.setAttribute('aria-expanded', expanded);
+function toggleAllNavTools(navTools, expanded = false) {
+  navTools.querySelectorAll('.nav-tools .default-content-wrapper > ul > li').forEach((navTool) => {
+    navTool.setAttribute('aria-expanded', expanded);
   });
 }
 
@@ -58,7 +79,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   const button = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
+  toggleAllNavSections(navSections, false);
   button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
   // enable nav dropdown keyboard accessibility
   const navDrops = navSections.querySelectorAll('.nav-drop');
@@ -86,22 +107,35 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
+/**
+ * Toggles the visibility of the search bar and updates the aria-expanded attribute.
+ * If the search bar is hidden, it will be shown and aria-expanded will be set to true.
+ * If the search bar is visible, it will be hidden and aria-expanded will be set to false.
+ */
 function toggleSearchBarVisibility() {
   // Toggle visibility and aria-expanded attribute
   const searchBoxContainer = document.querySelector('.search-box-container');
-  if (searchBoxContainer.style.display === 'none') {
-    searchBoxContainer.style.display = 'flex';
-    const listItem = searchBoxContainer.closest('li');
-    if (listItem) listItem.setAttribute('aria-expanded', 'true');
-  } else {
-    searchBoxContainer.addEventListener('click', (e) => {
-      if (!e.target.classList.contains('close-button')) {
-        e.stopPropagation(); // Stop event propagation if not clicking on close button
+  if (searchBoxContainer) {
+    if (searchBoxContainer.classList.contains('hide')) {
+      searchBoxContainer.classList.remove('hide');
+      searchBoxContainer.classList.add('unhide');
+      const listItem = searchBoxContainer.closest('li');
+      if (listItem) {
+        listItem.setAttribute('aria-expanded', 'true');
       }
-    });
-    searchBoxContainer.style.display = 'none';
-    const listItem = searchBoxContainer.closest('li');
-    if (listItem) listItem.setAttribute('aria-expanded', 'false');
+    } else {
+      searchBoxContainer.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('close-button')) {
+          e.stopPropagation(); // Stop event propagation if not clicking on close button
+        }
+      });
+      searchBoxContainer.classList.remove('unhide');
+      searchBoxContainer.classList.add('hide');
+      const listItem = searchBoxContainer.closest('li');
+      if (listItem) {
+        listItem.setAttribute('aria-expanded', 'false');
+      }
+    }
   }
 }
 
@@ -112,7 +146,7 @@ function createAndAppendSearchBox() {
     const icon = document.querySelector('.icon-search');
     searchBoxContainer = document.createElement('div');
     searchBoxContainer.className = 'search-box-container';
-    searchBoxContainer.style.display = 'none'; // Initially hidden
+    searchBoxContainer.classList.add('hide'); // Initially hidden
 
     const searchBox = document.createElement('input');
     searchBox.type = 'text';
@@ -125,6 +159,11 @@ function createAndAppendSearchBox() {
     const closeButton = document.createElement('span');
     closeButton.textContent = '×';
     closeButton.className = 'close-button';
+
+    closeButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      toggleSearchBarVisibility();
+    });
 
     searchBoxContainer.appendChild(searchBox);
     searchBoxContainer.appendChild(closeButton);
@@ -321,8 +360,98 @@ function resetDOMClasses(classesToRemove) {
       }
     });
   });
-  nav.querySelector('.mobile-menu-item-drop .title').remove();
+  nav.querySelector('.mobile-menu-item-drop .title')?.remove();
 }
+
+/**
+ * Search Button onClick handling
+ * @param {*} icon
+ * @param {*} nav
+ */
+const searchButtonOnClick = (icon, nav) => {
+  icon.addEventListener('click', (event) => {
+    event.preventDefault();
+    const searchBox = document.querySelector('.search-box-container');
+    const listItem = icon?.closest('li');
+
+    if (!listItem) {
+      return;
+    }
+
+    const navSections = nav.querySelector('.nav-sections');
+    const navTools = nav.querySelector('.nav-tools');
+
+    // Close/remove the tel-item if open or exists. Special handling in case of mobile view
+    navTools.querySelector('.tel-item')?.remove();
+
+    toggleAllNavTools(navTools);
+    toggleAllNavSections(navSections, false, listItem);
+
+    if (!searchBox) {
+      createAndAppendSearchBox();
+    } else {
+      toggleSearchBarVisibility();
+    }
+  });
+};
+
+/**
+ * Hamburger onClick handling
+ * @param {*} nav
+ * @param {*} navSections
+ * @param {*} navTools
+ * @param {*} mobileMenu
+ */
+const hamburgerOnClick = (nav, navSections, navTools, mobileMenu) => {
+  toggleMenu(nav, navSections);
+  if (mobileMenu) {
+    // IMP Close/Remove the tel-item if open or exists
+    navTools.querySelector('.tel-item')?.remove();
+    // Close the Search Box if open
+    if (navSections?.classList.contains('unhide')) {
+      toggleSearchBarVisibility();
+    }
+
+    if (nav.getAttribute('aria-expanded') === 'true') {
+      setTimeout(() => {
+        mobileMenu.classList.add('mobile-menu-open');
+        mobileMenu.classList.remove('closing');
+      }, 0);
+    } else {
+      mobileMenu.classList.remove('mobile-menu-open');
+    }
+  }
+};
+
+/**
+ * Telephone icon onClick handling in case of mobile view
+ * @param {*} icon
+ */
+const telephoneIconOnClick = (navTools) => {
+  navTools.addEventListener('click', () => {
+    if (!isDesktop.matches) {
+      const telItemInitial = navTools.querySelector('.tel-item');
+      if (telItemInitial) {
+        telItemInitial.remove();
+      } else {
+        const telItems = navTools.querySelectorAll('.tel');
+        const newDiv = document.createElement('div');
+        newDiv.className = 'tel-item';
+        telItems.forEach((telItem) => {
+          const tel = telItem.cloneNode(true);
+          newDiv.appendChild(tel);
+        });
+        navTools.prepend(newDiv);
+        newDiv.classList.add('active');
+
+        // Close the search box if open
+        if (document.querySelector('.search-box-container')?.classList.contains('unhide')) {
+          toggleSearchBarVisibility();
+        }
+      }
+    }
+  });
+};
 
 /**
  * loads and decorates the header, mainly the nav
@@ -354,22 +483,8 @@ export default async function decorate(block) {
     brandLink.closest('.button-container').className = '';
   }
 
+  // NavSections onClick
   const navSections = nav.querySelector('.nav-sections');
-  if (navSections.querySelector('span.icon-search')) {
-    const searchBox = document.querySelector('.search-box-container');
-    navSections.addEventListener('click', () => {
-      const icon = navSections.querySelector('span.icon-search');
-      if (!icon) return;
-      const listItem = icon.closest('li');
-      if (!listItem) return;
-      if (!searchBox) {
-        createAndAppendSearchBox();
-      } else {
-        searchBox.style.display = 'none';
-        listItem.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
 
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
@@ -384,13 +499,19 @@ export default async function decorate(block) {
         navSection.classList.add('nav-drop');
         navSection.querySelector('ul').classList.add('nav-drop-content');
       }
-      navSection.addEventListener('click', () => {
-        if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        }
-      });
+
+      const icon = navSection?.querySelector('span.icon-search');
+      if (icon) {
+        // Search Button onClick handling in all cases
+        searchButtonOnClick(icon, nav);
+      } else {
+        navSection.addEventListener('mouseover', (event) => {
+          event.preventDefault();
+          toggleAllNavSections(navSections, false, navSection);
+          toggleAllNavTools(nav.querySelector('.nav-tools'));
+          navSection.setAttribute('aria-expanded', 'true');
+        });
+      }
     });
     const navDrops = navSections.querySelector('.nav-drop ul');
     navDrops.classList.add('single-column');
@@ -403,6 +524,9 @@ export default async function decorate(block) {
   }
 
   const navTools = nav.querySelector('.nav-tools');
+  telephoneIconOnClick(navTools);
+
+  // NavTools onClick
   if (navTools) {
     navTools.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navTool) => {
       if (navTool.querySelector('a')) {
@@ -415,11 +539,14 @@ export default async function decorate(block) {
         }
       }
 
-      if (navTool.querySelector('ul')) navTool.classList.add('nav-drop');
+      if (navTool.querySelector('ul')) {
+        navTool.classList.add('nav-drop');
+      }
       navTool.addEventListener('click', () => {
         if (isDesktop.matches) {
           const expanded = navTool.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navTools);
+          toggleAllNavSections(navSections);
+          toggleAllNavTools(navTools);
           navTool.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         }
       });
@@ -558,55 +685,23 @@ export default async function decorate(block) {
     }, 500);
   });
 
-  // telephone icon for mobile
-  let isDivCreated = false;
-  navTools.addEventListener('click', () => {
-    if (!isDesktop.matches) {
-      if (!isDivCreated) {
-        const telItems = navTools.querySelectorAll('.tel');
-        const newDiv = document.createElement('div');
-        newDiv.className = 'tel-item';
-        telItems.forEach((telItem) => {
-          const tel = telItem.cloneNode(true);
-          newDiv.appendChild(tel);
-        });
-        navTools.prepend(newDiv);
-        newDiv.classList.add('active');
-        isDivCreated = true;
-      } else {
-        const newDiv = document.querySelector('.tel-item');
-        if (newDiv) {
-          newDiv.remove();
-          isDivCreated = false;
-        }
-      }
-    }
-  });
-
   // hamburger for mobile
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
   hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-       <span class="nav-hamburger-icon"></span>
-     </button>`;
+    <span class="nav-hamburger-icon"></span>
+  </button>`;
   hamburger.addEventListener('click', () => {
-    toggleMenu(nav, navSections);
-    if (mobileMenu) {
-      if (nav.getAttribute('aria-expanded') === 'true') {
-        setTimeout(() => {
-          mobileMenu.classList.add('mobile-menu-open');
-          mobileMenu.classList.remove('closing');
-        }, 0);
-      } else {
-        mobileMenu.classList.remove('mobile-menu-open');
-      }
-    }
+    hamburgerOnClick(nav, navSections, navTools, mobileMenu);
   });
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
   // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+  isDesktop.addEventListener('change', () => {
+    toggleMenu(nav, navSections, isDesktop.matches);
+    navTools.querySelector('.tel-item')?.remove(); // Remove the tel-item if open on Desktop
+  });
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
