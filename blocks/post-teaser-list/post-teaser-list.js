@@ -1,5 +1,5 @@
 import { getRelatedBlogContent } from '../../scripts/scripts.js';
-import { decorateButtons, readBlockConfig } from '../../scripts/aem.js';
+import { createOptimizedPicture, decorateButtons, readBlockConfig } from '../../scripts/aem.js';
 
 function createPostLink(post) {
   const anchor = document.createElement('a');
@@ -23,9 +23,8 @@ export default function decorate(block) {
       // create thumbnail
       const thumbnailLink = createPostLink(post);
       teaser.append(thumbnailLink);
-      const thumbnail = document.createElement('img');
-      thumbnail.src = post.image;
-      thumbnail.alt = post.title;
+      const thumbnail = createOptimizedPicture(post.image, post.title);
+      thumbnail.classList.add('teaser-thumbnail');
       thumbnailLink.append(thumbnail);
 
       // create content
