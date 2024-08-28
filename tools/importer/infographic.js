@@ -50,7 +50,12 @@ function setMetadata(meta, document) {
   const path = getPath(url);
   const pubDate = document.querySelector('p.cmp-calendarattributeprojection');
   meta.template = 'resource-center';
-  meta['media-type'] = 'Infographic'; // all pages should have a value for this
+  if (document.documentURI.includes('info-sheets')) {
+    meta['media-type'] = 'Info Sheets';
+  } else {
+    meta['media-type'] = 'Infographic';
+  }
+  meta['media-type'] = 'Info Sheets'; // all pages should have a value for this
   meta['publication-date'] = pubDate.innerHTML;
   meta['twitter:title'] = meta.Title;
   meta['twitter:description'] = meta.Description;
@@ -73,10 +78,13 @@ function fixDynamicMedia(main, document) {
 }
 
 function transformDownloadBlock(main, document) {
-  const downloadBlock = main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid');
+  const downloadBlock = main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid') ? main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid') : main.querySelector('div.col-lg-3.cmp-columnrow__item div.pagesection > div.cmp-pagesection > div.aem-Grid');
 
   const cells = [['Download']];
-  const title = downloadBlock.querySelector('div.text > h4') ? downloadBlock.querySelector('div.text > h4').innerText : downloadBlock.querySelector('div.cmp-previeweddownload__title > h4').innerText;
+  let title = '';
+  if (downloadBlock.querySelector('h4')) {
+    title = downloadBlock.querySelector('div.text > h4') ? downloadBlock.querySelector('div.text > h4').innerText : downloadBlock.querySelector('div.cmp-previeweddownload__title > h4').innerText;
+  }
   cells.push(['title', title]);
   cells.push(['image', downloadBlock.querySelector('div.previeweddownload > div.cmp-previeweddownload > div.cmp-previeweddownload__image > a > img')]);
   const dlLink = downloadBlock.querySelector('div.previeweddownload > div.cmp-previeweddownload > div.cmp-previeweddownload__image > a');
