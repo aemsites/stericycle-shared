@@ -104,6 +104,6 @@ main .section.flip-cards-container {
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-main .section.flip-cards-container > div {
+main .section.flip-cards-container > .flip-cards-wrapper {
   padding: 0 32px;
 }

@@ -1,5 +1,5 @@
 import {
-  buildBlock,
+  buildBlock, decorateBlock,
   decorateBlocks,
   decorateButtons,
   decorateIcons,
@@ -122,50 +122,73 @@ function buildHeroBlock(main) {
 }
 
 /**
- * Builds section with metadata position set to sidebar.
- */
-function buildSidebarSection() {
-  const section = document.createElement('div');
-  const metadata = document.createElement('div');
-  metadata.classList.add('section-metadata');
-  section.append(metadata);
-
-  const row = document.createElement('div');
-
-  const positionKey = document.createElement('div');
-  positionKey.textContent = 'Position';
-  row.append(positionKey);
-
-  const positionValue = document.createElement('div');
-  positionValue.textContent = 'Sidebar';
-  row.append(positionValue);
-
-  metadata.append(row);
-  return section;
-}
-
-/**
  * Builds service location template auto blocks and add them to the page.
  * @param {Element} main The container element
  */
 function buildServiceLocationAutoBlocks(main) {
-  const formSection = buildSidebarSection();
-  formSection.prepend(buildBlock('get-a-quote-form', { elems: [] }));
-  main.prepend(formSection);
+  const pageContent = main.querySelector('.page-content');
+  const pageSidebar = main.querySelector('.page-sidebar');
+  const lastContentSection = pageContent.querySelector('.section:last-of-type');
 
-  const ctaSection = document.createElement('div');
-  ctaSection.append(buildBlock('simple-cta', { elems: [] }));
-  main.append(ctaSection);
+  // GET-A-QUOTE FORM
+  const formSection = document.createElement('div');
+  formSection.classList.add('section');
+  const form = buildBlock('get-a-quote-form', { elems: [] });
+  formSection.prepend(form);
+  pageSidebar.prepend(formSection);
+  decorateBlock(form);
 
-  const flipCardsSection = document.createElement('div');
-  const flipCardsConfig = document.createElement('div');
-  flipCardsSection.append(buildBlock('flip-cards', { elems: [flipCardsConfig] }));
-  main.append(flipCardsSection);
+  // CTA
+  const ctaWrapper = document.createElement('div');
+  const ctaText = document.createElement('H4');
+  ctaText.textContent = 'Buy your one-time shredding services online now';
+  const cta = buildBlock('simple-cta', { elems: [ctaText] });
+  const ctaButtonWrapper = document.createElement('div');
+  const ctaButton = document.createElement('a');
+  ctaButton.textContent = 'Buy Online';
+  ctaButton.href = 'https://shop-shredit.stericycle.com/commerce_storefront_ui/PurgeWizard.aspx?referrer_url=https://www.shredit.com/en-us/service-locations/greensboro&adobe_mc=MCMID%3D62149416262388660511472413641287259536%7CMCORGID%3DFB4A583F5FEDA3EA0A495EE3%2540AdobeOrg%7CTS%3D1724077192';
+  ctaButtonWrapper.append(ctaButton);
+  decorateButtons(ctaButtonWrapper);
+  cta.querySelector('div').append(ctaButtonWrapper);
+  ctaWrapper.append(cta);
+  lastContentSection.append(ctaWrapper);
+  decorateBlock(cta);
 
+  // SERVICES FLIP CARDS
+  const flipCardPages = [
+    { icon: 'service-one-time-shredding-icon-w', href: '/en-us/secure-shredding-services/one-off-shredding-service' },
+    { icon: 'service-regularly-schedule-shredding-icon-w', href: '/en-us/secure-shredding-services/paper-shredding-services' },
+    { icon: 'service-hard-drive-icon-w', href: '/en-us/secure-shredding-services/hard-drive-destruction' },
+    { icon: 'service-resedential-icon-w', href: '/en-us/secure-shredding-services/residential-shredding-services' },
+  ];
+  const flipCardsWrapper = document.createElement('div');
+  const flipCardsIconRow = [];
+  const flipCardsLinkRow = [];
+  flipCardPages.forEach((page) => {
+    const icon = document.createElement('span');
+    icon.classList.add('icon', `icon-${page.icon}`);
+    flipCardsIconRow.push(icon);
+    const link = document.createElement('a');
+    link.textContent = page.href;
+    link.href = page.href;
+    flipCardsLinkRow.push(link);
+  });
+  const flipCards = buildBlock('flip-cards', [flipCardsIconRow, flipCardsLinkRow]);
+  decorateIcons(flipCards);
+  flipCardsWrapper.append(flipCards);
+  lastContentSection.append(flipCardsWrapper);
+  decorateBlock(flipCards);
+
+  // POST TEASER
   const teaserSection = document.createElement('div');
-  const teaserConfig = document.createElement('div');
-  teaserSection.append(buildBlock('post-teaser-list', { elems: [teaserConfig] }));
-  main.append(teaserSection);
+  const teaserConfig = [
+    ['Type', 'All resources'],
+    ['Columns', '3'],
+  ];
+  const teaser = buildBlock('post-teaser-list', teaserConfig);
+  teaserSection.append(teaser);
+  lastContentSection.append(teaserSection);
+  decorateBlock(teaser);
 }
 
 /**
@@ -189,9 +212,6 @@ function buildAutoBlocks(main) {
     if (!document.querySelector('body.blog-page')) {
       // blog pages don't use the hero block
       buildHeroBlock(main);
-    }
-    if (document.querySelector('body.service-location-page')) {
-      buildServiceLocationAutoBlocks(main);
     }
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -344,6 +364,7 @@ async function decorateServiceLocationTemplate(main) {
   if (main.parentElement && main.parentElement.matches('body[class="service-location-page"]')) {
     main.parentElement.classList.add('with-sidebar');
     await decorateSidebarTemplate(main);
+    buildServiceLocationAutoBlocks(main);
   }
 }
 

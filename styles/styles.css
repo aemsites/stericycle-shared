@@ -211,6 +211,15 @@ p, dl, ol, ul, pre, blockquote {
   margin: 0;
 }
 
+main .default-content-wrapper p,
+main .default-content-wrapper dl,
+main .default-content-wrapper ol,
+main .default-content-wrapper ul,
+main .default-content-wrapper pre,
+main .default-content-wrapper blockquote {
+  margin: 0 0 16px;
+}
+
 code, pre {
   color: var(--color-text);
   font-family: var(--font-family-fixed);
