@@ -1,5 +1,5 @@
 import {
-  buildBlock, decorateBlock,
+  buildBlock,
   decorateBlocks,
   decorateButtons,
   decorateIcons,
@@ -14,6 +14,8 @@ import {
   waitForLCP,
 } from './aem.js';
 import ffetch from './ffetch.js';
+
+import decorateServiceLocationTemplate from '../templates/service-location-page.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -132,76 +134,6 @@ function buildHeroBlock(main) {
 }
 
 /**
- * Builds service location template auto blocks and add them to the page.
- * @param {Element} main The container element
- */
-function buildServiceLocationAutoBlocks(main) {
-  const pageContent = main.querySelector('.page-content');
-  const pageSidebar = main.querySelector('.page-sidebar');
-  const lastContentSection = pageContent.querySelector('.section:last-of-type');
-
-  // GET-A-QUOTE FORM
-  const formSection = document.createElement('div');
-  formSection.classList.add('section');
-  const form = buildBlock('get-a-quote-form', { elems: [] });
-  formSection.prepend(form);
-  pageSidebar.prepend(formSection);
-  decorateBlock(form);
-
-  // CTA
-  const ctaWrapper = document.createElement('div');
-  const ctaText = document.createElement('H4');
-  ctaText.textContent = 'Buy your one-time shredding services online now';
-  const cta = buildBlock('simple-cta', { elems: [ctaText] });
-  const ctaButtonWrapper = document.createElement('div');
-  const ctaButton = document.createElement('a');
-  ctaButton.textContent = 'Buy Online';
-  ctaButton.href = 'https://shop-shredit.stericycle.com/commerce_storefront_ui/PurgeWizard.aspx?referrer_url=https://www.shredit.com/en-us/service-locations/greensboro&adobe_mc=MCMID%3D62149416262388660511472413641287259536%7CMCORGID%3DFB4A583F5FEDA3EA0A495EE3%2540AdobeOrg%7CTS%3D1724077192';
-  ctaButtonWrapper.append(ctaButton);
-  decorateButtons(ctaButtonWrapper);
-  cta.querySelector('div').append(ctaButtonWrapper);
-  ctaWrapper.append(cta);
-  lastContentSection.append(ctaWrapper);
-  decorateBlock(cta);
-
-  // SERVICES FLIP CARDS
-  const flipCardPages = [
-    { icon: 'service-one-time-shredding-icon-w', href: '/en-us/secure-shredding-services/one-off-shredding-service' },
-    { icon: 'service-regularly-schedule-shredding-icon-w', href: '/en-us/secure-shredding-services/paper-shredding-services' },
-    { icon: 'service-hard-drive-icon-w', href: '/en-us/secure-shredding-services/hard-drive-destruction' },
-    { icon: 'service-resedential-icon-w', href: '/en-us/secure-shredding-services/residential-shredding-services' },
-  ];
-  const flipCardsWrapper = document.createElement('div');
-  const flipCardsIconRow = [];
-  const flipCardsLinkRow = [];
-  flipCardPages.forEach((page) => {
-    const icon = document.createElement('span');
-    icon.classList.add('icon', `icon-${page.icon}`);
-    flipCardsIconRow.push(icon);
-    const link = document.createElement('a');
-    link.textContent = page.href;
-    link.href = page.href;
-    flipCardsLinkRow.push(link);
-  });
-  const flipCards = buildBlock('flip-cards', [flipCardsIconRow, flipCardsLinkRow]);
-  decorateIcons(flipCards);
-  flipCardsWrapper.append(flipCards);
-  lastContentSection.append(flipCardsWrapper);
-  decorateBlock(flipCards);
-
-  // POST TEASER
-  const teaserSection = document.createElement('div');
-  const teaserConfig = [
-    ['Type', 'All resources'],
-    ['Columns', '3'],
-  ];
-  const teaser = buildBlock('post-teaser-list', teaserConfig);
-  teaserSection.append(teaser);
-  lastContentSection.append(teaserSection);
-  decorateBlock(teaser);
-}
-
-/**
  * load fonts.css and set a session storage flag
  */
 async function loadFonts() {
@@ -241,30 +173,6 @@ function modifyBigNumberList(main) {
       item.append(span);
     });
   });
-}
-
-async function decorateSidebarTemplate(main) {
-  const bodyWrapper = document.createElement('div');
-  bodyWrapper.classList.add('body-wrapper');
-  main.append(bodyWrapper);
-
-  const leftColumn = document.createElement('div');
-  leftColumn.classList.add('page-content');
-  const rightColumn = document.createElement('div');
-  rightColumn.classList.add('page-sidebar');
-
-  const sections = main.parentElement.querySelectorAll('main > div.section');
-  sections.forEach((section) => {
-    if (section.attributes.getNamedItem('data-position')?.value.toLowerCase() === 'sidebar') {
-      rightColumn.append(section);
-      section.attributes.removeNamedItem('data-position');
-    } else if (!section.classList.contains('hero-container')) {
-      leftColumn.append(section);
-    }
-  });
-
-  bodyWrapper.append(leftColumn);
-  bodyWrapper.append(rightColumn);
 }
 
 function decorateSectionTemplates(main) {
@@ -324,57 +232,58 @@ function getBlogBaseUrl(url) {
 }
 
 async function decorateBlogTemplate(main) {
-  if (main.parentElement && main.parentElement.matches('body[class="blog-page"]')) {
-    const blogBreadcrumb = getMetadata('blog-breadcrumb') || 'Blog';
-    const { title } = document;
-    const leftColumn = document.createElement('div');
-    leftColumn.classList.add('blog-content');
-    const rightColumn = document.createElement('div');
-    rightColumn.classList.add('related-content');
-    // Create related content wrapper
-    const rcWrapper = document.createElement('div');
-    rcWrapper.classList.add('related-content-wrapper');
+  const blogBreadcrumb = getMetadata('blog-breadcrumb') || 'Blog';
+  const { title } = document;
+  const leftColumn = document.createElement('div');
+  leftColumn.classList.add('blog-content');
+  const rightColumn = document.createElement('div');
+  rightColumn.classList.add('related-content');
+  // Create related content wrapper
+  const rcWrapper = document.createElement('div');
+  rcWrapper.classList.add('related-content-wrapper');
 
-    const rcHeader = document.createElement('h4');
-    rcHeader.classList.add('related-content-header');
-    rcWrapper.append(rcHeader);
-    const mainSection = main.querySelector('div.section');
-    const defaultContent = main.querySelector('div.section > div.default-content-wrapper');
-    leftColumn.append(...defaultContent.childNodes);
-    rightColumn.append(rcWrapper);
-    defaultContent.prepend(rightColumn);
-    defaultContent.prepend(leftColumn);
+  const rcHeader = document.createElement('h4');
+  rcHeader.classList.add('related-content-header');
+  rcWrapper.append(rcHeader);
+  const mainSection = main.querySelector('div.section');
+  const defaultContent = main.querySelector('div.section > div.default-content-wrapper');
+  leftColumn.append(...defaultContent.childNodes);
+  rightColumn.append(rcWrapper);
+  defaultContent.prepend(rightColumn);
+  defaultContent.prepend(leftColumn);
 
-    // Create title breadcrumb
-    const titleBreadcrumb = document.createElement('span');
-    titleBreadcrumb.classList.add('title-breadcrumb');
-    titleBreadcrumb.textContent = title;
+  // Create title breadcrumb
+  const titleBreadcrumb = document.createElement('span');
+  titleBreadcrumb.classList.add('title-breadcrumb');
+  titleBreadcrumb.textContent = title;
 
-    // Create blog breadcrumb with a link
-    const blogBreadcrumbElement = document.createElement('p');
-    blogBreadcrumbElement.classList.add('blog-breadcrumb');
-    // Get the blog base URL
-    const blogBaseUrl = getBlogBaseUrl(window.location.href);
-    const blogLinkElement = document.createElement('a');
-    blogLinkElement.textContent = blogBreadcrumb;
-    blogLinkElement.href = blogBaseUrl;
-    blogLinkElement.setAttribute('aria-label', blogBreadcrumb);
-    blogBreadcrumbElement.append(blogLinkElement, titleBreadcrumb);
+  // Create blog breadcrumb with a link
+  const blogBreadcrumbElement = document.createElement('p');
+  blogBreadcrumbElement.classList.add('blog-breadcrumb');
+  // Get the blog base URL
+  const blogBaseUrl = getBlogBaseUrl(window.location.href);
+  const blogLinkElement = document.createElement('a');
+  blogLinkElement.textContent = blogBreadcrumb;
+  blogLinkElement.href = blogBaseUrl;
+  blogLinkElement.setAttribute('aria-label', blogBreadcrumb);
+  blogBreadcrumbElement.append(blogLinkElement, titleBreadcrumb);
 
-    // Create a wrapper div for breadcrumbs
-    const breadcrumbWrapper = document.createElement('div');
-    breadcrumbWrapper.classList.add('breadcrumb-wrapper');
-    breadcrumbWrapper.append(blogBreadcrumbElement);
-    // add the breadcrumbWrapper to the start of the leftColumn
-    mainSection.prepend(breadcrumbWrapper);
-  }
+  // Create a wrapper div for breadcrumbs
+  const breadcrumbWrapper = document.createElement('div');
+  breadcrumbWrapper.classList.add('breadcrumb-wrapper');
+  breadcrumbWrapper.append(blogBreadcrumbElement);
+  // add the breadcrumbWrapper to the start of the leftColumn
+  mainSection.prepend(breadcrumbWrapper);
 }
 
-async function decorateServiceLocationTemplate(main) {
-  if (main.parentElement && main.parentElement.matches('body[class="service-location-page"]')) {
-    main.parentElement.classList.add('with-sidebar');
-    await decorateSidebarTemplate(main);
-    buildServiceLocationAutoBlocks(main);
+function decorateTemplates(main) {
+  if (!main.parentElement) {
+    return;
+  }
+  if (main.parentElement.matches('body[class="blog-page"]')) {
+    decorateBlogTemplate(main);
+  } else if (main.parentElement.matches('body[class="service-location-page"]')) {
+    decorateServiceLocationTemplate(main);
   }
 }
 
@@ -390,8 +299,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
-  decorateBlogTemplate(main);
-  decorateServiceLocationTemplate(main);
+  decorateTemplates(main);
   modifyBigNumberList(main);
   decorateSectionTemplates(main);
 }
