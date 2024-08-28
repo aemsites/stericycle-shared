@@ -62,43 +62,53 @@ export function getLocale() {
 }
 
 /**
- * Get related blog content based on page tags. Currently doesn't filter out the existing page or
+ * Get related posts based on page tags. Currently doesn't filter out the existing page or
  * fill up the array if there are not enough related posts
- * @param {array} tags - tags from the page
+ * @param {array} types - related post type(s)
+ * @param {array} tags - related post tag(s)
  * @param {number} limit - the max number of related posts to return
  * @returns {Promise<*[]>}
  */
-export async function getRelatedBlogContent(tags, limit) {
-  const sessionKey = 'blog-posts';
-  const storedPosts = sessionStorage.getItem(sessionKey);
-  const postarray = [];
-  let count = 0;
-  let pTags = 'Blogs';
-  if (tags) {
-    pTags = tags.replace('Blogs', 'bp'); // swap out Blog from the tag from the page to something arbitrary
-  }
-  const pageTags = JSON.stringify(pTags.split(','));
-
-  let posts = [];
-  if (!storedPosts) {
-    posts = await ffetch('/query-index.json').sheet('blog').all();
-    sessionStorage.setItem(sessionKey, JSON.stringify(posts));
-  } else {
-    posts = JSON.parse(storedPosts);
-  }
-  posts.forEach((post) => {
-    // if (containsTag(JSON.parse(post.tags), JSON.parse(post.tags))) {
-    if (arraysHaveMatchingItem(JSON.parse(post.tags), pageTags) && count < limit) {
-      postarray.push(post);
-      // eslint-disable-next-line no-plusplus
-      count++;
+export async function getRelatedPosts(types, tags, limit) {
+  const sheets = [];
+  types.forEach((type) => {
+    // add sheet
+    let sheet = type.toLowerCase().replace(' ', '-');
+    if (sheet === 'blogs') {
+      sheet = 'blog'; // TODO: remove this after renaming sheet
     }
+    sheets.push(sheet);
   });
-
-  if (postarray.length === 0) {
-    postarray.push(posts[0], posts[1], posts[2], posts[3]);
+  if (sheets.length === 0) {
+    sheets.push('blog'); // default
   }
-  return postarray;
+
+  // fetch all posts by type
+  let posts = [];
+  const fetchResults = await Promise.all(sheets.map(async (sheet) => ffetch('/query-index.json').sheet(sheet).all()));
+  fetchResults.forEach((fetchResult) => posts.push(...fetchResult));
+  if (types.length > 1) {
+    // this could become a performance problem with a huge volume of posts
+    posts = posts.sort((a, b) => b.date - a.date);
+  }
+
+  // filter posts by tags
+  const filteredPosts = [];
+  if (tags) {
+    let count = 0;
+    posts.forEach((post) => {
+      if ((!tags || arraysHaveMatchingItem(post.tags, tags)) && count < limit) {
+        filteredPosts.push(post);
+        count += 1;
+      }
+    });
+  }
+
+  // fallback if no matching tags were found
+  if (filteredPosts.length === 0) {
+    return posts.slice(0, limit + 1);
+  }
+  return filteredPosts;
 }
 
 /**
