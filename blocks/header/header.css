@@ -49,6 +49,15 @@ header nav .nav-brand img {
 
 .nav-sections .icon-search {
   order: 1;
+  display: flex;
+}
+
+header .hide {
+  display: none;
+}
+
+header .unhide {
+  display: flex;
 }
 
 .nav-sections .icon-search:hover {
@@ -741,7 +750,7 @@ strong.remove {
     position: relative;
   }
 
-  .nav-drop[aria-expanded="false"] .nav-drop-content li ul {
+  .nav-drop:hover .nav-drop-content li ul {
     display: unset;
     list-style-type: none;
     padding: 0;
@@ -765,14 +774,25 @@ strong.remove {
     color: black;
 }
 
-  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded="true"] > ul, header nav .nav-tools .default-content-wrapper > ul > li[aria-expanded="true"] > ul {
-    display: block;
-    position: absolute;
-    left: -1em;
-    margin-top: 12px;
+  header nav .nav-tools .default-content-wrapper > ul > li[aria-expanded="true"] > ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     padding: 1em;
-    background-color: var(--color-gray);
-    white-space: initial;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li:hover > ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1em;
+    margin-top: 0;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li:hover > ul.single-column {
+    display: flex;
+    flex-direction: column;
+    gap: unset;
   }
 
   /* tel icon */
@@ -820,12 +840,6 @@ strong.remove {
     gap: 20px;
   }
 
-  header nav .nav-sections .nav-drop:hover .nav-drop-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
   header nav .nav-sections .nav-drop.last .nav-drop-content {
     transform: translateX(-65%);
     gap: 20px;
@@ -833,15 +847,6 @@ strong.remove {
 
   header nav .nav-sections .nav-drop.last .nav-drop-content li {
     padding: 5px 0;
-  }
-
-  header nav .nav-sections .nav-drop:hover .nav-drop-content.single-column {
-    display: unset;
-    min-width: 300px;
-  }
-
-  header nav .nav-sections .nav-drop:hover .nav-drop-content.single-column li {
-    font-weight: 100;
   }
 
   .search-box-container {
