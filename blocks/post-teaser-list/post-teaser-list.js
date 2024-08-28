@@ -9,9 +9,13 @@ function createPostLink(post) {
 }
 
 export default function decorate(block) {
-  const { type } = readBlockConfig(block);
+  const { type, columns } = readBlockConfig(block);
+  let columnCount = parseInt(columns, 10);
+  if (Number.isNaN(columnCount)) {
+    columnCount = 4;
+  }
   block.innerHTML = '';
-  getRelatedPosts((type || '').split(/,\s*]/), type, 4).then((posts) => {
+  getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
     const list = document.createElement('ul');
     list.classList.add('teaser-list');
     posts.forEach((post) => {

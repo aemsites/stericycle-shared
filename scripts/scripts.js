@@ -106,7 +106,7 @@ export async function getRelatedPosts(types, tags, limit) {
 
   // fallback if no matching tags were found
   if (filteredPosts.length === 0) {
-    filteredPosts.push(posts[0], posts[1], posts[2], posts[3]);
+    return posts.slice(0, limit + 1);
   }
   return filteredPosts;
 }
