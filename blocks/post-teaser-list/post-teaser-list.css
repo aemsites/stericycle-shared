@@ -74,3 +74,39 @@
 .post-teaser-list.cards > .teaser-list > .teaser > .teaser-content {
   padding: 0 16px;
 }
+
+/* LOADING */
+
+.post-teaser-list > .teaser-list > .teaser.loading .teaser-thumbnail {
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: shimmer;
+  animation-timing-function: linear;
+  background: var(--color-medium-gray);
+  background: linear-gradient(to right, var(--color-medium-gray) 5%, #DADEDF 20%, var(--color-medium-gray) 50%);
+  background-size: 1200px 100%;
+}
+
+.post-teaser-list > .teaser-list > .teaser.loading .teaser-content {
+  flex: unset;
+  height: 200px;
+}
+
+@-webkit-keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1200px 0;
+  }
+  100% {
+    background-position: 1200px 0;
+  }
+}
