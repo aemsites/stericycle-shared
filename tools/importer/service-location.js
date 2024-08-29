@@ -335,7 +335,7 @@ export default {
       transformColumns(main);
 
       // transform layout
-      main.querySelector('div.col-lg-3.order-2.offset-lg-1.d-lg-none.d-md-none.cmp-columnrow__item').remove(); // remove duplicate details
+      WebImporter.DOMUtils.remove(main, ['div.col-lg-3.d-md-none.cmp-columnrow__item']); // remove duplicate details
       transformSidebar(main);
     } else if (meta.template === 'service-location-page-2') {
       main.querySelector('div.pagesection.responsivegrid.ss-bg-color--gray.aem-GridColumn.aem-GridColumn--default--12').remove(); // remove auto-blocked section
