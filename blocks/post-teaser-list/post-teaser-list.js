@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { formatDate, getDateFromExcel, getRelatedPosts } from '../../scripts/scripts.js';
 import { createOptimizedPicture, decorateButtons, readBlockConfig } from '../../scripts/aem.js';
 
