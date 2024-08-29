@@ -111,11 +111,15 @@ function addInfoColumns(main) {
 function decorate(main) {
   const autoSection = document.createElement('div');
   autoSection.classList.add('section', 'gray-background');
-
   addServiceCards(autoSection);
   addCtaCard(autoSection);
   addInfoColumns(autoSection);
-  main.append(autoSection);
+  const contentSection = document.querySelector('.section.with-image');
+  if (contentSection) {
+    contentSection.insertAdjacentElement('afterend', autoSection);
+  } else {
+    main.append(autoSection);
+  }
 
   const disclaimerSection = document.createElement('div');
   disclaimerSection.classList.add('section', 'centered-text');
