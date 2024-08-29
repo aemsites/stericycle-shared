@@ -5,6 +5,33 @@
     overflow-x: auto;
 }
 
+.tabs.vertical {
+    display: flex;
+}
+
+.tabs.vertical .tabs-list {
+    flex-direction: column;
+    margin-bottom: 3.75rem;
+    -ms-flex-preferred-size: 30%;
+    flex-basis: 30%;
+    flex-shrink: 0;
+    border-right: 2px solid #c0c6c6;
+}
+
+.tabs.vertical .tabs-panel {
+    display: flex;
+    margin: 0;
+}
+
+.tabs.vertical .tabs-list button {
+    display: flex;
+}
+
+.tabs.vertical .tabs-list button .icon {
+    width: 30px;
+    height: 30px;
+}
+
 .tabs .tabs-list button {
     flex: 0 0 max-content;
     margin: 0;
@@ -29,6 +56,10 @@
     cursor: initial;
 }
 
+.tabs.vertical .tabs-list button[aria-selected="true"] {
+    text-decoration: underline;
+}
+
 .tabs .tabs-list button[aria-selected="false"]:hover,
 .tabs .tabs-list button[aria-selected="false"]:focus {
     background-color: var(--dark-color);
@@ -41,6 +72,25 @@
     overflow: auto;
 }
 
+.tabs.vertical .tabs-panel h3 { 
+    color: #133b5c;
+}
+
 .tabs .tabs-panel[aria-hidden="true"] {
     display: none;
+}
+
+.tabs.vertical .tabs-list button[aria-selected="false"] {
+    filter: grayscale(100%);
+}
+
+.tabs.vertical .tabs-list button[aria-selected="false"]:hover{
+    filter: none;
+    text-decoration: underline;
+}
+
+@media (min-width: 992px) {
+    .tabs.vertical .tabs-list button .icon {
+        line-height: 1.5rem;
+    }
 }
