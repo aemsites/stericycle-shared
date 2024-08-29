@@ -63,7 +63,7 @@ function addCtaCard(main) {
   button.target = '_blank';
   buttonWrapper.append(button);
 
-  const cards = [[icon], [heading], [description], [buttonWrapper]];
+  const cards = [[icon], [heading], [{ elems: [description, buttonWrapper] }]];
   const cardsWrapper = document.createElement('div');
   const cardsBlock = buildBlock('cards', cards);
   cardsBlock.classList.add('full-width', 'navy-headings');
