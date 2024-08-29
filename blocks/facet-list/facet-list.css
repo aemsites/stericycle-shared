@@ -57,6 +57,40 @@ div.facet-list-container div.results div.item-date {
     transition: max-height .35s ease;
 }
 
+div.facet-list-wrapper div.pagination-controls {
+    display: flex;
+    flex-direction: column;
+}
+
+div.facet-list-wrapper ul.pagination {
+    list-style: none outside none;
+    margin-left: auto;
+    margin-bottom: 1rem;
+}
+
+div.facet-list-wrapper ul.pagination li > button:disabled {
+    border: unset;
+    background-color: unset;
+    color: rgb(16 16 16 / 30%);
+    margin-right: .5rem;
+    font-size: inherit;
+}
+
+div.facet-list-wrapper ul.pagination > li {
+    border-bottom: unset;
+    margin-bottom: unset;
+    padding-bottom: unset;
+    display: inline-block;
+}
+
+div.facet-list-wrapper ul.pagination li > button:enabled {
+    border: unset;
+    background-color: unset;
+    color: rgb(16 16 16 / 30%);
+    margin-right: .5rem;
+    font-size: inherit;
+}
+
 @media screen and (min-width: 992px) {
     div.facet-list-container h3 {
         font-size: 1.625rem;

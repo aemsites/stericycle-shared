@@ -4,13 +4,45 @@ import {
   createOptimizedPicture, fetchPlaceholders, readBlockConfig,
 } from '../../scripts/aem.js';
 
+const ITEMS_PER_PAGE = 10;
+let CURRENT_PAGE = 1;
+
+function createPaginationControls(totalPages, currentPage, ul, controls, sheet) {
+  controls.innerHTML = ''; // Clear previous controls
+  const pageUL = document.createElement('ul');
+  pageUL.classList.add('pagination');
+
+  const prev = document.createElement('li');
+  const buttonPrev = document.createElement('button');
+  buttonPrev.textContent = 'Previous';
+  buttonPrev.disabled = currentPage === 1;
+  buttonPrev.addEventListener('click', () => {
+    CURRENT_PAGE -= 1;
+    updateResults(null, sheet, CURRENT_PAGE);
+  });
+
+  const next = document.createElement('li');
+  const buttonNext = document.createElement('button');
+  buttonNext.textContent = 'Next';
+  buttonNext.disabled = currentPage === totalPages;
+  buttonNext.addEventListener('click', () => {
+    CURRENT_PAGE += 1;
+    updateResults(null, sheet, CURRENT_PAGE);
+  });
+
+  pageUL.append(prev, next);
+  controls.append(pageUL);
+  prev.append(buttonPrev);
+  next.append(buttonNext);
+}
+
 /*
     * This function gets the results from the query-index.json file based on sheet name
  */
 async function getResults(sheet) {
   const postArray = [];
   const posts = await ffetch('/query-index.json').sheet(sheet || 'blog')
-    .limit(10).all();
+    .limit(ITEMS_PER_PAGE).all();
   posts.forEach((post) => {
     postArray.push(post);
   });
@@ -115,31 +147,38 @@ function filterTags(cbox, includes) {
     * @param {Object} checkboxChange - the checkbox that was clicked
     * @param {String} sheet - the sheet name
  */
-async function updateResults(checkboxChange, sheet) {
+async function updateResults(checkboxChange, sheet, page = 1) {
   const postArray = [];
   const posts = await ffetch('/query-index.json').sheet(sheet || 'blog')
-    .map((post) => ({
-      tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
-      title: post.title, // Include the title
-      date: post.date, // Include the date
-      image: post.image, // Include the image
-    }))
-    .filter((post) => filterTags(checkboxChange, post.tags.includes(checkboxChange.value)))
-    .limit(10)
-    .all();
-  posts.forEach((post) => {
-    postArray.push(post);
-  });
+      .map((post) => ({
+        tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
+        title: post.title,
+        date: post.date,
+        image: post.image,
+      }))
+      .filter((post) => !checkboxChange || filterTags(checkboxChange, post.tags.includes(checkboxChange.value)))
+      .all();
+
+  const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
+  const start = (page - 1) * ITEMS_PER_PAGE;
+  const end = start + ITEMS_PER_PAGE;
+  const paginatedPosts = posts.slice(start, end);
+
   const flc = document.querySelector('div.facet-list-container> div.results> ul');
   flc.innerHTML = '';
-  decorateResults(postArray, flc, sheet);
+  decorateResults(paginatedPosts, flc, sheet);
 
-  const checkboxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]');
-  checkboxes.forEach((checkbox) => {
-    if (checkbox.value !== checkboxChange.value) {
-      checkbox.checked = false;
-    }
-  });
+  const paginationControls = document.querySelector('div.pagination-controls');
+  createPaginationControls(totalPages, page, flc, paginationControls, sheet);
+
+  if (checkboxChange) {
+    const checkboxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.value !== checkboxChange.value) {
+        checkbox.checked = false;
+      }
+    });
+  }
 }
 
 function clickChevron() {
@@ -189,7 +228,6 @@ export default async function decorate(block) {
     label.innerText = `${facet.tag} (${facet.count})`;
     checkbox.type = 'checkbox';
     checkbox.value = facet.tag;
-    // create a listener for the checkbox
     checkbox.addEventListener('change', (cb) => {
       updateResults(cb.target, cfg.sheet);
     });
@@ -209,4 +247,10 @@ export default async function decorate(block) {
   blogFilterContainer.classList.add('facet-list-container');
   blogFilterContainer.append(facetDiv, resultsDiv);
   block.replaceWith(blogFilterContainer);
+
+  const paginationControls = document.createElement('div');
+  paginationControls.classList.add('pagination-controls');
+  blogFilterContainer.insertAdjacentElement('afterend', paginationControls);
+
+  await updateResults(null, cfg.sheet, CURRENT_PAGE);
 }
