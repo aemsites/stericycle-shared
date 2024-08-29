@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import {
- fetchPlaceholders, getMetadata, loadCSS, sampleRUM } from './aem.js';
+  fetchPlaceholders, getMetadata, loadCSS, sampleRUM,
+} from './aem.js';
 // eslint-disable-next-line import/no-cycle
 import { getDateFromExcel, getRelatedPosts } from './scripts.js';
 import decorate from '../blocks/post-teaser-list/post-teaser-list.js';
