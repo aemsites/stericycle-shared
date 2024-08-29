@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/prefer-default-export
-export async function decorateSidebarTemplate(main) {
+export function decorateSidebarTemplate(main) {
   const bodyWrapper = document.createElement('div');
   bodyWrapper.classList.add('body-wrapper');
   main.append(bodyWrapper);

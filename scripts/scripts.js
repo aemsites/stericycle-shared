@@ -16,6 +16,7 @@ import {
 import ffetch from './ffetch.js';
 
 import decorateServiceLocationTemplate from '../templates/service-location-page.js';
+import decorateServiceLocationTemplate2 from '../templates/service-location-page-2.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -284,6 +285,8 @@ function decorateTemplates(main) {
     decorateBlogTemplate(main);
   } else if (main.parentElement.matches('body[class="service-location-page"]')) {
     decorateServiceLocationTemplate(main);
+  } else if (main.parentElement.matches('body[class="service-location-page-2"]')) {
+    decorateServiceLocationTemplate2(main);
   }
 }
 

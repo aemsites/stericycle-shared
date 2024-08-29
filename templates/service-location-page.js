@@ -73,9 +73,9 @@ function buildServiceLocationAutoBlocks(main) {
   decorateBlock(teaser);
 }
 
-async function decorate(main) {
+function decorate(main) {
   main.parentElement.classList.add('with-sidebar');
-  await decorateSidebarTemplate(main);
+  decorateSidebarTemplate(main);
   buildServiceLocationAutoBlocks(main);
 }
 
