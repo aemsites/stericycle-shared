@@ -20,6 +20,17 @@ function buildServiceLocationAutoBlocks(main) {
   pageSidebar.prepend(formSection);
   decorateBlock(form);
 
+  // QUOTE
+  const quoteContent = [
+    ['I like the set schedule of pick up dates the most. Drivers are always courteous and helpful.'],
+    ['Riggs & Associates, CPAs, P.C.'],
+  ];
+  const quoteWrapper = document.createElement('div');
+  const quote = buildBlock('quote', quoteContent);
+  quoteWrapper.append(quote);
+  lastContentSection.append(quoteWrapper);
+  decorateBlock(quote);
+
   // CTA
   const ctaWrapper = document.createElement('div');
   const ctaText = document.createElement('H4');
