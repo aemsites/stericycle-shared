@@ -5,6 +5,7 @@
 .columns > div {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
 }
 
 .columns img {
@@ -26,27 +27,41 @@
   display: block;
 }
 
-.columns.orange-accent-border > div > div,
-.columns.cyan-accent-border > div > div {
-  border-width: 0 0 0 4px;
-  border-style: solid;
-  padding-left: 24px;
+.columns.columns-has-image > div {
+  justify-content: unset;
 }
 
-.columns.orange-accent-border > div > div {
+.columns.orange-accent-border > div > div,
+.columns.cyan-accent-border > div > div,
+.columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img)),
+.columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img)) {
+  border-width: 0 0 0 4px;
+  border-style: solid;
+  padding-left: 1.5rem;
+}
+
+.columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img)),
+.columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img)) {
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.columns.orange-accent-border > div > div,
+.columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img)) {
   border-color: var(--color-orange);
 }
 
-.columns.cyan-accent-border > div > div {
+.columns.cyan-accent-border > div > div,
+.columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img)) {
   border-color: var(--color-cyan);
 }
 
-.columns .button-container a {
-  margin: 0;
-}
-
-.section .columns {
-  margin: 0;
+.columns.orange-accent-border.columns-has-image > div > div,
+.columns.cyan-accent-border.columns-has-image > div > div {
+  border: unset;
+  padding-left: 0;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
@@ -60,11 +75,23 @@
     order: unset;
   }
 
-  .columns.float > div {
-    justify-content: space-between;
+  .columns.orange-accent-border.columns-has-image > div > div,
+  .columns.cyan-accent-border.columns-has-image > div > div {
+    justify-content: unset;
   }
 
-  .columns.float > div > div {
-    flex: unset;
+  .columns.orange-accent-border.columns-has-image > div > div:first-of-type,
+  .columns.cyan-accent-border.columns-has-image > div > div:first-of-type {
+    padding-left: 0;
   }
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.columns-container {
+  padding: 32px 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.columns-container > div {
+  padding: 0 32px;
 }
