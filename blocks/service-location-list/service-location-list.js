@@ -1,34 +1,19 @@
 import { decorateIcons } from '../../scripts/aem.js';
+import ffetch from '../../scripts/ffetch.js';
 
-function fetchLocations() {
-  // TODO: Add caching
-
-  // TODO: replace mock with spreadsheet data
-  const data = [
-    // { slug: '', name: '', region: '' },
-    { slug: 'birmingham-usa', name: 'Birmingham (USA)', region: 'Alabama' },
-    { slug: 'mobile', name: 'Mobile', region: 'Alabama' },
-    { slug: 'huntsville', name: 'Huntsville', region: 'Alabama' },
-    { slug: 'montgomery', name: 'Montgomery', region: 'Alabama' },
-    { slug: 'los-angeles', name: 'Los Angeles', region: 'California' },
-    { slug: 'concord', name: 'Concord', region: 'California' },
-    { slug: 'san-bernardino', name: 'San Bernardino', region: 'California' },
-    { slug: 'san-francisco', name: 'San Francisco', region: 'California' },
-    { slug: 'fresno', name: 'Fresno', region: 'California' },
-    { slug: 'phoenix', name: 'Phoenix', region: 'Arizona' },
-    { slug: 'greensboro', name: 'Greensboro' },
-  ];
+async function fetchLocations() {
+  const rawData = await ffetch('/query-index.json').sheet('locations').all();
 
   // group by region and sort regions
   const regionMap = new Map();
-  data.forEach((entry) => {
+  rawData.forEach((entry) => {
     let locations = [];
-    const region = entry.region || '';
+    const region = entry.state === '0' ? '' : entry.state || '';
     if (regionMap.has(region)) {
       locations = regionMap.get(region);
     }
 
-    locations.push({ slug: entry.slug, name: entry.name });
+    locations.push({ path: entry.path, name: entry.name || entry.city || 'unnamed' });
 
     regionMap.set(region, locations);
   });
@@ -37,35 +22,36 @@ function fetchLocations() {
 }
 
 export default function decorate(block) {
-  const indexUrl = window.location.href.endsWith('/') ? window.location : `${window.window}/`;
-  const regionMap = fetchLocations();
+  fetchLocations().then((regionMap) => {
+    regionMap.forEach((locations, region) => {
+      const state = document.createElement('div');
+      state.classList.add('state');
 
-  regionMap.forEach((locations, region) => {
-    const state = document.createElement('div');
-    state.classList.add('state');
+      if (region !== '') {
+        const stateHeading = document.createElement('H3');
+        stateHeading.innerText = region;
+        state.append(stateHeading);
+      }
 
-    if (region !== '') {
-      const stateHeading = document.createElement('H3');
-      stateHeading.innerText = region;
-      state.append(stateHeading);
-    }
+      const locationList = document.createElement('ol');
+      locationList.classList.add('location-list');
+      locations.forEach((location) => {
+        const locationCard = document.createElement('li');
+        const locationLink = document.createElement('a');
+        locationLink.innerText = location.name;
+        const url = new URL(window.location.href);
+        url.pathname = location.path;
+        locationLink.href = url.href;
+        const icon = document.createElement('span');
+        icon.classList.add('icon', 'icon-circle-chevron-right');
+        locationLink.append(icon);
+        decorateIcons(locationLink);
+        locationCard.append(locationLink);
+        locationList.append(locationCard);
+      });
+      state.append(locationList);
 
-    const locationList = document.createElement('ol');
-    locationList.classList.add('location-list');
-    locations.forEach((location) => {
-      const locationCard = document.createElement('li');
-      const locationLink = document.createElement('a');
-      locationLink.innerText = location.name;
-      locationLink.href = `${indexUrl + location.slug}/`;
-      const icon = document.createElement('span');
-      icon.classList.add('icon', 'icon-circle-chevron-right');
-      locationLink.append(icon);
-      decorateIcons(locationLink);
-      locationCard.append(locationLink);
-      locationList.append(locationCard);
+      block.append(state);
     });
-    state.append(locationList);
-
-    block.append(state);
   });
 }
