@@ -5,6 +5,7 @@ import {
   decorateIcons,
   decorateSections,
   decorateTemplateAndTheme,
+  getMetadata,
   loadBlocks,
   loadCSS,
   loadFooter,
@@ -51,28 +52,63 @@ function arraysHaveMatchingItem(array1, array2) {
   return false;
 }
 
+export function getLocale() {
+  const locale = getMetadata('locale');
+  if (locale && locale.length > 0) {
+    return locale;
+  }
+  // defaulting to en-us
+  return 'en-us';
+}
+
 /**
- * Get related blog content based on page tags. Currently doesn't filter out the existing page or
+ * Get related posts based on page tags. Currently doesn't filter out the existing page or
  * fill up the array if there are not enough related posts
- * @param {array} tags - tags from the page
+ * @param {array} types - related post type(s)
+ * @param {array} tags - related post tag(s)
  * @param {number} limit - the max number of related posts to return
  * @returns {Promise<*[]>}
  */
-export async function getRelatedBlogContent(tags, limit) {
-  const postarray = [];
-  let count = 0;
-  const ptags = tags.replace('Blogs', 'bp'); // swap out Blog from the tag from the page to somthing arbitrary
-  const pageTags = JSON.stringify(ptags.split(','));
-  const posts = await ffetch('/query-index.json').sheet('blog').all();
-  posts.forEach((post) => {
-    // if (containsTag(JSON.parse(post.tags), JSON.parse(post.tags))) {
-    if (arraysHaveMatchingItem(JSON.parse(post.tags), pageTags) && count < limit) {
-      postarray.push(post);
-      // eslint-disable-next-line no-plusplus
-      count++;
+export async function getRelatedPosts(types, tags, limit) {
+  const sheets = [];
+  types.forEach((type) => {
+    // add sheet
+    let sheet = type.toLowerCase().replace(' ', '-');
+    if (sheet === 'blogs') {
+      sheet = 'blog'; // TODO: remove this after renaming sheet
     }
+    sheets.push(sheet);
   });
-  return postarray;
+  if (sheets.length === 0) {
+    sheets.push('blog'); // default
+  }
+
+  // fetch all posts by type
+  let posts = [];
+  const fetchResults = await Promise.all(sheets.map(async (sheet) => ffetch('/query-index.json').sheet(sheet).all()));
+  fetchResults.forEach((fetchResult) => posts.push(...fetchResult));
+  if (types.length > 1) {
+    // this could become a performance problem with a huge volume of posts
+    posts = posts.sort((a, b) => b.date - a.date);
+  }
+
+  // filter posts by tags
+  const filteredPosts = [];
+  if (tags) {
+    let count = 0;
+    posts.forEach((post) => {
+      if ((!tags || arraysHaveMatchingItem(post.tags, tags)) && count < limit) {
+        filteredPosts.push(post);
+        count += 1;
+      }
+    });
+  }
+
+  // fallback if no matching tags were found
+  if (filteredPosts.length === 0) {
+    return posts.slice(0, limit + 1);
+  }
+  return filteredPosts;
 }
 
 /**
@@ -81,9 +117,12 @@ export async function getRelatedBlogContent(tags, limit) {
  */
 function buildHeroBlock(main) {
   const firstSection = main.querySelector('div');
-  const picture = firstSection.children[0]?.firstElementChild;
-  const h1 = firstSection.children[1];
-  if (!picture.matches('picture') || !h1?.matches('h1')) {
+  const h1 = firstSection.querySelector('h1');
+  if (!h1) {
+    return;
+  }
+  const picture = h1.previousElementSibling?.querySelector('picture') || h1.nextElementSibling?.querySelector('picture');
+  if (!picture) {
     return;
   }
 
@@ -110,28 +149,130 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   try {
-    buildHeroBlock(main);
+    if (!document.querySelector('body.blog-page')) {
+      // blog pages don't use the hero block
+      buildHeroBlock(main);
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
 }
 
+function modifyBigNumberList(main) {
+  const bigNumberList = main.querySelectorAll('.list-style-big-numbers');
+  bigNumberList.forEach((list) => {
+    const listItems = list.querySelectorAll('li');
+    listItems.forEach((item) => {
+      // wrap the text content of the list item in the span
+      const span = document.createElement('span');
+      span.innerHTML = item.innerHTML;
+      item.innerHTML = '';
+      item.append(span);
+    });
+  });
+}
+
+function decorateSectionTemplates(main) {
+  const imageSections = main.querySelectorAll('.section.with-image');
+  imageSections.forEach((section) => {
+    // get picture
+    const picture = section.querySelector('div.default-content-wrapper:first-child > p > picture');
+    if (!(picture?.parentElement.childElementCount === 1)) {
+      return; // no valid section image found
+    }
+    // get or create picture wrapper
+    let pictureWrapper;
+    if (picture.parentElement.parentElement.childElementCount === 1) {
+      pictureWrapper = picture.parentElement.parentElement;
+    } else {
+      pictureWrapper = document.createElement('div');
+      pictureWrapper.classList.add('default-content-wrapper');
+      pictureWrapper.append(picture.parentElement);
+    }
+    pictureWrapper.classList.add('section-image-wrapper');
+    // move picture wrapper to section level
+    section.prepend(pictureWrapper);
+    // create a content wrapper
+    const contentWrapper = document.createElement('div');
+    contentWrapper.classList.add('section-content-wrapper');
+    Array.from(section.childNodes).forEach((node) => {
+      if (node !== pictureWrapper) {
+        contentWrapper.appendChild(node);
+      }
+    });
+    if (!section.contains(pictureWrapper)) {
+      section.appendChild(pictureWrapper);
+    }
+    section.appendChild(contentWrapper);
+  });
+}
+
+function getBlogBaseUrl(url) {
+  try {
+    const urlObj = new URL(url);
+    const pathParts = urlObj.pathname.split('/');
+
+    if (pathParts.length > 2 && pathParts[2] === 'blog') {
+      urlObj.pathname = `/${pathParts[1]}/blog`;
+    } else if (pathParts.length > 1 && pathParts[1] === 'blog') {
+      urlObj.pathname = '/blog';
+    } else {
+      throw new Error('URL does not match expected pattern');
+    }
+
+    return urlObj.toString();
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Invalid URL:', error);
+    return null;
+  }
+}
+
 async function decorateBlog(main) {
   if (main.parentElement && main.parentElement.matches('body[class="blog-page"]')) {
-    // console.log('Blog page detected');
+    const blogBreadcrumb = getMetadata('blog-breadcrumb') || 'Blog';
+    const { title } = document;
     const leftColumn = document.createElement('div');
     leftColumn.classList.add('blog-content');
     const rightColumn = document.createElement('div');
     rightColumn.classList.add('related-content');
+    // Create related content wrapper
+    const rcWrapper = document.createElement('div');
+    rcWrapper.classList.add('related-content-wrapper');
+
     const rcHeader = document.createElement('h4');
     rcHeader.classList.add('related-content-header');
-    rightColumn.append(rcHeader);
-
+    rcWrapper.append(rcHeader);
+    const mainSection = main.querySelector('div.section');
     const defaultContent = main.querySelector('div.section > div.default-content-wrapper');
     leftColumn.append(...defaultContent.childNodes);
+    rightColumn.append(rcWrapper);
     defaultContent.prepend(rightColumn);
     defaultContent.prepend(leftColumn);
+
+    // Create title breadcrumb
+    const titleBreadcrumb = document.createElement('span');
+    titleBreadcrumb.classList.add('title-breadcrumb');
+    titleBreadcrumb.textContent = title;
+
+    // Create blog breadcrumb with a link
+    const blogBreadcrumbElement = document.createElement('p');
+    blogBreadcrumbElement.classList.add('blog-breadcrumb');
+    // Get the blog base URL
+    const blogBaseUrl = getBlogBaseUrl(window.location.href);
+    const blogLinkElement = document.createElement('a');
+    blogLinkElement.textContent = blogBreadcrumb;
+    blogLinkElement.href = blogBaseUrl;
+    blogLinkElement.setAttribute('aria-label', blogBreadcrumb);
+    blogBreadcrumbElement.append(blogLinkElement, titleBreadcrumb);
+
+    // Create a wrapper div for breadcrumbs
+    const breadcrumbWrapper = document.createElement('div');
+    breadcrumbWrapper.classList.add('breadcrumb-wrapper');
+    breadcrumbWrapper.append(blogBreadcrumbElement);
+    // add the breadcrumbWrapper to the start of the leftColumn
+    mainSection.prepend(breadcrumbWrapper);
   }
 }
 
@@ -148,6 +289,8 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateBlog(main);
+  modifyBigNumberList(main);
+  decorateSectionTemplates(main);
 }
 
 /**

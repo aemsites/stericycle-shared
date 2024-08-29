@@ -1,12 +1,12 @@
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
-  block.classList.add(`columns-${cols.length}-cols`);
+  block.classList.add(`simple-cta-${cols.length}-cols`);
   let isImageLink = false;
   if (block.querySelector('img')) {
-    block.classList.add('columns-has-image');
+    block.classList.add('simple-cta-has-image');
   }
 
-  // setup image columns
+  // setup image simple-cta
   [...block.children].forEach((row) => {
     [...row.children].forEach((col) => {
       const pic = col.querySelector('picture');
@@ -23,7 +23,7 @@ export default function decorate(block) {
         const picWrapper = pic.closest('div');
         if (picWrapper && picWrapper.children.length === 1) {
           // picture is only content in column
-          picWrapper.classList.add('columns-img-col');
+          picWrapper.classList.add('simple-cta-img-col');
         }
       }
       if (isImageLink) {
