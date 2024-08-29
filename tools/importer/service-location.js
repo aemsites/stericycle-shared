@@ -180,6 +180,21 @@ function transformCards(main) {
   });
 }
 
+function transformFAQ(main) {
+  // card rows
+  main.querySelectorAll('div.accordion').forEach((accordion) => {
+    const cells = [['FAQ']];
+    accordion.querySelectorAll('div.cmp-accordion__item').forEach((item) => {
+      const header = item.querySelector('h4.cmp-accordion__header')?.textContent || '';
+      const body = item.querySelector('div.cmp-accordion__panel > .text')?.textContent || '';
+      cells.push([header, body]);
+    });
+
+    const faqBlock = WebImporter.DOMUtils.createTable(cells, document);
+    accordion.replaceWith(faqBlock);
+  });
+}
+
 function transformSections(main) {
   let isFirstSection = true;
   main.querySelectorAll('div.pagesection').forEach((section) => {
@@ -279,7 +294,9 @@ export default {
       transformSidebar(main);
     } else if (meta.template === 'service-location-page-2') {
       main.querySelector('div.pagesection.responsivegrid.ss-bg-color--gray.aem-GridColumn.aem-GridColumn--default--12').remove(); // remove auto-blocked section
+      main.querySelector('.text.ss-font-size--small > p').remove(); // remove auto-blocked disclaimer;
       // transform layout
+      transformFAQ(main);
       transformCards(main);
       transformSections(main);
       transformImageSection(main);
