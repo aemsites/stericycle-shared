@@ -12,7 +12,52 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
-function setMetadata(meta, document) {
+const req = new XMLHttpRequest();
+let locationMeta = {};
+req.open('GET', '/tools/importer/service-location-data.json', false);
+req.send(null);
+if (req.status === 200) {
+  locationMeta = JSON.parse(req.responseText);
+}
+
+const req2 = new XMLHttpRequest();
+let states = {};
+req2.open('GET', '/tools/importer/us-states.json', false);
+req2.send(null);
+if (req.status === 200) {
+  states = JSON.parse(req2.responseText);
+}
+
+function setMetadata(meta, document, url) {
+  // add location meta
+  const {
+    title, address1, address2, city, zipCode, state, longitude, latitude,
+  } = locationMeta[new URL(url).pathname];
+  if (title) {
+    meta.name = title;
+  }
+  if (address1) {
+    meta.address1 = address1;
+  }
+  if (address2) {
+    meta.address2 = address2;
+  }
+  if (city) {
+    meta.city = city;
+  }
+  if (zipCode) {
+    meta.zipCode = zipCode;
+  }
+  if (state && states[state]) {
+    meta.state = states[state];
+  }
+  if (longitude) {
+    meta.longitude = longitude;
+  }
+  if (latitude) {
+    meta.latitude = latitude;
+  }
+
   // check for hero element to determine template
   if (document.querySelector('div.pagehero')) {
     meta.template = 'service-location-page';
@@ -256,7 +301,7 @@ export default {
 
     // set metadata
     const meta = WebImporter.Blocks.getMetadata(document);
-    setMetadata(meta, document);
+    setMetadata(meta, document, url);
 
     // attempt to remove non-content elements
     WebImporter.DOMUtils.remove(main, [
