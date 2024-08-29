@@ -29,6 +29,9 @@ if (req.status === 200) {
 }
 
 function setMetadata(meta, document, url) {
+  meta.locale = 'en-us';
+  meta['media-type'] = 'Service Location';
+
   // add location meta
   const {
     title, address1, address2, city, zipCode, state, longitude, latitude,
@@ -37,16 +40,16 @@ function setMetadata(meta, document, url) {
     meta.name = title;
   }
   if (address1) {
-    meta.address1 = address1;
+    meta['address-line-1'] = address1;
   }
   if (address2) {
-    meta.address2 = address2;
+    meta['address-line-2'] = address2;
   }
   if (city) {
     meta.city = city;
   }
   if (zipCode) {
-    meta.zipCode = zipCode;
+    meta['zip-code'] = zipCode;
   }
   if (state && states[state]) {
     meta.state = states[state];
