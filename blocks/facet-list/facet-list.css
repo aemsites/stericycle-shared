@@ -1,6 +1,7 @@
 a.initial-caps {
     text-transform: capitalize;
 }
+
 div.facet-list-container {
     display: flex;
     flex-flow: column;
