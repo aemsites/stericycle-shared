@@ -38,17 +38,18 @@ function transformHero(main) {
 
 function transformQuote(main) {
   main.querySelectorAll('div.cmp-experiencefragment--testimonial').forEach((quote) => {
-    let content = quote.querySelector('H4').textContent;
-    content = content.substring(2, content.length - 1); // remove quotes
-    let author = quote.querySelector('P').textContent;
-    author = author.substring(2, content.length); // remove dash
-    const cells = [
-      ['Quote'],
-      [content],
-      [author],
-    ];
-    const quoteBlock = WebImporter.DOMUtils.createTable(cells, document);
-    quote.replaceWith(quoteBlock);
+    // let content = quote.querySelector('H4').textContent;
+    // content = content.substring(2, content.length - 1); // remove quotes
+    // let author = quote.querySelector('P').textContent;
+    // author = author.substring(2, content.length); // remove dash
+    // const cells = [
+    //   ['Quote'],
+    //   [content],
+    //   [author],
+    // ];
+    // const quoteBlock = WebImporter.DOMUtils.createTable(cells, document);
+    // quote.replaceWith(quoteBlock);
+    quote.remove();
   });
 }
 
@@ -87,6 +88,25 @@ function transformTeaserList(main) {
     // const teaserListBlock = WebImporter.DOMUtils.createTable(cells, document);
     // teaserList.replaceWith(teaserListBlock);
     teaserList.remove();
+  });
+}
+
+function transformColumns(main) {
+  main.querySelectorAll('div.columnrow').forEach((row) => {
+    if (row.querySelector('div.columnrow')) {
+      return;
+    }
+    const columns = row.querySelectorAll('.col-lg > .ss-border-left--orange');
+    if (columns.length === 0) {
+      return;
+    }
+
+    const cells = [
+      ['Columns (orange accent border)'],
+      columns,
+    ];
+    const teaserListBlock = WebImporter.DOMUtils.createTable(cells, document);
+    row.replaceWith(teaserListBlock);
   });
 }
 
@@ -247,6 +267,7 @@ export default {
       transformQuote(main);
       transformFlipCards(main);
       transformTeaserList(main);
+      transformColumns(main);
 
       // transform layout
       main.querySelector('div.col-lg-3.order-2.offset-lg-1.d-lg-none.d-md-none.cmp-columnrow__item').remove(); // remove duplicate details
