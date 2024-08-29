@@ -181,7 +181,12 @@ function transformCards(main) {
 }
 
 function transformSections(main) {
+  let isFirstSection = true;
   main.querySelectorAll('div.pagesection').forEach((section) => {
+    if (isFirstSection) {
+      isFirstSection = false;
+      return;
+    }
     const divider = document.createElement('P');
     divider.textContent = '---';
     section.insertAdjacentElement('beforebegin', divider);
@@ -273,10 +278,12 @@ export default {
       main.querySelector('div.col-lg-3.order-2.offset-lg-1.d-lg-none.d-md-none.cmp-columnrow__item').remove(); // remove duplicate details
       transformSidebar(main);
     } else if (meta.template === 'service-location-page-2') {
+      main.querySelector('div.pagesection.responsivegrid.ss-bg-color--gray.aem-GridColumn.aem-GridColumn--default--12').remove(); // remove auto-blocked section
       // transform layout
       transformCards(main);
       transformSections(main);
       transformImageSection(main);
+      transformColumns(main);
     }
 
     const mdb = WebImporter.Blocks.getMetadataBlock(document, meta);
