@@ -1,7 +1,8 @@
 // eslint-disable-next-line import/no-cycle
-import { fetchPlaceholders, getMetadata, sampleRUM } from './aem.js';
+import { fetchPlaceholders, getMetadata, loadCSS, sampleRUM } from './aem.js';
 // eslint-disable-next-line import/no-cycle
 import { getDateFromExcel, getRelatedPosts } from './scripts.js';
+import decorate from '../blocks/post-teaser-list/post-teaser-list.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -58,7 +59,36 @@ async function loadRelatedContent() {
   rcHeader.insertAdjacentElement('afterend', rcTeasers);
 }
 
+async function loadYMAL() {
+  const placeholders = await fetchPlaceholders(`/${getLocale()}`);
+  const { ymal } = placeholders;
+  const mltSection = document.createElement('div');
+  mltSection.className = 'section box-shadow post-teaser-list-container';
+  const mltWrapper = document.createElement('div');
+  mltWrapper.className = 'default-content-wrapper';
+  mltSection.append(mltWrapper);
+  const ptlBlock = document.createElement('div');
+  ptlBlock.className = 'post-teaser-list cards';
+  mltWrapper.append(ptlBlock);
+  ptlBlock.innerHTML = `<div>
+          <div>Type</div>
+          <div>Infographics</div>
+        </div>`;
+  decorate(ptlBlock);
+  loadCSS('/blocks/post-teaser-list/post-teaser-list.css');
+  const mltHeader = document.createElement('h3');
+  mltHeader.innerText = ymal;
+  mltWrapper.prepend(mltHeader);
+
+  const mainSection = document.querySelector('main > div.section');
+  mainSection.insertAdjacentElement('afterend', mltSection);
+}
+
 // load this only on blog pages
 if (document.querySelector('body.blog-page')) {
   await loadRelatedContent();
+}
+
+if (document.querySelector('body.resource-center') && document.querySelector('meta[name="media-type"]').getAttribute('content') === 'Infographic') {
+  await loadYMAL();
 }

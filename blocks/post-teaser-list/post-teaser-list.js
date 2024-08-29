@@ -1,4 +1,4 @@
-import { getRelatedPosts } from '../../scripts/scripts.js';
+import { formatDate, getDateFromExcel, getRelatedPosts } from '../../scripts/scripts.js';
 import { createOptimizedPicture, decorateButtons, readBlockConfig } from '../../scripts/aem.js';
 
 function createPostLink(post) {
@@ -54,6 +54,13 @@ function addPost(list, post, isLoading) {
   const button = createPostLink(post);
   button.textContent = 'Read More';
   buttonWrapper.append(button);
+  const dateAnchor = document.createElement('a');
+  dateAnchor.href = post.path;
+  const dateSpan = document.createElement('span');
+  dateSpan.classList.add('teaser-date');
+  dateSpan.textContent = formatDate(getDateFromExcel(post.date));
+  dateAnchor.append(dateSpan);
+  content.append(dateAnchor);
   decorateButtons(buttonWrapper);
 }
 

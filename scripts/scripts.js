@@ -42,6 +42,12 @@ export function getDateFromExcel(date) {
   return date;
 }
 
+export const formatDate = (date) => date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: '2-digit',
+});
+
 function arraysHaveMatchingItem(array1, array2) {
   // eslint-disable-next-line no-plusplus
   for (let i = 0; i < array1.length; i++) {
