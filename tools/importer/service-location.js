@@ -282,6 +282,22 @@ function transformImageSection(main) {
   });
 }
 
+function fixURLs(main) {
+  main.querySelectorAll('a').forEach((anchor) => {
+    if (!anchor.href) {
+      return;
+    }
+    const url = new URL(anchor.href);
+    if (url.hostname === 'localhost' && url.port === '3001') {
+      url.protocol = 'https';
+      url.hostname = 'main--shredit--stericycle.aem.page';
+      url.port = 443;
+    }
+    url.pathname = url.pathname.replace('---', '-').replace('--', '-');
+    anchor.href = url.href;
+  });
+}
+
 export default {
   /**
      * Apply DOM operations to the provided document and return
@@ -348,6 +364,8 @@ export default {
       transformColumns(main);
     }
 
+    fixURLs(main);
+
     const mdb = WebImporter.Blocks.getMetadataBlock(document, meta);
     main.append(mdb);
 
@@ -378,6 +396,8 @@ export default {
     return decodeURIComponent(p)
       .toLowerCase()
       .replace(/\.html$/, '')
-      .replace(/[^a-z0-9/]/gm, '-');
+      .replace(/[^a-z0-9/]/gm, '-')
+      .replace('---', '-')
+      .replace('--', '-');
   },
 };
