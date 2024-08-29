@@ -830,11 +830,8 @@ body.resource-center p {
 }
 
 .with-sidebar main > .body-wrapper > .page-sidebar > .section > div {
-  margin-bottom: 30px;
-}
-
-.with-sidebar main > .body-wrapper > .page-sidebar > .section > div {
   padding: 0;
+  margin-bottom: 30px;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
