@@ -7,6 +7,58 @@ import {
 const ITEMS_PER_PAGE = 10;
 let CURRENT_PAGE = 1;
 
+const formatDate = (date) => date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: '2-digit',
+});
+
+/*
+    * This function decorates the results from the query-index.json file
+ */
+function decorateResults(posts, list, sheet) {
+  posts.forEach((post) => {
+    const item = document.createElement('li');
+    item.classList.add('list-item');
+    const itemLeft = document.createElement('div');
+    itemLeft.classList.add('item-left');
+    const itemRight = document.createElement('div');
+    itemRight.classList.add('item-right');
+    const heading = document.createElement('h4');
+    const categoryDiv = document.createElement('div');
+    categoryDiv.classList.add('item-category');
+    const categoryLink = document.createElement('a');
+    const dateDiv = document.createElement('div');
+    categoryLink.href = window.location.pathname;
+    categoryLink.innerText = sheet;
+    categoryLink.classList.add('initial-caps');
+    categoryLink.setAttribute('aria-label', sheet);
+    categoryDiv.append(categoryLink);
+    heading.classList.add('item-title');
+    const headingLink = document.createElement('a');
+    headingLink.href = post.path;
+    headingLink.setAttribute('aria-label', post.title);
+    headingLink.innerText = post.title;
+    heading.append(headingLink);
+    dateDiv.classList.add('item-date');
+    dateDiv.innerText = formatDate(getDateFromExcel(post.date));
+    const img = createOptimizedPicture(post.image, post.title);
+    itemLeft.append(img);
+    item.append(itemLeft);
+    itemRight.append(heading, categoryDiv, dateDiv);
+    item.append(itemRight);
+    list.append(item);
+  });
+}
+
+/*
+  create the pagination controls
+    @param {Number} totalPages - the total number of pages
+    @param {Number} currentPage - the current page
+    @param {Object} ul - the ul element
+    @param {Object} controls - the controls element
+    @param {String} sheet - the sheet name
+ */
 function createPaginationControls(totalPages, currentPage, ul, controls, sheet) {
   controls.innerHTML = ''; // Clear previous controls
   const pageUL = document.createElement('ul');
@@ -18,6 +70,7 @@ function createPaginationControls(totalPages, currentPage, ul, controls, sheet) 
   buttonPrev.disabled = currentPage === 1;
   buttonPrev.addEventListener('click', () => {
     CURRENT_PAGE -= 1;
+    // eslint-disable-next-line no-use-before-define
     updateResults(null, sheet, CURRENT_PAGE);
   });
 
@@ -27,6 +80,7 @@ function createPaginationControls(totalPages, currentPage, ul, controls, sheet) 
   buttonNext.disabled = currentPage === totalPages;
   buttonNext.addEventListener('click', () => {
     CURRENT_PAGE += 1;
+    // eslint-disable-next-line no-use-before-define
     updateResults(null, sheet, CURRENT_PAGE);
   });
 
@@ -34,6 +88,59 @@ function createPaginationControls(totalPages, currentPage, ul, controls, sheet) 
   controls.append(pageUL);
   prev.append(buttonPrev);
   next.append(buttonNext);
+}
+
+/*
+    * This function checks if the checkbox is checked and if the tag is included in the post
+    * @param {Object} cbox - the checkbox that was clicked
+    * @param {Boolean} includes - if the tag is included in the post
+ */
+function filterTags(cbox, includes) {
+  if (cbox.checked === false) {
+    return true;
+  }
+  return includes;
+}
+
+/*
+    * This function updates the results based on the checkbox that was clicked
+    * @param {Object} checkboxChange - the checkbox that was clicked
+    * @param {String} sheet - the sheet name
+ */
+async function updateResults(checkboxChange, sheet, page = 1) {
+  const posts = await ffetch('/query-index.json').sheet(sheet || 'blog')
+    .map((post) => ({
+      tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
+      title: post.title,
+      date: post.date,
+      image: post.image,
+    }))
+    .filter((post) => !checkboxChange || filterTags(
+      checkboxChange,
+      post.tags.includes(checkboxChange.value),
+    ))
+    .all();
+
+  const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
+  const start = (page - 1) * ITEMS_PER_PAGE;
+  const end = start + ITEMS_PER_PAGE;
+  const paginatedPosts = posts.slice(start, end);
+
+  const flc = document.querySelector('div.facet-list-container> div.results> ul');
+  flc.innerHTML = '';
+  decorateResults(paginatedPosts, flc, sheet);
+
+  const paginationControls = document.querySelector('div.pagination-controls');
+  createPaginationControls(totalPages, page, flc, paginationControls, sheet);
+
+  if (checkboxChange) {
+    const checkboxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.value !== checkboxChange.value) {
+        checkbox.checked = false;
+      }
+    });
+  }
 }
 
 /*
@@ -78,107 +185,12 @@ async function getFacets(sheet) {
   return tagJson;
 }
 
-const formatDate = (date) => date.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: '2-digit',
-});
-
 /*
     * This function toggles the facets on and off
  */
 function toggleFacets() {
   const facets = document.querySelector('div.facet-list-container > div.facet > ul');
   facets.style.display = facets.style.display === 'none' ? 'unset' : 'none';
-}
-
-/*
-    * This function decorates the results from the query-index.json file
- */
-function decorateResults(posts, list, sheet) {
-  posts.forEach((post) => {
-    const item = document.createElement('li');
-    item.classList.add('list-item');
-    const itemLeft = document.createElement('div');
-    itemLeft.classList.add('item-left');
-    const itemRight = document.createElement('div');
-    itemRight.classList.add('item-right');
-    const heading = document.createElement('h4');
-    const categoryDiv = document.createElement('div');
-    categoryDiv.classList.add('item-category');
-    const categoryLink = document.createElement('a');
-    const dateDiv = document.createElement('div');
-    categoryLink.href = window.location.pathname;
-    categoryLink.innerText = sheet;
-    categoryLink.classList.add('initial-caps');
-    categoryLink.setAttribute('aria-label', sheet);
-    categoryDiv.append(categoryLink);
-    heading.classList.add('item-title');
-    const headingLink = document.createElement('a');
-    headingLink.href = post.path;
-    headingLink.setAttribute('aria-label', post.title);
-    headingLink.innerText = post.title;
-    heading.append(headingLink);
-    dateDiv.classList.add('item-date');
-    dateDiv.innerText = formatDate(getDateFromExcel(post.date));
-    const img = createOptimizedPicture(post.image, post.title);
-    itemLeft.append(img);
-    item.append(itemLeft);
-    itemRight.append(heading, categoryDiv, dateDiv);
-    item.append(itemRight);
-    list.append(item);
-  });
-}
-
-/*
-    * This function checks if the checkbox is checked and if the tag is included in the post
-    * @param {Object} cbox - the checkbox that was clicked
-    * @param {Boolean} includes - if the tag is included in the post
- */
-function filterTags(cbox, includes) {
-  if (cbox.checked === false) {
-    return true;
-  }
-  return includes;
-}
-
-/*
-    * This function updates the results based on the checkbox that was clicked
-    * @param {Object} checkboxChange - the checkbox that was clicked
-    * @param {String} sheet - the sheet name
- */
-async function updateResults(checkboxChange, sheet, page = 1) {
-  const postArray = [];
-  const posts = await ffetch('/query-index.json').sheet(sheet || 'blog')
-      .map((post) => ({
-        tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
-        title: post.title,
-        date: post.date,
-        image: post.image,
-      }))
-      .filter((post) => !checkboxChange || filterTags(checkboxChange, post.tags.includes(checkboxChange.value)))
-      .all();
-
-  const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
-  const start = (page - 1) * ITEMS_PER_PAGE;
-  const end = start + ITEMS_PER_PAGE;
-  const paginatedPosts = posts.slice(start, end);
-
-  const flc = document.querySelector('div.facet-list-container> div.results> ul');
-  flc.innerHTML = '';
-  decorateResults(paginatedPosts, flc, sheet);
-
-  const paginationControls = document.querySelector('div.pagination-controls');
-  createPaginationControls(totalPages, page, flc, paginationControls, sheet);
-
-  if (checkboxChange) {
-    const checkboxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]');
-    checkboxes.forEach((checkbox) => {
-      if (checkbox.value !== checkboxChange.value) {
-        checkbox.checked = false;
-      }
-    });
-  }
 }
 
 function clickChevron() {
