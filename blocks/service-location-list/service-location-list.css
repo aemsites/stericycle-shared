@@ -1,0 +1,47 @@
+.service-location-list {
+  text-align: left;
+}
+
+.service-location-list > .state {
+  margin-bottom: 20px;
+}
+
+.service-location-list > .state > h3 {
+  font-weight: 400;
+  padding: 0 0 10px;
+  margin: 8px;
+}
+
+.service-location-list > .state > .location-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px 30px;
+  padding: 0;
+  list-style: none;
+}
+
+.service-location-list > .state > .location-list > li {
+  display: inline-block;
+}
+
+.service-location-list > .state > .location-list > li > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 15px 11px 18px;
+  color: #2e7abd;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  text-decoration: underline;
+}
+
+.service-location-list > .state > .location-list > li > a > .icon {
+  width: 35px;
+  height: 35px;
+}
+
+@media (min-width: 768px /* breakpoint-m */) {
+  .service-location-list > .state > .location-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
