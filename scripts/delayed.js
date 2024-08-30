@@ -72,9 +72,18 @@ async function loadYMAL() {
   const ptlBlock = document.createElement('div');
   ptlBlock.className = 'post-teaser-list cards';
   mltWrapper.append(ptlBlock);
+  const mtype = document.querySelector('meta[name="media-type"]');
+  let sheet = 'infographics';
+  if (mtype) {
+    sheet = mtype.getAttribute('content').toLowerCase();
+    //  infographic -> infographics - all should end with 's'
+    if (!sheet.endsWith('s')) {
+      sheet = `${sheet}s`;
+    }
+  }
   ptlBlock.innerHTML = `<div>
           <div>Type</div>
-          <div>Infographics</div>
+          <div>${sheet}</div>
         </div>`;
   decorate(ptlBlock);
   loadCSS('/blocks/post-teaser-list/post-teaser-list.css');
@@ -91,6 +100,8 @@ if (document.querySelector('body.blog-page')) {
   await loadRelatedContent();
 }
 
-if (document.querySelector('body.resource-center') && document.querySelector('meta[name="media-type"]').getAttribute('content') === 'Infographic') {
+if (document.querySelector('body.resource-center')
+    && (document.querySelector('meta[name="media-type"]').getAttribute('content') === 'Infographic'
+        || document.querySelector('meta[name="media-type"]').getAttribute('content') === 'Info Sheets')) {
   await loadYMAL();
 }
