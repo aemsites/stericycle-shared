@@ -420,6 +420,16 @@ main .section.with-image {
   padding: 0 24px 32px;
 }
 
+/* section background image styles */
+
+main div.section.default-teaser-section {
+  background-size: cover;
+  background-position: top center;
+  background-image: url("/icons/SID-Resources-Center-Gray_Desktop.svg");
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
 @media screen and (min-width: 992px /* breakpoint-l */) {
     main .section.with-image {
     display: grid;
@@ -465,6 +475,17 @@ body.resource-center > main > div.section {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+}
+
+body.resource-center > main > div.section.default-teaser-section {
+  margin-left: unset;
+  margin-right: unset;
+  max-width: 100%;
+}
+
+body.resource-center > main > div.section.default-teaser-section > div.default-content-wrapper, body.resource-center > main > div.section.default-teaser-section > div.default-content-wrapper > h1 {
+  padding-bottom: unset;
+  margin-bottom: unset;
 }
 
 
