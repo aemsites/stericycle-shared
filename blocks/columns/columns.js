@@ -1,4 +1,3 @@
-import { decorateButtons } from '../../scripts/aem.js';
 import { hr } from '../../scripts/dom-helpers.js';
 
 export function applySplitPercentages(block) {
