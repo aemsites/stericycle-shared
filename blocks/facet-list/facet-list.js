@@ -67,6 +67,7 @@ function createPaginationControls(totalPages, currentPage, ul, controls, sheet) 
   const prev = document.createElement('li');
   const buttonPrev = document.createElement('button');
   buttonPrev.textContent = 'Previous';
+  buttonPrev.classList.add('fa-chevron-left');
   buttonPrev.disabled = currentPage === 1;
   buttonPrev.addEventListener('click', () => {
     CURRENT_PAGE -= 1;
@@ -77,6 +78,7 @@ function createPaginationControls(totalPages, currentPage, ul, controls, sheet) 
   const next = document.createElement('li');
   const buttonNext = document.createElement('button');
   buttonNext.textContent = 'Next';
+  buttonNext.classList.add('fa-chevron-right');
   buttonNext.disabled = currentPage === totalPages;
   buttonNext.addEventListener('click', () => {
     CURRENT_PAGE += 1;

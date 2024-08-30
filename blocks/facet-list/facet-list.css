@@ -83,12 +83,31 @@ div.facet-list-wrapper ul.pagination > li {
     display: inline-block;
 }
 
+.fa-chevron-left::before {
+    content: "";
+    font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+    margin-right: 8px;
+}
+
+.fa-chevron-right::after {
+    content: "";
+    font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+    margin-left: 8px;
+}
+
 div.facet-list-wrapper ul.pagination li > button:enabled {
     border: unset;
     background-color: unset;
     color: rgb(16 16 16 / 30%);
     margin-right: .5rem;
     font-size: inherit;
+}
+
+div.facet-list-wrapper ul.pagination li > button:not(:disabled) {
+    border: unset;
+    background-color: unset;
+    color: unset;
+    margin-right: .5rem;
 }
 
 @media screen and (min-width: 992px) {
