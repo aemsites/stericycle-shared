@@ -12,19 +12,63 @@
 
 /* eslint-disable no-restricted-syntax,  no-await-in-loop */
 
+/*
+ * Encapsulates functions to save and retrieve JSON data
+ * from sessionStorage with an expiry time.
+ */
+const dataMap = (function dataMapModule() {
+  const EXPIRY_TIME = 300000; // 5 minutes expiry
+
+  const saveToSessionStorage = (key, json) => {
+    const data = {
+      json,
+      expiry: Date.now() + EXPIRY_TIME,
+    };
+    sessionStorage.setItem(key, JSON.stringify(data));
+  };
+
+  const getFromSessionStorage = (key) => {
+    const data = JSON.parse(sessionStorage.getItem(key));
+    if (data) {
+      if (Date.now() < data.expiry) {
+        return data.json;
+      }
+      sessionStorage.removeItem(key);
+    }
+    return null;
+  };
+
+  const getKey = (url, sheetName, offset, limitParam) => btoa(`${url}#${sheetName}#${offset}#${limitParam}`);
+
+  return {
+    save: (url, sheetName, offset, limitParam, json) => {
+      saveToSessionStorage(getKey(url, sheetName, offset, limitParam), json);
+    },
+    // eslint-disable-next-line max-len
+    get: (url, sheetName, offset, limitParam) => getFromSessionStorage(getKey(url, sheetName, offset, limitParam)),
+  };
+}());
+
 async function* request(url, context) {
   const { chunkSize, sheetName, fetch } = context;
   for (let offset = 0, total = Infinity; offset < total; offset += chunkSize) {
     const params = new URLSearchParams(`offset=${offset}&limit=${chunkSize}`);
-    if (sheetName) params.append('sheet', sheetName);
-    const resp = await fetch(`${url}?${params.toString()}`);
-    if (resp.ok) {
-      const json = await resp.json();
-      total = json.total;
-      context.total = total;
-      for (const entry of json.data) yield entry;
-    } else {
-      return;
+    if (sheetName) {
+      params.append('sheet', sheetName);
+    }
+    let json = dataMap.get(url, sheetName, offset, chunkSize);
+    if (!json) {
+      const resp = await fetch(`${url}?${params.toString()}`);
+      if (!resp.ok) return;
+      json = await resp.json();
+      dataMap.save(url, sheetName, offset, chunkSize, json);
+    }
+
+    total = json.total;
+    context.total = total;
+
+    for (const entry of json.data) {
+      yield entry;
     }
   }
 }
