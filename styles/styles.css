@@ -136,6 +136,14 @@
   --content-width-xl: 1140px;
   --content-width-xxl: 1320px;
   --section-width: var(--content-width-s);
+
+  /* Split Columns */
+  --split-firstquarter: 25%:75%;
+  --split-lastquarter: 75%:25%;
+  --split-firstthird: 34%:66%;
+  --split-lastthird: 66%:34%;
+  --split-firsttwothird: 40%:60%;
+  --split-lasttwothird: 60%:40%;
 }
 
 @media (min-width: 768px /* breakpoint-m */) {
@@ -342,6 +350,17 @@ main .block.navy-background {
 main .section.blue-background,
 main .block.blue-background {
   background-color: var(--color-blue);
+}
+
+main .block.center-align * {
+  text-align: center;
+}
+
+main .block.divider hr {
+  margin: 2rem 0;
+  border: 0.5px solid var(--color-medium-gray);
+  opacity: .25;
+  color: inherit;
 }
 
 main .section.orange-background {

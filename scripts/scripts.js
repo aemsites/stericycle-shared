@@ -12,6 +12,7 @@ import {
   loadHeader,
   sampleRUM,
   waitForLCP,
+  toClassName,
 } from './aem.js';
 import ffetch from './ffetch.js';
 
@@ -293,6 +294,25 @@ export function decorateMain(main) {
   decorateSectionTemplates(main);
 }
 
+async function decorateTemplates(main) {
+  try {
+    const template = toClassName(getMetadata('template'));
+    const templates = ['services']; // Added this so that current template will not break
+
+    if (templates.includes(template)) {
+      const mod = await import(`../templates/${template}/${template}.js`);
+      loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`);
+
+      if (mod.default) {
+        await mod.default(main);
+      }
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Auto Blocking failed', error);
+  }
+}
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -302,6 +322,7 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
+    await decorateTemplates(main);
     decorateMain(main);
     document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS);
