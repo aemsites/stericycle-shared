@@ -103,3 +103,4 @@ export function th(...items) { return domEl('th', ...items); }
 export function thead(...items) { return domEl('thead', ...items); }
 export function tr(...items) { return domEl('tr', ...items); }
 export function td(...items) { return domEl('td', ...items); }
+export function hr(...items) { return domEl('hr', ...items); }
