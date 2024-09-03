@@ -136,6 +136,14 @@
   --content-width-xl: 1140px;
   --content-width-xxl: 1320px;
   --section-width: var(--content-width-s);
+
+  /* Split Columns */
+  --split-firstquarter: 25%:75%;
+  --split-lastquarter: 75%:25%;
+  --split-firstthird: 34%:66%;
+  --split-lastthird: 66%:34%;
+  --split-firsttwothird: 40%:60%;
+  --split-lasttwothird: 60%:40%;
 }
 
 @media (min-width: 768px /* breakpoint-m */) {
@@ -361,6 +369,17 @@ main .block.blue-background {
   background-color: var(--color-blue);
 }
 
+main .block.center-align * {
+  text-align: center;
+}
+
+main .block.divider hr {
+  margin: 2rem 0;
+  border: 0.5px solid var(--color-medium-gray);
+  opacity: .25;
+  color: inherit;
+}
+
 main .section.orange-background {
   background-position: center center;
   background-size: auto;
@@ -477,6 +496,36 @@ body.resource-center > main > div.section {
   margin-right: auto;
 }
 
+body.resource-center > main > div.section.box-shadow.post-teaser-list-container {
+  margin-right: unset;
+  margin-left: unset;
+  max-width: unset;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 25%);
+}
+
+body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper h3 {
+  font-size: 1.625rem;
+  line-height: 2.375rem;
+  font-weight: 700;
+}
+
+body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper .teaser {
+  box-shadow: unset;
+}
+
+body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper .teaser > .teaser-content > a > span.teaser-date {
+  display: unset;
+}
+
+body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper .teaser > .teaser-content > p.button-container {
+  display: none;
+}
+
 body.resource-center > main > div.section.default-teaser-section {
   margin-left: unset;
   margin-right: unset;
@@ -487,7 +536,6 @@ body.resource-center > main > div.section.default-teaser-section > div.default-c
   padding-bottom: unset;
   margin-bottom: unset;
 }
-
 
 @media (min-width: 576px) {
   body.resource-center > main > div.section {
