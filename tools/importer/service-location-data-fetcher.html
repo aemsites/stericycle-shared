@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Service Location Data Fetcher</title>
+</head>
+<body>
+    <script>
+      async function parse() {
+        const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://www.shredit.com/content/shred-it/us/en/service-locations/jcr:content/root/container/pagesection/servicelocationfinde.locations.json')}`);
+        const contents = (await response.json()).contents;
+        const json = JSON.parse(contents);
+        console.log(json);
+
+        const locations = {};
+        json.forEach((entry) => {
+          const { url, title, address1, address2, city, zipCode, state, longitude, latitude } = entry;
+          locations[url] = { title, address1, address2, city, zipCode, state, longitude, latitude };
+        });
+        console.log(locations);
+      }
+
+      parse();
+    </script>
+</body>
+</html>

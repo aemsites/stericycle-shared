@@ -42,6 +42,10 @@ header nav {
   flex: 0 1 80%;
 }
 
+header nav .icon.icon-shredit-logo {
+  display: unset;
+}
+
 header nav .nav-brand img {
   width: auto;
   height: 3rem;
