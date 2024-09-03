@@ -1,17 +1,20 @@
 import {
   buildBlock, decorateBlock, decorateButtons, decorateIcons,
-} from '../scripts/aem.js';
-import { decorateSidebarTemplate } from './templates.js';
+} from '../../scripts/aem.js';
+import { decorateSidebarTemplate } from '../templates.js';
 
 /**
  * Builds service location template auto blocks and add them to the page.
  * @param {Element} main The container element
  */
 function buildServiceLocationAutoBlocks(main) {
-  const pageContent = main.querySelector('.page-content');
-  const pageSidebar = main.querySelector('.page-sidebar');
+  const pageContent = main.querySelector('div.body-wrapper > div.page-content');
+  const pageSidebar = main.querySelector('div.body-wrapper > div.page-sidebar');
   const lastContentSection = pageContent.querySelector('.section:last-of-type');
 
+  if (!lastContentSection) {
+    return;
+  }
   // GET-A-QUOTE FORM
   const formSection = document.createElement('div');
   formSection.classList.add('section');
@@ -52,7 +55,7 @@ function buildServiceLocationAutoBlocks(main) {
     { icon: 'service-one-time-shredding-icon-w', href: '/en-us/secure-shredding-services/one-off-shredding-service' },
     { icon: 'service-regularly-schedule-shredding-icon-w', href: '/en-us/secure-shredding-services/paper-shredding-services' },
     { icon: 'service-hard-drive-icon-w', href: '/en-us/secure-shredding-services/hard-drive-destruction' },
-    { icon: 'service-resedential-icon-w', href: '/en-us/secure-shredding-services/residential-shredding-services' },
+    { icon: 'service-residential-icon-w', href: '/en-us/secure-shredding-services/residential-shredding-services' },
   ];
   const flipCardsWrapper = document.createElement('div');
   const flipCardsIconRow = [];
@@ -84,10 +87,8 @@ function buildServiceLocationAutoBlocks(main) {
   decorateBlock(teaser);
 }
 
-function decorate(main) {
+export default function decorate(main) {
   main.parentElement.classList.add('with-sidebar');
   decorateSidebarTemplate(main);
   buildServiceLocationAutoBlocks(main);
 }
-
-export default decorate;

@@ -1,5 +1,5 @@
 /* eslint-disable object-curly-newline */
-import { buildBlock, decorateBlock, decorateButtons, decorateIcons } from '../scripts/aem.js';
+import { buildBlock, decorateBlock, decorateButtons, decorateIcons } from '../../scripts/aem.js';
 
 function addServiceCards(main) {
   const services = [

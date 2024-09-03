@@ -16,10 +16,6 @@ import {
 } from './aem.js';
 import ffetch from './ffetch.js';
 
-import decorateBlogTemplate from '../templates/blog-page.js';
-import decorateServiceLocationTemplate from '../templates/service-location-page.js';
-import decorateServiceLocationTemplate2 from '../templates/service-location-page-2.js';
-
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
 export function convertExcelDate(excelDate) {
@@ -219,16 +215,22 @@ function decorateSectionTemplates(main) {
   });
 }
 
-function decorateTemplates(main) {
-  if (!main.parentElement) {
-    return;
-  }
-  if (main.parentElement.matches('body[class="blog-page"]')) {
-    decorateBlogTemplate(main);
-  } else if (main.parentElement.matches('body[class="service-location-page"]')) {
-    decorateServiceLocationTemplate(main);
-  } else if (main.parentElement.matches('body[class="service-location-page-2"]')) {
-    decorateServiceLocationTemplate2(main);
+async function decorateTemplates(main) {
+  try {
+    const template = toClassName(getMetadata('template'));
+    const templates = ['services', 'blog-page', 'service-location-page', 'service-location-page-2'];
+
+    if (templates.includes(template)) {
+      const mod = await import(`../templates/${template}/${template}.js`);
+      await loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`);
+
+      if (mod.default) {
+        await mod.default(main);
+      }
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Auto Blocking failed', error);
   }
 }
 
@@ -247,25 +249,6 @@ export function decorateMain(main) {
   decorateTemplates(main);
   modifyBigNumberList(main);
   decorateSectionTemplates(main);
-}
-
-async function decorateTemplates(main) {
-  try {
-    const template = toClassName(getMetadata('template'));
-    const templates = ['services']; // Added this so that current template will not break
-
-    if (templates.includes(template)) {
-      const mod = await import(`../templates/${template}/${template}.js`);
-      loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`);
-
-      if (mod.default) {
-        await mod.default(main);
-      }
-    }
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Auto Blocking failed', error);
-  }
 }
 
 /**
