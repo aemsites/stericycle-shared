@@ -101,7 +101,7 @@ if (document.querySelector('body.blog-page')) {
 }
 
 if (document.querySelector('body.resource-center')
-    && (document.querySelector('meta[name="media-type"]').getAttribute('content') === 'Infographic'
-        || document.querySelector('meta[name="media-type"]').getAttribute('content') === 'Info Sheets')) {
+    && (document.querySelector('meta[name="media-type"]')?.getAttribute('content') === 'Infographic'
+        || document.querySelector('meta[name="media-type"]')?.getAttribute('content') === 'Info Sheets')) {
   await loadYMAL();
 }
