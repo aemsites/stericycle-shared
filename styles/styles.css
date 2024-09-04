@@ -91,6 +91,7 @@
   --font-family-heading: var(--font-family-body);
   --font-family-footer: var(--font-family-body);
   --font-family-fixed: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+  --font-family-awesome: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
 
   /* font weights */
   --lato-regular: 400;
@@ -350,6 +351,14 @@ main .block.navy-background {
 main .section.blue-background,
 main .block.blue-background {
   background-color: var(--color-blue);
+}
+
+main .section.gray-background {
+  background-color: var(--color-gray);
+}
+
+main .section.background-image {
+  background-repeat: no-repeat;
 }
 
 main .block.center-align * {

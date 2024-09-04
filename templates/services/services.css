@@ -2,3 +2,70 @@
   max-width: var(--section-width);
   margin: auto;
 }
+
+.services main .section.background-image {
+  background-image: none;
+}
+
+.services main .section.background-image .icon.icon-security-risk-blue-box {
+  width: unset;
+  height: unset;
+}
+
+.services main .section.background-image h2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-navy);
+  font-weight: normal;
+}
+
+.services main .section.background-image p {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.services main .section.background-image ul {
+  padding-left: 0;
+}
+
+.services main .section.background-image ul li {
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+.services main .section.background-image ul li:before {
+  font-family: var(--font-family-awesome);
+  font-weight: 400;
+  content: "";
+  color: var(--color-orange);
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+@media screen and (min-width: 992px) {
+  .services main .section.background-image .icon.icon-security-risk-blue-box {
+    width: 100%;
+    height: 100%;
+  }
+
+  .services main .section.background-image p:has(.icon.icon-security-risk-blue-box) {
+    float: left;
+    width: 15%;
+    margin-right: 4rem;
+    margin-top: calc(12%);
+  }
+
+  .services main .section.blue-background .columns.columns-has-image > div {
+    gap: 3rem;
+  }
+
+  .services main .section.background-image {
+    background-image: var(--bg-image);
+    background-size: 55% 100%;
+  }
+
+  .services main .section.background-image h2 {
+    display: inline;
+    font-size: var(--heading-font-size-xl)
+  }
+}

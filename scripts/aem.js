@@ -517,6 +517,9 @@ function decorateSections(main) {
           styles.forEach((style) => section.classList.add(style));
         } else {
           section.dataset[toCamelCase(key)] = meta[key];
+          if (key === 'background-image') {
+            section.style.setProperty('--bg-image', `url(${meta[key]})`);
+          }
         }
       });
       sectionMeta.parentNode.remove();
