@@ -66,18 +66,19 @@ export default async function decorate(block) {
     links.push(link);
   });
 
-  if (fronts.length === 0 && backs.lengths === 0 && links.lengths === 0) {
+  if (fronts.length === 0 && backs.length === 0 && links.length === 0) {
     fronts = [...rows[0].children];
     backs = rows[1] ? [...rows[1].children] : [];
     links = rows[2] ? [...rows[2].children] : [];
   }
 
+  const linkBacks = [...links];
   // decorate backs
-  backs.forEach((card) => {
+  backs.forEach((card, i) => {
     const paragraph = document.createElement('p');
     const readMore = document.createElement('span');
-    readMore.classList.add('fake-link');
-    readMore.textContent = 'Read More';
+    links[i].classList.remove('button');
+    readMore.append(linkBacks[i]);
     paragraph.appendChild(readMore);
     card.appendChild(paragraph);
   });
@@ -94,7 +95,8 @@ export default async function decorate(block) {
 
     // add href
     if (links.length > i) {
-      anchor.href = links[i].textContent;
+      anchor.href = links[i].href;
+      anchor.title = links[i].title;
     }
 
     // add backs

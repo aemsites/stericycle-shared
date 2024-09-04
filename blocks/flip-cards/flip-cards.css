@@ -73,11 +73,11 @@
   overflow: hidden;
 }
 
-.flip-cards > a > div > .flip-card-back > p > span.fake-link {
+.flip-cards > a > div > .flip-card-back > p > span > a {
   text-decoration: underline;
 }
 
-.flip-cards > a > div > .flip-card-back > p > span.fake-link::after {
+.flip-cards > a > div > .flip-card-back > p > span > a::after {
   display: inline-block;
   content: "\f054";
   font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
