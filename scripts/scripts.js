@@ -78,7 +78,12 @@ export function getLocale() {
  */
 export async function getRelatedPosts(types, tags, limit) {
   const sheets = [];
-  types.forEach((type) => {
+  let nTypes = [];
+  // check for a split problem
+  if (types.length === 1) {
+    nTypes = types[0].split(',');
+  }
+  nTypes.forEach((type) => {
     // add sheet
     let sheet = type.toLowerCase().replace(' ', '-');
     if (sheet === 'blogs') {
