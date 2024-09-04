@@ -17,6 +17,7 @@ export default async function decorate(block) {
   const imageDiv = document.createElement('div');
   const img = document.createElement('img');
   img.src = cfg.image;
+  img.alt = cfg.title;
   const ctaDiv = document.createElement('div');
   const ctaP = document.createElement('p');
   ctaP.classList.add('button-container');
