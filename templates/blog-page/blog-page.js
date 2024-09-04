@@ -1,4 +1,4 @@
-import { getMetadata } from '../scripts/aem.js';
+import { getMetadata } from '../../scripts/aem.js';
 
 function getBlogBaseUrl(url) {
   try {
