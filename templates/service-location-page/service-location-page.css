@@ -1,0 +1,7 @@
+div.page-sidebar > div.section > div.default-content-wrapper > h3 ~ p {
+    margin-bottom: 0;
+}
+
+div.page-sidebar > div.section > div.default-content-wrapper > h3 ~ p:has(> a) {
+    margin-top: 1em;
+}

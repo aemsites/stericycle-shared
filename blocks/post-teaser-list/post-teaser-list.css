@@ -75,7 +75,7 @@
   padding: 0 16px;
 }
 
-.post-teaser-list.cards > .teaser-list > .teaser > .teaser-content > a > span.teaser-date {
+.post-teaser-list > .teaser-list > .teaser > .teaser-content > a > span.teaser-date {
   /* default is to not show date */
   display: none;
 }
