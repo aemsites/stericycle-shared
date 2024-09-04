@@ -38,7 +38,7 @@
 
 .cards > ul > li > .card-body > .card-section > p {
   flex: 1;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .cards > ul > li > .card-body > .card-section > p:last-child {

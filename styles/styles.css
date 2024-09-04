@@ -220,6 +220,15 @@ p, dl, ol, ul, pre, blockquote {
   margin: 0;
 }
 
+main .default-content-wrapper p,
+main .default-content-wrapper dl,
+main .default-content-wrapper ol,
+main .default-content-wrapper ul,
+main .default-content-wrapper pre,
+main .default-content-wrapper blockquote {
+  margin: 0 0 16px;
+}
+
 code, pre {
   color: var(--color-text);
   font-family: var(--font-family-fixed);
@@ -254,6 +263,10 @@ a:hover {
 }
 
 /* buttons */
+.button-container {
+  margin-bottom: -4px;
+}
+
 a.button:any-link, button {
   font-family: var(--font-family-body);
   display: inline-block;
@@ -289,13 +302,13 @@ button:disabled, button:disabled:hover {
 a.button.primary, button.primary {
   background-color: var(--color-button-primary);
   border-color: var(--color-button-primary);
-  color: var(--color-text);
+  color: var(--color-black);
 }
 
 a.button.primary:hover, a.button.primary:focus, button.primary:hover, button.primary:focus {
   background-color: var(--color-button-primary);
   border-color: currentcolor;
-  color: var(--color-text);
+  color: var(--color-black);
 }
 
 a.button.secondary, button.secondary {
@@ -327,10 +340,14 @@ main img {
   width: 100%;
 }
 
+main .section {
+  overflow: auto; /* prevent margin collapse */
+}
+
 main .section > div {
   max-width: var(--section-width);
-  margin: auto;
-  padding: 2rem 1.5rem;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
 }
 
 /* section styles */
@@ -873,6 +890,35 @@ body.resource-center p {
 
   .blog-page div.related-content img {
     width: auto;;
+  }
+}
+
+.with-sidebar main > .body-wrapper {
+  max-width: var(--section-width);
+  margin: 0 auto;
+}
+
+.with-sidebar main > .body-wrapper > .page-sidebar > .section > div {
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  .with-sidebar main > .body-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .with-sidebar main > .body-wrapper > .page-content {
+    width: 66.6667%;
+  }
+
+  .with-sidebar main > .body-wrapper > .page-sidebar {
+    width: 25%;
+    margin-top: -200px;
+    z-index: 1;
   }
 }
 
