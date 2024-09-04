@@ -53,11 +53,17 @@ function applyHorizontalCellAlignment(block) {
 
 // Vertical Cell Alignment is only applied to non-text columns
 function applyVerticalCellAlignment(block) {
-  block.querySelectorAll(':scope > div > div:not(.text-col-wrapper').forEach((d) => {
+  block.querySelectorAll(':scope > div > div:not(.text-col-wrapper)').forEach((d) => {
     // this is an image column
     d.style.display = 'flex';
     d.style.flexDirection = 'column';
     d.style.alignItems = 'stretch';
+    if (d.querySelector('p > strong')) {
+      d.querySelector('p').classList.add('button-container');
+      if (d.querySelector('p > strong > a')) {
+        d.querySelector('p > strong > a').classList.add('button', 'primary');
+      }
+    }
   });
 }
 
