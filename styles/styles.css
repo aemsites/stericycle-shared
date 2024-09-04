@@ -144,6 +144,7 @@
   --split-lastthird: 66%:34%;
   --split-firsttwothird: 40%:60%;
   --split-lasttwothird: 60%:40%;
+
   /* split thirds */
   --split-third: 50%:25%:25%;
 }
