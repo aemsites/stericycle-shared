@@ -64,6 +64,16 @@
   padding-left: 0;
 }
 
+main .section.blue-headings .columns span.icon {
+  width: unset;
+  height: unset;
+}
+
+main .columns span.icon > img {
+  width:2.5rem;
+  height:2.5rem;
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
   .columns > div {
     flex-direction: unset;
@@ -83,5 +93,10 @@
   .columns.orange-accent-border.columns-has-image > div > div:first-of-type,
   .columns.cyan-accent-border.columns-has-image > div > div:first-of-type {
     padding-left: 0;
+  }
+
+  main .columns span.icon > img {
+    width:3.75rem;
+    height:3.75rem;
   }
 }
