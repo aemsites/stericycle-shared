@@ -10,6 +10,7 @@
  * governing permissions and limitations under the License.
  */
 /* global WebImporter */
+/* eslint-disable no-console, class-methods-use-this */
 
 export default {
   /**
