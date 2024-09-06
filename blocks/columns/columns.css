@@ -85,6 +85,10 @@ main .columns span.icon > img {
     order: unset;
   }
 
+  .columns.img-33 img {
+    width: 33.333%;
+  }
+
   .columns.orange-accent-border.columns-has-image > div > div,
   .columns.cyan-accent-border.columns-has-image > div > div {
     justify-content: unset;
