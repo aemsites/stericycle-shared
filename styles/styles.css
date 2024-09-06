@@ -362,6 +362,14 @@ main .block.gray-background {
   background-color: var(--color-gray);
 }
 
+main > div.section.gray-background > div.default-content-wrapper h2 {
+    color: var(--color-blue);
+}
+
+main > div.section.gray-background > div.default-content-wrapper p {
+  color: var(--color-black);
+}
+
 main .section.navy-background,
 main .block.navy-background {
   background-color: var(--color-navy);
