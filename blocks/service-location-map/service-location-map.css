@@ -1,0 +1,81 @@
+.block.service-location-map {
+  display: flex;
+}
+
+.block.service-location-map .icon-marker,
+.block.service-location-map .icon-marker-bold {
+  width: 28px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.block.service-location-map .map-list {
+  background: #f2f2f2;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+  height: 35rem;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.block.service-location-map .map-list .location-item {
+  background: var(--color-white);
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.block.service-location-map .map-list .location-item .title {
+  font-size: 1rem; /* todo piyush check this */
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.block.service-location-map .map-list .location-item .address {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem; /* todo piyush check this */
+}
+
+.block.service-location-map .map-list .location-item .location {
+  text-transform: uppercase;
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+  background-color: var(--color-link);
+  padding: 0.75rem;
+}
+
+.block.service-location-map .map-list .location-item .location a {
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+@media screen and (min-width: 992px) {
+  .block.service-location-map .map {
+    width: 66%;
+    height: 35rem;
+    margin-left: 1.5rem;
+  }
+
+  .block.service-location-map .mapboxgl-canvas {
+    height: 100% !important;
+    width: 100% !important;
+  }
+
+  .block.service-location-map .map-list {
+    width: 34%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .block.service-location-map .map-list .location-item .location a {
+    /* text-decoration: none;
+    color: var(--color-white); */
+    /* padding: 0.75rem; */
+    font-size: 1.1rem;
+    /* width: 100%; */
+  }
+}
