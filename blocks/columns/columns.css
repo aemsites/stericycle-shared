@@ -12,6 +12,10 @@
   width: 100%;
 }
 
+.columns.img-33 img {
+  width: 33.333%;
+}
+
 .columns > div > div {
   order: 1;
   display: flex;
@@ -83,10 +87,6 @@ main .columns span.icon > img {
   .columns > div > div {
     flex: 1;
     order: unset;
-  }
-
-  .columns.img-33 img {
-    width: 33.333%;
   }
 
   .columns.orange-accent-border.columns-has-image > div > div,
