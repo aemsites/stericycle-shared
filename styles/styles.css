@@ -1181,7 +1181,7 @@ main .list-with-background-image > div > ul > li {
   padding-bottom: 16px;
 }
 
-main .list-with-background-image ul > li::before {
+main .list-with-background-image:not(.list-style-orange-triangles) ul > li::before {
   left: 0;
   margin-right: 0;
 }
