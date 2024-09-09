@@ -230,7 +230,7 @@ main li {
 
 main li::before {
   content: "";
-  font-family: Font Awesome\ 6 Free, Font Awesome\ 5 Free;
+  font-family: 'Font Awesome\ 6 Free', 'Font Awesome\ 5 Free';
   font-weight: 400;
   color: var(--color-orange);
   font-size: 1.5rem;
@@ -386,13 +386,23 @@ main > div.section.gray-background > div.default-content-wrapper h2 {
 main > div.section.gray-background.post-teaser-list-container > div.default-content-wrapper h2 {
   color: var(--color-black);
 }
+
 main > div.section.gray-background > div.default-content-wrapper p {
   color: var(--color-black);
 }
 
 main .section.navy-background,
 main .block.navy-background {
-  background-color: var(--color-navy);
+  background-image: linear-gradient(180deg, transparent 5rem, var(--color-navy) 0, var(--color-navy));
+}
+
+main .section.navy-background.image {
+  background-image: url("/icons/section-bg.svg"), linear-gradient(180deg, transparent 5rem, var(--color-navy) 0, var(--color-navy));
+  background-position: top right calc(-2rem);
+  background-repeat: no-repeat;
+  margin-top: -2rem;
+  padding-top: 6rem;
+  position: relative;
 }
 
 main .section.blue-background,
