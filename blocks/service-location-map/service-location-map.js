@@ -6,6 +6,8 @@ import {
 } from '../../scripts/dom-helpers.js';
 import {
   decorateIcons,
+  loadScript,
+  loadCSS,
 } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
 import { usStates } from './us-states.js';
@@ -218,7 +220,8 @@ const mapList = async (block) => {
   const map = new mapboxgl.Map({
     container: mapContainer,
     style: 'mapbox://styles/mapbox/light-v8',
-    zoom: 3
+    zoom: 2,
+    pitchWithRotate: false
   });
 
   const bounds = new mapboxgl.LngLatBounds();
