@@ -30,14 +30,15 @@
 }
 
 .block.service-location-map .map-list .location-item .title {
-  font-size: 1rem; /* todo piyush check this */
+  font-size: 1rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
-.block.service-location-map .map-list .location-item .address {
+.block.service-location-map .map-list .location-item .address,
+.block.service-location-map .map-list .location-item .opening-hours,
+.block.service-location-map .map-list .location-item .drop-off-details {
   font-size: 0.875rem;
-  margin-bottom: 0.5rem; /* todo piyush check this */
 }
 
 .block.service-location-map .map-list .location-item .location {
@@ -52,6 +53,32 @@
   text-decoration: none;
   color: var(--color-white);
 }
+
+.block.service-location-map .map-list .location-item .buy-now {
+  /* text-transform: uppercase; */
+  width: 70%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  background-color: var(--color-yellow);
+  padding: 0.5rem;
+  text-align: center;
+  
+}
+
+.block.service-location-map .map-list .location-item .buy-now a {
+  text-decoration: none;
+  color: var(--color-black);
+  font-weight: 700;
+  border-width: 2px;
+}
+
+.block.service-location-map .map-list .location-item .buy-now a:hover {
+  border-color: #1a242b;
+  background: #ffc62b;
+  color: #1a242b;
+}
+
+
 
 @media screen and (min-width: 992px) {
   .block.service-location-map .map {
@@ -72,10 +99,6 @@
 
 @media screen and (min-width: 1200px) {
   .block.service-location-map .map-list .location-item .location a {
-    /* text-decoration: none;
-    color: var(--color-white); */
-    /* padding: 0.75rem; */
     font-size: 1.1rem;
-    /* width: 100%; */
   }
 }

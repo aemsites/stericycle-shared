@@ -1,5 +1,12 @@
-import { decorateIcons, loadCSS, loadScript } from '../../scripts/aem.js';
-import { a, div, p, span } from '../../scripts/dom-helpers.js';
+import {
+  a,
+  div,
+  p,
+  span,
+} from '../../scripts/dom-helpers.js';
+import {
+  decorateIcons,
+} from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
 import { usStates } from './us-states.js';
 
@@ -8,23 +15,24 @@ function toRadians(degrees) {
 }
 
 function toDegrees(radians) {
-  return radians * 180 / Math.PI;
+  return (radians * 180) / Math.PI;
 }
 
 function haversineDistance(lat1, lon1, lat2, lon2) {
   const R = 6371; // Radius of the Earth in kilometers
   const dLat = toRadians(lat2 - lat1);
   const dLon = toRadians(lon2 - lon1);
-  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const tempA = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+    + Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2))
+    * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(tempA), Math.sqrt(1 - tempA));
   return Math.round(R * c); // Distance in kilometers
-  // todo piyush fetch distance in metres
 }
 
 function calculateCentroid(locations) {
-  let x = 0, y = 0, z = 0;
+  let x = 0;
+  let y = 0
+  let z = 0;
   const total = locations.length;
 
   locations.forEach(location => {
@@ -38,9 +46,9 @@ function calculateCentroid(locations) {
     }
   });
 
-  x = x / total;
-  y = y / total;
-  z = z / total;
+  x /= total;
+  y /= total;
+  z /= total;
 
   const centralLongitude = Math.atan2(y, x);
   const centralSquareRoot = Math.sqrt(x * x + y * y);
@@ -48,7 +56,7 @@ function calculateCentroid(locations) {
 
   return {
     lat: toDegrees(centralLatitude),
-    lng: toDegrees(centralLongitude)
+    lng: toDegrees(centralLongitude),
   };
 }
 
@@ -57,7 +65,7 @@ function applyMarkers(locations, map, bounds, locationContainer, centroid) {
     location.distance = haversineDistance(location.lat, location.lng, centroid.lat, centroid.lng);
   });
   
-  locations.sort((a, b) => a.distance - b.distance);
+  locations.sort((x, y) => x.distance - y.distance);
   
   locations.forEach((location, index) => {
     const el = div({ class: 'marker' }, span({ class: 'icon icon-marker', id: `marker-${index}` }));
@@ -70,7 +78,6 @@ function applyMarkers(locations, map, bounds, locationContainer, centroid) {
           marker.classList.remove('icon-marker-bold');
           marker.classList.add('icon-marker');
           marker.innerHTML = '';
-          console.log(marker);
           decorateIcons(marker.parentElement);
         });    
 
@@ -100,28 +107,65 @@ function applyMarkers(locations, map, bounds, locationContainer, centroid) {
 
     bounds.extend([location.lng, location.lat]);
 
-    const locationDiv = div({ class: 'location-item', id: `location-${index}`, name: location.name },
-      p({ class: 'title' }, location.title));
+    const locationDiv = div(
+      { class: 'location-item', id: `location-${index}`, name: location.name },
+      p({ class: 'title' }, location.title),
+    );
 
     if (location['address-line-1'] && location['address-line-1'] !== '0') {
-      locationDiv.appendChild(p({ class: 'address' }, location['address-line-1']));
+      locationDiv.appendChild(
+        p({ class: 'address' }, location['address-line-1']),
+      );
     }
 
     if (location['address-line-2'] && location['address-line-2'] !== '0') {
-      locationDiv.appendChild(p({ class: 'address' }, location['address-line-2']));
+      locationDiv.appendChild(
+        p({ class: 'address' }, location['address-line-2']),
+      );
     }
 
     if (location['address-line-3'] && location['address-line-3'] !== '0') {
-      locationDiv.appendChild(p({ class: 'address' }, location['address-line-3']));
+      locationDiv.appendChild(
+        p({ class: 'address' }, location['address-line-3']),
+      );
     }
 
-    locationDiv.appendChild(p({ class: 'distance' },
-      `${location.distance} km`));
-    
-    if (location['location'] && location.city) {
-      locationDiv.appendChild(p({ class: 'location' },
-        a({ href: `${window.location.pathname}/${location.city.toLowerCase().trim().split(' ').join('-')}` }, location['location'])));
+    locationDiv.appendChild(
+      p({ class: 'distance' }, `${location.distance} km`)
+    );
+
+    if (location['opening-hours']) {
+      locationDiv.appendChild(
+        p({ class: 'opening-hours' }, location['opening-hours']),
+      );
     }
+
+    if (location['gmap-link']) {
+      locationDiv.appendChild(
+        p({ class: 'gmap' },
+        a({ href: location['gmap-link'] }, 'Get Directions')),
+      );
+    }
+
+    if (location['drop-off-details']) {
+      locationDiv.appendChild(
+        p({ class: 'drop-off-details' }, location['drop-off-details']),
+      );
+    }
+
+    if (location['location'] && location.city) {
+      locationDiv.appendChild(
+        p({ class: 'location' },
+        a({ href: `${window.location.pathname}/${location.city.toLowerCase().trim().split(' ').join('-')}` },
+        location['location']))
+      );
+    }
+
+    if (location['buy-now']) {
+      locationDiv.appendChild(p({ class: 'buy-now' },
+        a({ href: location['buy-now'] }, 'Buy Now'))); 
+    }
+
     locationContainer.appendChild(locationDiv);
   });
 }
@@ -141,9 +185,13 @@ async function fetchLocations() {
     }
 
     if (isDropoff) {
-      mp.title = x['address-line-1'] || '';
-      mp['address-line-1'] = x['address-line-2'] || '';
+      mp.title = getValueOrNull(x['address-line-1']);
+      mp['address-line-1'] = getValueOrNull(x['address-line-2']);
       mp['address-line-2'] =  [mp.city, usStates[mp.state], mp['zip-code']].filter(Boolean).join(', ');
+      mp['gmap-link'] = `https://www.google.com/maps/dir/${[mp.title, mp['address-line-1'], mp['address-line-2']].filter(Boolean).join(', ')}`;
+      mp['opening-hours'] = getValueOrNull(x['opening-hours']);
+      mp['drop-off-details'] = getValueOrNull(x['drop-off-details']);
+      mp['buy-now'] = mp['zip-code'] ? `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=${mp['zip-code']}` : '';
     } else {
       mp.title = `Shred-it ${mp.name || mp.city}`;
       mp['address-line-1'] = x['address-line-1'] || '';
@@ -167,47 +215,22 @@ const mapList = async (block) => {
   const mapContainer = block.querySelector('.map');
   const locationContainer = block.querySelector('.map-list');
 
-
-  var map = new mapboxgl.Map({
+  const map = new mapboxgl.Map({
     container: mapContainer,
     style: 'mapbox://styles/mapbox/light-v8',
-    center: [0, 0],
-    zoom: 2
+    zoom: 3
   });
 
   const bounds = new mapboxgl.LngLatBounds();
-  // console.log(bounds);
   applyMarkers(locations, map, bounds, locationContainer, centroid);
-
-  console.log(bounds)
   map.setCenter([Number(centroid.lng), Number(centroid.lat)]);
-
-  map.on('zoom', () => {
-    const zoomLevel = map.getZoom(); // Get the current zoom level
-    console.log('Current zoom level:', zoomLevel);
-  });
-
-  // map.fitBounds(bounds, {
-  //   padding: 50,
-  //   // maxZoom: 15,
-  //   duration: 100
-  // });
-}
-
-// Function to fly to location when clicked
-function flyToLocation(lat, lng) {
-  map.flyTo({
-    center: [lng, lat],
-    essential: true, // This ensures the animation is necessary in case of browser performance issues
-    zoom: 12
-  });
-}
+};
 
 export default async function decorate(block) {
-  const mapListDiv = div({ class: 'map-list'});
+  const mapListDiv = div({ class: 'map-list' });
   const mapDiv = div({ class: 'map' });
-  await loadScript("https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js");
-  await loadCSS("https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css");
+  await loadScript('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js');
+  await loadCSS('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css');
 
   block.append(mapListDiv, mapDiv);
   await mapList(block);
