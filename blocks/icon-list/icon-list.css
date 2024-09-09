@@ -62,7 +62,7 @@ div.icon-list.plain > div > div:nth-of-type(2) {
     flex-direction: column;
 }
 
-div.icon-list > div > div:nth-of-type(2) p {
+div.icon-list:not(.plain) > div > div:nth-of-type(2) p {
     padding-left: 1rem;
 }
 
@@ -76,7 +76,7 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
-    
+
     div.icon-list.plain > div {
         width: 100%;
         align-content: start;
