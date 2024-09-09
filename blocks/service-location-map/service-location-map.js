@@ -1,3 +1,5 @@
+/* global mapboxgl */
+
 import {
   a,
   div,
@@ -10,10 +12,10 @@ import {
   loadCSS,
 } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
-import { usStates } from './us-states.js';
+import usStates from './us-states.js';
 
 function toRadians(degrees) {
-  return degrees * Math.PI / 180;
+  return (degrees * Math.PI) / 180;
 }
 
 function toDegrees(radians) {
@@ -33,11 +35,11 @@ function haversineDistance(lat1, lon1, lat2, lon2) {
 
 function calculateCentroid(locations) {
   let x = 0;
-  let y = 0
+  let y = 0;
   let z = 0;
   const total = locations.length;
 
-  locations.forEach(location => {
+  locations.forEach((location) => {
     if (Number(location.lat) !== 0 || Number(location.lng) !== 0) {
       const latitude = toRadians(location.lat);
       const longitude = toRadians(location.lng);
@@ -63,12 +65,12 @@ function calculateCentroid(locations) {
 }
 
 function applyMarkers(locations, map, bounds, locationContainer, centroid) {
-  locations.forEach(location => {
+  locations.forEach((location) => {
     location.distance = haversineDistance(location.lat, location.lng, centroid.lat, centroid.lng);
   });
-  
+
   locations.sort((x, y) => x.distance - y.distance);
-  
+
   locations.forEach((location, index) => {
     const el = div({ class: 'marker' }, span({ class: 'icon icon-marker', id: `marker-${index}` }));
 
@@ -76,12 +78,18 @@ function applyMarkers(locations, map, bounds, locationContainer, centroid) {
       const spanEl = el.querySelector('span');
       spanEl.innerHTML = '';
       if (spanEl.classList.contains('icon-marker')) {
-        document.querySelectorAll('.icon-marker-bold').forEach(marker => {
+        document.querySelectorAll('.icon-marker-bold').forEach((marker) => {
           marker.classList.remove('icon-marker-bold');
           marker.classList.add('icon-marker');
+
+          const id = marker.id.split('-')[1];
+          const targetDiv = document.getElementById(`location-${id}`);
+          if (targetDiv) {
+            targetDiv.classList.remove('highlight');
+          }
           marker.innerHTML = '';
           decorateIcons(marker.parentElement);
-        });    
+        });
 
         spanEl.classList.remove('icon-marker');
         spanEl.classList.add('icon-marker-bold');
@@ -93,10 +101,17 @@ function applyMarkers(locations, map, bounds, locationContainer, centroid) {
 
         if (targetDiv && mapList) {
           mapList.scrollTop = targetDiv.offsetTop - mapList.offsetTop;
+          targetDiv.classList.add('highlight');
         }
       } else {
         spanEl.classList.remove('icon-marker-bold');
         spanEl.classList.add('icon-marker');
+
+        const id = spanEl.id.split('-')[1];
+        const targetDiv = document.getElementById(`location-${id}`);
+        if (targetDiv) {
+          targetDiv.classList.remove('highlight');
+        }
       }
 
       decorateIcons(el);
@@ -133,7 +148,7 @@ function applyMarkers(locations, map, bounds, locationContainer, centroid) {
     }
 
     locationDiv.appendChild(
-      p({ class: 'distance' }, `${location.distance} km`)
+      p({ class: 'distance' }, `${location.distance} km`),
     );
 
     if (location['opening-hours']) {
@@ -144,8 +159,10 @@ function applyMarkers(locations, map, bounds, locationContainer, centroid) {
 
     if (location['gmap-link']) {
       locationDiv.appendChild(
-        p({ class: 'gmap' },
-        a({ href: location['gmap-link'] }, 'Get Directions')),
+        p(
+          { class: 'gmap' },
+          a({ href: location['gmap-link'] }, 'Get Directions'),
+        ),
       );
     }
 
@@ -155,17 +172,28 @@ function applyMarkers(locations, map, bounds, locationContainer, centroid) {
       );
     }
 
-    if (location['location'] && location.city) {
+    if (location.location && location.city) {
       locationDiv.appendChild(
-        p({ class: 'location' },
-        a({ href: `${window.location.pathname}/${location.city.toLowerCase().trim().split(' ').join('-')}` },
-        location['location']))
+        p(
+          { class: 'location' },
+          a(
+            { href: `${window.location.pathname}/${location.city.toLowerCase().trim().split(' ').join('-')}` },
+            location.location,
+          ),
+        ),
       );
     }
 
     if (location['buy-now']) {
-      locationDiv.appendChild(p({ class: 'buy-now' },
-        a({ href: location['buy-now'] }, 'Buy Now'))); 
+      locationDiv.appendChild(
+        p(
+          { class: 'buy-now' },
+          a(
+            { href: location['buy-now'] },
+            'Buy Now',
+          ),
+        ),
+      );
     }
 
     locationContainer.appendChild(locationDiv);
@@ -175,37 +203,38 @@ function applyMarkers(locations, map, bounds, locationContainer, centroid) {
 async function fetchLocations() {
   const currentPath = window.location.pathname;
   const isDropoff = currentPath.includes('/secure-shredding-services/drop-off-shredding');
-  return await ffetch('/query-index.json').sheet('locations').map(x => {    
-    const getValueOrNull = value => (value == null || value === 0 || value === '0') ? null : value;
-    const mp = {
-      lat: x.latitude,
-      lng: x.longitude,
-      'zip-code': getValueOrNull(x['zip-code']),
-      city: getValueOrNull(x.city),
-      state: getValueOrNull(x.state),
-      name: getValueOrNull(x.name),
-    }
+  return ffetch('/query-index.json').sheet('locations')
+    .map((x) => {
+      const getValueOrNull = (value) => (value == null || value === 0 || value === '0' ? null : value);
+      const mp = {
+        lat: x.latitude,
+        lng: x.longitude,
+        'zip-code': getValueOrNull(x['zip-code']),
+        city: getValueOrNull(x.city),
+        state: getValueOrNull(x.state),
+        name: getValueOrNull(x.name),
+      };
 
-    if (isDropoff) {
-      mp.title = getValueOrNull(x['address-line-1']);
-      mp['address-line-1'] = getValueOrNull(x['address-line-2']);
-      mp['address-line-2'] =  [mp.city, usStates[mp.state], mp['zip-code']].filter(Boolean).join(', ');
-      mp['gmap-link'] = `https://www.google.com/maps/dir/${[mp.title, mp['address-line-1'], mp['address-line-2']].filter(Boolean).join(', ')}`;
-      mp['opening-hours'] = getValueOrNull(x['opening-hours']);
-      mp['drop-off-details'] = getValueOrNull(x['drop-off-details']);
-      mp['buy-now'] = mp['zip-code'] ? `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=${mp['zip-code']}` : '';
-    } else {
-      mp.title = `Shred-it ${mp.name || mp.city}`;
-      mp['address-line-1'] = x['address-line-1'] || '';
-      mp['address-line-2'] = x['address-line-2'] || '';
-      mp['address-line-3'] =  [mp.city, usStates[mp.state], mp['zip-code']].filter(Boolean).join(', ');
-      mp['location'] = `go to ${mp.title}`;
-    }
+      if (isDropoff) {
+        mp.title = getValueOrNull(x['address-line-1']);
+        mp['address-line-1'] = getValueOrNull(x['address-line-2']);
+        mp['address-line-2'] = [mp.city, usStates[mp.state], mp['zip-code']].filter(Boolean).join(', ');
+        mp['gmap-link'] = `https://www.google.com/maps/dir/${[mp.title, mp['address-line-1'], mp['address-line-2']].filter(Boolean).join(', ')}`;
+        mp['opening-hours'] = getValueOrNull(x['opening-hours']);
+        mp['drop-off-details'] = getValueOrNull(x['drop-off-details']);
+        mp['buy-now'] = mp['zip-code'] ? `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=${mp['zip-code']}` : '';
+      } else {
+        mp.title = `Shred-it ${mp.name || mp.city}`;
+        mp['address-line-1'] = x['address-line-1'] || '';
+        mp['address-line-2'] = x['address-line-2'] || '';
+        mp['address-line-3'] = [mp.city, usStates[mp.state], mp['zip-code']].filter(Boolean).join(', ');
+        mp.location = `go to ${mp.title}`;
+      }
 
-    return mp;
-  })
-  .filter(x => isDropoff ? x['drop-off'] === '1' : true)
-  .all();
+      return mp;
+    })
+    .filter((x) => (isDropoff ? x['drop-off'] === '1' : true))
+    .all();
 }
 
 const mapList = async (block) => {
@@ -220,13 +249,20 @@ const mapList = async (block) => {
   const map = new mapboxgl.Map({
     container: mapContainer,
     style: 'mapbox://styles/mapbox/light-v8',
-    zoom: 2,
-    pitchWithRotate: false
+    zoom: 3,
+    pitchWithRotate: false,
+    dragRotate: false,
+    scrollZoom: true,
+    dragPan: true,
+    boxZoom: true,
   });
 
   const bounds = new mapboxgl.LngLatBounds();
   applyMarkers(locations, map, bounds, locationContainer, centroid);
   map.setCenter([Number(centroid.lng), Number(centroid.lat)]);
+  map.on('load', () => {
+    map.resize();
+  });
 };
 
 export default async function decorate(block) {

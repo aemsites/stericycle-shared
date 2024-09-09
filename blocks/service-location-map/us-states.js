@@ -1,5 +1,5 @@
 /* eslint-disable quote-props */
-export const usStates = {
+const usStates = {
   'Alabama': 'AL',
   'Alaska': 'AK',
   'American Samoa': 'AS',
@@ -60,3 +60,5 @@ export const usStates = {
   'Wisconsin': 'WI',
   'Wyoming': 'WY',
 };
+
+export default usStates;
