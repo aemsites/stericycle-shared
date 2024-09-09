@@ -230,6 +230,7 @@ main li {
 
 main li::before {
   content: "";
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: 'Font Awesome\ 6 Free', 'Font Awesome\ 5 Free';
   font-weight: 400;
   color: var(--color-orange);
