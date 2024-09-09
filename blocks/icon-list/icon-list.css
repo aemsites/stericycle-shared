@@ -6,13 +6,18 @@ div.icon-list-container h2, div.icon-list-container p {
     color: var(--color-white);
 }
 
+div.icon-list > div > div > p:has(> span) {
+    height: 100%;
+    width: 100%;
+}
+
 div.icon-list.plain h2, div.icon-list.plain p {
     color: var(--color-black);
 }
 
 div.icon-list.block {
     display: flex;
-    flex-wrap: wrap
+    flex-wrap: wrap;
 }
 
 div.icon-list > div {
@@ -25,11 +30,6 @@ div.icon-list > div > div {
     height: 6rem;
     vertical-align: middle;
     margin-bottom: 1rem;
-}
-
-div.icon-list > div > div > p:has(> span) {
-    height: 100%;
-    width: 100%;
 }
 
 div.icon-list > div > div span {
@@ -46,11 +46,6 @@ div.icon-list > div > div:last-of-type {
     color: var(--color-white);
 }
 
-div.icon-list.plain > div > div:nth-of-type(2) {
-    display: flex;
-    align-items: start;
-}
-
 div.icon-list > div > div:nth-of-type(2) {
     border-left: 4px solid #ff5633;
     display: flex;
@@ -58,6 +53,8 @@ div.icon-list > div > div:nth-of-type(2) {
 }
 
 div.icon-list.plain > div > div:nth-of-type(2) {
+    display: flex;
+    align-items: start;
     border-left: unset;
     flex-direction: column;
 }
@@ -77,14 +74,14 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
         grid-template-columns: 1fr 1fr;
     }
 
-    div.icon-list.plain > div {
-        width: 100%;
-        align-content: start;
-    }
-
     div.icon-list > div {
         width: 33%;
         display: flex;
         flex-direction: row;
+    }
+
+    div.icon-list.plain > div {
+        width: 100%;
+        align-content: start;
     }
 }
