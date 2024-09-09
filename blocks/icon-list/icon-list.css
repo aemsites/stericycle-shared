@@ -1,4 +1,4 @@
-div.icon-list-container {
+div.icon-list-container:not(.white-background) {
     background-color: var(--color-navy);
 }
 
@@ -12,7 +12,7 @@ div.icon-list.plain h2, div.icon-list.plain p {
 
 div.icon-list.block {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap
 }
 
 div.icon-list > div {
@@ -46,6 +46,11 @@ div.icon-list > div > div:last-of-type {
     color: var(--color-white);
 }
 
+div.icon-list.plain > div > div:nth-of-type(2) {
+    display: flex;
+    align-items: start;
+}
+
 div.icon-list > div > div:nth-of-type(2) {
     border-left: 4px solid #ff5633;
     display: flex;
@@ -54,6 +59,7 @@ div.icon-list > div > div:nth-of-type(2) {
 
 div.icon-list.plain > div > div:nth-of-type(2) {
     border-left: unset;
+    flex-direction: column;
 }
 
 div.icon-list > div > div:nth-of-type(2) p {
@@ -66,6 +72,16 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
 }
 
 @media (min-width: 992px) {
+    div.icon-list.plain.block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    div.icon-list.plain > div {
+        width: 100%;
+        align-content: start;
+    }
+
     div.icon-list > div {
         width: 33%;
         display: flex;
