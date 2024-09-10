@@ -5,6 +5,7 @@ import {
   div,
   p,
   span,
+  h2,
 } from '../../scripts/dom-helpers.js';
 import {
   decorateIcons,
@@ -64,6 +65,97 @@ function calculateCentroid(locations) {
   };
 }
 
+const locDivCreation = (location) => {
+  const locationDiv = div(
+    { class: 'location-item', id: `location-${location.index}`, name: location.name },
+    p({ class: 'title' }, location.title),
+  );
+
+  if (location['address-line-1'] && location['address-line-1'] !== '0') {
+    locationDiv.appendChild(
+      p({ class: 'address' }, location['address-line-1']),
+    );
+  }
+
+  if (location['address-line-2'] && location['address-line-2'] !== '0') {
+    locationDiv.appendChild(
+      p({ class: 'address' }, location['address-line-2']),
+    );
+  }
+
+  if (location['address-line-3'] && location['address-line-3'] !== '0') {
+    locationDiv.appendChild(
+      p({ class: 'address' }, location['address-line-3']),
+    );
+  }
+
+  locationDiv.appendChild(
+    p({ class: 'distance' }, `${location.distance} km`),
+  );
+
+  if (location['opening-hours']) {
+    locationDiv.appendChild(
+      p({ class: 'opening-hours' }, location['opening-hours']),
+    );
+  }
+
+  if (location['gmap-link']) {
+    locationDiv.appendChild(
+      p(
+        { class: 'gmap' },
+        a({ href: location['gmap-link'] }, 'Get Directions'),
+      ),
+    );
+  }
+
+  if (location['drop-off-details']) {
+    locationDiv.appendChild(
+      p({ class: 'drop-off-details' }, location['drop-off-details']),
+    );
+  }
+
+  if (location.location && location.city) {
+    locationDiv.appendChild(
+      p(
+        { class: 'location' },
+        a(
+          { href: `${window.location.pathname}/${location.city.toLowerCase().trim().split(' ').join('-')}` },
+          location.location,
+        ),
+      ),
+    );
+  }
+
+  if (location['buy-now']) {
+    locationDiv.appendChild(
+      p(
+        { class: 'buy-now' },
+        a(
+          { href: location['buy-now'] },
+          'Buy Now',
+        ),
+      ),
+    );
+  }
+
+  return locationDiv;
+};
+
+function updateLocationList(locations, centroid) {
+  const locationContainer = document.querySelector('.map-list');
+  locationContainer.innerHTML = '';
+
+  locations.forEach((location) => {
+    location.distance = haversineDistance(location.lat, location.lng, centroid.lat, centroid.lng);
+  });
+
+  locations.sort((x, y) => x.distance - y.distance);
+
+  locations.forEach((location) => {
+    locationContainer.appendChild(locDivCreation(location));
+  });
+}
+
 function applyMarkers(locations, map, bounds, locationContainer, centroid) {
   locations.forEach((location) => {
     location.distance = haversineDistance(location.lat, location.lng, centroid.lat, centroid.lng);
@@ -71,8 +163,8 @@ function applyMarkers(locations, map, bounds, locationContainer, centroid) {
 
   locations.sort((x, y) => x.distance - y.distance);
 
-  locations.forEach((location, index) => {
-    const el = div({ class: 'marker' }, span({ class: 'icon icon-marker', id: `marker-${index}` }));
+  locations.forEach((location) => {
+    const el = div({ class: 'marker' }, span({ class: 'icon icon-marker', id: `marker-${location.index}` }));
 
     el.addEventListener('click', () => {
       const spanEl = el.querySelector('span');
@@ -123,80 +215,7 @@ function applyMarkers(locations, map, bounds, locationContainer, centroid) {
       .addTo(map);
 
     bounds.extend([location.lng, location.lat]);
-
-    const locationDiv = div(
-      { class: 'location-item', id: `location-${index}`, name: location.name },
-      p({ class: 'title' }, location.title),
-    );
-
-    if (location['address-line-1'] && location['address-line-1'] !== '0') {
-      locationDiv.appendChild(
-        p({ class: 'address' }, location['address-line-1']),
-      );
-    }
-
-    if (location['address-line-2'] && location['address-line-2'] !== '0') {
-      locationDiv.appendChild(
-        p({ class: 'address' }, location['address-line-2']),
-      );
-    }
-
-    if (location['address-line-3'] && location['address-line-3'] !== '0') {
-      locationDiv.appendChild(
-        p({ class: 'address' }, location['address-line-3']),
-      );
-    }
-
-    locationDiv.appendChild(
-      p({ class: 'distance' }, `${location.distance} km`),
-    );
-
-    if (location['opening-hours']) {
-      locationDiv.appendChild(
-        p({ class: 'opening-hours' }, location['opening-hours']),
-      );
-    }
-
-    if (location['gmap-link']) {
-      locationDiv.appendChild(
-        p(
-          { class: 'gmap' },
-          a({ href: location['gmap-link'] }, 'Get Directions'),
-        ),
-      );
-    }
-
-    if (location['drop-off-details']) {
-      locationDiv.appendChild(
-        p({ class: 'drop-off-details' }, location['drop-off-details']),
-      );
-    }
-
-    if (location.location && location.city) {
-      locationDiv.appendChild(
-        p(
-          { class: 'location' },
-          a(
-            { href: `${window.location.pathname}/${location.city.toLowerCase().trim().split(' ').join('-')}` },
-            location.location,
-          ),
-        ),
-      );
-    }
-
-    if (location['buy-now']) {
-      locationDiv.appendChild(
-        p(
-          { class: 'buy-now' },
-          a(
-            { href: location['buy-now'] },
-            'Buy Now',
-          ),
-        ),
-      );
-    }
-
-    locationContainer.appendChild(locationDiv);
+    locationContainer.appendChild(locDivCreation(location));
   });
 }
 
@@ -241,6 +260,10 @@ const mapList = async (block) => {
   mapboxgl.accessToken = 'pk.eyJ1Ijoic3RlcmljeWNsZSIsImEiOiJjbDNhZ3M5b3AwMWphM2RydWJobjY3ZmxmIn0.xt2cRdtjXnnZXXXLt3bOlQ';
 
   const locations = await fetchLocations();
+  locations.map((x, index) => {
+    x.index = index;
+    return x;
+  });
   const centroid = calculateCentroid(locations);
 
   const mapContainer = block.querySelector('.map');
@@ -260,8 +283,17 @@ const mapList = async (block) => {
   const bounds = new mapboxgl.LngLatBounds();
   applyMarkers(locations, map, bounds, locationContainer, centroid);
   map.setCenter([Number(centroid.lng), Number(centroid.lat)]);
+
   map.on('load', () => {
     map.resize();
+  });
+
+  map.on('drag', () => {
+    updateLocationList(locations, map.getCenter());
+  });
+
+  map.on('zoom', () => {
+    updateLocationList(locations, map.getCenter());
   });
 };
 
@@ -271,6 +303,12 @@ export default async function decorate(block) {
   await loadScript('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js');
   await loadCSS('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css');
 
-  block.append(mapListDiv, mapDiv);
+  const mapSearch = div(
+    { class: 'map-search' },
+    h2('Find the nearest drop off shredding location to you:'),
+    p('Please enter your location (zip code or city)'),
+  );
+  const mapDetails = div({ class: 'map-details' }, mapListDiv, mapDiv);
+  block.append(mapSearch, mapDetails);
   await mapList(block);
 }

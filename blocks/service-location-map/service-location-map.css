@@ -1,5 +1,14 @@
 .block.service-location-map {
   display: flex;
+  flex-direction: column;
+}
+
+.block.service-location-map .map-details {
+  display: flex;
+}
+
+.block.service-location-map .map-search {
+  margin-bottom: 1rem;
 }
 
 .block.service-location-map .icon-marker,
@@ -75,12 +84,10 @@
 }
 
 .block.service-location-map .map-list .location-item .buy-now a:hover {
-  border-color: #1a242b;
-  background: #ffc62b;
-  color: #1a242b;
+  border-color: var(--color-dark-gunmetal);
+  background: var(--color-yellow);
+  color: var(--color-dark-gunmetal);
 }
-
-
 
 @media screen and (min-width: 992px) {
   .block.service-location-map .map {
