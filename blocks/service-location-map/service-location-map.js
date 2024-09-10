@@ -163,6 +163,7 @@ function updateLocationList(locations, centroid) {
 function applyMarkers(locations, map, bounds, locationContainer, centroid) {
   if (locations.length === 0) {
     locationContainer.appendChild(
+      // todo piyush again check this
       p({ class: 'no-result' }, 'There are no service locations near your search query. Please try searching another location or contact us for assistance.'),
     );
     locationContainer.classList.add('no-result');
@@ -260,7 +261,7 @@ async function fetchLocations(isDropoff) {
         mp['address-line-3'] = [mp.city, usStates[mp.state], mp['zip-code']].filter(Boolean).join(', ');
         mp.location = `go to ${mp.title}`;
       }
-
+      mp['state-code'] = usStates[mp.state];
       return mp;
     })
     .filter((x) => (isDropoff ? x['drop-off'] === '1' : true))
@@ -271,7 +272,7 @@ async function fetchLocations(isDropoff) {
     });
 }
 
-const mapList = async (block, locations) => {
+const mapList = async (block, locations, optionalCentroid, zoomLevel=3) => {
   mapboxgl.accessToken = 'pk.eyJ1Ijoic3RlcmljeWNsZSIsImEiOiJjbDNhZ3M5b3AwMWphM2RydWJobjY3ZmxmIn0.xt2cRdtjXnnZXXXLt3bOlQ';
   const centroid = calculateCentroid(locations);
 
@@ -282,7 +283,7 @@ const mapList = async (block, locations) => {
   const map = new mapboxgl.Map({
     container: mapContainer,
     style: 'mapbox://styles/mapbox/light-v8',
-    zoom: 3,
+    zoom: zoomLevel,
     pitchWithRotate: false,
     dragRotate: false,
     scrollZoom: true,
@@ -294,6 +295,8 @@ const mapList = async (block, locations) => {
   applyMarkers(locations, map, bounds, locationContainer, centroid);
   if (locations.length > 0) {
     map.setCenter([Number(centroid?.lng), Number(centroid?.lat)]);
+  } else if (optionalCentroid) {
+    map.setCenter([optionalCentroid.lng, optionalCentroid.lat]);
   }
 
   map.on('load', () => {
@@ -309,24 +312,63 @@ const mapList = async (block, locations) => {
   });
 };
 
+const mapInputSearchOnCLick = async (block, locations) => {
+  const inputText = document.querySelector('.map-input').value;
+  if (inputText) {
+    const mapSearchError = block.querySelector('.map-search-error');
+    mapSearchError.classList.remove('unhide');
+    const filteredLocations = locations.filter(
+      (location) => {
+        const searchText = inputText.trim().toLowerCase();
+        return (
+          location['zip-code']?.toLowerCase() === searchText
+          || location.city?.toLowerCase() === searchText
+          || location.state?.toLowerCase() === searchText
+          || location['state-code']?.toLowerCase() === searchText
+        );
+      }
+    );
+    await mapList(block, filteredLocations, null);
+  } else {
+    const mapSearchError = block.querySelector('.map-search-error');
+    mapSearchError.textContent = 'Enter valid zipcode, city, or state';
+    mapSearchError.classList.add('unhide');
+  }
+}
+
+const mapInputLocationOnClick = (block, locations) => {
+  const successCallback = (position) => {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    
+    console.log("Current Location:", latitude, longitude);
+    mapList(block, [], {
+      lat: latitude,
+      lng: longitude,
+    }, 8);
+  }
+
+  const errorCallback = (error) => {
+    // todo fetch from the placeholder
+    alert('Enable location permission for this website in your browser settings.');
+  }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+  } else {
+    console.error("Geolocation is not supported by this browser.");
+  }
+}
+
 const mapSearch = (ph, block, locations, isDropoff) => {
   const mapInputSearch = button({ class: 'map-input-search' }, ph.searchtext);
   mapInputSearch.addEventListener('click', async () => {
-    const inputText = document.querySelector('.map-input').value;
-    if (inputText) {
-      const mapSearchError = block.querySelector('.map-search-error');
-      mapSearchError.classList.remove('unhide');
-      const filteredLocations = locations.filter(
-        (location) => (
-          location['zip-code'] === inputText.trim().toLowerCase() || location.city === inputText.trim().toLowerCase()
-        ),
-      );
-      await mapList(block, filteredLocations);
-    } else {
-      const mapSearchError = block.querySelector('.map-search-error');
-      mapSearchError.textContent = 'Enter valid zipcode, city, or state';
-      mapSearchError.classList.add('unhide');
-    }
+    await mapInputSearchOnCLick(block, locations);
+  });
+
+  const mapInputLocation = button({ class: 'map-input-location' }, ph.uselocationtext);
+  mapInputLocation.addEventListener('click', async () => {
+    mapInputLocationOnClick(block, locations);
   });
 
   return div(
@@ -337,7 +379,7 @@ const mapSearch = (ph, block, locations, isDropoff) => {
       { class: 'map-input-details' },
       input({ class: 'map-input' }),
       mapInputSearch,
-      button({ class: 'map-input-location' }, ph.uselocationtext),
+      mapInputLocation,
     ),
     div({ class: 'map-search-error' }),
   );
