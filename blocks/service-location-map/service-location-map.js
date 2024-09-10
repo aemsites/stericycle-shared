@@ -6,14 +6,18 @@ import {
   p,
   span,
   h2,
+  input,
+  button,
 } from '../../scripts/dom-helpers.js';
 import {
   decorateIcons,
   loadScript,
   loadCSS,
+  fetchPlaceholders,
 } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
 import usStates from './us-states.js';
+import { getLocale } from '../../scripts/scripts.js';
 
 function toRadians(degrees) {
   return (degrees * Math.PI) / 180;
@@ -131,7 +135,7 @@ const locDivCreation = (location) => {
       p(
         { class: 'buy-now' },
         a(
-          { href: location['buy-now'] },
+          { href: location['buy-now'] }, // todo piyush placeholder text
           'Buy Now',
         ),
       ),
@@ -157,6 +161,15 @@ function updateLocationList(locations, centroid) {
 }
 
 function applyMarkers(locations, map, bounds, locationContainer, centroid) {
+  if (locations.length === 0) {
+    locationContainer.appendChild(
+      p({ class: 'no-result' }, 'There are no service locations near your search query. Please try searching another location or contact us for assistance.'),
+    );
+    locationContainer.classList.add('no-result');
+  } else {
+    locationContainer.classList.remove('no-result');
+  }
+
   locations.forEach((location) => {
     location.distance = haversineDistance(location.lat, location.lng, centroid.lat, centroid.lng);
   });
@@ -219,10 +232,8 @@ function applyMarkers(locations, map, bounds, locationContainer, centroid) {
   });
 }
 
-async function fetchLocations() {
-  const currentPath = window.location.pathname;
-  const isDropoff = currentPath.includes('/secure-shredding-services/drop-off-shredding');
-  return ffetch('/query-index.json').sheet('locations')
+async function fetchLocations(isDropoff) {
+  return (await ffetch('/query-index.json').sheet('locations')
     .map((x) => {
       const getValueOrNull = (value) => (value == null || value === 0 || value === '0' ? null : value);
       const mp = {
@@ -253,21 +264,20 @@ async function fetchLocations() {
       return mp;
     })
     .filter((x) => (isDropoff ? x['drop-off'] === '1' : true))
-    .all();
+    .all())
+    .map((x, index) => {
+      x.index = index;
+      return x;
+    });
 }
 
-const mapList = async (block) => {
+const mapList = async (block, locations) => {
   mapboxgl.accessToken = 'pk.eyJ1Ijoic3RlcmljeWNsZSIsImEiOiJjbDNhZ3M5b3AwMWphM2RydWJobjY3ZmxmIn0.xt2cRdtjXnnZXXXLt3bOlQ';
-
-  const locations = await fetchLocations();
-  locations.map((x, index) => {
-    x.index = index;
-    return x;
-  });
   const centroid = calculateCentroid(locations);
 
   const mapContainer = block.querySelector('.map');
   const locationContainer = block.querySelector('.map-list');
+  locationContainer.innerHTML = '';
 
   const map = new mapboxgl.Map({
     container: mapContainer,
@@ -282,7 +292,9 @@ const mapList = async (block) => {
 
   const bounds = new mapboxgl.LngLatBounds();
   applyMarkers(locations, map, bounds, locationContainer, centroid);
-  map.setCenter([Number(centroid.lng), Number(centroid.lat)]);
+  if (locations.length > 0) {
+    map.setCenter([Number(centroid?.lng), Number(centroid?.lat)]);
+  }
 
   map.on('load', () => {
     map.resize();
@@ -297,18 +309,57 @@ const mapList = async (block) => {
   });
 };
 
+const mapSearch = (ph, block, locations, isDropoff) => {
+  const mapInputSearch = button({ class: 'map-input-search' }, ph.searchtext);
+  mapInputSearch.addEventListener('click', async () => {
+    const inputText = document.querySelector('.map-input').value;
+    if (inputText) {
+      const mapSearchError = block.querySelector('.map-search-error');
+      mapSearchError.classList.remove('unhide');
+      const filteredLocations = locations.filter(
+        (location) => (
+          location['zip-code'] === inputText.trim().toLowerCase() || location.city === inputText.trim().toLowerCase()
+        ),
+      );
+      await mapList(block, filteredLocations);
+    } else {
+      const mapSearchError = block.querySelector('.map-search-error');
+      mapSearchError.textContent = 'Enter valid zipcode, city, or state';
+      mapSearchError.classList.add('unhide');
+    }
+  });
+
+  return div(
+    { class: 'map-search' },
+    h2(ph.servicemapdropofftext),
+    p(isDropoff ? ph.servicemapbranchtext : ph.servicemapziptext),
+    div(
+      { class: 'map-input-details' },
+      input({ class: 'map-input' }),
+      mapInputSearch,
+      button({ class: 'map-input-location' }, ph.uselocationtext),
+    ),
+    div({ class: 'map-search-error' }),
+  );
+};
+
+const getIsDropoff = () => {
+  const currentPath = window.location.pathname;
+  return currentPath.includes('/secure-shredding-services/drop-off-shredding');
+};
+
 export default async function decorate(block) {
-  const mapListDiv = div({ class: 'map-list' });
-  const mapDiv = div({ class: 'map' });
   await loadScript('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js');
   await loadCSS('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css');
 
-  const mapSearch = div(
-    { class: 'map-search' },
-    h2('Find the nearest drop off shredding location to you:'),
-    p('Please enter your location (zip code or city)'),
+  const ph = await fetchPlaceholders(`/${getLocale()}`);
+  const isDropoff = getIsDropoff();
+
+  const locations = await fetchLocations(isDropoff);
+  block.append(
+    mapSearch(ph, block, locations, isDropoff),
+    div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
-  const mapDetails = div({ class: 'map-details' }, mapListDiv, mapDiv);
-  block.append(mapSearch, mapDetails);
-  await mapList(block);
+
+  await mapList(block, locations);
 }

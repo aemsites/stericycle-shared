@@ -11,6 +11,17 @@
   margin-bottom: 1rem;
 }
 
+.block.service-location-map .map-search .map-search-error {
+  visibility: hidden;
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+}
+
+.block.service-location-map .map-search .map-search-error.unhide {
+  visibility: visible;
+  padding: 0.5rem;
+}
+
 .block.service-location-map .icon-marker,
 .block.service-location-map .icon-marker-bold {
   width: 28px;
@@ -26,6 +37,14 @@
   height: 35rem;
   overflow-y: auto;
   scroll-behavior: smooth;
+}
+
+.block.service-location-map .map-list.no-result {
+  height: 6rem;
+}
+
+.block.service-location-map .map-list .no-result {
+  margin-top: 1rem;
 }
 
 .block.service-location-map .map-list .location-item {
@@ -54,7 +73,7 @@
   text-transform: uppercase;
   margin-top: 1rem;
   margin-bottom: 0.75rem;
-  background-color: var(--color-link);
+  background-color: var(--color-button-default);
   padding: 0.75rem;
 }
 
@@ -89,6 +108,34 @@
   color: var(--color-dark-gunmetal);
 }
 
+.block.service-location-map .map-search .map-input-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.block.service-location-map .map-search .map-input-details .map-input {
+  height: 2.1rem;
+  font-size: 1rem;
+}
+
+.block.service-location-map .map-search .map-input-details .map-input-search,
+.block.service-location-map .map-search .map-input-details .map-input-location {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.1rem;
+  border-radius: 0.25rem;
+  height: 2.5rem;
+}
+
+@media screen and (min-width: 576px) {
+  .block.service-location-map .map-search .map-input-details {
+    flex-direction: row;
+  }
+}
+
 @media screen and (min-width: 992px) {
   .block.service-location-map .map {
     width: 66%;
@@ -98,6 +145,15 @@
 
   .block.service-location-map .map-list {
     width: 34%;
+  }
+
+  .block.service-location-map .map-search .map-input-details .map-input {
+    width: 34%;
+  }
+
+  .block.service-location-map .map-search .map-input-details .map-input-search,
+  .block.service-location-map .map-search .map-input-details .map-input-location {
+    width: 20%;
   }
 }
 
