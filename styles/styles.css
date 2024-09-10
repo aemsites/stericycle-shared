@@ -228,7 +228,30 @@ main li {
   list-style: none;
 }
 
-main li::before {
+main .section.column-with-list.blue-background.columns-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #133b5c;
+}
+
+main .section.column-with-list.blue-background.columns-container li {
+  display: flex;
+  padding: .75rem 0;
+  border-bottom: .0625rem solid #dad6d6;
+  gap: 1rem;
+}
+
+main .section.column-with-list.blue-background.columns-container img {
+  width: 24px;
+  height: 24px;
+  max-width: unset;
+}
+
+main .section.column-with-list.blue-background.columns-container .icon {
+  width: fit-content;
+}
+
+main li::before:not(.teaser) {
   content: "";
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: 'Font Awesome\ 6 Free', 'Font Awesome\ 5 Free';
