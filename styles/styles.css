@@ -251,7 +251,7 @@ main .section.column-with-list.blue-background.columns-container .icon {
   width: fit-content;
 }
 
-main li::before:not(.teaser) {
+main li::before {
   content: "";
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: 'Font Awesome\ 6 Free', 'Font Awesome\ 5 Free';
