@@ -212,7 +212,7 @@ function applyMarkers(locations) {
       decorateIcons(el);
     });
     decorateIcons(el);
-    console.log(map)
+    // console.log(el)
     new mapboxgl.Marker(el)
       .setLngLat([location.lng, location.lat])
       .addTo(map);
@@ -360,6 +360,17 @@ const dragAndZoom = (locations, block, ph) => {
 //   // });
 // };
 
+function updateMapAndLocations() {
+  const centerPoint = getCenterPoint();
+  console.log(centerPoint);
+  map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+  map.setZoom(centerPoint.zoom);
+
+  calculateLocationListDistance(locations, centerPoint);
+  applyMarkers(locations);
+  renderAndSortLocationList(locations, block, ph);
+}
+
 const mapInitialization = async (locations, block, ph) => {
   await loadScript('https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js');
   await loadCSS('https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css');
@@ -379,12 +390,25 @@ const mapInitialization = async (locations, block, ph) => {
 
   requestIdleCallback(() => {
     const centerPoint = getCenterPoint();
+    console.log(centerPoint);
     map.setCenter([centerPoint.longitude, centerPoint.latitude]);
     map.setZoom(centerPoint.zoom);
 
     calculateLocationListDistance(locations, centerPoint);
     applyMarkers(locations);
     renderAndSortLocationList(locations, block, ph);
+  });
+
+  map.on('load', () => {
+    const centerPoint = getCenterPoint();
+    console.log(centerPoint);
+    map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+    map.setZoom(centerPoint.zoom);
+
+    calculateLocationListDistance(locations, centerPoint);
+    applyMarkers(locations);
+    renderAndSortLocationList(locations, block, ph);
+    // map.resize();
   });
 };
 
