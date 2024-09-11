@@ -47,7 +47,17 @@
         gap: 2rem;
     }
 
-    .section.two-column-offer .offer-box {
+    .section.three-column-offer .offer-box {
         width: 50%;
+    }
+
+    .section.three-column-offer .offer-box-wrapper {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .section.three-column-offer .offer-box {
+        width: 33%;
     }
 }
