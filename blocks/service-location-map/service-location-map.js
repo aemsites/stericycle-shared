@@ -28,15 +28,14 @@ const getAccessToken = () => 'pk.eyJ1Ijoic3RlcmljeWNsZSIsImEiOiJjbDNhZ3M5b3AwMWp
 const toRadians = (degrees) => ((degrees * Math.PI) / 180);
 
 const haversineDistance = (lat1, lon1, lat2, lon2) => {
-  return 1;
-  // const R = 6371; // Radius of the Earth in kilometers
-  // const dLat = toRadians(lat2 - lat1);
-  // const dLon = toRadians(lon2 - lon1);
-  // const tempA = Math.sin(dLat / 2) * Math.sin(dLat / 2)
-  //   + Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2))
-  //   * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-  // const c = 2 * Math.atan2(Math.sqrt(tempA), Math.sqrt(1 - tempA));
-  // return Math.round(R * c); // Distance in kilometers
+  const R = 6371; // Radius of the Earth in kilometers
+  const dLat = toRadians(lat2 - lat1);
+  const dLon = toRadians(lon2 - lon1);
+  const tempA = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+    + Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2))
+    * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(tempA), Math.sqrt(1 - tempA));
+  return Math.round(R * c); // Distance in kilometers
 };
 
 const locDivCreation = (location, ph) => {
@@ -323,8 +322,8 @@ const dragAndZoom = (locations, block, ph) => {
  * @param {*} locations
  */
 const mapInitialization = async (locations, block, ph) => {
-  await loadScript('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.js');
-  await loadCSS('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.css');
+  await loadScript('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.js', {async: true});
+  await loadCSS('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.css', {async: true});
   mapboxgl.accessToken = getAccessToken();
   const mapContainer = block.querySelector('.map');
 
