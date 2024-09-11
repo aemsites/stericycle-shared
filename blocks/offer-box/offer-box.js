@@ -4,7 +4,6 @@ export default async function decorate(block) {
   const headers = document.createElement('div');
   headers.classList.add('offer-box-header');
   offerBox.appendChild(headers);
-  // console.log(block);
 
   const headerItems = block.querySelectorAll('div:first-of-type > div:first-of-type > p, div:first-of-type > div:first-of-type > h2');
 
@@ -16,7 +15,6 @@ export default async function decorate(block) {
       hDiv.innerHTML = item.innerHTML;
     }
     headers.appendChild(hDiv);
-    // console.log(item);
   });
 
   const headCopy = document.createElement('div');
