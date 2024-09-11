@@ -401,13 +401,13 @@ const mapInitialization = async (locations, block, ph) => {
 
   map.on('load', () => {
     const centerPoint = getCenterPoint();
-    console.log(centerPoint);
+    // console.log(centerPoint);
     map.setCenter([centerPoint.longitude, centerPoint.latitude]);
     map.setZoom(centerPoint.zoom);
 
-    calculateLocationListDistance(locations, centerPoint);
+    // calculateLocationListDistance(locations, centerPoint);
     applyMarkers(locations);
-    renderAndSortLocationList(locations, block, ph);
+    // renderAndSortLocationList(locations, block, ph);
     // map.resize();
   });
 };
