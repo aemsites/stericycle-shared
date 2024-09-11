@@ -556,7 +556,10 @@ export default async function decorate(block) {
   );
 
   // Initialize the map
-  initializeMap(block, locations, ph);
+  setTimeout(async () => {
+    await initializeMap(block, locations, ph);  
+  }, 2000);
+  
 
   // await loadScript('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js');
   // await loadCSS('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css');
