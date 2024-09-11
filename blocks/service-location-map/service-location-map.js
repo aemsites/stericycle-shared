@@ -11,8 +11,8 @@ import {
 } from '../../scripts/dom-helpers.js';
 import {
   decorateIcons,
-  // loadScript,
-  // loadCSS,
+  loadScript,
+  loadCSS,
   fetchPlaceholders,
 } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
@@ -212,6 +212,7 @@ function applyMarkers(locations) {
       decorateIcons(el);
     });
     decorateIcons(el);
+    console.log(map)
     new mapboxgl.Marker(el)
       .setLngLat([location.lng, location.lat])
       .addTo(map);
@@ -335,23 +336,28 @@ const mapInitialization = (locations, block, ph) => {
 
   const centerPoint = getCenterPoint();
   map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+  // map.setCenter([40, 40]);
+  console.log(centerPoint.zoom);
+  console.log(locations);
+  console.log(centerPoint.zoom);
+  console.log(centerPoint);
   map.setZoom(centerPoint.zoom);
 
   calculateLocationListDistance(locations, centerPoint);
   applyMarkers(locations);
   renderAndSortLocationList(locations, block, ph);
 
-  map.on('load', () => {
-    map.resize();
-  });
+  // map.on('load', () => {
+  //   // map.resize();
+  // });
 
-  map.on('drag', () => {
-    dragAndZoom(locations, block, ph);
-  });
+  // map.on('drag', () => {
+  //   // dragAndZoom(locations, block, ph);
+  // });
 
-  map.on('zoom', () => {
-    dragAndZoom(locations, block, ph);
-  });
+  // map.on('zoom', () => {
+  //   // dragAndZoom(locations, block, ph);
+  // });
 };
 
 const searchMatch = (locations, city, placeName, zipcode) => {
@@ -524,6 +530,16 @@ const mapSearch = (ph, block, locations, isDropoff) => {
   );
 };
 
+async function initializeMap(block, locations, ph) {
+  await Promise.all([
+    loadScript('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js'),
+    loadCSS('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css')
+  ]);
+
+  // Initialize the map
+  await mapInitialization(locations, block, ph);
+}
+
 const getIsDropoff = () => {
   const currentPath = window.location.pathname;
   return currentPath.includes('/secure-shredding-services/drop-off-shredding');
@@ -539,9 +555,10 @@ export default async function decorate(block) {
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
+  // Initialize the map
+  initializeMap(block, locations, ph);
+
   // await loadScript('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js');
   // await loadCSS('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css');
-  if (isDropoff) {
-    mapInitialization(locations, block, ph);
-  }
+  // mapInitialization(locations, block, ph);
 }
