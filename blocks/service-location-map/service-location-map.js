@@ -320,7 +320,50 @@ const dragAndZoom = (locations, block, ph) => {
  * Renders the initial markers on the map
  * @param {*} locations
  */
-const mapInitialization = (locations, block, ph) => {
+// const mapInitialization = (locations, block, ph) => {
+//   mapboxgl.accessToken = getAccessToken();
+//   const mapContainer = block.querySelector('.map');
+
+//   map = new mapboxgl.Map({
+//     container: mapContainer,
+//     style: 'mapbox://styles/mapbox/light-v8',
+//     pitchWithRotate: false,
+//     dragRotate: false,
+//     scrollZoom: true,
+//     dragPan: true,
+//     boxZoom: true,
+//   });
+
+//   const centerPoint = getCenterPoint();
+//   map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+//   // map.setCenter([40, 40]);
+//   console.log(centerPoint.zoom);
+//   console.log(locations);
+//   console.log(centerPoint.zoom);
+//   console.log(centerPoint);
+//   map.setZoom(centerPoint.zoom);
+
+//   calculateLocationListDistance(locations, centerPoint);
+//   applyMarkers(locations);
+//   renderAndSortLocationList(locations, block, ph);
+
+//   // map.on('load', () => {
+//   //   // map.resize();
+//   // });
+
+//   // map.on('drag', () => {
+//   //   // dragAndZoom(locations, block, ph);
+//   // });
+
+//   // map.on('zoom', () => {
+//   //   // dragAndZoom(locations, block, ph);
+//   // });
+// };
+
+const mapInitialization = async (locations, block, ph) => {
+  await loadScript('https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js');
+  await loadCSS('https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css');
+
   mapboxgl.accessToken = getAccessToken();
   const mapContainer = block.querySelector('.map');
 
@@ -334,30 +377,15 @@ const mapInitialization = (locations, block, ph) => {
     boxZoom: true,
   });
 
-  const centerPoint = getCenterPoint();
-  map.setCenter([centerPoint.longitude, centerPoint.latitude]);
-  // map.setCenter([40, 40]);
-  console.log(centerPoint.zoom);
-  console.log(locations);
-  console.log(centerPoint.zoom);
-  console.log(centerPoint);
-  map.setZoom(centerPoint.zoom);
+  requestIdleCallback(() => {
+    const centerPoint = getCenterPoint();
+    map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+    map.setZoom(centerPoint.zoom);
 
-  calculateLocationListDistance(locations, centerPoint);
-  applyMarkers(locations);
-  renderAndSortLocationList(locations, block, ph);
-
-  // map.on('load', () => {
-  //   // map.resize();
-  // });
-
-  // map.on('drag', () => {
-  //   // dragAndZoom(locations, block, ph);
-  // });
-
-  // map.on('zoom', () => {
-  //   // dragAndZoom(locations, block, ph);
-  // });
+    calculateLocationListDistance(locations, centerPoint);
+    applyMarkers(locations);
+    renderAndSortLocationList(locations, block, ph);
+  });
 };
 
 const searchMatch = (locations, city, placeName, zipcode) => {
@@ -545,6 +573,9 @@ const getIsDropoff = () => {
   return currentPath.includes('/secure-shredding-services/drop-off-shredding');
 };
 
+
+
+
 export default async function decorate(block) {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const isDropoff = getIsDropoff();
@@ -555,10 +586,12 @@ export default async function decorate(block) {
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
+  mapInitialization(locations, block, ph);
+
   // Initialize the map
-  setTimeout(async () => {
-    await initializeMap(block, locations, ph);  
-  }, 2000);
+  // setTimeout(async () => {
+  //   await initializeMap(block, locations, ph);  
+  // }, 2000);
   
 
   // await loadScript('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js');
