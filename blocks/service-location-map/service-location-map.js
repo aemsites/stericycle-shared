@@ -1,5 +1,6 @@
 /* global mapboxgl */
 
+/* eslint-disable  */
 import {
   a,
   div,
@@ -20,6 +21,7 @@ import usStates from './us-states.js';
 import { getLocale } from '../../scripts/scripts.js';
 
 let map = null;
+let locationsImp = [];
 
 const getAccessToken = () => 'pk.eyJ1Ijoic3RlcmljeWNsZSIsImEiOiJjbDNhZ3M5b3AwMWphM2RydWJobjY3ZmxmIn0.xt2cRdtjXnnZXXXLt3bOlQ';
 
@@ -501,15 +503,15 @@ const mapInputLocationOnClick = (block, locations, ph) => {
  * @param {*} isDropoff
  * @returns
  */
-const mapSearch = (ph, block, locations, isDropoff) => {
+const mapSearch = (ph, block, isDropoff) => {
   const mapInputSearch = button({ class: 'map-input-search' }, ph.searchtext);
   mapInputSearch.addEventListener('click', async () => {
-    await mapInputSearchOnCLick(block, locations, ph);
+    await mapInputSearchOnCLick(block, locationsImp, ph);
   });
 
   const mapInputLocation = button({ class: 'map-input-location' }, ph.uselocationtext);
   mapInputLocation.addEventListener('click', async () => {
-    mapInputLocationOnClick(block, locations, ph);
+    mapInputLocationOnClick(block, locationsImp, ph);
   });
 
   return div(
@@ -535,11 +537,11 @@ export default async function decorate(block) {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const isDropoff = getIsDropoff();
 
-  const locations = await fetchLocations(isDropoff, ph);
   block.append(
-    mapSearch(ph, block, locations, isDropoff),
+    mapSearch(ph, block, isDropoff),
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
-  mapInitialization(locations, block, ph);
+  locationsImp = await fetchLocations(isDropoff, ph);
+  mapInitialization(locationsImp, block, ph);
 }
