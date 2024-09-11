@@ -610,12 +610,12 @@ export default async function decorate(block) {
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
-  mapInitialization(locations, block, ph);
+  // mapInitialization(locations, block, ph);
 
   // Initialize the map
-  // setTimeout(async () => {
-  //   await initializeMap(block, locations, ph);  
-  // }, 2000);
+  setTimeout(async () => {
+    await mapInitialization(locations, block, ph);
+  }, 2000);
   
 
   // await loadScript('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js');
