@@ -3,6 +3,7 @@
  * Recreate an accordion
  * https://www.hlx.live/developer/block-collection/accordion
  */
+import { decorate as embed } from '../embed/embed.js';
 
 function hasWrapper(el) {
   return !!el.firstElementChild && window.getComputedStyle(el.firstElementChild).display === 'block';
@@ -47,6 +48,20 @@ export default function decorate(block) {
     // decorate faq item
     const details = document.createElement('details');
     details.className = 'faq-item';
+
+    // process embedded video blocks
+    const video = body.querySelector('table');
+    if (video) {
+      const vhead = video.querySelector('thead > tr > th');
+      if (vhead && vhead.innerText === 'embed') {
+        const vDiv = document.createElement('div');
+        vDiv.append(video.cloneNode(true));
+        video.replaceWith(vDiv);
+
+        // console.log(video);
+        embed(vDiv);
+      }
+    }
     details.append(summary, body);
     row.replaceWith(details);
 
