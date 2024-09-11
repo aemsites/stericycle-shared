@@ -11,8 +11,8 @@ import {
 } from '../../scripts/dom-helpers.js';
 import {
   decorateIcons,
-  loadScript,
-  loadCSS,
+  // loadScript,
+  // loadCSS,
   fetchPlaceholders,
 } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
@@ -539,7 +539,9 @@ export default async function decorate(block) {
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
-  await loadScript('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js');
-  await loadCSS('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css');
-  mapInitialization(locations, block, ph);
+  // await loadScript('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js');
+  // await loadCSS('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css');
+  if (isDropoff) {
+    mapInitialization(locations, block, ph);
+  }
 }
