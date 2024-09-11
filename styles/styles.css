@@ -223,6 +223,47 @@ p, dl, ol, ul, pre, blockquote {
   margin: 0;
 }
 
+main li {
+  position: relative;
+  list-style: none;
+}
+
+main .section.column-with-list.blue-background.columns-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #133b5c;
+}
+
+main .section.column-with-list.blue-background.columns-container li {
+  display: flex;
+  padding: .75rem 0;
+  border-bottom: .0625rem solid #dad6d6;
+  gap: 1rem;
+}
+
+main .section.column-with-list.blue-background.columns-container img {
+  width: 24px;
+  height: 24px;
+  max-width: unset;
+}
+
+main .section.column-with-list.blue-background.columns-container .icon {
+  width: fit-content;
+}
+
+main ul:not(.teaser-list) li::before {
+  content: "";
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font-family: 'Font Awesome\ 6 Free', 'Font Awesome\ 5 Free';
+  font-weight: 400;
+  color: var(--color-orange);
+  font-size: 1.5rem;
+  position: absolute;
+  left: -25px;
+  top: 0;
+  margin-right: .75rem;
+}
+
 main .default-content-wrapper p,
 main .default-content-wrapper dl,
 main .default-content-wrapper ol,
@@ -362,9 +403,30 @@ main .block.gray-background {
   background-color: var(--color-gray);
 }
 
+main > div.section.gray-background > div.default-content-wrapper h2 {
+    color: var(--color-blue);
+}
+
+main > div.section.gray-background.post-teaser-list-container > div.default-content-wrapper h2 {
+  color: var(--color-black);
+}
+
+main > div.section.gray-background > div.default-content-wrapper p {
+  color: var(--color-black);
+}
+
 main .section.navy-background,
 main .block.navy-background {
-  background-color: var(--color-navy);
+  background-image: linear-gradient(180deg, transparent 5rem, var(--color-navy) 0, var(--color-navy));
+}
+
+main .section.navy-background.image {
+  background-image: url("/icons/section-bg.svg"), linear-gradient(180deg, transparent 5rem, var(--color-navy) 0, var(--color-navy));
+  background-position: top right calc(-2rem);
+  background-repeat: no-repeat;
+  margin-top: -2rem;
+  padding-top: 6rem;
+  position: relative;
 }
 
 main .section.blue-background,
@@ -1153,7 +1215,7 @@ main .list-with-background-image > div > ul > li {
   padding-bottom: 16px;
 }
 
-main .list-with-background-image ul > li::before {
+main .list-with-background-image:not(.list-style-orange-triangles) ul > li::before {
   left: 0;
   margin-right: 0;
 }
