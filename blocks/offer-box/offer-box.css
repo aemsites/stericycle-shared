@@ -41,6 +41,11 @@
     width: 100%;
 }
 
+.offer-box span.icon {
+    width: 100%;
+    height: 40px;
+}
+
 @media screen and (min-width: 992px /* breakpoint-l */) {
     .section.two-column-offer .offer-box-wrapper {
         display: flex;
