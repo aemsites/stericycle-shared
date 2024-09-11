@@ -57,6 +57,10 @@
   display: block;
 }
 
+.columns.align-top > div {
+  align-items: flex-start;
+}
+
 /* narrow-icons variant */
 
 .columns.narrow-icons h4 {
