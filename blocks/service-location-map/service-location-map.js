@@ -319,7 +319,9 @@ const dragAndZoom = (locations, block, ph) => {
  * Renders the initial markers on the map
  * @param {*} locations
  */
-const mapInitialization = (locations, block, ph) => {
+const mapInitialization = async (locations, block, ph) => {
+  await loadScript('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.js');
+  await loadCSS('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.css');
   mapboxgl.accessToken = getAccessToken();
   const mapContainer = block.querySelector('.map');
 
@@ -342,7 +344,7 @@ const mapInitialization = (locations, block, ph) => {
   renderAndSortLocationList(locations, block, ph);
 
   map.on('load', () => {
-    map.resize();
+    map.setCenter([centerPoint.longitude, centerPoint.latitude]);
   });
 
   map.on('drag', () => {
@@ -539,7 +541,5 @@ export default async function decorate(block) {
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
-  await loadScript('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js');
-  await loadCSS('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css');
   mapInitialization(locations, block, ph);
 }
