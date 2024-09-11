@@ -37,6 +37,10 @@
   justify-content: unset;
 }
 
+.columns.align-top > div {
+  align-items: flex-start;
+}
+
 .columns.steps > div > div {
   width: 100%;
 }
@@ -55,10 +59,6 @@
 
 .columns > div > .columns-img-col img {
   display: block;
-}
-
-.columns.align-top > div {
-  align-items: flex-start;
 }
 
 /* narrow-icons variant */
