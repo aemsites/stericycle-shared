@@ -212,7 +212,6 @@ function applyMarkers(locations) {
       decorateIcons(el);
     });
     decorateIcons(el);
-
     new mapboxgl.Marker(el)
       .setLngLat([location.lng, location.lat])
       .addTo(map);
@@ -357,17 +356,18 @@ const mapInitialization = (locations, block, ph) => {
 
 const searchMatch = (locations, city, placeName, zipcode) => {
   const matchedLocations = locations.filter((item) => {
-    const cityLower = city?.trim()?.toLowerCase();
-    const zipcodeLower = zipcode?.trim()?.toLowerCase();
-    const itemCityLower = item.city?.trim()?.toLowerCase();
-    const itemZipcodeLower = item['zip-code']?.trim()?.toLowerCase();
+    const cityLower = city?.trim().toLowerCase();
+    const zipcodeLower = zipcode?.trim().toLowerCase();
+    const itemCityLower = item.city?.trim().toLowerCase();
+    const itemZipcodeLower = item['zip-code']?.trim().toLowerCase();
+    const placeNameLower = placeName?.trim().toLowerCase();
+    const itemStateLower = item.state?.trim().toLowerCase();
 
-    return (
-      itemCityLower === cityLower
-      || placeName?.includes(item.city)
-      || itemZipcodeLower === zipcodeLower
-      || item['additional-cities']?.some((element) => element.includes(city))
-    );
+    return (itemCityLower && cityLower && (itemCityLower === cityLower))
+      || (placeNameLower && itemCityLower && placeNameLower?.includes(itemCityLower))
+      || (itemZipcodeLower && zipcodeLower && (itemZipcodeLower === zipcodeLower))
+      || (placeNameLower && itemStateLower && placeNameLower?.includes(itemStateLower))
+      || (item['additional-cities']?.some((element) => element?.trim().toLowerCase().includes(cityLower)));
   });
 
   return matchedLocations.length > 0 ? matchedLocations : [];
@@ -390,6 +390,7 @@ const mapInputSearchOnCLick = async (block, locations, ph) => {
     );
 
     if (!response.ok) {
+      // eslint-disable-next-line no-console
       console.log(`HTTP error! status: ${response.status}`);
       setMapError(block, ph.nolocationfoundtext);
       return;
@@ -529,9 +530,6 @@ const getIsDropoff = () => {
 };
 
 export default async function decorate(block) {
-  await loadScript('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js');
-  await loadCSS('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css');
-
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const isDropoff = getIsDropoff();
 
@@ -541,5 +539,7 @@ export default async function decorate(block) {
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
+  await loadScript('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js');
+  await loadCSS('https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css');
   mapInitialization(locations, block, ph);
 }
