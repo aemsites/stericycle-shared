@@ -19,15 +19,13 @@ import ffetch from '../../scripts/ffetch.js';
 import usStates from './us-states.js';
 import { getLocale } from '../../scripts/scripts.js';
 
-function toRadians(degrees) {
-  return (degrees * Math.PI) / 180;
-}
+let map = null;
 
-function toDegrees(radians) {
-  return (radians * 180) / Math.PI;
-}
+const getAccessToken = () => 'pk.eyJ1Ijoic3RlcmljeWNsZSIsImEiOiJjbDNhZ3M5b3AwMWphM2RydWJobjY3ZmxmIn0.xt2cRdtjXnnZXXXLt3bOlQ';
 
-function haversineDistance(lat1, lon1, lat2, lon2) {
+const toRadians = (degrees) => ((degrees * Math.PI) / 180);
+
+const haversineDistance = (lat1, lon1, lat2, lon2) => {
   const R = 6371; // Radius of the Earth in kilometers
   const dLat = toRadians(lat2 - lat1);
   const dLon = toRadians(lon2 - lon1);
@@ -36,40 +34,9 @@ function haversineDistance(lat1, lon1, lat2, lon2) {
     * Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(tempA), Math.sqrt(1 - tempA));
   return Math.round(R * c); // Distance in kilometers
-}
+};
 
-function calculateCentroid(locations) {
-  let x = 0;
-  let y = 0;
-  let z = 0;
-  const total = locations.length;
-
-  locations.forEach((location) => {
-    if (Number(location.lat) !== 0 || Number(location.lng) !== 0) {
-      const latitude = toRadians(location.lat);
-      const longitude = toRadians(location.lng);
-
-      x += Math.cos(latitude) * Math.cos(longitude);
-      y += Math.cos(latitude) * Math.sin(longitude);
-      z += Math.sin(latitude);
-    }
-  });
-
-  x /= total;
-  y /= total;
-  z /= total;
-
-  const centralLongitude = Math.atan2(y, x);
-  const centralSquareRoot = Math.sqrt(x * x + y * y);
-  const centralLatitude = Math.atan2(z, centralSquareRoot);
-
-  return {
-    lat: toDegrees(centralLatitude),
-    lng: toDegrees(centralLongitude),
-  };
-}
-
-const locDivCreation = (location) => {
+const locDivCreation = (location, ph) => {
   const locationDiv = div(
     { class: 'location-item', id: `location-${location.index}`, name: location.name },
     p({ class: 'title' }, location.title),
@@ -118,26 +85,20 @@ const locDivCreation = (location) => {
     );
   }
 
-  if (location.location && location.city) {
+  if (location['location-link'] && location.title) {
     locationDiv.appendChild(
-      p(
-        { class: 'location' },
-        a(
-          { href: `${window.location.pathname}/${location.city.toLowerCase().trim().split(' ').join('-')}` },
-          location.location,
-        ),
+      a(
+        { class: 'location', href: `${window.location.pathname}/${location.title.toLowerCase().trim().split(' ').join('-')}` },
+        location['location-link'],
       ),
     );
   }
 
   if (location['buy-now']) {
     locationDiv.appendChild(
-      p(
-        { class: 'buy-now' },
-        a(
-          { href: location['buy-now'] }, // todo piyush placeholder text
-          'Buy Now',
-        ),
+      a(
+        { class: 'buy-now', href: location['buy-now'] },
+        ph.buynowtext,
       ),
     );
   }
@@ -145,40 +106,68 @@ const locDivCreation = (location) => {
   return locationDiv;
 };
 
-function updateLocationList(locations, centroid) {
-  const locationContainer = document.querySelector('.map-list');
-  locationContainer.innerHTML = '';
-
+const calculateLocationListDistance = (locations, centerPoint) => {
   locations.forEach((location) => {
-    location.distance = haversineDistance(location.lat, location.lng, centroid.lat, centroid.lng);
+    location.distance = haversineDistance(
+      location.lat,
+      location.lng,
+      centerPoint.latitude,
+      centerPoint.longitude,
+    );
   });
+};
 
-  locations.sort((x, y) => x.distance - y.distance);
+async function fetchLocations(isDropoff, ph) {
+  return (await ffetch('/query-index.json').sheet('locations')
+    .filter((x) => (x.latitude !== '0' && x.longitude !== '0'))
+    .map((x) => {
+      const getValueOrNull = (value) => (value == null || value === 0 || value === '0' ? null : value);
+      const mp = {
+        lat: x.latitude,
+        lng: x.longitude,
+        'zip-code': getValueOrNull(x['zip-code']),
+        city: getValueOrNull(x.city),
+        state: getValueOrNull(x.state),
+        country: getValueOrNull(x.country),
+        name: getValueOrNull(x.name),
+        'additional-cities': getValueOrNull(x['additional-cities']), // todo piyush check this
+        'sub-type': getValueOrNull(x['sub-type']), // todo piyush check this
+        'opening-hours': getValueOrNull(x['opening-hours']), // todo piyush check this
+        'drop-off-details1': getValueOrNull(x['drop-off-details1']), // todo piyush check this
+        'drop-off-details2': getValueOrNull(x['drop-off-details2']), // todo piyush check this
+      };
 
-  locations.forEach((location) => {
-    locationContainer.appendChild(locDivCreation(location));
-  });
+      if (isDropoff) {
+        mp.title = getValueOrNull(x['address-line-1']);
+        mp['address-line-1'] = getValueOrNull(x['address-line-2']);
+        mp['address-line-2'] = [mp.city, usStates[mp.state], mp['zip-code']].filter(Boolean).join(', ');
+        mp['gmap-link'] = `https://www.google.com/maps/dir/${[mp.title, mp['address-line-1'], mp['address-line-2']].filter(Boolean).join(', ')}`;
+        mp['buy-now'] = mp['zip-code'] ? `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=${mp['zip-code']}` : '';
+      } else {
+        mp.title = `Shred-it ${mp.name || mp.city}`;
+        mp['address-line-1'] = x['address-line-1'] || '';
+        mp['address-line-2'] = x['address-line-2'] || '';
+        mp['address-line-3'] = [mp.city, usStates[mp.state], mp['zip-code']].filter(Boolean).join(', ');
+        mp['location-link'] = `${ph.gototext} ${mp.title}`;
+      }
+      mp['state-code'] = usStates[mp.state];
+      return mp;
+    })
+    .filter((x) => (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true))
+    .all())
+    .map((x, index) => {
+      x.index = index;
+      return x;
+    });
 }
 
-function applyMarkers(locations, map, bounds, locationContainer, centroid) {
-  if (locations.length === 0) {
-    locationContainer.appendChild(
-      // todo piyush again check this
-      p({ class: 'no-result' }, 'There are no service locations near your search query. Please try searching another location or contact us for assistance.'),
-    );
-    locationContainer.classList.add('no-result');
-  } else {
-    locationContainer.classList.remove('no-result');
-  }
-
+/**
+ * Method to apply markers on the map
+ * @param {*} locations
+ */
+function applyMarkers(locations) {
   locations.forEach((location) => {
-    location.distance = haversineDistance(location.lat, location.lng, centroid.lat, centroid.lng);
-  });
-
-  locations.sort((x, y) => x.distance - y.distance);
-
-  locations.forEach((location) => {
-    const el = div({ class: 'marker' }, span({ class: 'icon icon-marker', id: `marker-${location.index}` }));
+    const el = div({ class: 'marker' }, span({ class: 'icon icon-marker', id: `marker-${location.index}`, title: location.title }));
 
     el.addEventListener('click', () => {
       const spanEl = el.querySelector('span');
@@ -227,63 +216,117 @@ function applyMarkers(locations, map, bounds, locationContainer, centroid) {
     new mapboxgl.Marker(el)
       .setLngLat([location.lng, location.lat])
       .addTo(map);
-
-    bounds.extend([location.lng, location.lat]);
-    locationContainer.appendChild(locDivCreation(location));
   });
 }
 
-async function fetchLocations(isDropoff) {
-  return (await ffetch('/query-index.json').sheet('locations')
-    .map((x) => {
-      const getValueOrNull = (value) => (value == null || value === 0 || value === '0' ? null : value);
-      const mp = {
-        lat: x.latitude,
-        lng: x.longitude,
-        'zip-code': getValueOrNull(x['zip-code']),
-        city: getValueOrNull(x.city),
-        state: getValueOrNull(x.state),
-        name: getValueOrNull(x.name),
-      };
+const getCountry = () => {
+  const locale = getLocale();
+  return locale.split('-')[1].trim().toLowerCase();
+};
 
-      if (isDropoff) {
-        mp.title = getValueOrNull(x['address-line-1']);
-        mp['address-line-1'] = getValueOrNull(x['address-line-2']);
-        mp['address-line-2'] = [mp.city, usStates[mp.state], mp['zip-code']].filter(Boolean).join(', ');
-        mp['gmap-link'] = `https://www.google.com/maps/dir/${[mp.title, mp['address-line-1'], mp['address-line-2']].filter(Boolean).join(', ')}`;
-        mp['opening-hours'] = getValueOrNull(x['opening-hours']);
-        mp['drop-off-details'] = getValueOrNull(x['drop-off-details']);
-        mp['buy-now'] = mp['zip-code'] ? `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=${mp['zip-code']}` : '';
-      } else {
-        mp.title = `Shred-it ${mp.name || mp.city}`;
-        mp['address-line-1'] = x['address-line-1'] || '';
-        mp['address-line-2'] = x['address-line-2'] || '';
-        mp['address-line-3'] = [mp.city, usStates[mp.state], mp['zip-code']].filter(Boolean).join(', ');
-        mp.location = `go to ${mp.title}`;
-      }
-      mp['state-code'] = usStates[mp.state];
-      return mp;
-    })
-    .filter((x) => (isDropoff ? x['drop-off'] === '1' : true))
-    .all())
-    .map((x, index) => {
-      x.index = index;
-      return x;
-    });
-}
+const getContactUshref = () => {
+  // todo piyush
+  const temp = getCountry();
+  return `/${temp}/contact-us`;
+};
 
-const mapList = async (block, locations, optionalCentroid, zoomLevel=3) => {
-  mapboxgl.accessToken = 'pk.eyJ1Ijoic3RlcmljeWNsZSIsImEiOiJjbDNhZ3M5b3AwMWphM2RydWJobjY3ZmxmIn0.xt2cRdtjXnnZXXXLt3bOlQ';
-  const centroid = calculateCentroid(locations);
-
-  const mapContainer = block.querySelector('.map');
+/**
+ * Renders the location list
+ * @param {*} locations
+ * @param {*} block
+ */
+const renderLocationList = (locations, block, ph) => {
   const locationContainer = block.querySelector('.map-list');
   locationContainer.innerHTML = '';
 
-  const map = new mapboxgl.Map({
+  if (locations.length === 0) {
+    const tempP = p({ class: 'no-result' }, span({}, `${ph.servicemapcurrentlocationnoresulttextpre} `));
+    tempP.appendChild(a({ href: getContactUshref() }, ph.contactustext));
+    tempP.appendChild(span({}, ` ${ph.servicemapcurrentlocationnoresulttextpost}`));
+    locationContainer.appendChild(tempP);
+    locationContainer.classList.add('no-result');
+  } else {
+    locationContainer.classList.remove('no-result');
+    locations.forEach((location) => {
+      locationContainer.appendChild(locDivCreation(location, ph));
+    });
+  }
+};
+
+/**
+ * Sorts the location list based on city, state, country and distance
+ * @param {*} locations
+ * @returns
+ */
+const sortLocationList = (locations) => locations
+  .sort((x, y) => x.city && y.city && x.city.localeCompare(y.city))
+  .sort((x, y) => x.state && y.state && x.state.localeCompare(y.state))
+  .sort((x, y) => x.country && y.country && x.country.localeCompare(y.country))
+  .sort((x, y) => x.distance - y.distance);
+
+const renderAndSortLocationList = (locations, block, ph) => {
+  sortLocationList(locations);
+  renderLocationList(locations, block, ph);
+};
+
+/**
+ * Renders the initial markers on the map
+ * @returns
+ */
+const getCenterPoint = () => {
+  const country = getCountry();
+
+  const countryCoordinates = {
+    gb: { latitude: 55, longitude: -3, zoom: 3 },
+    de: { latitude: 51, longitude: 10, zoom: 3 },
+    au: { latitude: -26, longitude: 133, zoom: 3 },
+    ie: { latitude: 53, longitude: -7, zoom: 3 },
+    sg: { latitude: 1, longitude: 103, zoom: 3 },
+    ae: { latitude: 25, longitude: 55, zoom: 3 },
+    nl: { latitude: 52, longitude: 4, zoom: 3 },
+    pt: { latitude: 38, longitude: -9, zoom: 3 },
+    fr: { latitude: 48, longitude: 2, zoom: 3 },
+    be: { latitude: 50, longitude: 4, zoom: 3 },
+    es: { latitude: 40, longitude: -3, zoom: 3 },
+    lu: { latitude: 49, longitude: 6, zoom: 3 },
+    default: { latitude: 40, longitude: -96, zoom: 3 },
+  };
+
+  if (countryCoordinates[country]) {
+    return countryCoordinates[country];
+  }
+  return countryCoordinates.default;
+};
+
+const dragAndZoom = (locations, block, ph) => {
+  const bounds = map.getBounds();
+
+  const tempLocations = locations
+    .filter((location) => bounds.contains([location.lng, location.lat]))
+    .map((location) => {
+      location.distance = haversineDistance(
+        location.lat,
+        location.lng,
+        map.getCenter().lat,
+        map.getCenter().lng,
+      );
+      return location;
+    });
+
+  renderAndSortLocationList(tempLocations, block, ph);
+};
+
+/**
+ * Renders the initial markers on the map
+ * @param {*} locations
+ */
+const mapInitialization = (locations, block, ph) => {
+  mapboxgl.accessToken = getAccessToken();
+  const mapContainer = block.querySelector('.map');
+
+  map = new mapboxgl.Map({
     container: mapContainer,
     style: 'mapbox://styles/mapbox/light-v8',
-    zoom: zoomLevel,
     pitchWithRotate: false,
     dragRotate: false,
     scrollZoom: true,
@@ -291,84 +334,179 @@ const mapList = async (block, locations, optionalCentroid, zoomLevel=3) => {
     boxZoom: true,
   });
 
-  const bounds = new mapboxgl.LngLatBounds();
-  applyMarkers(locations, map, bounds, locationContainer, centroid);
-  if (locations.length > 0) {
-    map.setCenter([Number(centroid?.lng), Number(centroid?.lat)]);
-  } else if (optionalCentroid) {
-    map.setCenter([optionalCentroid.lng, optionalCentroid.lat]);
-  }
+  const centerPoint = getCenterPoint();
+  map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+  map.setZoom(centerPoint.zoom);
+
+  calculateLocationListDistance(locations, centerPoint);
+  applyMarkers(locations);
+  renderAndSortLocationList(locations, block, ph);
 
   map.on('load', () => {
     map.resize();
   });
 
   map.on('drag', () => {
-    updateLocationList(locations, map.getCenter());
+    dragAndZoom(locations, block, ph);
   });
 
   map.on('zoom', () => {
-    updateLocationList(locations, map.getCenter());
+    dragAndZoom(locations, block, ph);
   });
 };
 
-const mapInputSearchOnCLick = async (block, locations) => {
+const searchMatch = (locations, city, placeName, zipcode) => {
+  const matchedLocations = locations.filter((item) => {
+    const cityLower = city?.trim()?.toLowerCase();
+    const zipcodeLower = zipcode?.trim()?.toLowerCase();
+    const itemCityLower = item.city?.trim()?.toLowerCase();
+    const itemZipcodeLower = item['zip-code']?.trim()?.toLowerCase();
+
+    return (
+      itemCityLower === cityLower
+      || placeName?.includes(item.city)
+      || itemZipcodeLower === zipcodeLower
+      || item['additional-cities']?.some((element) => element.includes(city))
+    );
+  });
+
+  return matchedLocations.length > 0 ? matchedLocations : [];
+};
+
+const setMapError = (block, text) => {
+  const mapSearchError = block.querySelector('.map-search-error');
+  mapSearchError.textContent = text;
+  mapSearchError.classList.add('unhide');
+};
+
+const mapInputSearchOnCLick = async (block, locations, ph) => {
   const inputText = document.querySelector('.map-input').value;
   if (inputText) {
     const mapSearchError = block.querySelector('.map-search-error');
     mapSearchError.classList.remove('unhide');
-    const filteredLocations = locations.filter(
-      (location) => {
-        const searchText = inputText.trim().toLowerCase();
-        return (
-          location['zip-code']?.toLowerCase() === searchText
-          || location.city?.toLowerCase() === searchText
-          || location.state?.toLowerCase() === searchText
-          || location['state-code']?.toLowerCase() === searchText
-        );
-      }
+    const countryCode = getCountry();
+    const response = await fetch(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${inputText}.json?access_token=${getAccessToken()}&limit=10&country=${countryCode}&types=region,postcode,place`,
     );
-    await mapList(block, filteredLocations, null);
+
+    if (!response.ok) {
+      console.log(`HTTP error! status: ${response.status}`);
+      setMapError(block, ph.nolocationfoundtext);
+      return;
+    }
+
+    const data = await response.json();
+
+    if (data?.features?.length === 0) {
+      setMapError(block, ph.nolocationfoundtext);
+      return;
+    }
+
+    const stateFound = !inputText.includes(',')
+      ? data.features.find((element) => element.place_type[0] === 'region') : false;
+
+    const resultObj = stateFound ? {
+      center: stateFound.center,
+      lat: stateFound.center[1],
+      lng: stateFound.center[0],
+      city: stateFound.text,
+      placeName: stateFound.place_name,
+      zipcode: stateFound.zipcode,
+    } : {
+      center: data.features[0].center,
+      lat: data.features[0].center[1],
+      lng: data.features[0].center[0],
+      city: data.features[0].text,
+      placeName: data.features[0].place_name,
+      zipcode: data.features[0].zipcode,
+    };
+
+    const result = searchMatch(
+      locations,
+      resultObj.city,
+      resultObj.placeName,
+      resultObj.zipcode,
+    );
+
+    if (result.length > 0) {
+      if (stateFound) {
+        const { bbox } = stateFound;
+        map.fitBounds([
+          [bbox[0], bbox[1]],
+          [bbox[2], bbox[3]],
+        ]);
+      } else {
+        map.setZoom(8);
+        map.setCenter([resultObj.lng, resultObj.lat]);
+        map.setCenter([resultObj.lng, resultObj.lat]);
+        renderAndSortLocationList(result, block, ph);
+      }
+    } else {
+      setMapError(block, ph.nolocationfoundtext);
+    }
   } else {
-    const mapSearchError = block.querySelector('.map-search-error');
-    mapSearchError.textContent = 'Enter valid zipcode, city, or state';
-    mapSearchError.classList.add('unhide');
+    setMapError(block, ph.servicemaperrortext);
   }
-}
+};
 
-const mapInputLocationOnClick = (block, locations) => {
-  const successCallback = (position) => {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    
-    console.log("Current Location:", latitude, longitude);
-    mapList(block, [], {
-      lat: latitude,
-      lng: longitude,
-    }, 8);
-  }
+/**
+ * Method to get current location on click
+ * @param {*} block
+ * @param {*} locations
+ * @param {*} ph
+ */
+const mapInputLocationOnClick = (block, locations, ph) => {
+  const successCallback = async (position) => {
+    await map.flyTo({
+      center: [position.coords.longitude, position.coords.latitude],
+      zoom: 8,
+      speed: 1.2,
+      curve: 1.5,
+      easing: (t) => t,
+      essential: true,
+      duration: 1000,
+    });
+    dragAndZoom(locations, block, ph);
+  };
 
-  const errorCallback = (error) => {
-    // todo fetch from the placeholder
-    alert('Enable location permission for this website in your browser settings.');
-  }
+  const errorCallback = async () => {
+    if (navigator.permissions) {
+      const res = await navigator.permissions.query({ name: 'geolocation' });
+      if (res.state === 'denied') {
+        // eslint-disable-next-line no-alert
+        alert(ph.servicemapcurrentlocationdeniederrortext);
+      }
+    } else {
+      // eslint-disable-next-line no-alert
+      alert(ph.servicemapcurrentlocationunableerrortext);
+    }
+  };
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   } else {
-    console.error("Geolocation is not supported by this browser.");
+    // eslint-disable-next-line no-alert
+    alert(ph.servicemapcurrentlocationunableerrortext);
   }
-}
+};
 
+/**
+ * Map search component
+ * @param {*} ph
+ * @param {*} block
+ * @param {*} locations
+ * @param {*} isDropoff
+ * @returns
+ */
 const mapSearch = (ph, block, locations, isDropoff) => {
   const mapInputSearch = button({ class: 'map-input-search' }, ph.searchtext);
   mapInputSearch.addEventListener('click', async () => {
-    await mapInputSearchOnCLick(block, locations);
+    await mapInputSearchOnCLick(block, locations, ph);
   });
 
   const mapInputLocation = button({ class: 'map-input-location' }, ph.uselocationtext);
   mapInputLocation.addEventListener('click', async () => {
-    mapInputLocationOnClick(block, locations);
+    mapInputLocationOnClick(block, locations, ph);
   });
 
   return div(
@@ -397,11 +535,11 @@ export default async function decorate(block) {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const isDropoff = getIsDropoff();
 
-  const locations = await fetchLocations(isDropoff);
+  const locations = await fetchLocations(isDropoff, ph);
   block.append(
     mapSearch(ph, block, locations, isDropoff),
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
-  await mapList(block, locations);
+  mapInitialization(locations, block, ph);
 }

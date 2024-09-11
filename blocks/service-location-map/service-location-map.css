@@ -75,35 +75,31 @@
   margin-bottom: 0.75rem;
   background-color: var(--color-button-default);
   padding: 0.75rem;
-}
-
-.block.service-location-map .map-list .location-item .location a {
   text-decoration: none;
   color: var(--color-white);
 }
 
 .block.service-location-map .map-list .location-item .buy-now {
-  width: 70%;
+  width: 60%;
   margin-top: 0.5rem;
   margin-bottom: 0.75rem;
   background-color: var(--color-yellow);
-  padding: 0.5rem;
+  padding: 0.6rem;
   text-align: center;
+  text-decoration: none;
+  color: var(--color-black);
+  font-weight: 700;
+  border: var(--color-yellow) 2px solid;
+  border-radius: 1.5rem;
 }
 
 .block.service-location-map .map-list .location-item.highlight p {
   color: var(--color-blue);
 }
 
-.block.service-location-map .map-list .location-item .buy-now a {
-  text-decoration: none;
-  color: var(--color-black);
-  font-weight: 700;
-  border-width: 2px;
-}
-
-.block.service-location-map .map-list .location-item .buy-now a:hover {
-  border-color: var(--color-dark-gunmetal);
+.block.service-location-map .map-list .location-item .buy-now:hover {
+  /* border-color: var(--color-dark-gunmetal); */
+  border: var(--color-dark-gunmetal) 2px solid;
   background: var(--color-yellow);
   color: var(--color-dark-gunmetal);
 }
@@ -112,7 +108,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-bottom: 1rem;
 }
 
@@ -130,9 +126,18 @@
   height: 2.5rem;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (min-width: 768px) {
   .block.service-location-map .map-search .map-input-details {
     flex-direction: row;
+  }
+
+  .block.service-location-map .map-search .map-input-details .map-input {
+    width: 34.5%;
+  }
+
+  .block.service-location-map .map-search .map-input-details .map-input-search,
+  .block.service-location-map .map-search .map-input-details .map-input-location {
+    width: 30%;
   }
 }
 
@@ -148,17 +153,21 @@
   }
 
   .block.service-location-map .map-search .map-input-details .map-input {
-    width: 34%;
+    width: 34.5%;
   }
 
   .block.service-location-map .map-search .map-input-details .map-input-search,
   .block.service-location-map .map-search .map-input-details .map-input-location {
-    width: 20%;
+    width: 21%;
+  }
+
+  .block.service-location-map .map-list .location-item .buy-now {
+    width: 70%;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .block.service-location-map .map-list .location-item .location a {
+  .block.service-location-map .map-list .location-item .location {
     font-size: 1.1rem;
   }
 }
