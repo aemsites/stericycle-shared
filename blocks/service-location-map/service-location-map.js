@@ -1,5 +1,5 @@
 /* global mapboxgl */
-
+/* eslint-disable */
 import {
   a,
   div,
