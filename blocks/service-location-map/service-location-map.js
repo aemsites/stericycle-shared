@@ -1,5 +1,5 @@
 /* global mapboxgl */
-
+/* eslint-disable */
 import {
   a,
   div,
@@ -559,5 +559,9 @@ export default async function decorate(block) {
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
-  mapInitialization(locations, block, ph);
+  // mapInitialization(locations, block, ph);
 }
+
+// export {
+
+// }
