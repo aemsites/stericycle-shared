@@ -320,7 +320,7 @@ const dragAndZoom = (locations, block, ph) => {
  * Renders the initial markers on the map
  * @param {*} locations
  */
-const mapInitialization = async (locations, block, ph) => {
+const mapInitialization = (locations, block, ph) => {
   const centerPoint = getCenterPoint();
 
   // Use requestIdleCallback for map loading
@@ -366,11 +366,11 @@ const mapInitialization = async (locations, block, ph) => {
         dragAndZoom(locations, block, ph);
       });
     }
-
-    // Handle distance calculation and sorting after idle time
-    calculateLocationListDistance(locations, centerPoint);
-    renderAndSortLocationList(locations, block, ph);
   });
+
+  // Handle distance calculation and sorting after idle time
+  calculateLocationListDistance(locations, centerPoint);
+  renderAndSortLocationList(locations, block, ph);
 };
 
 
@@ -559,5 +559,5 @@ export default async function decorate(block) {
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
-  mapInitialization([locations[1], locations[2]], block, ph);
+  mapInitialization(locations, block, ph);
 }
