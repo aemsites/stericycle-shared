@@ -559,5 +559,5 @@ export default async function decorate(block) {
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
-  mapInitialization(locations, block, ph);
+  mapInitialization([locations[1], locations[2]], block, ph);
 }
