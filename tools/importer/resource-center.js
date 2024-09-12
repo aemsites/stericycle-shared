@@ -40,6 +40,40 @@ function getDocumentMetadata(name, document) {
   return meta || '';
 }
 
+function fixVideo(elm) {
+  const video = elm.querySelector('iframe');
+  if (video) {
+    const vb = [['embed']];
+    const anc = document.createElement('a');
+    anc.href = video.src;
+    anc.innerText = video.src;
+    vb.push([anc]);
+    const embedP = document.createElement('p');
+    const embedTable = WebImporter.DOMUtils.createTable(vb, elm.ownerDocument);
+    embedP.append(embedTable);
+    video.replaceWith(embedP);
+    // console.log('Found video:', video.src);
+  }
+}
+
+function transformFAQ(main) {
+  const faqs = main.querySelectorAll('#accordion > div.cmp-accordion__item');
+  console.log(faqs.length);
+  if (faqs && faqs.length > 0) {
+    const cells = [['faq']];
+    faqs.forEach((faq) => {
+      const question = faq.querySelector('span.cmp-accordion__title').innerText;
+      const answer = faq.querySelector('div.cmp-accordion__panel');
+      fixVideo(answer);
+      cells.push([question, answer]);
+    });
+    const faqTable = WebImporter.DOMUtils.createTable(cells, main.ownerDocument);
+    const accordion = main.querySelector('#accordion');
+    accordion.replaceWith(faqTable);
+    main.append(hr(main.ownerDocument));
+  }
+}
+
 function getLocaleFromUrl(doc) {
   const match = doc.documentURI.match(/\/([a-z]{2,}(?:-[a-z]{2,})*)\//g);
   return Object.hasOwn(match, 'length') && match.length >= 1 ? match[0].replaceAll('/', '') : null;
@@ -55,9 +89,10 @@ function setMetadata(meta, document) {
     meta['media-type'] = 'Info Sheets';
   } else if (document.documentURI.includes('/resource-center/newsletters/')) {
     meta['media-type'] = 'newsletter';
-  } else {
+  } else if (document.documentURI.includes('/resource-center/infographics/')) {
     meta['media-type'] = 'Infographic';
   }
+
   if (pubDate) {
     meta['publication-date'] = pubDate.innerHTML;
   }
@@ -86,19 +121,21 @@ function fixDynamicMedia(main, document) {
 function transformDownloadBlock(main, document) {
   const downloadBlock = main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid') ? main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid') : main.querySelector('div.col-lg-3.cmp-columnrow__item div.pagesection > div.cmp-pagesection > div.aem-Grid');
 
-  const cells = [['Download']];
-  let title = '';
-  if (downloadBlock.querySelector('h4')) {
-    title = downloadBlock.querySelector('div.text > h4') ? downloadBlock.querySelector('div.text > h4').innerText : downloadBlock.querySelector('div.cmp-previeweddownload__title > h4').innerText;
+  if (downloadBlock) {
+    const cells = [['Download']];
+    let title = '';
+    if (downloadBlock.querySelector('h4')) {
+      title = downloadBlock.querySelector('div.text > h4') ? downloadBlock.querySelector('div.text > h4').innerText : downloadBlock.querySelector('div.cmp-previeweddownload__title > h4').innerText;
+    }
+    cells.push(['title', title]);
+    cells.push(['image', downloadBlock.querySelector('div.previeweddownload > div.cmp-previeweddownload > div.cmp-previeweddownload__image > a > img')]);
+    const dlLink = downloadBlock.querySelector('div.previeweddownload > div.cmp-previeweddownload > div.cmp-previeweddownload__image > a');
+    dlLink.innerHTML = dlLink.href.replace('http://localhost:3001', baseDomain);
+    cells.push(['download', dlLink.href.replace('http://localhost:3001', baseDomain)]);
+    const dBlock = WebImporter.DOMUtils.createTable(cells, document);
+    main.append(dBlock);
+    main.append(hr(document));
   }
-  cells.push(['title', title]);
-  cells.push(['image', downloadBlock.querySelector('div.previeweddownload > div.cmp-previeweddownload > div.cmp-previeweddownload__image > a > img')]);
-  const dlLink = downloadBlock.querySelector('div.previeweddownload > div.cmp-previeweddownload > div.cmp-previeweddownload__image > a');
-  dlLink.innerHTML = dlLink.href.replace('http://localhost:3001', baseDomain);
-  cells.push(['download', dlLink.href.replace('http://localhost:3001', baseDomain)]);
-  const dBlock = WebImporter.DOMUtils.createTable(cells, document);
-  main.append(dBlock);
-  main.append(hr(document));
 }
 
 export default {
@@ -151,6 +188,7 @@ export default {
 
     fixDynamicMedia(main, document);
     transformDownloadBlock(main, document);
+    transformFAQ(main);
 
     // attempt to remove non-content elements
     WebImporter.DOMUtils.remove(main, [
@@ -160,7 +198,6 @@ export default {
       '.nav',
       'footer',
       '.footer',
-      'iframe',
       'noscript',
       'div.cmp-experiencefragment--footer-subscription-form',
       'div.cmp-experiencefragment--modal-form',

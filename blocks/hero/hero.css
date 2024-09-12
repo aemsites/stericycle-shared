@@ -2,6 +2,10 @@ main .hero-container > div {
   max-width: unset;
 }
 
+main .hero-container > div.hero-wrapper {
+  margin: unset;
+}
+
 main div.hero.block > div:first-of-type {
   display: flex;
 }

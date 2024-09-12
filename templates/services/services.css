@@ -1,0 +1,4 @@
+.services main .section.blue-background {
+  max-width: var(--section-width);
+  margin: auto;
+}
