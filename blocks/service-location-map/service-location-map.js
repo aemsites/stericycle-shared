@@ -335,7 +335,7 @@ const mapInitialization = async (locations, block, ph) => {
       dragRotate: false,
       scrollZoom: true,
       dragPan: true,
-      boxZoom: true,
+      boxZoom: false,
     });
 
     map.setCenter([centerPoint.longitude, centerPoint.latitude]);
@@ -521,7 +521,7 @@ const mapSearch = (ph, block, locations, isDropoff) => {
     p(isDropoff ? ph.servicemapbranchtext : ph.servicemapziptext),
     div(
       { class: 'map-input-details' },
-      input({ class: 'map-input' }),
+      input({ class: 'map-input', 'aria-label': 'Search' }),
       mapInputSearch,
       mapInputLocation,
     ),
