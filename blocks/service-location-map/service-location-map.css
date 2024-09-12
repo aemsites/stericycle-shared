@@ -146,6 +146,8 @@
     width: 66%;
     height: 35rem;
     margin-left: 1.5rem;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   .block.service-location-map .map-list {

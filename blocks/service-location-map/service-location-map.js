@@ -327,6 +327,7 @@ const mapInitialization = async (locations, block, ph) => {
     await loadCSS('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.css');
     mapboxgl.accessToken = getAccessToken();
     const mapContainer = block.querySelector('.map');
+    mapContainer.innerHTML = '';
 
     map = new mapboxgl.Map({
       container: mapContainer,
@@ -541,8 +542,12 @@ export default async function decorate(block) {
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
+  const mapContainer = block.querySelector('.map');
+  mapContainer.style.backgroundImage = 'url("../../icons/mapbox-default.png")';
+
   calculateLocationListDistance(locations, getCenterPoint());
   renderAndSortLocationList(locations, block, ph);
 
-  window.setTimeout(() => mapInitialization(locations, block, ph), 3000);
+  // window.setTimeout(() => mapInitialization(locations, block, ph), 3000);
+  mapInitialization(locations, block, ph);
 }
