@@ -559,7 +559,7 @@ export default async function decorate(block) {
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
-  window.setTimeout(() => mapInitialization(locations, block, ph), 3000);
+  window.setTimeout(() => mapInitialization(locations, block, ph), 1000);
 }
 
 // export {
