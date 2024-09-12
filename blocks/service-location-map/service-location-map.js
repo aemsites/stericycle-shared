@@ -544,5 +544,5 @@ export default async function decorate(block) {
   calculateLocationListDistance(locations, getCenterPoint());
   renderAndSortLocationList(locations, block, ph);
 
-  window.setTimeout(() => mapInitialization(locations, block, ph), 2000);
+  window.setTimeout(() => mapInitialization(locations, block, ph), 3000);
 }
