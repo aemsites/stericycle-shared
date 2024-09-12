@@ -66,9 +66,9 @@ const locDivCreation = (location, ph) => {
   );
 
   if (location['opening-hours']) {
-    locationDiv.appendChild(
-      p({ class: 'opening-hours' }, location['opening-hours']),
-    );
+    const tempP = p({ class: 'opening-hours' });
+    tempP.innerHTML = location['opening-hours'];
+    locationDiv.appendChild(tempP);
   }
 
   if (location['gmap-link']) {
@@ -80,9 +80,17 @@ const locDivCreation = (location, ph) => {
     );
   }
 
+  let dropOffDetailsContainBuyNow;
   if (location['drop-off-details']) {
+    dropOffDetailsContainBuyNow = location['drop-off-details'].toLowerCase().includes('buy now'); // this is to handle old inputs
+    const tempP = p({ class: 'drop-off-details' });
+    tempP.innerHTML = location['drop-off-details'];
+    locationDiv.appendChild(tempP);
+  }
+
+  if (location['drop-off-details2']) {
     locationDiv.appendChild(
-      p({ class: 'drop-off-details' }, location['drop-off-details']),
+      p({ class: 'drop-off-details2' }, location['drop-off-details2']),
     );
   }
 
@@ -95,7 +103,7 @@ const locDivCreation = (location, ph) => {
     );
   }
 
-  if (location['buy-now']) {
+  if (!dropOffDetailsContainBuyNow && location['buy-now']) {
     locationDiv.appendChild(
       a(
         { class: 'buy-now', href: location['buy-now'] },
@@ -131,11 +139,10 @@ async function fetchLocations(isDropoff, ph) {
         state: getValueOrNull(x.state),
         country: getValueOrNull(x.country),
         name: getValueOrNull(x.name),
-        'additional-cities': getValueOrNull(x['additional-cities']), // todo piyush check this
-        'sub-type': getValueOrNull(x['sub-type']), // todo piyush check this
-        'opening-hours': getValueOrNull(x['opening-hours']), // todo piyush check this
-        'drop-off-details1': getValueOrNull(x['drop-off-details1']), // todo piyush check this
-        'drop-off-details2': getValueOrNull(x['drop-off-details2']), // todo piyush check this
+        'additional-cities': getValueOrNull(x['additional-cities']),
+        'opening-hours': getValueOrNull(x['opening-hours']),
+        'drop-off-details': getValueOrNull(x['drop-off-details']),
+        'drop-off-details2': getValueOrNull(x['drop-off-details2']),
       };
 
       if (isDropoff) {
@@ -154,7 +161,7 @@ async function fetchLocations(isDropoff, ph) {
       mp['state-code'] = usStates[mp.state];
       return mp;
     })
-    .filter((x) => (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true))
+    .filter((x) => (isDropoff ? x.template?.trim().toLowerCase() === 'service-location-page-2' : true))
     .all())
     .map((x, index) => {
       x.index = index;

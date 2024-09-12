@@ -65,7 +65,8 @@
 
 .block.service-location-map .map-list .location-item .address,
 .block.service-location-map .map-list .location-item .opening-hours,
-.block.service-location-map .map-list .location-item .drop-off-details {
+.block.service-location-map .map-list .location-item .drop-off-details,
+.block.service-location-map .map-list .location-item .drop-off-details2 {
   font-size: 0.875rem;
 }
 
@@ -97,8 +98,35 @@
   color: var(--color-blue);
 }
 
+.block.service-location-map .map-list .location-item .drop-off-details p:has(a) {
+  width: 60% !important;
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  background-color: var(--color-yellow);
+  padding: 0.6rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-black);
+  font-weight: 700;
+  border: var(--color-yellow) 2px solid;
+  border-radius: 1.5rem;
+  font-size: 1rem;
+}
+
+.block.service-location-map .map-list .location-item .drop-off-details p:has(a):hover {
+  border: var(--color-dark-gunmetal) 2px solid;
+  background: var(--color-yellow);
+  color: var(--color-dark-gunmetal);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.block.service-location-map .map-list .location-item .drop-off-details a {
+  text-decoration: none;
+  color: var(--color-black);
+}
+
 .block.service-location-map .map-list .location-item .buy-now:hover {
-  /* border-color: var(--color-dark-gunmetal); */
   border: var(--color-dark-gunmetal) 2px solid;
   background: var(--color-yellow);
   color: var(--color-dark-gunmetal);
@@ -165,6 +193,10 @@
 
   .block.service-location-map .map-list .location-item .buy-now {
     width: 70%;
+  }
+
+  .block.service-location-map .map-list .location-item .drop-off-details p:has(a) {
+    width: 70% !important;
   }
 }
 
