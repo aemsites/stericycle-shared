@@ -369,8 +369,8 @@ const mapInitialization = (locations, block, ph) => {
   });
 
   // Handle distance calculation and sorting after idle time
-  calculateLocationListDistance(locations, centerPoint);
-  renderAndSortLocationList(locations, block, ph);
+  // calculateLocationListDistance(locations, centerPoint);
+  // renderAndSortLocationList(locations, block, ph);
 };
 
 
@@ -559,6 +559,10 @@ export default async function decorate(block) {
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
+  // Handle distance calculation and sorting after idle time
+  const centerPoint = getCenterPoint();
+  calculateLocationListDistance(locations, centerPoint);
+  renderAndSortLocationList(locations, block, ph);
   window.setTimeout(() => mapInitialization(locations, block, ph), 1000);
 }
 
