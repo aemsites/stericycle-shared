@@ -299,7 +299,7 @@ const getCenterPoint = () => {
 };
 
 const dragAndZoom = (locations, block, ph) => {
-  const bounds = map.getBounds();
+  const bounds = map?.getBounds();
 
   const tempLocations = locations
     .filter((location) => bounds.contains([location.lng, location.lat]))
@@ -307,8 +307,8 @@ const dragAndZoom = (locations, block, ph) => {
       location.distance = haversineDistance(
         location.lat,
         location.lng,
-        map.getCenter().lat,
-        map.getCenter().lng,
+        map?.getCenter().lat,
+        map?.getCenter().lng,
       );
       return location;
     });
@@ -354,9 +354,6 @@ const mapInitialization = async (locations, block, ph) => {
       dragAndZoom(locations, block, ph);
     });
   }
-
-  calculateLocationListDistance(locations, centerPoint);
-  renderAndSortLocationList(locations, block, ph);
 };
 
 const searchMatch = (locations, city, placeName, zipcode) => {
@@ -434,7 +431,7 @@ const mapInputSearchOnCLick = async (block, locations, ph) => {
       resultObj.zipcode,
     );
 
-    if (result.length > 0) {
+    if (map && result.length > 0) {
       if (stateFound) {
         const { bbox } = stateFound;
         map.fitBounds([
@@ -463,7 +460,7 @@ const mapInputSearchOnCLick = async (block, locations, ph) => {
  */
 const mapInputLocationOnClick = (block, locations, ph) => {
   const successCallback = async (position) => {
-    await map.flyTo({
+    await map?.flyTo({
       center: [position.coords.longitude, position.coords.latitude],
       zoom: 8,
       speed: 1.2,
@@ -544,5 +541,8 @@ export default async function decorate(block) {
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
-  mapInitialization(locations, block, ph);
+  calculateLocationListDistance(locations, getCenterPoint());
+  renderAndSortLocationList(locations, block, ph);
+
+  window.setTimeout(() => mapInitialization(locations, block, ph), 2000);
 }
