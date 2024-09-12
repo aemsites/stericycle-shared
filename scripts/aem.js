@@ -740,6 +740,10 @@ async function waitForLCP(lcpBlocks) {
   });
 }
 
+const isMobile = () => {
+  return window.matchMedia('(max-width: 576px)')?.matches;
+}
+
 init();
 
 export {
@@ -767,4 +771,5 @@ export {
   updateSectionsStatus,
   waitForLCP,
   wrapTextNodes,
+  isMobile,
 };

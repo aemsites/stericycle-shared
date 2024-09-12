@@ -15,6 +15,7 @@ import {
   loadScript,
   loadCSS,
   fetchPlaceholders,
+  isMobile,
 } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
 import usStates from './us-states.js';
@@ -322,40 +323,44 @@ const dragAndZoom = (locations, block, ph) => {
  * @param {*} locations
  */
 const mapInitialization = async (locations, block, ph) => {
-  await loadScript('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.js', {async: true});
-  await loadCSS('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.css', {async: true});
-  mapboxgl.accessToken = getAccessToken();
-  const mapContainer = block.querySelector('.map');
+  // 
+  if (!isMobile()) {
+    await loadScript('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.js', {async: true});
+    await loadCSS('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.css', {async: true});
+    mapboxgl.accessToken = getAccessToken();
+    const mapContainer = block.querySelector('.map');
 
-  map = new mapboxgl.Map({
-    container: mapContainer,
-    style: 'mapbox://styles/mapbox/light-v8',
-    pitchWithRotate: false,
-    dragRotate: false,
-    scrollZoom: true,
-    dragPan: true,
-    boxZoom: true,
-  });
+    map = new mapboxgl.Map({
+      container: mapContainer,
+      style: 'mapbox://styles/mapbox/light-v8',
+      pitchWithRotate: false,
+      dragRotate: false,
+      scrollZoom: true,
+      dragPan: true,
+      boxZoom: true,
+    });
 
-  const centerPoint = getCenterPoint();
-  map.setCenter([centerPoint.longitude, centerPoint.latitude]);
-  map.setZoom(centerPoint.zoom);
+    const centerPoint = getCenterPoint();
+    map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+    map.setZoom(centerPoint.zoom);
+
+    map.on('load', () => {
+      map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+    });
+  
+    // map.on('drag', () => {
+    //   dragAndZoom(locations, block, ph);
+    // });
+  
+    map.on('moveend', () => {
+      dragAndZoom(locations, block, ph);
+    });
+  }
+  
 
   // calculateLocationListDistance(locations, centerPoint);
   applyMarkers(locations);
   renderAndSortLocationList(locations, block, ph);
-
-  map.on('load', () => {
-    map.setCenter([centerPoint.longitude, centerPoint.latitude]);
-  });
-
-  // map.on('drag', () => {
-  //   dragAndZoom(locations, block, ph);
-  // });
-
-  map.on('moveend', () => {
-    dragAndZoom(locations, block, ph);
-  });
 };
 
 const searchMatch = (locations, city, placeName, zipcode) => {
@@ -543,5 +548,6 @@ export default async function decorate(block) {
   );
 
   locationsImp = await fetchLocations(isDropoff, ph);
+  locationsImp = [locationsImp[0], locationsImp[1]]
   mapInitialization(locationsImp, block, ph);
 }
