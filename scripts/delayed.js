@@ -659,10 +659,10 @@ const getIsDropoff = () => {
 };
 
 if (true) {
-  const ph = await fetchPlaceholders(`/${getLocale()}`);
-  const isDropoff = getIsDropoff();
+  // const ph = await fetchPlaceholders(`/${getLocale()}`);
+  // const isDropoff = getIsDropoff();
 
-  const locations = await fetchLocations(isDropoff, ph);
-  const block = document.querySelector('.block.service-location-map');
-  mapInitialization(locations, block, ph);
+  // const locations = await fetchLocations(isDropoff, ph);
+  // const block = document.querySelector('.block.service-location-map');
+  // mapInitialization(locations, block, ph);
 }
