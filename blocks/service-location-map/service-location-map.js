@@ -310,7 +310,7 @@ const dragAndZoom = (locations, block, ph) => {
   const bounds = map?.getBounds();
 
   const tempLocations = locations
-    .filter((location) => bounds.contains([location.lng, location.lat]))
+    .filter((location) => bounds?.contains([location.lng, location.lat]))
     .map((location) => {
       location.distance = haversineDistance(
         location.lat,
