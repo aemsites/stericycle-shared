@@ -322,42 +322,57 @@ const dragAndZoom = (locations, block, ph) => {
  */
 const mapInitialization = async (locations, block, ph) => {
   const centerPoint = getCenterPoint();
-  if (isDesktop()) {
-    await loadScript('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.js');
-    await loadCSS('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.css');
-    mapboxgl.accessToken = getAccessToken();
-    const mapContainer = block.querySelector('.map');
 
-    map = new mapboxgl.Map({
-      container: mapContainer,
-      style: 'mapbox://styles/mapbox/light-v8',
-      pitchWithRotate: false,
-      dragRotate: false,
-      scrollZoom: true,
-      dragPan: true,
-      boxZoom: false,
-    });
+  // Use requestIdleCallback for map loading
+  requestIdleCallback(async () => {
+    if (isDesktop()) {
+      // Load Mapbox script and CSS during idle time
+      await loadScript('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.js');
+      await loadCSS('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.css');
+      
+      // Set the Mapbox access token
+      mapboxgl.accessToken = getAccessToken();
+      const mapContainer = block.querySelector('.map');
 
-    map.setCenter([centerPoint.longitude, centerPoint.latitude]);
-    map.setZoom(centerPoint.zoom);
-    applyMarkers(locations);
+      // Initialize the map
+      map = new mapboxgl.Map({
+        container: mapContainer,
+        style: 'mapbox://styles/mapbox/light-v8',
+        pitchWithRotate: false,
+        dragRotate: false,
+        scrollZoom: true,
+        dragPan: true,
+        boxZoom: false, // Disabled as per requirement
+      });
 
-    map.on('load', () => {
+      // Set the map center and zoom level
       map.setCenter([centerPoint.longitude, centerPoint.latitude]);
-    });
+      map.setZoom(centerPoint.zoom);
 
-    map.on('drag', () => {
-      dragAndZoom(locations, block, ph);
-    });
+      // Apply markers
+      applyMarkers(locations);
 
-    map.on('zoom', () => {
-      dragAndZoom(locations, block, ph);
-    });
-  }
+      // Recenter map after load
+      map.on('load', () => {
+        map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+      });
 
-  calculateLocationListDistance(locations, centerPoint);
-  renderAndSortLocationList(locations, block, ph);
+      // Handle map drag and zoom events
+      map.on('drag', () => {
+        dragAndZoom(locations, block, ph);
+      });
+
+      map.on('zoom', () => {
+        dragAndZoom(locations, block, ph);
+      });
+    }
+
+    // Handle distance calculation and sorting after idle time
+    calculateLocationListDistance(locations, centerPoint);
+    renderAndSortLocationList(locations, block, ph);
+  });
 };
+
 
 const searchMatch = (locations, city, placeName, zipcode) => {
   const matchedLocations = locations.filter((item) => {
