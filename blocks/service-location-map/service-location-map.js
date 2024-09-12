@@ -355,11 +355,12 @@ const mapInitialization = async (locations, block, ph) => {
     map.on('moveend', () => {
       dragAndZoom(locations, block, ph);
     });
+
+    applyMarkers(locations);
   }
   
-
-  // calculateLocationListDistance(locations, centerPoint);
-  applyMarkers(locations);
+  const centerPoint = getCenterPoint();
+  calculateLocationListDistance(locations, centerPoint);
   renderAndSortLocationList(locations, block, ph);
 };
 
