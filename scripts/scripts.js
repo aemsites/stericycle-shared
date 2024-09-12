@@ -124,6 +124,26 @@ export async function getRelatedPosts(types, tags, limit) {
 }
 
 /**
+ * consolidate the offer boxes into one wrapper div
+ *
+ * @param main
+ */
+function consolidateOfferBoxes(main) {
+  const ob = main.querySelectorAll('.offer-box-wrapper');
+  let firstOB;
+  if (ob && ob.length > 1) {
+    ob.forEach((box, index) => {
+      if (index === 0) {
+        firstOB = box;
+      } else {
+        firstOB.append(...box.children);
+        box.remove();
+      }
+    });
+  }
+}
+
+/**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */
@@ -253,6 +273,7 @@ export function decorateMain(main) {
   decorateBlocks(main);
   modifyBigNumberList(main);
   decorateSectionTemplates(main);
+  consolidateOfferBoxes(main);
 }
 
 /**
