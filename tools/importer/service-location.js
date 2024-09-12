@@ -34,7 +34,8 @@ function setMetadata(meta, document, url) {
 
   // add location meta
   const {
-    title, address1, address2, city, zipCode, state, longitude, latitude,
+    title, address1, address2, city, zipCode, state, longitude, latitude, openingHours,
+    dropOffDetails, additionalCities, country,
   } = locationMeta[new URL(url).pathname];
   if (title) {
     meta.name = title;
@@ -59,6 +60,18 @@ function setMetadata(meta, document, url) {
   }
   if (latitude) {
     meta.latitude = latitude;
+  }
+  if (openingHours && openingHours.trim()) {
+    meta['opening-hours'] = openingHours;
+  }
+  if (dropOffDetails && dropOffDetails.trim()) {
+    meta['drop-off-details'] = dropOffDetails;
+  }
+  if (additionalCities?.length) {
+    meta['additional-cities'] = additionalCities.join(',');
+  }
+  if (country) {
+    meta.country = country;
   }
 
   // check for hero element to determine template
