@@ -123,6 +123,18 @@ export async function getRelatedPosts(types, tags, limit) {
   return filteredPosts;
 }
 
+function makeTwoColumns(main) {
+  const columnTarget = main.querySelector('.section.offer-box-container.two-columns > div.default-content-wrapper');
+  const columnA = document.createElement('div');
+  columnA.classList.add('column-a');
+  columnA.append(...columnTarget.children);
+  const columnB = document.createElement('div');
+  columnB.classList.add('column-b');
+  const columnBItems = main.querySelector('.section.offer-box-container.two-columns > div.offer-box-wrapper');
+  columnB.append(columnBItems);
+  columnTarget.append(columnA, columnB);
+}
+
 /**
  * consolidate the offer boxes into one wrapper div
  *
@@ -140,6 +152,9 @@ function consolidateOfferBoxes(main) {
         box.remove();
       }
     });
+    if (main.querySelector('.section.offer-box-container.two-columns')) {
+      makeTwoColumns(main);
+    }
   }
 }
 

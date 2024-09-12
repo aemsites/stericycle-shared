@@ -5,11 +5,11 @@ export default async function decorate(block) {
   headers.classList.add('offer-box-header');
   offerBox.appendChild(headers);
 
-  const headerItems = block.querySelectorAll('div:first-of-type > div:first-of-type > p, div:first-of-type > div:first-of-type > h2');
+  const headerItems = block.querySelectorAll('div:first-of-type > div:first-of-type > p, div:first-of-type > div:first-of-type > h2, div:first-of-type > div:first-of-type > h3');
 
   headerItems.forEach((item) => {
     const hDiv = document.createElement('div');
-    if (item.tagName === 'H2') {
+    if (item.tagName === 'H2' || item.tagName === 'H3') {
       hDiv.append(item);
     } else {
       hDiv.innerHTML = item.innerHTML;
@@ -33,9 +33,15 @@ export default async function decorate(block) {
   listDiv.innerHTML = block.querySelector('div:nth-of-type(4) > div').innerHTML;
 
   offerBox.append(headCopy);
-  offerBox.append(btnDiv);
-  offerBox.append(hrDiv);
-  offerBox.append(listDiv);
+  if (block.classList.contains('big-icon')) {
+    offerBox.append(hrDiv);
+    offerBox.append(listDiv);
+    offerBox.append(btnDiv);
+  } else {
+    offerBox.append(btnDiv);
+    offerBox.append(hrDiv);
+    offerBox.append(listDiv);
+  }
 
   block.replaceWith(offerBox);
 }
