@@ -128,7 +128,9 @@ const calculateLocationListDistance = (locations, centerPoint) => {
 
 async function fetchLocations(isDropoff, ph) {
   return (await ffetch('/query-index.json').sheet('locations')
-    .filter((x) => (x.latitude !== '0' && x.longitude !== '0'))
+    .filter((x) => (x.latitude !== '0' && x.longitude !== '0')
+      && (isDropoff ? x.template?.trim().toLowerCase() === 'service-location-page-2' : true)
+      && (x.locale?.trim().toLowerCase() === getLocale()))
     .map((x) => {
       const getValueOrNull = (value) => (value == null || value === 0 || value === '0' ? null : value);
       const mp = {
@@ -161,7 +163,6 @@ async function fetchLocations(isDropoff, ph) {
       mp['state-code'] = usStates[mp.state];
       return mp;
     })
-    .filter((x) => (isDropoff ? x.template?.trim().toLowerCase() === 'service-location-page-2' : true))
     .all())
     .map((x, index) => {
       x.index = index;
