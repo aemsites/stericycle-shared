@@ -37,6 +37,10 @@
   justify-content: unset;
 }
 
+.columns.align-top > div {
+  align-items: flex-start;
+}
+
 .columns.steps > div > div {
   width: 100%;
 }
@@ -144,6 +148,38 @@ main .columns span.icon > img {
 main .section.blue-headings .columns span.icon {
   width: unset;
   height: unset;
+}
+
+.columns.numeric-list h3 {
+  font-size: 4rem;
+  color: var(--color-cyan);
+}
+
+.columns.numeric-list ul {
+  display: flex;
+  height: 5rem;
+  padding-bottom: 2rem;
+  padding-left: unset;
+}
+
+.columns.numeric-list li::before {
+  content: unset;
+}
+
+.columns.numeric-list li:last-of-type {
+  margin-left: 2rem;
+  padding-left: 1rem;
+  border-left: var(--color-orange) solid 4px;
+  height: 100%;
+}
+
+.columns.numeric-list li:first-of-type {
+  top: 1rem;
+}
+
+.columns.numeric-list li:first-of-type > strong {
+  font-size: 4rem;
+  color: var(--color-cyan);
 }
 
 @media (min-width: 992px /* breakpoint-l */) {

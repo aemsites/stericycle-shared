@@ -264,6 +264,11 @@ main ul:not(.teaser-list) li::before {
   margin-right: .75rem;
 }
 
+/* remove bullets for list items in columns -  might be too aggressive */
+main div.column-with-list li::before {
+  content: none;
+}
+
 main .default-content-wrapper p,
 main .default-content-wrapper dl,
 main .default-content-wrapper ol,
@@ -417,12 +422,12 @@ main > div.section.gray-background > div.default-content-wrapper p {
 
 main .section.navy-background,
 main .block.navy-background {
-  background-image: linear-gradient(180deg, transparent 5rem, var(--color-navy) 0, var(--color-navy));
+  background-image: linear-gradient(180deg, var(--color-navy) 0, var(--color-navy));
 }
 
 main .section.navy-background.image {
   background-image: url("/icons/section-bg.svg"), linear-gradient(180deg, transparent 5rem, var(--color-navy) 0, var(--color-navy));
-  background-position: top right calc(-2rem);
+  background-position: top right;
   background-repeat: no-repeat;
   margin-top: -2rem;
   padding-top: 6rem;
