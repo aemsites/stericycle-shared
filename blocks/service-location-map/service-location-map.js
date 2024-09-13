@@ -360,34 +360,28 @@ const mapInitialization = async (locations, block, ph) => {
       map.setCenter([centerPoint.longitude, centerPoint.latitude]);
     });
 
-    map.on('drag', () => {
+    map.on('dragend', () => {
       dragAndZoom(locations, block, ph);
     });
 
-    map.on('zoom', () => {
+    map.on('zoomend', () => {
       dragAndZoom(locations, block, ph);
     });
   }
 };
 
-const searchMatch = (locations, city, placeName, zipcode) => {
+const searchMatch = (locations, city, placeName, zipCode) => {
   const matchedLocations = locations.filter((item) => {
-    const cityLower = city?.trim().toLowerCase();
-    const zipcodeLower = zipcode?.trim().toLowerCase();
-    const itemCityLower = item.city?.trim().toLowerCase();
-    const itemZipcodeLower = item['zip-code']?.trim().toLowerCase();
-    const placeNameLower = placeName?.trim().toLowerCase();
-    const itemStateLower = item.state?.trim().toLowerCase();
+    const itemCity = item.city;
+    const itemZipCode = item['zip-code'];
     const additionalCitiesArray = item['additional-cities']?.split(',')
       .map((cityTemp) => cityTemp.trim())
       .filter((cityTemp) => cityTemp.length > 0);
 
-    return (itemCityLower && cityLower && (itemCityLower === cityLower))
-      || (placeNameLower && itemCityLower && placeNameLower?.includes(itemCityLower))
-      || (itemZipcodeLower && zipcodeLower && (itemZipcodeLower === zipcodeLower))
-      || (placeNameLower && itemStateLower && placeNameLower?.includes(itemStateLower))
-      || (additionalCitiesArray?.some((element) => element?.trim()
-        .toLowerCase().includes(cityLower)));
+    return (city && itemCity && (city === itemCity))
+      || (placeName && itemCity && placeName.search(itemCity) !== -1)
+      || (itemZipCode && zipCode && (itemZipCode === zipCode))
+      || (additionalCitiesArray?.some((element) => element?.trim().indexOf(city) !== -1));
   });
 
   return matchedLocations.length > 0 ? matchedLocations : [];
@@ -452,15 +446,20 @@ const mapInputSearchOnCLick = async (block, locations, ph) => {
     if (map && result.length > 0) {
       if (stateFound) {
         const { bbox } = stateFound;
-        map.fitBounds([
+        await map.fitBounds([
           [bbox[0], bbox[1]],
           [bbox[2], bbox[3]],
         ]);
       } else {
-        map.setZoom(8);
-        map.setCenter([resultObj.lng, resultObj.lat]);
-        map.setCenter([resultObj.lng, resultObj.lat]);
-        renderAndSortLocationList(result, block, ph);
+        await map.flyTo({
+          center: [resultObj.lng, resultObj.lat],
+          zoom: 8,
+          speed: 1.2,
+          curve: 1.5,
+          easing: (t) => t,
+          essential: true,
+          duration: 1000,
+        });
       }
     } else {
       setMapError(block, ph.nolocationfoundtext);
@@ -487,7 +486,6 @@ const mapInputLocationOnClick = (block, locations, ph) => {
       essential: true,
       duration: 1000,
     });
-    dragAndZoom(locations, block, ph);
   };
 
   const errorCallback = async () => {
