@@ -15,6 +15,7 @@ import {
   loadCSS,
   fetchPlaceholders,
   isDesktop,
+  getMetadata,
 } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
 import usStates from './us-states.js';
@@ -80,17 +81,21 @@ const locDivCreation = (location, ph) => {
     );
   }
 
-  let dropOffDetailsContainBuyNow;
-  if (location['drop-off-details']) {
-    dropOffDetailsContainBuyNow = location['drop-off-details'].toLowerCase().includes('buy now'); // this is to handle old inputs
-    const tempP = p({ class: 'drop-off-details' });
-    tempP.innerHTML = location['drop-off-details'];
-    locationDiv.appendChild(tempP);
+  if (location['appointment-date-time']) {
+    locationDiv.appendChild(
+      p({ class: 'appointment-detail' }, location['appointment-date-time']),
+    );
   }
 
-  if (location['drop-off-details2']) {
+  if (location['appointment-policy']) {
     locationDiv.appendChild(
-      p({ class: 'drop-off-details2' }, location['drop-off-details2']),
+      p({ class: 'appointment-detail' }, location['appointment-policy']),
+    );
+  }
+
+  if (location['drop-off-info']) {
+    locationDiv.appendChild(
+      p({ class: 'appointment-detail' }, location['drop-off-info']),
     );
   }
 
@@ -103,7 +108,7 @@ const locDivCreation = (location, ph) => {
     );
   }
 
-  if (!dropOffDetailsContainBuyNow && location['buy-now']) {
+  if (location['buy-now']) {
     locationDiv.appendChild(
       a(
         { class: 'buy-now', href: location['buy-now'] },
@@ -129,7 +134,7 @@ const calculateLocationListDistance = (locations, centerPoint) => {
 async function fetchLocations(isDropoff, ph) {
   return (await ffetch('/query-index.json').sheet('locations')
     .filter((x) => (x.latitude !== '0' && x.longitude !== '0')
-      && (isDropoff ? x.template?.trim().toLowerCase() === 'service-location-page-2' : true)
+      && (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true)
       && (x.locale?.trim().toLowerCase() === getLocale()))
     .map((x) => {
       const getValueOrNull = (value) => (value == null || value === 0 || value === '0' ? null : value);
@@ -142,9 +147,7 @@ async function fetchLocations(isDropoff, ph) {
         country: getValueOrNull(x.country),
         name: getValueOrNull(x.name),
         'additional-cities': getValueOrNull(x['additional-cities']),
-        'opening-hours': getValueOrNull(x['opening-hours']),
-        'drop-off-details': getValueOrNull(x['drop-off-details']),
-        'drop-off-details2': getValueOrNull(x['drop-off-details2']),
+        'sub-type': getValueOrNull(x['sub-type']),
       };
 
       if (isDropoff) {
@@ -152,7 +155,13 @@ async function fetchLocations(isDropoff, ph) {
         mp['address-line-1'] = getValueOrNull(x['address-line-2']);
         mp['address-line-2'] = [mp.city, usStates[mp.state], mp['zip-code']].filter(Boolean).join(', ');
         mp['gmap-link'] = `https://www.google.com/maps/dir/${[mp.title, mp['address-line-1'], mp['address-line-2']].filter(Boolean).join(', ')}`;
-        mp['buy-now'] = mp['zip-code'] ? `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=${mp['zip-code']}` : '';
+        mp['buy-now'] = mp['zip-code']
+          ? `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=${mp['zip-code']}`
+          : 'https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx';
+        mp['opening-hours'] = getValueOrNull(x['opening-hours']);
+        mp['appointment-date-time'] = getValueOrNull(x['appointment-date-time']);
+        mp['appointment-policy'] = getValueOrNull(x['appointment-policy']);
+        mp['drop-off-info'] = getValueOrNull(x['drop-off-info']);
       } else {
         mp.title = `Shred-it ${mp.name || mp.city}`;
         mp['address-line-1'] = x['address-line-1'] || '';
@@ -232,11 +241,7 @@ const getCountry = () => {
   return locale.split('-')[1].trim().toLowerCase();
 };
 
-const getContactUshref = () => {
-  // todo piyush
-  const temp = getCountry();
-  return `/${temp}/contact-us`;
-};
+const getContactUshref = (ph) => `/${getLocale()}/${ph.contactuslinktext}`;
 
 /**
  * Renders the location list
@@ -249,7 +254,7 @@ const renderLocationList = (locations, block, ph) => {
 
   if (locations.length === 0) {
     const tempP = p({ class: 'no-result' }, span({}, `${ph.servicemapcurrentlocationnoresulttextpre} `));
-    tempP.appendChild(a({ href: getContactUshref() }, ph.contactustext));
+    tempP.appendChild(a({ href: getContactUshref(ph) }, ph.contactustext));
     tempP.appendChild(span({}, ` ${ph.servicemapcurrentlocationnoresulttextpost}`));
     locationContainer.appendChild(tempP);
     locationContainer.classList.add('no-result');
@@ -373,12 +378,16 @@ const searchMatch = (locations, city, placeName, zipcode) => {
     const itemZipcodeLower = item['zip-code']?.trim().toLowerCase();
     const placeNameLower = placeName?.trim().toLowerCase();
     const itemStateLower = item.state?.trim().toLowerCase();
+    const additionalCitiesArray = item['additional-cities']?.split(',')
+      .map((cityTemp) => cityTemp.trim())
+      .filter((cityTemp) => cityTemp.length > 0);
 
     return (itemCityLower && cityLower && (itemCityLower === cityLower))
       || (placeNameLower && itemCityLower && placeNameLower?.includes(itemCityLower))
       || (itemZipcodeLower && zipcodeLower && (itemZipcodeLower === zipcodeLower))
       || (placeNameLower && itemStateLower && placeNameLower?.includes(itemStateLower))
-      || (item['additional-cities']?.some((element) => element?.trim().toLowerCase().includes(cityLower)));
+      || (additionalCitiesArray?.some((element) => element?.trim()
+        .toLowerCase().includes(cityLower)));
   });
 
   return matchedLocations.length > 0 ? matchedLocations : [];
@@ -535,26 +544,17 @@ const mapSearch = (ph, block, locations, isDropoff) => {
   );
 };
 
-const getIsDropoff = () => {
-  const currentPath = window.location.pathname;
-  return currentPath.includes('/secure-shredding-services/drop-off-shredding');
-};
-
 export default async function decorate(block) {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
-  const isDropoff = getIsDropoff();
-
+  const isDropoff = Boolean(getMetadata('is-drop-off'));
   const locations = await fetchLocations(isDropoff, ph);
+
   block.append(
     mapSearch(ph, block, locations, isDropoff),
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
-  const mapContainer = block.querySelector('.map');
-  mapContainer.style.backgroundImage = 'url("../../icons/mapbox-default.png")';
-
   calculateLocationListDistance(locations, getCenterPoint());
   renderAndSortLocationList(locations, block, ph);
-
   window.setTimeout(() => mapInitialization(locations, block, ph), 3000);
 }
