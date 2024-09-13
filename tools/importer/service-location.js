@@ -35,7 +35,7 @@ function setMetadata(meta, document, url) {
   // add location meta
   const {
     title, address1, address2, city, zipCode, state, longitude, latitude, openingHours,
-    dropOffDetails, additionalCities, country,
+    dropOffDetails, additionalCities, country, subType,
   } = locationMeta[new URL(url).pathname];
   if (title) {
     meta.name = title;
@@ -106,6 +106,9 @@ function setMetadata(meta, document, url) {
   }
   if (country) {
     meta.country = country;
+  }
+  if (subType) {
+    meta['sub-type'] = subType;
   }
 
   // check for hero element to determine template
