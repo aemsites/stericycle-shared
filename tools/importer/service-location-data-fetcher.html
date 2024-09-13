@@ -16,8 +16,8 @@
 
         const locations = {};
         json.forEach((entry) => {
-          const { url, title, address1, address2, city, zipCode, state, longitude, latitude } = entry;
-          locations[url] = { title, address1, address2, city, zipCode, state, longitude, latitude };
+          const { url, title, address1, address2, city, zipCode, state, longitude, latitude, openingHours, dropOffDetails, additionalCities, country } = entry;
+          locations[url] = { title, address1, address2, city, zipCode, state, longitude, latitude, openingHours, dropOffDetails, additionalCities, country };
         });
         console.log(locations);
       }
