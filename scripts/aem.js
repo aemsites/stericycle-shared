@@ -740,6 +740,8 @@ async function waitForLCP(lcpBlocks) {
   });
 }
 
+const isDesktop = () => window.matchMedia('(min-width: 992px)')?.matches;
+
 init();
 
 export {
@@ -767,4 +769,5 @@ export {
   updateSectionsStatus,
   waitForLCP,
   wrapTextNodes,
+  isDesktop,
 };
