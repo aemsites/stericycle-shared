@@ -629,10 +629,6 @@ header nav .logo-only + .nav-hamburger {
     cursor: pointer;
   }
 
-  .nav-tools ul li.nav-drop:hover {
-    text-decoration: underline;
-  }
-
   .nav-tools ul li.nav-drop::after {
     content: '\2304';
     font-size: 14px;
@@ -800,6 +796,17 @@ header nav .logo-only + .nav-hamburger {
     justify-content: space-between;
     align-items: flex-start;
     padding: 1em;
+  }
+
+  header nav .nav-tools .default-content-wrapper > ul > li .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  header nav .nav-tools .default-content-wrapper > ul > li[aria-expanded="true"] > ul a {
+    display: flex;
+    gap: 0.5rem;
+    text-decoration: none;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li:hover > ul {
