@@ -1,18 +1,21 @@
 import {
   createButton, createFieldWrapper, createLabel, getHTMLRenderType,
   createHelpText,
+  getId,
   stripTags,
   checkValidation,
+  toClassName,
 } from './util.js';
 import GoogleReCaptcha from './integrations/recaptcha.js';
 import componentDecorator from './mappings.js';
 import DocBasedFormToAF from './transform.js';
 import transferRepeatableDOM from './components/repeat/repeat.js';
 import { handleSubmit } from './submit.js';
-import { getSubmitBaseUrl } from './constant.js';
+import { getSubmitBaseUrl, emailPattern } from './constant.js';
 
 export const DELAY_MS = 0;
 let captchaField;
+let afModule;
 
 const withFieldWrapper = (element) => (fd) => {
   const wrapper = createFieldWrapper(fd);
@@ -98,7 +101,7 @@ const createSelect = withFieldWrapper((fd) => {
     const optionsUrl = new URL(options?.[0]);
     // using async to avoid rendering
     if (optionsUrl.hostname.endsWith('hlx.page')
-      || optionsUrl.hostname.endsWith('hlx.live')) {
+    || optionsUrl.hostname.endsWith('hlx.live')) {
       fetch(`${optionsUrl.pathname}${optionsUrl.search}`)
         .then(async (response) => {
           const json = await response.json();
@@ -174,6 +177,42 @@ function setConstraintsMessage(field, messages = {}) {
   });
 }
 
+function createRadioOrCheckboxGroup(fd) {
+  const wrapper = createFieldSet({ ...fd });
+  const type = fd.fieldType.split('-')[0];
+  fd.enum.forEach((value, index) => {
+    const label = (typeof fd.enumNames?.[index] === 'object' && fd.enumNames?.[index] !== null) ? fd.enumNames[index].value : fd.enumNames?.[index] || value;
+    const id = getId(fd.name);
+    const field = createRadioOrCheckbox({
+      name: fd.name,
+      id,
+      label: { value: label },
+      fieldType: type,
+      enum: [value],
+      required: fd.required,
+    });
+    field.classList.remove('field-wrapper', `field-${toClassName(fd.name)}`);
+    const input = field.querySelector('input');
+    input.id = id;
+    input.dataset.fieldType = fd.fieldType;
+    input.name = fd.name;
+    input.checked = Array.isArray(fd.value) ? fd.value.includes(value) : value === fd.value;
+    if ((index === 0 && type === 'radio') || type === 'checkbox') {
+      input.required = fd.required;
+    }
+    if (fd.enabled === false || fd.readOnly === true) {
+      input.setAttribute('disabled', 'disabled');
+    }
+    wrapper.appendChild(field);
+  });
+  wrapper.dataset.required = fd.required;
+  if (fd.tooltip) {
+    wrapper.title = stripTags(fd.tooltip, '');
+  }
+  setConstraintsMessage(wrapper, fd.constraintMessages);
+  return wrapper;
+}
+
 function createPlainText(fd) {
   const paragraph = document.createElement('p');
   if (fd.richText) {
@@ -208,6 +247,8 @@ const fieldRenderers = {
   multiline: createTextArea,
   panel: createFieldSet,
   radio: createRadioOrCheckbox,
+  'radio-group': createRadioOrCheckboxGroup,
+  'checkbox-group': createRadioOrCheckboxGroup,
   image: createImage,
   heading: createHeading,
   hidden: createHidden,
@@ -282,6 +323,9 @@ function inputDecorator(field, element) {
     if (field.default !== undefined) {
       input.setAttribute('value', field.default);
     }
+    if (input.type === 'email') {
+      input.pattern = emailPattern;
+    }
     setConstraintsMessage(element, field.constraintMessages);
     element.dataset.required = field.required;
   }
@@ -347,7 +391,18 @@ function enableValidation(form) {
   });
 }
 
-export async function createForm(formDef) {
+async function createFormForAuthoring(formDef) {
+  const form = document.createElement('form');
+  await generateFormRendition(formDef, form, (container) => {
+    if (container[':itemsOrder'] && container[':items']) {
+      return container[':itemsOrder'].map((itemKey) => container[':items'][itemKey]);
+    }
+    return [];
+  });
+  return form;
+}
+
+export async function createForm(formDef, data) {
   const { action: formPath } = formDef;
   const form = document.createElement('form');
   form.dataset.action = formPath;
@@ -367,6 +422,12 @@ export async function createForm(formDef) {
   enableValidation(form);
   transferRepeatableDOM(form);
 
+  if (afModule) {
+    window.setTimeout(async () => {
+      afModule.loadRuleEngine(formDef, form, captcha, generateFormRendition, data);
+    }, DELAY_MS);
+  }
+
   form.addEventListener('reset', async () => {
     const newForm = await createForm(formDef);
     document.querySelector(`[data-action="${formDef.action}"]`).replaceWith(newForm);
@@ -379,51 +440,135 @@ export async function createForm(formDef) {
   return form;
 }
 
-async function fetchForm(pathname) {
-  try {
-    const resp = await fetch(pathname);
-    const data = await resp.json();
-    return data;
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log('unable to fetch form definition', e);
-    return {};
+function cleanUp(content) {
+  const formDef = content.replaceAll('^(([^<>()\\\\[\\\\]\\\\\\\\.,;:\\\\s@\\"]+(\\\\.[^<>()\\\\[\\\\]\\\\\\\\.,;:\\\\s@\\"]+)*)|(\\".+\\"))@((\\\\[[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}])|(([a-zA-Z\\\\-0-9]+\\\\.)\\+[a-zA-Z]{2,}))$', '');
+  return formDef?.replace(/\x83\n|\n|\s\s+/g, '');
+}
+/*
+  Newer Clean up - Replace backslashes that are not followed by valid json escape characters
+  function cleanUp(content) {
+    return content.replace(/\\/g, (match, offset, string) => {
+      const prevChar = string[offset - 1];
+      const nextChar = string[offset + 1];
+      const validEscapeChars = ['b', 'f', 'n', 'r', 't', '"', '\\'];
+      if (validEscapeChars.includes(nextChar) || prevChar === '\\') {
+        return match;
+      }
+      return '';
+    });
   }
+*/
+
+function decode(rawContent) {
+  const content = rawContent.trim();
+  if (content.startsWith('"') && content.endsWith('"')) {
+    // In the new 'jsonString' context, Server side code comes as a string with escaped characters,
+    // hence the double parse
+    return JSON.parse(JSON.parse(content));
+  }
+  return JSON.parse(cleanUp(content));
+}
+
+function extractAEMFormDefinition(block) {
+  let formDef;
+  const container = block.querySelector('pre');
+  const codeEl = container?.querySelector('code');
+  const content = codeEl?.textContent;
+  if (content) {
+    formDef = decode(content);
+  }
+  return { container, formDef };
+}
+
+export async function fetchForm(pathname) {
+  // get the main form
+  let data;
+  let path = pathname;
+  if (path.startsWith(window.location.origin) && !path.endsWith('.json')) {
+    if (path.endsWith('.html')) {
+      path = path.substring(0, path.lastIndexOf('.html'));
+    }
+    path += '/jcr:content/root/section/form.html';
+  }
+  let resp = await fetch(path);
+
+  if (resp?.headers?.get('Content-Type')?.includes('application/json')) {
+    data = await resp.json();
+  } else if (resp?.headers?.get('Content-Type')?.includes('text/html')) {
+    resp = await fetch(path);
+    data = await resp.text().then((html) => {
+      try {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        if (doc) {
+          // eslint-disable-next-line no-use-before-define
+          return extractFormDefinition(doc.body).formDef;
+        }
+        return doc;
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error('Unable to fetch form definition for path', pathname, path);
+        return null;
+      }
+    });
+  }
+  return data;
 }
 
 export async function extractFormDefinition(block) {
-  const container = block.querySelector('a[href]');
+  let container = block.querySelector('a[href]');
+  let formDef;
+  let pathname;
   if (container) {
-    const { pathname } = new URL(container.href);
-    const formDef = await fetchForm(container.href);
-    return {
-      container, formDef, pathname,
-    };
+    ({ pathname } = new URL(container.href));
+    formDef = await fetchForm(container.href);
+  } else {
+    ({ container, formDef } = extractAEMFormDefinition(block));
   }
-  return {};
+  return {
+    container, formDef, pathname,
+  };
+}
+
+export function isDocumentBasedForm(formDef) {
+  return formDef?.[':type'] === 'sheet' && formDef?.data;
+}
+
+export async function renderAEMForm(formDef, editMode = false) {
+  afModule = await import('./rules/index.js');
+  let form;
+  if (afModule && afModule.initAdaptiveForm && !editMode) {
+    form = await afModule.initAdaptiveForm(formDef, createForm);
+  } else {
+    form = await createFormForAuthoring(formDef);
+  }
+  if (formDef.properties) {
+    form.dataset.formpath = formDef.properties['fd:path'];
+  }
+  return form;
 }
 
 export async function renderSheetForm(sheetData) {
   const transform = new DocBasedFormToAF();
   const formDef = transform.transform(sheetData);
   const form = await createForm(formDef);
-  if (formDef.properties.rules) {
-    const docRuleEngine = await import('./rules-doc/index.js');
-    docRuleEngine.default(formDef, form);
-  }
+  const docRuleEngine = await import('./rules-doc/index.js');
+  docRuleEngine.default(formDef, form);
   return form;
 }
 
 export default async function renderForm(block) {
   const { container, formDef, pathname } = await extractFormDefinition(block);
+  const source = isDocumentBasedForm(formDef) ? 'sheet' : 'aem';
   if (formDef) {
     formDef.action = getSubmitBaseUrl() + (formDef.action || '');
-    const form = await renderSheetForm(formDef);
+    const form = source === 'sheet'
+      ? await renderSheetForm(formDef)
+      : await renderAEMForm(formDef, block.classList.contains('edit-mode'));
     form.dataset.redirectUrl = formDef.redirectUrl || '';
     form.dataset.thankYouMsg = formDef.thankYouMsg || '';
     form.dataset.action = formDef.action || pathname?.split('.json')[0];
+    form.dataset.source = source;
     form.dataset.id = formDef.id;
-    form.dataset.source = 'sheet';
     container.replaceWith(form);
     return form;
   }

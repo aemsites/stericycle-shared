@@ -222,8 +222,7 @@ export default class DocBasedFormToAF {
             formDef.thankYouMsg = submitValue;
           }
         }
-
-        if (field?.fieldType === 'fieldset') {
+        if (field?.fieldType.startsWith('fieldset')) {
           this.panelMap.set(field?.name, field);
           delete field?.constraintMessages;
         }
