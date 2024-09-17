@@ -30,7 +30,7 @@ tags.forEach((item) => {
   TAGS[path] = item.Tags.replaceAll(';', ',');
 });
 
-function getDocumentMetadata(name, document) {
+export function getDocumentMetadata(name, document) {
   const attr = name && name.includes(':') ? 'property' : 'name';
   const meta = [...document.head.querySelectorAll(`meta[${attr}="${name}"]`)]
     .map((m) => m.content)
@@ -38,7 +38,7 @@ function getDocumentMetadata(name, document) {
   return meta || '';
 }
 
-function getLocaleFromUrl(doc) {
+export function getLocaleFromUrl(doc) {
   const match = doc.documentURI.match(/\/([a-z]{2,}(?:-[a-z]{2,})*)\//g);
   return Object.hasOwn(match, 'length') && match.length >= 1 ? match[0].replaceAll('/', '') : null;
 }
