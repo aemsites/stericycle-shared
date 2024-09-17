@@ -98,5 +98,7 @@ export default async function decorate(block) {
   createMenuAccordion(accordionsContainer);
   // Insert the columns-wrapper div inside the default-content-wrapper
   const columnsWrapper = block.querySelector('.columns-wrapper');
-  block.querySelector('.default-content-wrapper > .footer-accordion-container').insertAdjacentElement('afterend', columnsWrapper);
+  if (block.querySelector('.default-content-wrapper > .footer-accordion-container')) {
+    block.querySelector('.default-content-wrapper > .footer-accordion-container').insertAdjacentElement('afterend', columnsWrapper);
+  }
 }
