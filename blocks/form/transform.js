@@ -10,9 +10,8 @@ function handleCheckboxAndRadio(field) {
     } else if (field?.fieldType === 'checkbox') {
       field.enum = ['on']; // default html value
     }
-    if (field.checked?.toLowerCase() !== 'true') {
-      delete field.value;
-    }
+    delete field.value;
+    field.checked = field.Checked?.toLowerCase() === 'true'
   }
 }
 
@@ -161,6 +160,7 @@ export default class DocBasedFormToAF {
     OptionNames: 'enumNames',
     Visible: 'visible',
     Repeatable: 'repeatable',
+    Icon: 'icon',
     Style: 'appliedCssClassNames',
     'Required Error Message': 'constraintMessages.required',
     'Pattern Error Message': 'constraintMessages.pattern',
@@ -261,8 +261,13 @@ export default class DocBasedFormToAF {
      * @param {any} field FieldJson
      */
   #transformFieldType(field) {
-    if (this.fieldMapping.has(field?.fieldType)) {
-      field.fieldType = this.fieldMapping.get(field?.fieldType);
+    const [fieldType, _type] = field?.fieldType?.split(':') || []
+    field.fieldType = fieldType
+    if (fieldType && this.fieldMapping.has(fieldType)) {
+      field.fieldType = this.fieldMapping.get(fieldType);
+    }
+    if (_type) {
+      field[':type'] = _type;
     }
   }
 

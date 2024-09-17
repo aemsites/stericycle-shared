@@ -20,18 +20,7 @@
 /* eslint-disable max-classes-per-file */
 import Formula from './parser/Formula.js';
 import transformRule from './RuleCompiler.js';
-import * as customFunctions from '../functions.js';
-
-function stripTags(input, allowd) {
-  const allowed = ((`${allowd || ''}`)
-    .toLowerCase()
-    .match(/<[a-z][a-z0-9]*>/g) || [])
-    .join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
-  const tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
-  const comments = /<!--[\s\S]*?-->/gi;
-  return input.replace(comments, '')
-    .replace(tags, ($0, $1) => (allowed.indexOf(`<${$1.toLowerCase()}>`) > -1 ? $0 : ''));
-}
+import { stripTags } from '../utils.js';
 
 export function sanitizeHTML(input) {
   return stripTags(input, '<a>');
@@ -50,10 +39,10 @@ const isRepeatableFieldset = (e) => isFieldset(e) && e.getAttribute('data-repeat
 const isDataElement = (element) => element.tagName !== 'BUTTON' && !isFieldset(element) && element.name;
 
 function getValue(fe) {
-  if (fe.type === 'checkbox' || fe.type === 'radio') {
+  if (fe.type === 'radio') {
+    return fe.form.elements[fe.name].value;
+  } else if (fe.type === 'checkbox') {
     if (fe.checked) return coerceValue(fe.value);
-  } else if (fe.tagName === 'OUTPUT') {
-    return fe.dataset.value;
   } else if (fe.name) {
     return coerceValue(fe.value);
   }
@@ -99,26 +88,6 @@ function constructPayload(form) {
       ...fieldsetPayload,
     };
   }, payload);
-}
-
-function registerFunctions(functions) {
-  const functionsMap = {};
-  Object.entries(functions).forEach(([name, funcDef]) => {
-    let finalFunction = funcDef;
-    if (typeof funcDef === 'function') {
-      finalFunction = {
-        _func: (args, data) => funcDef(...args, data),
-        _signature: [],
-      };
-    }
-
-    if (!Object.prototype.hasOwnProperty.call(finalFunction, '_func')) {
-      console.warn(`Unable to register function with name ${name}.`);
-    } else {
-      functionsMap[name?.toLowerCase()] = finalFunction;
-    }
-  });
-  return functionsMap;
 }
 
 export default class RuleEngine {
@@ -253,6 +222,16 @@ export default class RuleEngine {
         }
         this.applyRules(rules);
       }
+    });
+
+    Object.entries(this.formRules).forEach(([fId, rules]) => {
+      rules.forEach(rule => {
+        const newValue = this.formula.evaluate(rule.ast, this.data);
+        const handler = this[`${rule.prop}Update`];
+        if (handler instanceof Function) {
+          handler.apply(this, [fId, newValue]);
+        }
+      })
     });
   }
 }

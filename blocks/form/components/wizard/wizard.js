@@ -120,7 +120,7 @@ export class WizardLayout {
     ul.className = 'wizard-menu-items';
     children.forEach((child, index) => {
       const li = document.createElement('li');
-      li.innerHTML = child.querySelector('legend')?.innerHTML || '';
+      li.innerHTML = child.querySelector(':scope > legend')?.innerHTML || '';
       li.className = 'wizard-menu-item';
       li.dataset.index = index;
       if (child.hasAttribute('data-visible')) {

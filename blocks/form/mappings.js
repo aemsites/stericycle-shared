@@ -57,7 +57,7 @@ async function loadComponent(componentName, element, fd, container) {
  *
  * */
 export default async function componentDecorator(element, fd, container) {
-  const { ':type': type = '', fieldType } = fd;
+  const { ':type': type = '', fieldType = '' } = fd;
   if (fieldType === 'file-input') {
     await loadComponent('file', element, fd, container);
   }

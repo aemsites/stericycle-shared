@@ -11,7 +11,7 @@ import componentDecorator from './mappings.js';
 import DocBasedFormToAF from './transform.js';
 import transferRepeatableDOM from './components/repeat/repeat.js';
 import { handleSubmit } from './submit.js';
-import { getSubmitBaseUrl, emailPattern } from './constant.js';
+import { getSubmitBaseUrl } from './constant.js';
 
 export const DELAY_MS = 0;
 let captchaField;
@@ -176,42 +176,6 @@ function setConstraintsMessage(field, messages = {}) {
   });
 }
 
-function createRadioOrCheckboxGroup(fd) {
-  const wrapper = createFieldSet({ ...fd });
-  const type = fd.fieldType.split('-')[0];
-  fd.enum.forEach((value, index) => {
-    const label = (typeof fd.enumNames?.[index] === 'object' && fd.enumNames?.[index] !== null) ? fd.enumNames[index].value : fd.enumNames?.[index] || value;
-    const id = getId(fd.name);
-    const field = createRadioOrCheckbox({
-      name: fd.name,
-      id,
-      label: { value: label },
-      fieldType: type,
-      enum: [value],
-      required: fd.required,
-    });
-    field.classList.remove('field-wrapper', `field-${toClassName(fd.name)}`);
-    const input = field.querySelector('input');
-    input.id = id;
-    input.dataset.fieldType = fd.fieldType;
-    input.name = fd.name;
-    input.checked = Array.isArray(fd.value) ? fd.value.includes(value) : value === fd.value;
-    if ((index === 0 && type === 'radio') || type === 'checkbox') {
-      input.required = fd.required;
-    }
-    if (fd.enabled === false || fd.readOnly === true) {
-      input.setAttribute('disabled', 'disabled');
-    }
-    wrapper.appendChild(field);
-  });
-  wrapper.dataset.required = fd.required;
-  if (fd.tooltip) {
-    wrapper.title = stripTags(fd.tooltip, '');
-  }
-  setConstraintsMessage(wrapper, fd.constraintMessages);
-  return wrapper;
-}
-
 function createPlainText(fd) {
   const paragraph = document.createElement('p');
   if (fd.richText) {
@@ -246,11 +210,9 @@ const fieldRenderers = {
   multiline: createTextArea,
   panel: createFieldSet,
   radio: createRadioOrCheckbox,
-  'radio-group': createRadioOrCheckboxGroup,
-  'checkbox-group': createRadioOrCheckboxGroup,
   image: createImage,
   heading: createHeading,
-  'hidden': createHidden,
+  hidden: createHidden,
 };
 
 function colSpanDecorator(field, element) {
@@ -321,9 +283,6 @@ function inputDecorator(field, element) {
     }
     if (field.default !== undefined) {
       input.setAttribute('value', field.default);
-    }
-    if (input.type === 'email') {
-      input.pattern = emailPattern;
     }
     setConstraintsMessage(element, field.constraintMessages);
     element.dataset.required = field.required;
