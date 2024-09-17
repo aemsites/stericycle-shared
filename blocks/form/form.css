@@ -419,7 +419,7 @@ main .form form .wizard .wizard-menu-active-item::before{
   font-weight: 600;
 }
 
-@media (width >= 600px) {
+@media (min-width: 600px) {
     main .form button {
         width: unset;
     }
@@ -457,7 +457,7 @@ main .form form .wizard.left .panel-wrapper{
   flex: 1;
 }
 
-@media (width >= 1200px) {
+@media (min-width: 1200px) {
     main .form form .checkbox-wrapper,
     main .form form .form-textarea-wrapper,
     main .form form .file-wrapper,

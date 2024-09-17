@@ -11,7 +11,7 @@ function handleCheckboxAndRadio(field) {
       field.enum = ['on']; // default html value
     }
     delete field.value;
-    field.checked = field.Checked?.toLowerCase() === 'true'
+    field.checked = field.Checked?.toLowerCase() === 'true';
   }
 }
 
@@ -261,8 +261,8 @@ export default class DocBasedFormToAF {
      * @param {any} field FieldJson
      */
   #transformFieldType(field) {
-    const [fieldType, _type] = field?.fieldType?.split(':') || []
-    field.fieldType = fieldType
+    const [fieldType, _type] = field?.fieldType?.split(':') || [];
+    field.fieldType = fieldType;
     if (fieldType && this.fieldMapping.has(fieldType)) {
       field.fieldType = this.fieldMapping.get(fieldType);
     }

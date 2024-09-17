@@ -1,10 +1,8 @@
 import {
   createButton, createFieldWrapper, createLabel, getHTMLRenderType,
   createHelpText,
-  getId,
   stripTags,
   checkValidation,
-  toClassName,
 } from './util.js';
 import GoogleReCaptcha from './integrations/recaptcha.js';
 import componentDecorator from './mappings.js';
@@ -349,18 +347,7 @@ function enableValidation(form) {
   });
 }
 
-async function createFormForAuthoring(formDef) {
-  const form = document.createElement('form');
-  await generateFormRendition(formDef, form, (container) => {
-    if (container[':itemsOrder'] && container[':items']) {
-      return container[':itemsOrder'].map((itemKey) => container[':items'][itemKey]);
-    }
-    return [];
-  });
-  return form;
-}
-
-export async function createForm(formDef, data) {
+export async function createForm(formDef) {
   const { action: formPath } = formDef;
   const form = document.createElement('form');
   form.dataset.action = formPath;
@@ -392,24 +379,38 @@ export async function createForm(formDef, data) {
   return form;
 }
 
+async function fetchForm(pathname) {
+  try {
+    const resp = await fetch(pathname);
+    const data = await resp.json();
+    return data;
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log('unable to fetch form definition', e);
+    return {};
+  }
+}
+
 export async function extractFormDefinition(block) {
-  let container = block.querySelector('a[href]');
+  const container = block.querySelector('a[href]');
   if (container) {
     const { pathname } = new URL(container.href);
     const formDef = await fetchForm(container.href);
     return {
-      container, formDef, pathname
-    }
+      container, formDef, pathname,
+    };
   }
-  return {}
+  return {};
 }
 
 export async function renderSheetForm(sheetData) {
   const transform = new DocBasedFormToAF();
   const formDef = transform.transform(sheetData);
   const form = await createForm(formDef);
-  const docRuleEngine = await import('./rules-doc/index.js');
-  docRuleEngine.default(formDef, form);
+  if (formDef.properties.rules) {
+    const docRuleEngine = await import('./rules-doc/index.js');
+    docRuleEngine.default(formDef, form);
+  }
   return form;
 }
 
@@ -417,7 +418,7 @@ export default async function renderForm(block) {
   const { container, formDef, pathname } = await extractFormDefinition(block);
   if (formDef) {
     formDef.action = getSubmitBaseUrl() + (formDef.action || '');
-    const form = await renderSheetForm(formDef)
+    const form = await renderSheetForm(formDef);
     form.dataset.redirectUrl = formDef.redirectUrl || '';
     form.dataset.thankYouMsg = formDef.thankYouMsg || '';
     form.dataset.action = formDef.action || pathname?.split('.json')[0];

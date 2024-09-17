@@ -20,7 +20,7 @@
 /* eslint-disable max-classes-per-file */
 import Formula from './parser/Formula.js';
 import transformRule from './RuleCompiler.js';
-import { stripTags } from '../utils.js';
+import { stripTags } from '../util.js';
 
 export function sanitizeHTML(input) {
   return stripTags(input, '<a>');
@@ -41,7 +41,7 @@ const isDataElement = (element) => element.tagName !== 'BUTTON' && !isFieldset(e
 function getValue(fe) {
   if (fe.type === 'radio') {
     return fe.form.elements[fe.name].value;
-  } else if (fe.type === 'checkbox') {
+  } if (fe.type === 'checkbox') {
     if (fe.checked) return coerceValue(fe.value);
   } else if (fe.name) {
     return coerceValue(fe.value);
@@ -96,7 +96,7 @@ export default class RuleEngine {
   constructor(formRules, fieldIdMap, formTag) {
     this.formTag = formTag;
     this.data = constructPayload(formTag);
-    this.formula = new Formula(registerFunctions(customFunctions));
+    this.formula = new Formula();
     const newRules = formRules.map(([fieldId, fieldRules]) => [
       fieldId,
       fieldRules.map((rule) => transformRule(rule, fieldIdMap, this.formula)),
@@ -225,13 +225,13 @@ export default class RuleEngine {
     });
 
     Object.entries(this.formRules).forEach(([fId, rules]) => {
-      rules.forEach(rule => {
+      rules.forEach((rule) => {
         const newValue = this.formula.evaluate(rule.ast, this.data);
         const handler = this[`${rule.prop}Update`];
         if (handler instanceof Function) {
           handler.apply(this, [fId, newValue]);
         }
-      })
+      });
     });
   }
 }
