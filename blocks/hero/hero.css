@@ -20,8 +20,9 @@ main .hero-container {
 
 .hero {
   position: relative;
-  padding: 2rem 0;
+  padding: 1rem 2rem 2rem 2rem;
   min-height: 232px;
+  overflow: hidden;
 }
 
 .hero picture.hero-background {
@@ -38,22 +39,15 @@ main .hero-container {
 }
 
 .hero div.hero-content-container {
-  top: 50px;
   position: relative;
   max-width: var(--section-width);
   margin: auto;
-  padding: 28px 0;
-  align-items: center;
-  display: flex;
-  width: 100%;
-}
-
-.hero div.hero-content-container > div.hero-content {
-  width: 58.3333%;
+  padding: 1.5rem 0 1.75rem 0;
 }
 
 .hero div.hero-content-container > div.hero-content > h1 {
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
+  line-height: initial;
 }
 
 .hero div.hero-content p.button-container > a {
@@ -69,4 +63,10 @@ main .hero-container {
   background-color: unset;
   color: unset;
   text-decoration: underline;
+}
+
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  .hero div.hero-content-container > div.hero-content {
+    width: 44%;
+  }
 }
