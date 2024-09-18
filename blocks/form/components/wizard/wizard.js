@@ -55,7 +55,7 @@ export class WizardLayout {
     const current = panel.querySelector('.current-wizard-step');
     const currentMenuItem = panel.querySelector('.wizard-menu-active-item');
 
-    const valid = true;
+    let valid = true;
     if (forward) {
       valid = this.validateContainer(current);
     }
