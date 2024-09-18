@@ -20,8 +20,7 @@ main .hero-container {
 
 .hero {
   position: relative;
-  padding: 1rem 2rem 2rem 2rem;
-  min-height: 232px;
+  padding: 1rem 2rem 2rem;
   overflow: hidden;
 }
 
@@ -42,7 +41,8 @@ main .hero-container {
   position: relative;
   max-width: var(--section-width);
   margin: auto;
-  padding: 1.5rem 0 1.75rem 0;
+  padding: 1.5rem 0 1.75rem;
+  width: 100%;
 }
 
 .hero div.hero-content-container > div.hero-content > h1 {
