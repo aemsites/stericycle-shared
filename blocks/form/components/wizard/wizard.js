@@ -57,7 +57,7 @@ export class WizardLayout {
 
     const valid = true;
     if (forward) {
-      // valid = this.validateContainer(current);
+      valid = this.validateContainer(current);
     }
     const navigateTo = valid ? this.getEligibleSibling(current, forward) : current;
 
