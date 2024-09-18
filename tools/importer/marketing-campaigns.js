@@ -11,14 +11,14 @@
  */
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
-const baseUrl = 'https://main--shredit--stericycle.aem.live';
-
 import { getDocumentMetadata, getLocaleFromUrl } from './news.js';
 
+const baseUrl = 'https://main--shredit--stericycle.aem.live';
+
 function hero(main) {
-  const hero = main.querySelector('.pagehero');
-  if (hero) {
-    hero.insertAdjacentElement('afterend', document.createElement('hr'));
+  const heroDiv = main.querySelector('.pagehero');
+  if (heroDiv) {
+    heroDiv.insertAdjacentElement('afterend', document.createElement('hr'));
   }
 }
 
@@ -138,8 +138,8 @@ function processSections(main) {
 function setMetadata(meta, document) {
   meta.nav = '/en-us/alt-0-nav';
   meta.footer = '/en-us/alt-0-footer';
-  meta['twitter:title'] = meta['Title'];
-  if (meta.Description){
+  meta['twitter:title'] = meta.Title;
+  if (meta.Description) {
     meta['twitter:description'] = meta.Description;
   }
   meta['og:type'] = 'website';
