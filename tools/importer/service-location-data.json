@@ -11,7 +11,8 @@
     "openingHours": " ",
     "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)  </p> <p style=\"width:70%;\"> <a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=00959-1902\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">     Buy Now </a> </p> ",
     "additionalCities": [],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/albuquerque": {
     "title": "Albuquerque",
@@ -30,7 +31,8 @@
       "Durango",
       "Clovis"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/little-rock": {
     "title": "Little Rock",
@@ -54,7 +56,8 @@
       "Bentonville",
       "Fayetteville"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/newnan": {
     "title": "Newnan",
@@ -73,7 +76,8 @@
       "Douglasville",
       "Fairburn"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/austin": {
     "title": "Austin",
@@ -93,7 +97,8 @@
       "Kyle",
       "Marble Falls"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/baltimore": {
     "title": "Baltimore",
@@ -114,7 +119,8 @@
       "Baltimore",
       "Maryland"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/birmingham-usa": {
     "title": "Birmingham (USA)",
@@ -133,7 +139,8 @@
       "Montgomery",
       "in to Georgia"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/boise": {
     "title": "Boise",
@@ -154,7 +161,8 @@
       "LaGrande",
       "Ontario"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/boston": {
     "title": "Boston",
@@ -173,7 +181,8 @@
       "Manchester",
       "Portsmouth, NH"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/buffalo": {
     "title": "Buffalo",
@@ -196,7 +205,8 @@
       "Jamestown",
       "Olean"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/central-pa---lancaster": {
     "title": "Central PA / Lancaster",
@@ -215,7 +225,8 @@
       "Dauphin",
       "Cumberland"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/charleston": {
     "title": "Charleston",
@@ -236,7 +247,8 @@
       "Myrtle Beach",
       "Greenville/Spartanburg"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/charlotte": {
     "title": "Charlotte",
@@ -255,7 +267,8 @@
       "Salisbury",
       "Rock Hill (SC)"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/chicago": {
     "title": "Chicago",
@@ -277,7 +290,8 @@
       "Chicago",
       "Schaumburg"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/cincinnati": {
     "title": "Cincinnati",
@@ -295,7 +309,8 @@
       "Northern Kentucky",
       "Southeast Indiana"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/cleveland": {
     "title": "Cleveland",
@@ -316,7 +331,8 @@
       "Cleveland",
       "Mansfield"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/columbus": {
     "title": "Columbus",
@@ -338,7 +354,8 @@
       "Central Ohio",
       "Southern Ohio"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/concord": {
     "title": "Concord",
@@ -358,7 +375,8 @@
       "Contra Costa",
       "Napa"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/hartford-and-connecticut": {
     "title": "Hartford and Connecticut",
@@ -379,7 +397,8 @@
       "Stamford",
       "Waterbury"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/dallas": {
     "title": "Dallas",
@@ -399,7 +418,8 @@
       "Cleburne",
       "Waco"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/denver": {
     "title": "Denver",
@@ -422,7 +442,8 @@
       "Loveland",
       "Boulder"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/des-moines": {
     "title": "Des Moines",
@@ -444,7 +465,8 @@
       "Oskaloosa",
       "Ottumwa"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/detroit": {
     "title": "Detroit",
@@ -465,7 +487,8 @@
       "Grand Rapids",
       "Toledo"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/fresno": {
     "title": "Fresno",
@@ -487,7 +510,8 @@
       "Paso Robles",
       "Bakersfield"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/grand-rapids": {
     "title": "Grand Rapids",
@@ -506,7 +530,8 @@
       "South Bend",
       "Gaylord"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/greensboro": {
     "title": "Greensboro",
@@ -526,7 +551,8 @@
       "Durham",
       "Wilmington"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/honolulu": {
     "title": "Honolulu",
@@ -545,7 +571,8 @@
       "Hilo",
       "Kona"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/houston": {
     "title": "Houston",
@@ -565,7 +592,8 @@
       "Brazoria",
       "Fort Bend"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/indianapolis": {
     "title": "Indianapolis",
@@ -584,7 +612,8 @@
       "Lafayette",
       "Bloomington"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/jackson": {
     "title": "Jackson",
@@ -603,7 +632,8 @@
       "Natchez",
       "the MS Delta"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/jacksonville": {
     "title": "Jacksonville",
@@ -622,7 +652,8 @@
       "Gainesville",
       "Suwannee"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/kansas-city": {
     "title": "Kansas City",
@@ -641,7 +672,8 @@
       "St. Joseph",
       "Topeka"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/knoxville": {
     "title": "Knoxville",
@@ -658,7 +690,8 @@
       "Bristol",
       "Tri-Cities"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/las-vegas": {
     "title": "Las Vegas",
@@ -677,7 +710,8 @@
       "All of Clark County, NV",
       "Southern Utah"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/long-island": {
     "title": "Long Island",
@@ -697,7 +731,8 @@
       "Greenport",
       "East Hampton"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/los-angeles": {
     "title": "Los Angeles",
@@ -717,7 +752,8 @@
       "Long Beach",
       "Anaheim"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/thousand-oaks": {
     "title": "Thousand Oaks",
@@ -737,7 +773,8 @@
       "Van Nuys",
       "Santa Barbara"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/louisville": {
     "title": "Louisville",
@@ -756,7 +793,8 @@
       "Lexington",
       "Summerset"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/madison": {
     "title": "Madison",
@@ -776,7 +814,8 @@
       "Baraboo",
       "Prairie Du Chen"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/memphis": {
     "title": "Memphis",
@@ -794,7 +833,8 @@
       "Jackson, TN ",
       "Jonesboro, AR"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/miami": {
     "title": "Miami",
@@ -814,7 +854,8 @@
       "Key West",
       "Kendall"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/milwaukee": {
     "title": "Milwaukee",
@@ -834,7 +875,8 @@
       "Racine",
       "Kenosha"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/minnesota": {
     "title": "Minnesota",
@@ -854,7 +896,8 @@
       "Bloomington",
       "Duluth"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/mobile---biloxi": {
     "title": "Mobile / Biloxi",
@@ -874,7 +917,8 @@
       "Hattiesburg",
       "Gulf Coast"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/nashville": {
     "title": "Nashville",
@@ -893,7 +937,8 @@
       "Hendersonville",
       "Clarkesville"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/new-jersey": {
     "title": "New Jersey",
@@ -913,7 +958,8 @@
       "Manalpan",
       "Mawah"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/new-orleans": {
     "title": "New Orleans",
@@ -933,7 +979,8 @@
       "Lafayette",
       "Lake Charles"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/new-york": {
     "title": "New York",
@@ -953,7 +1000,8 @@
       "The Bronx",
       "Staten Island"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/norfolk": {
     "title": "Norfolk",
@@ -972,7 +1020,8 @@
       "Chesapeake",
       "all of  Roads"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/oklahoma-city": {
     "title": "Oklahoma City",
@@ -992,7 +1041,8 @@
       "Oklahoma",
       "Clinton"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/omaha": {
     "title": "Omaha",
@@ -1014,7 +1064,8 @@
       "Kearney",
       "Fremont"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/orlando": {
     "title": "Orlando",
@@ -1036,7 +1087,8 @@
       "Seminole County",
       "Ocala"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/philadelphia": {
     "title": "Philadelphia",
@@ -1075,7 +1127,8 @@
       "Yuma",
       "Casa Grande"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/pittsburgh": {
     "title": "Pittsburgh",
@@ -1095,7 +1148,8 @@
       "Altoona",
       "Mercer"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/portland": {
     "title": "Portland",
@@ -1112,7 +1166,8 @@
       "Oregon",
       "Washington"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/providence": {
     "title": "Providence",
@@ -1131,7 +1186,8 @@
       "Cranston",
       "East Providence"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/reno": {
     "title": "Reno",
@@ -1191,7 +1247,8 @@
       "Manteca",
       "Lodi"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/salt-lake-city": {
     "title": "Salt Lake City",
@@ -1209,7 +1266,8 @@
       "Ogden",
       "Logan"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/san-antonio": {
     "title": "San Antonio",
@@ -1229,7 +1287,8 @@
       "Rio Grande Valley",
       "Hill Country"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/san-bernardino": {
     "title": "San Bernardino",
@@ -1251,7 +1310,8 @@
       "Inland Empire",
       "Low Desert"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/san-diego": {
     "title": "San Diego",
@@ -1279,7 +1339,8 @@
       "Lemon Grove",
       "Coronado"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/san-francisco-san-jose": {
     "title": "San Francisco / San Jose",
@@ -1299,7 +1360,8 @@
       "San Mateo",
       "Watsonvalle"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/seattle": {
     "title": "Seattle",
@@ -1320,7 +1382,8 @@
       "Tacoma",
       "Bellingham"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/shreveport": {
     "title": "Shreveport",
@@ -1362,7 +1425,8 @@
       "Jefferson City",
       "State of Illinois"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/tallahassee": {
     "title": "Tallahassee",
@@ -1384,7 +1448,8 @@
       "Taylor counties",
       "South Georgia"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/tampa": {
     "title": "Tampa",
@@ -1403,7 +1468,8 @@
       "Sebring",
       "St. Petersburg"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/syracuse": {
     "title": "Syracuse",
@@ -1422,7 +1488,8 @@
       "Utica",
       "Watertown"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/northern-va": {
     "title": "Northern VA",
@@ -1441,7 +1508,8 @@
       "Reston",
       "Ashburn"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/white-plains": {
     "title": "White Plains",
@@ -1461,7 +1529,8 @@
       "Newburgh",
       "Suffern"
     ],
-    "country": null
+    "country": null,
+    "subType": "drop-off"
   },
   "/en-us/service-locations/wichita": {
     "title": "Wichita",
@@ -1480,7 +1549,8 @@
       "McPherson",
       "Dodge City"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/fayetteville": {
     "title": "Fayetteville",
@@ -1501,7 +1571,8 @@
       "Mountain Home",
       "Harrison"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/tucson": {
     "title": "Tucson",
@@ -1560,7 +1631,8 @@
       "Greenwood",
       "Asheville/Western NC"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/dayton": {
     "title": "Dayton",
@@ -1577,7 +1649,8 @@
       "Springfield",
       "Lima"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/atlanta": {
     "title": "Atlanta",
@@ -1596,7 +1669,8 @@
       "Gainesville",
       "Rome"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/aston": {
     "title": "Aston",
@@ -1616,7 +1690,8 @@
       "Vineland",
       "Cape May"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/columbia": {
     "title": "Columbia",
@@ -1636,7 +1711,8 @@
       "Aiken, SC",
       "Augusta, GA"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/davenport": {
     "title": "Davenport",
@@ -1685,7 +1761,8 @@
       "Lake Charles",
       "Morgan City"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/lexington": {
     "title": "Lexington",
@@ -1704,7 +1781,8 @@
       "Richmond",
       "Danville"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/salem": {
     "title": "Salem",
@@ -1782,7 +1860,8 @@
       "Cordele",
       "Valdosta"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/springfield": {
     "title": "Springfield",
@@ -1803,7 +1882,8 @@
       "Rolla, MO",
       "Cape Girardeau , MO"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/fort-lauderdale": {
     "title": "Fort Lauderdale",
@@ -1823,7 +1903,8 @@
       "Key West",
       "Ft. Pierce"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/brockton-norwood": {
     "title": "Brockton-Norwood",
@@ -1845,7 +1926,8 @@
       "Barnstable County",
       "All of Rhode Island"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/winston-salem": {
     "title": "Winston-Salem",
@@ -1865,7 +1947,8 @@
       "Asheboro",
       "Salesbury"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/raleigh": {
     "title": "Raleigh",
@@ -1886,7 +1969,8 @@
       "Newburn",
       "Wilson"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/green-bay": {
     "title": "Green Bay",
@@ -1906,7 +1990,8 @@
       "Appleton",
       "Sturgeon Bay"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/springfield-il": {
     "title": "Springfield, IL",
@@ -1925,7 +2010,8 @@
       "Jacksonville",
       "Champaign"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/drums": {
     "title": "Drums",
@@ -1945,7 +2031,8 @@
       "Allentown",
       "Reading"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/el-paso": {
     "title": "El Paso",
@@ -1964,7 +2051,8 @@
       "Anthony",
       "Socorro Texas"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/fort-worth": {
     "title": "Fort Worth",
@@ -1984,7 +2072,8 @@
       "North Richland Hills",
       "Westworth Village"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/long-beach": {
     "title": "Long Beach",
@@ -2004,7 +2093,8 @@
       "Redondo Beach",
       "Gardena"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/oakland": {
     "title": "Oakland",
@@ -2023,7 +2113,8 @@
       "Walnut Creek",
       "Fremont"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/tulsa": {
     "title": "Tulsa",
@@ -2044,7 +2135,8 @@
       "Muskogee",
       "Claremore"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/anaheim": {
     "title": "Anaheim",
@@ -2064,7 +2156,8 @@
       "Tustin",
       "Irvine"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/arlington": {
     "title": "Arlington",
@@ -2085,7 +2178,8 @@
       "Desoto",
       "Mansfield"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/bakersfield": {
     "title": "Bakersfield",
@@ -2103,7 +2197,8 @@
       "Poterville",
       "Visalia"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/mesa": {
     "title": "Mesa",
@@ -2123,7 +2218,8 @@
       "Queen Creek",
       "Ahwatukee"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/colorado-springs": {
     "title": "Colorado Springs",
@@ -2143,7 +2239,8 @@
       "Woodland Park",
       "Gunnison"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/waco": {
     "title": "Waco",
@@ -2161,7 +2258,8 @@
       "Killeen",
       "Hewitt"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/bridgewater": {
     "title": "Bridgewater",
@@ -2183,7 +2281,8 @@
       "Newark",
       "Flemington"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/pensacola": {
     "title": "Pensacola",
@@ -2202,7 +2301,8 @@
       "Clearview",
       "Foley, AL"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/fort-myers": {
     "title": "Fort Myers",
@@ -2226,7 +2326,8 @@
       "Marco Island",
       "Everglade City"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/oceanside": {
     "title": "Oceanside",
@@ -2240,7 +2341,8 @@
     "openingHours": " ",
     "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
     "additionalCities": [],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/fremont": {
     "title": "Fremont",
@@ -2259,7 +2361,8 @@
       "Mountain View",
       "Milpitas"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/orange-county": {
     "title": "Orange County",
@@ -2273,7 +2376,8 @@
     "openingHours": " ",
     "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
     "additionalCities": [],
-    "country": null
+    "country": null,
+    "subType": "drop-off"
   },
   "/en-us/service-locations/spokane": {
     "title": "Spokane",
@@ -2293,7 +2397,8 @@
       "Ellensburg",
       "Yakima"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/paducah": {
     "title": "Paducah",
@@ -2313,7 +2418,8 @@
       "Cadiz",
       "Kuttawa"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/longview": {
     "title": "Longview",
@@ -2333,7 +2439,8 @@
       "Mt. Pleasant",
       "Sulphur Springs"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/new-york--long-island": {
     "title": "New York & Long Island",
@@ -2354,7 +2461,8 @@
       "Staten Island",
       "Long Island"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/plymouth": {
     "title": "Plymouth",
@@ -2374,7 +2482,8 @@
       "Northville",
       "Canton"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/orland-park": {
     "title": "Orland Park",
@@ -2396,7 +2505,8 @@
       "Chicago Heights",
       "Hammond Indiana"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/myrtle-beach": {
     "title": "Myrtle Beach",
@@ -2452,7 +2562,8 @@
       "Glens Falls",
       "Saratoga Springs"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/chattanooga": {
     "title": "Chattanooga",
@@ -2472,7 +2583,8 @@
       "Dayton",
       "Athens"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/proctorville": {
     "title": "Proctorville",
@@ -2486,7 +2598,8 @@
     "openingHours": " ",
     "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=45680\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
     "additionalCities": [],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/cedar-rapids": {
     "title": "Cedar Rapids",
@@ -2500,7 +2613,8 @@
     "openingHours": " ",
     "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)  </p> <p style=\"width:70%;\"> <a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspxtitle=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">     Buy Now </a> </p> ",
     "additionalCities": [],
-    "country": null
+    "country": null,
+    "subType": "drop-off"
   },
   "/en-us/service-locations/jacksontn": {
     "title": "Jackson,TN",
@@ -2514,7 +2628,8 @@
     "openingHours": " ",
     "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=38301\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
     "additionalCities": [],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/washington": {
     "title": "Washington",
@@ -2534,7 +2649,8 @@
       "Gaithersburg",
       "Vienna"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/kingsport": {
     "title": "Kingsport",
@@ -2566,7 +2682,8 @@
       "Lake City",
       "The Villages"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/west-palm-beach": {
     "title": "West Palm Beach",
@@ -2589,7 +2706,8 @@
       "Vero Beach",
       "Greenacres"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/minneapolis": {
     "title": "Minnesota",
@@ -2609,7 +2727,8 @@
       "Bloomington",
       "Duluth"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/trenton": {
     "title": "Trenton",
@@ -2628,7 +2747,8 @@
       "Allentown",
       "Prospect Park"
     ],
-    "country": "US"
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/allentown": {
     "title": "Allentown",
