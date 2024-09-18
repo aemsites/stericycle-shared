@@ -8,19 +8,23 @@
   gap: 1.5rem;
 }
 
+.columns > div > div {
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.columns.numeric-list > div, .columns.check-list > div {
+  align-items: flex-start;
+}
+
 .columns img {
   width: 100%;
 }
 
 .columns.img-33 img {
   width: 33.333%;
-}
-
-.columns > div > div {
-  order: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .columns.steps > div {
@@ -31,6 +35,24 @@
   align-items: flex-start;
   gap: unset;
   flex-flow: row wrap;
+}
+
+.columns.check-list p {
+  margin-bottom: 1rem;
+}
+
+.columns.check-list sup {
+  font-size: .75rem;
+}
+
+.columns.check-list ul > li {
+  border-bottom: .0625rem solid #dad6d6;
+  padding: .75rem 3rem;
+  background: url("/icons/check-mark-new.svg") no-repeat left center;
+}
+
+.columns.check-list ul > li::before {
+  content: unset;
 }
 
 .columns.columns-has-image > div {
@@ -234,8 +256,13 @@ main .section.blue-headings .columns span.icon {
     padding-left: 0;
   }
 
-  main .columns span.icon > img {
+  main .columns.numeric-list span.icon > img {
     width:3.75rem;
     height:3.75rem;
+  }
+
+  main .columns.logos.columns-4-cols span.icon > img {
+    height: 72px;
+    width: 100%;
   }
 }
