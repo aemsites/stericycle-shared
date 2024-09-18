@@ -4,6 +4,14 @@
   padding: 2rem;
 }
 
+.simple-cta.alt {
+  background: unset;
+}
+
+.simple-cta.alt > div > div.simple-cta-img-col img {
+  width: 100%;
+}
+
 .simple-cta > div {
   display: flex;
   flex-wrap: wrap;
@@ -46,10 +54,27 @@ main .section.simple-cta-container > div {
   width: 100%;
 }
 
+.simple-cta.alt a.button {
+  width: 100%;
+}
+
 @media screen and (min-width: 992px /* breakpoint-l */) {
   .simple-cta > div > div:last-of-type {
     width: 25%;
     flex: 1 0 0;
+  }
+
+  .simple-cta.alt a.button {
+    width: 33%;
+  }
+
+  .simple-cta.alt > div > div.simple-cta-img-col {
+    width: 33%;
+  }
+
+  .simple-cta.alt > div > div:last-of-type {
+    width: 77%;
+    margin-left: 8.3%;
   }
 }
 
@@ -63,8 +88,6 @@ main .section.simple-cta-container > div {
   line-height: 32px;
   margin: 0;
 }
-
-@media screen and (min-width: 992px /* breakpoint-l */) {
   .simple-cta > div > div.button-container a {
     font-size: 1rem;
     border-width: 2px;
