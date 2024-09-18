@@ -12,6 +12,7 @@ import DocBasedFormToAF from './transform.js';
 import transferRepeatableDOM from './components/repeat/repeat.js';
 import { handleSubmit } from './submit.js';
 import { getSubmitBaseUrl, emailPattern } from './constant.js';
+import masking from './maskingUtil.js';
 
 export const DELAY_MS = 0;
 let captchaField;
@@ -297,6 +298,12 @@ function inputDecorator(field, element) {
       input.addEventListener('focus', () => handleFocus(input, field));
       input.addEventListener('blur', () => handleFocusOut(input));
     } else if (input.type !== 'file') {
+      if (input.name === 'zip' || input.name === 'phone') {
+        masking.init(input);
+        input.addEventListener('input', (e) => masking.activateMasking(e));
+        input.addEventListener('focus', () => { input.closest('.field-wrapper').classList.add('focus'); });
+        input.addEventListener('blur', () => { input.closest('.field-wrapper').classList.remove('focus'); });
+      }
       input.value = field.value ?? '';
       if (input.type === 'radio' || input.type === 'checkbox') {
         input.value = field?.enum?.[0] ?? 'on';

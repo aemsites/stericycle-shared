@@ -191,6 +191,7 @@ main .form form .field-wrapper {
     margin: var(--form-field-gap);
     color: var(--form-label-color);
     grid-column: span 12;
+    position: relative;
 }
 
 main .form form p {
@@ -571,4 +572,34 @@ main form .wizard > .wizard-button-wrapper > .submit-wrapper {
 main form .wizard >
 .current-wizard-step.panel-wrapper:last-of-type ~ .wizard-button-wrapper > .submit-wrapper {
   display: block;
+}
+
+main form .field-wrapper .shell {
+    position: absolute;
+    line-height: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    top: 33px;
+    left: 10px;
+    width: 100%;
+    opacity: 0;
+}
+
+main .form form .field-wrapper .shell span {
+    position: absolute;
+    left: 3px;
+    top: 10px;
+    pointer-events: none;
+    width: 100%
+}
+
+main .form form .field-wrapper .shell i {
+    color: transparent;
+    opacity: 0;
+    visibility: hidden
+}
+
+main .form form .field-wrapper.focus .shell {
+    opacity: 1
 }
