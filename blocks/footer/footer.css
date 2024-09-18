@@ -704,7 +704,7 @@ footer:not(:has(.footer-accordion-content-wrapper)) {
 
 .footer:not(:has(.footer-accordion-content-wrapper)) {
   max-width: 1920px;
-  padding: 2rem 0 2rem;
+  padding: 2rem 0;
 }
 
 footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) > p:nth-of-type(n+3) {
@@ -754,15 +754,6 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
   margin-top: 16px;
 }
 
-footer .no-nav .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) > p:nth-of-type(3) {
-  border-top: unset;
-  margin-top: unset;
-  padding-top: unset;
-  padding-bottom: 2rem;
-  padding-left: 1rem;
-  border-bottom: .5px solid #b2b1b1;
-}
-
 @media screen and (min-width: 992px /* breakpoint-l */) {
   footer .no-nav .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) > p:nth-of-type(3) {
     border-bottom: unset;
@@ -783,7 +774,7 @@ footer .no-nav .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-
   }
 
   footer .no-nav .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) > p:nth-of-type(4) {
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-top: 1px solid rgb(255 255 255 / 25%);
     padding-top: 3rem;
     margin-top: 5rem;
   }
@@ -791,6 +782,15 @@ footer .no-nav .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-
 
 footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) p:first-child {
   margin-bottom: 16px;
+}
+
+footer .no-nav .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) > p:nth-of-type(3) {
+  border-top: unset;
+  margin-top: unset;
+  padding-top: unset;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  border-bottom: .5px solid #b2b1b1;
 }
 
 footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) p:first-child img {
