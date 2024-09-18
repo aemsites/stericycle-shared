@@ -61,12 +61,12 @@
     width: 328px;
 }
 
-.section.offer-box-container.two-columns > div.default-content-wrapper {
+.section.offer-box-container.two-columns > div.default-content-wrapper, .section.offer-box-container.three-columns > div.offer-box-wrapper {
     display: flex;
     flex-direction: column;
 }
 
-.section.offer-box-container.two-columns > div.default-content-wrapper > div {
+.section.offer-box-container.two-columns > div.default-content-wrapper > div, .section.offer-box-container.three-columns > div.offer-box-wrapper > div.offer-box-container {
     width: 100%;
 }
 
@@ -81,13 +81,14 @@
         width: 50%;
     }
 
-    .section.three-column-offer .offer-box-wrapper {
+    .section.three-column-offer .offer-box-wrapper, .section.offer-box-container.three-columns > div.offer-box-wrapper {
         display: flex;
         justify-content: space-between;
         gap: 2rem;
+        flex-direction: row;
     }
 
-    .section.three-column-offer .offer-box {
+    .section.three-column-offer .offer-box, .section.offer-box-container.three-columns > div.offer-box-wrapper > div.offer-box-container {
         width: 33%;
     }
 

@@ -17,6 +17,10 @@ header .nav-wrapper {
   max-height: 200vh;
 }
 
+header .nav-wrapper:has(.logo-only) {
+  position: unset;
+}
+
 header nav {
   display: flex;
   justify-content: space-between;
@@ -146,6 +150,10 @@ header .unhide {
 header nav .nav-hamburger {
   height: 22px;
   right: 1rem;
+}
+
+header nav .nav-hamburger.logo-only {
+  visibility: hidden;
 }
 
 header nav .nav-hamburger button {
@@ -514,6 +522,11 @@ strong.remove {
   }
 }
 
+header nav .logo-only + .nav-hamburger {
+  display: none;
+  visibility: hidden;
+}
+
 @media (min-width: 992px) {
   header nav .nav-hamburger {
     display: none;
@@ -541,6 +554,10 @@ strong.remove {
     max-width: 60pc;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+  }
+
+  header nav:has(.logo-only) {
+    padding-top: unset;
   }
 
   header nav ul {

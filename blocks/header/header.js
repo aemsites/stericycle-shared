@@ -425,32 +425,34 @@ const hamburgerOnClick = (nav, navSections, navTools, mobileMenu) => {
 
 /**
  * Telephone icon onClick handling in case of mobile view
- * @param {*} icon
+ * @param navTools
  */
 const telephoneIconOnClick = (navTools) => {
-  navTools.addEventListener('click', () => {
-    if (!isDesktop.matches) {
-      const telItemInitial = navTools.querySelector('.tel-item');
-      if (telItemInitial) {
-        telItemInitial.remove();
-      } else {
-        const telItems = navTools.querySelectorAll('.tel');
-        const newDiv = document.createElement('div');
-        newDiv.className = 'tel-item';
-        telItems.forEach((telItem) => {
-          const tel = telItem.cloneNode(true);
-          newDiv.appendChild(tel);
-        });
-        navTools.prepend(newDiv);
-        newDiv.classList.add('active');
+  if (navTools) {
+    navTools.addEventListener('click', () => {
+      if (!isDesktop.matches) {
+        const telItemInitial = navTools.querySelector('.tel-item');
+        if (telItemInitial) {
+          telItemInitial.remove();
+        } else {
+          const telItems = navTools.querySelectorAll('.tel');
+          const newDiv = document.createElement('div');
+          newDiv.className = 'tel-item';
+          telItems.forEach((telItem) => {
+            const tel = telItem.cloneNode(true);
+            newDiv.appendChild(tel);
+          });
+          navTools.prepend(newDiv);
+          newDiv.classList.add('active');
 
-        // Close the search box if open
-        if (document.querySelector('.search-box-container')?.classList.contains('unhide')) {
-          toggleSearchBarVisibility();
+          // Close the search box if open
+          if (document.querySelector('.search-box-container')?.classList.contains('unhide')) {
+            toggleSearchBarVisibility();
+          }
         }
       }
-    }
-  });
+    });
+  }
 };
 
 /**
@@ -514,12 +516,16 @@ export default async function decorate(block) {
       }
     });
     const navDrops = navSections.querySelector('.nav-drop ul');
-    navDrops.classList.add('single-column');
+    if (navDrops) {
+      navDrops.classList.add('single-column');
+    }
 
     const checkNavSections = navSections.querySelector('ul');
-    const checkNavSectionsLi = checkNavSections.querySelectorAll('li.nav-drop');
-    if (checkNavSectionsLi.length > 0) {
-      checkNavSectionsLi[checkNavSectionsLi.length - 1].classList.add('last');
+    if (checkNavSections) {
+      const checkNavSectionsLi = checkNavSections.querySelectorAll('li.nav-drop');
+      if (checkNavSectionsLi.length > 0) {
+        checkNavSectionsLi[checkNavSectionsLi.length - 1].classList.add('last');
+      }
     }
   }
 
@@ -557,7 +563,9 @@ export default async function decorate(block) {
   const mobileMenu = nav.querySelector('nav .section:last-child');
   if (mobileMenu) {
     mobileMenu.classList.add('mobile-menu');
-    mobileMenu.querySelector('ul').classList.add('mobile-menu-content');
+    if (mobileMenu.hasChildNodes()) {
+      mobileMenu.querySelector('ul').classList.add('mobile-menu-content');
+    }
   }
 
   const menuItems = nav.querySelectorAll('.mobile-menu-content > li');
@@ -688,6 +696,9 @@ export default async function decorate(block) {
   // hamburger for mobile
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
+  if (nav.querySelector('.section.logo-only')) {
+    hamburger.classList.add('logo-only');
+  }
   hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
     <span class="nav-hamburger-icon"></span>
   </button>`;
