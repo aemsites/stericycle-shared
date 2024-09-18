@@ -7,6 +7,35 @@ footer {
   color: var(--color-white);
 }
 
+footer .icon.icon-shredit-logo {
+  height: auto;
+  width: auto;
+}
+
+footer ul li .icon {
+  height: 25px;
+  width: 25px;
+}
+
+footer ul li .icon.icon-facebook {
+  top: -2px;
+  position: relative;
+}
+
+footer ul li .icon.icon-linkedin {
+  height: 40px;
+  width: 36px;
+  top: -6px;
+  position: relative;
+}
+
+footer ul li .icon.icon-twitter {
+  height: 20px;
+  width: 20px;
+  top: 4px;
+  position: relative;
+}
+
 @media screen and (min-width: 992px /* breakpoint-l */) {
   footer {
     padding: 80px 0 64px;
@@ -117,6 +146,14 @@ footer .default-content-wrapper > p > a {
 
 footer .default-content-wrapper ul li a {
   color: var(--color-white);
+}
+
+footer a:any-link:has(.icon-shredit-logo) {
+  padding: 0;
+  margin: 0;
+  width: 215px;
+  height: 80px;
+  display: flex;
 }
 
 footer .default-content-wrapper:nth-child(2) > p {
@@ -299,6 +336,12 @@ footer .default-content-wrapper ul.footer-ul-3 {
   -webkit-box-direction: normal;
   flex-flow: row nowrap;
   margin: 48px auto 32px;
+}
+
+footer a:any-link:has(.icon-shredit-logo):hover,
+footer a:any-link:has(.icon-shredit-logo):focus {
+  background-color: initial;
+  color: initial;
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
