@@ -76,22 +76,22 @@ main .section.simple-cta-container > div {
     width: 77%;
     margin-left: 8.3%;
   }
+
+  .simple-cta > div > div.button-container a {
+    background-color: var(--color-button-primary);
+    border-color: var(--color-button-primary);
+    color: var(--color-text);
+    width: 100%;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 32px;
+    margin: 0;
+  }
 }
 
-.simple-cta > div > div.button-container a {
-  background-color: var(--color-button-primary);
-  border-color: var(--color-button-primary);
-  color: var(--color-text);
-  width: 100%;
-  font-size: .875rem;
-  font-weight: 400;
-  line-height: 32px;
-  margin: 0;
-}
   .simple-cta > div > div.button-container a {
     font-size: 1rem;
     border-width: 2px;
     font-weight: var(--lato-bold);
     padding: 0 12px;
   }
-}

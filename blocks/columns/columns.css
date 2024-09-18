@@ -51,6 +51,10 @@
   background: url("/icons/check-mark-new.svg") no-repeat left center;
 }
 
+.columns.numeric-list li::before {
+  content: unset;
+}
+
 .columns.check-list ul > li::before {
   content: unset;
 }
@@ -134,6 +138,16 @@ main .columns span.icon > img {
   display: flex;
 }
 
+.columns.box-shadow-hover > div > div {
+  padding: 1.5rem;
+}
+
+.columns.box-shadow-hover.columns span.icon {
+  display: flex;
+  height: 150px;
+
+}
+
 .columns.orange-accent-border > div > div,
 .columns.cyan-accent-border > div > div,
 .columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img)),
@@ -184,8 +198,8 @@ main .section.blue-headings .columns span.icon {
   padding-left: unset;
 }
 
-.columns.numeric-list li::before {
-  content: unset;
+.columns.box-shadow-hover > div li {
+  padding-bottom: 1rem;
 }
 
 .columns.numeric-list li:last-of-type {
@@ -202,6 +216,25 @@ main .section.blue-headings .columns span.icon {
 .columns.numeric-list li:first-of-type > strong {
   font-size: 4rem;
   color: var(--color-cyan);
+}
+
+.columns.box-shadow-hover > div > div > h3 {
+  color: #133b5c;
+}
+
+.columns.box-shadow-hover > div > div:hover > h3, .columns.box-shadow-hover > div > div:hover img {
+  color: #006cb4;
+  fill: #006cb4;
+}
+
+.columns.box-shadow-hover.columns span.icon > img {
+  height: 150px;
+  width:auto;
+}
+
+.columns.box-shadow-hover > div > div:hover {
+  filter: drop-shadow(0 0 .5rem #DAD6D6);
+  background-color: var(--color-white);
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
