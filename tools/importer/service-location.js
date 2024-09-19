@@ -54,6 +54,8 @@ function setMetadata(meta, document, url) {
   }
   if (state && states[state]) {
     meta.state = states[state];
+  } else if (state) {
+    meta.state = state.trim();
   }
   if (longitude) {
     meta.longitude = longitude;
