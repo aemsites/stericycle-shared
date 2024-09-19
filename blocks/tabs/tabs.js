@@ -30,7 +30,6 @@ export default async function decorate(block) {
   tablist.className = 'tabs-list';
   tablist.setAttribute('role', 'tablist');
 
-  
   // decorate tabs and tabpanels
   const tabs = [...block.children].map((child) => child.firstElementChild);
   tabs.forEach((tab, i) => {
@@ -70,7 +69,7 @@ export default async function decorate(block) {
     tabpanel.append(details);
 
     addAccordionAnimation(details);
-    
+
     // build tab button
     const button = document.createElement('button');
     button.className = 'tabs-tab';

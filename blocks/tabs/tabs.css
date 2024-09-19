@@ -32,6 +32,12 @@ main section .tabs-container > div {
 .tabs.vertical.block {
     display: flex;
     flex-direction: column;
+    padding: 0 12px;
+}
+
+.tabs-panel {
+    padding: 0;
+    margin-bottom: 40px;
 }
 
 .tabs .tabs-panel { 
@@ -40,81 +46,6 @@ main section .tabs-container > div {
     margin: 0;
 }
 
-.tabs.vertical.block .tabs-panel > div:last-of-type > span::after {
-    background: var(--color-black);
-    content: "";
-    position: absolute;
-    width: 2px;
-    height: 1rem;
-    top: -7px;
-    left: 7px;
-    transition: all .3s ease-in-out;
-}
-
-.tabs.vertical.block .tabs-panel > div:last-of-type > span {
-    position: absolute;
-    width: 1rem;
-    height: 2px;
-    right: 1rem;
-    top: calc(50% - 2px);
-    background: var(--color-black);
-}
-
-.tabs.vertical.block {
-    padding: 32px;
-}
-  
-.tabs.vertical.block {
-    padding: 0 12px;
-}
-  
-.tabs-panel {
-    padding: 0;
-    margin-bottom: 40px;
-}
-  
-.tabs .tabs-panel:nth-of-type(2) details:first-of-type {
-    border-top: 1px solid var(--color-light-silver);
-}
-
-.tabs .tabs-panel details {
-    width: 100%;
-    border-top: none;
-    border-bottom: 1px solid var(--color-light-silver);
-}
-
-.tabs-panel details summary {
-    position: relative;
-    padding: .75rem 2.5rem .75rem .5rem;
-    padding-right: 40px;
-    cursor: pointer;
-    list-style: none;
-    overflow: auto;
-    transition: background-color 0.2s;
-}
-  
-@media screen and (min-width: 992px) {
-    .tabs-panel details summary {
-        padding-right: 48px;
-    }
-}
-
-.tabs-panel details[open] summary {
-    padding: .5rem 2.5rem .5rem .5rem;
-}
-
-.tabs-panel details summary:focus,
-.tabs-panel details summary:hover {
-    background-color: var(--dark-color);
-}
-
-.tabs-panel details summary p {
-    color: var(--color-dark-gunmetal);
-    font-weight: var(--lato-bold);
-    font-size: var(--body-font-size-m);
-    line-height: 16px;
-}
-  
 .tabs-panel details summary span {
     position: absolute;
     width: 1rem;
@@ -141,6 +72,53 @@ main section .tabs-container > div {
 
 .tabs-panel details[open] summary::after {
     transform: translateY(-50%) rotate(-45deg);
+}
+
+.tabs.vertical.block .tabs-panel > div:last-of-type > span::after {
+    background: var(--color-black);
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 1rem;
+    top: -7px;
+    left: 7px;
+    transition: all .3s ease-in-out;
+}
+
+.tabs.vertical.block .tabs-panel > div:last-of-type > span {
+    position: absolute;
+    width: 1rem;
+    height: 2px;
+    right: 1rem;
+    top: calc(50% - 2px);
+    background: var(--color-black);
+}
+
+.tabs .tabs-panel details {
+    width: 100%;
+    border-top: none;
+    border-bottom: 1px solid var(--color-light-silver);
+}
+  
+.tabs .tabs-panel:nth-of-type(2) details:first-of-type {
+    border-top: 1px solid var(--color-light-silver);
+}
+  
+
+.tabs-panel details[open] summary {
+    padding: .5rem 2.5rem .5rem .5rem;
+}
+
+.tabs-panel details summary:focus,
+.tabs-panel details summary:hover {
+    background-color: var(--dark-color);
+}
+
+.tabs-panel details summary p {
+    color: var(--color-dark-gunmetal);
+    font-weight: var(--lato-bold);
+    font-size: var(--body-font-size-m);
+    line-height: 16px;
 }
 
 .tab-item-body {
@@ -199,10 +177,6 @@ main section .tabs-container > div {
         display: none;
     }
 
-    .tabs.vertical .tabs-list button .icon {
-        line-height: 1.5rem;
-    }
-
     .tabs .tabs-list {
         display: flex;
         gap: 8px;
@@ -227,15 +201,16 @@ main section .tabs-container > div {
         display: flex;
         margin: 0;
         gap: 2rem;
-    }
-    
-    .tabs.vertical .tabs-list button {
-        display: flex;
+        margin-top: -1px;
+        padding: 0 16px;
+        border: 1px solid var(--dark-color);
+        overflow: auto;
     }
     
     .tabs.vertical .tabs-list button .icon {
         width: 30px;
         height: 30px;
+        line-height: 1.5rem;
     }
     
     .tabs.vertical .tabs-panel>div:last-of-type {
@@ -247,6 +222,7 @@ main section .tabs-container > div {
     }
     
     .tabs .tabs-list button {
+        display: flex;
         flex: 0 0 max-content;
         margin: 0;
         border: 1px solid var(--dark-color);
@@ -277,13 +253,6 @@ main section .tabs-container > div {
     .tabs .tabs-list button[aria-selected="false"]:hover,
     .tabs .tabs-list button[aria-selected="false"]:focus {
         background-color: var(--dark-color);
-    }
-    
-    .tabs .tabs-panel {
-        margin-top: -1px;
-        padding: 0 16px;
-        border: 1px solid var(--dark-color);
-        overflow: auto;
     }
     
     .tabs.vertical .tabs-panel h3 { 
