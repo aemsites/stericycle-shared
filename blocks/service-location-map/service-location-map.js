@@ -5,7 +5,6 @@ import {
   div,
   p,
   span,
-  h2,
   input,
   button,
 } from '../../scripts/dom-helpers.js';
@@ -491,7 +490,7 @@ const mapInputLocationOnClick = (block, locations, ph) => {
  * @param {*} isDropoff
  * @returns
  */
-const mapSearch = (ph, block, locations, isDropoff) => {
+const mapSearch = (ph, block, locations) => {
   const mapInputSearch = button({ class: 'map-input-search' }, ph.searchtext);
   mapInputSearch.addEventListener('click', async () => {
     await mapInputSearchOnCLick(block, locations, ph);
@@ -504,8 +503,6 @@ const mapSearch = (ph, block, locations, isDropoff) => {
 
   return div(
     { class: 'map-search' },
-    h2(ph.servicemapdropofftext),
-    p(isDropoff ? ph.servicemapbranchtext : ph.servicemapziptext),
     div(
       { class: 'map-input-details' },
       input({ class: 'map-input', 'aria-label': 'Search' }),
@@ -522,7 +519,7 @@ export default async function decorate(block) {
   const locations = await fetchLocations(isDropoff, ph);
 
   block.append(
-    mapSearch(ph, block, locations, isDropoff),
+    mapSearch(ph, block, locations),
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
