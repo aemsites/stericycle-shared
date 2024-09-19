@@ -1,8 +1,12 @@
-import { decorateIcons } from '../../scripts/aem.js';
+import { decorateIcons, getMetadata } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
 
 async function fetchLocations() {
-  const rawData = await ffetch('/query-index.json').sheet('locations').all();
+  const isDropoff = Boolean(getMetadata('is-drop-off'));
+  const rawData = await ffetch('/query-index.json')
+    .sheet('locations')
+    .filter((x) => (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true))
+    .all();
 
   // group by region and sort regions
   const regionMap = new Map();
