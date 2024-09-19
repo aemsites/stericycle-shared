@@ -272,6 +272,14 @@ main div.paginated-list-wrapper > ul li::before {
   display: none;
 }
 
+main ol.location-list li::before {
+  display: none;
+}
+
+main div.facet-list-container li::before {
+  display: none;
+}
+
 /* remove bullets for list items in columns -  might be too aggressive */
 main div.column-with-list li::before {
   content: none;
