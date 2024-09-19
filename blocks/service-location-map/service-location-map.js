@@ -19,7 +19,7 @@ import {
 } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
 import usStates from './us-states.js';
-import { getLocale } from '../../scripts/scripts.js';
+import { decorateAnchors, getLocale } from '../../scripts/scripts.js';
 
 let map = null;
 
@@ -554,5 +554,6 @@ export default async function decorate(block) {
 
   calculateLocationListDistance(locations, getCenterPoint());
   renderAndSortLocationList(locations, block, ph);
+  decorateAnchors(block);
   window.setTimeout(() => mapInitialization(locations, block, ph), 3000);
 }

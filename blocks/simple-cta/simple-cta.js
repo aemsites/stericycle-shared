@@ -1,3 +1,5 @@
+import { decorateAnchors } from '../../scripts/scripts.js';
+
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`simple-cta-${cols.length}-cols`);
@@ -12,7 +14,7 @@ export default function decorate(block) {
       const pic = col.querySelector('picture');
       const link = col.querySelector('a');
 
-      if (pic && link && link.href
+      if (pic && link?.href
         && new URL(link.href).pathname === new URL(link.innerText).pathname) {
         link.innerHTML = '';
         link.appendChild(pic);
@@ -31,4 +33,6 @@ export default function decorate(block) {
       }
     });
   });
+
+  decorateAnchors(block);
 }
