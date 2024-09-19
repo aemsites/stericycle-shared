@@ -125,6 +125,25 @@
   height: 2.5rem;
 }
 
+.block.service-location-map .map-search .map-input-details .map-input-search:active,
+.block.service-location-map .map-search .map-input-details .map-input-location:active {
+  opacity: 0.6;
+}
+
+.block.service-location-map .map-search .map-input-details .map-input-search:focus,
+.block.service-location-map .map-search .map-input-details .map-input-location:focus,
+.block.service-location-map .map-search .map-input-details .map-input-search:hover,
+.block.service-location-map .map-search .map-input-details .map-input-location:hover {
+  background-color: var(--color-button-default);
+  color: var(--color-white);
+}
+
+.block.service-location-map .map-search .map-input-details .map-input-search:hover,
+.block.service-location-map .map-search .map-input-details .map-input-location:hover {
+  background-color: var(--color-button-default);
+  color: var(--color-white);
+}
+
 @media screen and (min-width: 768px) {
   .block.service-location-map .map-search .map-input-details {
     flex-direction: row;

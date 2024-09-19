@@ -14,7 +14,6 @@ import {
   loadScript,
   loadCSS,
   fetchPlaceholders,
-  isDesktop,
   getMetadata,
 } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
@@ -99,10 +98,10 @@ const locDivCreation = (location, ph) => {
     );
   }
 
-  if (location['location-link'] && location.title) {
+  if (location['location-link'] && location.title && location.path) {
     locationDiv.appendChild(
       a(
-        { class: 'location', href: `${window.location.pathname}/${location.title.toLowerCase().trim().split(' ').join('-')}` },
+        { class: 'location', href: location.path },
         location['location-link'],
       ),
     );
@@ -148,6 +147,7 @@ async function fetchLocations(isDropoff, ph) {
         name: getValueOrNull(x.name),
         'additional-cities': getValueOrNull(x['additional-cities']),
         'sub-type': getValueOrNull(x['sub-type']),
+        path: getValueOrNull(x.path),
       };
 
       if (isDropoff) {
@@ -335,56 +335,37 @@ const dragAndZoom = (locations, block, ph) => {
  */
 const mapInitialization = async (locations, block, ph) => {
   const centerPoint = getCenterPoint();
-  if (isDesktop()) {
-    await loadScript('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.js');
-    await loadCSS('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.css');
-    mapboxgl.accessToken = getAccessToken();
-    const mapContainer = block.querySelector('.map');
-    mapContainer.innerHTML = '';
+  await loadScript('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.js');
+  await loadCSS('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.css');
+  mapboxgl.accessToken = getAccessToken();
+  const mapContainer = block.querySelector('.map');
+  mapContainer.innerHTML = '';
 
-    map = new mapboxgl.Map({
-      container: mapContainer,
-      style: 'mapbox://styles/mapbox/light-v8',
-      pitchWithRotate: false,
-      dragRotate: false,
-      scrollZoom: true,
-      dragPan: true,
-      boxZoom: false,
-    });
-
-    map.setCenter([centerPoint.longitude, centerPoint.latitude]);
-    map.setZoom(centerPoint.zoom);
-    applyMarkers(locations);
-
-    map.on('load', () => {
-      map.setCenter([centerPoint.longitude, centerPoint.latitude]);
-    });
-
-    map.on('dragend', () => {
-      dragAndZoom(locations, block, ph);
-    });
-
-    map.on('zoomend', () => {
-      dragAndZoom(locations, block, ph);
-    });
-  }
-};
-
-const searchMatch = (locations, city, placeName, zipCode) => {
-  const matchedLocations = locations.filter((item) => {
-    const itemCity = item.city;
-    const itemZipCode = item['zip-code'];
-    const additionalCitiesArray = item['additional-cities']?.split(',')
-      .map((cityTemp) => cityTemp.trim())
-      .filter((cityTemp) => cityTemp.length > 0);
-
-    return (city && itemCity && (city === itemCity))
-      || (placeName && itemCity && placeName.search(itemCity) !== -1)
-      || (itemZipCode && zipCode && (itemZipCode === zipCode))
-      || (additionalCitiesArray?.some((element) => element?.trim().indexOf(city) !== -1));
+  map = new mapboxgl.Map({
+    container: mapContainer,
+    style: 'mapbox://styles/mapbox/light-v8',
+    pitchWithRotate: false,
+    dragRotate: false,
+    scrollZoom: true,
+    dragPan: true,
+    boxZoom: false,
   });
 
-  return matchedLocations.length > 0 ? matchedLocations : [];
+  map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+  map.setZoom(centerPoint.zoom);
+  applyMarkers(locations);
+
+  map.on('load', () => {
+    map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+  });
+
+  map.on('dragend', () => {
+    dragAndZoom(locations, block, ph);
+  });
+
+  map.on('zoomend', () => {
+    dragAndZoom(locations, block, ph);
+  });
 };
 
 const setMapError = (block, text) => {
@@ -436,14 +417,7 @@ const mapInputSearchOnCLick = async (block, locations, ph) => {
       zipcode: data.features[0].zipcode,
     };
 
-    const result = searchMatch(
-      locations,
-      resultObj.city,
-      resultObj.placeName,
-      resultObj.zipcode,
-    );
-
-    if (map && result.length > 0) {
+    if (map && locations.length > 0) {
       if (stateFound) {
         const { bbox } = stateFound;
         await map.fitBounds([
