@@ -574,7 +574,7 @@ main form .wizard >
   display: block;
 }
 
-main form .field-wrapper .shell {
+main .form form .field-wrapper .shell {
     position: absolute;
     line-height: 1;
     display: -webkit-box;

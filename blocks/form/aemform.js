@@ -298,7 +298,7 @@ function inputDecorator(field, element) {
       input.addEventListener('focus', () => handleFocus(input, field));
       input.addEventListener('blur', () => handleFocusOut(input));
     } else if (input.type !== 'file') {
-      if (input.name === 'zip' || input.name === 'phone') {
+      if (field.mask === 'true') {
         masking.init(input);
         input.addEventListener('input', (e) => masking.activateMasking(e));
         input.addEventListener('focus', () => { input.closest('.field-wrapper').classList.add('focus'); });
