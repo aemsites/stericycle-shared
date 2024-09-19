@@ -78,7 +78,7 @@ export default async function decorate(block) {
   // decorate footer DOM
   block.textContent = '';
   const footer = document.createElement('div');
-  while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
+  while (fragment?.firstElementChild) footer.append(fragment.firstElementChild);
 
   block.append(footer);
 
@@ -98,5 +98,7 @@ export default async function decorate(block) {
   createMenuAccordion(accordionsContainer);
   // Insert the columns-wrapper div inside the default-content-wrapper
   const columnsWrapper = block.querySelector('.columns-wrapper');
-  block.querySelector('.default-content-wrapper > .footer-accordion-container').insertAdjacentElement('afterend', columnsWrapper);
+  if (block.querySelector('.default-content-wrapper > .footer-accordion-container')) {
+    block.querySelector('.default-content-wrapper > .footer-accordion-container').insertAdjacentElement('afterend', columnsWrapper);
+  }
 }

@@ -17,6 +17,10 @@ header .nav-wrapper {
   max-height: 200vh;
 }
 
+header .nav-wrapper:has(.logo-only) {
+  position: unset;
+}
+
 header nav {
   display: flex;
   justify-content: space-between;
@@ -146,6 +150,10 @@ header .unhide {
 header nav .nav-hamburger {
   height: 22px;
   right: 1rem;
+}
+
+header nav .nav-hamburger.logo-only {
+  visibility: hidden;
 }
 
 header nav .nav-hamburger button {
@@ -514,6 +522,11 @@ strong.remove {
   }
 }
 
+header nav .logo-only + .nav-hamburger {
+  display: none;
+  visibility: hidden;
+}
+
 @media (min-width: 992px) {
   header nav .nav-hamburger {
     display: none;
@@ -541,6 +554,10 @@ strong.remove {
     max-width: 60pc;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+  }
+
+  header nav:has(.logo-only) {
+    padding-top: unset;
   }
 
   header nav ul {
@@ -610,10 +627,6 @@ strong.remove {
     display: flex;
     align-items: center;
     cursor: pointer;
-  }
-
-  .nav-tools ul li.nav-drop:hover {
-    text-decoration: underline;
   }
 
   .nav-tools ul li.nav-drop::after {
@@ -783,6 +796,17 @@ strong.remove {
     justify-content: space-between;
     align-items: flex-start;
     padding: 1em;
+  }
+
+  header nav .nav-tools .default-content-wrapper > ul > li .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  header nav .nav-tools .default-content-wrapper > ul > li[aria-expanded="true"] > ul a {
+    display: flex;
+    gap: 0.5rem;
+    text-decoration: none;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li:hover > ul {

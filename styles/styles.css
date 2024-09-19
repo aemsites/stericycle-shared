@@ -427,7 +427,7 @@ main .block.navy-background {
 
 main .section.navy-background.image {
   background-image: url("/icons/section-bg.svg"), linear-gradient(180deg, transparent 5rem, var(--color-navy) 0, var(--color-navy));
-  background-position: top right calc(-2rem);
+  background-position: top right;
   background-repeat: no-repeat;
   margin-top: -2rem;
   padding-top: 6rem;

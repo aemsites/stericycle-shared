@@ -7,7 +7,12 @@
     "zipCode": "00959-1902",
     "state": "PR",
     "longitude": "-66.085",
-    "latitude": "18.415"
+    "latitude": "18.415",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)  </p> <p style=\"width:70%;\"> <a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=00959-1902\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">     Buy Now </a> </p> ",
+    "additionalCities": [],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/albuquerque": {
     "title": "Albuquerque",
@@ -17,7 +22,17 @@
     "zipCode": "87102",
     "state": "NM",
     "longitude": "-106.642",
-    "latitude": "35.097"
+    "latitude": "35.097",
+    "openingHours": "Tuesday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)  </p> <p style=\"width:70%;\"> <a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=87102\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">     Buy Now </a> </p>",
+    "additionalCities": [
+      "El Paso",
+      "Cortez",
+      "Durango",
+      "Clovis"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/little-rock": {
     "title": "Little Rock",
@@ -27,7 +42,22 @@
     "zipCode": "72113",
     "state": "AR",
     "longitude": "-92.395",
-    "latitude": "34.868"
+    "latitude": "34.868",
+    "openingHours": "Monday - Friday 10:00am – 2:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=72113\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Little Rock",
+      "Conway",
+      "Hot Springs",
+      "Searcy",
+      "Texarkana",
+      "Monticello",
+      "Springdale",
+      "Bentonville",
+      "Fayetteville"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/newnan": {
     "title": "Newnan",
@@ -37,7 +67,17 @@
     "zipCode": "30265",
     "state": "GA",
     "longitude": "-84.179",
-    "latitude": "33.856"
+    "latitude": "33.856",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=30265\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Atlanta",
+      "McDonough",
+      "Douglasville",
+      "Fairburn"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/austin": {
     "title": "Austin",
@@ -47,7 +87,18 @@
     "zipCode": "78744",
     "state": "TX",
     "longitude": "-97.742",
-    "latitude": "30.209"
+    "latitude": "30.209",
+    "openingHours": "Monday - Friday 9:00am - 4:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=78744\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Temple",
+      "Round Rock",
+      "Georgetown",
+      "Kyle",
+      "Marble Falls"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/baltimore": {
     "title": "Baltimore",
@@ -57,7 +108,19 @@
     "zipCode": "21045",
     "state": "MD",
     "longitude": "-76.822",
-    "latitude": "39.186"
+    "latitude": "39.186",
+    "openingHours": "Monday – Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=21045\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Washington",
+      "Gaithersburg",
+      "Annapolis",
+      "Bel-Air",
+      "Baltimore",
+      "Maryland"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/birmingham-usa": {
     "title": "Birmingham (USA)",
@@ -67,7 +130,17 @@
     "zipCode": "35022",
     "state": "AL",
     "longitude": "-87.011",
-    "latitude": "33.372"
+    "latitude": "33.372",
+    "openingHours": "Monday - Friday 12:00pm to 5:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=35022\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\" rel=\"noopener noreferrer\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Birmingham",
+      "Huntsville",
+      "Montgomery",
+      "in to Georgia"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/boise": {
     "title": "Boise",
@@ -77,7 +150,19 @@
     "zipCode": "83709",
     "state": "ID",
     "longitude": "-116.274",
-    "latitude": "43.579"
+    "latitude": "43.579",
+    "openingHours": "Monday - Friday 8:00am - 4:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches) </p> <p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=83709\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\"> Buy Now </a></p>  ",
+    "additionalCities": [
+      "Twin Falls",
+      "Sunny Valley",
+      "McCall",
+      "Grangeville",
+      "LaGrande",
+      "Ontario"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/boston": {
     "title": "Boston",
@@ -87,7 +172,17 @@
     "zipCode": "03051",
     "state": "NH",
     "longitude": "-71.392",
-    "latitude": "42.777"
+    "latitude": "42.777",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=03051\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Cambridge",
+      "Nashua",
+      "Manchester",
+      "Portsmouth, NH"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/buffalo": {
     "title": "Buffalo",
@@ -97,7 +192,21 @@
     "zipCode": "14150",
     "state": "NY",
     "longitude": "-78.913",
-    "latitude": "43.0"
+    "latitude": "43.0",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=14150\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Buffalo",
+      "Niagara Falls",
+      "Lockport",
+      "Batavia",
+      "Rochester",
+      "Geneva",
+      "Jamestown",
+      "Olean"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/central-pa---lancaster": {
     "title": "Central PA / Lancaster",
@@ -107,7 +216,17 @@
     "zipCode": "17543",
     "state": "PA",
     "longitude": "-76.29",
-    "latitude": "40.111"
+    "latitude": "40.111",
+    "openingHours": "Monday - Friday 9:00am - 12:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=17543\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Lancaster",
+      "Lebanon",
+      "Dauphin",
+      "Cumberland"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/charleston": {
     "title": "Charleston",
@@ -117,7 +236,19 @@
     "zipCode": "29456",
     "state": "SC",
     "longitude": "-80.135",
-    "latitude": "33.018"
+    "latitude": "33.018",
+    "openingHours": null,
+    "dropOffDetails": "<p>Tuesday-Thursday 12:00pm-3:00pm<br>\n$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=29456\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\" rel=\"noopener noreferrer\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Savannah",
+      "Charleston",
+      "Columbia",
+      "Augusta",
+      "Myrtle Beach",
+      "Greenville/Spartanburg"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/charlotte": {
     "title": "Charlotte",
@@ -127,7 +258,17 @@
     "zipCode": "28269",
     "state": "NC",
     "longitude": "-80.838",
-    "latitude": "35.283"
+    "latitude": "35.283",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)  </p> <p style=\"width:70%;\"> <a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=28269\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">     Buy Now </a> </p> ",
+    "additionalCities": [
+      "Gastonia",
+      "Hickory",
+      "Salisbury",
+      "Rock Hill (SC)"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/chicago": {
     "title": "Chicago",
@@ -137,7 +278,20 @@
     "zipCode": "60176",
     "state": "IL",
     "longitude": "-87.867",
-    "latitude": "41.949"
+    "latitude": "41.949",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=60176\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Rosemont",
+      "Arlington Heights",
+      "Oak Brook",
+      "Elk Grove",
+      "Joliet",
+      "Chicago",
+      "Schaumburg"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/cincinnati": {
     "title": "Cincinnati",
@@ -147,7 +301,16 @@
     "zipCode": "45014",
     "state": "OH",
     "longitude": "-84.491",
-    "latitude": "39.317"
+    "latitude": "39.317",
+    "openingHours": "Monday – Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)  </p> <p style=\"width:70%;\"> <a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=45014\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">     Buy Now </a> </p> ",
+    "additionalCities": [
+      "Cincinnati",
+      "Northern Kentucky",
+      "Southeast Indiana"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/cleveland": {
     "title": "Cleveland",
@@ -157,7 +320,19 @@
     "zipCode": "44141",
     "state": "OH",
     "longitude": "-81.642",
-    "latitude": "41.281"
+    "latitude": "41.281",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)  </p> <p style=\"width:70%;\"> <a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=44141\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">     Buy Now </a> </p> ",
+    "additionalCities": [
+      "Erie",
+      "Youngstown",
+      "Port Clinton",
+      "New Philadelphia",
+      "Cleveland",
+      "Mansfield"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/columbus": {
     "title": "Columbus",
@@ -167,7 +342,20 @@
     "zipCode": "43230",
     "state": "OH",
     "longitude": "-82.824",
-    "latitude": "39.994"
+    "latitude": "39.994",
+    "openingHours": "Monday – Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=43230\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Columbus",
+      "Lancaster",
+      "Westerville",
+      "Parkersburg",
+      "Newark",
+      "Central Ohio",
+      "Southern Ohio"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/concord": {
     "title": "Concord",
@@ -177,7 +365,18 @@
     "zipCode": "94520",
     "state": "CA",
     "longitude": "-122.033",
-    "latitude": "38.02"
+    "latitude": "38.02",
+    "openingHours": "Monday – Friday 11:00am - 4:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=94520\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Marin",
+      "Solano",
+      "Alameda",
+      "Contra Costa",
+      "Napa"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/hartford-and-connecticut": {
     "title": "Hartford and Connecticut",
@@ -187,7 +386,19 @@
     "zipCode": "06410",
     "state": "CT",
     "longitude": "-72.889",
-    "latitude": "41.548"
+    "latitude": "41.548",
+    "openingHours": "Wednesday - Friday 10:00am – 12:00pm & 2:00pm – 4:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=06410\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Hartford",
+      "Bridgeport",
+      "Norwalk",
+      "New Haven",
+      "Stamford",
+      "Waterbury"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/dallas": {
     "title": "Dallas",
@@ -197,7 +408,18 @@
     "zipCode": "75019",
     "state": "TX",
     "longitude": "-97.028",
-    "latitude": "32.984"
+    "latitude": "32.984",
+    "openingHours": "Monday - Friday 8:30am - 2:30pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=75019\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "North Texas",
+      "Fort Worth",
+      "Dallas",
+      "Cleburne",
+      "Waco"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/denver": {
     "title": "Denver",
@@ -207,7 +429,21 @@
     "zipCode": "80207",
     "state": "CO",
     "longitude": "-104.913",
-    "latitude": "39.772"
+    "latitude": "39.772",
+    "openingHours": "Monday – Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=80207\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\" rel=\"noopener noreferrer\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Fort Collins",
+      "Cheyenne",
+      "Colorado Springs",
+      "Grand Junction",
+      "Pueblo",
+      "Greeley",
+      "Loveland",
+      "Boulder"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/des-moines": {
     "title": "Des Moines",
@@ -217,7 +453,20 @@
     "zipCode": "50313",
     "state": "IA",
     "longitude": "-93.591",
-    "latitude": "41.658"
+    "latitude": "41.658",
+    "openingHours": "Monday – Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=50313\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      " Metro Area",
+      "Ames",
+      "Fort Dodge",
+      "Waterloo",
+      "Cedar Rapids",
+      "Oskaloosa",
+      "Ottumwa"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/detroit": {
     "title": "Detroit",
@@ -227,7 +476,19 @@
     "zipCode": "48083",
     "state": "MI",
     "longitude": "-83.092",
-    "latitude": "42.539"
+    "latitude": "42.539",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=48083\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Ann Arbor",
+      "Brighton",
+      "Flint",
+      "Saginaw",
+      "Grand Rapids",
+      "Toledo"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/fresno": {
     "title": "Fresno",
@@ -237,7 +498,20 @@
     "zipCode": "93722",
     "state": "CA",
     "longitude": "-119.861",
-    "latitude": "36.8"
+    "latitude": "36.8",
+    "openingHours": "Monday - Friday 8:00am - 4:00pm ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=93722\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Madera",
+      "Merced",
+      "Tulare",
+      "Visalia",
+      "San Luis Obispo",
+      "Paso Robles",
+      "Bakersfield"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/grand-rapids": {
     "title": "Grand Rapids",
@@ -247,7 +521,17 @@
     "zipCode": "49548",
     "state": "MI",
     "longitude": "-85.668",
-    "latitude": "42.828"
+    "latitude": "42.828",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=49548\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Lansing",
+      "Kalamazoo",
+      "South Bend",
+      "Gaylord"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/greensboro": {
     "title": "Greensboro",
@@ -257,7 +541,18 @@
     "zipCode": null,
     "state": null,
     "longitude": "-79.453",
-    "latitude": "36.049"
+    "latitude": "36.049",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Raleigh",
+      "Greensboro",
+      "Winston Salem",
+      "Durham",
+      "Wilmington"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/honolulu": {
     "title": "Honolulu",
@@ -267,7 +562,17 @@
     "zipCode": "96819",
     "state": "HI",
     "longitude": "-157.891186",
-    "latitude": "21.3226892"
+    "latitude": "21.3226892",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=96819\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\" rel=\"noopener noreferrer\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Lihue",
+      "Kahului",
+      "Hilo",
+      "Kona"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/houston": {
     "title": "Houston",
@@ -277,7 +582,18 @@
     "zipCode": "77043",
     "state": "TX",
     "longitude": "-95.568",
-    "latitude": "29.823"
+    "latitude": "29.823",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=77043\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Waller",
+      "College Station",
+      "Beaumont",
+      "Brazoria",
+      "Fort Bend"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/indianapolis": {
     "title": "Indianapolis",
@@ -287,7 +603,17 @@
     "zipCode": "46201",
     "state": "IN",
     "longitude": "-86.124",
-    "latitude": "39.766"
+    "latitude": "39.766",
+    "openingHours": "Monday – Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=46201\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Terre Haute",
+      "Fort Wayne",
+      "Lafayette",
+      "Bloomington"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/jackson": {
     "title": "Jackson",
@@ -297,7 +623,17 @@
     "zipCode": "39209",
     "state": "MS",
     "longitude": "-90.279758",
-    "latitude": "32.30228"
+    "latitude": "32.30228",
+    "openingHours": " ",
+    "dropOffDetails": "<p>Monday - Friday 10:00am - 3:00pm. <br>\nNo appointment required. <br>\n$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=39209\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Meridian",
+      "Vicksburg",
+      "Natchez",
+      "the MS Delta"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/jacksonville": {
     "title": "Jacksonville",
@@ -307,7 +643,17 @@
     "zipCode": "32218",
     "state": "FL",
     "longitude": "-81.608",
-    "latitude": "30.261"
+    "latitude": "30.261",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=32218\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Dixie",
+      "St. Augustine",
+      "Gainesville",
+      "Suwannee"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/kansas-city": {
     "title": "Kansas City",
@@ -317,7 +663,17 @@
     "zipCode": "66219",
     "state": "KS",
     "longitude": "-94.762",
-    "latitude": "38.946"
+    "latitude": "38.946",
+    "openingHours": "Monday – Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=66219\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Kansas City",
+      "Manhattan",
+      "St. Joseph",
+      "Topeka"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/knoxville": {
     "title": "Knoxville",
@@ -327,7 +683,15 @@
     "zipCode": "37918",
     "state": "TN",
     "longitude": "-83.939",
-    "latitude": "36.008"
+    "latitude": "36.008",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=37918\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Bristol",
+      "Tri-Cities"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/las-vegas": {
     "title": "Las Vegas",
@@ -337,7 +701,17 @@
     "zipCode": "89081",
     "state": "NV",
     "longitude": "-115.123",
-    "latitude": "36.243"
+    "latitude": "36.243",
+    "openingHours": "Mondays and Fridays only 9:00am - 11:00am 1:00pm - 4:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=89081\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Laughlin, NV",
+      "St. George, UT",
+      "All of Clark County, NV",
+      "Southern Utah"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/long-island": {
     "title": "Long Island",
@@ -347,7 +721,18 @@
     "zipCode": "11590",
     "state": "NY",
     "longitude": "-73.554",
-    "latitude": "40.775"
+    "latitude": "40.775",
+    "openingHours": "Wednesday & Thursday 10:00am-12:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=11590\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Long Beach",
+      "Hicksville",
+      "Brentwood",
+      "Greenport",
+      "East Hampton"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/los-angeles": {
     "title": "Los Angeles",
@@ -357,7 +742,18 @@
     "zipCode": "90746",
     "state": "CA",
     "longitude": "-118.062",
-    "latitude": "33.967"
+    "latitude": "33.967",
+    "openingHours": "Monday - Friday 8:00am – 11am 12:00pm - 2:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=90746\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Torrance",
+      "Los Angeles",
+      "Santa Ana",
+      "Long Beach",
+      "Anaheim"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/thousand-oaks": {
     "title": "Thousand Oaks",
@@ -367,7 +763,18 @@
     "zipCode": "93021",
     "state": "CA",
     "longitude": "-118.385",
-    "latitude": "34.228"
+    "latitude": "34.228",
+    "openingHours": "Monday - Friday 8:00am - 11:00am & 12:00pm - 2:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=93021\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Burbank",
+      "Los Angeles",
+      "Glendale",
+      "Van Nuys",
+      "Santa Barbara"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/louisville": {
     "title": "Louisville",
@@ -377,7 +784,17 @@
     "zipCode": "40209",
     "state": "KY",
     "longitude": "-85.757",
-    "latitude": "38.182"
+    "latitude": "38.182",
+    "openingHours": "Monday - Friday 10:00am - 2:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=40209\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Frankfort",
+      "Owensboro",
+      "Lexington",
+      "Summerset"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/madison": {
     "title": "Madison",
@@ -387,7 +804,18 @@
     "zipCode": "53718",
     "state": "WI",
     "longitude": "-89.276",
-    "latitude": "43.144"
+    "latitude": "43.144",
+    "openingHours": "Wednesday only 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=53718\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Beloit",
+      "Janesville",
+      "Beaver Dam",
+      "Baraboo",
+      "Prairie Du Chen"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/memphis": {
     "title": "Memphis",
@@ -397,7 +825,16 @@
     "zipCode": "38118",
     "state": "TN",
     "longitude": "-89.894",
-    "latitude": "35.041"
+    "latitude": "35.041",
+    "openingHours": "Monday - Friday 8:30am - 1:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=38118\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Grenada, MS",
+      "Jackson, TN ",
+      "Jonesboro, AR"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/miami": {
     "title": "Miami",
@@ -407,7 +844,18 @@
     "zipCode": "33178",
     "state": "FL",
     "longitude": "-80.372",
-    "latitude": "25.857"
+    "latitude": "25.857",
+    "openingHours": "Monday - Friday 11:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=33178\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Downtown Miami",
+      "Coral Gables",
+      "Doral",
+      "Key West",
+      "Kendall"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/milwaukee": {
     "title": "Milwaukee",
@@ -417,7 +865,18 @@
     "zipCode": "53151",
     "state": "WI",
     "longitude": "-88.119",
-    "latitude": "42.997"
+    "latitude": "42.997",
+    "openingHours": "Monday, Wednesday, Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=53151\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Milwaukee",
+      "Elkhorn",
+      "Sheboygan",
+      "Racine",
+      "Kenosha"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/minnesota": {
     "title": "Minnesota",
@@ -427,7 +886,18 @@
     "zipCode": "55445",
     "state": "MN",
     "longitude": "-93.38277",
-    "latitude": "45.12149"
+    "latitude": "45.12149",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=55445\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Minneapolis",
+      "St. Paul",
+      "Rochester",
+      "Bloomington",
+      "Duluth"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/mobile---biloxi": {
     "title": "Mobile / Biloxi",
@@ -437,7 +907,18 @@
     "zipCode": "36693",
     "state": "AL",
     "longitude": "-88.174",
-    "latitude": "30.574"
+    "latitude": "30.574",
+    "openingHours": "Monday - Friday 8:00am - 5:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=36693\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "McComb",
+      "Biloxi",
+      "Dothan",
+      "Hattiesburg",
+      "Gulf Coast"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/nashville": {
     "title": "Nashville",
@@ -447,7 +928,17 @@
     "zipCode": "37217",
     "state": "TN",
     "longitude": "-86.637",
-    "latitude": "36.105"
+    "latitude": "36.105",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=37217\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Brentwood",
+      "Murfressboro",
+      "Hendersonville",
+      "Clarkesville"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/new-jersey": {
     "title": "New Jersey",
@@ -457,7 +948,18 @@
     "zipCode": "07054",
     "state": "NJ",
     "longitude": "-74.448",
-    "latitude": "40.877"
+    "latitude": "40.877",
+    "openingHours": "Monday - Friday 9:00am - 2:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=07054\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Phillipsburg",
+      "Hoboken",
+      "Toms River",
+      "Manalpan",
+      "Mawah"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/new-orleans": {
     "title": "New Orleans",
@@ -467,7 +969,18 @@
     "zipCode": "70087",
     "state": "LA",
     "longitude": "-90.285",
-    "latitude": "29.988"
+    "latitude": "29.988",
+    "openingHours": "Monday - Thursday 11:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=70087\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Baton Rouge",
+      "Alexandra",
+      "New Orleans",
+      "Lafayette",
+      "Lake Charles"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/new-york": {
     "title": "New York",
@@ -477,7 +990,18 @@
     "zipCode": "07094-2014",
     "state": "NJ",
     "longitude": "-74.065",
-    "latitude": "40.774"
+    "latitude": "40.774",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=07094-2014\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Brooklyn",
+      "Queens",
+      "Manhattan",
+      "The Bronx",
+      "Staten Island"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/norfolk": {
     "title": "Norfolk",
@@ -487,7 +1011,17 @@
     "zipCode": "23661",
     "state": "VA",
     "longitude": "-76.374",
-    "latitude": "37.02"
+    "latitude": "37.02",
+    "openingHours": "Wednesdays only 1:00pm - 4:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=23661\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Virginia Beach",
+      "Norfolk",
+      "Chesapeake",
+      "all of  Roads"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/oklahoma-city": {
     "title": "Oklahoma City",
@@ -497,7 +1031,18 @@
     "zipCode": "73108",
     "state": "OK",
     "longitude": "-97.598",
-    "latitude": "35.496"
+    "latitude": "35.496",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=73108\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Tulsa",
+      "Stillwater",
+      "Ardmore",
+      "Oklahoma",
+      "Clinton"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/omaha": {
     "title": "Omaha",
@@ -507,7 +1052,20 @@
     "zipCode": "68138",
     "state": "NE",
     "longitude": "-96.124",
-    "latitude": "41.182"
+    "latitude": "41.182",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=68138\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Fargo",
+      "Sioux Falls",
+      "Council Bluff",
+      "Lincoln",
+      "Grand Island",
+      "Kearney",
+      "Fremont"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/orlando": {
     "title": "Orlando",
@@ -517,7 +1075,20 @@
     "zipCode": "32771",
     "state": "FL",
     "longitude": "-81.326",
-    "latitude": "28.824"
+    "latitude": "28.824",
+    "openingHours": "Monday - Friday 9:00am- 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=32771\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Lake Mary",
+      "Kissimmee",
+      "Central Florida",
+      "Celebration",
+      "Leesburg",
+      "Seminole County",
+      "Ocala"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/philadelphia": {
     "title": "Philadelphia",
@@ -527,7 +1098,17 @@
     "zipCode": null,
     "state": null,
     "longitude": "-74.730805",
-    "latitude": "40.249222"
+    "latitude": "40.249222",
+    "openingHours": " ",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Wilmington",
+      "King of Prussia",
+      "Philadephia",
+      "Princeton",
+      "Atlantic City"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/phoenix": {
     "title": "Phoenix",
@@ -537,7 +1118,17 @@
     "zipCode": "85040",
     "state": "AZ",
     "longitude": "-111.999",
-    "latitude": "33.395"
+    "latitude": "33.395",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=85040\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Tucson",
+      "Flagstaff",
+      "Yuma",
+      "Casa Grande"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/pittsburgh": {
     "title": "Pittsburgh",
@@ -547,7 +1138,18 @@
     "zipCode": "15137",
     "state": "PA",
     "longitude": "-79.828",
-    "latitude": "40.371"
+    "latitude": "40.371",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=15137\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "West Pennsylvania",
+      "West Virginia",
+      "SE Ohio",
+      "Altoona",
+      "Mercer"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/portland": {
     "title": "Portland",
@@ -557,7 +1159,15 @@
     "zipCode": "97203",
     "state": "OR",
     "longitude": "-122.723",
-    "latitude": "45.619"
+    "latitude": "45.619",
+    "openingHours": "Monday - Friday 9:00am - 11:00am & 1:00pm - 3:30pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=97203\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Oregon",
+      "Washington"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/providence": {
     "title": "Providence",
@@ -567,17 +1177,37 @@
     "zipCode": "02861",
     "state": "RI",
     "longitude": "-71.349",
-    "latitude": "41.862"
+    "latitude": "41.862",
+    "openingHours": "Monday – Friday 8:00am – 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=02861\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Providence",
+      "North Providence",
+      "Cranston",
+      "East Providence"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/reno": {
     "title": "Reno",
-    "address1": "1498 Kleppe Lane",
+    "address1": "1655 Milan Dr",
     "address2": null,
-    "city": "Sparks",
+    "city": "McCarran",
     "zipCode": "89434",
     "state": "NV",
-    "longitude": "-119.715",
-    "latitude": "39.526"
+    "longitude": "-119.43925",
+    "latitude": "39.55508",
+    "openingHours": null,
+    "dropOffDetails": null,
+    "additionalCities": [
+      "South Lake Tahoe",
+      "Elko",
+      "Carson City",
+      "Reno",
+      "Truckee"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/richmond": {
     "title": "Richmond",
@@ -587,7 +1217,18 @@
     "zipCode": "23005",
     "state": "VA",
     "longitude": "-77.456",
-    "latitude": "37.702"
+    "latitude": "37.702",
+    "openingHours": " ",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Winchester",
+      "Fredericksburg",
+      "Richmond",
+      "Tappahannock",
+      "Petersburg",
+      "Emporia"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/sacramento": {
     "title": "Sacramento",
@@ -597,7 +1238,17 @@
     "zipCode": "95206",
     "state": "CA",
     "longitude": "-121.249",
-    "latitude": "37.911"
+    "latitude": "37.911",
+    "openingHours": "Monday & Wednesday 1:00pm - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=95206\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Sacramento",
+      "Modesto",
+      "Manteca",
+      "Lodi"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/salt-lake-city": {
     "title": "Salt Lake City",
@@ -607,7 +1258,16 @@
     "zipCode": "84104",
     "state": "UT",
     "longitude": "-111.966",
-    "latitude": "40.74"
+    "latitude": "40.74",
+    "openingHours": "Monday - Friday 11:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=84104\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Provo",
+      "Ogden",
+      "Logan"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/san-antonio": {
     "title": "San Antonio",
@@ -617,7 +1277,18 @@
     "zipCode": "78238",
     "state": "TX",
     "longitude": "-98.617",
-    "latitude": "29.456"
+    "latitude": "29.456",
+    "openingHours": "Monday - Friday 9:00am - 3:30pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=78238\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Victoria",
+      "Corpus Christi",
+      "Laredo",
+      "Rio Grande Valley",
+      "Hill Country"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/san-bernardino": {
     "title": "San Bernardino",
@@ -627,7 +1298,20 @@
     "zipCode": "91752",
     "state": "CA",
     "longitude": "-117.555",
-    "latitude": "33.999"
+    "latitude": "33.999",
+    "openingHours": "Tuesday - Friday 10:00am - 4:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=91752\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Palm Springs",
+      "Riverside",
+      "San Bernardino",
+      "Victorville",
+      "Temecula",
+      "Inland Empire",
+      "Low Desert"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/san-diego": {
     "title": "San Diego",
@@ -637,7 +1321,26 @@
     "zipCode": "92128",
     "state": "CA",
     "longitude": "-117.071",
-    "latitude": "32.989"
+    "latitude": "32.989",
+    "openingHours": "Monday - Friday 10:00am - 3:00pm Witness Shred by appointment only",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=92128\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Chula Vista",
+      "Escondido",
+      "El Cajon",
+      "Vista",
+      "National City",
+      "Carlsbad",
+      "Encinitas",
+      "San Marcos",
+      "Del Mar",
+      "Chula Vista",
+      "Poway",
+      "Lemon Grove",
+      "Coronado"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/san-francisco-san-jose": {
     "title": "San Francisco / San Jose",
@@ -647,7 +1350,18 @@
     "zipCode": "94404",
     "state": "CA",
     "longitude": "-122.275",
-    "latitude": "37.566"
+    "latitude": "37.566",
+    "openingHours": "Monday - Friday 11:00am - 4:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=94404\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Burlingame",
+      "San Francisco",
+      "San Jose",
+      "San Mateo",
+      "Watsonvalle"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/seattle": {
     "title": "Seattle",
@@ -657,7 +1371,19 @@
     "zipCode": "98032",
     "state": "WA",
     "longitude": "-122.227",
-    "latitude": "47.435"
+    "latitude": "47.435",
+    "openingHours": "Monday - Friday 8:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=98032\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Seattle",
+      "Olympia",
+      "Bellevue",
+      "Everett",
+      "Tacoma",
+      "Bellingham"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/shreveport": {
     "title": "Shreveport",
@@ -667,7 +1393,16 @@
     "zipCode": "71109",
     "state": "LA",
     "longitude": "-93.841",
-    "latitude": "32.464"
+    "latitude": "32.464",
+    "openingHours": " ",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Longview",
+      "Bossier",
+      "Tyler",
+      "Monroe"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/st-louis": {
     "title": "St. Louis",
@@ -677,7 +1412,21 @@
     "zipCode": "63042",
     "state": "MO",
     "longitude": "-90.377",
-    "latitude": "38.775"
+    "latitude": "38.775",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=63042\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Belleville",
+      "Columbia",
+      "St. Charles",
+      "St. Louis",
+      "Edwardsville",
+      "Chesterfield",
+      "Jefferson City",
+      "State of Illinois"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/tallahassee": {
     "title": "Tallahassee",
@@ -687,7 +1436,20 @@
     "zipCode": "32304",
     "state": "FL",
     "longitude": "-84.3448086",
-    "latitude": "30.436065"
+    "latitude": "30.436065",
+    "openingHours": " ",
+    "dropOffDetails": "<p>By Appointment Only.<br>\n$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=32343\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Leon",
+      "Gadsden",
+      "Wakulla",
+      "Jefferson",
+      "Madison",
+      "Taylor counties",
+      "South Georgia"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/tampa": {
     "title": "Tampa",
@@ -697,7 +1459,17 @@
     "zipCode": "33619",
     "state": "FL",
     "longitude": "-82.351",
-    "latitude": "27.939"
+    "latitude": "27.939",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)  </p> <p style=\"width:70%;\"> <a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=33619\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">     Buy Now </a> </p> ",
+    "additionalCities": [
+      "Bradenton-Sarasota",
+      "Ocala",
+      "Sebring",
+      "St. Petersburg"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/syracuse": {
     "title": "Syracuse",
@@ -707,7 +1479,17 @@
     "zipCode": "13209",
     "state": "NY",
     "longitude": "-76.255",
-    "latitude": "43.111"
+    "latitude": "43.111",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=13209\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Albany",
+      "Binghamton",
+      "Utica",
+      "Watertown"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/northern-va": {
     "title": "Northern VA",
@@ -717,7 +1499,17 @@
     "zipCode": "20151",
     "state": "VA",
     "longitude": "-77.434",
-    "latitude": "38.885"
+    "latitude": "38.885",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=20151\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Annandale",
+      "Alexandria",
+      "Reston",
+      "Ashburn"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/white-plains": {
     "title": "White Plains",
@@ -727,7 +1519,18 @@
     "zipCode": null,
     "state": null,
     "longitude": "-73.777",
-    "latitude": "41.099"
+    "latitude": "41.099",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "White Plains",
+      "Poughkeepsie",
+      "Yonkers",
+      "Newburgh",
+      "Suffern"
+    ],
+    "country": null,
+    "subType": "drop-off"
   },
   "/en-us/service-locations/wichita": {
     "title": "Wichita",
@@ -737,7 +1540,17 @@
     "zipCode": "67209",
     "state": "KS",
     "longitude": "-97.394",
-    "latitude": "37.651"
+    "latitude": "37.651",
+    "openingHours": "Monday - Friday 8:00am - 4:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=67209\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Garden City",
+      "Hutchinson",
+      "McPherson",
+      "Dodge City"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/fayetteville": {
     "title": "Fayetteville",
@@ -747,7 +1560,19 @@
     "zipCode": "72762",
     "state": "AR",
     "longitude": "-94.225",
-    "latitude": "36.172"
+    "latitude": "36.172",
+    "openingHours": "Tuesday & Thursday 1:00pm - 5:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=72762\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Bella Vista",
+      "Bentonville",
+      "Rogers",
+      "Fayetteville",
+      "Mountain Home",
+      "Harrison"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/tucson": {
     "title": "Tucson",
@@ -757,7 +1582,16 @@
     "zipCode": "85745",
     "state": "AZ",
     "longitude": "-111.005",
-    "latitude": "32.272"
+    "latitude": "32.272",
+    "openingHours": " ",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Nogales",
+      "Sierra Vista",
+      "Douglas",
+      "Wilcox"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/south-dakota-north-dakota": {
     "title": "South Dakota/North Dakota",
@@ -767,7 +1601,17 @@
     "zipCode": "57104",
     "state": "SD",
     "longitude": "-96.695",
-    "latitude": "43.581"
+    "latitude": "43.581",
+    "openingHours": " ",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Fargo",
+      "Sioux City",
+      "Bismarck",
+      "Rapid City",
+      "Northwestern Iowa"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/greenville-spartanburg--asheville": {
     "title": "Greenville-Spartanburg & Asheville",
@@ -777,7 +1621,18 @@
     "zipCode": "29376",
     "state": "SC",
     "longitude": "-81.953",
-    "latitude": "34.911"
+    "latitude": "34.911",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=29376\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Spartanburg",
+      "Greenville",
+      "Anderson",
+      "Greenwood",
+      "Asheville/Western NC"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/dayton": {
     "title": "Dayton",
@@ -787,7 +1642,15 @@
     "zipCode": "45377",
     "state": "OH",
     "longitude": "-84.2320329",
-    "latitude": "39.9081078"
+    "latitude": "39.9081078",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=45377\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\" rel=\"noopener noreferrer\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Springfield",
+      "Lima"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/atlanta": {
     "title": "Atlanta",
@@ -797,7 +1660,17 @@
     "zipCode": "30096",
     "state": "GA",
     "longitude": "-84.11",
-    "latitude": "33.955"
+    "latitude": "33.955",
+    "openingHours": "Tuesday & Thursday 12:30pm – 2:30pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=30096\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Atlanta",
+      "Athens",
+      "Gainesville",
+      "Rome"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/aston": {
     "title": "Aston",
@@ -807,7 +1680,18 @@
     "zipCode": "19014",
     "state": "PA",
     "longitude": "-75.411",
-    "latitude": "39.834"
+    "latitude": "39.834",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=19014\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Delaware",
+      "West Chester",
+      "Radnor",
+      "Vineland",
+      "Cape May"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/columbia": {
     "title": "Columbia",
@@ -817,7 +1701,18 @@
     "zipCode": "29073",
     "state": "SC",
     "longitude": "-81.22379",
-    "latitude": "33.95986"
+    "latitude": "33.95986",
+    "openingHours": "Call to Schedule ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=29073\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Columbia, SC",
+      "Orangeburg, SC",
+      "Sumter, SC",
+      "Aiken, SC",
+      "Augusta, GA"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/davenport": {
     "title": "Davenport",
@@ -827,7 +1722,26 @@
     "zipCode": "52806",
     "state": "IA",
     "longitude": "-90.619",
-    "latitude": "41.598"
+    "latitude": "41.598",
+    "openingHours": " ",
+    "dropOffDetails": null,
+    "additionalCities": [
+      ", IA",
+      "Muscatine, IA",
+      "Iowa City, IA",
+      "Burlington, IA",
+      "Ft. Madison, IA",
+      "Keokuk, IA",
+      "Mount Pleasant, IA",
+      "Dubuque, IA",
+      "Clinton, IA",
+      "Galesburg, IL",
+      "Kewanee, IL",
+      "Princeton, IL",
+      "Sterling/Rock Falls, IL",
+      "Dixon, IL"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/lafayette": {
     "title": "Lafayette",
@@ -837,7 +1751,18 @@
     "zipCode": "70583",
     "state": "LA",
     "longitude": "-92.060821",
-    "latitude": "30.242557"
+    "latitude": "30.242557",
+    "openingHours": "Monday - Friday 9:00am - 4:00pm (Closed 12:00pm-1:00pm)",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=70583\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Lafayette",
+      "Baton Rouge",
+      "Alexandria",
+      "Lake Charles",
+      "Morgan City"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/lexington": {
     "title": "Lexington",
@@ -847,7 +1772,17 @@
     "zipCode": "40509",
     "state": "KY",
     "longitude": "-84.45",
-    "latitude": "38.041"
+    "latitude": "38.041",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=40509\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Frankfort",
+      "Georgetown",
+      "Richmond",
+      "Danville"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/salem": {
     "title": "Salem",
@@ -857,7 +1792,17 @@
     "zipCode": "24153",
     "state": "VA",
     "longitude": "-80.036",
-    "latitude": "37.28"
+    "latitude": "37.28",
+    "openingHours": " ",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Roanoke",
+      "Christiansburg",
+      "Charleston",
+      "Huntington",
+      "Lynchburg"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/savannah": {
     "title": "Savannah",
@@ -867,7 +1812,17 @@
     "zipCode": "31405",
     "state": "GA",
     "longitude": "-81.148",
-    "latitude": "32.044"
+    "latitude": "32.044",
+    "openingHours": " ",
+    "dropOffDetails": null,
+    "additionalCities": [
+      ", GA",
+      "Statesboro, GA",
+      "Vidalia, GA",
+      "Hinesville, GA",
+      "Hilton Head, SC"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/waynesboro": {
     "title": "Waynesboro",
@@ -877,7 +1832,16 @@
     "zipCode": "22980",
     "state": "VA",
     "longitude": "-78.939",
-    "latitude": "38.056"
+    "latitude": "38.056",
+    "openingHours": " ",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Charlottesville",
+      "Winchester",
+      "Staunton",
+      "Harrisonburg"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/albany": {
     "title": "Albany",
@@ -887,7 +1851,17 @@
     "zipCode": "31707",
     "state": "GA",
     "longitude": "-84.196",
-    "latitude": "31.549"
+    "latitude": "31.549",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=31707\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now</a></p>\n",
+    "additionalCities": [
+      "Tifton",
+      "Americus",
+      "Cordele",
+      "Valdosta"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/springfield": {
     "title": "Springfield",
@@ -897,7 +1871,19 @@
     "zipCode": "65807",
     "state": "MO",
     "longitude": "-93.323",
-    "latitude": "37.164"
+    "latitude": "37.164",
+    "openingHours": "Monday - Friday 9:00am - 12:00pm 1:00pm - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=65807\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      ", MO",
+      "Pittsburg, KS",
+      "Joplin, MO",
+      "Branson, MO",
+      "Rolla, MO",
+      "Cape Girardeau , MO"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/fort-lauderdale": {
     "title": "Fort Lauderdale",
@@ -907,7 +1893,18 @@
     "zipCode": "33069",
     "state": "FL",
     "longitude": "-80.189",
-    "latitude": "26.256"
+    "latitude": "26.256",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)  </p> <p style=\"width:70%;\"> <a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=33069\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">     Buy Now </a> </p> ",
+    "additionalCities": [
+      "Miami",
+      "Ft. Lauderdale",
+      "West Palm Beach",
+      "Key West",
+      "Ft. Pierce"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/brockton-norwood": {
     "title": "Brockton-Norwood",
@@ -917,7 +1914,20 @@
     "zipCode": "02067",
     "state": "MA",
     "longitude": "-71.233",
-    "latitude": "42.12"
+    "latitude": "42.12",
+    "openingHours": "Monday - Friday 11:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=02067\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Suffolk County",
+      "Worcester County",
+      "Norfolk County",
+      "Bristol County",
+      "Plymouth County",
+      "Barnstable County",
+      "All of Rhode Island"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/winston-salem": {
     "title": "Winston-Salem",
@@ -927,7 +1937,18 @@
     "zipCode": "27105",
     "state": "NC",
     "longitude": "-80.241",
-    "latitude": "36.15"
+    "latitude": "36.15",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=27105\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Greensboro",
+      "High Point",
+      "Statesville",
+      "Asheboro",
+      "Salesbury"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/raleigh": {
     "title": "Raleigh",
@@ -937,7 +1958,19 @@
     "zipCode": "27610",
     "state": "NC",
     "longitude": "-78.556",
-    "latitude": "35.765"
+    "latitude": "35.765",
+    "openingHours": "Monday - Friday 8:00am - 2:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=27610\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Durham",
+      "Chapel Hill",
+      "Fayettville",
+      "Wilmington",
+      "Newburn",
+      "Wilson"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/green-bay": {
     "title": "Green Bay",
@@ -947,7 +1980,18 @@
     "zipCode": "54956",
     "state": "WI",
     "longitude": "-88.547",
-    "latitude": "44.221"
+    "latitude": "44.221",
+    "openingHours": "Wednesday only 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=54956\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Green Bay",
+      "Fond du Lac",
+      "Wausau",
+      "Appleton",
+      "Sturgeon Bay"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/springfield-il": {
     "title": "Springfield, IL",
@@ -957,7 +2001,17 @@
     "zipCode": "62702",
     "state": "IL",
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=62702\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Bloomington",
+      "Peoria",
+      "Jacksonville",
+      "Champaign"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/drums": {
     "title": "Drums",
@@ -967,7 +2021,18 @@
     "zipCode": "18222",
     "state": "PA",
     "longitude": "-75.98",
-    "latitude": "40.99"
+    "latitude": "40.99",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=18222\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Hazleton",
+      "Wilkes-Barre",
+      "Scranton",
+      "Allentown",
+      "Reading"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/el-paso": {
     "title": "El Paso",
@@ -977,7 +2042,17 @@
     "zipCode": null,
     "state": null,
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Southern New Mexico",
+      "El Paso",
+      "Anthony",
+      "Socorro Texas"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/fort-worth": {
     "title": "Fort Worth",
@@ -987,7 +2062,18 @@
     "zipCode": null,
     "state": null,
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Colleyville",
+      "Saginaw",
+      "Watauga",
+      "North Richland Hills",
+      "Westworth Village"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/long-beach": {
     "title": "Long Beach",
@@ -997,7 +2083,18 @@
     "zipCode": null,
     "state": null,
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Torrance",
+      "Carson",
+      "Lakewood",
+      "Redondo Beach",
+      "Gardena"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/oakland": {
     "title": "Oakland",
@@ -1007,7 +2104,17 @@
     "zipCode": null,
     "state": null,
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)  </p> <p style=\"width:70%;\"> <a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">     Buy Now </a> </p> ",
+    "additionalCities": [
+      "Emeryville",
+      "Berkeley",
+      "Walnut Creek",
+      "Fremont"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/tulsa": {
     "title": "Tulsa",
@@ -1017,7 +2124,19 @@
     "zipCode": "74116",
     "state": "OK",
     "longitude": "-95.79368",
-    "latitude": "36.18133"
+    "latitude": "36.18133",
+    "openingHours": null,
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=76501\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now</a></p>\n",
+    "additionalCities": [
+      "Bartlesville",
+      "Owasso",
+      "Broken Arrow",
+      "Miami",
+      "Muskogee",
+      "Claremore"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/anaheim": {
     "title": "Anaheim",
@@ -1027,7 +2146,18 @@
     "zipCode": null,
     "state": null,
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)  </p> <p style=\"width:70%;\"> <a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">     Buy Now </a> </p> ",
+    "additionalCities": [
+      "Brea",
+      "Fullerton",
+      "Orange",
+      "Tustin",
+      "Irvine"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/arlington": {
     "title": "Arlington",
@@ -1037,7 +2167,19 @@
     "zipCode": null,
     "state": null,
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Grand Prairie",
+      "Hurst ",
+      "Euless",
+      "Duncanville",
+      "Desoto",
+      "Mansfield"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/bakersfield": {
     "title": "Bakersfield",
@@ -1047,7 +2189,16 @@
     "zipCode": null,
     "state": null,
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Delano",
+      "Poterville",
+      "Visalia"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/mesa": {
     "title": "Mesa",
@@ -1057,7 +2208,18 @@
     "zipCode": null,
     "state": null,
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Tempe",
+      "Chandler",
+      "Gilbert",
+      "Queen Creek",
+      "Ahwatukee"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/colorado-springs": {
     "title": "Colorado Springs",
@@ -1067,7 +2229,18 @@
     "zipCode": null,
     "state": null,
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Castle Rock",
+      "Pueblo",
+      "Cañon City",
+      "Woodland Park",
+      "Gunnison"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/waco": {
     "title": "Waco",
@@ -1077,7 +2250,16 @@
     "zipCode": "76501",
     "state": "TX",
     "longitude": "-97.136",
-    "latitude": "31.55"
+    "latitude": "31.55",
+    "openingHours": " ",
+    "dropOffDetails": "<p>By Appointment Only.<br>\n$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=76501\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Waco",
+      "Killeen",
+      "Hewitt"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/bridgewater": {
     "title": "Bridgewater",
@@ -1087,7 +2269,20 @@
     "zipCode": null,
     "state": null,
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Somerville",
+      "Piscataway",
+      "Morristown",
+      "New Brunswick",
+      "Eatontown",
+      "Newark",
+      "Flemington"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/pensacola": {
     "title": "Pensacola",
@@ -1097,7 +2292,17 @@
     "zipCode": "32514",
     "state": "FL",
     "longitude": "-87.195",
-    "latitude": "30.531"
+    "latitude": "30.531",
+    "openingHours": "Monday - Friday 8:00am - 5:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=32514\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Destin",
+      "Ft. Walton",
+      "Clearview",
+      "Foley, AL"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/fort-myers": {
     "title": "Fort Myers",
@@ -1107,7 +2312,22 @@
     "zipCode": "33916",
     "state": "FL",
     "longitude": "-81.867",
-    "latitude": "26.535"
+    "latitude": "26.535",
+    "openingHours": " ",
+    "dropOffDetails": "<p>By Appointment Only.<br>\n$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=33916\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Osprey",
+      "Venice",
+      "Arcadia",
+      "Moore Haven",
+      "Clewiston",
+      "Labelle",
+      "Cape Coral",
+      "Marco Island",
+      "Everglade City"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/oceanside": {
     "title": "Oceanside",
@@ -1117,7 +2337,12 @@
     "zipCode": null,
     "state": null,
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/fremont": {
     "title": "Fremont",
@@ -1127,7 +2352,17 @@
     "zipCode": null,
     "state": "CA",
     "longitude": "-121.952",
-    "latitude": "37.497"
+    "latitude": "37.497",
+    "openingHours": "Monday - Friday 9:00am - 2:30pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Burlingame",
+      "Los Altos",
+      "Mountain View",
+      "Milpitas"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/orange-county": {
     "title": "Orange County",
@@ -1137,7 +2372,12 @@
     "zipCode": null,
     "state": null,
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [],
+    "country": null,
+    "subType": "drop-off"
   },
   "/en-us/service-locations/spokane": {
     "title": "Spokane",
@@ -1147,7 +2387,18 @@
     "zipCode": "99001",
     "state": "WA",
     "longitude": "-117.565",
-    "latitude": "47.636"
+    "latitude": "47.636",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=99001\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Tri-Cities",
+      "Moses Lake",
+      "Wenatchee",
+      "Ellensburg",
+      "Yakima"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/paducah": {
     "title": "Paducah",
@@ -1157,7 +2408,18 @@
     "zipCode": "42029",
     "state": "KY",
     "longitude": "-88.428",
-    "latitude": "37.005"
+    "latitude": "37.005",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=42029\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Mayfield",
+      "Benton",
+      "Princeton",
+      "Cadiz",
+      "Kuttawa"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/longview": {
     "title": "Longview",
@@ -1167,7 +2429,18 @@
     "zipCode": "75605",
     "state": "TX",
     "longitude": "-94.74",
-    "latitude": "32.577"
+    "latitude": "32.577",
+    "openingHours": "Monday - Friday 9:00am - 11:00am  2:00pm - 4:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=75605\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Tyler",
+      "Marshall",
+      "Henderson",
+      "Mt. Pleasant",
+      "Sulphur Springs"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/new-york--long-island": {
     "title": "New York & Long Island",
@@ -1177,7 +2450,19 @@
     "zipCode": "11590",
     "state": "NY",
     "longitude": "-73.554",
-    "latitude": "40.775"
+    "latitude": "40.775",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=11590\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Brooklyn",
+      "Queens",
+      "Manhattan",
+      "The Bronx",
+      "Staten Island",
+      "Long Island"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/plymouth": {
     "title": "Plymouth",
@@ -1187,7 +2472,18 @@
     "zipCode": "48170",
     "state": "MI",
     "longitude": "-83.497129",
-    "latitude": "42.3892371"
+    "latitude": "42.3892371",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=48170\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Livonia",
+      "Farmington Hills",
+      "Novi",
+      "Northville",
+      "Canton"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/orland-park": {
     "title": "Orland Park",
@@ -1197,7 +2493,20 @@
     "zipCode": "60467",
     "state": "IL",
     "longitude": "-87.876",
-    "latitude": "41.59"
+    "latitude": "41.59",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=60467\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Tinley Park",
+      "Joliet",
+      "Bolingbrook",
+      "Frankfort",
+      "Mokena",
+      "Chicago Heights",
+      "Hammond Indiana"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/myrtle-beach": {
     "title": "Myrtle Beach",
@@ -1207,7 +2516,14 @@
     "zipCode": "29577",
     "state": "SC",
     "longitude": "-78.887",
-    "latitude": "33.689"
+    "latitude": "33.689",
+    "openingHours": " ",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Grand Strand",
+      "Georgetown"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/cheyenne": {
     "title": "Cheyenne",
@@ -1217,7 +2533,16 @@
     "zipCode": "82007",
     "state": "WY",
     "longitude": "-104.82",
-    "latitude": "41.14"
+    "latitude": "41.14",
+    "openingHours": " ",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Laramie",
+      "Casper",
+      "Douglas",
+      "Wheatland"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/albany-ny": {
     "title": "Albany, NY",
@@ -1227,7 +2552,18 @@
     "zipCode": "12306",
     "state": "NY",
     "longitude": "-73.9938585",
-    "latitude": "42.7872034"
+    "latitude": "42.7872034",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=12306\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\" rel=\"noopener noreferrer\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Albany",
+      "Troy",
+      "Latham",
+      "Glens Falls",
+      "Saratoga Springs"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/chattanooga": {
     "title": "Chattanooga",
@@ -1237,7 +2573,18 @@
     "zipCode": "37410",
     "state": "TN",
     "longitude": "-85.3213963",
-    "latitude": "35.019112"
+    "latitude": "35.019112",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=37410\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Calhoun",
+      "Dalton",
+      "Cleveland",
+      "Dayton",
+      "Athens"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/proctorville": {
     "title": "Proctorville",
@@ -1247,7 +2594,12 @@
     "zipCode": "45680",
     "state": "OH",
     "longitude": "-82.584",
-    "latitude": "38.428"
+    "latitude": "38.428",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=45680\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/cedar-rapids": {
     "title": "Cedar Rapids",
@@ -1257,7 +2609,12 @@
     "zipCode": null,
     "state": null,
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)  </p> <p style=\"width:70%;\"> <a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspxtitle=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">     Buy Now </a> </p> ",
+    "additionalCities": [],
+    "country": null,
+    "subType": "drop-off"
   },
   "/en-us/service-locations/jacksontn": {
     "title": "Jackson,TN",
@@ -1267,7 +2624,12 @@
     "zipCode": "38301",
     "state": "TN",
     "longitude": "-88.847",
-    "latitude": "35.618"
+    "latitude": "35.618",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=38301\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/washington": {
     "title": "Washington",
@@ -1277,7 +2639,18 @@
     "zipCode": null,
     "state": null,
     "longitude": "0.0",
-    "latitude": "0.0"
+    "latitude": "0.0",
+    "openingHours": " ",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspxtitle=\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Rockville",
+      "Alexandria",
+      "Washington",
+      "Gaithersburg",
+      "Vienna"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/kingsport": {
     "title": "Kingsport",
@@ -1287,7 +2660,11 @@
     "zipCode": "37663",
     "state": "TN",
     "longitude": "-82.52",
-    "latitude": "36.447"
+    "latitude": "36.447",
+    "openingHours": " ",
+    "dropOffDetails": null,
+    "additionalCities": [],
+    "country": "US"
   },
   "/en-us/service-locations/ocala": {
     "title": "Ocala",
@@ -1297,7 +2674,16 @@
     "zipCode": "34472",
     "state": "FL",
     "longitude": "-82.051",
-    "latitude": "29.109"
+    "latitude": "29.109",
+    "openingHours": " ",
+    "dropOffDetails": "<p>By Appointment Only.<br>\n$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=34472\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Gainesville",
+      "Lake City",
+      "The Villages"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/west-palm-beach": {
     "title": "West Palm Beach",
@@ -1307,17 +2693,21 @@
     "zipCode": "33411",
     "state": "FL",
     "longitude": "-80.15",
-    "latitude": "26.713"
-  },
-  "/en-us/service-locations/denver-copy": {
-    "title": "Denver",
-    "address1": "3925 Monaco Parkway",
-    "address2": "Unit D",
-    "city": "Denver",
-    "zipCode": "80207",
-    "state": "CO",
-    "longitude": "-104.913",
-    "latitude": "39.772"
+    "latitude": "26.713",
+    "openingHours": " ",
+    "dropOffDetails": "<p>By Appointment Only.<br>\n$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=33411\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Palm Beach",
+      "Palm Beach Gardens",
+      "Jupiter",
+      "Lake Worth",
+      "Wellington",
+      "Stuart",
+      "Vero Beach",
+      "Greenacres"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/minneapolis": {
     "title": "Minnesota",
@@ -1327,7 +2717,18 @@
     "zipCode": "55445",
     "state": "MN",
     "longitude": "-93.38277",
-    "latitude": "45.12149"
+    "latitude": "45.12149",
+    "openingHours": "Monday - Friday 9:00am - 3:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=55445\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Minneapolis",
+      "St. Paul",
+      "Rochester",
+      "Bloomington",
+      "Duluth"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/trenton": {
     "title": "Trenton",
@@ -1337,7 +2738,17 @@
     "zipCode": "08628",
     "state": "NJ",
     "longitude": "-74.73081",
-    "latitude": "40.24913"
+    "latitude": "40.24913",
+    "openingHours": "Monday - Friday 9:00am - 2:00pm",
+    "dropOffDetails": "<p>$75 per 96 gallon tote (approximately 10-12 letter size boxes, 10x12x15 inches)</p>\n<p style=\"width: 70.0%;\"><a href=\"https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=07054\" title=\"Buy Now\" class=\"btn btn-primary\" target=\"_blank\" rel=\"noopener noreferrer\">Buy Now </a></p>\n",
+    "additionalCities": [
+      "Bordentown",
+      "Princeton Junction",
+      "Allentown",
+      "Prospect Park"
+    ],
+    "country": "US",
+    "subType": "drop-off"
   },
   "/en-us/service-locations/allentown": {
     "title": "Allentown",
@@ -1347,7 +2758,15 @@
     "zipCode": "18102",
     "state": "PA",
     "longitude": "-75.5137676",
-    "latitude": "40.6068784"
+    "latitude": "40.6068784",
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Bethlehem",
+      "Easton",
+      "Whitehall"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/durham": {
     "title": "Durham",
@@ -1357,7 +2776,15 @@
     "zipCode": "27710",
     "state": "NC",
     "longitude": "-78.9449703",
-    "latitude": "36.002573"
+    "latitude": "36.002573",
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Raleigh",
+      "Chapel Hill",
+      "Cary"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/virginia-beach": {
     "title": "Virginia Beach",
@@ -1367,7 +2794,15 @@
     "zipCode": "22360",
     "state": "VA",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Norfolk",
+      "Chesapeake",
+      "Hampton"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/baton-rouge": {
     "title": "Baton Rouge",
@@ -1377,7 +2812,15 @@
     "zipCode": "70802",
     "state": "LA",
     "longitude": "-9.114739E7",
-    "latitude": "30.471165"
+    "latitude": "30.471165",
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "New Orleans",
+      "Lafayette",
+      "Gonzales"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/rochester": {
     "title": "Rochester",
@@ -1387,7 +2830,15 @@
     "zipCode": "14650",
     "state": "NY",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Brighton",
+      "Irondequoit",
+      "North Gates"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/worcester": {
     "title": "Worcester",
@@ -1397,7 +2848,15 @@
     "zipCode": "01613",
     "state": "MA",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Shrewsbury",
+      "Leicester",
+      "Holden"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/toledo": {
     "title": "Toledo",
@@ -1407,7 +2866,15 @@
     "zipCode": null,
     "state": "OH",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Bowling Green",
+      "Bedford",
+      "Maumee"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/modesto": {
     "title": "Modesto",
@@ -1417,7 +2884,15 @@
     "zipCode": null,
     "state": "California",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Turlock",
+      "Ripon",
+      "Ceres"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/huntsville": {
     "title": "Huntsville",
@@ -1427,7 +2902,15 @@
     "zipCode": null,
     "state": "AL",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Decatur",
+      "Athens",
+      "Mooresville"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/akron": {
     "title": "Akron",
@@ -1437,7 +2920,15 @@
     "zipCode": null,
     "state": "OH",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Cuyahoga Falls",
+      "Tallmadge",
+      "Wadsworth"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/sarasota": {
     "title": "Sarasota",
@@ -1447,7 +2938,15 @@
     "zipCode": null,
     "state": "FL",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Bradenton",
+      "Port Charlotte",
+      "North Port"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/lubbock": {
     "title": "Lubbock",
@@ -1457,7 +2956,15 @@
     "zipCode": null,
     "state": "TX",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Levelland",
+      "Brownfield",
+      "Plainview"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/augusta": {
     "title": "Augusta",
@@ -1467,7 +2974,15 @@
     "zipCode": null,
     "state": "GA",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Grovetown",
+      "Martinez",
+      "Warrenton"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/newport-news": {
     "title": "Newport News",
@@ -1477,7 +2992,15 @@
     "zipCode": null,
     "state": "VA",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Norfolk",
+      "Virginia Beach",
+      "Hampton"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/erie": {
     "title": "Erie",
@@ -1487,7 +3010,15 @@
     "zipCode": null,
     "state": "PA",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Pittsburgh",
+      "Meadville",
+      "Warren"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/south-bend": {
     "title": "South Bend",
@@ -1497,7 +3028,15 @@
     "zipCode": null,
     "state": "IN",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Elkhart",
+      "Fort Wayne",
+      "Mishawaka"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/amarillo": {
     "title": "Amarillo",
@@ -1507,7 +3046,15 @@
     "zipCode": null,
     "state": "TX",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Lubbock",
+      "Pampa",
+      "Canyon"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/glendale": {
     "title": "Glendale",
@@ -1517,7 +3064,15 @@
     "zipCode": null,
     "state": "CA",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Los Angeles",
+      "Pasadena",
+      "Burbank"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/montgomery": {
     "title": "Montgomery",
@@ -1527,7 +3082,15 @@
     "zipCode": null,
     "state": "AL",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Birmingham",
+      "Auburn",
+      "Prattville"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/laredo": {
     "title": "Laredo",
@@ -1537,7 +3100,15 @@
     "zipCode": null,
     "state": "TX",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "San Antonio",
+      "McAllen",
+      "Corpus Christi"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/macon": {
     "title": "Macon",
@@ -1547,17 +3118,33 @@
     "zipCode": null,
     "state": "GA",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Atlanta",
+      "Warner Robins",
+      "Columbus"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/rockford": {
-    "title": "Denver",
-    "address1": "3925 Monaco Parkway",
-    "address2": "Unit D",
-    "city": "Denver",
-    "zipCode": "80207",
-    "state": "CO",
-    "longitude": "-104.913",
-    "latitude": "39.772"
+    "title": "Rockford",
+    "address1": null,
+    "address2": null,
+    "city": "Rockford",
+    "zipCode": null,
+    "state": "IL",
+    "longitude": null,
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Elgin",
+      "Aurora",
+      "Joliet"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/tyler": {
     "title": "Tyler",
@@ -1567,7 +3154,15 @@
     "zipCode": null,
     "state": "TX",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Longview",
+      "Nacogdoches",
+      "Lufkin"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/lakeland": {
     "title": "Lakeland",
@@ -1577,7 +3172,15 @@
     "zipCode": null,
     "state": "FL",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Tampa",
+      "Orlando",
+      "Brandon"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/topeka": {
     "title": "Topeka",
@@ -1587,7 +3190,15 @@
     "zipCode": null,
     "state": "KS",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Kansas City",
+      "Lawrence",
+      "Manhattan"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/athens": {
     "title": "Athens",
@@ -1597,46 +3208,86 @@
     "zipCode": null,
     "state": "GA",
     "longitude": null,
-    "latitude": null
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Atlanta",
+      "Gainesville",
+      "Lawrenceville"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/santa-barbara": {
-    "title": "Denver",
-    "address1": "3925 Monaco Parkway",
-    "address2": "Unit D",
-    "city": "Denver",
-    "zipCode": "80207",
-    "state": "CO",
-    "longitude": "-104.913",
-    "latitude": "39.772"
+    "title": "Santa Barbara",
+    "address1": null,
+    "address2": null,
+    "city": "Santa Barbara",
+    "zipCode": null,
+    "state": "California",
+    "longitude": null,
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Ventura",
+      "San Luis Obispo",
+      "Oxnard"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/stamford": {
-    "title": "Denver",
-    "address1": "3925 Monaco Parkway",
-    "address2": "Unit D",
-    "city": "Denver",
-    "zipCode": "80207",
-    "state": "CO",
-    "longitude": "-104.913",
-    "latitude": "39.772"
+    "title": "Stamford",
+    "address1": null,
+    "address2": null,
+    "city": "Stamford",
+    "zipCode": null,
+    "state": "Connecticut",
+    "longitude": null,
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Bridgeport",
+      "Norwalk",
+      "Greenwich"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/lansing": {
-    "title": "Denver",
-    "address1": "3925 Monaco Parkway",
-    "address2": "Unit D",
-    "city": "Denver",
-    "zipCode": "80207",
-    "state": "CO",
-    "longitude": "-104.913",
-    "latitude": "39.772"
+    "title": "Lansing",
+    "address1": null,
+    "address2": null,
+    "city": "Lansing",
+    "zipCode": null,
+    "state": "Michigan",
+    "longitude": null,
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "Grand Rapids",
+      "Battle Creek",
+      "Jackson"
+    ],
+    "country": "US"
   },
   "/en-us/service-locations/yonkers": {
-    "title": "Denver",
-    "address1": "3925 Monaco Parkway",
-    "address2": "Unit D",
-    "city": "Denver",
-    "zipCode": "80207",
-    "state": "CO",
-    "longitude": "-104.913",
-    "latitude": "39.772"
+    "title": "Yonkers",
+    "address1": null,
+    "address2": null,
+    "city": "Yonkers",
+    "zipCode": null,
+    "state": "New York",
+    "longitude": null,
+    "latitude": null,
+    "openingHours": "<p>Monday - Friday 9:00am - 5:00pm</p>\n",
+    "dropOffDetails": null,
+    "additionalCities": [
+      "New York City",
+      "White Plains",
+      "Stamford CT"
+    ],
+    "country": "US"
   }
 }

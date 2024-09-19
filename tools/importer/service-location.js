@@ -34,7 +34,8 @@ function setMetadata(meta, document, url) {
 
   // add location meta
   const {
-    title, address1, address2, city, zipCode, state, longitude, latitude,
+    title, address1, address2, city, zipCode, state, longitude, latitude, openingHours,
+    dropOffDetails, additionalCities, country, subType,
   } = locationMeta[new URL(url).pathname];
   if (title) {
     meta.name = title;
@@ -59,6 +60,55 @@ function setMetadata(meta, document, url) {
   }
   if (latitude) {
     meta.latitude = latitude;
+  }
+  if (openingHours?.trim()) {
+    const trimmedOpeningHours = openingHours.trim();
+    const match = trimmedOpeningHours.match(/<p>(.*?)<\/p>/);
+    if (match && match[1]) {
+      const textBetweenPTags = match[1];
+      meta['opening-hours'] = textBetweenPTags.trim();
+    } else {
+      meta['opening-hours'] = trimmedOpeningHours.trim();
+    }
+  }
+  if (dropOffDetails?.trim()) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = dropOffDetails.trim();
+    const pTags = tempDiv.querySelectorAll('p');
+    const result = [];
+
+    pTags.forEach((pTag) => {
+      pTag.querySelectorAll('a').forEach((aTag) => aTag.remove());
+      result.push(...pTag.innerHTML.split('<br>').map((line) => line.trim()).filter(Boolean));
+    });
+
+    if (result.length === 3) {
+      const [firstResult, secondResult, thirdResult] = result;
+      meta['appointment-date-time'] = firstResult;
+      meta['appointment-policy'] = secondResult;
+      meta['drop-off-info'] = thirdResult;
+    } else if (result.length === 2) {
+      const [firstResult, secondResult] = result;
+
+      if (result[0].toLowerCase().includes('appointment')) {
+        meta['appointment-policy'] = firstResult;
+      } else {
+        meta['appointment-date-time'] = firstResult;
+      }
+      meta['drop-off-info'] = secondResult;
+    } else if (result.length === 1) {
+      const [firstResult] = result;
+      meta['drop-off-info'] = firstResult;
+    }
+  }
+  if (additionalCities?.length) {
+    meta['additional-cities'] = additionalCities.join(',');
+  }
+  if (country) {
+    meta.country = country;
+  }
+  if (subType) {
+    meta['sub-type'] = subType;
   }
 
   // check for hero element to determine template
