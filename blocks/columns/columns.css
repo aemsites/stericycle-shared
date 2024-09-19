@@ -152,9 +152,22 @@ main .columns span.icon > img {
 .columns.cyan-accent-border > div > div,
 .columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img)),
 .columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img)) {
-  border-width: 0 0 0 4px;
-  border-style: solid;
-  padding-left: 1.5rem;
+  justify-content: unset;
+  position: relative;
+  padding-left: 24px;
+}
+
+.columns.orange-accent-border > div > div::after,
+.columns.cyan-accent-border > div > div::after,
+.columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img))::after,
+.columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img))::after {
+  position: absolute;
+  left: 0;
+  max-height: 80px;
+  height: 100%;
+  width: 4px;
+  content: '';
+  display: block;
 }
 
 .columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img)),
@@ -165,14 +178,14 @@ main .columns span.icon > img {
   margin-top: 1rem;
 }
 
-.columns.orange-accent-border > div > div,
-.columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img)) {
-  border-color: var(--color-orange);
+.columns.orange-accent-border > div > div::after,
+.columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img))::after {
+  background: var(--color-orange);
 }
 
-.columns.cyan-accent-border > div > div,
-.columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img)) {
-  border-color: var(--color-cyan);
+.columns.cyan-accent-border > div > div::after,
+.columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img))::after {
+  background: var(--color-cyan);
 }
 
 .columns.orange-accent-border.columns-has-image > div > div,
