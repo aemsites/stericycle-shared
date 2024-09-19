@@ -1,6 +1,6 @@
-import { readBlockConfig, fetchPlaceholders } from '../../scripts/aem.js';
+import { readBlockConfig } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
-import { getDateFromExcel, getLocale } from '../../scripts/scripts.js';
+import { getDateFromExcel } from '../../scripts/scripts.js';
 
 let sessionKey = 'press-releases';
 
@@ -13,10 +13,10 @@ const formatDate = (date) => date.toLocaleDateString('en-US', {
 const itemsPerPage = 10;
 let currentPage = 1;
 
-async function buildPagination(ul, controls, sheet, page, ph) {
-  const storedPosts = sessionStorage.getItem(sessionKey);
+async function buildPagination(ul, controls, sheet, page) {
+  const storedPosts = sessionStorage.getItem(sheet);
   let releases = [];
-  if (!storedPosts) {
+  if (!storedPosts || storedPosts === '[]') {
     const posts = await ffetch('/query-index.json').sheet(sheet).all();
     sessionStorage.setItem(sessionKey, JSON.stringify(posts));
     releases = posts;
@@ -35,7 +35,7 @@ async function buildPagination(ul, controls, sheet, page, ph) {
     const listItem = document.createElement('li');
     const type = document.createElement('a');
     type.href = window.location.pathname;
-    type.textContent = ph.pressreleases; // this will need to be replaced with a dynamic value
+    type.textContent = release['media-type'];
     type.classList.add('type');
     listItem.append(type);
     const title = document.createElement('h4');
@@ -45,6 +45,11 @@ async function buildPagination(ul, controls, sheet, page, ph) {
     titleA.title = release.title;
     title.append(titleA);
     listItem.append(title);
+    if (Object.hasOwn(release, 'description')) {
+      const desc = document.createElement('p');
+      desc.innerText = `${release.description}`;
+      listItem.append(desc);
+    }
     const prSpan = document.createElement('span');
     prSpan.textContent = formatDate(getDateFromExcel(release.date));
     prSpan.classList.add('date-published');
@@ -61,7 +66,7 @@ async function buildPagination(ul, controls, sheet, page, ph) {
   buttonPrev.disabled = page === 1;
   buttonPrev.addEventListener('click', () => {
     currentPage -= 1;
-    buildPagination(ul, controls, sheet, currentPage, ph);
+    buildPagination(ul, controls, sheet, currentPage);
   });
 
   const next = document.createElement('li');
@@ -71,7 +76,7 @@ async function buildPagination(ul, controls, sheet, page, ph) {
   buttonNext.classList.add('fa-chevron-right');
   buttonNext.addEventListener('click', () => {
     currentPage += 1;
-    buildPagination(ul, controls, sheet, currentPage, ph);
+    buildPagination(ul, controls, sheet, currentPage);
   });
 
   controls.append(prev, next);
@@ -80,12 +85,11 @@ async function buildPagination(ul, controls, sheet, page, ph) {
 }
 
 export default async function decorate(block) {
-  const ph = await fetchPlaceholders(`/${getLocale()}`);
   const cfg = readBlockConfig(block);
   sessionKey = cfg.sheet;
   const prList = document.createElement('ul');
   const pagination = document.createElement('ul');
-  await buildPagination(prList, pagination, cfg.sheet, currentPage, ph);
+  await buildPagination(prList, pagination, cfg.sheet, currentPage);
   block.replaceWith(prList);
   prList.insertAdjacentElement('afterend', pagination);
 }
