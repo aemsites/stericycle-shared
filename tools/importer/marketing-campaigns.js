@@ -26,7 +26,7 @@ function transformIconList(section) {
   const iconList = section.querySelector('div.image > div.cmp-image');
   if (iconList && iconList.getAttribute('data-cmp-src').endsWith('.svg')) {
     console.log('icon list found');
-    const cells = [['icon list']];
+    const cells = [['icon list (plain)']];
 
     const ils = section.querySelectorAll('.contentcontainer .aem-Grid div.columnrow');
     ils.forEach((il) => {
@@ -41,9 +41,15 @@ function transformIconList(section) {
   }
 }
 
+function setSectionMetadata(meta, values) {
+  const cells = [['section metadata']];
+  cells.push(['style', values]);
+  return WebImporter.DOMUtils.createTable(cells, document);
+}
+
 function transformSimpleCTA(section) {
   console.log('found simple CTA');
-  const cells = [['simple cta']];
+  const cells = [['simple cta (alt)']];
   const cta = section.querySelectorAll('div.row.cmp-columnrow > .cmp-columnrow__item');
   const ctaArray = [];
   cta.forEach((c, idx) => {
@@ -96,8 +102,69 @@ function createFragment(section, fragmentPath) {
   anchor.textContent = `${baseUrl}${fragmentPath}`;
   cells.push([anchor]);
   const fragBlock = WebImporter.DOMUtils.createTable(cells, document);
-  console.log(section.querySelector('div.cmp-pagesection > .aem-Grid'));
   section.querySelector('div.cmp-pagesection > .aem-Grid').replaceWith(fragBlock);
+}
+
+function transformListTeaser(section) {
+  console.log('found content list teaser');
+  const cells = [['columns (check list)']];
+  const leftCol = section.querySelector('div.row > div.cmp-columnrow__item:first-of-type');
+  const rightCol = section.querySelector('div.row > div.cmp-columnrow__item:last-of-type');
+  if (leftCol && rightCol) {
+    rightCol.querySelectorAll('div.cmp-teaser__image').forEach((e) => e.remove());
+    cells.push([leftCol, rightCol]);
+    const ctlBlock = WebImporter.DOMUtils.createTable(cells, document);
+    section.querySelector('div.cmp-pagesection > .aem-Grid').replaceWith(ctlBlock);
+  }
+}
+
+function transformToColumns(section, columnParent) {
+  const detectCols = section.querySelector('div.row.cmp-columnrow');
+  const cells = [['columns']];
+  if (detectCols) {
+    const logoCols = section.querySelector('div.row.cmp-columnrow > div.cmp-columnrow__item > div.image > div.cmp-image');
+    const columns = columnParent.querySelectorAll('div.columnrow.aem-GridColumn');
+    if (logoCols) {
+      if (logoCols.getAttribute('data-cmp-src').includes('logo')) {
+        console.log('found logo columns');
+        cells[0][0] = 'columns (logos)';
+        const lcs = section.querySelectorAll('div.row.cmp-columnrow > div.cmp-columnrow__item');
+        const lc = [];
+        lcs.forEach((c) => {
+          const img = c.querySelector('div.image > div.cmp-image');
+          lc.push([img]);
+        });
+        cells.push(lc);
+        const colBlock = WebImporter.DOMUtils.createTable(cells, document);
+        detectCols.replaceWith(colBlock);
+      }
+    }
+    if (columns.length > 0) {
+      const imageIcon = columns[0].querySelector('div[data-cmp-is="image"]');
+      if (imageIcon) {
+        if (imageIcon.getAttribute('data-cmp-src').endsWith('.svg')) {
+          transformIconList(columns[0]);
+        }
+      }
+    }
+    // console.log(section);
+    const lcs = section.querySelectorAll('div.row.cmp-columnrow > div.cmp-columnrow__item');
+    if (lcs.length > 1) {
+      // console.log(lcs[0]);
+      const nestCheck = lcs[0].querySelector('table'); // already been processed
+      if (!nestCheck) {
+        const lc = [];
+        lcs.forEach((c) => {
+          lc.push([c]);
+        });
+        if (lc.length > 0) {
+          cells.push(lc);
+          const colBlock = WebImporter.DOMUtils.createTable(cells, document);
+          detectCols.replaceWith(colBlock);
+        }
+      }
+    }
+  }
 }
 
 function processSections(main) {
@@ -105,10 +172,11 @@ function processSections(main) {
   console.log(`number of sections: ${sections.length}`);
 
   sections.forEach((section) => {
-    const content = section.querySelector('.contentcontainer');
+    const columns = section.querySelector('div.columnrow.aem-GridColumn');
     const colRow = section.querySelector('div.row.cmp-columnrow > div.cmp-columnrow__item ~ div.offset-lg-1.cmp-columnrow__item');
     const faq = section.querySelector('#accordion');
     const numList = section.querySelector('div.cmp-icon');
+    const clt = section.querySelector('.contentlistteaser.teaser');
     const levelFragment = section.querySelector('h2');
     if (levelFragment && levelFragment.textContent.includes('Which Shred-it ProtectPLUS Service Level Best Suits Your Needs?')) {
       console.log(`found level fragment: ${levelFragment.textContent}`);
@@ -124,11 +192,37 @@ function processSections(main) {
     if (colRow) {
       transformSimpleCTA(section);
     }
-    if (content) {
-      const columnrow = content.querySelector('.columnrow');
-      if (columnrow) {
-        transformIconList(columnrow);
-      }
+    if (clt) {
+      transformListTeaser(section);
+    }
+    if (columns) {
+      // catch all
+      transformToColumns(section, columns);
+    }
+
+    // console.log(`section has ${section.classList.length} classes`);
+    // console.log(section.classList);
+
+    const sectionStyles = [];
+
+    if (section.classList.contains('ss-bg-color--gray')) {
+      sectionStyles.push('gray background');
+    } else if (section.classList.contains('ss-bg-color--secondary')) {
+      sectionStyles.push('navy background');
+    }
+
+    if (section.querySelector('div.text.ss-font-color--primary')) {
+      sectionStyles.push('blue headings');
+    }
+
+    if (section.querySelector('div.text.ss-alignment--center')) {
+      sectionStyles.push('centered headings');
+    }
+
+    if (sectionStyles.length > 0) {
+      console.log(`section has styles: ${sectionStyles.join(', ')}`);
+      const sm = setSectionMetadata(section, sectionStyles.join(', '));
+      section.insertAdjacentElement('beforeend', sm);
     }
 
     section.insertAdjacentElement('afterend', document.createElement('hr'));

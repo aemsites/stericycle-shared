@@ -8,19 +8,23 @@
   gap: 1.5rem;
 }
 
+.columns > div > div {
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.columns.numeric-list > div, .columns.check-list > div {
+  align-items: flex-start;
+}
+
 .columns img {
   width: 100%;
 }
 
 .columns.img-33 img {
   width: 33.333%;
-}
-
-.columns > div > div {
-  order: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .columns.steps > div {
@@ -31,6 +35,28 @@
   align-items: flex-start;
   gap: unset;
   flex-flow: row wrap;
+}
+
+.columns.check-list p {
+  margin-bottom: 1rem;
+}
+
+.columns.check-list sup {
+  font-size: .75rem;
+}
+
+.columns.check-list ul > li {
+  border-bottom: .0625rem solid #dad6d6;
+  padding: .75rem 3rem;
+  background: url("/icons/check-mark-new.svg") no-repeat left center;
+}
+
+.columns.numeric-list li::before {
+  content: unset;
+}
+
+.columns.check-list ul > li::before {
+  content: unset;
 }
 
 .columns.columns-has-image > div {
@@ -112,6 +138,16 @@ main .columns span.icon > img {
   display: flex;
 }
 
+.columns.box-shadow-hover > div > div {
+  padding: 1.5rem;
+}
+
+.columns.box-shadow-hover.columns span.icon {
+  display: flex;
+  height: 150px;
+
+}
+
 .columns.orange-accent-border > div > div,
 .columns.cyan-accent-border > div > div,
 .columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img)),
@@ -162,8 +198,8 @@ main .section.blue-headings .columns span.icon {
   padding-left: unset;
 }
 
-.columns.numeric-list li::before {
-  content: unset;
+.columns.box-shadow-hover > div li {
+  padding-bottom: 1rem;
 }
 
 .columns.numeric-list li:last-of-type {
@@ -180,6 +216,25 @@ main .section.blue-headings .columns span.icon {
 .columns.numeric-list li:first-of-type > strong {
   font-size: 4rem;
   color: var(--color-cyan);
+}
+
+.columns.box-shadow-hover > div > div > h3 {
+  color: #133b5c;
+}
+
+.columns.box-shadow-hover > div > div:hover > h3, .columns.box-shadow-hover > div > div:hover img {
+  color: #006cb4;
+  fill: #006cb4;
+}
+
+.columns.box-shadow-hover.columns span.icon > img {
+  height: 150px;
+  width:auto;
+}
+
+.columns.box-shadow-hover > div > div:hover {
+  filter: drop-shadow(0 0 .5rem #DAD6D6);
+  background-color: var(--color-white);
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
@@ -234,8 +289,13 @@ main .section.blue-headings .columns span.icon {
     padding-left: 0;
   }
 
-  main .columns span.icon > img {
+  main .columns.numeric-list span.icon > img {
     width:3.75rem;
     height:3.75rem;
+  }
+
+  main .columns.logos.columns-4-cols span.icon > img {
+    height: 72px;
+    width: 100%;
   }
 }
