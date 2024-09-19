@@ -39,8 +39,11 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
 const locDivCreation = (location, ph) => {
   const locationDiv = div(
     { class: 'location-item', id: `location-${location.index}`, name: location.name },
-    p({ class: 'title' }, location.title),
   );
+
+  if (location.title) {
+    locationDiv.appendChild(p({ class: 'title' }, location.title));
+  }
 
   if (location['address-line-1'] && location['address-line-1'] !== '0') {
     locationDiv.appendChild(
@@ -514,6 +517,9 @@ const mapSearch = (ph, block, locations) => {
 };
 
 export default async function decorate(block) {
+  const defaultImage = block.querySelector('img'); // Default Image which we need to show initially
+  const defaultImageSrc = defaultImage?.src;
+  block.replaceChildren();
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const isDropoff = Boolean(getMetadata('is-drop-off'));
   const locations = await fetchLocations(isDropoff, ph);
@@ -522,6 +528,11 @@ export default async function decorate(block) {
     mapSearch(ph, block, locations),
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
+
+  if (defaultImageSrc) {
+    const mapContainer = block.querySelector('.map');
+    mapContainer.style.backgroundImage = `url(${defaultImageSrc})`;
+  }
 
   calculateLocationListDistance(locations, getCenterPoint());
   renderAndSortLocationList(locations, block, ph);
