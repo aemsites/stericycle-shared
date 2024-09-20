@@ -91,10 +91,13 @@
     order: 4;
 }
 
+.offer-box .offer-box-list-container p {
+    margin-bottom: 1.5rem;
+}
+
 .offer-box.alternate-1 .offer-box-list-container p {
     font-size: 1rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
 }
 
 .section.offer-box-container.two-columns > div.default-content-wrapper, .section.offer-box-container.three-columns > div.offer-box-wrapper {
