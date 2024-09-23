@@ -62,6 +62,10 @@ export default async function componentDecorator(element, fd, container) {
     await loadComponent('wizard', element, fd, container);
   }
 
+  if (fieldType === 'radio' && type === 'icon') {
+    await loadComponent('radio-icon', element, fd, container);
+  }
+
   if (getCustomComponents().includes(type) || OOTBComponentDecorators.includes(type)) {
     await loadComponent(type, element, fd, container);
   }
