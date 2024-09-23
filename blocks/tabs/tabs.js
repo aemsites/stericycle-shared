@@ -47,28 +47,30 @@ export default async function decorate(block) {
     }
 
     // decorate faq item label
-    const label = tabpanelCopy.children[1].querySelector('h3');
-    const summary = document.createElement('summary');
-    summary.className = 'tab-item-label';
-    summary.append(...label.childNodes);
-    if (!hasWrapper(summary)) {
-      summary.innerHTML = `${summary.innerHTML}`;
-      summary.innerHTML += '<span></span>';
-    }
-    // decorate faq item body
-    const body = tabpanelCopy;
-    body.className = 'tab-item-body';
-    if (!hasWrapper(body)) {
-      const bodyText = body.children[1].querySelector('p');
-      body.innerHTML = `<p>${bodyText ? bodyText.innerText : ''}</p>`;
-    }
-    // decorate faq item
-    const details = document.createElement('details');
-    details.className = 'tab-item';
-    details.append(summary, body);
-    tabpanel.append(details);
+    if (tabpanelCopy.children.length >= 3) {
+      const label = tabpanelCopy.children[1].querySelector('h3');
+      const summary = document.createElement('summary');
+      summary.className = 'tab-item-label';
+      summary.append(...label.childNodes);
+      if (!hasWrapper(summary)) {
+        summary.innerHTML = `${summary.innerHTML}`;
+        summary.innerHTML += '<span></span>';
+      }
+      // decorate faq item body
+      const body = tabpanelCopy;
+      body.className = 'tab-item-body';
+      if (!hasWrapper(body)) {
+        const bodyText = body.children[1].querySelector('p');
+        body.innerHTML = `<p>${bodyText ? bodyText.innerText : ''}</p>`;
+      }
+      // decorate faq item
+      const details = document.createElement('details');
+      details.className = 'tab-item';
+      details.append(summary, body);
+      tabpanel.append(details);
 
-    addAccordionAnimation(details);
+      addAccordionAnimation(details);
+    }
 
     // build tab button
     const button = document.createElement('button');
