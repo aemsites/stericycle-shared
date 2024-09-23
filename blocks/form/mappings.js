@@ -1,6 +1,6 @@
 import { loadCSS } from '../../scripts/aem.js';
 
-let customComponents = [];
+let customComponents = ['masked'];
 const OOTBComponentDecorators = ['file-input', 'wizard', 'tnc', 'toggleable-link'];
 
 export function setCustomComponents(components) {
