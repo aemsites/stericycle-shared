@@ -419,7 +419,7 @@ main .form form .wizard .wizard-menu-active-item::before{
   font-weight: 600;
 }
 
-@media (min-width: 600px) {
+@media (width >= 600px) {
     main .form button {
         width: unset;
     }
@@ -457,7 +457,7 @@ main .form form .wizard.left .panel-wrapper{
   flex: 1;
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     main .form form .checkbox-wrapper,
     main .form form .form-textarea-wrapper,
     main .form form .file-wrapper,
@@ -561,14 +561,4 @@ main .form .form-image-wrapper  img {
 main form .wizard > .current-wizard-step.panel-wrapper:first-of-type ~ .wizard-button-wrapper > .wizard-button-prev,
 main form .wizard > .current-wizard-step.panel-wrapper:last-of-type ~ .wizard-button-wrapper > .wizard-button-next {
     display: none;
-}
-
-main form .wizard > .wizard-button-wrapper > .submit-wrapper {
-  display: none;
-  width: unset;
-}
-
-main form .wizard >
-.current-wizard-step.panel-wrapper:last-of-type ~ .wizard-button-wrapper > .submit-wrapper {
-  display: block;
 }

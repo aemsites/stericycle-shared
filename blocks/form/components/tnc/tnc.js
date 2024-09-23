@@ -1,5 +1,5 @@
-const textIntersectionClass = 'tnc-text-intersect';
-const textDecorationClass = 'tnc-text-decoration';
+const textIntersectionClass = 'tnc__text-intersect';
+const textDecorationClass = 'tnc__text-decoration';
 
 class TermsAndConditions {
   constructor(fieldDiv, fieldJson) {
@@ -20,7 +20,6 @@ class TermsAndConditions {
   decorate() {
     const textWrapper = this.fieldDiv.querySelector('.plain-text-wrapper');
     if (!textWrapper) { // rendition does not have a plain-text-wrapper => link rendition of TnC
-      // eslint-disable-next-line no-console
       console.debug('No plain-text found in TnC field. Assuming Link based rendition and Skipping decoration.');
       return;
     }

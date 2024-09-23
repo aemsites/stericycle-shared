@@ -159,8 +159,8 @@ export default class DocBasedFormToAF {
     Options: 'enum',
     OptionNames: 'enumNames',
     Visible: 'visible',
-    Repeatable: 'repeatable',
     Icon: 'icon',
+    Repeatable: 'repeatable',
     Style: 'appliedCssClassNames',
     'Required Error Message': 'constraintMessages.required',
     'Pattern Error Message': 'constraintMessages.pattern',
@@ -191,7 +191,7 @@ export default class DocBasedFormToAF {
      *
      * @return {{formDef: any, excelData: any}} response
      */
-  transform(exData, { name } = { name: 'Form' }) {
+  transform(exData, path, { name } = { name: 'Form' }) {
     this.errors = [];
     // if its adaptive form json just return it.
     if (exData?.adaptiveform) {
@@ -222,6 +222,7 @@ export default class DocBasedFormToAF {
             formDef.thankYouMsg = submitValue;
           }
         }
+
         if (field?.fieldType.startsWith('fieldset')) {
           this.panelMap.set(field?.name, field);
           delete field?.constraintMessages;
@@ -236,6 +237,7 @@ export default class DocBasedFormToAF {
       }
     });
     formDef.properties.rules = { fieldIdMap, rules };
+    formDef.action = path?.split('.json')[0];
     return formDef;
   }
 

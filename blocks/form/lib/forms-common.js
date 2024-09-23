@@ -6,16 +6,12 @@ import {
   checkValidation,
   toClassName,
 } from './util.js';
-import GoogleReCaptcha from './integrations/recaptcha.js';
-import componentDecorator from './mappings.js';
-import DocBasedFormToAF from './transform.js';
-import transferRepeatableDOM from './components/repeat/repeat.js';
-import { handleSubmit } from './submit.js';
-import { getSubmitBaseUrl, emailPattern } from './constant.js';
+import GoogleReCaptcha from '../integrations/recaptcha.js';
+import componentDecorator from '../mappings.js';
+import transferRepeatableDOM from '../components/repeat/repeat.js';
+import { emailPattern } from '../constant.js';
 
-export const DELAY_MS = 0;
 let captchaField;
-let afModule;
 
 const withFieldWrapper = (element) => (fd) => {
   const wrapper = createFieldWrapper(fd);
@@ -294,6 +290,7 @@ function inputDecorator(field, element) {
       input.setAttribute('display-value', field.displayValue ?? '');
       input.type = 'text';
       input.value = field.displayValue ?? '';
+      input.addEventListener('touchstart', () => { input.type = field.type; }); // in mobile devices the input type needs to be toggled before focus
       input.addEventListener('focus', () => handleFocus(input, field));
       input.addEventListener('blur', () => handleFocusOut(input));
     } else if (input.type !== 'file') {
@@ -324,7 +321,7 @@ function inputDecorator(field, element) {
       input.setAttribute('value', field.default);
     }
     if (input.type === 'email') {
-      input.pattern = emailPattern;
+      input.pattern = emailPattern || '';
     }
     setConstraintsMessage(element, field.constraintMessages);
     element.dataset.required = field.required;
@@ -391,21 +388,38 @@ function enableValidation(form) {
   });
 }
 
-async function createFormForAuthoring(formDef) {
-  const form = document.createElement('form');
-  await generateFormRendition(formDef, form, (container) => {
-    if (container[':itemsOrder'] && container[':items']) {
-      return container[':itemsOrder'].map((itemKey) => container[':items'][itemKey]);
+async function handleSubmit(e, form, captcha, submitHandler) {
+  e.preventDefault();
+  const valid = form.checkValidity();
+  if (valid) {
+    e.submitter?.setAttribute('disabled', '');
+    if (form.getAttribute('data-submitting') !== 'true') {
+      form.setAttribute('data-submitting', 'true');
+
+      // hide error message in case it was shown before
+      form.querySelectorAll('.form-message.show').forEach((el) => el.classList.remove('show'));
+
+      if (typeof submitHandler === 'function') {
+        await submitHandler({
+          formEl: form,
+          captcha,
+        });
+      }
     }
-    return [];
-  });
-  return form;
+  } else {
+    const firstInvalidEl = form.querySelector(':invalid:not(fieldset)');
+    if (firstInvalidEl) {
+      firstInvalidEl.focus();
+      firstInvalidEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }
 
-export async function createForm(formDef, data) {
-  const { action: formPath } = formDef;
+export async function createForm(formDef, data, {
+  submitHandler,
+  onFormLoad,
+}) {
   const form = document.createElement('form');
-  form.dataset.action = formPath;
   form.noValidate = true;
   if (formDef.appliedCssClassNames) {
     form.className = formDef.appliedCssClassNames;
@@ -422,155 +436,25 @@ export async function createForm(formDef, data) {
   enableValidation(form);
   transferRepeatableDOM(form);
 
-  if (afModule) {
-    window.setTimeout(async () => {
-      afModule.loadRuleEngine(formDef, form, captcha, generateFormRendition, data);
-    }, DELAY_MS);
+  form.dataset.redirectUrl = formDef.redirectUrl || '';
+  form.dataset.thankYouMsg = formDef.thankYouMsg || '';
+  form.dataset.action = formDef.action || '';
+  if (typeof onFormLoad === 'function') {
+    await onFormLoad({
+      formEl: form,
+      data,
+      captcha,
+    });
   }
 
   form.addEventListener('reset', async () => {
-    const newForm = await createForm(formDef);
+    const newForm = await createForm(formDef, data, onFormLoad);
     document.querySelector(`[data-action="${formDef.action}"]`).replaceWith(newForm);
   });
 
   form.addEventListener('submit', (e) => {
-    handleSubmit(e, form, captcha);
+    handleSubmit(e, form, captcha, submitHandler);
   });
 
   return form;
-}
-
-function cleanUp(content) {
-  const formDef = content.replaceAll('^(([^<>()\\\\[\\\\]\\\\\\\\.,;:\\\\s@\\"]+(\\\\.[^<>()\\\\[\\\\]\\\\\\\\.,;:\\\\s@\\"]+)*)|(\\".+\\"))@((\\\\[[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}])|(([a-zA-Z\\\\-0-9]+\\\\.)\\+[a-zA-Z]{2,}))$', '');
-  return formDef?.replace(/\x83\n|\n|\s\s+/g, '');
-}
-/*
-  Newer Clean up - Replace backslashes that are not followed by valid json escape characters
-  function cleanUp(content) {
-    return content.replace(/\\/g, (match, offset, string) => {
-      const prevChar = string[offset - 1];
-      const nextChar = string[offset + 1];
-      const validEscapeChars = ['b', 'f', 'n', 'r', 't', '"', '\\'];
-      if (validEscapeChars.includes(nextChar) || prevChar === '\\') {
-        return match;
-      }
-      return '';
-    });
-  }
-*/
-
-function decode(rawContent) {
-  const content = rawContent.trim();
-  if (content.startsWith('"') && content.endsWith('"')) {
-    // In the new 'jsonString' context, Server side code comes as a string with escaped characters,
-    // hence the double parse
-    return JSON.parse(JSON.parse(content));
-  }
-  return JSON.parse(cleanUp(content));
-}
-
-function extractAEMFormDefinition(block) {
-  let formDef;
-  const container = block.querySelector('pre');
-  const codeEl = container?.querySelector('code');
-  const content = codeEl?.textContent;
-  if (content) {
-    formDef = decode(content);
-  }
-  return { container, formDef };
-}
-
-export async function fetchForm(pathname) {
-  // get the main form
-  let data;
-  let path = pathname;
-  if (path.startsWith(window.location.origin) && !path.endsWith('.json')) {
-    if (path.endsWith('.html')) {
-      path = path.substring(0, path.lastIndexOf('.html'));
-    }
-    path += '/jcr:content/root/section/form.html';
-  }
-  let resp = await fetch(path);
-
-  if (resp?.headers?.get('Content-Type')?.includes('application/json')) {
-    data = await resp.json();
-  } else if (resp?.headers?.get('Content-Type')?.includes('text/html')) {
-    resp = await fetch(path);
-    data = await resp.text().then((html) => {
-      try {
-        const doc = new DOMParser().parseFromString(html, 'text/html');
-        if (doc) {
-          // eslint-disable-next-line no-use-before-define
-          return extractFormDefinition(doc.body).formDef;
-        }
-        return doc;
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error('Unable to fetch form definition for path', pathname, path);
-        return null;
-      }
-    });
-  }
-  return data;
-}
-
-export async function extractFormDefinition(block) {
-  let container = block.querySelector('a[href]');
-  let formDef;
-  let pathname;
-  if (container) {
-    ({ pathname } = new URL(container.href));
-    formDef = await fetchForm(container.href);
-  } else {
-    ({ container, formDef } = extractAEMFormDefinition(block));
-  }
-  return {
-    container, formDef, pathname,
-  };
-}
-
-export function isDocumentBasedForm(formDef) {
-  return formDef?.[':type'] === 'sheet' && formDef?.data;
-}
-
-export async function renderAEMForm(formDef, editMode = false) {
-  afModule = await import('./rules/index.js');
-  let form;
-  if (afModule && afModule.initAdaptiveForm && !editMode) {
-    form = await afModule.initAdaptiveForm(formDef, createForm);
-  } else {
-    form = await createFormForAuthoring(formDef);
-  }
-  if (formDef.properties) {
-    form.dataset.formpath = formDef.properties['fd:path'];
-  }
-  return form;
-}
-
-export async function renderSheetForm(sheetData) {
-  const transform = new DocBasedFormToAF();
-  const formDef = transform.transform(sheetData);
-  const form = await createForm(formDef);
-  const docRuleEngine = await import('./rules-doc/index.js');
-  docRuleEngine.default(formDef, form);
-  return form;
-}
-
-export default async function renderForm(block) {
-  const { container, formDef, pathname } = await extractFormDefinition(block);
-  const source = isDocumentBasedForm(formDef) ? 'sheet' : 'aem';
-  if (formDef) {
-    formDef.action = getSubmitBaseUrl() + (formDef.action || '');
-    const form = source === 'sheet'
-      ? await renderSheetForm(formDef)
-      : await renderAEMForm(formDef, block.classList.contains('edit-mode'));
-    form.dataset.redirectUrl = formDef.redirectUrl || '';
-    form.dataset.thankYouMsg = formDef.thankYouMsg || '';
-    form.dataset.action = formDef.action || pathname?.split('.json')[0];
-    form.dataset.source = source;
-    form.dataset.id = formDef.id;
-    container.replaceWith(form);
-    return form;
-  }
-  return null;
 }
