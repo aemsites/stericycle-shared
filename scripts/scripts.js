@@ -275,6 +275,33 @@ async function decorateTemplates(main) {
 }
 
 /**
+ * decorates external links to open in new window
+ * for styling updates via CSS
+ * @param {Element}s element The element to decorate
+ * @returns {void}
+ */
+export function decorateExternalAnchors(externalAnchors) {
+  if (externalAnchors.length) {
+    externalAnchors.forEach((a) => {
+      a.target = '_blank';
+    });
+  }
+}
+
+/**
+ * decorates anchors
+ * for styling updates via CSS
+ * @param {Element} element The element to decorate
+ * @returns {void}
+ */
+export function decorateAnchors(element = document) {
+  const anchors = element.getElementsByTagName('a');
+  decorateExternalAnchors(Array.from(anchors).filter(
+    (a) => a.href && !a.href.match(`^http[s]*://${window.location.host}/`),
+  ));
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -282,6 +309,7 @@ async function decorateTemplates(main) {
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
+  decorateAnchors(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);

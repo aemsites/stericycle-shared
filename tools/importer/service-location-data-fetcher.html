@@ -14,10 +14,21 @@
         const json = JSON.parse(contents);
         console.log(json);
 
+        const dropoffResponse = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://www.shredit.com/content/shred-it/us/en/service-locations/jcr:content/root/container/pagesection/servicelocationfinde.dropoff.json')}`);
+        const dropoffContent = (await dropoffResponse.json()).contents;
+        const dropoffJson = JSON.parse(dropoffContent);
+        console.log("DropOff Json", dropoffJson);
+
         const locations = {};
         json.forEach((entry) => {
-          const { url, title, address1, address2, city, zipCode, state, longitude, latitude, openingHours, dropOffDetails, additionalCities, country } = entry;
-          locations[url] = { title, address1, address2, city, zipCode, state, longitude, latitude, openingHours, dropOffDetails, additionalCities, country };
+          for (const dropoffEntry of dropoffJson) {
+            if (dropoffEntry.url === entry.url) {
+              entry.subType = 'drop-off';
+              break;
+            }
+          }
+          const { url, title, address1, address2, city, zipCode, state, longitude, latitude, openingHours, dropOffDetails, additionalCities, country, subType, } = entry;
+          locations[url] = { title, address1, address2, city, zipCode, state, longitude, latitude, openingHours, dropOffDetails, additionalCities, country, subType };
         });
         console.log(locations);
       }

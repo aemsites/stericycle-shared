@@ -5,7 +5,6 @@ import {
   div,
   p,
   span,
-  h2,
   input,
   button,
 } from '../../scripts/dom-helpers.js';
@@ -14,12 +13,11 @@ import {
   loadScript,
   loadCSS,
   fetchPlaceholders,
-  isDesktop,
   getMetadata,
 } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
 import usStates from './us-states.js';
-import { getLocale } from '../../scripts/scripts.js';
+import { decorateAnchors, getLocale } from '../../scripts/scripts.js';
 
 let map = null;
 
@@ -41,8 +39,11 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
 const locDivCreation = (location, ph) => {
   const locationDiv = div(
     { class: 'location-item', id: `location-${location.index}`, name: location.name },
-    p({ class: 'title' }, location.title),
   );
+
+  if (location.title) {
+    locationDiv.appendChild(p({ class: 'title' }, location.title));
+  }
 
   if (location['address-line-1'] && location['address-line-1'] !== '0') {
     locationDiv.appendChild(
@@ -99,10 +100,10 @@ const locDivCreation = (location, ph) => {
     );
   }
 
-  if (location['location-link'] && location.title) {
+  if (location['location-link'] && location.title && location.path) {
     locationDiv.appendChild(
       a(
-        { class: 'location', href: `${window.location.pathname}/${location.title.toLowerCase().trim().split(' ').join('-')}` },
+        { class: 'location', href: location.path },
         location['location-link'],
       ),
     );
@@ -148,6 +149,7 @@ async function fetchLocations(isDropoff, ph) {
         name: getValueOrNull(x.name),
         'additional-cities': getValueOrNull(x['additional-cities']),
         'sub-type': getValueOrNull(x['sub-type']),
+        path: getValueOrNull(x.path),
       };
 
       if (isDropoff) {
@@ -335,56 +337,37 @@ const dragAndZoom = (locations, block, ph) => {
  */
 const mapInitialization = async (locations, block, ph) => {
   const centerPoint = getCenterPoint();
-  if (isDesktop()) {
-    await loadScript('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.js');
-    await loadCSS('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.css');
-    mapboxgl.accessToken = getAccessToken();
-    const mapContainer = block.querySelector('.map');
-    mapContainer.innerHTML = '';
+  await loadScript('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.js');
+  await loadCSS('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.css');
+  mapboxgl.accessToken = getAccessToken();
+  const mapContainer = block.querySelector('.map');
+  mapContainer.innerHTML = '';
 
-    map = new mapboxgl.Map({
-      container: mapContainer,
-      style: 'mapbox://styles/mapbox/light-v8',
-      pitchWithRotate: false,
-      dragRotate: false,
-      scrollZoom: true,
-      dragPan: true,
-      boxZoom: false,
-    });
-
-    map.setCenter([centerPoint.longitude, centerPoint.latitude]);
-    map.setZoom(centerPoint.zoom);
-    applyMarkers(locations);
-
-    map.on('load', () => {
-      map.setCenter([centerPoint.longitude, centerPoint.latitude]);
-    });
-
-    map.on('dragend', () => {
-      dragAndZoom(locations, block, ph);
-    });
-
-    map.on('zoomend', () => {
-      dragAndZoom(locations, block, ph);
-    });
-  }
-};
-
-const searchMatch = (locations, city, placeName, zipCode) => {
-  const matchedLocations = locations.filter((item) => {
-    const itemCity = item.city;
-    const itemZipCode = item['zip-code'];
-    const additionalCitiesArray = item['additional-cities']?.split(',')
-      .map((cityTemp) => cityTemp.trim())
-      .filter((cityTemp) => cityTemp.length > 0);
-
-    return (city && itemCity && (city === itemCity))
-      || (placeName && itemCity && placeName.search(itemCity) !== -1)
-      || (itemZipCode && zipCode && (itemZipCode === zipCode))
-      || (additionalCitiesArray?.some((element) => element?.trim().indexOf(city) !== -1));
+  map = new mapboxgl.Map({
+    container: mapContainer,
+    style: 'mapbox://styles/mapbox/light-v8',
+    pitchWithRotate: false,
+    dragRotate: false,
+    scrollZoom: true,
+    dragPan: true,
+    boxZoom: false,
   });
 
-  return matchedLocations.length > 0 ? matchedLocations : [];
+  map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+  map.setZoom(centerPoint.zoom);
+  applyMarkers(locations);
+
+  map.on('load', () => {
+    map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+  });
+
+  map.on('dragend', () => {
+    dragAndZoom(locations, block, ph);
+  });
+
+  map.on('zoomend', () => {
+    dragAndZoom(locations, block, ph);
+  });
 };
 
 const setMapError = (block, text) => {
@@ -436,14 +419,7 @@ const mapInputSearchOnCLick = async (block, locations, ph) => {
       zipcode: data.features[0].zipcode,
     };
 
-    const result = searchMatch(
-      locations,
-      resultObj.city,
-      resultObj.placeName,
-      resultObj.zipcode,
-    );
-
-    if (map && result.length > 0) {
+    if (map && locations.length > 0) {
       if (stateFound) {
         const { bbox } = stateFound;
         await map.fitBounds([
@@ -517,7 +493,7 @@ const mapInputLocationOnClick = (block, locations, ph) => {
  * @param {*} isDropoff
  * @returns
  */
-const mapSearch = (ph, block, locations, isDropoff) => {
+const mapSearch = (ph, block, locations) => {
   const mapInputSearch = button({ class: 'map-input-search' }, ph.searchtext);
   mapInputSearch.addEventListener('click', async () => {
     await mapInputSearchOnCLick(block, locations, ph);
@@ -530,8 +506,6 @@ const mapSearch = (ph, block, locations, isDropoff) => {
 
   return div(
     { class: 'map-search' },
-    h2(ph.servicemapdropofftext),
-    p(isDropoff ? ph.servicemapbranchtext : ph.servicemapziptext),
     div(
       { class: 'map-input-details' },
       input({ class: 'map-input', 'aria-label': 'Search' }),
@@ -543,16 +517,25 @@ const mapSearch = (ph, block, locations, isDropoff) => {
 };
 
 export default async function decorate(block) {
+  const defaultImage = block.querySelector('img'); // Default Image which we need to show initially
+  const defaultImageSrc = defaultImage?.src;
+  block.replaceChildren();
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const isDropoff = Boolean(getMetadata('is-drop-off'));
   const locations = await fetchLocations(isDropoff, ph);
 
   block.append(
-    mapSearch(ph, block, locations, isDropoff),
+    mapSearch(ph, block, locations),
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
+  if (defaultImageSrc) {
+    const mapContainer = block.querySelector('.map');
+    mapContainer.style.backgroundImage = `url(${defaultImageSrc})`;
+  }
+
   calculateLocationListDistance(locations, getCenterPoint());
   renderAndSortLocationList(locations, block, ph);
+  decorateAnchors(block);
   window.setTimeout(() => mapInitialization(locations, block, ph), 3000);
 }
