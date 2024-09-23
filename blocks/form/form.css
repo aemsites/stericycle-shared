@@ -603,3 +603,7 @@ main .form form .field-wrapper .shell i {
 main .form form .field-wrapper.focus .shell {
     opacity: 1
 }
+
+main .form form .field-wrapper input:focus::placeholder {
+    opacity: 0
+}
