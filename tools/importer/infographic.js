@@ -53,6 +53,10 @@ function setMetadata(meta, document) {
   console.log(document.documentURI);
   if (document.documentURI.includes('info-sheets')) {
     meta['media-type'] = 'Info Sheets';
+  } else if (document.documentURI.includes('/resource-center/posters/')) {
+    meta['media-type'] = 'poster';
+  } else if (document.documentURI.includes('/resource-center/assessments/')) {
+    meta['media-type'] = 'assessment';
   } else if (document.documentURI.includes('/resource-center/newsletters/')) {
     meta['media-type'] = 'newsletter';
   } else {
