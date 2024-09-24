@@ -36,6 +36,7 @@ function decorateResults(posts, list, sheet) {
     categoryDiv.append(categoryLink);
     heading.classList.add('item-title');
     const headingLink = document.createElement('a');
+    console.log(post);
     headingLink.href = post.path;
     headingLink.setAttribute('aria-label', post.title);
     headingLink.innerText = post.title;
@@ -116,6 +117,7 @@ async function updateResults(checkboxChange, sheet, page = 1) {
       title: post.title,
       date: post.date,
       image: post.image,
+      path: post.path,
     }))
     .filter((post) => !checkboxChange || filterTags(
       checkboxChange,
