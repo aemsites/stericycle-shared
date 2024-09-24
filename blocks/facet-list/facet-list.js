@@ -30,13 +30,12 @@ function decorateResults(posts, list, sheet) {
     const categoryLink = document.createElement('a');
     const dateDiv = document.createElement('div');
     categoryLink.href = window.location.pathname;
-    categoryLink.innerText = sheet;
+    categoryLink.innerText = post.type;
     categoryLink.classList.add('initial-caps');
     categoryLink.setAttribute('aria-label', sheet);
     categoryDiv.append(categoryLink);
     heading.classList.add('item-title');
     const headingLink = document.createElement('a');
-    console.log(post);
     headingLink.href = post.path;
     headingLink.setAttribute('aria-label', post.title);
     headingLink.innerText = post.title;
@@ -110,20 +109,26 @@ function filterTags(cbox, includes) {
     * @param {Object} checkboxChange - the checkbox that was clicked
     * @param {String} sheet - the sheet name
  */
-async function updateResults(checkboxChange, sheet, page = 1) {
-  const posts = await ffetch('/query-index.json').sheet(sheet || 'blog')
+async function updateResults(checkboxChange, sheets = [], page = 1) {
+  let sheetList = Array.isArray(sheets) ? sheets : sheets.split(',');
+  sheetList = sheetList.map((sheet) => String(sheet.trim()));
+
+  const posts = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json').sheet(sheet)
     .map((post) => ({
       tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
       title: post.title,
       date: post.date,
       image: post.image,
       path: post.path,
+      type: post['media-type'],
     }))
     .filter((post) => !checkboxChange || filterTags(
       checkboxChange,
       post.tags.includes(checkboxChange.value),
     ))
-    .all();
+    .all())).then((results) => results.flat());
+
+  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
   const start = (page - 1) * ITEMS_PER_PAGE;
@@ -132,10 +137,10 @@ async function updateResults(checkboxChange, sheet, page = 1) {
 
   const flc = document.querySelector('div.facet-list-container> div.results> ul');
   flc.innerHTML = '';
-  decorateResults(paginatedPosts, flc, sheet);
+  decorateResults(paginatedPosts, flc, sheetList.join(', '));
 
   const paginationControls = document.querySelector('div.pagination-controls');
-  createPaginationControls(totalPages, page, flc, paginationControls, sheet);
+  createPaginationControls(totalPages, page, flc, paginationControls, sheetList.join(', '));
 
   if (checkboxChange) {
     const checkboxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]');
@@ -150,10 +155,13 @@ async function updateResults(checkboxChange, sheet, page = 1) {
 /*
     * This function gets the results from the query-index.json file based on sheet name
  */
-async function getResults(sheet) {
+async function getResults(sheets = []) {
+  let sheetList = Array.isArray(sheets) ? sheets : [sheets];
+  sheetList = sheetList.map((sheet) => String(sheet.trim()));
+
   const postArray = [];
-  const posts = await ffetch('/query-index.json').sheet(sheet || 'blog')
-    .limit(ITEMS_PER_PAGE).all();
+  const posts = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json')
+    .sheet(sheet).all())).then((results) => results.flat());
   posts.forEach((post) => {
     postArray.push(post);
   });
@@ -163,18 +171,21 @@ async function getResults(sheet) {
 /*
     * This function gets the facets from the query-index.json file based on sheet name
  */
-async function getFacets(sheet) {
+async function getFacets(sheets = []) {
+  let sheetList = Array.isArray(sheets) ? sheets : sheets.split(',');
+  sheetList = sheetList.map((sheet) => String(sheet.trim()));
+
   const facetArray = [];
-  const facets = await ffetch('/query-index.json')
-    .sheet(sheet || 'blog')
-    .all();
+  const facets = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json')
+    .sheet(sheet).all()))
+    .then((results) => results.flat());
+
   const tagJson = {};
   facets.forEach((facet) => {
     const tags = facet.tags.split(',');
     tags.forEach((tag) => {
       const cleanTag = tag.trim().replaceAll(/["[\]]/g, '');
-      // toss out blog tags and empty ones
-      if (cleanTag === '' || cleanTag.toLowerCase().includes(sheet)) {
+      if (cleanTag === '' || sheetList.some((sheet) => cleanTag.toLowerCase().includes(sheet))) {
         return;
       }
       const existingTag = facetArray.find((e) => e.tag === cleanTag);
@@ -208,7 +219,7 @@ function clickChevron() {
 
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
-  const facets = await getFacets(cfg.sheet);
+  const facets = await getFacets(cfg.sheet.split(','));
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const { blogtopic } = ph;
   const facetDiv = document.createElement('div');
@@ -245,7 +256,7 @@ export default async function decorate(block) {
     checkbox.type = 'checkbox';
     checkbox.value = facet.tag;
     checkbox.addEventListener('change', (cb) => {
-      updateResults(cb.target, cfg.sheet);
+      updateResults(cb.target, cfg.sheet.split(','));
     });
     topic.append(checkbox);
     topic.append(label);
@@ -256,7 +267,8 @@ export default async function decorate(block) {
   const resultsDiv = document.createElement('div');
   resultsDiv.classList.add('results');
   const resultsList = document.createElement('ul');
-  const posts = await getResults(cfg.sheet);
+  const listOfSheets = cfg.sheet.split(',');
+  const posts = await getResults(listOfSheets);
   decorateResults(posts, resultsList, cfg.sheet);
   resultsDiv.append(resultsList);
   const blogFilterContainer = document.createElement('div');
