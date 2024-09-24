@@ -188,6 +188,10 @@ main .columns span.icon > img {
   background: var(--color-cyan);
 }
 
+.block.columns.center-align > div {
+  align-items: center;
+}
+
 .columns.orange-accent-border.columns-has-image > div > div,
 .columns.cyan-accent-border.columns-has-image > div > div {
   border: unset;
@@ -248,10 +252,6 @@ main .section.blue-headings .columns span.icon {
 .columns.box-shadow-hover > div > div:hover {
   filter: drop-shadow(0 0 .5rem #DAD6D6);
   background-color: var(--color-white);
-}
-
-.block.columns.center-align > div {
-  align-items: center;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
