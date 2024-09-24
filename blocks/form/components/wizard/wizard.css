@@ -1,0 +1,26 @@
+main .form form .wizard .wizard-button-wrapper {
+  justify-content: space-between;
+}
+
+main .form form .wizard .wizard-menu-items {
+  justify-content: space-between;
+  background: linear-gradient(transparent, transparent 40%, #dad6d6 0, #dad6d6 60%, transparent 0);
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(40%, transparent), color-stop(40%, #dad6d6), color-stop(60%, #dad6d6), color-stop(60%, transparent));
+  padding-bottom: 0;
+}
+
+main .form form .wizard .wizard-menu-items .wizard-menu-item {
+  border: 4px solid #dad6d6;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+}
+
+main .form form .wizard .wizard-menu-items .wizard-menu-item.wizard-menu-active-item {
+  background-color: #006cb4;
+}
+
+main .form form .wizard .wizard-menu-item::before {
+  content: unset;
+}
