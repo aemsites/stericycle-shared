@@ -575,8 +575,8 @@ header nav .logo-only + .nav-hamburger {
 
 @media (min-width: 992px) {
   header nav.alt-two.hide {
-    opacity: unset;
-    display: flex;
+    opacity: 0;
+    display: none;
   }
 
   nav.alt-two .nav-sections,
