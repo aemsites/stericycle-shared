@@ -162,6 +162,7 @@ export default class DocBasedFormToAF {
     OptionNames: 'enumNames',
     Visible: 'visible',
     Icon: 'icon',
+    Mask: 'mask',
     Repeatable: 'repeatable',
     Style: 'appliedCssClassNames',
     'Required Error Message': 'constraintMessages.required',

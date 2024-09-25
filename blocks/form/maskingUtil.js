@@ -37,7 +37,8 @@ const masking = {
   },
 
   handleValueChange: (e) => {
-    const shell = e.target?.previousElementSibling;
+    const fieldWrapper = e.target.closest('.field-wrapper');
+    const shell = fieldWrapper.querySelector('.shell');
 
     // eslint-disable-next-line default-case
     switch (e.keyCode) {
