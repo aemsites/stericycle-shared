@@ -152,6 +152,7 @@ export default class DocBasedFormToAF {
     Name: 'name',
     ReadOnly: 'readOnly',
     Description: 'description',
+    'Short Description': 'tooltip',
     Type: 'fieldType',
     Label: 'label.value',
     Mandatory: 'required',
