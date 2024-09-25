@@ -50,7 +50,9 @@ const isRepeatableFieldset = (e) => isFieldset(e) && e.getAttribute('data-repeat
 const isDataElement = (element) => element.tagName !== 'BUTTON' && !isFieldset(element) && element.name;
 
 function getValue(fe) {
-  if (fe.type === 'checkbox' || fe.type === 'radio') {
+  if (fe.type === 'radio') {
+    return fe.form.elements[fe.name].value;
+  } if (fe.type === 'checkbox') {
     if (fe.checked) return coerceValue(fe.value);
   } else if (fe.tagName === 'OUTPUT') {
     return fe.dataset.value;
@@ -253,14 +255,14 @@ export default class RuleEngine {
         }
         this.applyRules(rules);
       }
-      Object.entries(this.formRules).forEach(([fId, rules]) => {
-        rules.forEach((rule) => {
-          const newValue = this.formula.evaluate(rule.ast, this.data);
-          const handler = this[`${rule.prop}Update`];
-          if (handler instanceof Function) {
-            handler.apply(this, [fId, newValue]);
-          }
-        });
+    });
+    Object.entries(this.formRules).forEach(([fId, rules]) => {
+      rules.forEach((rule) => {
+        const newValue = this.formula.evaluate(rule.ast, this.data);
+        const handler = this[`${rule.prop}Update`];
+        if (handler instanceof Function) {
+          handler.apply(this, [fId, newValue]);
+        }
       });
     });
 
