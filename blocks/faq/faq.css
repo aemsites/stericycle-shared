@@ -7,6 +7,29 @@ main .section.faq-container > div {
   margin-bottom: 40px;
 }
 
+.faq-plain {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  text-align: left;
+  border-bottom: .0625rem solid var(--color-light-silver);
+}
+
+.faq-plain:first-child {
+  border-top: .0625rem solid var(--color-light-silver);
+}
+
+.section.cyan-border .faq-plain {
+  border-bottom: .0625rem solid var(--color-cyan)
+}
+
+.section.cyan-border .faq-plain:first-child {
+  border-top: .0625rem solid var(--color-cyan);
+}
+
 .faq details {
   border-top: 1px solid var(--color-light-silver);
   border-bottom: 1px solid var(--color-light-silver);
@@ -185,4 +208,40 @@ main .section.faq-container > div {
     font-size: var(--body-font-size-xs);
     line-height: 1.125rem;
   }
+}
+
+@media screen and (min-width: 992px) {
+  .faq-plain {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+    text-align: left;
+    border-bottom: .0625rem solid var(--color-light-silver);
+  }
+
+  .faq-plain:first-child {
+    border-top: .0625rem solid var(--color-light-silver);
+  }
+
+  .section.cyan-border .faq-plain {
+    border-bottom: .0625rem solid var(--color-cyan)
+  }
+
+  .section.cyan-border .faq-plain:first-child {
+    border-top: .0625rem solid var(--color-cyan);
+  }
+
+  .faq-plain > div:first-child {
+    width: 25%;
+    
+  }
+
+  .faq-plain div:nth-child(2){
+    width: 65%;
+  }
+
+
 }
