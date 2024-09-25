@@ -537,13 +537,21 @@ export default async function decorate(block) {
     navTools.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navTool) => {
       if (navTool.querySelector('a')) {
         if (navTool.querySelector('a').getAttribute('title').startsWith('Customer Service')
-            || navTool.querySelector('a').getAttribute('title').startsWith('Sales')) {
+            || navTool.querySelector('a').getAttribute('title').startsWith('Sales')
+            || navTool.querySelector('a').getAttribute('title').startsWith('855-978-1045')) {
           navTool.querySelector('a').classList.add('tel');
         }
         if (navTool.querySelector('a').getAttribute('title').startsWith('Find Your')) {
           navTool.querySelector('a').classList.add('loc');
         }
       }
+
+      // make buttons
+      const paragraph = document.createElement('p');
+      const btn = navTools.querySelector('strong').cloneNode(true);
+      paragraph.append(btn);
+      decorateButtons(paragraph);
+      navTools.querySelector('strong').replaceWith(paragraph);
 
       if (navTool.querySelector('ul')) {
         navTool.classList.add('nav-drop');
@@ -718,4 +726,9 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
   block.parentElement.classList.add('appear');
+
+  // variant for the alt-two header
+  if (block.querySelector('.alt-two')) {
+    nav.classList.add('alt-two', 'hide');
+  }
 }
