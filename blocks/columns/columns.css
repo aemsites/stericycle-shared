@@ -188,6 +188,10 @@ main .columns span.icon > img {
   background: var(--color-cyan);
 }
 
+.block.columns.center-align > div {
+  align-items: center;
+}
+
 .columns.orange-accent-border.columns-has-image > div > div,
 .columns.cyan-accent-border.columns-has-image > div > div {
   border: unset;
