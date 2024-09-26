@@ -442,6 +442,28 @@ main .section.navy-background.image {
   position: relative;
 }
 
+main .section.shredded-paper-background {
+  background-image: url("/images/media_1fbb3017116cabdcfddffa6fc667e77de61f301fd.png");
+  background-size: cover;
+  background-color: var(--color-navy);
+  background-position-x: 50%;
+  background-position-y: calc(100% - 75px);
+  background-repeat: no-repeat;
+}
+
+main .section.shredded-paper-background > div:first-of-type > p > .icon {
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+main .section.shredded-paper-background > div:first-of-type > p > span.icon > img {
+  max-width: 100%;
+  height: auto;
+  width: 33%;
+}
+
 main .section.blue-background,
 main .block.blue-background {
   background-color: var(--color-blue);

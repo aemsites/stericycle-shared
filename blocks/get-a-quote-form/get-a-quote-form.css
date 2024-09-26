@@ -1,5 +1,7 @@
 .get-a-quote-form {
   box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+  background-color: var(--color-white);
+  border-radius: 4px;
 }
 
 .get-a-quote-form > .header {

@@ -455,6 +455,53 @@ const telephoneIconOnClick = (navTools) => {
   }
 };
 
+/*
+    * Function to the alt nav hiding/showing logic
+ */
+function altNavDecorate(block, nav) {
+  if (block.querySelector('.alt-two')) {
+    const mainHeader = document.querySelector('header');
+    mainHeader.classList.add('hide');
+    const observer = new IntersectionObserver((entries) => {
+      const navAlt = document.querySelector('nav.alt-nav');
+      if (!entries[0].isIntersecting) {
+        mainHeader.classList.remove('hide');
+        nav.classList.remove('hide');
+        nav.classList.add('show');
+        navAlt.classList.remove('hide');
+        navAlt.classList.add('show');
+      } else {
+        mainHeader.classList.add('hide');
+        nav.classList.remove('show');
+        nav.classList.add('hide');
+        navAlt.classList.remove('show');
+        navAlt.classList.add('hide');
+      }
+    });
+    const sectionSubNav = block.querySelector('.nav-sections > div.default-content-wrapper > ul');
+    if (sectionSubNav) {
+      const mobileClone = sectionSubNav.cloneNode(true);
+      const altDiv = document.createElement('div');
+      const altDivNav = document.createElement('nav');
+      const altDivNavSection = document.createElement('div');
+      const altDivNavWrapper = document.createElement('div');
+      altDivNavWrapper.className = 'default-content-wrapper';
+      altDivNavSection.className = 'section';
+      altDivNav.classList.add('alt-nav', 'hide');
+      altDiv.className = 'alt-nav-wrapper';
+      altDiv.append(altDivNav);
+      altDivNav.append(altDivNavSection);
+      altDivNavSection.append(altDivNavWrapper);
+      altDivNavWrapper.append(mobileClone);
+      document.querySelector('div.header.block').insertAdjacentElement('afterend', altDiv);
+    }
+    nav.classList.add('alt-two', 'hide');
+    if (document.querySelector('.section.get-a-quote-form-container')) {
+      observer.observe(document.querySelector('.section.get-a-quote-form-container')); // this is the place that triggers the nav to show/hide
+    }
+  }
+}
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -537,13 +584,21 @@ export default async function decorate(block) {
     navTools.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navTool) => {
       if (navTool.querySelector('a')) {
         if (navTool.querySelector('a').getAttribute('title').startsWith('Customer Service')
-            || navTool.querySelector('a').getAttribute('title').startsWith('Sales')) {
+            || navTool.querySelector('a').getAttribute('title').startsWith('Sales')
+            || navTool.querySelector('a').getAttribute('title').startsWith('855-978-1045')) {
           navTool.querySelector('a').classList.add('tel');
         }
         if (navTool.querySelector('a').getAttribute('title').startsWith('Find Your')) {
           navTool.querySelector('a').classList.add('loc');
         }
       }
+
+      // make buttons
+      const paragraph = document.createElement('p');
+      const btn = navTools.querySelector('strong').cloneNode(true);
+      paragraph.append(btn);
+      decorateButtons(paragraph);
+      navTools.querySelector('strong').replaceWith(paragraph);
 
       if (navTool.querySelector('ul')) {
         navTool.classList.add('nav-drop');
@@ -718,4 +773,5 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
   block.parentElement.classList.add('appear');
+  altNavDecorate(block, nav);
 }
