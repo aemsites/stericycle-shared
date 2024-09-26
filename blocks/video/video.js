@@ -53,15 +53,13 @@ function embedVimeo(url, replacePlaceholder, autoplay) {
 
 function embedWistia(url, replacePlaceholder, autoplay) {
   let suffix = '';
-  let suffixParams = {
+  const suffixParams = {
     playerColor: '00857A',
   };
 
   if (replacePlaceholder || autoplay) {
-    suffixParams = {
-      autoplay: '1',
-      background: autoplay ? '1' : '0',
-    };
+    suffixParams.autoplay = '1';
+    suffixParams.background = autoplay ? '1' : '0';
   }
   suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
   const temp = document.createElement('div');
