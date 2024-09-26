@@ -105,26 +105,3 @@ if (document.querySelector('body.resource-center')
         || document.querySelector('meta[name="media-type"]')?.getAttribute('content') === 'Info Sheets')) {
   await loadYMAL();
 }
-
-const observer = new IntersectionObserver((entries) => {
-  const nav = document.querySelector('nav.alt-two');
-  const navAlt = document.querySelector('nav.alt-nav');
-  if (!entries[0].isIntersecting) {
-    nav.classList.remove('hide');
-    nav.classList.add('show');
-    navAlt.classList.remove('hide');
-    navAlt.classList.add('show');
-  } else {
-    nav.classList.remove('show');
-    nav.classList.add('hide');
-    navAlt.classList.remove('show');
-    navAlt.classList.add('hide');
-  }
-});
-
-// variant for the alt-two header
-if (document.querySelector('nav.alt-two')) {
-  if (document.querySelector('.section.get-a-quote-form-container')) {
-    observer.observe(document.querySelector('.section.get-a-quote-form-container')); // this is the place that triggers the nav to show/hide
-  }
-}

@@ -455,6 +455,49 @@ const telephoneIconOnClick = (navTools) => {
   }
 };
 
+/*
+    * Function to the alt nav hiding/showing logic
+ */
+function altNavDecorate(block, nav) {
+  if (block.querySelector('.alt-two')) {
+    const observer = new IntersectionObserver((entries) => {
+      const navAlt = document.querySelector('nav.alt-nav');
+      if (!entries[0].isIntersecting) {
+        nav.classList.remove('hide');
+        nav.classList.add('show');
+        navAlt.classList.remove('hide');
+        navAlt.classList.add('show');
+      } else {
+        nav.classList.remove('show');
+        nav.classList.add('hide');
+        navAlt.classList.remove('show');
+        navAlt.classList.add('hide');
+      }
+    });
+    const sectionSubNav = block.querySelector('.nav-sections > div.default-content-wrapper > ul');
+    if (sectionSubNav) {
+      const mobileClone = sectionSubNav.cloneNode(true);
+      const altDiv = document.createElement('div');
+      const altDivNav = document.createElement('nav');
+      const altDivNavSection = document.createElement('div');
+      const altDivNavWrapper = document.createElement('div');
+      altDivNavWrapper.className = 'default-content-wrapper';
+      altDivNavSection.className = 'section';
+      altDivNav.classList.add('alt-nav', 'hide');
+      altDiv.className = 'alt-nav-wrapper';
+      altDiv.append(altDivNav);
+      altDivNav.append(altDivNavSection);
+      altDivNavSection.append(altDivNavWrapper);
+      altDivNavWrapper.append(mobileClone);
+      document.querySelector('div.header.block').insertAdjacentElement('afterend', altDiv);
+    }
+    nav.classList.add('alt-two', 'hide');
+    if (document.querySelector('.section.get-a-quote-form-container')) {
+      observer.observe(document.querySelector('.section.get-a-quote-form-container')); // this is the place that triggers the nav to show/hide
+    }
+  }
+}
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -726,26 +769,5 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
   block.parentElement.classList.add('appear');
-
-  // variant for the alt-two header
-  if (block.querySelector('.alt-two')) {
-    const sectionSubNav = block.querySelector('.nav-sections > div.default-content-wrapper > ul');
-    if (sectionSubNav) {
-      const mobileClone = sectionSubNav.cloneNode(true);
-      const altDiv = document.createElement('div');
-      const altDivNav = document.createElement('nav');
-      const altDivNavSection = document.createElement('div');
-      const altDivNavWrapper = document.createElement('div');
-      altDivNavWrapper.className = 'default-content-wrapper';
-      altDivNavSection.className = 'section';
-      altDivNav.classList.add('alt-nav', 'hide');
-      altDiv.className = 'alt-nav-wrapper';
-      altDiv.append(altDivNav);
-      altDivNav.append(altDivNavSection);
-      altDivNavSection.append(altDivNavWrapper);
-      altDivNavWrapper.append(mobileClone);
-      document.querySelector('div.header.block').insertAdjacentElement('afterend', altDiv);
-    }
-    nav.classList.add('alt-two', 'hide');
-  }
+  altNavDecorate(block, nav);
 }
