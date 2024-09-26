@@ -29,5 +29,8 @@ main .form form .radio-wrapper.radio-icon label:hover > span.icon > img {
   filter: invert(31%) sepia(91%) saturate(5681%) hue-rotate(190deg) brightness(91%) contrast(101%);
 }
 
+main .form form .radio-wrapper.field-invalid .field-description {
+  display: none;
+}
 
 

@@ -1,4 +1,10 @@
 import { decorateIcons } from '../../../../scripts/aem.js';
+import { updateOrCreateInvalidMsg } from '../../lib/util.js';
+
+const displayValidationMessage = (fieldDiv) => {
+  const message = fieldDiv.dataset.requiredErrorMessage;
+  updateOrCreateInvalidMsg(fieldDiv.closest('.panel-wrapper'), message);
+};
 
 export default async function decorate(fieldDiv, field) {
   const { icon } = field;
@@ -15,5 +21,8 @@ export default async function decorate(fieldDiv, field) {
     decorateIcons(fieldDiv);
     fieldDiv.classList.add('radio-icon');
   }
+
+  const input = fieldDiv.querySelector('input');
+  input.addEventListener('invalid', () => displayValidationMessage(fieldDiv));
   return fieldDiv;
 }
