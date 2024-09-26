@@ -36,7 +36,6 @@ function decorateResults(posts, list, sheet) {
     categoryDiv.append(categoryLink);
     heading.classList.add('item-title');
     const headingLink = document.createElement('a');
-    console.log(post);
     headingLink.href = post.path;
     headingLink.setAttribute('aria-label', post.title);
     headingLink.innerText = post.title;

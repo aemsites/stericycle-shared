@@ -140,6 +140,8 @@ function initField() {
 export default class DocBasedFormToAF {
   panelMap = new Map();
 
+  containerNamesSet = new Set();
+
   errors = [];
 
   fieldPropertyMapping = {
@@ -160,6 +162,7 @@ export default class DocBasedFormToAF {
     OptionNames: 'enumNames',
     Visible: 'visible',
     Icon: 'icon',
+    Mask: 'mask',
     Repeatable: 'repeatable',
     Style: 'appliedCssClassNames',
     'Required Error Message': 'constraintMessages.required',
@@ -205,6 +208,9 @@ export default class DocBasedFormToAF {
     this.panelMap.set('root', formDef);
     const fieldIdMap = {};
     const rules = [];
+    exData.data.forEach((data) => {
+      this.containerNamesSet.add(data?.Fieldset);
+    });
     exData.data.forEach((/** @type {{ [s: string]: any; } | ArrayLike<any>} */ item, index) => {
       if (item.Type) {
         // eslint-disable-next-line no-unused-vars
@@ -223,7 +229,7 @@ export default class DocBasedFormToAF {
           }
         }
 
-        if (field?.fieldType.startsWith('fieldset')) {
+        if (this.containerNamesSet.has(field.name)) {
           this.panelMap.set(field?.name, field);
           delete field?.constraintMessages;
         }
@@ -262,13 +268,11 @@ export default class DocBasedFormToAF {
      * @param {any} field FieldJson
      */
   #transformFieldType(field) {
-    const [fieldType, _type] = field?.fieldType?.split(':') || [];
-    field.fieldType = fieldType;
-    if (fieldType && this.fieldMapping.has(fieldType)) {
-      field.fieldType = this.fieldMapping.get(fieldType);
-    }
-    if (_type) {
-      field[':type'] = _type;
+    field[':type'] = field.fieldType;
+    if (this.fieldMapping.has(field?.fieldType)) {
+      field.fieldType = this.fieldMapping.get(field?.fieldType);
+    } if (this.containerNamesSet.has(field.name)) {
+      field.fieldType = 'panel';
     }
   }
 

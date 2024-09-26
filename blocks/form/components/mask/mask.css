@@ -1,0 +1,37 @@
+main .form form .field-wrapper {
+    position: relative;
+}
+
+main .form form .field-wrapper .shell {
+    position: absolute;
+    line-height: 1;
+    display: -webkit-box;
+    display: flexbox;
+    display: flex;
+    top: 33px;
+    left: 10px;
+    width: 100%;
+    opacity: 0;
+}
+
+main .form form .field-wrapper .shell span {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    pointer-events: none;
+    width: 100%
+}
+
+main .form form .field-wrapper .shell i {
+    color: transparent;
+    opacity: 0;
+    visibility: hidden
+}
+
+main .form form .field-wrapper.focus .shell {
+    opacity: 1
+}
+
+main .form form .field-wrapper input:focus::placeholder {
+    opacity: 0
+}
