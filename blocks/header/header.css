@@ -6,6 +6,11 @@ header {
 
 header.appear {
   visibility: visible;
+  display: block;
+}
+
+header.appear.hide {
+  display: none;
 }
 
 header .nav-wrapper {

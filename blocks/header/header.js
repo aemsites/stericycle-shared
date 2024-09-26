@@ -460,14 +460,18 @@ const telephoneIconOnClick = (navTools) => {
  */
 function altNavDecorate(block, nav) {
   if (block.querySelector('.alt-two')) {
+    const mainHeader = document.querySelector('header');
+    mainHeader.classList.add('hide');
     const observer = new IntersectionObserver((entries) => {
       const navAlt = document.querySelector('nav.alt-nav');
       if (!entries[0].isIntersecting) {
+        mainHeader.classList.remove('hide');
         nav.classList.remove('hide');
         nav.classList.add('show');
         navAlt.classList.remove('hide');
         navAlt.classList.add('show');
       } else {
+        mainHeader.classList.add('hide');
         nav.classList.remove('show');
         nav.classList.add('hide');
         navAlt.classList.remove('show');
