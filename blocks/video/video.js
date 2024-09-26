@@ -53,16 +53,20 @@ function embedVimeo(url, replacePlaceholder, autoplay) {
 
 function embedWistia(url, replacePlaceholder, autoplay) {
   let suffix = '';
+  let suffixParams = {
+    playerColor: '00857A',
+  };
+
   if (replacePlaceholder || autoplay) {
-    const suffixParams = {
+    suffixParams = {
       autoplay: '1',
       background: autoplay ? '1' : '0',
     };
-    suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
   }
+  suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
   const temp = document.createElement('div');
   temp.innerHTML = `<div>
-  <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed" 
+  <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed custom-shadow"
   name="wistia_embed" src="${url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href}${suffix}"></iframe>`;
   return temp.children.item(0);
 }

@@ -80,3 +80,7 @@
     position: relative;
     aspect-ratio: 16 / 9;
 }
+
+.video-iframe > iframe.custom-shadow {
+    box-shadow: 0 0 10px #0000001A;
+}
