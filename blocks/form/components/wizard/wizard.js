@@ -159,7 +159,7 @@ export class WizardLayout {
 
     if (this.includeNextBtn && children.length) {
       this.addButton(wrapper, panel, {
-        label: { value: 'Next' }, fieldType: 'button', name: 'next', id: 'wizard-button-next',
+        label: { value: 'Continue' }, fieldType: 'button', name: 'next', id: 'wizard-button-next',
       });
     }
 
