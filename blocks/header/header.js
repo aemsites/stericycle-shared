@@ -729,6 +729,23 @@ export default async function decorate(block) {
 
   // variant for the alt-two header
   if (block.querySelector('.alt-two')) {
+    const sectionSubNav = block.querySelector('.nav-sections > div.default-content-wrapper > ul');
+    if (sectionSubNav) {
+      const mobileClone = sectionSubNav.cloneNode(true);
+      const altDiv = document.createElement('div');
+      const altDivNav = document.createElement('nav');
+      const altDivNavSection = document.createElement('div');
+      const altDivNavWrapper = document.createElement('div');
+      altDivNavWrapper.className = 'default-content-wrapper';
+      altDivNavSection.className = 'section';
+      altDivNav.classList.add('alt-nav', 'hide');
+      altDiv.className = 'alt-nav-wrapper';
+      altDiv.append(altDivNav);
+      altDivNav.append(altDivNavSection);
+      altDivNavSection.append(altDivNavWrapper);
+      altDivNavWrapper.append(mobileClone);
+      document.querySelector('div.header.block').insertAdjacentElement('afterend', altDiv);
+    }
     nav.classList.add('alt-two', 'hide');
   }
 }
