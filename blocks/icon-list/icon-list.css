@@ -74,6 +74,7 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
         width: 33%;
         display: flex;
         flex-direction: row;
+        flex: 0 0 50%;
     }
 
     div.icon-list.plain > div {
