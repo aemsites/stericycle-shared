@@ -17,6 +17,10 @@ header .nav-wrapper {
   max-height: 200vh;
 }
 
+header .nav-wrapper:has(.blue) {
+  background-color: var(--color-blue);
+}
+
 header .nav-wrapper:has(.logo-only) {
   position: unset;
 }
@@ -556,8 +560,8 @@ header nav .logo-only + .nav-hamburger {
     padding-bottom: 1.5rem;
   }
 
-  header nav:has(.logo-only) {
-    padding-top: unset;
+  header .logo-only.blue {
+    background-color: var(--color-blue);
   }
 
   header nav ul {
@@ -898,6 +902,10 @@ header nav .logo-only + .nav-hamburger {
   header nav {
     height: 130px;
     max-width: 75rem;
+  }
+
+  header nav:has(.logo-only.blue) {
+    height: 150px;
   }
 
   .search-box-container {

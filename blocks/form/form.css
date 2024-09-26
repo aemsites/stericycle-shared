@@ -15,7 +15,7 @@
     --form-field-horz-gap: 40px;
     --form-field-vert-gap: 20px;
     --form-invalid-border-color: #ff5f3f;
-    --form-input-padding: 0.75rem 0.6rem;
+    --form-input-padding: 1rem 0.75rem;
     --form-input-font-size: 1rem;
     --form-input-disable-color: #ebebe4;
     --form-input-border-size: 1px;
@@ -123,7 +123,7 @@ main .form select {
     background-color: var(--form-input-background-color);
     border: var(--form-input-border-size) solid var(--form-input-border-color);
     width: 100%;
-    height: 42px;
+    height: 52px;
     color: var(--form-label-color);
     padding: var(--form-input-padding);
     font-size: var(--form-input-font-size);
@@ -571,4 +571,39 @@ main form .wizard > .wizard-button-wrapper > .submit-wrapper {
 main form .wizard >
 .current-wizard-step.panel-wrapper:last-of-type ~ .wizard-button-wrapper > .submit-wrapper {
     display: block;
+}
+
+/** floating labels **/
+main .form .field-wrapper.floating-field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+main .form .field-wrapper.floating-field > label {
+    padding: 15px 0 0 15px;
+    position: absolute;
+    transition: .3s cubic-bezier(.25,.8,.5,1);
+    top: 10px;
+}
+
+/* Style for labels when input is focused */
+main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox'], :placeholder-shown) + label,
+main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox']):focus + label{
+    padding: 15px 0 0 15px;
+    font-size: 12px;
+    color: var(--label-color);
+    transform: translateY(-15px);
+    z-index: 1;
+}
+
+main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox']) {
+    padding-top: 1.5rem;
+    padding-bottom: .5rem;
+}
+
+ /* hide placeholder when not focused */
+ main .form input:not(:placeholder-shown)::placeholder,
+ main .form input:placeholder-shown:not(:focus)::placeholder {
+    color: transparent;
 }

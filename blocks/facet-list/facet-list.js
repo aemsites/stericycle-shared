@@ -116,6 +116,7 @@ async function updateResults(checkboxChange, sheet, page = 1) {
       title: post.title,
       date: post.date,
       image: post.image,
+      path: post.path,
     }))
     .filter((post) => !checkboxChange || filterTags(
       checkboxChange,

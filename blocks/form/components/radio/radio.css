@@ -1,0 +1,33 @@
+main .form form .radio-wrapper.radio-icon input {
+  width: 0;
+}
+
+main .form form .radio-wrapper.radio-icon label {
+  display: flex;
+  gap: 1rem;
+  margin: 0 1.625rem .6875rem 0;
+  border: 1px solid #dad6d6;
+  padding: 0.5rem;
+  cursor: pointer;
+  align-items: end;
+}
+
+main .form form .radio-wrapper.radio-icon label span.icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+main .form form .radio-wrapper.radio-icon input:checked + label,
+main .form form .radio-wrapper.radio-icon label:hover {
+  color: #006cb4;
+  border-color: #006cb4;
+}
+
+main .form form .radio-wrapper.radio-icon input:checked + label > span.icon > img,
+main .form form .radio-wrapper.radio-icon label:hover > span.icon > img {
+  -webkit-filter: invert(31%) sepia(91%) saturate(5681%) hue-rotate(190deg) brightness(91%) contrast(101%);
+  filter: invert(31%) sepia(91%) saturate(5681%) hue-rotate(190deg) brightness(91%) contrast(101%);
+}
+
+
+
