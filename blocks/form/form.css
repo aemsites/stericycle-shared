@@ -588,8 +588,8 @@ main .form .field-wrapper.floating-field > label {
 }
 
 /* Style for labels when input is focused */
-main .form .field-wrapper.floating-field input:focus + label,
-main .form .field-wrapper.floating-field input:not(:placeholder-shown) + label {
+main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox'], :placeholder-shown) + label,
+main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox']):focus + label{
     padding: 15px 0 0 15px;
     font-size: 12px;
     color: var(--label-color);
@@ -597,10 +597,10 @@ main .form .field-wrapper.floating-field input:not(:placeholder-shown) + label {
     z-index: 1;
 }
 
-main .form .field-wrapper.floating-field input {
+main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox']) {
     padding-top: 1.5rem;
     padding-bottom: .5rem;
- }
+}
 
  /* hide placeholder when not focused */
  main .form input:not(:placeholder-shown)::placeholder,
