@@ -433,13 +433,15 @@ main .block.navy-background {
   background-image: linear-gradient(180deg, var(--color-navy) 0, var(--color-navy));
 }
 
-main .section.navy-background.image {
-  background-image: url("/icons/section-bg.svg"), linear-gradient(180deg, transparent 5rem, var(--color-navy) 0, var(--color-navy));
-  background-position: top right;
-  background-repeat: no-repeat;
-  margin-top: -2rem;
-  padding-top: 6rem;
-  position: relative;
+@media screen and (min-width: 576px /* breakpoint-s */) {
+  main .section.navy-background.image {
+    background-image: url("/icons/section-bg.svg"), linear-gradient(180deg, transparent 5rem, var(--color-navy) 0, var(--color-navy));
+    background-position: top right;
+    background-repeat: no-repeat;
+    margin-top: -2rem;
+    padding-top: 6rem;
+    position: relative;
+  }
 }
 
 main .section.blue-background,
