@@ -599,9 +599,8 @@ export default async function decorate(block) {
         const paragraph = document.createElement('p');
         const cloneBtn = btn.cloneNode(true);
         paragraph.append(cloneBtn);
-        paragraph.append(btn);
         decorateButtons(paragraph);
-        navTools.querySelector('strong').replaceWith(paragraph);
+        btn.replaceWith(paragraph);
       }
 
       if (navTool.querySelector('ul')) {
