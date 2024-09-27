@@ -88,6 +88,10 @@
   align-items: flex-start;
 }
 
+.section.border-between-rows .columns > div > div {
+  justify-content: flex-start;
+}
+
 .columns.columns-has-image img {
   width:306px;
   overflow-clip-margin: content-box;
