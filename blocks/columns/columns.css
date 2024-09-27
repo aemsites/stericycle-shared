@@ -79,6 +79,11 @@
   margin-left: 16.66666667%
 }
 
+.section.border-between-rows .columns > div:first-child {
+  border-bottom: .5px solid var(--color-light-silver);
+  margin: 1rem 0;
+}
+
 .section.border-between-rows .columns div:nth-child(2) div:nth-child(2)  {
   align-items: flex-start;
 }
