@@ -179,6 +179,10 @@
   }
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
@@ -327,7 +331,6 @@ a:hover {
 a.button:any-link, button {
   font-family: var(--font-family-body);
   display: inline-block;
-  box-sizing: border-box;
   text-decoration: none;
   border: 2px solid var(--color-button-default);
   padding: 0 32px;

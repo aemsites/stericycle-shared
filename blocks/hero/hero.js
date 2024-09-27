@@ -12,7 +12,6 @@ export default function decorate(block) {
   picture.classList.add('hero-background');
 
   // Add everything to the block
-  wrapper.append(picture);
-  wrapper.append(contentContainer);
+  block.replaceChildren(picture, contentContainer);
   block.parentElement.parentElement.classList.add('blue-background');
 }
