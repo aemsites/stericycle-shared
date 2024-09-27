@@ -255,7 +255,7 @@ main .section.column-with-list.blue-background.columns-container .icon {
   width: fit-content;
 }
 
-main li::before {
+main ul:not(.teaser-list) li::before {
   content: "";
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: 'Font Awesome\ 6 Free', 'Font Awesome\ 5 Free';
@@ -266,14 +266,6 @@ main li::before {
   left: -25px;
   top: 0;
   margin-right: .75rem;
-}
-
-main ul.teaser-list li::before {
-  display: none;
-}
-
-main div.paginated-list-wrapper > ul li::before {
-  display: none;
 }
 
 /* remove bullets for list items in columns -  might be too aggressive */
