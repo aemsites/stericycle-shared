@@ -15,6 +15,33 @@
   justify-content: center;
 }
 
+.columns.labeled > div {
+  align-items: flex-start;
+}
+
+.columns.labeled > div:first-of-type img {
+  width: 100%;
+}
+
+.columns.labeled > div:last-of-type p {
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.columns.labeled > div:last-of-type span.icon {
+  width: 8.3%;
+  height: auto;
+  text-align: left;
+}
+
+.columns.labeled > div:last-of-type strong {
+  width: 100%;
+  box-sizing: content-box;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .columns.numeric-list > div, .columns.check-list > div {
   align-items: flex-start;
 }
