@@ -19,14 +19,53 @@
   align-items: flex-start;
 }
 
+.columns img {
+  width: 100%;
+}
+
+.columns.img-33 img {
+  width: 33.333%;
+}
+
+.columns.columns-has-image img {
+  width:306px;
+  overflow-clip-margin: content-box;
+  max-width: 100%;
+  overflow: clip;
+  box-sizing: border-box;
+}
+
+.columns > div > .columns-img-col img {
+  display: block;
+}
+
+main .columns span.icon > img {
+  width:2.5rem;
+  height:2.5rem;
+}
+
+.columns.columns-has-image.steps img {
+  width: 576px;
+}
+
 .columns.labeled > div:first-of-type img {
   width: 100%;
+}
+
+.columns.check-list p {
+  margin-bottom: 1rem;
 }
 
 .columns.labeled > div:last-of-type p {
   padding-bottom: 1rem;
   display: flex;
   justify-content: flex-start;
+}
+
+.columns.box-shadow-hover.columns span.icon {
+  display: flex;
+  height: 150px;
+
 }
 
 .columns.labeled > div:last-of-type span.icon {
@@ -46,14 +85,6 @@
   align-items: flex-start;
 }
 
-.columns img {
-  width: 100%;
-}
-
-.columns.img-33 img {
-  width: 33.333%;
-}
-
 .columns.steps > div {
   align-items: flex-start;
 }
@@ -62,10 +93,6 @@
   align-items: flex-start;
   gap: unset;
   flex-flow: row wrap;
-}
-
-.columns.check-list p {
-  margin-bottom: 1rem;
 }
 
 .columns.check-list sup {
@@ -102,18 +129,6 @@
   order: 0;
 }
 
-.columns.columns-has-image img {
-  width:306px;
-  overflow-clip-margin: content-box;
-  max-width: 100%;
-  overflow: clip;
-  box-sizing: border-box;
-}
-
-.columns > div > .columns-img-col img {
-  display: block;
-}
-
 /* narrow-icons variant */
 
 .columns.narrow-icons h4 {
@@ -126,15 +141,6 @@
 
 .columns.narrow-icons > div > div {
   width: 50%;
-}
-
-main .columns span.icon > img {
-  width:2.5rem;
-  height:2.5rem;
-}
-
-.columns.columns-has-image.steps img {
-  width: 576px;
 }
 
 .columns.narrow-icons span.icon > img {
@@ -167,12 +173,6 @@ main .columns span.icon > img {
 
 .columns.box-shadow-hover > div > div {
   padding: 1.5rem;
-}
-
-.columns.box-shadow-hover.columns span.icon {
-  display: flex;
-  height: 150px;
-
 }
 
 .columns.orange-accent-border > div > div,
