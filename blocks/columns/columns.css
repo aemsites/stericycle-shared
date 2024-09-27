@@ -75,6 +75,14 @@
   order: 0;
 }
 
+.section.border-between-rows .columns > div > .columns-img-col img {
+  margin-left: 16.66666667%
+}
+
+.section.border-between-rows .columns div:nth-child(2) div:nth-child(2)  {
+  align-items: flex-start;
+}
+
 .columns.columns-has-image img {
   width:306px;
   overflow-clip-margin: content-box;
