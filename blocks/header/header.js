@@ -594,11 +594,15 @@ export default async function decorate(block) {
       }
 
       // make buttons
-      const paragraph = document.createElement('p');
-      const btn = navTools.querySelector('strong').cloneNode(true);
-      paragraph.append(btn);
-      decorateButtons(paragraph);
-      navTools.querySelector('strong').replaceWith(paragraph);
+      const btn = navTools.querySelector('strong');
+      if (btn) {
+        const paragraph = document.createElement('p');
+        const cloneBtn = btn.cloneNode(true);
+        paragraph.append(cloneBtn);
+        paragraph.append(btn);
+        decorateButtons(paragraph);
+        navTools.querySelector('strong').replaceWith(paragraph);
+      }
 
       if (navTool.querySelector('ul')) {
         navTool.classList.add('nav-drop');
