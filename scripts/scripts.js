@@ -118,7 +118,7 @@ export async function getRelatedPosts(types, tags, limit) {
 
   // fallback if no matching tags were found
   if (filteredPosts.length === 0) {
-    return posts.slice(0, limit + 1);
+    return posts.slice(0, limit);
   }
   return filteredPosts;
 }
@@ -270,7 +270,7 @@ function decorateSectionTemplates(main) {
 async function decorateTemplates(main) {
   try {
     const template = toClassName(getMetadata('template'));
-    const templates = ['services', 'blog-page', 'service-location-page', 'service-location-page-2'];
+    const templates = ['pr-page', 'services', 'blog-page', 'service-location-page', 'service-location-page-2'];
 
     if (templates.includes(template)) {
       const mod = await import(`../templates/${template}/${template}.js`);

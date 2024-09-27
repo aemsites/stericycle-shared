@@ -19,9 +19,14 @@ function getLocale() {
   return 'en-us';
 }
 
-async function loadRelatedContent() {
+async function loadRelatedContent(type) {
   const tags = (getMetadata('article:tag') || '').split(/,\s*]/);
-  const posts = await getRelatedPosts(['Blogs'], tags, RELATED_LIMIT);
+  let posts = [];
+  if (type === 'blog-page') {
+    posts = await getRelatedPosts(['Blogs'], tags, RELATED_LIMIT);
+  } else if (type === 'pr-page') {
+    posts = await getRelatedPosts(['Press Releases'], tags, 3);
+  }
 
   const rcTeasers = document.createElement('ul');
   rcTeasers.className = 'related-content-teasers';
@@ -97,7 +102,12 @@ async function loadYMAL() {
 
 // load this only on blog pages
 if (document.querySelector('body.blog-page')) {
-  await loadRelatedContent();
+  await loadRelatedContent('blog-page');
+}
+
+// load this only on blog pages
+if (document.querySelector('body.pr-page')) {
+  await loadRelatedContent('pr-page');
 }
 
 if (document.querySelector('body.resource-center')

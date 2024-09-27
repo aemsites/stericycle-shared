@@ -115,7 +115,7 @@ function registerFunctions(functions) {
     }
 
     if (!Object.prototype.hasOwnProperty.call(finalFunction, '_func')) {
-      console.warn(`Unable to register function with name ${name}.`);
+      console.warn(`Unable to register function with name ${name}.`); // eslint-disable-line no-console
     } else {
       functionsMap[name?.toLowerCase()] = finalFunction;
     }

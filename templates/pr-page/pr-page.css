@@ -1,0 +1,156 @@
+.pr-page main .related-content li::before {
+    content: none;
+}
+
+.pr-page main .main-content li::before {
+    content: none;
+}
+
+.pr-page main .main-content li {
+    list-style: inherit;
+}
+
+.pr-page  main div.main-content {
+    margin-bottom: 31px;
+    padding: 0 12px;
+}
+
+.pr-page main .related-content {
+    padding: 32px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--color-gray);
+}
+
+.pr-page main .related-content ul.related-content-teasers {
+    margin: unset;
+    padding: unset;
+}
+
+.pr-page main .related-content .related-content-teaser a picture {
+    width: 100%;
+    height: 0;
+    padding-top: 56%;
+    position: relative;
+    overflow: hidden;
+    display: block;
+}
+
+.pr-page main .related-content .related-content-teaser a picture img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: auto;
+    width: 100%;
+    transition: all .3s ease-in-out;
+}
+
+.pr-page main .related-content h5 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    line-height: 20px;
+    font-size: 16px;
+}
+
+.pr-page  main .related-content .related-content-date {
+    font-size: .625rem;
+    line-height: .875rem;
+    padding: 16px 0;
+    margin-bottom: 40px;
+}
+
+.pr-page main .main-content a:any-link {
+    text-decoration: underline;
+}
+
+.pr-page main .main-content p.button-container > a {
+    border: unset;
+    background-color: unset;
+    color: var(--color-link);
+    padding: unset;
+    margin: unset;
+}
+
+.pr-page  main .related-content h4 {
+    text-align: center;
+}
+
+
+@media (min-width: 992px) {
+    .pr-page main .section:first-of-type > .default-content-wrapper {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+    }
+
+    .pr-page main .related-content {
+        margin-left: 8.3333%;
+        padding: 0 12px;
+        display: flex;
+        width: 25%;
+        height: fit-content;
+        flex-direction: column;
+        background-color: unset;
+        box-sizing: border-box;
+    }
+
+    .pr-page main .main-content {
+        display: flex;
+        width: 75%;
+        flex-direction: column;
+    }
+
+    .pr-page main .related-content .related-content-wrapper {
+        min-width: 242px;
+        padding: 32px;
+        background-color: var(--color-gray);
+    }
+
+    .pr-page  main .related-content h4 {
+        font-size: 1.25rem;
+        line-height: 1.875rem;
+    }
+
+    .pr-page main .related-content .related-content-wrapper > ul {
+        padding: 0;
+    }
+
+    .pr-page main .related-content h5 {
+        line-height: 24px;
+    }
+
+    .pr-page  main .related-content .related-content-date {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    @media (min-width: 576px) {
+        .pr-page main .default-content-wrapper {
+            max-width: 540px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .pr-page main .default-content-wrapper {
+            max-width: 720px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .pr-page main .default-content-wrapper {
+            max-width: 960px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .pr-page main .default-content-wrapper {
+            max-width: 1140px;
+        }
+    }
+
+    @media (min-width: 1400px) {
+        .pr-page main .default-content-wrapper {
+            max-width: 1320px;
+        }
+    }
+}
