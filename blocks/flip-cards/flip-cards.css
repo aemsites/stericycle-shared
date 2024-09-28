@@ -41,6 +41,7 @@
 
 .flip-cards > a > div > .flip-card-front {
   background-color: var(--color-navy);
+  padding: 4rem 1.5rem 3rem 1.5rem;
 }
 
 .flip-cards > a:hover > div > .flip-card-front {
