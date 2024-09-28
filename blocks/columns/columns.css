@@ -28,7 +28,6 @@
 }
 
 .columns.columns-has-image img {
-  width: 350px;
   overflow-clip-margin: content-box;
   max-width: 100%;
   overflow: clip;
