@@ -77,6 +77,10 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
         flex: 0 0 50%;
     }
 
+    div.icon-list.split-firstthird > div {
+        flex: 0 0 33%;
+    }
+
     div.icon-list.plain > div {
         width: 100%;
         align-content: start;
