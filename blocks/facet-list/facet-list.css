@@ -2,7 +2,7 @@ a.initial-caps {
     text-transform: capitalize;
 }
 
-.facet-list-container li::before {
+main .facet-list-container ul li::before {
     content: unset;
 }
 
