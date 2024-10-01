@@ -262,11 +262,14 @@ main div.column-with-list li::before {
 
 main .default-content-wrapper p,
 main .default-content-wrapper dl,
-main .default-content-wrapper ol,
 main .default-content-wrapper ul,
 main .default-content-wrapper pre,
 main .default-content-wrapper blockquote {
   margin: 0 0 16px;
+}
+
+main .default-content-wrapper ol {
+  margin: 0 0 1rem 1rem;
 }
 
 code, pre {
@@ -509,8 +512,31 @@ main .navy-headings {
 main .list-style-orange-triangles ul {
   position: relative;
   padding: 0;
-  margin: 0 0 0 3rem;
+  margin: 0 0 0 1.5rem;
   list-style: none;
+}
+
+main .list-style-bullets ul {
+  position: relative;
+  padding: 0;
+  margin: 0 0 1rem 1rem;
+}
+
+main .list-style-bullets ul li {
+  list-style: disc;
+  padding-bottom: 0.5rem;
+}
+
+main ol {
+  position: relative;
+  padding: 0;
+  margin: 0 0 1rem 1rem;
+}
+
+main ol li {
+  list-style: decimal;
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 /* section with image styles */
@@ -1050,6 +1076,10 @@ main .list-style-orange-triangles ul > li::before {
   font-size: 1.5rem;
 }
 
+main .list-style-orange-triangles ul > li {
+  padding-bottom: 1rem;
+}
+
 main .list-style-big-numbers h2 {
   padding: 0 12px;
   list-style: none;
@@ -1067,12 +1097,12 @@ main .list-style-big-numbers ol > li {
   margin-bottom: 24px;
   counter-increment: items;
   padding: 0 12px;
+  list-style: none;
 }
 
 main .list-style-big-numbers ol > li:last-child {
   margin-bottom: 0;
 }
-
 
 main .list-style-big-numbers ol > li::before {
   display: block;
