@@ -709,3 +709,14 @@ main .modal.block dialog{
 main .modal.block dialog .form form .wizard{
   padding: 0;
 }
+
+main .form .field-wrapper.floating-field[data-required="true"] label::after,
+main .form .panel-wrapper[data-required="true"] legend::after {
+  content: "*";
+  color: var(--form-label-color);
+}
+
+main .form .field-wrapper.floating-field[data-required="true"].field-invalid label::after,
+main .form .panel-wrapper[data-required="true"].field-invalid legend::after {
+  color: var(--form-error-color);
+}
