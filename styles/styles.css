@@ -255,19 +255,6 @@ main .section.column-with-list.blue-background.columns-container .icon {
   width: fit-content;
 }
 
-main ul:not(.teaser-list) li::before {
-  content: "";
-  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
-  font-family: 'Font Awesome\ 6 Free', 'Font Awesome\ 5 Free';
-  font-weight: 400;
-  color: var(--color-orange);
-  font-size: 1.5rem;
-  position: absolute;
-  left: -25px;
-  top: 0;
-  margin-right: .75rem;
-}
-
 /* remove bullets for list items in columns -  might be too aggressive */
 main div.column-with-list li::before {
   content: none;
