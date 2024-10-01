@@ -250,7 +250,6 @@ footer .default-content-wrapper:first-child p:nth-of-type(2) {
   }
 
   footer .default-content-wrapper p:nth-of-type(2) picture img {
-    transform: rotate(-45deg);
     width: 20px;
     height: 20px;
   }
@@ -457,7 +456,7 @@ footer .default-content-wrapper .footer-accordion-container .footer-accordion-li
   justify-content: space-between;
   height: 20px;
   cursor: pointer;
-  padding: 16px 0;
+  padding: 20px 0;
   font-family: lato-regular, sans-serif;
   font-size: 1rem;
   line-height: 1.25rem;
@@ -489,6 +488,7 @@ footer .default-content-wrapper .footer-accordion-container .footer-accordion-li
 
 footer .default-content-wrapper .footer-accordion-container .footer-accordion-link-wrapper:first-child a {
   width: fit-content;
+  font-weight: var(--lato-bold);
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
@@ -524,6 +524,7 @@ footer .default-content-wrapper .footer-accordion-container .footer-accordion-li
   background-color: transparent;
   border: none;
   margin: 0;
+  color: var(--color-white);
 }
 
 footer .default-content-wrapper .footer-accordion-container .footer-accordion-link-wrapper .footer-accordion-button-icon {
@@ -549,6 +550,7 @@ footer .default-content-wrapper .footer-accordion-container .footer-accordion-co
 
 .footer-accordion-content-wrapper > .footer-accordion-content-inner-wrapper > ul {
   margin: 0;
+  margin-top: 0.5rem;
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
@@ -556,6 +558,7 @@ footer .default-content-wrapper .footer-accordion-container .footer-accordion-co
     padding: 0;
     display: flex;
     flex-flow: column;
+    margin: 0;
   }
 }
 
@@ -652,13 +655,13 @@ footer .default-content-wrapper .columns.quote p:nth-child(n+2) {
   margin-top: calc(var(--bs-gutter-y)* -1);
   margin-right: calc(var(--bs-gutter-x)* -0.5);
   margin-left: calc(var(--bs-gutter-x)* -0.5);
-  gap: 20px;
+  gap: 2rem;
 }
 
 footer .default-content-wrapper .columns.quote p:nth-child(6) {
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
   justify-content: flex-start;
-  align-items: flex-start;
   padding-top: 16px;
   border-top: .5px solid #b2b1b1;
   margin-top: 16px;
@@ -692,6 +695,14 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
   footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) > p:nth-of-type(5) > a {
     font-size: .75rem;
     line-height: 1.125rem;
+  }
+
+  footer .default-content-wrapper .columns.quote p:nth-child(n+2) {
+    gap: unset;
+  }
+
+  footer .default-content-wrapper .columns.quote p:nth-child(n+2) > a {
+    font-size: 14px;
   }
 }
 
@@ -763,6 +774,23 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
   footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) > p:nth-of-type(n+3) {
     font-size: 1rem;
     padding-top: 16px;
+  }
+
+  footer .default-content-wrapper .columns.quote p:nth-child(n+2) > span {
+    width: 30px;
+    height: 30px;
+  }
+
+  footer .default-content-wrapper .columns.quote p:nth-child(3),
+  footer .default-content-wrapper .columns.quote p:nth-child(4) {
+    gap: 0 1.5rem;
+  } 
+}
+
+@media screen and (min-width: 1400px /* --breakpoint-xxl */) {
+  footer .default-content-wrapper .columns.quote p:nth-child(3),
+  footer .default-content-wrapper .columns.quote p:nth-child(4) {
+    gap: 0 1.2rem;
   }
 }
 
