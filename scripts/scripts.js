@@ -308,6 +308,12 @@ export function decorateExternalAnchors(externalAnchors) {
  */
 export function decorateAnchors(element = document) {
   const anchors = element.getElementsByTagName('a');
+  Array.from(anchors).forEach((a) => {
+    // check if a has a atribute aria-label
+    if (!a.getAttribute('aria-label')) {
+      a.setAttribute('aria-label', a.innerText.trim() || 'Link');
+    }
+  });
   decorateExternalAnchors(Array.from(anchors).filter(
     (a) => a.href && !a.href.match(`^http[s]*://${window.location.host}/`),
   ));
