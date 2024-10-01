@@ -6,7 +6,7 @@ export default async function decorate(block) {
 
   const headerItems = block.querySelectorAll('div:first-of-type > div:first-of-type > p, div:first-of-type > div:first-of-type > h2, div:first-of-type > div:first-of-type > h3');
 
-  if (block.classList.contains('alternate-2')) {
+  if (block.classList.contains('alternate-2') || block.classList.contains('plain-simple')) {
     const firstItem = document.createElement('div');
     const thirdItem = document.createElement('div');
     let secondItem;
@@ -31,7 +31,12 @@ export default async function decorate(block) {
       thirdItem.append(headerItems[2]);
     }
 
-    headers.append(firstItem, thirdItem);
+    if(firstItem.innerHTML !== ''){
+      headers.append(firstItem);
+    }
+    if(thirdItem.innerHTML !== ''){
+      headers.append(thirdItem);
+    }
   } else {
     headerItems.forEach((item) => {
       const hDiv = document.createElement('div');
@@ -68,8 +73,15 @@ export default async function decorate(block) {
       }
       offerBox.append(rowItems);
     });
+  } else if(block.classList.contains('plain-simple')) {
+      const content = block.querySelectorAll('.block.offer-box.plain-simple div:last-of-type');
+      const contentDiv = document.createElement('div');
+      content.forEach((item) => {
+        contentDiv.appendChild(item);
+      })
+      offerBox.append(headers, contentDiv);
   } else {
-    headers.classList.add('offer-box-header');
+    headers.classList.add('offerbox-header');
     offerBox.appendChild(headers);
 
     const headCopy = document.createElement('div');

@@ -232,10 +232,16 @@ main li {
   list-style: none;
 }
 
+main .section.column-with-list.navy-background.columns-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--color-navy);
+}
+
 main .section.column-with-list.blue-background.columns-container {
   display: flex;
   flex-wrap: wrap;
-  background-color: #133b5c;
+  background-color: var(--color-blue);
 }
 
 main .section.column-with-list.blue-background.columns-container li {
@@ -253,6 +259,77 @@ main .section.column-with-list.blue-background.columns-container img {
 
 main .section.column-with-list.blue-background.columns-container .icon {
   width: fit-content;
+}
+
+main .section.column-with-list .columns > div > div {
+  justify-content: space-between;
+}
+
+main .section.column-with-list .columns > div > div h2 {
+  font-size: 4rem;
+  line-height: 5.25rem;
+}
+
+main .section.faq-container:not(.cyan-border) > div.default-content-wrapper h2 {
+  color: var(--color-black);
+  font-size: 3rem;
+  line-height: 3.2rem;
+  font-weight: 600;
+}
+
+main .section.faq-container > div p {
+  font-weight: 600;
+}
+
+main .section.quote-container.orange-border .quote-wrapper::before {
+  display: block;
+  background-color: #ff5633;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: relative;
+  top: 0;
+  width: 4px;
+}
+
+main .section.quote-container.orange-border .quote-attribution p {
+  color: #ff5633;
+}
+
+main .section.footnote-list div.default-content-wrapper ol li {
+  list-style-type: decimal; 
+  font-size: .875rem;
+  line-height: 1.125rem
+}
+
+main .section.footnote-list-star div.default-content-wrapper ol li {
+  list-style: "*"; 
+  font-size: .875rem;
+  line-height: 1.125rem
+}
+
+main .section.yellow-button  div.default-content-wrapper .button-container a {
+  background-color: var(--color-yellow);
+  border-color: var(--color-black);
+  color: var(--color-black);
+  font-size: 1rem;
+  line-height: 2pc;
+  border-width: 2px;
+}
+
+
+
+main ul:not(.teaser-list) li::before {
+  content: "";
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font-family: 'Font Awesome\ 6 Free', 'Font Awesome\ 5 Free';
+  font-weight: 400;
+  color: var(--color-orange);
+  font-size: 1.5rem;
+  position: absolute;
+  left: -25px;
+  top: 0;
+  margin-right: .75rem;
 }
 
 /* remove bullets for list items in columns -  might be too aggressive */
@@ -550,6 +627,23 @@ main .section.with-image {
 }
 
 /* section background image styles */
+
+main div.section.hard-drive-background {
+  background-size: cover;
+  background-position: center center;
+  background-image: url("/icons/media_18801dc9f2feef2abd2efd2bf6dfacd12e4469a20.png");
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+main div.section.shredded-paper-background-column {
+  background-image: url("/images/media_1fbb3017116cabdcfddffa6fc667e77de61f301fd.png");
+  background-size: cover;
+  background-position-x: 50%;
+  background-repeat: no-repeat;
+}
+
+
 
 main div.section.default-teaser-section {
   background-size: cover;
