@@ -21,6 +21,23 @@ main .form form .wizard .wizard-menu-items .wizard-menu-item.wizard-menu-active-
   background-color: #006cb4;
 }
 
+main .form form .wizard .wizard-menu-items .wizard-menu-item:has(~ .wizard-menu-active-item) {
+  background-color: #006cb4;
+  display: inline-block;
+  position: relative;
+}
+main .form form .wizard .wizard-menu-items .wizard-menu-item:has(~ .wizard-menu-active-item)::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 13px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
 main .form form .wizard .wizard-menu-item::before {
   content: unset;
 }
