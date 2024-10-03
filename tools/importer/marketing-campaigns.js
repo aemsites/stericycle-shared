@@ -182,6 +182,19 @@ function processSections(main) {
       console.log(`found level fragment: ${levelFragment.textContent}`);
       createFragment(section, '/en-us/fragments/service-levels');
     }
+
+    const termsAndConditions = section.querySelector('.cmp-experiencefragment--offer-terms-conditions');
+    if (termsAndConditions) {
+      const cells = [['fragment']];
+      const anchor = document.createElement('a');
+      const fragmentPath = '/en-us/fragments/t-and-c';
+      anchor.href = `${baseUrl}${fragmentPath}`;
+      anchor.textContent = `${baseUrl}${fragmentPath}`;
+      cells.push([anchor]);
+      const fragBlock = WebImporter.DOMUtils.createTable(cells, document);
+      termsAndConditions.replaceWith(fragBlock);
+    }
+
     if (numList) {
       transNumberList(section);
     }
