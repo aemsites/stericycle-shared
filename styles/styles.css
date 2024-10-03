@@ -530,7 +530,6 @@ main .list-style-bullets ul li {
 main ol {
   position: relative;
   padding: 0;
-  margin: 0 0 1rem 1rem;
 }
 
 main ol li {
