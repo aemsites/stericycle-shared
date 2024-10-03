@@ -31,10 +31,10 @@ export default async function decorate(block) {
       thirdItem.append(headerItems[2]);
     }
 
-    if(firstItem.innerHTML !== ''){
+    if (firstItem.innerHTML !== '') {
       headers.append(firstItem);
     }
-    if(thirdItem.innerHTML !== ''){
+    if (thirdItem.innerHTML !== '') {
       headers.append(thirdItem);
     }
   } else {
@@ -73,13 +73,13 @@ export default async function decorate(block) {
       }
       offerBox.append(rowItems);
     });
-  } else if(block.classList.contains('plain-simple')) {
-      const content = block.querySelectorAll('.block.offer-box.plain-simple div:last-of-type');
-      const contentDiv = document.createElement('div');
-      content.forEach((item) => {
-        contentDiv.appendChild(item);
-      })
-      offerBox.append(headers, contentDiv);
+  } else if (block.classList.contains('plain-simple')) {
+    const content = block.querySelectorAll('.block.offer-box.plain-simple div:last-of-type');
+    const contentDiv = document.createElement('div');
+    content.forEach((item) => {
+      contentDiv.appendChild(item);
+    });
+    offerBox.append(headers, contentDiv);
   } else {
     headers.classList.add('offer-box-header');
     offerBox.appendChild(headers);

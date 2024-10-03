@@ -50,11 +50,6 @@
     min-height: 25%;
 }
 
-.offer-box.plain-simple > div.offer-box-header .icon-with-heading {
-    height: 100%;
-    min-height: 100%;
-}
-
 .offer-box.three-col > div.offer-box-header > div:first-of-type {
     width: 25%;
 }
