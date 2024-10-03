@@ -1,6 +1,6 @@
 import { decorateIcons } from '../../../../scripts/aem.js';
 
-export default async function decorate(fieldDiv, field) {
+export default async function decorate(fieldDiv, field, container) {
   const { icon } = field;
   if (icon) {
     // create a span element with the icon-${icon} class
@@ -15,5 +15,6 @@ export default async function decorate(fieldDiv, field) {
     decorateIcons(fieldDiv);
     fieldDiv.classList.add('radio-icon');
   }
+  container.dataset.required = field.required;
   return fieldDiv;
 }
