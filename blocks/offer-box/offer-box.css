@@ -4,7 +4,6 @@
     background-color: var(--color-white);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .offer-box-container > div.offer-box-header {
