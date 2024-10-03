@@ -1,1 +1,5 @@
 /* stylelint-disable-next-line no-empty-source */
+
+.block.text.extra-small {
+  font-size: 0.75rem;
+}
