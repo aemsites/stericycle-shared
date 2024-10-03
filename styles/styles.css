@@ -244,6 +244,13 @@ main .section.column-with-list.blue-background.columns-container {
   background-color: var(--color-blue);
 }
 
+main .section.column-with-list.navy-background.columns-container li {
+  display: flex;
+  padding: .75rem 0;
+  border-bottom: .0625rem solid #dad6d6;
+  gap: 1rem;
+}
+
 main .section.column-with-list.blue-background.columns-container li {
   display: flex;
   padding: .75rem 0;
@@ -251,10 +258,20 @@ main .section.column-with-list.blue-background.columns-container li {
   gap: 1rem;
 }
 
+main .section.column-with-list.navy-background.columns-container img {
+  width: 24px;
+  height: 24px;
+  max-width: unset;
+}
+
 main .section.column-with-list.blue-background.columns-container img {
   width: 24px;
   height: 24px;
   max-width: unset;
+}
+
+main .section.column-with-list.navy-background.columns-container .icon {
+  width: fit-content;
 }
 
 main .section.column-with-list.blue-background.columns-container .icon {
@@ -617,18 +634,16 @@ main div.section.hard-drive-background {
   background-size: contain;
   background-position-x: 50%;
   background-position-y: 100%;
-  background-image: url("/icons/media_18801dc9f2feef2abd2efd2bf6dfacd12e4469a20.png");
+  background-image: url("/images/sid-shreded-hard-drive-background-1920x1080.png");
 
 }
 
 main div.section.shredded-paper-background-column {
-  background-image: url("/images/media_1fbb3017116cabdcfddffa6fc667e77de61f301fd.png");
+  background-image: url("/images/sid-shreded-paper-background.png");
   background-size: contain;
   background-position-x: 50%;
   background-position-y: 100%;
 }
-
-
 
 main div.section.default-teaser-section {
   background-size: cover;

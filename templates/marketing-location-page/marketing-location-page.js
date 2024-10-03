@@ -3,7 +3,7 @@ import {
 } from '../../scripts/aem.js';
 import { decorateSidebarTemplate } from '../templates.js';
 
-function BuildMarketingPage(main) {
+function buildMarketingPage(main) {
   const pageSidebar = main.querySelector('div.body-wrapper > div.page-sidebar');
 
   // GET-A-QUOTE FORM
@@ -18,5 +18,5 @@ function BuildMarketingPage(main) {
 export default function decorate(main) {
   main.parentElement.classList.add('with-sidebar');
   decorateSidebarTemplate(main);
-  BuildMarketingPage(main);
+  buildMarketingPage(main);
 }
