@@ -5,7 +5,7 @@ export default async function decorate(block) {
   const { container, formDef } = await extractSheetDefinition(block);
   if (formDef && formDef.properties?.source === 'sheet') {
     const form = await renderDocForm(formDef);
-    decorateUTM(form);
+    await decorateUTM(form);
     if (form) {
       container.replaceWith(form);
       const inputs = form.querySelectorAll('.field-wrapper input');
