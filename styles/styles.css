@@ -232,10 +232,23 @@ main li {
   list-style: none;
 }
 
+main .section.column-with-list.navy-background.columns-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--color-navy);
+}
+
 main .section.column-with-list.blue-background.columns-container {
   display: flex;
   flex-wrap: wrap;
-  background-color: #133b5c;
+  background-color: var(--color-blue);
+}
+
+main .section.column-with-list.navy-background.columns-container li {
+  display: flex;
+  padding: .75rem 0;
+  border-bottom: .0625rem solid #dad6d6;
+  gap: 1rem;
 }
 
 main .section.column-with-list.blue-background.columns-container li {
@@ -245,14 +258,68 @@ main .section.column-with-list.blue-background.columns-container li {
   gap: 1rem;
 }
 
+main .section.column-with-list.navy-background.columns-container img {
+  width: 24px;
+  height: 24px;
+  max-width: unset;
+}
+
 main .section.column-with-list.blue-background.columns-container img {
   width: 24px;
   height: 24px;
   max-width: unset;
 }
 
+main .section.column-with-list.navy-background.columns-container .icon {
+  width: fit-content;
+}
+
 main .section.column-with-list.blue-background.columns-container .icon {
   width: fit-content;
+}
+
+main .section.column-with-list .columns > div > div {
+  justify-content: space-between;
+}
+
+main .section.column-with-list .columns > div > div h2 {
+  font-size: 4rem;
+  line-height: 5.25rem;
+}
+
+main .section.faq-container:not(.cyan-border) > div.default-content-wrapper h2 {
+  color: var(--color-black);
+  font-size: 3rem;
+  line-height: 3.2rem;
+  font-weight: 600;
+}
+
+main .section.faq-container > div p {
+  font-weight: 600;
+}
+
+main .section.quote-container.orange-border .quote-wrapper::before {
+  display: block;
+  background-color: #ff5633;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: relative;
+  top: 0;
+  width: 4px;
+}
+
+main .section.quote-container.orange-border .quote-attribution p {
+  color: #ff5633;
+}
+
+main .section.yellow-button  div.default-content-wrapper .button-container a {
+  background-color: var(--color-yellow);
+  border-color: var(--color-black);
+  color: var(--color-black);
+  font-size: 1rem;
+  line-height: 2pc;
+  border-width: 2px;
 }
 
 /* remove bullets for list items in columns -  might be too aggressive */
@@ -550,6 +617,21 @@ main .section.with-image {
 }
 
 /* section background image styles */
+
+main div.section.hard-drive-background {
+  background-size: contain;
+  background-position-x: 50%;
+  background-position-y: 100%;
+  background-image: url("/images/sid-shreded-hard-drive-background-1920x1080.png");
+  background-repeat: no-repeat;
+}
+
+main div.section.shredded-paper-background-column {
+  background-image: url("/images/sid-shreded-paper-background.png");
+  background-size: contain;
+  background-position-x: 50%;
+  background-position-y: 100%;
+}
 
 main div.section.default-teaser-section {
   background-size: cover;
@@ -1000,35 +1082,6 @@ body.resource-center p {
 
   .blog-page div.related-content img {
     width: auto;;
-  }
-}
-
-.with-sidebar main > .body-wrapper {
-  max-width: var(--section-width);
-  margin: 0 auto;
-}
-
-.with-sidebar main > .body-wrapper > .page-sidebar > .section > div {
-  padding: 0;
-  margin-bottom: 30px;
-}
-
-@media (min-width: 992px /* breakpoint-l */) {
-  .with-sidebar main > .body-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0;
-  }
-
-  .with-sidebar main > .body-wrapper > .page-content {
-    width: 66.6667%;
-  }
-
-  .with-sidebar main > .body-wrapper > .page-sidebar {
-    width: 25%;
-    margin-top: -200px;
-    z-index: 1;
   }
 }
 

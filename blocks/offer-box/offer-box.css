@@ -28,11 +28,25 @@
     width: 50%;
 }
 
-.block.offer-box.alternate-2 .offerbox-header > div {
+.block.offer-box.alternate-2 .offer-box-header > div {
     display: flex;
     flex-direction: row;
     align-items: start;
     gap: 1rem;
+}
+
+.offer-box.plain-simple > div.offer-box-header .icon-with-heading {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 1rem;
+    height: 100%;
+    min-height: 100%;
+}
+
+.offer-box.plain-simple > div.offer-box-header {
+    height: 25%;
+    min-height: 25%;
 }
 
 .offer-box.three-col > div.offer-box-header > div:first-of-type {
@@ -54,21 +68,45 @@
     justify-content: space-between;
 }
 
-.block.offer-box.alternate-2 .offerbox-header .icon {
+.block.offer-box.alternate-2 .offer-box-header .icon {
     max-width: 6rem;
     max-height: 6rem;
     width: auto;
     height: auto;
 }
 
-.block.offer-box.alternate-2 .offerbox-header {
+.block.offer-box.plain-simple .offer-box-header .icon-with-heading .icon {
+    max-width: 6rem;
+    max-height: 100%;
+    width: auto;
+    height: 100%;
+}
+
+.block.offer-box.plain-simple {
+    height: fit-content;
+}
+
+.block.offer-box.alternate-2 .offer-box-header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 30%;
 }
 
-.block.offer-box.alternate-2 .offerbox-row h3 {
+.block.offer-box.plain-simple .offer-box-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 30%;
+}
+
+
+.block.offer-box.alternate-2 .offer-box-row h3 {
+    min-width: 35%;
+    width: 35%;
+}
+
+.block.offer-box.plain-simple .offer-box-row h3 {
     min-width: 35%;
     width: 35%;
 }
@@ -79,27 +117,32 @@
     padding-left: 1rem;
 }
 
-.block.offer-box.alternate-2 div.offerbox-row:nth-child(2) {
+.block.offer-box.alternate-2 div.offer-box-row:nth-child(2) {
     border-top: .0625rem solid var(--color-light-silver);
     margin: 1rem 0;
 }
 
-.block.offer-box.alternate-2 div.offerbox-row:last-child p a {
+.block.offer-box.alternate-2 div.offer-box-row:last-child p a {
     background-color: var(--color-yellow);
     border-color: var(--color-yellow);
     color: var(--color-black)
 }
 
-.block.offer-box.alternate-2 .offerbox-header .icon-with-heading h1, 
-.block.offer-box.alternate-2 .offerbox-header .icon-with-heading h2,
-.block.offer-box.alternate-2 .offerbox-header .icon-with-heading h3,
-.block.offer-box.alternate-2 .offerbox-header .icon-with-heading h4  {
+.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h1, 
+.block.offer-box.plain-simple .offer-box-header .icon-with-heading h1,
+.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h2,
+.block.offer-box.plain-simple .offer-box-header .icon-with-heading h2,
+.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h3,
+.block.offer-box.plain-simple .offer-box-header .icon-with-heading h3,
+.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h4,
+.block.offer-box.plain-simple .offer-box-header .icon-with-heading h4 {
+    width: 75%;
     font-size: 3rem;
     line-height: 3.2rem;
     font-weight: 600;
 }
 
-.block.offer-box.alternate-2 .offerbox-header .promotion-with-text .text-with-badge {
+.block.offer-box.alternate-2 .offer-box-header .promotion-with-text .text-with-badge {
     flex-direction: column;
     justify-items: flex-start;
     background: #ffc62b;
@@ -125,11 +168,11 @@
     font-weight: 700;
 }
 
-.block.offer-box.alternate-2 .offerbox-header .promotion-with-text .text-with-badge > p:nth-child(2) {
+.block.offer-box.alternate-2 .offer-box-header .promotion-with-text .text-with-badge > p:nth-child(2) {
     font-size: 1.5rem;
 }
 
-.block.offer-box.alternate-2 .offerbox-row {
+.block.offer-box.alternate-2 .offer-box-row {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -139,7 +182,7 @@
     border-bottom: .0625rem solid var(--color-light-silver);
 }
 
-.block.offer-box.alternate-2 .offerbox-row ul {
+.block.offer-box.alternate-2 .offer-box-row ul {
     padding-left: 25px;
     height: 100%;
 }
