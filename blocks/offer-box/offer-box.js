@@ -51,14 +51,14 @@ export default async function decorate(block) {
 
   if (block.classList.contains('alternate-2')) {
     offerBox.classList.add('alternate-2', ...block.classList);
-    headers.className = 'offerbox-header';
+    headers.className = 'offer-box-header';
     offerBox.appendChild(headers);
 
     const primaryDivs = block.querySelectorAll('div.block.offer-box.alternate-2 > div:not(div:first-of-type) > div');
 
     primaryDivs.forEach((div) => {
       const rowItems = document.createElement('div');
-      rowItems.className = 'offerbox-row';
+      rowItems.className = 'offer-box-row';
       const isList = div.querySelectorAll('li');
       if (div.children.length > 1 && isList.length >= 1) {
         const nestedList = div.querySelectorAll('li > ul:first-of-type > li:first-of-type');
@@ -81,7 +81,7 @@ export default async function decorate(block) {
       })
       offerBox.append(headers, contentDiv);
   } else {
-    headers.classList.add('offerbox-header');
+    headers.classList.add('offer-box-header');
     offerBox.appendChild(headers);
 
     const headCopy = document.createElement('div');

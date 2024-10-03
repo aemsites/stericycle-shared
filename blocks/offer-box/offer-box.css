@@ -36,11 +36,13 @@
     gap: 1rem;
 }
 
-.block.offer-box.plain-simple .offer-box-header .icon-with-heading {
+.offer-box.plain-simple > div.offer-box-header .icon-with-heading {
     display: flex;
     flex-direction: row;
     align-items: start;
     gap: 1rem;
+    height: 100%;
+    min-height: 100%;
 }
 
 .offer-box.plain-simple > div.offer-box-header {
@@ -81,9 +83,13 @@
 
 .block.offer-box.plain-simple .offer-box-header .icon-with-heading .icon {
     max-width: 6rem;
-    max-height: 6rem;
+    max-height: 100%;
     width: auto;
-    height: auto;
+    height: 100%;
+}
+
+.block.offer-box.plain-simple {
+    height: fit-content;
 }
 
 .block.offer-box.alternate-2 .offer-box-header {
@@ -94,7 +100,10 @@
 }
 
 .block.offer-box.plain-simple .offer-box-header {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 30%;
 }
 
 
@@ -126,9 +135,14 @@
 }
 
 .block.offer-box.alternate-2 .offer-box-header .icon-with-heading h1, 
+.block.offer-box.plain-simple .offer-box-header .icon-with-heading h1,
 .block.offer-box.alternate-2 .offer-box-header .icon-with-heading h2,
+.block.offer-box.plain-simple .offer-box-header .icon-with-heading h2,
 .block.offer-box.alternate-2 .offer-box-header .icon-with-heading h3,
-.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h4  {
+.block.offer-box.plain-simple .offer-box-header .icon-with-heading h3,
+.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h4,
+.block.offer-box.plain-simple .offer-box-header .icon-with-heading h4 {
+    width: 75%;
     font-size: 3rem;
     line-height: 3.2rem;
     font-weight: 600;
