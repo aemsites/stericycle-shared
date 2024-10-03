@@ -9,12 +9,41 @@ import {
   loadBlocks,
   loadCSS,
   loadFooter,
+  loadScript,
   loadHeader,
   sampleRUM,
   waitForLCP,
   toClassName,
+  toCamelCase,
 } from './aem.js';
 import ffetch from './ffetch.js';
+
+const AUDIENCES = {
+  mobile: () => window.innerWidth < 600,
+  desktop: () => window.innerWidth >= 600,
+  // define your custom audiences here as needed
+};
+
+export function getAllMetadata(scope) {
+  return [...document.head.querySelectorAll(`meta[property^="${scope}:"],meta[name^="${scope}-"]`)]
+    .reduce((res, meta) => {
+      const id = toClassName(meta.name
+        ? meta.name.substring(scope.length + 1)
+        : meta.getAttribute('property').split(':')[1]);
+      res[id] = meta.getAttribute('content');
+      return res;
+    }, {});
+}
+
+const pluginContext = {
+  getAllMetadata,
+  getMetadata,
+  loadCSS,
+  loadScript,
+  sampleRUM,
+  toCamelCase,
+  toClassName,
+};
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -352,6 +381,14 @@ async function loadEager(doc) {
     await waitForLCP(LCP_BLOCKS);
   }
 
+  if (getMetadata('experiment')
+      || Object.keys(getAllMetadata('campaign')).length
+      || Object.keys(getAllMetadata('audience')).length) {
+    // eslint-disable-next-line import/no-relative-packages
+    const { loadEager: runEager } = await import('../plugins/experimentation/src/index.js');
+    await runEager(document, { audiences: AUDIENCES }, pluginContext);
+  }
+
   try {
     /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
     if (window.innerWidth >= 900 || sessionStorage.getItem('fonts-loaded')) {
@@ -373,6 +410,14 @@ async function loadLazy(doc) {
   if (doc.querySelector('body.with-sidebar')) {
     await loadBlocks(main.querySelector('div.page-content'));
     await loadBlocks(main.querySelector('div.page-sidebar'));
+  }
+
+  if ((getMetadata('experiment')
+      || Object.keys(getAllMetadata('campaign')).length
+      || Object.keys(getAllMetadata('audience')).length)) {
+    // eslint-disable-next-line import/no-relative-packages
+    const { loadLazy: runLazy } = await import('../plugins/experimentation/src/index.js');
+    await runLazy(document, { audiences: AUDIENCES }, pluginContext);
   }
 
   const { hash } = window.location;
