@@ -313,18 +313,6 @@ main .section.quote-container.orange-border .quote-attribution p {
   color: #ff5633;
 }
 
-main .section.footnote-list div.default-content-wrapper ol li {
-  list-style-type: decimal; 
-  font-size: .875rem;
-  line-height: 1.125rem
-}
-
-main .section.footnote-list-star div.default-content-wrapper ol li {
-  list-style: "*"; 
-  font-size: .875rem;
-  line-height: 1.125rem
-}
-
 main .section.yellow-button  div.default-content-wrapper .button-container a {
   background-color: var(--color-yellow);
   border-color: var(--color-black);
@@ -635,7 +623,7 @@ main div.section.hard-drive-background {
   background-position-x: 50%;
   background-position-y: 100%;
   background-image: url("/images/sid-shreded-hard-drive-background-1920x1080.png");
-
+  background-repeat: no-repeat;
 }
 
 main div.section.shredded-paper-background-column {
