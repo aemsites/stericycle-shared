@@ -171,6 +171,8 @@ export function updateOrCreateInvalidMsg(fieldElement, msg) {
     container.classList.remove('field-invalid');
     element.innerHTML = container.dataset.description;
   } else if (element) {
+    container.classList.remove('field-invalid');
+    container.classList.add('field-valid');
     element.remove();
   }
   return element;
