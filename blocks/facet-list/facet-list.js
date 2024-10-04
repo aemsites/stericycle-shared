@@ -59,7 +59,7 @@ function decorateResults(posts, list, sheet) {
     @param {Object} controls - the controls element
     @param {String} sheet - the sheet name
  */
-function createPaginationControls(totalPages, currentPage, ul, controls, sheet) {
+function createPaginationControls(totalPages, currentPage, ul, controls, sheet, topic) {
   controls.innerHTML = ''; // Clear previous controls
   const pageUL = document.createElement('ul');
   pageUL.classList.add('pagination');
@@ -72,7 +72,7 @@ function createPaginationControls(totalPages, currentPage, ul, controls, sheet) 
   buttonPrev.addEventListener('click', () => {
     CURRENT_PAGE -= 1;
     // eslint-disable-next-line no-use-before-define
-    updateResults(null, sheet, CURRENT_PAGE);
+    updateResults(null, sheet, CURRENT_PAGE, topic);
   });
 
   const next = document.createElement('li');
@@ -83,7 +83,7 @@ function createPaginationControls(totalPages, currentPage, ul, controls, sheet) 
   buttonNext.addEventListener('click', () => {
     CURRENT_PAGE += 1;
     // eslint-disable-next-line no-use-before-define
-    updateResults(null, sheet, CURRENT_PAGE);
+    updateResults(null, sheet, CURRENT_PAGE, topic);
   });
 
   pageUL.append(prev, next);
@@ -108,10 +108,14 @@ function filterTags(cbox, includes) {
     * This function updates the results based on the checkbox that was clicked
     * @param {Object} checkboxChange - the checkbox that was clicked
     * @param {String} sheet - the sheet name
+    * @param {Number} page - the current page
+    * @param {String} topic - the topic/tag you want to filter by
  */
-async function updateResults(checkboxChange, sheets = [], page = 1) {
+async function updateResults(checkboxChange, sheets = [], page = 1, topic) {
+  console.log(`updateResults: ${topic}`);
   let sheetList = Array.isArray(sheets) ? sheets : sheets.split(',');
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
+  console.log(`topic: ${topic}`);
 
   const posts = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json').sheet(sheet)
     .map((post) => ({
@@ -128,19 +132,22 @@ async function updateResults(checkboxChange, sheets = [], page = 1) {
     ))
     .all())).then((results) => results.flat());
 
-  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  // const filteredPosts = topic ? posts.filter((post) => post.tags.includes(topic)) : posts;
+  const filteredPosts = posts.filter((post) => (!topic || post.tags.includes(topic))
+      && (!checkboxChange || post.type === checkboxChange.value));
+  filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredPosts.length / ITEMS_PER_PAGE);
   const start = (page - 1) * ITEMS_PER_PAGE;
   const end = start + ITEMS_PER_PAGE;
-  const paginatedPosts = posts.slice(start, end);
+  const paginatedPosts = filteredPosts.slice(start, end);
 
   const flc = document.querySelector('div.facet-list-container> div.results> ul');
   flc.innerHTML = '';
   decorateResults(paginatedPosts, flc, sheetList.join(', '));
 
   const paginationControls = document.querySelector('div.pagination-controls');
-  createPaginationControls(totalPages, page, flc, paginationControls, sheetList.join(', '));
+  createPaginationControls(totalPages, page, flc, paginationControls, sheetList.join(', '), topic);
 
   if (checkboxChange) {
     const checkboxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]');
@@ -155,7 +162,7 @@ async function updateResults(checkboxChange, sheets = [], page = 1) {
 /*
     * This function gets the results from the query-index.json file based on sheet name
  */
-async function getResults(sheets = []) {
+async function getResults(sheets = [], topic) {
   let sheetList = Array.isArray(sheets) ? sheets : [sheets];
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
@@ -163,7 +170,11 @@ async function getResults(sheets = []) {
   const posts = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json')
     .sheet(sheet).all())).then((results) => results.flat());
   posts.forEach((post) => {
-    postArray.push(post);
+    if (topic && post.tags.includes(topic)) {
+      postArray.push(post);
+    } else if (!topic) {
+      postArray.push(post);
+    }
   });
   return postArray;
 }
@@ -171,33 +182,52 @@ async function getResults(sheets = []) {
 /*
     * This function gets the facets from the query-index.json file based on sheet name
  */
-async function getFacets(sheets = []) {
+async function getFacets(sheets = [], topic) {
   let sheetList = Array.isArray(sheets) ? sheets : sheets.split(',');
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
   const facetArray = [];
+  const mediaTypeArray = [];
   const facets = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json')
     .sheet(sheet).all()))
     .then((results) => results.flat());
 
-  const tagJson = {};
   facets.forEach((facet) => {
     const tags = facet.tags.split(',');
+    let topicMatch = false;
     tags.forEach((tag) => {
       const cleanTag = tag.trim().replaceAll(/["[\]]/g, '');
       if (cleanTag === '' || sheetList.some((sheet) => cleanTag.toLowerCase().includes(sheet))) {
         return;
       }
-      const existingTag = facetArray.find((e) => e.tag === cleanTag);
-      if (existingTag) {
-        existingTag.count += 1;
-      } else {
-        facetArray.push({ tag: cleanTag, count: 1 });
+      if (topic && cleanTag.toLowerCase() === topic.toLowerCase()) {
+        const existingTag = facetArray.find((e) => e.tag === cleanTag);
+        if (existingTag) {
+          existingTag.count += 1;
+        } else {
+          facetArray.push({ tag: cleanTag, count: 1 });
+        }
+        topicMatch = true;
+      } else if (!topic) {
+        const existingTag = facetArray.find((e) => e.tag === cleanTag);
+        if (existingTag) {
+          existingTag.count += 1;
+        } else {
+          facetArray.push({ tag: cleanTag, count: 1 });
+        }
       }
     });
+
+    const mediaType = facet['media-type'];
+    const existingMediaType = mediaTypeArray.find((e) => e.type === mediaType);
+    if (topic && existingMediaType && topicMatch) {
+      existingMediaType.count += 1;
+    } else if (topicMatch) {
+      mediaTypeArray.push({ type: mediaType, count: 1 });
+    }
   });
-  tagJson.tags = facetArray;
-  return tagJson;
+
+  return { tags: facetArray, mediaTypes: mediaTypeArray };
 }
 
 /*
@@ -219,9 +249,9 @@ function clickChevron() {
 
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
-  const facets = await getFacets(cfg.sheet.split(','));
+  const facets = await getFacets(cfg.sheet.split(','), cfg.topic);
   const ph = await fetchPlaceholders(`/${getLocale()}`);
-  const { blogtopic } = ph;
+  const { blogtopic, mediatype } = ph;
   const facetDiv = document.createElement('div');
   const mobileFilter = document.createElement('i');
   mobileFilter.classList.add('filter-icon');
@@ -239,24 +269,38 @@ export default async function decorate(block) {
   chevron.addEventListener('click', () => {
     clickChevron();
   });
-  topicHead.innerText = blogtopic;
+  if (mediatype) {
+    topicHead.innerText = mediatype;
+  } else {
+    topicHead.innerText = blogtopic;
+  }
   topicHead.append(chevron);
   facetLI.append(topicHead);
   facetList.append(facetLI);
   const facetUL = document.createElement('ul');
   facetUL.classList.add('facet-list');
   facetLI.append(facetUL);
-  facets.tags.forEach((facet) => {
+  // console.log(facets.tags);
+  // console.log(facets.mediaTypes);
+  const facetArray = cfg.topic ? facets.mediaTypes : facets.tags;
+  facetArray.forEach((facet) => {
     const facetItem = document.createElement('li');
     const topic = document.createElement('div');
     topic.classList.add('facet-group');
     const checkbox = document.createElement('input');
     const label = document.createElement('label');
-    label.innerText = `${facet.tag} (${facet.count})`;
     checkbox.type = 'checkbox';
-    checkbox.value = facet.tag;
+    if (cfg.topic) {
+      label.innerText = `${facet.type} (${facet.count})`;
+      checkbox.value = facet.type;
+    } else {
+      label.innerText = `${facet.tag} (${facet.count})`;
+      checkbox.value = facet.tag;
+    }
     checkbox.addEventListener('change', (cb) => {
-      updateResults(cb.target, cfg.sheet.split(','));
+      console.log(`1 change: ${cfg.topic}`);
+      updateResults(cb.target, cfg.sheet.split(','), cfg.topic);
+      console.log(`2 change: ${cfg.topic}`);
     });
     topic.append(checkbox);
     topic.append(label);
@@ -268,7 +312,7 @@ export default async function decorate(block) {
   resultsDiv.classList.add('results');
   const resultsList = document.createElement('ul');
   const listOfSheets = cfg.sheet.split(',');
-  const posts = await getResults(listOfSheets);
+  const posts = await getResults(listOfSheets, cfg.topic);
   decorateResults(posts, resultsList, cfg.sheet);
   resultsDiv.append(resultsList);
   const blogFilterContainer = document.createElement('div');
@@ -280,5 +324,5 @@ export default async function decorate(block) {
   paginationControls.classList.add('pagination-controls');
   blogFilterContainer.insertAdjacentElement('afterend', paginationControls);
 
-  await updateResults(null, cfg.sheet, CURRENT_PAGE);
+  await updateResults(null, cfg.sheet, CURRENT_PAGE, cfg.topic);
 }
