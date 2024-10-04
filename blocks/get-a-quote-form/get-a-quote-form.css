@@ -13,6 +13,12 @@
 }
 
 .get-a-quote-form > .content {
+  display: grid;
   background-color: var(--color-gray);
   color: transparent;
+}
+
+.get-a-quote-form > .content > .form-container  {
+  margin: 0;
+  width: 100%;
 }
