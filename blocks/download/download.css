@@ -35,14 +35,11 @@ div.section.download-container > div.download-wrapper > div.ig-container p.butto
 
 @media screen and (min-width: 992px) {
     div.section.download-container {
-        display: flex;
-        align-items: flex-start;
         height: 100%;
         overflow: visible;
     }
 
     div.section.download-container > div.download-wrapper {
-        width: 25%;
         position: sticky;
         margin-left: 8.33%;
     }

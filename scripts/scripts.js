@@ -270,7 +270,8 @@ function decorateSectionTemplates(main) {
 async function decorateTemplates(main) {
   try {
     const template = toClassName(getMetadata('template'));
-    const templates = ['pr-page', 'services', 'blog-page', 'service-location-page', 'service-location-page-2', 'marketing-location-page'];
+    const templates = ['pr-page', 'services', 'blog-page',
+      'service-location-page', 'service-location-page-2', 'marketing-location-page', 'resource-center'];
 
     if (templates.includes(template)) {
       const mod = await import(`../templates/${template}/${template}.js`);
