@@ -38,7 +38,7 @@ function addServiceCards(main) {
     const button = document.createElement('a');
     button.textContent = 'Get a Quote';
     button.ariaLabel = button.textContent;
-    button.href = '#'; // TODO: add action to open the get-a-quote form
+    button.href = 'https://main--shredit--stericycle.aem.live/forms/modals/modal';
     buttonModifier.append(button);
     buttonWrapper.append(buttonModifier);
     description.parentElement.append(buttonWrapper);
