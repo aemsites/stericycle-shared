@@ -38,7 +38,7 @@ function addServiceCards(main) {
     const button = document.createElement('a');
     button.textContent = 'Get a Quote';
     button.ariaLabel = button.textContent;
-    button.href = 'https://main--shredit--stericycle.aem.live/forms/modals/modal';
+    button.href = '/forms/modals/modal';
     buttonModifier.append(button);
     buttonWrapper.append(buttonModifier);
     description.parentElement.append(buttonWrapper);
