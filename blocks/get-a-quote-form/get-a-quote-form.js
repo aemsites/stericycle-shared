@@ -3,7 +3,7 @@ import { loadFragment } from '../fragment/fragment.js';
 export default async function decorate(block) {
   const header = document.createElement('div');
   header.classList.add('header');
-  const title = document.createElement('span');
+  const title = document.createElement('h4');
   title.textContent = 'Get A Quote';
   header.append(title);
   block.append(header);
