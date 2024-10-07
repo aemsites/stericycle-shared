@@ -910,10 +910,6 @@ body.resource-center p {
     margin-bottom: 12px;
 }
 
-.blog-page main .blog-content p > a {
-  text-decoration: underline;
-}
-
 .blog-page main .breadcrumb-wrapper {
   display: none;
 }
