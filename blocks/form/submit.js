@@ -1,4 +1,4 @@
-import { DEFAULT_THANK_YOU_MESSAGE } from './constant.js';
+import { DEFAULT_THANK_YOU_MESSAGE, getSubmitBaseUrl } from './constant.js';
 
 // eslint-disable-next-line no-unused-vars
 export function submitSuccess(e, form) {
@@ -38,6 +38,7 @@ export function submitFailure(e, form) {
   form.querySelector('button[type="submit"]').disabled = false;
 }
 
+// eslint-disable-next-line no-unused-vars
 function generateUnique() {
   return new Date().valueOf() + Math.random();
 }
@@ -47,8 +48,8 @@ function getFieldValue(fe, payload) {
     return fe.form.elements[fe.name].value;
   } if (fe.type === 'checkbox') {
     if (fe.checked) {
-      if (payload[fe.name]) {
-        return `${payload[fe.name]},${fe.value}`;
+      if (payload.get(fe.name)) {
+        return `${payload.get(fe.name)},${fe.value}`;
       }
       return fe.value;
     }
@@ -59,42 +60,39 @@ function getFieldValue(fe, payload) {
 }
 
 function constructPayload(form) {
-  const payload = { __id__: generateUnique() };
+  const formData = new FormData();
   [...form.elements].forEach((fe) => {
     if (fe.name && !fe.matches('button') && !fe.disabled && fe.tagName !== 'FIELDSET') {
-      const value = getFieldValue(fe, payload);
+      const value = getFieldValue(fe, formData);
       if (fe.closest('.repeat-wrapper')) {
-        payload[fe.name] = payload[fe.name] ? `${payload[fe.name]},${fe.value}` : value;
+        formData.append(fe.name, value);
       } else {
-        payload[fe.name] = value;
+        formData.set(fe.name, value);
       }
     }
   });
-  return { payload };
+  return formData;
 }
 
 async function prepareRequest(form) {
-  const { payload } = constructPayload(form);
-  const headers = {
-    'Content-Type': 'application/json',
-  };
-  const body = { data: payload };
-  const url = form.dataset.submit || form.dataset.action;
-  return { headers, body, url };
+  const formData = constructPayload(form);
+  const url = `${getSubmitBaseUrl()}${formData.get('xfpath')}.form`;
+  return { formData, url };
 }
 
 export async function submitForm(form, captcha) {
   try {
-    const { headers, body, url } = await prepareRequest(form, captcha);
+    // eslint-disable-next-line prefer-const
+    let { formData, url } = await prepareRequest(form, captcha);
     let token = null;
     if (captcha) {
       token = await captcha.getToken();
-      body.data['g-recaptcha-response'] = token;
+      formData.append('g-recaptcha-response', token);
+      url += `?g-recaptcha-response=${encodeURIComponent(token)}`;
     }
     const response = await fetch(url, {
       method: 'POST',
-      headers,
-      body: JSON.stringify(body),
+      body: formData,
     });
     if (response.ok) {
       submitSuccess(
