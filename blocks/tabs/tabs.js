@@ -5,6 +5,20 @@ function hasWrapper(el) {
   return !!el.firstElementChild && window.getComputedStyle(el.firstElementChild).display === 'block';
 }
 
+function embedWistia(url) {
+  let suffix = '';
+  const suffixParams = {
+    playerColor: '00857A',
+  };
+
+  suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
+  const temp = document.createElement('div');
+  temp.innerHTML = `<div>
+  <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed custom-shadow"
+  name="wistia_embed" src="${url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href}${suffix}"></iframe>`;
+  return temp.children.item(0);
+}
+
 function addAccordionAnimation(details) {
   const summary = details.querySelector('summary');
 
@@ -42,6 +56,10 @@ export default async function decorate(block) {
     tabpanel.setAttribute('aria-hidden', !!i);
     tabpanel.setAttribute('aria-labelledby', `tab-${id}`);
     tabpanel.setAttribute('role', 'tabpanel');
+    if (block.classList.contains('vertical') && block.classList.contains('video')) {
+      const wistiaLink = tabpanel.querySelector('a');
+      tabpanel.replaceChildren(embedWistia(wistiaLink));
+    }
     if (!hasWrapper(tabpanel.lastElementChild)) {
       tabpanel.lastElementChild.innerHTML = `<p>${tabpanel.lastElementChild.innerHTML}</p>`;
     }
