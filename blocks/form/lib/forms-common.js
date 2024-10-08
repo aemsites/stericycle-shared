@@ -9,7 +9,7 @@ import {
 import GoogleReCaptcha from '../integrations/recaptcha.js';
 import componentDecorator from '../mappings.js';
 import transferRepeatableDOM from '../components/repeat/repeat.js';
-import { emailPattern } from '../constant.js';
+import { emailPattern, googleReCaptchaKey } from '../constant.js';
 
 let captchaField;
 
@@ -427,9 +427,9 @@ export async function createForm(formDef, data, {
   await generateFormRendition(formDef, form);
 
   let captcha;
-  if (captchaField) {
+  if (captchaField || googleReCaptchaKey) {
     const siteKey = captchaField?.properties?.['fd:captcha']?.config?.siteKey || captchaField?.value;
-    captcha = new GoogleReCaptcha(siteKey, captchaField.id);
+    captcha = new GoogleReCaptcha(siteKey || googleReCaptchaKey, captchaField?.id);
     captcha.loadCaptcha(form);
   }
 
