@@ -19,8 +19,8 @@
 
 .get-a-quote-form > .content > .section {
   margin: 0;
-  width: 100%;
   background-color: var(--color-gray);
+  overflow-y: hidden;
 }
 
 .get-a-quote-form  .content  .form-container .default-content-wrapper {
