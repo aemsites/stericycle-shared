@@ -88,7 +88,6 @@ export async function submitForm(form, captcha) {
     if (captcha) {
       token = await captcha.getToken();
       formData.append('g-recaptcha-response', token);
-      url += `?g-recaptcha-response=${encodeURIComponent(token)}`;
     }
     const response = await fetch(url, {
       method: 'POST',
