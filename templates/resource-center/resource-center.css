@@ -8,6 +8,10 @@
   margin-bottom: 30px;
 }
 
+.resource-center main .page-content a {
+  text-decoration: underline;
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
   .with-sidebar main > .body-wrapper {
     display: flex;
