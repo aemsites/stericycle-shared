@@ -9,7 +9,7 @@ import {
 import GoogleReCaptcha from '../integrations/recaptcha.js';
 import componentDecorator from '../mappings.js';
 import transferRepeatableDOM from '../components/repeat/repeat.js';
-import { emailPattern } from '../constant.js';
+import { emailPattern, googleReCaptchaKey } from '../constant.js';
 
 let captchaField;
 
@@ -136,6 +136,26 @@ function createHidden(fd) {
   return input;
 }
 
+function createFragment(fd) {
+  const wrapper = createFieldWrapper(fd);
+  wrapper.id = fd.Id;
+  if (fd.value) {
+    const fragmentUrl = new URL(fd.value);
+    const fragmentPath = fragmentUrl.pathname;
+    const url = fragmentPath.endsWith('.html') ? fragmentPath.replace('.html', '.plain.html') : `${fragmentPath}.plain.html`;
+    fetch(url).then(async (resp) => {
+      if (resp.ok) {
+        wrapper.innerHTML = await resp.text();
+        wrapper.querySelectorAll('a[href]').forEach((link) => {
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        });
+      }
+    });
+  }
+  return wrapper;
+}
+
 function createRadioOrCheckbox(fd) {
   const wrapper = createFieldWrapper(fd);
   const input = createInput(fd);
@@ -243,6 +263,7 @@ const fieldRenderers = {
   multiline: createTextArea,
   panel: createFieldSet,
   radio: createRadioOrCheckbox,
+  fragment: createFragment,
   'radio-group': createRadioOrCheckboxGroup,
   'checkbox-group': createRadioOrCheckboxGroup,
   image: createImage,
@@ -427,9 +448,9 @@ export async function createForm(formDef, data, {
   await generateFormRendition(formDef, form);
 
   let captcha;
-  if (captchaField) {
+  if (captchaField || googleReCaptchaKey) {
     const siteKey = captchaField?.properties?.['fd:captcha']?.config?.siteKey || captchaField?.value;
-    captcha = new GoogleReCaptcha(siteKey, captchaField.id);
+    captcha = new GoogleReCaptcha(siteKey || googleReCaptchaKey, captchaField?.id);
     captcha.loadCaptcha(form);
   }
 
