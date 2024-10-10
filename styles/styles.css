@@ -911,10 +911,6 @@ body.resource-center p {
     margin-bottom: 12px;
 }
 
-.blog-page main .blog-content p > a {
-  text-decoration: underline;
-}
-
 .blog-page main .breadcrumb-wrapper {
   display: none;
 }
@@ -1392,4 +1388,36 @@ main .list-with-background-image > div > ul > li:last-child {
   main .parallel-lines-decorator > div {
     padding: 32px 48px;
   }
+}
+
+main .footer-subscription-form.form-container {
+  margin:0;
+}
+
+main .footer-subscription-form.form-container .form-wrapper {
+  margin-top:0;
+}
+
+main .footer-subscription-form.form-container .default-content-wrapper {
+  margin-bottom:0;
+}
+
+main .footer-subscription-form .form .button-wrapper.submit-wrapper button{
+  background-color: var(--color-button-default);
+  color:var(--color-white);
+}
+
+
+main .footer-subscription-form #get-informed-stay-protected{
+  color:var(--color-blue);
+}
+
+main .footer-subscription-form .default-content-wrapper p:not(.button-container){
+  font-size: 1.25rem;
+}
+
+main .footer-subscription-form .default-content-wrapper a[title="Privacy Policy"]{
+  all:unset;
+  text-decoration: underline;
+  color: var(--color-blue);
 }
