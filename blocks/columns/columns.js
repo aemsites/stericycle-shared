@@ -34,17 +34,6 @@ export function applySplitPercentages(block) {
   }
 }
 
-function findEmbeds(block) {
-  const wistia = block.querySelectorAll('a');
-
-  wistia.forEach((link) => {
-    if(link.href.startsWith('https://fast.wistia')){
-      const embedPosition = link.closest('div');
-      embedPosition.replaceWith(embedWistia(link))
-    }
-  })
-}
-
 function embedWistia(url) {
   let suffix = '';
   const suffixParams = {
@@ -57,6 +46,17 @@ function embedWistia(url) {
   <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed custom-shadow"
   name="wistia_embed" src="${url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href}${suffix}"></iframe>`;
   return temp.children.item(0);
+}
+
+function findEmbeds(block) {
+  const wistia = block.querySelectorAll('a');
+
+  wistia.forEach((link) => {
+    if (link.href.startsWith('https://fast.wistia')) {
+      const embedPosition = link.closest('div');
+      embedPosition.replaceWith(embedWistia(link));
+    }
+  });
 }
 
 function applyHorizontalCellAlignment(block) {
