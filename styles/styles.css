@@ -707,10 +707,6 @@ body.resource-center > main > div.section.box-shadow.post-teaser-list-container 
   font-weight: 700;
 }
 
-body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper .teaser {
-  box-shadow: unset;
-}
-
 body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper .teaser > .teaser-content > a > span.teaser-date {
   display: unset;
 }
