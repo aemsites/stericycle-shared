@@ -1,4 +1,4 @@
-import { DEFAULT_THANK_YOU_MESSAGE } from './constant.js';
+import { DEFAULT_THANK_YOU_MESSAGE, getSubmitBaseUrl } from './constant.js';
 
 // eslint-disable-next-line no-unused-vars
 export function submitSuccess(e, form) {
@@ -73,28 +73,37 @@ function constructPayload(form) {
   return { payload };
 }
 
+function createFormData(payload) {
+  const formData = new FormData();
+  Object.keys(payload).forEach((key) => {
+    formData.append(key, payload[key]);
+  });
+  return formData;
+}
+
 async function prepareRequest(form) {
   const { payload } = constructPayload(form);
   const headers = {
     'Content-Type': 'application/json',
   };
   const body = { data: payload };
-  const url = form.dataset.submit || form.dataset.action;
+  const url = `${getSubmitBaseUrl()}${payload?.xfpath}.form`;
   return { headers, body, url };
 }
 
 export async function submitForm(form, captcha) {
   try {
+    // eslint-disable-next-line no-unused-vars
     const { headers, body, url } = await prepareRequest(form, captcha);
     let token = null;
+    const formData = createFormData(body.data);
     if (captcha) {
       token = await captcha.getToken();
-      body.data['g-recaptcha-response'] = token;
+      formData.append['g-recaptcha-response'] = token;
     }
     const response = await fetch(url, {
       method: 'POST',
-      headers,
-      body: JSON.stringify(body),
+      body: formData,
     });
     if (response.ok) {
       submitSuccess(
