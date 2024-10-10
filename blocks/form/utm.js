@@ -10,7 +10,7 @@ const createUtmInput = (name, value, form) => {
 };
 
 export default async function decorateUTM(form) {
-  const placeholders = await fetchPlaceholders('utm-sources');
+  const placeholders = await fetchPlaceholders('/forms/utm-sources');
   const utmSources = placeholders ? Object.values(placeholders).join(',') : null;
   const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
   const queryString = window.location.search;
