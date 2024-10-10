@@ -1,4 +1,5 @@
 import { hr } from '../../scripts/dom-helpers.js';
+import { embedWistia } from '../../scripts/scripts.js';
 
 export function applySplitPercentages(block) {
   const ratios = [];
@@ -32,20 +33,6 @@ export function applySplitPercentages(block) {
       }
     }
   }
-}
-
-function embedWistia(url) {
-  let suffix = '';
-  const suffixParams = {
-    playerColor: '00857A',
-  };
-
-  suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
-  const temp = document.createElement('div');
-  temp.innerHTML = `<div>
-  <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed custom-shadow"
-  name="wistia_embed" src="${url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href}${suffix}"></iframe>`;
-  return temp.children.item(0);
 }
 
 function findEmbeds(block) {
