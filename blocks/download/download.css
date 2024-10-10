@@ -4,6 +4,10 @@ div.section.download-container {
     overflow: visible;
 }
 
+div.section.download-container .default-content-wrapper a {
+	text-decoration: underline;
+}
+
 div.section.download-container.has-block {
 	padding-right: calc(1.5rem* 0.5);
 	padding-left: calc(1.5rem* 0.5);
