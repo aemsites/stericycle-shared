@@ -17,6 +17,13 @@ export async function createModal(contentNodes) {
   dialogContent.append(...contentNodes);
   dialog.append(dialogContent);
 
+  const container = dialog.querySelector('fieldset.wizard');
+  const wizardMenuItems = container.querySelector('.wizard-menu-items');
+  const fragment = dialog.querySelector('fieldset.wizard > .fragment-wrapper');
+  if (container && wizardMenuItems && fragment) {
+    container.insertBefore(wizardMenuItems, fragment);
+  }
+
   const closeButton = document.createElement('button');
   closeButton.classList.add('close-button');
   closeButton.setAttribute('aria-label', 'Close');
