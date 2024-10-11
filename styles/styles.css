@@ -468,8 +468,9 @@ main .block.gray-background {
   background-color: var(--color-gray);
 }
 
+main > div.section.gray-background > div.default-content-wrapper h1,
 main > div.section.gray-background > div.default-content-wrapper h2 {
-    color: var(--color-blue);
+  color: var(--color-dark-gunmetal);
 }
 
 main > div.section.gray-background.post-teaser-list-container > div.default-content-wrapper h2 {
@@ -597,7 +598,6 @@ main .list-style-bullets ul li {
 main ol {
   position: relative;
   padding: 0;
-  margin: 0 0 1rem 1rem;
 }
 
 main ol li {
@@ -704,10 +704,6 @@ body.resource-center > main > div.section.box-shadow.post-teaser-list-container 
   font-size: 1.625rem;
   line-height: 2.375rem;
   font-weight: 700;
-}
-
-body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper .teaser {
-  box-shadow: unset;
 }
 
 body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper .teaser > .teaser-content > a > span.teaser-date {
