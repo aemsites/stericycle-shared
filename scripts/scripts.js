@@ -167,7 +167,7 @@ function consolidateOfferBoxes(main) {
 export function embedWistia(url) {
   let suffix = '';
   const suffixParams = {
-    playerColor: '00857A',
+    playerColor: '006cb4',
   };
 
   suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
