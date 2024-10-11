@@ -54,7 +54,7 @@ function embedVimeo(url, replacePlaceholder, autoplay) {
 function embedWistia(url, replacePlaceholder, autoplay) {
   let suffix = '';
   const suffixParams = {
-    playerColor: '00857A',
+    playerColor: '#006cb4',
   };
 
   if (replacePlaceholder || autoplay) {
