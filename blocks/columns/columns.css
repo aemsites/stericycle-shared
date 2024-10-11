@@ -207,6 +207,10 @@ main .columns span.icon > img {
   margin-top: 1rem;
 }
 
+.columns.vertical-center-align > div > div {
+  justify-content: center;
+}
+
 .columns.orange-accent-border > div > div::after,
 .columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img))::after {
   background: var(--color-orange);
