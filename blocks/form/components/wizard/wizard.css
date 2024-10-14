@@ -26,7 +26,8 @@ main .form form .wizard .wizard-menu-items .wizard-menu-item:has(~ .wizard-menu-
   display: inline-block;
   position: relative;
 }
-main .form form .wizard .wizard-menu-items .wizard-menu-item:has(~ .wizard-menu-active-item)::after {
+main .form form .wizard .wizard-menu-items .wizard-menu-item:has(~ .wizard-menu-active-item)::after,
+main .form form.submit-success .wizard .wizard-menu-items .wizard-menu-item::after {
   content: '';
   display: block;
   width: 8px;
