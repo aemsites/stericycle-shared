@@ -294,10 +294,6 @@ main .section.faq-container:not(.cyan-border) > div.default-content-wrapper h2 {
   font-weight: 600;
 }
 
-main .section.faq-container > div p {
-  font-weight: 600;
-}
-
 main .section.quote-container.orange-border .quote-wrapper::before {
   display: block;
   background-color: #ff5633;
@@ -533,6 +529,11 @@ main .block.divider hr {
   border: 0.5px solid var(--color-medium-gray);
   opacity: .25;
   color: inherit;
+}
+
+main .section.narrow {
+  max-width: var(--section-width);
+  margin: auto;
 }
 
 main .section.orange-background {
