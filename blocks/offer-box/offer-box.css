@@ -38,7 +38,7 @@
 .offer-box.plain-simple > div.offer-box-header .icon-with-heading {
     display: flex;
     flex-direction: row;
-    align-items: start;
+    align-items: center;
     gap: 1rem;
     height: 100%;
     min-height: 100%;
@@ -98,6 +98,7 @@
     flex-direction: column;
     justify-content: space-between;
     min-height: 30%;
+    align-items: flex-start;
 }
 
 
@@ -129,13 +130,9 @@
 }
 
 .block.offer-box.alternate-2 .offer-box-header .icon-with-heading h1, 
-.block.offer-box.plain-simple .offer-box-header .icon-with-heading h1,
 .block.offer-box.alternate-2 .offer-box-header .icon-with-heading h2,
-.block.offer-box.plain-simple .offer-box-header .icon-with-heading h2,
 .block.offer-box.alternate-2 .offer-box-header .icon-with-heading h3,
-.block.offer-box.plain-simple .offer-box-header .icon-with-heading h3,
-.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h4,
-.block.offer-box.plain-simple .offer-box-header .icon-with-heading h4 {
+.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h4 {
     width: 75%;
     font-size: 3rem;
     line-height: 3.2rem;
@@ -166,6 +163,10 @@
 .offer-box.alternate-1 .offer-box-list-container p {
     font-size: 1rem;
     font-weight: 700;
+}
+
+.block.offer-box.plain-simple p {
+  margin-bottom: 0.75rem;
 }
 
 .block.offer-box.alternate-2 .offer-box-header .promotion-with-text .text-with-badge > p:nth-child(2) {
@@ -217,9 +218,9 @@
 }
 
 .offer-box.alternate-1 span.icon {
-    width: 100%;
-    height: auto;
-    margin: unset;
+		width: 100%;
+		height: auto;
+		margin: unset;
 }
 
 .offer-box.alternate-1 .head-copy {
@@ -260,6 +261,10 @@
     .block.offer-box-wrapper {
         display: flex;
         flex-direction: row;
+    }
+
+    .block.offer-box.plain-simple .offer-box-header {
+			min-height: 100px;
     }
 
     .section.three-column-offer .offer-box-wrapper, .section.offer-box-container.three-columns > div.offer-box-wrapper {
