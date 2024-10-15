@@ -630,11 +630,6 @@ main .form .field-wrapper.floating-field > label {
     top: 10px;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper label{
-  color: #fff;
-  cursor: pointer;
-}
-
 /* Style for labels when input is focused */
 main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox'], :placeholder-shown) + label,
 main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox']):focus + label{
@@ -656,21 +651,25 @@ main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkb
     color: transparent;
 }
 
-main .form form .panel-wrapper.field-requesttype{
+main .form form .panel-wrapper.field-requesttype,
+main .form form .panel-wrapper.field-frequncy{
   grid-template-columns: 12fr 1fr 1fr;
   gap: 0;
   margin-top: 20px;
 }
 
-main .form form .panel-wrapper.field-requesttype legend{
+main .form form .panel-wrapper.field-requesttype legend,
+main .form form .panel-wrapper.field-frequncy legend{
   grid-column: 1;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper input{
+main .form form .panel-wrapper.field-requesttype .radio-wrapper input,
+main .form form .panel-wrapper.field-frequncy .radio-wrapper input{
   opacity: 0;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper{
+main .form form .panel-wrapper.field-requesttype .radio-wrapper,
+main .form form .panel-wrapper.field-frequncy .radio-wrapper{
   grid-column: 2;
   display: flex;
   align-items: center;
@@ -680,22 +679,26 @@ main .form form .panel-wrapper.field-requesttype .radio-wrapper{
   background: var(--border-color);
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(2){
+main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(2),
+main .form form .panel-wrapper.field-frequncy .radio-wrapper:nth-child(2){
   border-bottom-left-radius: 6.25rem;
   border-top-left-radius: 6.25rem;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(3){
+main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(3),
+main .form form .panel-wrapper.field-frequncy .radio-wrapper:nth-child(3){
   grid-column: 3;
   border-bottom-right-radius: 6.25rem;
   border-top-right-radius: 6.25rem;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked){
+main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked),
+main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked){
   background: var(--button-primary-color);
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked) label::before{
+main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked) label::before,
+main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked) label::before{
   content: '';
   display: block;
   width: 8px;
@@ -705,6 +708,12 @@ main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checke
   position: absolute;
   top: 45%;
   transform: translate(-50%, -50%) rotate(45deg);
+}
+
+main .form form .panel-wrapper.field-requesttype .radio-wrapper label,
+main .form form .panel-wrapper.field-frequncy .radio-wrapper label{
+    color: #fff;
+    cursor: pointer;
 }
 
 main .modal.block dialog{
