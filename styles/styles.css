@@ -457,6 +457,10 @@ main .section > div {
 
 /* section styles */
 
+main .section.gray-background:has(.block.flip-cards) {
+  max-width: 100%;
+}
+
 main .section.light,
 main .section.highlight,
 main .section.gray-background,
@@ -725,6 +729,8 @@ body.resource-center > main > div.section.default-teaser-section > div.default-c
   padding-bottom: unset;
   margin-bottom: unset;
 }
+
+
 
 @media (min-width: 576px) {
   body.resource-center > main > div.section {
@@ -1182,6 +1188,10 @@ main .list-style-big-numbers ol > li:nth-child(n+10)::before {
 }
 
 /* Page Section with Background Image - Orange Background */
+main div.section.orange-background.list-style-orange-triangles.list-with-background-image {
+  max-width: 100%;
+}
+
 main .list-with-background-image > .default-content-wrapper {
   display: flex;
   flex-direction: column;
