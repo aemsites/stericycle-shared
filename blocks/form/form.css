@@ -630,6 +630,12 @@ main .form .field-wrapper.floating-field > label {
     top: 10px;
 }
 
+main .form form .panel-wrapper.field-requesttype .radio-wrapper label,
+main .form form .panel-wrapper.field-frequncy .radio-wrapper label{
+    color: #fff;
+    cursor: pointer;
+}
+
 /* Style for labels when input is focused */
 main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox'], :placeholder-shown) + label,
 main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox']):focus + label{
@@ -708,12 +714,6 @@ main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked) 
   position: absolute;
   top: 45%;
   transform: translate(-50%, -50%) rotate(45deg);
-}
-
-main .form form .panel-wrapper.field-requesttype .radio-wrapper label,
-main .form form .panel-wrapper.field-frequncy .radio-wrapper label{
-    color: #fff;
-    cursor: pointer;
 }
 
 main .modal.block dialog{
