@@ -82,7 +82,7 @@ export default async function decorate(block) {
     });
     offerBox.append(headers, contentDiv);
     block.replaceWith(offerBox);
-  } else {
+  } else if (block.classList.contains('alternate-1')) {
     headers.classList.add('offer-box-header');
     block.removeChild(block.firstElementChild);
     block.prepend(headers);
@@ -91,5 +91,36 @@ export default async function decorate(block) {
     anchors.forEach((a) => {
       a.classList.add('button', 'primary');
     });
+  } else {
+    headers.classList.add('offer-box-header');
+    offerBox.appendChild(headers);
+
+    const headCopy = document.createElement('div');
+    headCopy.classList.add('head-copy'); // why do we copy head
+    headCopy.innerHTML = block.querySelector('div:nth-of-type(2) > div > p').innerHTML;
+    const btnDiv = block.querySelector('div:nth-of-type(3) > div > p');
+    btnDiv.classList.add('button-container');
+    const hrDiv = document.createElement('div');
+    const hr = document.createElement('hr');
+    hrDiv.appendChild(hr);
+    const btnA = btnDiv.querySelector('a');
+    btnA.classList.add('button', 'primary');
+    const listDiv = document.createElement('div');
+    listDiv.classList.add('offer-box-list-container');
+
+    listDiv.innerHTML = block.querySelector('div:nth-of-type(4) > div').innerHTML;
+
+    offerBox.append(headCopy);
+    if (block.classList.contains('big-icon')) {
+      offerBox.append(hrDiv);
+      offerBox.append(listDiv);
+      offerBox.append(btnDiv);
+    } else {
+      offerBox.append(btnDiv);
+      offerBox.append(hrDiv);
+      offerBox.append(listDiv);
+    }
+
+    block.replaceWith(offerBox);
   }
 }
