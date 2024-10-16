@@ -1028,6 +1028,10 @@ body.resource-center p {
   font-size: 16px;
 }
 
+main .section.extra-margin-bottom {
+  margin-bottom: 2rem;
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
   .blog-page main .related-content h5 {
     line-height: 24px;
