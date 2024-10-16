@@ -14,12 +14,12 @@ main .section > div.hero-wrapper {
     max-width: var(--section-width);
     margin: 0 auto;
   }
-  
+
   .with-sidebar main > .body-wrapper > .page-sidebar > .section > div {
     padding: 0;
     margin-bottom: 30px;
   }
-  
+
   @media (min-width: 992px /* breakpoint-l */) {
     .with-sidebar main > .body-wrapper {
       display: flex;
@@ -27,13 +27,13 @@ main .section > div.hero-wrapper {
       justify-content: space-between;
       padding: 0;
     }
-  
+
     .with-sidebar main > .body-wrapper > .page-content {
       width: 66.6667%;
     }
-  
+
     .with-sidebar main > .body-wrapper > .page-sidebar {
-      width: 25%;
+      width: 30%;
       z-index: 1;
     }
   }

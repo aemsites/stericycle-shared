@@ -140,8 +140,8 @@ main .form select {
 }
 
 main .form select {
-  padding-top: 0;
-  padding-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 main .form input[type='file'] {
@@ -241,7 +241,7 @@ main form .file-wrapper > button{
 }
 
 .button-wrapper.submit-wrapper button{
-  width: 100%;
+    width: 100%;
 }
 
 main .form button:hover {
@@ -260,20 +260,20 @@ main .form button:disabled {
 }
 
 main .form input:focus, main .form textarea:focus, main .form select:focus {
-  outline: 0;
-  box-shadow: var(--form-input-focus-shadow);
+    outline: 0;
+    box-shadow: var(--form-input-focus-shadow);
 }
 
 main .form .field-wrapper.field-valid input,
 main .form .field-wrapper.field-valid textarea,
 main .form .field-wrapper.field-valid select {
-  border-color: var(--form-input-valid-border-color);
+    border-color: var(--form-input-valid-border-color);
 }
 
 main .form .field-wrapper.field-invalid input,
 main .form .field-wrapper.field-invalid textarea,
 main .form .field-wrapper.field-invalid select {
-  border-color: var(--form-input-invalid-border-color);
+    border-color: var(--form-input-invalid-border-color);
     padding-right: calc(1.5em + .75rem);
     background-image: url('../../icons/invalid.svg');
     background-repeat: no-repeat;
@@ -284,8 +284,8 @@ main .form .field-wrapper.field-invalid select {
 main .form .field-wrapper.field-invalid input:focus,
 main .form .field-wrapper.field-invalid textarea:focus,
 main .form .field-wrapper.field-invalid select:focus {
-  outline: 0;
-  box-shadow: var(--form-input-invalid-shadow);
+    outline: 0;
+    box-shadow: var(--form-input-invalid-shadow);
 }
 
 main .file-wrapper.decorated input[type="file"] {
@@ -314,16 +314,16 @@ main .form form .item-add {
 }
 
 main .form .file-description{
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  margin-top: 5px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 5px;
 }
 
 main .form .file-description .file-description-name {
-  cursor: pointer;
-  text-decoration: underline;
-  flex: 1;
+    cursor: pointer;
+    text-decoration: underline;
+    flex: 1;
 }
 
 main .form form .item-remove span {
@@ -381,18 +381,18 @@ main .form .button-wrapper.wizard-button-next button, main .form .button-wrapper
 }
 
 main .form .button-wrapper.wizard-button-next button:hover, main .form .button-wrapper.submit-wrapper button:hover{
-  border: 2px solid #000;
+    border: 2px solid #000;
 }
 
 /** Wizard Styling */
 main .form form .wizard  {
-  display: grid;
-  counter-reset: wizard-step-counter;
-  grid-template-columns: minmax(0, 1fr);
-  border: var(--form-wizard-border) solid var(--form-wizard-border-color);
-  background-color: var( --form-wizard-background-color);
-  gap: unset;
-  padding: 20px var(--form-wizard-padding);
+    display: grid;
+    counter-reset: wizard-step-counter;
+    grid-template-columns: minmax(0, 1fr);
+    border: var(--form-wizard-border) solid var(--form-wizard-border-color);
+    background-color: var( --form-wizard-background-color);
+    gap: unset;
+    padding: 20px var(--form-wizard-padding);
 }
 
 main .form form .wizard > legend{
@@ -401,7 +401,7 @@ main .form form .wizard > legend{
 }
 
 main .form form .wizard > .field-description{
-  width: 100%;
+    width: 100%;
 }
 
 main .form form .wizard > fieldset > legend{
@@ -439,27 +439,27 @@ main .form form .wizard .wizard-button-wrapper .field-wrapper{
 }
 
 main .form form .wizard .wizard-menu-item {
-  counter-increment: wizard-step-counter;
+    counter-increment: wizard-step-counter;
 }
 
 main .form form .wizard .wizard-menu-item::before {
-  content: counter(wizard-step-counter);
-  border: 2px solid var(--form-wizard-number-color);
-  color: var(--form-wizard-number-color);
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  margin-right: 10px;
-  text-align: center;
-  line-height: 2;
-  display: inline-block;
+    content: counter(wizard-step-counter);
+    border: 2px solid var(--form-wizard-number-color);
+    color: var(--form-wizard-number-color);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 2;
+    display: inline-block;
 }
 
 main .form form .wizard .wizard-menu-active-item::before{
-  border: 2px solid var(--form-wizard-number-color);
-  background: var(--form-wizard-number-color);
-  color: var(--background-color-primary);
-  font-weight: 600;
+    border: 2px solid var(--form-wizard-number-color);
+    background: var(--form-wizard-number-color);
+    color: var(--background-color-primary);
+    font-weight: 600;
 }
 
 @media (min-width: 600px) {
@@ -470,24 +470,24 @@ main .form form .wizard .wizard-menu-active-item::before{
 
 /* wizard title on left */
 main .form form .wizard.left{
-  display: flex;
+    display: flex;
 }
 
 main .form form .wizard.left .wizard-menu-items{
-  flex-direction: column;
-  width: 300px;
+    flex-direction: column;
+    width: 300px;
 }
 
 main form .panel-wrapper {
-  display: flex;
-  padding: 0;
-  flex-direction: column;
+    display: flex;
+    padding: 0;
+    flex-direction: column;
 }
 
 main .form form .panel-wrapper{
-  display: grid;
-  grid-template-columns: repeat(var(--form-columns), minmax(0, 1fr));
-  gap: var(--form-field-vert-gap) var(--form-field-horz-gap);
+    display: grid;
+    grid-template-columns: repeat(var(--form-columns), minmax(0, 1fr));
+    gap: var(--form-field-vert-gap) var(--form-field-horz-gap);
 }
 
 main .form form .repeat-wrapper{
@@ -497,7 +497,7 @@ main .form form .repeat-wrapper{
 }
 
 main .form form .wizard.left .panel-wrapper{
-  flex: 1;
+    flex: 1;
 }
 
 @media (min-width: 1200px) {
@@ -533,19 +533,19 @@ main .form .form-message.error-message {
 }
 
 main .form .file-wrapper .file-drag-area {
-  border: 1px dashed var(--border-color);
-  border-radius: 5px;
-  padding: 10px 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
+    border: 1px dashed var(--border-color);
+    border-radius: 5px;
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 /* grid css */
 main .form form .field-wrapper .field-description{
-  grid-column: span 12;
+    grid-column: span 12;
 }
 
 main .form form .field-wrapper.col-12 {
@@ -557,7 +557,7 @@ main .form form .field-wrapper.col-11 {
 }
 
 main .form form .field-wrapper.col-10 {
-  grid-column: span 10;
+    grid-column: span 10;
 }
 
 main .form form .field-wrapper.col-9 {
@@ -573,23 +573,23 @@ main .form form .field-wrapper.col-7 {
 }
 
 main .form form .field-wrapper.col-6 {
-      grid-column: span 6;
+    grid-column: span 6;
 }
 
 main .form form .field-wrapper.col-5 {
-      grid-column: span 5;
+    grid-column: span 5;
 }
 
 main .form form .field-wrapper.col-4 {
-      grid-column: span 4;
+    grid-column: span 4;
 }
 
 main .form form .field-wrapper.col-3 {
-      grid-column: span 3;
+    grid-column: span 3;
 }
 
 main .form form .field-wrapper.col-2 {
-      grid-column: span 2;
+    grid-column: span 2;
 }
 
 main .form form .field-wrapper.col-1 {
@@ -597,8 +597,8 @@ main .form form .field-wrapper.col-1 {
 }
 
 main .form .form-image-wrapper  img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 main form .wizard > .current-wizard-step.panel-wrapper:first-of-type ~ .wizard-button-wrapper > .wizard-button-prev,
@@ -630,9 +630,10 @@ main .form .field-wrapper.floating-field > label {
     top: 10px;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper label{
-  color: #fff;
-  cursor: pointer;
+main .form form .panel-wrapper.field-requesttype .radio-wrapper label,
+main .form form .panel-wrapper.field-frequncy .radio-wrapper label{
+    color: #fff;
+    cursor: pointer;
 }
 
 /* Style for labels when input is focused */
@@ -650,78 +651,86 @@ main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkb
     padding-bottom: .5rem;
 }
 
- /* hide placeholder when not focused */
- main .form input:not(:placeholder-shown)::placeholder,
- main .form input:placeholder-shown:not(:focus)::placeholder {
+/* hide placeholder when not focused */
+main .form input:not(:placeholder-shown)::placeholder,
+main .form input:placeholder-shown:not(:focus)::placeholder {
     color: transparent;
 }
 
-main .form form .panel-wrapper.field-requesttype{
-  grid-template-columns: 12fr 1fr 1fr;
-  gap: 0;
-  margin-top: 20px;
+main .form form .panel-wrapper.field-requesttype,
+main .form form .panel-wrapper.field-frequncy{
+    grid-template-columns: 12fr 1fr 1fr;
+    gap: 0;
+    margin-top: 20px;
 }
 
-main .form form .panel-wrapper.field-requesttype legend{
-  grid-column: 1;
+main .form form .panel-wrapper.field-requesttype legend,
+main .form form .panel-wrapper.field-frequncy legend{
+    grid-column: 1;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper input{
-  opacity: 0;
+main .form form .panel-wrapper.field-requesttype .radio-wrapper input,
+main .form form .panel-wrapper.field-frequncy .radio-wrapper input{
+    opacity: 0;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper{
-  grid-column: 2;
-  display: flex;
-  align-items: center;
-  margin-top: -45px;
-  width: 120px;
-  text-align: center;
-  background: var(--border-color);
+main .form form .panel-wrapper.field-requesttype .radio-wrapper,
+main .form form .panel-wrapper.field-frequncy .radio-wrapper{
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    margin-top: -45px;
+    width: 120px;
+    text-align: center;
+    background: var(--border-color);
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(2){
-  border-bottom-left-radius: 6.25rem;
-  border-top-left-radius: 6.25rem;
+main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(2),
+main .form form .panel-wrapper.field-frequncy .radio-wrapper:nth-child(2){
+    border-bottom-left-radius: 6.25rem;
+    border-top-left-radius: 6.25rem;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(3){
-  grid-column: 3;
-  border-bottom-right-radius: 6.25rem;
-  border-top-right-radius: 6.25rem;
+main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(3),
+main .form form .panel-wrapper.field-frequncy .radio-wrapper:nth-child(3){
+    grid-column: 3;
+    border-bottom-right-radius: 6.25rem;
+    border-top-right-radius: 6.25rem;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked){
-  background: var(--button-primary-color);
+main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked),
+main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked){
+    background: var(--button-primary-color);
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked) label::before{
-  content: '';
-  display: block;
-  width: 8px;
-  height: 13px;
-  border: solid #fff;
-  border-width: 0 2px 2px 0;
-  position: absolute;
-  top: 45%;
-  transform: translate(-50%, -50%) rotate(45deg);
+main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked) label::before,
+main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked) label::before{
+    content: '';
+    display: block;
+    width: 8px;
+    height: 13px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    position: absolute;
+    top: 45%;
+    transform: translate(-50%, -50%) rotate(45deg);
 }
 
 main .modal.block dialog{
-  max-width: 570px;
+    max-width: 570px;
 }
 
 main .modal.block dialog .form form .wizard{
-  padding: 0;
+    padding: 0;
 }
 
 main .form .field-wrapper.floating-field[data-required="true"] label::after,
 main .form .panel-wrapper[data-required="true"] legend::after {
-  content: "*";
-  color: var(--form-label-color);
+    content: "*";
+    color: var(--form-label-color);
 }
 
 main .form .field-wrapper.floating-field[data-required="true"].field-invalid label::after,
 main .form .panel-wrapper[data-required="true"].field-invalid legend::after {
-  color: var(--form-error-color);
+    color: var(--form-error-color);
 }

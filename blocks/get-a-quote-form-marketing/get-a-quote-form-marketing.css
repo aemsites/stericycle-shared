@@ -1,0 +1,43 @@
+.get-a-quote-form-marketing {
+  box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+  background-color: var(--color-white);
+  border-radius: 4px;
+  padding-top: 70px;
+}
+
+.get-a-quote-form-marketing .content .header {
+  background-color: var(--color-yellow);
+  font-size: var(--heading-font-size-m);
+  font-weight: 700;
+  padding: 16px 48px;
+  margin:0;
+}
+
+.get-a-quote-form-marketing > .content > .section {
+  margin: 0;
+  overflow-y: hidden;
+}
+
+.get-a-quote-form-marketing  .content  .form-container .default-content-wrapper {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-bottom: 0;
+}
+
+.get-a-quote-form-marketing  .content  .form-container .default-content-wrapper > p {
+  font-size: 1rem;
+}
+
+.get-a-quote-form-marketing  .content  .form-container  .form-wrapper {
+  padding: 0;
+  margin: 1rem 0.5rem;
+}
+
+
+.get-a-quote-form-marketing  .content  form {
+  display: block;
+}
+
+.get-a-quote-form-marketing  .content  form  .panel-wrapper {
+  padding: 5px;
+}
