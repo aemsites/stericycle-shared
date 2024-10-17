@@ -1,4 +1,5 @@
 import { hr } from '../../scripts/dom-helpers.js';
+import { embedWistia } from '../../scripts/scripts.js';
 
 export function applySplitPercentages(block) {
   const ratios = [];
@@ -33,6 +34,17 @@ export function applySplitPercentages(block) {
       }
     }
   }
+}
+
+function findEmbeds(block) {
+  const wistia = block.querySelectorAll('a');
+
+  wistia.forEach((link) => {
+    if (link.href.startsWith('https://fast.wistia')) {
+      const embedPosition = link.closest('div');
+      embedPosition.replaceWith(embedWistia(link));
+    }
+  });
 }
 
 function applyHorizontalCellAlignment(block) {
@@ -111,6 +123,7 @@ export default function decorate(block) {
     });
   });
 
+  findEmbeds(block);
   applySplitPercentages(block);
   applyCellAlignment(block);
 }
