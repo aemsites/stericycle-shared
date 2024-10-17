@@ -1,3 +1,9 @@
+.section.video-container.video-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0 0 33.3333%;
+}
+
 .video {
     width: unset;
     text-align: center;
