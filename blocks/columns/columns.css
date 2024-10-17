@@ -12,7 +12,6 @@
   order: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .columns.labeled > div {
@@ -45,6 +44,10 @@ main .columns span.icon > img {
 
 .columns.columns-has-image.steps img {
   width: 576px;
+}
+
+.block.columns.native-image-sizes img {
+  width: auto;
 }
 
 .columns.labeled > div:first-of-type img {
@@ -202,6 +205,10 @@ main .columns span.icon > img {
   display: flex;
   align-items: center;
   margin-top: 1rem;
+}
+
+.columns.vertical-center-align > div > div {
+  justify-content: center;
 }
 
 .columns.orange-accent-border > div > div::after,

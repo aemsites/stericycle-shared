@@ -118,6 +118,18 @@ function fixDynamicMedia(main, document) {
   });
 }
 
+const createSectionMetadataForListBullets = (main, document) => {
+  const mainBlock = main.querySelector('div.col-lg-8.cmp-columnrow__item');
+  if (mainBlock?.querySelector('ul')) {
+    const sectionMetaCells = [
+      ['Section Metadata'],
+      ['Style', 'list-style-bullets'],
+    ];
+    const sectionMetadata = WebImporter.DOMUtils.createTable(sectionMetaCells, document);
+    main.append(sectionMetadata);
+  }
+};
+
 function transformDownloadBlock(main, document) {
   const downloadBlock = main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid') ? main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid') : main.querySelector('div.col-lg-3.cmp-columnrow__item div.pagesection > div.cmp-pagesection > div.aem-Grid');
 
@@ -133,7 +145,14 @@ function transformDownloadBlock(main, document) {
     dlLink.innerHTML = dlLink.href.replace('http://localhost:3001', baseDomain);
     cells.push(['download', dlLink.href.replace('http://localhost:3001', baseDomain)]);
     const dBlock = WebImporter.DOMUtils.createTable(cells, document);
+    main.append(hr(document));
     main.append(dBlock);
+    const sectionMetaCells = [
+      ['Section Metadata'],
+      ['Position', 'Sidebar'],
+    ];
+    const sectionMetadata = WebImporter.DOMUtils.createTable(sectionMetaCells, document);
+    main.append(sectionMetadata);
     main.append(hr(document));
   }
 }
@@ -187,6 +206,7 @@ export default {
     ]);
 
     fixDynamicMedia(main, document);
+    createSectionMetadataForListBullets(main, document);
     transformDownloadBlock(main, document);
     transformFAQ(main);
 

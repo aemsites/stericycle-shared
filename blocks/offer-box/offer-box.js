@@ -73,6 +73,7 @@ export default async function decorate(block) {
       }
       offerBox.append(rowItems);
     });
+    block.replaceWith(offerBox);
   } else if (block.classList.contains('plain-simple')) {
     const content = block.querySelectorAll('.block.offer-box.plain-simple div:last-of-type');
     const contentDiv = document.createElement('div');
@@ -80,6 +81,16 @@ export default async function decorate(block) {
       contentDiv.appendChild(item);
     });
     offerBox.append(headers, contentDiv);
+    block.replaceWith(offerBox);
+  } else if (block.classList.contains('alternate-1')) {
+    headers.classList.add('offer-box-header');
+    block.removeChild(block.firstElementChild);
+    block.prepend(headers);
+
+    const anchors = block.querySelectorAll('a');
+    anchors.forEach((a) => {
+      a.classList.add('button', 'primary');
+    });
   } else {
     headers.classList.add('offer-box-header');
     offerBox.appendChild(headers);
@@ -109,7 +120,7 @@ export default async function decorate(block) {
       offerBox.append(hrDiv);
       offerBox.append(listDiv);
     }
-  }
 
-  block.replaceWith(offerBox);
+    block.replaceWith(offerBox);
+  }
 }

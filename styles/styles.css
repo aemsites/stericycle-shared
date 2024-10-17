@@ -294,10 +294,6 @@ main .section.faq-container:not(.cyan-border) > div.default-content-wrapper h2 {
   font-weight: 600;
 }
 
-main .section.faq-container > div p {
-  font-weight: 600;
-}
-
 main .section.quote-container.orange-border .quote-wrapper::before {
   display: block;
   background-color: #ff5633;
@@ -468,8 +464,9 @@ main .block.gray-background {
   background-color: var(--color-gray);
 }
 
+main > div.section.gray-background > div.default-content-wrapper h1,
 main > div.section.gray-background > div.default-content-wrapper h2 {
-    color: var(--color-blue);
+  color: var(--color-dark-gunmetal);
 }
 
 main > div.section.gray-background.post-teaser-list-container > div.default-content-wrapper h2 {
@@ -532,6 +529,11 @@ main .block.divider hr {
   border: 0.5px solid var(--color-medium-gray);
   opacity: .25;
   color: inherit;
+}
+
+main .section.narrow {
+  max-width: var(--section-width);
+  margin: auto;
 }
 
 main .section.orange-background {
@@ -597,7 +599,6 @@ main .list-style-bullets ul li {
 main ol {
   position: relative;
   padding: 0;
-  margin: 0 0 1rem 1rem;
 }
 
 main ol li {
@@ -704,10 +705,6 @@ body.resource-center > main > div.section.box-shadow.post-teaser-list-container 
   font-size: 1.625rem;
   line-height: 2.375rem;
   font-weight: 700;
-}
-
-body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper .teaser {
-  box-shadow: unset;
 }
 
 body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper .teaser > .teaser-content > a > span.teaser-date {
@@ -910,10 +907,6 @@ body.resource-center p {
     margin-bottom: 12px;
 }
 
-.blog-page main .blog-content p > a {
-  text-decoration: underline;
-}
-
 .blog-page main .breadcrumb-wrapper {
   display: none;
 }
@@ -1033,6 +1026,10 @@ body.resource-center p {
   margin-bottom: 1rem;
   line-height: 20px;
   font-size: 16px;
+}
+
+main .section.extra-margin-bottom {
+  margin-bottom: 2rem;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
