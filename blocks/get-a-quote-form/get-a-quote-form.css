@@ -37,6 +37,12 @@
   display: block;
 }
 
+.get-a-quote-form  .content  form .form-message.error-message p{
+  font-size: 1rem;
+  color:#dc3545;
+  padding-left:1.5rem;
+}
+
 .get-a-quote-form  .content  form  .panel-wrapper {
   padding: 5px;
   background-color: var(--color-gray);
