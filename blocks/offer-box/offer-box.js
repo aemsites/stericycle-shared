@@ -75,22 +75,40 @@ export default async function decorate(block) {
     });
     block.replaceWith(offerBox);
   } else if (block.classList.contains('plain-simple')) {
+    block.querySelectorAll('a').forEach((a) => {
+      a.classList.add('button', 'primary');
+    });
     const content = block.querySelectorAll('.block.offer-box.plain-simple div:last-of-type');
     const contentDiv = document.createElement('div');
     content.forEach((item) => {
       contentDiv.appendChild(item);
     });
+
+    if (contentDiv?.querySelector('a') && block.classList.contains('hr')) {
+      const hrDiv = document.createElement('div');
+      const hr = document.createElement('hr');
+      hrDiv.appendChild(hr);
+      contentDiv.prepend(hrDiv);
+    }
     offerBox.append(headers, contentDiv);
     block.replaceWith(offerBox);
   } else if (block.classList.contains('alternate-1')) {
     headers.classList.add('offer-box-header');
     block.removeChild(block.firstElementChild);
     block.prepend(headers);
-
     const anchors = block.querySelectorAll('a');
     anchors.forEach((a) => {
       a.classList.add('button', 'primary');
     });
+
+    const secondDiv = block.children[1];
+    if (secondDiv?.querySelector('a') && block.classList.contains('hr')) {
+      secondDiv.classList.add('min-height');
+      const hrDiv = document.createElement('div');
+      const hr = document.createElement('hr');
+      hrDiv.appendChild(hr);
+      block.insertBefore(hrDiv, secondDiv.nextSibling);
+    }
   } else {
     headers.classList.add('offer-box-header');
     offerBox.appendChild(headers);
@@ -108,17 +126,23 @@ export default async function decorate(block) {
     const listDiv = document.createElement('div');
     listDiv.classList.add('offer-box-list-container');
 
-    listDiv.innerHTML = block.querySelector('div:nth-of-type(4) > div').innerHTML;
+    if (block.querySelector('div:nth-of-type(4) > div')) {
+      listDiv.innerHTML = block.querySelector('div:nth-of-type(4) > div')?.innerHTML;
+    }
 
     offerBox.append(headCopy);
     if (block.classList.contains('big-icon')) {
       offerBox.append(hrDiv);
-      offerBox.append(listDiv);
+      if (listDiv.innerHTML !== '') {
+        offerBox.append(listDiv);
+      }
       offerBox.append(btnDiv);
     } else {
       offerBox.append(btnDiv);
       offerBox.append(hrDiv);
-      offerBox.append(listDiv);
+      if (listDiv.innerHTML !== '') {
+        offerBox.append(listDiv);
+      }
     }
 
     block.replaceWith(offerBox);
