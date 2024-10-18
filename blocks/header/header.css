@@ -615,6 +615,10 @@ header nav .logo-only + .nav-hamburger {
   visibility: hidden;
 }
 
+.section.logo-only img {
+  translate: 0% -10%;
+}
+
 div.alt-nav-wrapper {
   background-color: #1a242b;
   position: fixed;
@@ -728,6 +732,10 @@ header nav.alt-nav .default-content-wrapper {
 
   header .logo-only.blue {
     background-color: var(--color-blue);
+  }
+
+  .section.logo-only img {
+    translate: 0% -25%;
   }
 
   header nav ul {
@@ -1123,6 +1131,10 @@ header nav.alt-nav .default-content-wrapper {
 
   header nav:has(.logo-only.blue) {
     height: 150px;
+  }
+
+  .section.logo-only img {
+    translate: 0% -25%;
   }
 
   .search-box-container {
