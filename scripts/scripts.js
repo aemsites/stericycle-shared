@@ -123,14 +123,14 @@ export async function getRelatedPosts(types, tags, limit) {
   return filteredPosts;
 }
 
-function makeTwoColumns(main) {
-  const columnTarget = main.querySelector('.section.offer-box-container.two-columns > div.default-content-wrapper');
+function makeTwoColumns(section) {
+  const columnTarget = section.querySelector('.offer-box-container.two-columns > div.default-content-wrapper');
   const columnA = document.createElement('div');
   columnA.classList.add('column-a');
   columnA.append(...columnTarget.children);
   const columnB = document.createElement('div');
   columnB.classList.add('column-b');
-  const columnBItems = main.querySelector('.section.offer-box-container.two-columns > div.offer-box-wrapper');
+  const columnBItems = section.querySelector('.offer-box-container.two-columns > div.offer-box-wrapper');
   columnB.append(columnBItems);
   columnTarget.append(columnA, columnB);
 }
@@ -141,21 +141,24 @@ function makeTwoColumns(main) {
  * @param main
  */
 function consolidateOfferBoxes(main) {
-  const ob = main.querySelectorAll('.offer-box-wrapper');
-  let firstOB;
-  if (ob && ob.length > 1) {
-    ob.forEach((box, index) => {
-      if (index === 0) {
-        firstOB = box;
-      } else {
-        firstOB.append(...box.children);
-        box.remove();
+  const sections = main.querySelectorAll('.section');
+  sections?.forEach((section) => {
+    const ob = section.querySelectorAll('.offer-box-wrapper');
+    let firstOB;
+    if (ob && ob.length > 1) {
+      ob.forEach((box, index) => {
+        if (index === 0) {
+          firstOB = box;
+        } else {
+          firstOB.append(...box.children);
+          box.remove();
+        }
+      });
+      if (section.querySelector('offer-box-container.two-columns')) {
+        makeTwoColumns(section);
       }
-    });
-    if (main.querySelector('.section.offer-box-container.two-columns')) {
-      makeTwoColumns(main);
     }
-  }
+  });
 }
 
 /**
