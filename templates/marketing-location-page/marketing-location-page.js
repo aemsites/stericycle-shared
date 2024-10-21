@@ -13,6 +13,7 @@ function buildMarketingPage(main) {
   const formSection = document.createElement('div');
   formSection.classList.add('section');
   const form = buildBlock('get-a-quote-form', { elems: [] });
+  form.style['min-height'] = '600px'; // Set minimum height for the form
   formSection.prepend(form);
 
   const locationDiv = div({ class: 'location' });
