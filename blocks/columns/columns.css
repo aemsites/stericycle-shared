@@ -366,3 +366,23 @@ main .section.blue-headings .columns span.icon {
     width: 100%;
   }
 }
+
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  main .block.columns.video.columns-2-cols > div div:last-of-type:has(iframe) {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 30%;
+    margin-left: 8.33333333%;
+  }
+  
+  main .block.columns.video.columns-2-cols > div div:first-of-type:has(iframe) {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 30%;
+    margin-right: 8.33333333%;
+  }
+  
+  main .block.columns.video.columns-2-cols > div div iframe {
+    height: 100%;
+  }
+}
