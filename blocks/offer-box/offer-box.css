@@ -30,7 +30,8 @@
 .block.offer-box.alternate-2 .offer-box-header > div {
     display: flex;
     flex-direction: row;
-    align-items: start;
+    align-items: center;
+		min-height: 30%;
     gap: 1rem;
 }
 
@@ -58,6 +59,7 @@
 
 .block.offer-box.alternate-2 {
     justify-content: space-between;
+		padding-bottom: 3rem;
 }
 
 .block.offer-box.alternate-2 .offer-box-header .icon {
@@ -77,8 +79,7 @@
 .block.offer-box.alternate-2 .offer-box-header {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 30%;
+    min-height: 25%;
 }
 
 .block.offer-box.plain-simple .offer-box-header {
@@ -167,8 +168,22 @@
 }
 
 .block.offer-box.alternate-1 .offer-box-header {
-	min-height: 150px;
+	min-height: 35%;
 	text-align: center;
+}
+
+.block.offer-box.alternate-1 .min-height {
+	min-height: 18%;
+}
+
+.block.offer-box.alternate-3 {
+	gap: 1rem;
+}
+
+.block.offer-box.alternate-3 img {
+	max-width: 100px;
+	max-height: 100px;
+	object-fit: cover;
 }
 
 .block.offer-box.alternate-2 .offer-box-header .promotion-with-text .text-with-badge {
@@ -201,8 +216,11 @@
     border-bottom: .0625rem solid var(--color-light-silver);
 }
 
+.block.offer-box.alternate-2 .offer-box-row:last-of-type {
+	border-bottom: none;
+}
+
 .block.offer-box.alternate-2 .offer-box-row ul {
-    padding-left: 25px;
     height: 100%;
 }
 
@@ -212,6 +230,7 @@
 
 .offer-box a.button.primary {
     width: 100%;
+		text-wrap: pretty;
 }
 
 .offer-box.big-icon .head-copy {
@@ -238,6 +257,10 @@
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: .75rem;
+}
+
+.offer-box.alternate-3 .head-copy {
+	min-height: 6%;
 }
 
 .offer-box.alternate-1 .offer-box-list-container {
