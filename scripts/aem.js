@@ -324,7 +324,15 @@ function createOptimizedPicture(
   eager = false,
   breakpoints = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }],
 ) {
-  const url = new URL(src, window.location.href);
+  let url;
+  // Check for URL/Ancestor Origin
+  try {
+    url = new URL(src, window.location.href);
+  } catch (e) {
+    if (Object.hasOwn(window.location, 'ancestorOrigins') && window.location.ancestorOrigins.length > 0) {
+      url = new URL(src, window.location.ancestorOrigins.item(0));
+    }
+  }
   const picture = document.createElement('picture');
   const { pathname } = url;
   const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
