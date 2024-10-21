@@ -283,25 +283,25 @@
         gap: 2rem;
     }
 
-		.section.four-column-offer .offer-box-wrapper {
-			display: flex;
-			justify-content: space-between;
-			gap: 1rem;
-			padding-left: 0;
-		}
+    .section.four-column-offer .offer-box-wrapper {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-left: 0;
+    }
 
     .section.two-column-offer .offer-box {
         width: 50%;
     }
 
-		.section.four-column-offer .offer-box {
-			width: 25%;
-		}
+    .section.four-column-offer .offer-box {
+        width: 25%;
+    }
 
     .block.offer-box-wrapper {
         display: flex;
         flex-direction: row;
-		}
+    }
 
     .section.three-column-offer .offer-box-wrapper, .section.offer-box-container.three-columns > div.offer-box-wrapper {
         display: flex;
