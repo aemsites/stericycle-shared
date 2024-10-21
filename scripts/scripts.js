@@ -372,6 +372,11 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     await decorateTemplates(main);
+    if (doc.querySelector('body.with-sidebar')) {
+      // Shifting this here such that the page content is loaded first
+      await loadBlocks(main.querySelector('div.page-content'));
+      await loadBlocks(main.querySelector('div.page-sidebar'));
+    }
     document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS);
   }
@@ -394,10 +399,6 @@ async function loadLazy(doc) {
   autolinkModals(doc);
   const main = doc.querySelector('main');
   await loadBlocks(main);
-  if (doc.querySelector('body.with-sidebar')) {
-    await loadBlocks(main.querySelector('div.page-content'));
-    await loadBlocks(main.querySelector('div.page-sidebar'));
-  }
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
