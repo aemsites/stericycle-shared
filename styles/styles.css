@@ -294,10 +294,6 @@ main .section.faq-container:not(.cyan-border) > div.default-content-wrapper h2 {
   font-weight: 600;
 }
 
-main .section.faq-container > div p {
-  font-weight: 600;
-}
-
 main .section.quote-container.orange-border .quote-wrapper::before {
   display: block;
   background-color: #ff5633;
@@ -533,6 +529,11 @@ main .block.divider hr {
   border: 0.5px solid var(--color-medium-gray);
   opacity: .25;
   color: inherit;
+}
+
+main .section.narrow {
+  max-width: var(--section-width);
+  margin: auto;
 }
 
 main .section.orange-background {
@@ -1025,6 +1026,10 @@ body.resource-center p {
   margin-bottom: 1rem;
   line-height: 20px;
   font-size: 16px;
+}
+
+main .section.extra-margin-bottom {
+  margin-bottom: 2rem;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {

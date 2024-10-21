@@ -7,7 +7,8 @@ export function applySplitPercentages(block) {
     const cls = block.classList[i];
     if (cls.startsWith('split-')) {
       const varName = `--${cls}`;
-      const numbers = getComputedStyle(block).getPropertyValue(varName);
+      const mainElement = document.querySelector('main');
+      const numbers = getComputedStyle(mainElement).getPropertyValue(varName);
       numbers.split(':').forEach((n) => ratios.push(n));
       break;
     }
