@@ -372,16 +372,15 @@ main .section.blue-headings .columns span.icon {
     max-width: unset;
   }
 
+  main .block.columns.columns-2-cols > div div {
+    justify-content: center;
+  }
+
+  main .block.columns.video.columns-2-cols > div div:first-of-type:has(iframe),
   main .block.columns.video.columns-2-cols > div div:last-of-type:has(iframe) {
     display: flex;
     flex-direction: column;
-    margin-left: 8.33333333%;
-  }
-  
-  main .block.columns.video.columns-2-cols > div div:first-of-type:has(iframe) {
-    display: flex;
-    flex-direction: column;
-    margin-right: 8.33333333%;
+    margin-left: 8.3333%;
   }
   
   main .block.columns.video.columns-2-cols > div div iframe {
@@ -409,9 +408,5 @@ main .section.blue-headings .columns span.icon {
   main .section.columns-container.large-icon .block.columns.columns-2-cols > div div:last-of-type:has(.icon) p {
     position: absolute;
 
-  }
-
-  main .block.columns.columns-2-cols > div div {
-    justify-content: center;
   }
 }

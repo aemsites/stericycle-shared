@@ -70,7 +70,7 @@ function applyVerticalCellAlignment(block) {
     // this is an image column
     d.style.display = 'flex';
     d.style.flexDirection = 'column';
-    if(!block.parentElement.parentElement.classList.contains('large-icon')){
+    if (!block.parentElement.parentElement.classList.contains('large-icon')) {
       d.style.alignItems = 'stretch';
     }
     if (d.querySelector('p > strong')) {
