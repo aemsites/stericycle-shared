@@ -46,9 +46,6 @@ export default async function decorate(block) {
     if (block.classList.contains('vertical') && block.classList.contains('video')) {
       const wistiaLink = tabpanel.querySelector('a');
       const wistiaEmbed = embedWistia(wistiaLink);
-      if(i > 0){
-        wistiaEmbed.querySelector('iframe').setAttribute("loading", "lazy");
-      }
       tabpanel.replaceChildren(wistiaEmbed);
     }
     if (!hasWrapper(tabpanel.lastElementChild)) {
