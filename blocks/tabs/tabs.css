@@ -268,16 +268,17 @@ main section .tabs-container > div {
         width: 100%;
     }
 
+    .block.tabs.vertical.video .tabs-panel > div {
+        height: 100%;
+        width: 100%;
+    }
+
     .block.tabs.vertical.video .tabs-panel>div:first-of-type {
         flex-basis: unset;
         height: 100%;
         width: 100%;
     }
 
-    .block.tabs.vertical.video .tabs-panel > div {
-        height: 100%;
-        width: 100%;
-    }
 
     .block.tabs.vertical.video .tabs-panel > div > p {
         height: 100%;
