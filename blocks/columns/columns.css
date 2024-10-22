@@ -368,21 +368,50 @@ main .section.blue-headings .columns span.icon {
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
+  main .block.columns.video {
+    max-width: unset;
+  }
+
   main .block.columns.video.columns-2-cols > div div:last-of-type:has(iframe) {
     display: flex;
     flex-direction: column;
-    flex: 0 0 30%;
     margin-left: 8.33333333%;
   }
   
   main .block.columns.video.columns-2-cols > div div:first-of-type:has(iframe) {
     display: flex;
     flex-direction: column;
-    flex: 0 0 30%;
     margin-right: 8.33333333%;
   }
   
   main .block.columns.video.columns-2-cols > div div iframe {
     height: 100%;
+  }
+
+  main .section.columns-container.large-icon .block.columns.columns-2-cols > div div:first-of-type:has(.icon),
+  main .section.columns-container.large-icon .block.columns.columns-2-cols > div div:last-of-type:has(.icon) {
+    align-items: center;
+    
+  }
+
+  main .section.columns-container.large-icon .block.columns.columns-2-cols div:first-of-type:has(.icon) span,
+  main .section.columns-container.large-icon .block.columns.columns-2-cols div:last-of-type:has(.icon) span {
+    height: 50%;
+  }
+
+  main .section.columns-container.large-icon .block.columns.columns-2-cols div:first-of-type:has(.icon) img,
+  main .section.columns-container.large-icon .block.columns.columns-2-cols div:last-of-type:has(.icon) img {
+    height: 100%;
+    width: 100%;
+  }
+
+  main .section.columns-container.large-icon .block.columns.columns-2-cols > div div:first-of-type:has(.icon) p,
+  main .section.columns-container.large-icon .block.columns.columns-2-cols > div div:last-of-type:has(.icon) p {
+    position: absolute;
+
+  }
+
+  main .block.columns.columns-2-cols > div div {
+    justify-content: center;
   }
 }
