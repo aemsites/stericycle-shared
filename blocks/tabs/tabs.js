@@ -78,7 +78,7 @@ export default async function decorate(block) {
 
       addAccordionAnimation(details);
     }
-    if(block.classList.contains('video')){
+    if (block.classList.contains('video')) {
       const summary = document.createElement('summary');
       summary.className = 'tab-item-label';
       const label = document.createElement('h3');
