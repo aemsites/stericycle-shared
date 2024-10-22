@@ -376,11 +376,16 @@ main .section.blue-headings .columns span.icon {
     justify-content: center;
   }
 
-  main .block.columns.video.columns-2-cols > div div:first-of-type:has(iframe),
   main .block.columns.video.columns-2-cols > div div:last-of-type:has(iframe) {
     display: flex;
     flex-direction: column;
     margin-left: 8.3333%;
+  }
+  
+  main .block.columns.video.columns-2-cols > div div:first-of-type:has(iframe) {
+    display: flex;
+    flex-direction: column;
+    margin-right: 8.3333%;
   }
   
   main .block.columns.video.columns-2-cols > div div iframe {
