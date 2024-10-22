@@ -15,13 +15,11 @@ function closeNavOnEscape(e) {
     const navSections = nav.querySelector('.nav-sections');
     let expanded = navSections.querySelector('[aria-expanded="true"]');
     expanded = expanded || nav.querySelector('.nav-drop[aria-expanded="true"]');
+    // eslint-disable-next-line no-use-before-define
+    toggleMenu(nav, isDesktop.matches);
     if (expanded && isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections);
-      navSectionExpanded.focus();
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections);
+      expanded.focus();
+    } else {
       nav.querySelector('.nav-hamburger a').focus();
     }
   }
@@ -51,15 +49,8 @@ function closeMobileMenuOnEscape(e) {
 function closeNavOnFocusLost(e) {
   const nav = e.currentTarget;
   if (!nav.contains(e.relatedTarget)) {
-    const navSections = nav.querySelector('.nav-sections');
-    // const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections, false);
-    } else {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections, false);
-    }
+    // eslint-disable-next-line no-use-before-define
+    toggleMenu(nav, isDesktop.matches);
   }
 }
 
@@ -84,9 +75,10 @@ function openNavOnKeydown(e) {
   const focused = document.activeElement;
   const isNavDrop = focused.className === 'nav-drop';
   if (isNavDrop && (e.code === 'Enter' || e.code === 'Space')) {
+    e.preventDefault();
     const dropExpanded = focused.getAttribute('aria-expanded') === 'true';
     // eslint-disable-next-line no-use-before-define
-    toggleAllNavSections(focused.closest('.nav-sections'));
+    toggleMenu(document.getElementById('nav'), isDesktop.matches);
     focused.setAttribute('aria-expanded', dropExpanded ? 'false' : 'true');
   }
 }
@@ -116,6 +108,14 @@ function focusMobileMenu() {
   document.activeElement.addEventListener('keydown', openMobileMenuOnKeydown);
 }
 
+function mouseInNavSection(e) {
+  e.currentTarget.setAttribute('aria-expanded', 'true');
+}
+
+function mouseOutNavSection(e) {
+  e.currentTarget.setAttribute('aria-expanded', 'false');
+}
+
 /**
  * Updates the controlled state of a pop-up menu item
  * @param {HTMLElement} controlled the element that contains the popup
@@ -141,14 +141,14 @@ function updateControlledState(controlled, expanded) {
 
 /**
  * Toggles all nav sections
- * @param {Element} sections The container element
+ * @param {Element} nav The container element
  * @param {Boolean} expanded Whether the element should be expanded or collapsed
  */
-function toggleAllNavSections(sections, expanded = false) {
-  sections.querySelectorAll('.nav-sections > ul > li').forEach((section) => {
-    section.setAttribute('aria-expanded', expanded);
-    section.querySelector('button')?.setAttribute('aria-label', expanded ? 'Expand' : 'Collapse');
-    section.querySelector('ul')?.classList.toggle('section-expanded', expanded);
+function toggleAllNavDrops(nav, expanded = false) {
+  nav.querySelectorAll('ul > li.nav-drop').forEach((drop) => {
+    drop.setAttribute('aria-expanded', expanded);
+    drop.querySelector('button')?.setAttribute('aria-label', expanded ? 'Expand' : 'Collapse');
+    drop.querySelector('ul')?.classList.toggle('section-expanded', expanded);
   });
 }
 
@@ -165,7 +165,7 @@ function toggleMobileMenus(nav) {
       control.removeEventListener('focus', focusMobileMenu);
       window.removeEventListener('keydown', closeMobileMenuOnEscape);
       nav.removeEventListener('focusout', closeMobileMenuOnFocusLost);
-    } else if (!control.hasAttribute('tabindex')) {
+    } else {
       control.setAttribute('role', 'button');
       control.setAttribute('tabindex', 0);
       control.addEventListener('focus', focusMobileMenu);
@@ -180,27 +180,36 @@ function toggleMobileMenus(nav) {
 /**
  * Toggles the entire nav
  * @param {Element} nav The container element
- * @param {Element} navSections The nav sections within the container element
  * @param {*} forceExpanded Optional param to force nav expand behavior when not null
  */
-function toggleMenu(nav, navSections, forceExpanded = null) {
+function toggleMenu(nav, forceExpanded = null) {
   const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  toggleAllNavSections(navSections);
+  toggleAllNavDrops(nav);
   // enable nav dropdown keyboard accessibility
-  const navDrops = navSections.querySelectorAll('.nav-drop');
+  const navDrops = nav.querySelectorAll('div[class|="nav"] > ul > .nav-drop');
   if (isDesktop.matches) {
     navDrops.forEach((drop) => {
       if (!drop.hasAttribute('tabindex')) {
         drop.setAttribute('tabindex', 0);
         drop.addEventListener('focus', focusNavSection);
       }
+      drop.querySelectorAll('li.nav-drop').forEach((subDrop) => {
+        subDrop.setAttribute('aria-expanded', 'true');
+      });
+      drop.addEventListener('mouseenter', mouseInNavSection);
+      drop.addEventListener('mouseleave', mouseOutNavSection);
     });
   } else {
     navDrops.forEach((drop) => {
       drop.removeAttribute('tabindex');
       drop.removeEventListener('focus', focusNavSection);
+      drop.querySelectorAll('li.nav-drop').forEach((subDrop) => {
+        subDrop.setAttribute('aria-expanded', 'false');
+      });
+      drop.removeEventListener('mouseenter', mouseInNavSection);
+      drop.removeEventListener('mouseleave', mouseOutNavSection);
     });
     nav.querySelector('#primary-nav .close').setAttribute('tabindex', expanded ? -1 : 0);
     nav.querySelector('#primary-nav').classList.toggle('section-expanded', false);
@@ -221,9 +230,8 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 /**
  * Adds all the listeners to the Mobile nav elements
  * @param {HTMLElement} nav the root nav element
- * @param {HTMLElement} navSections the nav sections element
  */
-function addMobileListeners(nav, navSections) {
+function addMobileListeners(nav) {
   nav.querySelectorAll('.mobile-icons a[aria-controls]').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -239,19 +247,84 @@ function addMobileListeners(nav, navSections) {
     });
     const close = btn.nextElementSibling.querySelector('a.close');
     if (close) {
-      const closeOnIntercaction = (e) => {
+      const closeOnInteraction = (e) => {
         e.preventDefault();
         e.stopPropagation();
         toggleMobileMenus(nav);
         const controlled = nav.querySelector(`#${btn.getAttribute('aria-controls')}`);
         updateControlledState(controlled, false);
       };
-      close.addEventListener('click', closeOnIntercaction);
+      close.addEventListener('click', closeOnInteraction);
     }
   });
 
   nav.querySelector('.primary-nav-wrapper .close-button .close').addEventListener('click', () => {
-    toggleMenu(nav, navSections);
+    toggleMenu(nav);
+  });
+}
+
+function closeOnInteraction(e, nav, btn) {
+  if ((e.type === 'keydown' && e.code !== 'Escape')
+    || (e.type === 'focusout' && e.relatedTarget?.closest('nav'))) {
+    return;
+  }
+  e.preventDefault();
+  e.stopPropagation();
+  toggleMenu(nav, true);
+  const controlled = nav.querySelector(`#${btn.getAttribute('aria-controls')}`);
+  updateControlledState(controlled, false);
+}
+
+function openTarget(e, nav) {
+  e.preventDefault();
+  e.stopPropagation();
+  const controller = e.currentTarget;
+  const controlled = nav.querySelector(`#${controller.getAttribute('aria-controls')}`);
+  const isExpanded = controlled.getAttribute('aria-expanded') === 'true';
+  // eslint-disable-next-line no-use-before-define
+  toggleMenu(nav, true);
+  controlled.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+  // eslint-disable-next-line no-use-before-define
+  updateControlledState(controlled, !isExpanded);
+}
+
+function addSearchListener(nav) {
+  const btn = nav.querySelector('.nav-search.desktop-search > a');
+  const callCloseOnInteraction = (e) => {
+    closeOnInteraction(e, nav, btn);
+    window.removeEventListener('keydown', callCloseOnInteraction);
+    nav.removeEventListener('focusout', callCloseOnInteraction);
+  };
+
+  btn.addEventListener('click', (e) => {
+    openTarget(e, nav);
+    window.addEventListener('keydown', callCloseOnInteraction);
+    nav.addEventListener('focusout', callCloseOnInteraction);
+  });
+  const close = nav.querySelector('.nav-search.desktop-search a.close');
+  close.addEventListener('click', callCloseOnInteraction);
+}
+
+function addLocationListeners(nav) {
+  const btn = nav.querySelector('.nav-locate > a');
+  const callCloseOnInteraction = (e) => {
+    closeOnInteraction(e, nav, btn);
+    window.removeEventListener('keydown', callCloseOnInteraction);
+    nav.removeEventListener('focusout', callCloseOnInteraction);
+  };
+  btn.addEventListener('click', (e) => {
+    openTarget(e, nav);
+    window.addEventListener('keydown', callCloseOnInteraction);
+    nav.addEventListener('focusout', callCloseOnInteraction);
+  });
+
+  const locateForm = nav.querySelector('.nav-locate form');
+  locateForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const { value } = locateForm.querySelector('input[type="text"]');
+    window.location.href = `${locateForm.action}#${value}`;
+    return false;
   });
 }
 
@@ -309,7 +382,7 @@ export default async function decorate(block) {
 
   // @formatter:off
   /* eslint-disable function-paren-newline,function-call-argument-newline */
-  const mobileSearch = div({ class: 'nav-search' },
+  const mobileSearch = div({ class: 'nav-search mobile-search' },
     a({ href: '#', class: 'icon-search', title: 'Search', 'aria-controls': 'mobile-search-popup' }, span('Search')),
     div({ class: 'search-form-wrapper', id: 'mobile-search-popup' },
       form({ class: 'search-form', action: `/${locale}/search`, method: 'get' },
@@ -322,10 +395,22 @@ export default async function decorate(block) {
   );
 
   const navSearch = mobileSearch.cloneNode(true);
+  navSearch.classList.add('desktop-search');
   navSearch.querySelector('a').setAttribute('aria-controls', 'nav-search-popup');
   navSearch.querySelector('div').setAttribute('id', 'nav-search-popup');
 
-  const navLocate = span({ class: 'nav-locate' }, 'Find Your Service Center');
+  const navLocate = div({ class: 'nav-locate', id: 'nav-locate', 'aria-expanded': false, },
+    a({ href: '#', title: 'Find Your Service Center', 'aria-controls': 'nav-locate' }, 'Find Your Service Center'),
+    div({ class: 'locate-popup' },
+      span('Find Yours:'),
+      form({ action: `/${locale}/service-locations`, method: 'get' },
+        label({ for: 'searchLocationInput' }, 'Search by zip code, street, or city'),
+        input({ id: 'searchLocationInput', type: 'text', name: 'searchQuery', placeholder: 'Search', required: true, pattern: '^.{4,}$' }),
+        button({ type: 'submit', 'aria-label': 'Search for Location' }),
+      ),
+      a({ href: `/${locale}/locations`, 'aria-label': 'Service Locations' }, 'Service Locations'),
+    ),
+  );
 
   const nav = domEl('nav', { id: 'nav' },
     div({ class: 'logo' },
@@ -370,12 +455,12 @@ export default async function decorate(block) {
   hamburger.addEventListener('click', (e) => {
     e.stopPropagation();
     e.preventDefault();
-    toggleMenu(nav, navSections);
+    toggleMenu(nav);
   });
   hamburger.addEventListener('keydown', (e) => {
     if (e.code === 'Enter' || e.code === 'Space') {
       e.preventDefault();
-      toggleMenu(nav, navSections);
+      toggleMenu(nav);
       navSections.querySelector('a').focus();
     }
   });
@@ -402,12 +487,14 @@ export default async function decorate(block) {
       }
     });
   });
-  addMobileListeners(nav, navSections);
+  addMobileListeners(nav);
+  addSearchListener(nav);
+  addLocationListeners(nav);
 
-  toggleMenu(nav, navSections, isDesktop.matches);
+  toggleMenu(nav, isDesktop.matches);
   toggleMobileMenus(nav);
   isDesktop.addEventListener('change', () => {
-    toggleMenu(nav, navSections, isDesktop.matches);
+    toggleMenu(nav, isDesktop.matches);
     toggleMobileMenus(nav);
   });
 

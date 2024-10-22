@@ -176,6 +176,7 @@
 @media (min-width: 1400px /* breakpoint-xxl */) {
   :root {
     --section-width: var(--content-width-xxl);
+    --nav-height: 128px;
   }
 }
 
