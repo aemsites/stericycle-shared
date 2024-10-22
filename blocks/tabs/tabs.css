@@ -263,6 +263,33 @@ main section .tabs-container > div {
     .block.tabs.vertical .tabs-panel>div:first-of-type {
         flex-basis: 60%;
     }
+
+    .block.tabs.vertical.video .tabs-panel {
+        width: 100%;
+    }
+
+    .block.tabs.vertical.video .tabs-panel>div:first-of-type {
+        flex-basis: unset;
+        height: 100%;
+        width: 100%;
+    }
+
+    .block.tabs.vertical.video .tabs-panel > div {
+        height: 100%;
+        width: 100%;
+    }
+
+    .block.tabs.vertical.video .tabs-panel > div > p {
+        height: 100%;
+        width: 100%;
+    }
+
+    .block.tabs.vertical.video .tabs-panel iframe {
+        height: 100%;
+        width: 100%;
+    }
+
+
     
     .block.tabs.vertical .tabs-list button {
         display: flex;
