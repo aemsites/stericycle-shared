@@ -278,7 +278,7 @@ main .section.column-with-list.blue-background.columns-container .icon {
   width: fit-content;
 }
 
-main .section.column-with-list .columns > div > div {
+main .section.column-with-list .columns.columns-2-cols > div > div {
   justify-content: space-between;
 }
 
@@ -291,10 +291,6 @@ main .section.faq-container:not(.cyan-border) > div.default-content-wrapper h2 {
   color: var(--color-black);
   font-size: 3rem;
   line-height: 3.2rem;
-  font-weight: 600;
-}
-
-main .section.faq-container > div p {
   font-weight: 600;
 }
 
@@ -533,6 +529,11 @@ main .block.divider hr {
   border: 0.5px solid var(--color-medium-gray);
   opacity: .25;
   color: inherit;
+}
+
+main .section.narrow {
+  max-width: var(--section-width);
+  margin: auto;
 }
 
 main .section.orange-background {
@@ -1025,6 +1026,10 @@ body.resource-center p {
   margin-bottom: 1rem;
   line-height: 20px;
   font-size: 16px;
+}
+
+main .section.extra-margin-bottom {
+  margin-bottom: 2rem;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {

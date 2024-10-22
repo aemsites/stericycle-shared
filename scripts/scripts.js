@@ -123,14 +123,14 @@ export async function getRelatedPosts(types, tags, limit) {
   return filteredPosts;
 }
 
-function makeTwoColumns(main) {
-  const columnTarget = main.querySelector('.section.offer-box-container.two-columns > div.default-content-wrapper');
+function makeTwoColumns(section) {
+  const columnTarget = section.querySelector('.offer-box-container.two-columns > div.default-content-wrapper');
   const columnA = document.createElement('div');
   columnA.classList.add('column-a');
   columnA.append(...columnTarget.children);
   const columnB = document.createElement('div');
   columnB.classList.add('column-b');
-  const columnBItems = main.querySelector('.section.offer-box-container.two-columns > div.offer-box-wrapper');
+  const columnBItems = section.querySelector('.offer-box-container.two-columns > div.offer-box-wrapper');
   columnB.append(columnBItems);
   columnTarget.append(columnA, columnB);
 }
@@ -141,21 +141,44 @@ function makeTwoColumns(main) {
  * @param main
  */
 function consolidateOfferBoxes(main) {
-  const ob = main.querySelectorAll('.offer-box-wrapper');
-  let firstOB;
-  if (ob && ob.length > 1) {
-    ob.forEach((box, index) => {
-      if (index === 0) {
-        firstOB = box;
-      } else {
-        firstOB.append(...box.children);
-        box.remove();
+  const sections = main.querySelectorAll('.section');
+  sections?.forEach((section) => {
+    const ob = section.querySelectorAll('.offer-box-wrapper');
+    let firstOB;
+    if (ob && ob.length > 1) {
+      ob.forEach((box, index) => {
+        if (index === 0) {
+          firstOB = box;
+        } else {
+          firstOB.append(...box.children);
+          box.remove();
+        }
+      });
+      if (section.querySelector('offer-box-container.two-columns')) {
+        makeTwoColumns(section);
       }
-    });
-    if (main.querySelector('.section.offer-box-container.two-columns')) {
-      makeTwoColumns(main);
     }
-  }
+  });
+}
+
+/**
+ * get embed code for Wistia videos
+ *
+ * @param {*} url
+ * @returns
+ */
+export function embedWistia(url) {
+  let suffix = '';
+  const suffixParams = {
+    playerColor: '006cb4',
+  };
+
+  suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
+  const temp = document.createElement('div');
+  temp.innerHTML = `<div>
+  <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed custom-shadow"
+  name="wistia_embed" src="${url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href}${suffix}"></iframe>`;
+  return temp.children.item(0);
 }
 
 /**
@@ -369,6 +392,11 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     await decorateTemplates(main);
+    if (doc.querySelector('body.with-sidebar')) {
+      // Shifting this here such that the page content is loaded first
+      await loadBlocks(main.querySelector('div.page-content'));
+      await loadBlocks(main.querySelector('div.page-sidebar'));
+    }
     document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS);
   }
@@ -391,10 +419,6 @@ async function loadLazy(doc) {
   autolinkModals(doc);
   const main = doc.querySelector('main');
   await loadBlocks(main);
-  if (doc.querySelector('body.with-sidebar')) {
-    await loadBlocks(main.querySelector('div.page-content'));
-    await loadBlocks(main.querySelector('div.page-sidebar'));
-  }
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;

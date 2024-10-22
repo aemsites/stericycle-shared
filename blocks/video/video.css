@@ -1,3 +1,12 @@
+.section.video-container.video-row {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.section.video-container.video-row .video-wrapper {
+    margin: unset;
+}
+
 .video {
     width: unset;
     text-align: center;
@@ -79,4 +88,17 @@
     height: 100%; 
     position: relative;
     aspect-ratio: 16 / 9;
+}
+
+@media screen and (min-width: 992px /* breakpoint-l */) {
+    .section.video-container.video-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex: 0 0 33.3333%;
+    }    
+    
+    .section.video-container.video-row .video-wrapper {
+        flex: 1 0 0%
+    }
 }
