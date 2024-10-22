@@ -45,7 +45,11 @@ export default async function decorate(block) {
     tabpanel.setAttribute('role', 'tabpanel');
     if (block.classList.contains('vertical') && block.classList.contains('video')) {
       const wistiaLink = tabpanel.querySelector('a');
-      tabpanel.replaceChildren(embedWistia(wistiaLink));
+      const wistiaEmbed = embedWistia(wistiaLink);
+      if(i > 0){
+        wistiaEmbed.querySelector('iframe').setAttribute("loading", "lazy");
+      }
+      tabpanel.replaceChildren(wistiaEmbed);
     }
     if (!hasWrapper(tabpanel.lastElementChild)) {
       tabpanel.lastElementChild.innerHTML = `<p>${tabpanel.lastElementChild.innerHTML}</p>`;
