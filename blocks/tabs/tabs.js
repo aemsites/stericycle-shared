@@ -30,6 +30,7 @@ export default async function decorate(block) {
   const tablist = document.createElement('div');
   tablist.className = 'tabs-list';
   tablist.setAttribute('role', 'tablist');
+  let wistiaEmbed;
 
   // decorate tabs and tabpanels
   const tabs = [...block.children].map((child) => child.firstElementChild);
@@ -45,7 +46,7 @@ export default async function decorate(block) {
     tabpanel.setAttribute('role', 'tabpanel');
     if (block.classList.contains('vertical') && block.classList.contains('video')) {
       const wistiaLink = tabpanel.querySelector('a');
-      const wistiaEmbed = embedWistia(wistiaLink);
+      wistiaEmbed = embedWistia(wistiaLink);
       tabpanel.replaceChildren(wistiaEmbed);
     }
     if (!hasWrapper(tabpanel.lastElementChild)) {
@@ -75,6 +76,25 @@ export default async function decorate(block) {
       details.append(summary, body);
       tabpanel.append(details);
 
+      addAccordionAnimation(details);
+    }
+    if(block.classList.contains('video')){
+      const summary = document.createElement('summary');
+      summary.className = 'tab-item-label';
+      const label = document.createElement('h3');
+      label.textContent = tabpanelCopy.children[0].textContent.replaceAll('\n', '').replaceAll('  ', '');
+      summary.append(label);
+      if (!hasWrapper(summary)) {
+        summary.innerHTML = `${summary.innerHTML}`;
+        summary.innerHTML += '<span></span>';
+      }
+      const body = tabpanel.cloneNode(true);
+      body.className = 'tab-item-body';
+
+      const details = document.createElement('details');
+      details.className = 'tab-item';
+      details.append(summary, body);
+      tabpanel.append(details)
       addAccordionAnimation(details);
     }
 
