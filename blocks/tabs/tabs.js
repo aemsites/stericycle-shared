@@ -94,7 +94,7 @@ export default async function decorate(block) {
       const details = document.createElement('details');
       details.className = 'tab-item';
       details.append(summary, body);
-      tabpanel.append(details)
+      tabpanel.append(details);
       addAccordionAnimation(details);
     }
 
