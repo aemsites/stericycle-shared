@@ -278,7 +278,7 @@ main .section.column-with-list.blue-background.columns-container .icon {
   width: fit-content;
 }
 
-main .section.column-with-list .columns > div > div {
+main .section.column-with-list .columns.columns-2-cols > div > div {
   justify-content: space-between;
 }
 
