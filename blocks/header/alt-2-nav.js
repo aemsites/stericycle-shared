@@ -54,10 +54,16 @@ export default async function decorate(block) {
 
   const observer = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting) {
-      // document.documentElement.style.setProperty('--nav-height', '0');
+      document.documentElement.style.setProperty('--nav-height', '0');
       block.classList.toggle('hidden', true);
     } else {
-      // document.documentElement.style.setProperty('--nav-height', '150px');
+      let height = '150px';
+      if (window.matchMedia('(min-width: 900px)').matches) {
+        height = '76px';
+      } else if (window.matchMedia('(min-width: 600px)').matches) {
+        height = '130px';
+      }
+      document.documentElement.style.setProperty('--nav-height', height);
       block.classList.toggle('hidden', false);
     }
   });
