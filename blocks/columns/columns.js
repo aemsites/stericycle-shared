@@ -1,4 +1,5 @@
 import { hr } from '../../scripts/dom-helpers.js';
+import { embedWistia } from '../../scripts/scripts.js';
 
 export function applySplitPercentages(block) {
   const ratios = [];
@@ -6,7 +7,8 @@ export function applySplitPercentages(block) {
     const cls = block.classList[i];
     if (cls.startsWith('split-')) {
       const varName = `--${cls}`;
-      const numbers = getComputedStyle(block).getPropertyValue(varName);
+      const mainElement = document.querySelector('main');
+      const numbers = getComputedStyle(mainElement).getPropertyValue(varName);
       numbers.split(':').forEach((n) => ratios.push(n));
       break;
     }
@@ -34,6 +36,17 @@ export function applySplitPercentages(block) {
   }
 }
 
+function findEmbeds(block) {
+  const wistia = block.querySelectorAll('a');
+
+  wistia.forEach((link) => {
+    if (link.href.startsWith('https://fast.wistia')) {
+      const embedPosition = link.closest('div');
+      embedPosition.replaceWith(embedWistia(link));
+    }
+  });
+}
+
 function applyHorizontalCellAlignment(block) {
   block.querySelectorAll(':scope div[data-align]').forEach((d) => {
     if (d.classList.contains('text-col')) {
@@ -57,7 +70,9 @@ function applyVerticalCellAlignment(block) {
     // this is an image column
     d.style.display = 'flex';
     d.style.flexDirection = 'column';
-    d.style.alignItems = 'stretch';
+    if (!block.parentElement.parentElement.classList.contains('large-icon')) {
+      d.style.alignItems = 'stretch';
+    }
     if (d.querySelector('p > strong')) {
       d.querySelector('p').classList.add('button-container');
       if (d.querySelector('p > strong > a')) {
@@ -110,6 +125,7 @@ export default function decorate(block) {
     });
   });
 
+  findEmbeds(block);
   applySplitPercentages(block);
   applyCellAlignment(block);
 }
