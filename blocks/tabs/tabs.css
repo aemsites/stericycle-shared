@@ -208,6 +208,12 @@ main section .tabs-container > div {
     margin-bottom: 24px;
 }
 
+.block.tabs.topics .tabs-panel div a {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    text-decoration: underline;
+}
+
 .block.tabs .tabs-panel details[open] .tab-item-body p > a {
     text-decoration: underline;
 }
@@ -225,21 +231,12 @@ main section .tabs-container > div {
 
 .block.tabs.topics .tabs-panel div {
     width: 30%;
+
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 1.5rem;
-    margin-right: calc(var(--bs-gutter-x)* 0.5);
-    margin-left: calc(var(--bs-gutter-x)* 0.5);
-    margin-top: calc(var(--bs-gutter-y) * 0.5);
-    margin-bottom: calc(var(--bs-gutter-y) * 0.5);
-}
 
-.block.tabs.topics .tabs-panel div a {
-    font-size: 1rem;
-    line-height: 1.25rem;
-    text-decoration: underline;
+    margin: calc(var(--bs-gutter-y) * 0.5) calc(var(--bs-gutter-x)* 0.5);
 }
-  
-
 
 @media (min-width: 992px) {
     .block.tabs.vertical .tabs-panel > div {
