@@ -12,7 +12,9 @@ function buildMarketingPage(main) {
   // GET-A-QUOTE FORM
   const formSection = document.createElement('div');
   formSection.classList.add('section');
-  const form = buildBlock('get-a-quote-form', { elems: [] });
+  const formPath = getMetadata('form-path');
+  const form = buildBlock('form', { elems: [`<a href="${formPath}.json"></a>`] });
+  form.classList.add('get-a-quote-form-alternate'); // class to style the form for this template
   formSection.prepend(form);
 
   const locationDiv = div({ class: 'location' });
