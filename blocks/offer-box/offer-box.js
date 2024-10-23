@@ -6,7 +6,7 @@ export default async function decorate(block) {
 
   const headerItems = block.querySelectorAll('div:first-of-type > div:first-of-type > p, div:first-of-type > div:first-of-type > h2, div:first-of-type > div:first-of-type > h3');
 
-  if (block.classList.contains('alternate-2')) {
+  if (block.classList.contains('alternate-2') || block.classList.contains('plain-simple')) {
     const firstItem = document.createElement('div');
     const thirdItem = document.createElement('div');
     let secondItem;
@@ -31,7 +31,12 @@ export default async function decorate(block) {
       thirdItem.append(headerItems[2]);
     }
 
-    headers.append(firstItem, thirdItem);
+    if (firstItem.innerHTML !== '') {
+      headers.append(firstItem);
+    }
+    if (thirdItem.innerHTML !== '') {
+      headers.append(thirdItem);
+    }
   } else {
     headerItems.forEach((item) => {
       const hDiv = document.createElement('div');
@@ -46,14 +51,14 @@ export default async function decorate(block) {
 
   if (block.classList.contains('alternate-2')) {
     offerBox.classList.add('alternate-2', ...block.classList);
-    headers.className = 'offerbox-header';
+    headers.className = 'offer-box-header';
     offerBox.appendChild(headers);
 
     const primaryDivs = block.querySelectorAll('div.block.offer-box.alternate-2 > div:not(div:first-of-type) > div');
 
     primaryDivs.forEach((div) => {
       const rowItems = document.createElement('div');
-      rowItems.className = 'offerbox-row';
+      rowItems.className = 'offer-box-row';
       const isList = div.querySelectorAll('li');
       if (div.children.length > 1 && isList.length >= 1) {
         const nestedList = div.querySelectorAll('li > ul:first-of-type > li:first-of-type');
@@ -68,6 +73,42 @@ export default async function decorate(block) {
       }
       offerBox.append(rowItems);
     });
+    block.replaceWith(offerBox);
+  } else if (block.classList.contains('plain-simple')) {
+    block.querySelectorAll('a').forEach((a) => {
+      a.classList.add('button', 'primary');
+    });
+    const content = block.querySelectorAll('.block.offer-box.plain-simple div:last-of-type');
+    const contentDiv = document.createElement('div');
+    content.forEach((item) => {
+      contentDiv.appendChild(item);
+    });
+
+    if (contentDiv?.querySelector('a') && block.classList.contains('hr')) {
+      const hrDiv = document.createElement('div');
+      const hr = document.createElement('hr');
+      hrDiv.appendChild(hr);
+      contentDiv.prepend(hrDiv);
+    }
+    offerBox.append(headers, contentDiv);
+    block.replaceWith(offerBox);
+  } else if (block.classList.contains('alternate-1')) {
+    headers.classList.add('offer-box-header');
+    block.removeChild(block.firstElementChild);
+    block.prepend(headers);
+    const anchors = block.querySelectorAll('a');
+    anchors.forEach((a) => {
+      a.classList.add('button', 'primary');
+    });
+
+    const secondDiv = block.children[1];
+    if (secondDiv?.querySelector('a') && block.classList.contains('hr')) {
+      secondDiv.classList.add('min-height');
+      const hrDiv = document.createElement('div');
+      const hr = document.createElement('hr');
+      hrDiv.appendChild(hr);
+      block.insertBefore(hrDiv, secondDiv.nextSibling);
+    }
   } else {
     headers.classList.add('offer-box-header');
     offerBox.appendChild(headers);
@@ -85,19 +126,25 @@ export default async function decorate(block) {
     const listDiv = document.createElement('div');
     listDiv.classList.add('offer-box-list-container');
 
-    listDiv.innerHTML = block.querySelector('div:nth-of-type(4) > div').innerHTML;
+    if (block.querySelector('div:nth-of-type(4) > div')) {
+      listDiv.innerHTML = block.querySelector('div:nth-of-type(4) > div')?.innerHTML;
+    }
 
     offerBox.append(headCopy);
     if (block.classList.contains('big-icon')) {
       offerBox.append(hrDiv);
-      offerBox.append(listDiv);
+      if (listDiv.innerHTML !== '') {
+        offerBox.append(listDiv);
+      }
       offerBox.append(btnDiv);
     } else {
       offerBox.append(btnDiv);
       offerBox.append(hrDiv);
-      offerBox.append(listDiv);
+      if (listDiv.innerHTML !== '') {
+        offerBox.append(listDiv);
+      }
     }
-  }
 
-  block.replaceWith(offerBox);
+    block.replaceWith(offerBox);
+  }
 }

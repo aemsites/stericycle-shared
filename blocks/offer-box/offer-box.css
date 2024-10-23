@@ -23,15 +23,22 @@
     flex-direction: column;
 }
 
-
 .offer-box.three-col > div.offer-box-header > div {
     width: 50%;
 }
 
-.block.offer-box.alternate-2 .offerbox-header > div {
+.block.offer-box.alternate-2 .offer-box-header > div {
     display: flex;
     flex-direction: row;
-    align-items: start;
+    align-items: center;
+		min-height: 30%;
+    gap: 1rem;
+}
+
+.offer-box.plain-simple > div.offer-box-header .icon-with-heading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     gap: 1rem;
 }
 
@@ -52,25 +59,34 @@
 
 .block.offer-box.alternate-2 {
     justify-content: space-between;
+		padding-bottom: 3rem;
 }
 
-.block.offer-box.alternate-2 .offerbox-header .icon {
+.block.offer-box.alternate-2 .offer-box-header .icon {
     max-width: 6rem;
     max-height: 6rem;
     width: auto;
     height: auto;
 }
 
-.block.offer-box.alternate-2 .offerbox-header {
+.block.offer-box.plain-simple .offer-box-header .icon-with-heading .icon {
+    max-width: 6rem;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.block.offer-box.alternate-2 .offer-box-header {
+    display: flex;
+    flex-direction: column;
+    min-height: 25%;
+}
+
+.block.offer-box.plain-simple .offer-box-header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 30%;
-}
-
-.block.offer-box.alternate-2 .offerbox-row h3 {
-    min-width: 35%;
-    width: 35%;
+    align-items: flex-start;
 }
 
 .offer-box h2 {
@@ -79,27 +95,98 @@
     padding-left: 1rem;
 }
 
-.block.offer-box.alternate-2 div.offerbox-row:nth-child(2) {
+.offer-box.alternate-1 h2,
+.offer-box.alternate-1 h3 {
+	padding-left: 0;
+	text-align: center;
+	color: #133b5c;
+}
+
+.block.offer-box.alternate-2 .offer-box-row h3 {
+	min-width: 35%;
+	width: 35%;
+}
+
+.block.offer-box.plain-simple .offer-box-row h3 {
+	min-width: 35%;
+	width: 35%;
+}
+
+.block.offer-box.alternate-2 div.offer-box-row:nth-child(2) {
     border-top: .0625rem solid var(--color-light-silver);
     margin: 1rem 0;
 }
 
-.block.offer-box.alternate-2 div.offerbox-row:last-child p a {
+.block.offer-box.alternate-1 a {
+	background-color: var(--color-button-primary);
+	border-color: var(--color-button-primary);
+	color: var(--color-black);
+	margin-bottom: 0;
+}
+
+.block.offer-box.alternate-2 div.offer-box-row:last-child p a {
     background-color: var(--color-yellow);
     border-color: var(--color-yellow);
     color: var(--color-black)
 }
 
-.block.offer-box.alternate-2 .offerbox-header .icon-with-heading h1, 
-.block.offer-box.alternate-2 .offerbox-header .icon-with-heading h2,
-.block.offer-box.alternate-2 .offerbox-header .icon-with-heading h3,
-.block.offer-box.alternate-2 .offerbox-header .icon-with-heading h4  {
-    font-size: 3rem;
+.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h1, 
+.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h2,
+.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h3,
+.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h4 {
+    width: 75%;
+    font-size: 2rem;
     line-height: 3.2rem;
     font-weight: 600;
 }
 
-.block.offer-box.alternate-2 .offerbox-header .promotion-with-text .text-with-badge {
+.offer-box .offer-box-list-container p {
+	margin-bottom: 1.5rem;
+}
+
+.block.offer-box.plain-simple p {
+  margin-bottom: 0.75rem;
+}
+
+.offer-box.alternate-1 .offer-box-list-container p {
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.block.offer-box.offer-box.alternate-1 p {
+	margin-bottom: 0.75rem;
+}
+
+.offer-box hr {
+	border-bottom: 1px solid #b2b1b1;
+	opacity: .25;
+	margin: 1rem 0;
+}
+
+.block.offer-box.alternate-1 hr {
+	border: .5px solid #b2b1b1;
+}
+
+.block.offer-box.alternate-1 .offer-box-header {
+	min-height: 35%;
+	text-align: center;
+}
+
+.block.offer-box.alternate-1 .min-height {
+	min-height: 18%;
+}
+
+.block.offer-box.alternate-3 {
+	gap: 1rem;
+}
+
+.block.offer-box.alternate-3 img {
+	max-width: 100px;
+	max-height: 100px;
+	object-fit: cover;
+}
+
+.block.offer-box.alternate-2 .offer-box-header .promotion-with-text .text-with-badge {
     flex-direction: column;
     justify-items: flex-start;
     background: #ffc62b;
@@ -115,21 +202,11 @@
     width: 6rem;
 }
 
-
-.offer-box .offer-box-list-container p {
-    margin-bottom: 1.5rem;
-}
-
-.offer-box.alternate-1 .offer-box-list-container p {
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-.block.offer-box.alternate-2 .offerbox-header .promotion-with-text .text-with-badge > p:nth-child(2) {
+.block.offer-box.alternate-2 .offer-box-header .promotion-with-text .text-with-badge > p:nth-child(2) {
     font-size: 1.5rem;
 }
 
-.block.offer-box.alternate-2 .offerbox-row {
+.block.offer-box.alternate-2 .offer-box-row {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -139,15 +216,12 @@
     border-bottom: .0625rem solid var(--color-light-silver);
 }
 
-.block.offer-box.alternate-2 .offerbox-row ul {
-    padding-left: 25px;
-    height: 100%;
+.block.offer-box.alternate-2 .offer-box-row:last-of-type {
+	border-bottom: none;
 }
 
-.offer-box hr {
-    border-bottom: 1px solid #b2b1b1;
-    opacity: .25;
-    margin: 1rem 0;
+.block.offer-box.alternate-2 .offer-box-row ul {
+    height: 100%;
 }
 
 .offer-box .offer-box-list-container li {
@@ -156,6 +230,7 @@
 
 .offer-box a.button.primary {
     width: 100%;
+		text-wrap: pretty;
 }
 
 .offer-box.big-icon .head-copy {
@@ -174,20 +249,18 @@
 }
 
 .offer-box.alternate-1 span.icon {
-    width: 100%;
     height: auto;
-    margin: unset;
+    width: auto;
 }
 
 .offer-box.alternate-1 .head-copy {
-    order: 3;
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: .75rem;
 }
 
-.offer-box.alternate-1 hr {
-    display: none;
+.offer-box.alternate-3 .head-copy {
+	min-height: 6%;
 }
 
 .offer-box.alternate-1 .offer-box-list-container {
@@ -210,8 +283,19 @@
         gap: 2rem;
     }
 
+    .section.four-column-offer .offer-box-wrapper {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-left: 0;
+    }
+
     .section.two-column-offer .offer-box {
         width: 50%;
+    }
+
+    .section.four-column-offer .offer-box {
+        width: 25%;
     }
 
     .block.offer-box-wrapper {

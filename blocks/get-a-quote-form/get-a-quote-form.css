@@ -16,3 +16,28 @@
   background-color: var(--color-gray);
   color: transparent;
 }
+
+.get-a-quote-form > .content > .section {
+  margin: 0;
+  background-color: var(--color-gray);
+  overflow-y: hidden;
+}
+
+.get-a-quote-form  .content  .form-container .default-content-wrapper {
+  margin-bottom: 0;
+}
+
+.get-a-quote-form  .content  .form-container  .form-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+
+.get-a-quote-form  .content  form {
+  display: block;
+}
+
+.get-a-quote-form  .content  form  .panel-wrapper {
+  padding: 5px;
+  background-color: var(--color-gray);
+}
