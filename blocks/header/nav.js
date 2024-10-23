@@ -363,7 +363,7 @@ export default async function decorate(block) {
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : `/${locale}/nav`;
   const fragment = await loadFragment(navPath);
 
-  const contactList = fragment.querySelector('.section[data-section="contact" i] ul');
+  const contactList = fragment.querySelector('.se/Users/stopp/work/spaces/shredit/stericycle-shared/blocks/header/alt-2nav.jsction[data-section="contact" i] ul');
   const navSections = fragment.querySelector('.section[data-section="sections" i]');
   navSections.replaceChildren(navSections.querySelector('ul'));
   navSections.classList.replace('section', 'nav-sections');
