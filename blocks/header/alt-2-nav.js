@@ -50,24 +50,24 @@ export default async function decorate(block) {
   if (found) {
     document.documentElement.style.setProperty('--nav-height', '0');
     block.classList.add('scroll-menu', 'hidden');
-  }
 
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      document.documentElement.style.setProperty('--nav-height', '0');
-      block.classList.toggle('hidden', true);
-    } else {
-      let height = '150px';
-      if (window.matchMedia('(min-width: 900px)').matches) {
-        height = '76px';
-      } else if (window.matchMedia('(min-width: 600px)').matches) {
-        height = '130px';
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        document.documentElement.style.setProperty('--nav-height', '0');
+        block.classList.toggle('hidden', true);
+      } else {
+        let height = '150px';
+        if (window.matchMedia('(min-width: 900px)').matches) {
+          height = '76px';
+        } else if (window.matchMedia('(min-width: 600px)').matches) {
+          height = '130px';
+        }
+        document.documentElement.style.setProperty('--nav-height', height);
+        block.classList.toggle('hidden', false);
       }
-      document.documentElement.style.setProperty('--nav-height', height);
-      block.classList.toggle('hidden', false);
-    }
-  });
-  observer.observe(document.querySelector('main > div.section'));
+    });
+    observer.observe(document.querySelector('main > div.section'));
+  }
 
   block.replaceChildren(nav);
 }
