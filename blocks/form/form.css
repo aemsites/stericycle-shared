@@ -790,3 +790,15 @@ main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-
     text-decoration: underline;
     font-size: 0.87rem;
 }
+
+main .two-column.form-container {
+    display: flex;
+}
+
+main .two-column.form-container .default-content-wrapper {
+    width: 72%;
+}
+
+main .two-column.form-container .form-wrapper {
+    width:28%;
+}
