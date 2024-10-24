@@ -87,7 +87,7 @@ async function prepareRequest(form) {
     'Content-Type': 'application/json',
   };
   const body = { data: payload };
-  const url = `${getSubmitBaseUrl()}${payload?.xfpath}.form`;
+  const url = getSubmitBaseUrl();
   return { headers, body, url };
 }
 
