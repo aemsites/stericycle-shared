@@ -343,6 +343,19 @@ export function decorateAnchors(element = document) {
   ));
 }
 
+function decorateFormInColumns(main) {
+  const sections = main.querySelectorAll('.section-with-form');
+  sections.forEach((section) => {
+    const form = section.querySelector('.form-wrapper');
+    if (form) {
+      const emptyColDiv = section.querySelector('.columns.include-form > div > div:empty');
+      if (emptyColDiv) {
+        emptyColDiv.appendChild(form);
+      }
+    }
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -359,6 +372,7 @@ export function decorateMain(main) {
   modifyBigNumberList(main);
   decorateSectionTemplates(main);
   consolidateOfferBoxes(main);
+  decorateFormInColumns(main);
 }
 
 /**
