@@ -83,8 +83,9 @@ export const haversineDistance = (lat1, lon1, lat2, lon2) => {
   return Math.round(R * c); // Distance in kilometers
 };
 
+// Remove dedup based on name, specific to the locations
 // eslint-disable-next-line max-len
-export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.4672, limit = 3) => {
+export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.4672, limit = 5) => {
   const isDropoff = getMetadata('sub-type')?.trim().toLowerCase();
   const locations = await ffetch('/query-index.json').sheet('locations')
     .filter((x) => {
@@ -102,7 +103,15 @@ export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.
     .limit(limit)
     .all();
 
-  return locations.sort((x, y) => x.distance - y.distance);
+  return locations
+    .reduce((acc, current) => {
+      const x = acc.find((item) => item.name === current.name);
+      if (!x) {
+        acc.push(current);
+      }
+      return acc;
+    }, [])
+    .sort((x, y) => x.distance - y.distance);
 };
 
 /**
