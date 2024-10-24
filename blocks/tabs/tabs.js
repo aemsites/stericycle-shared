@@ -54,7 +54,7 @@ export default async function decorate(block) {
     }
 
     // decorate faq item label
-    if (tabpanelCopy.children.length >= 3) {
+    if (block.classList.contains('vertical') && tabpanelCopy.children.length >= 3) {
       const label = tabpanelCopy.children[1].querySelector('h3');
       const summary = document.createElement('summary');
       summary.className = 'tab-item-label';
