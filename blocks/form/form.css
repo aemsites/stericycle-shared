@@ -420,6 +420,11 @@ main .form form .wizard .wizard-button-wrapper{
     grid-column: span 12;
 }
 
+main .get-a-quote-form-alternate form > .field-wrapper {
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
 main .form form .wizard .wizard-button-wrapper .field-wrapper{
     flex: unset;
 }
