@@ -13,6 +13,8 @@ import {
   sampleRUM,
   waitForLCP,
   toClassName,
+  decorateBlock,
+  loadBlock,
 } from './aem.js';
 import ffetch from './ffetch.js';
 
@@ -377,6 +379,20 @@ export function decorateAnchors(element = document) {
     (a) => a.href && !a.href.match(`^http[s]*://${window.location.host}/`),
   ));
 }
+/**
+ * Loads footer-subscription-form
+ * @param main main element
+ * @returns {Promise}
+ */
+async function appendSubscriptionForm(main) {
+  if (getMetadata('footer-subscription-form') === 'true') {
+    const form = buildBlock('form', { elems: ['<a href="/forms/footer-subscription.json"></a>'] });
+    form.classList.add('footer-subscription-form');
+    main.append(form);
+    decorateBlock(form);
+    loadBlock(form);
+  }
+}
 
 /**
  * Decorates the main element.
@@ -441,6 +457,7 @@ async function loadLazy(doc) {
 
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
+  await appendSubscriptionForm(main);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
