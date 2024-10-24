@@ -422,19 +422,6 @@ function wrapTextNodes(block) {
   });
 }
 
-const toRadians = (degrees) => ((degrees * Math.PI) / 180);
-
-const haversineDistance = (lat1, lon1, lat2, lon2) => {
-  const R = 6371; // Radius of the Earth in kilometers
-  const dLat = toRadians(lat2 - lat1);
-  const dLon = toRadians(lon2 - lon1);
-  const tempA = Math.sin(dLat / 2) * Math.sin(dLat / 2)
-    + Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2))
-    * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(tempA), Math.sqrt(1 - tempA));
-  return Math.round(R * c); // Distance in kilometers
-};
-
 /**
  * Decorates paragraphs containing a single link as buttons.
  * @param {Element} element container element
@@ -793,5 +780,4 @@ export {
   waitForLCP,
   wrapTextNodes,
   isDesktop,
-  haversineDistance,
 };

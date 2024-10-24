@@ -1,5 +1,131 @@
 /* eslint-disable object-curly-newline */
-import { buildBlock, decorateBlock, decorateButtons, decorateIcons } from '../../scripts/aem.js';
+import usStates from '../../blocks/service-location-map/us-states.js';
+import { buildBlock, decorateBlock, decorateButtons, decorateIcons, fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
+import { a, div, h3, h4, iframe, li, p, strong, ul } from '../../scripts/dom-helpers.js';
+import { getLocale, getNearByLocations } from '../../scripts/scripts.js';
+
+const createLocDiv = async () => {
+  const ph = await fetchPlaceholders(`/${getLocale()}`);
+  const latitude = getMetadata('latitude');
+  const longitude = getMetadata('longitude');
+  let nearByLocations = [];
+
+  if (latitude && longitude) {
+    nearByLocations = await getNearByLocations({
+      latitude: parseFloat(getMetadata('latitude')),
+      longitude: parseFloat(getMetadata('longitude')),
+      name: getMetadata('name'),
+    });
+  }
+
+  const locationDiv = div({ class: 'location' });
+  const locDetailsDiv = div({ class: 'location-details' });
+
+  const name = getMetadata('name');
+  if (name) {
+    locDetailsDiv.append(h3(`Shred-it ${name}`));
+  }
+  const addressLine1 = getMetadata('address-line-1');
+  if (addressLine1) {
+    locDetailsDiv.append(p(addressLine1));
+  }
+
+  const addressLine2 = getMetadata('address-line-2');
+  if (addressLine2) {
+    locDetailsDiv.append(p(addressLine2));
+  }
+  const city = getMetadata('city');
+  if (city) {
+    locDetailsDiv.append(p(city));
+  }
+
+  const state = getMetadata('state');
+  if (state && usStates[state]) {
+    locDetailsDiv.append(p(usStates[state]));
+  }
+  const zipCode = getMetadata('zip-code');
+  if (zipCode) {
+    locDetailsDiv.append(p(zipCode));
+  }
+
+  const phoneDiv = div({ class: 'phone' });
+
+  const salesNo = ph.salesno || '844-618-7651'; // fallback number also added
+  if (salesNo) {
+    const tempStrong = strong(`${ph.salestext || 'Sales'}:`);
+    phoneDiv.append(
+      div(p(tempStrong), a({ href: `tel:${salesNo}` }, salesNo)),
+    );
+  }
+
+  const customerNo = ph.customerserviceno || '800-697-4733'; // fallback number also added
+  if (customerNo) {
+    const tempStrong = strong(`${ph.customerservicetext || 'Customer Service'}:`);
+    phoneDiv.append(
+      div(p(tempStrong), a({ href: `tel:${customerNo}` }, customerNo)),
+    );
+  }
+
+  locDetailsDiv.append(phoneDiv);
+  locationDiv.append(locDetailsDiv);
+
+  const dropOffDiv = div({ class: 'drop-off' });
+  const openingHours = getMetadata('opening-hours');
+  const dropOffInfo = getMetadata('drop-off-info');
+
+  if (openingHours || dropOffInfo) {
+    dropOffDiv.append(h4(ph.securedropofftext || 'Secure Drop-off Service'));
+
+    if (openingHours) {
+      dropOffDiv.append(p(openingHours));
+    }
+
+    if (dropOffInfo) {
+      dropOffDiv.append(p(dropOffInfo));
+    }
+
+    const zipCodeText = zipCode ? `zip=${zipCode}&` : '';
+    const url = `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?${zipCodeText}adobe_mc=MCMID%3D47228127826121584233605487843606294434%7CMCORGID%3DFB4A583F5FEDA3EA0A495EE3%2540AdobeOrg%7CTS%3D1729746363`;
+    const buyNowAnchor = a({ class: 'button primary', href: url, target: '_blank' }, ph.buynowtext || 'Buy Now');
+    decorateButtons(buyNowAnchor);
+    dropOffDiv.append(buyNowAnchor);
+    locationDiv.append(dropOffDiv);
+  }
+
+  if (nearByLocations.length > 0) {
+    const nearByDiv = div({ class: 'nearby-locations' });
+    const tempStrong = strong(`${ph.nearbylocationstext || 'See our nearby locations'}:`);
+    nearByDiv.append(p(tempStrong));
+    const ulList = ul();
+
+    nearByLocations.forEach((loc) => {
+      const liElement = li();
+      liElement.append(a({ href: loc.path }, loc.name));
+      ulList.append(liElement);
+    });
+
+    nearByDiv.append(ulList);
+    locDetailsDiv.append(nearByDiv);
+  }
+
+  const addressParts = [
+    'Shred-it',
+    addressLine1,
+    addressLine2,
+    city,
+    usStates[state],
+    zipCode,
+    getMetadata('country'),
+  ].filter((part) => part !== null && part !== undefined);
+  const query = encodeURIComponent(addressParts.join(', '));
+
+  const mapDiv = div({ class: 'map' });
+  const mapIframe = iframe({ src: `https://www.google.com/maps/embed/v1/place?q=${query}&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8` });
+  mapDiv.append(mapIframe);
+
+  locationDiv.prepend(mapDiv);
+  return locationDiv;
+};
 
 function addServiceCards(main) {
   const services = [
@@ -108,7 +234,7 @@ function addInfoColumns(main) {
   decorateBlock(columnsBlock);
 }
 
-function decorate(main) {
+async function decorate(main) {
   const autoSection = document.createElement('div');
   autoSection.classList.add('section', 'gray-background');
   addServiceCards(autoSection);
@@ -129,6 +255,16 @@ function decorate(main) {
   disclaimer.textContent = 'All services come with a Certificate of Destruction and is NAID AAA certified. Material is securely recycled, reducing your carbon footprint.';
   disclaimerWrapper.append(disclaimer);
   disclaimerSection.append(disclaimerWrapper);
+
+  const showLocations = getMetadata('show-locations');
+  const isShowLocationsTrue = showLocations === 'true';
+  if (isShowLocationsTrue) {
+    const locationSection = div({ class: 'section' });
+    const locDiv = await createLocDiv();
+    locationSection.append(locDiv);
+    main.append(locationSection);
+  }
+
   main.append(disclaimerSection);
 }
 

@@ -68,6 +68,41 @@ export function getLocale() {
   return 'en-us';
 }
 
+const toRadians = (degrees) => ((degrees * Math.PI) / 180);
+
+export const haversineDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 6371; // Radius of the Earth in kilometers
+  const dLat = toRadians(lat2 - lat1);
+  const dLon = toRadians(lon2 - lon1);
+  const tempA = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+    + Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2))
+    * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(tempA), Math.sqrt(1 - tempA));
+  return Math.round(R * c); // Distance in kilometers
+};
+
+// eslint-disable-next-line max-len
+export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.4672, limit = 3) => {
+  const isDropoff = getMetadata('sub-type')?.trim().toLowerCase();
+  const locations = await ffetch('/query-index.json').sheet('locations')
+    .filter((x) => {
+      const latitude = parseFloat(x.latitude);
+      const longitude = parseFloat(x.longitude);
+      // eslint-disable-next-line max-len
+      const havDistance = haversineDistance(currentLoc.latitude, currentLoc.longitude, latitude, longitude);
+      x.distance = havDistance;
+      return latitude !== 0 && longitude !== 0
+        && (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true)
+        && x.locale?.trim().toLowerCase() === getLocale()
+        && x.name !== currentLoc.name
+        && havDistance <= thresholdDistanceInKm;
+    })
+    .limit(limit)
+    .all();
+
+  return locations.sort((x, y) => x.distance - y.distance);
+};
+
 /**
  * Get related posts based on page tags. Currently doesn't filter out the existing page or
  * fill up the array if there are not enough related posts

@@ -14,11 +14,10 @@ import {
   loadCSS,
   fetchPlaceholders,
   getMetadata,
-  haversineDistance,
 } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
 import usStates from './us-states.js';
-import { decorateAnchors, getLocale } from '../../scripts/scripts.js';
+import { decorateAnchors, getLocale, haversineDistance } from '../../scripts/scripts.js';
 
 let map = null;
 

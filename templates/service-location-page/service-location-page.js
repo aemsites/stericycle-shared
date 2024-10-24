@@ -3,36 +3,13 @@ import {
   buildBlock, decorateBlock, decorateButtons, decorateIcons,
   fetchPlaceholders,
   getMetadata,
-  haversineDistance,
 } from '../../scripts/aem.js';
 import {
   a, div, h3, h4, li, p,
   ul,
 } from '../../scripts/dom-helpers.js';
-import ffetch from '../../scripts/ffetch.js';
-import { getLocale } from '../../scripts/scripts.js';
+import { getLocale, getNearByLocations } from '../../scripts/scripts.js';
 import { decorateSidebarTemplate } from '../templates.js';
-
-const getNearByLocations = async (currentLoc) => {
-  const radius = 80.4672; // distance in kms (50 miles)
-  const isDropoff = getMetadata('sub-type')?.trim().toLowerCase();
-  const locations = await ffetch('/query-index.json').sheet('locations')
-    .filter((x) => {
-      const latitude = parseFloat(x.latitude);
-      const longitude = parseFloat(x.longitude);
-      // eslint-disable-next-line max-len
-      const havDistance = haversineDistance(currentLoc.latitude, currentLoc.longitude, latitude, longitude);
-      x.distance = havDistance;
-      return latitude !== 0 && longitude !== 0
-        && (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true)
-        && x.locale?.trim().toLowerCase() === getLocale()
-        && x.name !== currentLoc.name
-        && havDistance <= radius;
-    })
-    .all();
-
-  return locations.sort((x, y) => x.distance - y.distance);
-};
 
 const createLocDiv = async () => {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
@@ -111,7 +88,7 @@ const createLocDiv = async () => {
 
     const zipCodeText = zipCode ? `zip=${zipCode}&` : '';
     const url = `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?${zipCodeText}adobe_mc=MCMID%3D47228127826121584233605487843606294434%7CMCORGID%3DFB4A583F5FEDA3EA0A495EE3%2540AdobeOrg%7CTS%3D1729746363`;
-    const buyNowAnchor = a({ class: 'button primary', href: url }, ph.buynowtext || 'Buy Now');
+    const buyNowAnchor = a({ class: 'button primary', href: url, target: '_blank' }, ph.buynowtext || 'Buy Now');
     decorateButtons(buyNowAnchor);
     dropOffDiv.append(buyNowAnchor);
     locationDiv.append(dropOffDiv);
@@ -119,7 +96,7 @@ const createLocDiv = async () => {
 
   if (nearByLocations.length > 0) {
     const nearByDiv = div({ class: 'nearby-locations' });
-    nearByDiv.append(h4(ph.nearbylocationstext || ''));
+    nearByDiv.append(h4(`${ph.nearbylocationstext || 'See our nearby locations'}:`));
     const ulList = ul();
     nearByLocations.forEach((loc) => {
       const liElement = li();
