@@ -50,19 +50,19 @@ const createLocDiv = async () => {
 
   const phoneDiv = div({ class: 'phone' });
 
-  const salesNo = ph.salesno || '844-618-7651'; // fallback number also added
-  if (salesNo) {
-    const tempStrong = strong(`${ph.salestext || 'Sales'}:`);
-    phoneDiv.append(
-      div(p(tempStrong), a({ href: `tel:${salesNo}` }, salesNo)),
-    );
-  }
-
   const customerNo = ph.customerserviceno || '800-697-4733'; // fallback number also added
   if (customerNo) {
     const tempStrong = strong(`${ph.customerservicetext || 'Customer Service'}:`);
     phoneDiv.append(
       div(p(tempStrong), a({ href: `tel:${customerNo}` }, customerNo)),
+    );
+  }
+
+  const salesNo = ph.salesno || '844-618-7651'; // fallback number also added
+  if (salesNo) {
+    const tempStrong = strong(`${ph.salestext || 'Sales'}:`);
+    phoneDiv.append(
+      div(p(tempStrong), a({ href: `tel:${salesNo}` }, salesNo)),
     );
   }
 
