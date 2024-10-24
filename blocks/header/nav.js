@@ -109,10 +109,17 @@ function focusMobileMenu() {
 }
 
 function mouseInNavSection(e) {
+  console.log('Mouse In');
+  // eslint-disable-next-line no-use-before-define
+  const nav = document.getElementById('nav');
+  nav.querySelectorAll('[aria-expanded="true"]').forEach((expanded) => {
+    expanded.setAttribute('aria-expanded', 'false');
+  });
   e.currentTarget.setAttribute('aria-expanded', 'true');
 }
 
 function mouseOutNavSection(e) {
+  console.log('Mouse Out');
   e.currentTarget.setAttribute('aria-expanded', 'false');
 }
 
@@ -300,6 +307,14 @@ function addSearchListener(nav) {
     openTarget(e, nav);
     window.addEventListener('keydown', callCloseOnInteraction);
     nav.addEventListener('focusout', callCloseOnInteraction);
+  });
+
+  nav.querySelectorAll('.nav-search a[type="submit"]').forEach((submit) => {
+    submit.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      submit.closest('form').submit();
+    });
   });
   const close = nav.querySelector('.nav-search.desktop-search a.close');
   close.addEventListener('click', callCloseOnInteraction);

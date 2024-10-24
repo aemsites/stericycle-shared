@@ -831,6 +831,11 @@
                 color: var(--color-white);
                 font-size: var(--body-font-size-s);
                 line-height: 2rem;
+
+                &:hover {
+                  text-decoration: none;
+                }
+
               }
 
               & > button {
@@ -850,7 +855,7 @@
                   position: absolute;
                   left: 0;
                   padding: 2rem;
-                  top: 100%;
+                  top: 4.6rem;
                   border: 1px solid var(--color-light-silver);
 
                   &:has(li.nav-drop) {
@@ -888,6 +893,14 @@
                     }
                   }
                 }
+              }
+            }
+
+            & > li {
+              height: calc(2rem + 2px);
+
+              & > a:hover {
+                border-bottom: 2px solid var(--color-blue);
               }
             }
           }
