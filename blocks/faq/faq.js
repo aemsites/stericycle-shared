@@ -29,6 +29,11 @@ function addAccordionAnimation(details) {
 }
 
 export default function decorate(block) {
+  let blockLabel;
+  if(block.classList.contains('labeled')){
+    blockLabel = block.children[0].cloneNode(true);
+    block.children[0].remove();
+  }
   [...block.children].forEach((row) => {
     if (block.classList.contains('plain')) {
       const label = row.children[0];
@@ -72,9 +77,11 @@ export default function decorate(block) {
       }
       details.append(summary, body);
       row.replaceWith(details);
-
       // Add accordion animation
       addAccordionAnimation(details);
     }
   });
+  if(blockLabel){
+    block.prepend(blockLabel);
+  }
 }
