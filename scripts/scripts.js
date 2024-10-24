@@ -13,10 +13,12 @@ import {
   sampleRUM,
   waitForLCP,
   toClassName,
+  decorateBlock,
+  loadBlock,
 } from './aem.js';
 import ffetch from './ffetch.js';
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 
 export function convertExcelDate(excelDate) {
   const secondsInDay = 86400;
@@ -67,6 +69,41 @@ export function getLocale() {
   // defaulting to en-us
   return 'en-us';
 }
+
+const toRadians = (degrees) => ((degrees * Math.PI) / 180);
+
+export const haversineDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 6371; // Radius of the Earth in kilometers
+  const dLat = toRadians(lat2 - lat1);
+  const dLon = toRadians(lon2 - lon1);
+  const tempA = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+    + Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2))
+    * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(tempA), Math.sqrt(1 - tempA));
+  return Math.round(R * c); // Distance in kilometers
+};
+
+// eslint-disable-next-line max-len
+export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.4672, limit = 3) => {
+  const isDropoff = getMetadata('sub-type')?.trim().toLowerCase();
+  const locations = await ffetch('/query-index.json').sheet('locations')
+    .filter((x) => {
+      const latitude = parseFloat(x.latitude);
+      const longitude = parseFloat(x.longitude);
+      // eslint-disable-next-line max-len
+      const havDistance = haversineDistance(currentLoc.latitude, currentLoc.longitude, latitude, longitude);
+      x.distance = havDistance;
+      return latitude !== 0 && longitude !== 0
+        && (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true)
+        && x.locale?.trim().toLowerCase() === getLocale()
+        && x.name !== currentLoc.name
+        && havDistance <= thresholdDistanceInKm;
+    })
+    .limit(limit)
+    .all();
+
+  return locations.sort((x, y) => x.distance - y.distance);
+};
 
 /**
  * Get related posts based on page tags. Currently doesn't filter out the existing page or
@@ -342,6 +379,20 @@ export function decorateAnchors(element = document) {
     (a) => a.href && !a.href.match(`^http[s]*://${window.location.host}/`),
   ));
 }
+/**
+ * Loads footer-subscription-form
+ * @param main main element
+ * @returns {Promise}
+ */
+async function appendSubscriptionForm(main) {
+  if (getMetadata('footer-subscription-form') === 'true') {
+    const form = buildBlock('form', { elems: ['<a href="/forms/footer-subscription.json"></a>'] });
+    form.classList.add('footer-subscription-form');
+    main.append(form);
+    decorateBlock(form);
+    loadBlock(form);
+  }
+}
 
 /**
  * Decorates the main element.
@@ -371,14 +422,9 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
-    await decorateTemplates(main);
-    if (doc.querySelector('body.with-sidebar')) {
-      // Shifting this here such that the page content is loaded first
-      await loadBlocks(main.querySelector('div.page-content'));
-      await loadBlocks(main.querySelector('div.page-sidebar'));
-    }
     document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS);
+    await decorateTemplates(main);
   }
 
   try {
@@ -400,12 +446,18 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadBlocks(main);
 
+  if (doc.querySelector('body.with-sidebar')) {
+    await loadBlocks(main.querySelector('div.page-content'));
+    await loadBlocks(main.querySelector('div.page-sidebar'));
+  }
+
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
+  await appendSubscriptionForm(main);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
