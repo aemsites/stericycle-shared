@@ -22,6 +22,7 @@ const getNearByLocations = async (currentLoc) => {
       const longitude = parseFloat(x.longitude);
       // eslint-disable-next-line max-len
       const havDistance = haversineDistance(currentLoc.latitude, currentLoc.longitude, latitude, longitude);
+      x.distance = havDistance;
       return latitude !== 0 && longitude !== 0
         && (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true)
         && x.locale?.trim().toLowerCase() === getLocale()
@@ -30,7 +31,7 @@ const getNearByLocations = async (currentLoc) => {
     })
     .all();
 
-  return locations;
+  return locations.sort((x, y) => x.distance - y.distance);
 };
 
 const createLocDiv = async () => {
