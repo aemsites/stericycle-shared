@@ -54,39 +54,22 @@ main .section.featuretable-container > div {
   background-color: var(--color-white)
 }
 
+.featuretable table thead tr p {
+  color: var(--color-white);
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.featuretable table > tbody > tr > td > p {
+  line-height: 24px;
+}
+
 .featuretable.white-header.tiers table thead th:nth-child(1) p {
   color: var(--color-blue);
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(2) p {
   color: var(--color-blue);
-}
-
-.featuretable.white-header.tiers table thead th:nth-child(3) {
-  background-color: var(--color-navy);
-}
-
-.featuretable.white-header.tiers table thead th:nth-child(4) {
-  background-color: var(--color-blue);
-}
-
-.featuretable.white-header.tiers table thead th:nth-child(5) {
-  background-color: var(--color-dark-gray);
-}
-
-.featuretable.white-header.tiers table thead th:nth-child(3) a {
-  background-color: var(--color-navy);
-  border-color: var(--color-navy);
-}
-
-.featuretable.white-header.tiers table thead th:nth-child(5) a {
-  background-color: var(--color-dark-gray);
-  border-color: var(--color-dark-gray);
-}
-
-/* striped variant */
-.featuretable.striped tbody tr:nth-child(odd) {
-  background-color: var(--overlay-background-color);
 }
 
 .featuretable > table > thead > tr:nth-child(1) > th {
@@ -108,10 +91,35 @@ main .section.featuretable-container > div {
   width: 14%;
 }
 
-.featuretable table thead tr p {
-  color: var(--color-white);
-  line-height: 24px;
-  font-weight: 700;
+.featuretable.white-header.tiers table thead th:nth-child(3) {
+  background-color: var(--color-navy);
+}
+
+.featuretable.white-header.tiers table thead th:nth-child(4) {
+  background-color: var(--color-blue);
+}
+
+.featuretable.white-header.tiers table thead th:nth-child(5) {
+  background-color: var(--color-dark-gray);
+}
+
+.featuretable table > tbody > tr > td > p > a {
+  text-decoration: underline;
+}
+
+.featuretable.white-header.tiers table thead th:nth-child(3) a {
+  background-color: var(--color-navy);
+  border-color: var(--color-navy);
+}
+
+.featuretable.white-header.tiers table thead th:nth-child(5) a {
+  background-color: var(--color-dark-gray);
+  border-color: var(--color-dark-gray);
+}
+
+/* striped variant */
+.featuretable.striped tbody tr:nth-child(odd) {
+  background-color: var(--overlay-background-color);
 }
 
 .featuretable table > tbody > tr > td {
@@ -136,14 +144,6 @@ main .section.featuretable-container > div {
 .featuretable table > tbody > tr > td:nth-child(n+2) .icon {
   height: 25px;
   width: 25px;
-}
-
-.featuretable table > tbody > tr > td > p {
-  line-height: 24px;
-}
-
-.featuretable table > tbody > tr > td > p > a {
-  text-decoration: underline;
 }
 
 .section.featuretable-container.flex-row {

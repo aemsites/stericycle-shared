@@ -372,13 +372,14 @@ main .section.blue-headings .columns span.icon {
     max-width: unset;
   }
 
+  main .block.columns.columns-2-cols > div div {
+    justify-content: center;
+  }
+
   main .section.justify-start .block.columns.columns-2-cols > div div {
     justify-content: flex-start;
   }
 
-  main .block.columns.columns-2-cols > div div {
-    justify-content: center;
-  }
 
   main .block.columns.video.columns-2-cols > div div:last-of-type:has(iframe) {
     display: flex;
@@ -394,6 +395,10 @@ main .section.blue-headings .columns span.icon {
   
   main .block.columns.video.columns-2-cols > div div iframe {
     height: 100%;
+  }
+
+  main .section.columns-container.flex-row .block.columns.columns-2-cols > div {
+    display: flex;
   }
 
   main .section.columns-container.large-icon .block.columns.columns-2-cols > div div:first-of-type:has(.icon),
@@ -416,9 +421,5 @@ main .section.blue-headings .columns span.icon {
   main .section.columns-container.large-icon .block.columns.columns-2-cols > div div:first-of-type:has(.icon) p,
   main .section.columns-container.large-icon .block.columns.columns-2-cols > div div:last-of-type:has(.icon) p {
     position: absolute;
-  }
-
-  main .section.columns-container.flex-row .block.columns.columns-2-cols > div {
-    display: flex;
   }
 }

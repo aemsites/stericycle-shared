@@ -252,7 +252,6 @@ main .section.faq-container > div {
     max-width: var(--section-width);
     margin: 2rem auto;
     padding: 0 1.5rem;
-    justify-content: space-between;
   }
 
   .section.faq-container.flex-row > div  {

@@ -30,7 +30,7 @@ function addAccordionAnimation(details) {
 
 export default function decorate(block) {
   let blockLabel;
-  if(block.classList.contains('labeled')){
+  if (block.classList.contains('labeled')) {
     blockLabel = block.children[0].cloneNode(true);
     block.children[0].remove();
   }
@@ -81,7 +81,7 @@ export default function decorate(block) {
       addAccordionAnimation(details);
     }
   });
-  if(blockLabel){
+  if (blockLabel) {
     block.prepend(blockLabel);
   }
 }
