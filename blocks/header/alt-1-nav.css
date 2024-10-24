@@ -1,0 +1,92 @@
+/* Override header size on certain pages */
+:root {
+  --nav-height: 116px;
+}
+
+.block.header {
+  position: fixed;
+  height: var(--nav-height);
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  width: 100%;
+  z-index: 2;
+  top: 0;
+
+  & nav {
+    height: var(--nav-height);
+    padding: 1rem 12px;
+    margin: 0 auto;
+    max-width: 300px;
+
+    & .logo {
+      padding: 1rem 0;
+      width: 50%;
+
+      & a {
+        position: relative;
+        display: block;
+
+        & img {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  :root {
+    --nav-height: 143px;
+  }
+
+  .block.header {
+    & nav {
+      max-width: 540px;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --nav-height: 163px;
+  }
+
+  .block.header {
+    & nav {
+      max-width: 720px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --nav-height: 146px;
+  }
+
+  .block.header {
+    & nav {
+      max-width: 1140px;
+
+      & .logo {
+        width: 25%;
+      }
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  :root {
+    --nav-height: 156px;
+  }
+
+  .block.header {
+    & nav {
+      max-width: 1320px;
+
+      & .logo {
+        width: 25%;
+      }
+    }
+  }
+}

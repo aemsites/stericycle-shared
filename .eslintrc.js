@@ -13,6 +13,8 @@ module.exports = {
   rules: {
     // allow reassigning param
     'no-param-reassign': [2, { props: false }],
+    'max-len': ['error', { code: 180 }],
+    'object-curly-newline': ['error', { consistent: true }],
     'linebreak-style': ['error', 'unix'],
     'import/extensions': ['error', {
       js: 'always',
