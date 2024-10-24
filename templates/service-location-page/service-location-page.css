@@ -38,7 +38,7 @@ main .section > div.hero-wrapper {
 }
 
 .service-location-page .location .nearby-locations ul {
-  padding-left: 0.75rem;
+  padding-left: 1rem;
 }
 
 .service-location-page .location .nearby-locations ul > li {
