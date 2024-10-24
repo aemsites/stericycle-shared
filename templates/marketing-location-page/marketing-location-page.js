@@ -13,8 +13,9 @@ function buildMarketingPage(main) {
   const formSection = document.createElement('div');
   formSection.classList.add('section');
   const formPath = getMetadata('form-path');
-  const form = buildBlock('form', { elems: [`<a href="${formPath}.json"></a>`] });
-  form.classList.add('get-a-quote-form-alternate'); // class to style the form for this template
+  const formStyleClass = getMetadata('form-style');
+  const form = buildBlock('form', { elems: [`<a href="${formPath}"></a>`] });
+  form.classList.add(formStyleClass);
   formSection.prepend(form);
 
   const locationDiv = div({ class: 'location' });
