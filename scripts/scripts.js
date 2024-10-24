@@ -18,7 +18,7 @@ import {
 } from './aem.js';
 import ffetch from './ffetch.js';
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 
 export function convertExcelDate(excelDate) {
   const secondsInDay = 86400;
@@ -422,14 +422,9 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
-    await decorateTemplates(main);
-    if (doc.querySelector('body.with-sidebar')) {
-      // Shifting this here such that the page content is loaded first
-      await loadBlocks(main.querySelector('div.page-content'));
-      await loadBlocks(main.querySelector('div.page-sidebar'));
-    }
     document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS);
+    await decorateTemplates(main);
   }
 
   try {
@@ -450,6 +445,11 @@ async function loadLazy(doc) {
   autolinkModals(doc);
   const main = doc.querySelector('main');
   await loadBlocks(main);
+
+  if (doc.querySelector('body.with-sidebar')) {
+    await loadBlocks(main.querySelector('div.page-content'));
+    await loadBlocks(main.querySelector('div.page-sidebar'));
+  }
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;

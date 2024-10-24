@@ -125,6 +125,7 @@ async function buildServiceLocationAutoBlocks(main) {
   }
   // GET-A-QUOTE FORM
   const formSection = document.createElement('div');
+  formSection.style.display = 'none';
   formSection.classList.add('section');
   const form = buildBlock('get-a-quote-form', { elems: [] });
   if (!pageSidebar) {
@@ -140,7 +141,7 @@ async function buildServiceLocationAutoBlocks(main) {
   formSection.prepend(form);
   pageSidebar.prepend(formSection);
   const locDiv = await createLocDiv();
-  pageSidebar.append(locDiv);
+  formSection.append(locDiv);
   decorateBlock(form);
 
   // QUOTE
