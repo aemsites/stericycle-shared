@@ -420,6 +420,11 @@ main .form form .wizard .wizard-button-wrapper{
     grid-column: span 12;
 }
 
+main .get-a-quote-form-alternate form > .field-wrapper {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
 main .form form .wizard .wizard-button-wrapper .field-wrapper{
     flex: unset;
 }
@@ -731,7 +736,7 @@ main .get-a-quote-form-alternate {
     box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
     background-color: var(--color-white);
     border-radius: 4px;
-    padding-top: 70px;
+    padding-top: 0;
 }
 
 main .get-a-quote-form-alternate form {
