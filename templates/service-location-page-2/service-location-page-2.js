@@ -48,6 +48,22 @@ const createLocDiv = async () => {
     locDetailsDiv.append(p(zipCode));
   }
 
+  if (nearByLocations.length > 0) {
+    const nearByDiv = div({ class: 'nearby-locations' });
+    const tempStrong = strong(`${ph.nearbylocationstext || 'See our nearby locations'}:`);
+    nearByDiv.append(p(tempStrong));
+    const ulList = ul();
+
+    nearByLocations.forEach((loc) => {
+      const liElement = li();
+      liElement.append(a({ href: loc.path }, loc.name));
+      ulList.append(liElement);
+    });
+
+    nearByDiv.append(ulList);
+    locDetailsDiv.append(nearByDiv);
+  }
+
   const phoneDiv = div({ class: 'phone' });
 
   const customerNo = ph.customerserviceno || '800-697-4733'; // fallback number also added
@@ -90,22 +106,6 @@ const createLocDiv = async () => {
     decorateButtons(buyNowAnchor);
     dropOffDiv.append(buyNowAnchor);
     locationDiv.append(dropOffDiv);
-  }
-
-  if (nearByLocations.length > 0) {
-    const nearByDiv = div({ class: 'nearby-locations' });
-    const tempStrong = strong(`${ph.nearbylocationstext || 'See our nearby locations'}:`);
-    nearByDiv.append(p(tempStrong));
-    const ulList = ul();
-
-    nearByLocations.forEach((loc) => {
-      const liElement = li();
-      liElement.append(a({ href: loc.path }, loc.name));
-      ulList.append(liElement);
-    });
-
-    nearByDiv.append(ulList);
-    locDetailsDiv.append(nearByDiv);
   }
 
   const addressParts = [
