@@ -136,7 +136,6 @@ main .form select {
     max-width: unset;
     margin-top: .5rem;
     margin-bottom: .25rem;
-    border-radius: 0.25rem;
 }
 
 main .form select {
@@ -770,10 +769,9 @@ main .footer-subscription-form.form-container {
 }
 
 main .footer-subscription-form {
-    padding-right: 2rem;
-    padding-left:2rem;
-    margin-right: 10rem;
-    margin-left:10rem;
+    max-width: var(--section-width);
+    margin: 2rem auto;
+    padding: 0 1.5rem;
 }
 
 main .footer-subscription-form .button-wrapper.field-wrapper.submit-wrapper button{
@@ -789,4 +787,8 @@ main .footer-subscription-form #get-informed-stay-protected{
 main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-policy"] {
     text-decoration: underline;
     font-size: 0.87rem;
+}
+
+main .footer-subscription-form  form {
+    gap: 0;
 }
