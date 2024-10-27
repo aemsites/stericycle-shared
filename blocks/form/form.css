@@ -664,9 +664,10 @@ main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkb
 
 main .form form .panel-wrapper.field-requesttype,
 main .form form .panel-wrapper.field-frequncy{
-  grid-template-columns: 12fr 1fr 1fr;
-  gap: 0;
-  margin-top: 20px;
+    grid-template-columns: 12fr 1fr 1fr;
+    gap: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 main .form form .panel-wrapper.field-requesttype legend,
@@ -752,10 +753,16 @@ main .get-a-quote-form-alternate form {
     display: block;
 }
 
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id='privacy-policy']  p{
+    font-size: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] {
     background-color: var(--color-yellow);
     font-size: var(--heading-font-size-m);
-    padding: 16px 48px;
+    padding: 16px 32px;
     margin-bottom: 1rem;
     font-weight: normal;
 }
@@ -808,16 +815,5 @@ main .two-column.form-container .default-content-wrapper {
 
 main .two-column.form-container .form-wrapper {
     width:33%;
-}
-
-main .two-column.form-container .fragment-wrapper[data-id='header'] {
-    padding-left: 2rem;
-    padding-right: 2rem;
-}
-
-main .two-column.form-container .fragment-wrapper[data-id='privacy-policy']  p{
-    font-size: 0.75rem;
-    padding-top: 0.5rem;
-    padding-bottom: 1rem;
 }
 
