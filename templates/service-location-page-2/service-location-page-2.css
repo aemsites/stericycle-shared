@@ -7,6 +7,48 @@
     padding: 0;
     margin-bottom: 30px;
   }
+
+.service-location-page-2 .location {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.service-location-page-2 .location a {
+  text-decoration: underline;
+}
+
+.service-location-page-2 .location .drop-off a {
+  width: 60%;
+  text-decoration: none;
+}
+
+.service-location-page-2 .location .phone {
+  margin-top: 2rem;
+}
+
+.service-location-page-2 .location .phone > div {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.service-location-page-2 .location .map > iframe {
+  width: 306px;
+  height: 306px;
+  border: unset;
+}
+
+.service-location-page-2 .location .nearby-locations {
+  margin-top: 2rem;
+}
+
+.service-location-page-2 .location .nearby-locations ul {
+  padding-left: 1rem;
+}
+
+.service-location-page-2 .location .nearby-locations ul > li {
+  list-style: disc;
+}
   
   @media (min-width: 992px /* breakpoint-l */) {
     .with-sidebar main > .body-wrapper {
@@ -24,5 +66,25 @@
       width: 25%;
       margin-top: -200px;
       z-index: 1;
+    }
+
+    .service-location-page-2 .location {
+      flex-direction: row;
+    }
+
+    .service-location-page-2 .location .phone {
+      margin-top: 2rem;
+      display: flex;
+      gap: 3rem;
+    }
+
+    .service-location-page-2 .location .phone > div {
+      display: flex;
+      gap: 0.3rem;
+      flex-direction: column;
+    }
+
+    .service-location-page-2 .location > div {
+      flex: 1;
     }
   }

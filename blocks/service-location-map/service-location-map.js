@@ -17,24 +17,11 @@ import {
 } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
 import usStates from './us-states.js';
-import { decorateAnchors, getLocale } from '../../scripts/scripts.js';
+import { decorateAnchors, getLocale, haversineDistance } from '../../scripts/scripts.js';
 
 let map = null;
 
 const getAccessToken = () => 'pk.eyJ1Ijoic3RlcmljeWNsZSIsImEiOiJjbDNhZ3M5b3AwMWphM2RydWJobjY3ZmxmIn0.xt2cRdtjXnnZXXXLt3bOlQ';
-
-const toRadians = (degrees) => ((degrees * Math.PI) / 180);
-
-const haversineDistance = (lat1, lon1, lat2, lon2) => {
-  const R = 6371; // Radius of the Earth in kilometers
-  const dLat = toRadians(lat2 - lat1);
-  const dLon = toRadians(lon2 - lon1);
-  const tempA = Math.sin(dLat / 2) * Math.sin(dLat / 2)
-    + Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2))
-    * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(tempA), Math.sqrt(1 - tempA));
-  return Math.round(R * c); // Distance in kilometers
-};
 
 const locDivCreation = (location, ph) => {
   const locationDiv = div(
