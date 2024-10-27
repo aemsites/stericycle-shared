@@ -54,7 +54,7 @@
     --form-upload-font-size: var(--form-font-size-xs);
     --form-upload-background-color: var(--background-color-primary);
     --form-submit-width: 100%;
-    --form-width: 95%;
+    --form-width: 100%;
     --form-wizard-border: 0;
     --form-wizard-background-color: var(--background-color-primary);
     --form-wizard-border-color: #757575;
@@ -792,13 +792,19 @@ main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-
 }
 
 main .two-column.form-container {
+    margin: 0;
+    padding: 0;
+}
+
+main .two-column.form-container > div {
     display: flex;
+    max-width: var(--section-width);
 }
 
 main .two-column.form-container .default-content-wrapper {
-    width: 72%;
+    width: 62%;
 }
 
 main .two-column.form-container .form-wrapper {
-    width:28%;
+    width:38%;
 }
