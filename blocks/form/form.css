@@ -802,9 +802,22 @@ main .two-column.form-container > div {
 }
 
 main .two-column.form-container .default-content-wrapper {
-    width: 62%;
+    width: 67%;
+    padding-right: 3rem;
 }
 
 main .two-column.form-container .form-wrapper {
-    width:38%;
+    width:33%;
 }
+
+main .two-column.form-container .fragment-wrapper[data-id='header'] {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+main .two-column.form-container .fragment-wrapper[data-id='privacy-policy']  p{
+    font-size: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+
