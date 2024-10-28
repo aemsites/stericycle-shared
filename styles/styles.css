@@ -309,13 +309,21 @@ main .section.quote-container.orange-border .quote-attribution p {
   color: #ff5633;
 }
 
-main .section.yellow-button  div.default-content-wrapper .button-container a {
+main .section.yellow-button  a.button {
   background-color: var(--color-yellow);
   border-color: var(--color-black);
   color: var(--color-black);
   font-size: 1rem;
   line-height: 2pc;
   border-width: 2px;
+}
+
+main .section.yellow-button-no-border  a.button {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+  font-size: 1rem;
+  line-height: 2pc;
+  border: unset;
 }
 
 /* remove bullets for list items in columns -  might be too aggressive */
@@ -594,6 +602,13 @@ main .list-style-bullets ul {
 main .list-style-bullets ul li {
   list-style: disc;
   padding-bottom: 0.5rem;
+}
+
+main .list-style-checkmarks ul {
+  position: relative;
+  padding: 0;
+  margin: 0 0 0 1.5rem;
+  list-style: none;
 }
 
 main ol {
@@ -1128,6 +1143,10 @@ main .list-style-orange-triangles ul > li::before {
 
 main .list-style-orange-triangles ul > li {
   padding-bottom: 1rem;
+}
+
+main .list-style-checkmarks div.card-body ul > li::before {
+  content: '✓';
 }
 
 main .list-style-big-numbers h2 {

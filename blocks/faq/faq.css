@@ -250,7 +250,7 @@ main .section.faq-container > div {
     justify-content: flex-start;
     align-items: flex-start;
     max-width: var(--section-width);
-    margin: 2rem auto;
+    margin: 0 auto;
     padding: 0 1.5rem;
   }
 

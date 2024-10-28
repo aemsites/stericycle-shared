@@ -127,6 +127,10 @@ main .section.featuretable-container > div {
   padding: 20px;
 }
 
+.featuretable table > tbody > tr > td:nth-child(1) {
+  text-align: center;
+}
+
 .featuretable table > tbody > tr > td:nth-child(n+2) {
   text-align: center;
 }
