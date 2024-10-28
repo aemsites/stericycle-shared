@@ -19,7 +19,11 @@ export default function decorate(block) {
       picture.querySelector('img')?.src,
       'hero image',
       false,
-      [{ media: '(min-width: 600px)', width: '2500' }, { width: '1000' }],
+      [
+        { media: '(min-width: 1600px)', width: 3000 },
+        { media: '(min-width: 600px)', width: 2500 },
+        { width: 750 },
+      ],
     );
 
     tempPic.classList.add('hero-background');
