@@ -72,6 +72,32 @@
   color: inherit;
 }
 
+.section.cards-container.list-styles ul {
+  position: relative;
+  padding: 0;
+  margin: 0 0 0 1.5rem;
+  list-style: none;
+}
+
+.section.cards-container.list-style-checkmarks div.card-body ul > li::before {
+  content: '✓';
+}
+
+.section.cards-container.heading-image-row .card-head .card-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.section.cards-container.heading-image-row .card-head .card-section h3 {
+  order: 1;
+  margin-left: 20px;
+}
+
+.section.cards-container.heading-image-row .card-head .card-section p:has(picture) {
+  width: 10%;
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
   .cards > ul {
     display: flex;
