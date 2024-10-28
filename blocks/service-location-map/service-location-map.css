@@ -138,6 +138,13 @@
   color: var(--color-white);
 }
 
+.block.service-location-map .mapboxgl-ctrl-bottom-left,
+.block.service-location-map .mapboxgl-ctrl-bottom-right,
+.block.service-location-map .mapboxgl-ctrl-top-left,
+.block.service-location-map .mapboxgl-ctrl-top-right {
+  z-index: unset;
+}
+
 @media screen and (min-width: 768px) {
   .block.service-location-map .map-search .map-input-details {
     flex-direction: row;
