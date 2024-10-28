@@ -58,10 +58,9 @@ export default function decorate(main) {
   const childWithPosition = Array.from(main.children)
     .find((child) => child.getAttribute('data-position'));
 
+  buildBreadcrumbBlock(main);
   if (childWithPosition) {
     main.parentElement.classList.add('with-sidebar');
     decorateSidebarTemplate(main);
   }
-
-  buildBreadcrumbBlock(main);
 }
