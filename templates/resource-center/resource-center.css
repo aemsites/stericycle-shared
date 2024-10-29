@@ -12,7 +12,36 @@
   text-decoration: underline;
 }
 
+.resource-center main .breadcrumb {
+  display: none;
+}
+
+.resource-center main .breadcrumb a,
+.resource-center main .breadcrumb span {
+  color: var(--color-dark-gunmetal);
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+  text-decoration: none;
+  letter-spacing: .0006rem;
+}
+
+.resource-center main .breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.resource-center .breadcrumb a::after {
+  color: var(--color-dark-gunmetal);
+  content: "|";
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
+  .resource-center main .breadcrumb {
+    display: block;
+  }
+
   .with-sidebar main > .body-wrapper {
     display: flex;
     flex-direction: row;
