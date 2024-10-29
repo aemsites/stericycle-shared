@@ -85,6 +85,9 @@
   --color-button-primary: var(--color-yellow);
   --color-button-secondary: var(--color-text);
 
+  /* font colors */
+  --font-color-text-primary: #1F1F20;
+
   /* fonts */
   --font-family-lato: 'Lato', 'Lato Fallback', sans-serif;
   --font-family-body: var(--font-family-lato);
@@ -94,7 +97,19 @@
 
   /* font weights */
   --lato-regular: 400;
+  --lato-semibold: 600;
   --lato-bold: 700;
+
+  /* font letter-spacing; */
+  --font-letter-spacing-l: 10%;
+  --font-letter-spacing-m: 2%;
+  --font-letter-spacing-s: 1%;
+
+  /* font line-height */
+  --font-line-height-xl: 160%;
+  --font-line-height-l: 140%;
+  --font-line-height-m: 120%;
+  --font-line-height-s: 100%;
 
   /* body sizes */
   --body-font-size-l: 20px;
@@ -110,6 +125,22 @@
   --heading-font-size-m: 16px;
   --heading-font-size-s: 1.25rem;
   --heading-font-size-xs: 12px;
+
+  /* header font sizes */
+  --header-font-size-xxl: 48px;
+  --header-font-size-xl: 32px;
+  --header-font-size-l: 24px;
+  --header-font-size-m: 20px;
+  --header-font-size-s: 18px;
+  --header-font-size-xs: 16px;
+
+  /* text font sizes */
+  --text-font-size-xxl: 20px;
+  --text-font-size-xl: 18px;
+  --text-font-size-l: 16px;
+  --text-font-size-m: 14px;
+  --text-font-size-s: 12px;
+  --text-font-size-xs: 10px;
 
   /* icon sizes */
   --icon-size-xs: 10px;
@@ -1406,5 +1437,64 @@ main .list-with-background-image > div > ul > li:last-child {
 
   main .parallel-lines-decorator > div {
     padding: 32px 48px;
+  }
+}
+
+/* Typography */
+
+/* Header Styles */
+
+.header1, .header2, .header3, .header4 {
+  color: var(--font-color-text-primary);
+  font-family: var(--font-family-lato);
+  font-style: normal;
+  letter-spacing: 1%;
+}
+
+.header1 {
+  font-size: var(--header-font-size-xl);
+  font-weight: var(--lato-bold);
+  line-height: 120%;
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  .header1 {
+    font-size: var(--header-font-size-xxl);
+  }
+}
+
+.header2 {
+  font-size: var(--header-font-size-l);
+  font-weight: var(--lato-semibold);
+  line-height: 120%;
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  .header2 {
+    font-size: var(--header-font-size-xl);
+  }
+}
+
+.header3 {
+  font-size: var(--header-font-size-m);
+  font-weight: var(--lato-semibold);
+  line-height: 140%;
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  .header3 {
+    font-size: var(--header-font-size-l);
+  }
+}
+
+.header4 {
+  font-size: var(--header-font-size-s);
+  font-weight: var(--lato-bold);
+  line-height: 140%;
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  .header4 {
+    font-size: var(--header-font-size-xs);
   }
 }
