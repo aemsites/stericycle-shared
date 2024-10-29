@@ -14,8 +14,11 @@ function buildMarketingPage(main) {
   formSection.classList.add('section');
   const formPath = getMetadata('form-path');
   const formStyleClass = getMetadata('form-style');
-  const form = buildBlock('form', { elems: [`<a href="${formPath}"></a>`] });
-  form.classList.add(formStyleClass);
+  const element = { elems: formPath ? [] : [`<a href="${formPath}"></a>`] };
+  const form = buildBlock(formPath ? 'form' : 'get-a-quote-form', element);
+  if (formPath && formStyleClass) {
+    form.classList.add(formStyleClass);
+  }
   formSection.prepend(form);
 
   const locationDiv = div({ class: 'location' });
