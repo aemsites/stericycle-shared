@@ -96,8 +96,14 @@ async function loadYMAL() {
   mltHeader.innerText = ymal;
   mltWrapper.prepend(mltHeader);
 
-  const mainSection = document.querySelector('main > div.section');
-  mainSection.insertAdjacentElement('afterend', mltSection);
+  const bodyWrapper = document.querySelector('main .body-wrapper');
+  if (bodyWrapper) {
+    bodyWrapper.insertAdjacentElement('afterend', mltSection);
+  } else {
+    const sections = document.querySelectorAll('main div.section');
+    const mainSection = sections[sections.length - 1];
+    mainSection.insertAdjacentElement('afterend', mltSection);
+  }
 }
 
 // load this only on blog pages
