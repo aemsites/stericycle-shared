@@ -62,7 +62,7 @@ async function constructPayload(form, captcha) {
   const payload = {
     __id__: generateUnique(),
     ':currentPagePath': '/content/shred-it/us/en',
-    jobPropertiesUrl: `https://main--shredit--stericycle.aem.page/${form.dataset.action}.json`,
+    jobPropertiesUrl: `https://main--shredit--stericycle.aem.page${form.dataset.action}.json`,
   };
   [...form.elements].forEach((fe) => {
     if (fe.name && !fe.matches('button') && !fe.disabled && fe.tagName !== 'FIELDSET') {
