@@ -762,13 +762,18 @@ main .get-a-quote-form-alternate form .fragment-wrapper[data-id='privacy-policy'
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] {
     background-color: var(--color-yellow);
     font-size: var(--heading-font-size-m);
-    padding: 16px 32px;
+    padding: 1rem 2rem;
     margin-bottom: 1rem;
     font-weight: normal;
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] > div > p {
     font-size: 1rem;
+}
+
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] a{
+    color: #1a242b;
+    text-decoration: underline;
 }
 
 main .footer-subscription-form.form-container {
@@ -815,5 +820,20 @@ main .two-column.form-container .default-content-wrapper {
 
 main .two-column.form-container .form-wrapper {
     width:33%;
+}
+
+@media (max-width: 1000px) {
+    main .two-column.form-container > div {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;
+    }
+
+    main .two-column.form-container .default-content-wrapper {
+        width: 90%;
+    }
+
+    main .two-column.form-container .form-wrapper {
+        width:90%;
+    }
 }
 
