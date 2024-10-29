@@ -835,5 +835,16 @@ main .two-column.form-container .form-wrapper {
     main .two-column.form-container .form-wrapper {
         width:90%;
     }
+
+    main .form form .panel-wrapper.field-requesttype{
+       grid-template-columns: 1fr 1fr;
+    }
+
+    main .form form .panel-wrapper.field-requesttype .radio-wrapper.field-quote-type{
+        grid-column: span 1;
+        width: 100%;
+        padding: 13px 0;
+        margin-top: 0;
+    }
 }
 
