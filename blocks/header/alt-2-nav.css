@@ -208,8 +208,12 @@
 }
 
 @media (min-width: 1200px) {
-  .block.header nav .nav-sections a {
-    white-space: nowrap;
+  .block.header nav .nav-sections ul {
+    gap: 3rem;
+
+    & a {
+      white-space: nowrap;
+    }
   }
 
   .block.header nav .nav-contact li.quote-link a {
