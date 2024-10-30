@@ -2,7 +2,7 @@
 import usStates from '../../blocks/service-location-map/us-states.js';
 import { buildBlock, decorateBlock, decorateButtons, decorateIcons, fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { a, div, h3, h4, iframe, li, p, strong, ul } from '../../scripts/dom-helpers.js';
-import { getLocale, getNearByLocations } from '../../scripts/scripts.js';
+import { addJsonLd, getLocale, getNearByLocations } from '../../scripts/scripts.js';
 
 const createLocDiv = async () => {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
@@ -234,6 +234,39 @@ function addInfoColumns(main) {
   decorateBlock(columnsBlock);
 }
 
+async function addLocalBusinessJsonLd() {
+  const schema = {
+    image: '/content/dam/stericycle/global/icons/Stericycle-Logo-with-WPWM-Bigger.svg',
+    logo: '/content/dam/stericycle/global/icons/Stericycle-Logo-with-WPWM-Bigger.svg',
+    address: {
+      addressCountry: getMetadata('country'),
+      addressLocality: getMetadata('name'),
+      addressRegion: getMetadata('state'),
+      '@type': 'PostalAddress',
+    },
+    description: getMetadata('description'),
+    url: window.location.href,
+    name: getMetadata('og:title') || getMetadata('title') || 'Service Location',
+    '@type': 'LocalBusiness',
+    '@context': 'https://schema.org/',
+  };
+
+  // GeoCoordinates
+  const latitude = parseFloat(getMetadata('latitude'));
+  const longitude = parseFloat(getMetadata('longitude'));
+  if (latitude && longitude
+    && !Number.isNaN(latitude) && !Number.isNaN(longitude)
+    && latitude !== 0.0 && longitude !== 0.0) {
+    schema.geo = {
+      latitude,
+      longitude,
+      '@type': 'GeoCoordinates',
+    };
+  }
+
+  addJsonLd(schema, 'service-location');
+}
+
 async function decorate(main) {
   const autoSection = document.createElement('div');
   autoSection.classList.add('section', 'gray-background');
@@ -266,6 +299,8 @@ async function decorate(main) {
   }
 
   main.append(disclaimerSection);
+
+  addLocalBusinessJsonLd();
 }
 
 export default decorate;
