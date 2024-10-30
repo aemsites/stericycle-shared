@@ -17,7 +17,7 @@ export default async function decorate(block) {
   navContact.classList.add('nav-contact');
   const link = li(
     { class: 'quote-link' },
-    a({ href: '#', class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Get a Quote'),
+    a({ href: '/forms/modals/modal', class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Get a Quote'),
   );
   navContact.querySelector('ul').append(link);
 
