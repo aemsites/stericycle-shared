@@ -1,15 +1,4 @@
 export default function decorate(block) {
-
-  block.querySelectorAll(':scope > div').forEach((card) => {
-    const pic = card.querySelector('div > picture');
-    const text = card.querySelector('div:last-of-type');
-    if (text.querySelector('p')) {
-
-    } else {
-      p(text.childNodes);
-    }
-
-  });
   const cardList = document.createElement('ul');
 
   // populate cards
