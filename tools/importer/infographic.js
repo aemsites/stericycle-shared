@@ -88,12 +88,16 @@ function fixDynamicMedia(main, document) {
 }
 
 function transformDownloadBlock(main, document) {
-  const downloadBlock = main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid') ? main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid') : main.querySelector('div.col-lg-3.cmp-columnrow__item div.pagesection > div.cmp-pagesection > div.aem-Grid');
+  const downloadBlock = main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid')
+    ? main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid')
+    : main.querySelector('div.col-lg-3.cmp-columnrow__item div.pagesection > div.cmp-pagesection > div.aem-Grid');
 
   const cells = [['Download']];
   let title = '';
   if (downloadBlock.querySelector('h4')) {
-    title = downloadBlock.querySelector('div.text > h4') ? downloadBlock.querySelector('div.text > h4').innerText : downloadBlock.querySelector('div.cmp-previeweddownload__title > h4').innerText;
+    title = downloadBlock.querySelector('div.text > h4')
+      ? downloadBlock.querySelector('div.text > h4').innerText
+      : downloadBlock.querySelector('div.cmp-previeweddownload__title > h4').innerText;
   }
   cells.push(['title', title]);
   cells.push(['image', downloadBlock.querySelector('div.previeweddownload > div.cmp-previeweddownload > div.cmp-previeweddownload__image > a > img')]);
