@@ -18,9 +18,9 @@ export const defaultErrorMessages = {
 
 // eslint-disable-next-line no-useless-escape
 export const emailPattern = '([A-Za-z0-9][._]?)+[A-Za-z0-9]@[A-Za-z0-9]+(\.?[A-Za-z0-9]){2}\.([A-Za-z0-9]{2,4})?';
-let submitBaseUrl = 'https://dev-us.shredit.com';
+let submitBaseUrl = 'https://dev-us.shredit.com/bin/edgedelivery/form';
 
-export const googleReCaptchaKey = '6LfrVLIaAAAAAAXITOp0kZDmKaUjciDyodYVm3id';
+export const googleReCaptchaKey = '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2';
 
 export function setSubmitBaseUrl(url) {
   submitBaseUrl = url;
