@@ -394,8 +394,9 @@ export function decorateAnchors(element = document) {
  * @returns {Promise}
  */
 async function appendSubscriptionForm(main) {
-  if (getMetadata('footer-subscription-form') === 'true') {
-    const form = buildBlock('form', { elems: ['<a href="/forms/footer-subscription.json"></a>'] });
+  const footerSubscriptionForm = getMetadata('footer-subscription-form');
+  if (footerSubscriptionForm) {
+    const form = buildBlock('form', { elems: [`<a href=${footerSubscriptionForm}></a>`] });
     form.classList.add('footer-subscription-form');
     main.append(form);
     decorateBlock(form);
