@@ -861,7 +861,8 @@ footer .no-nav .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-
   padding-top: unset;
   padding-bottom: 2rem;
   padding-left: 1rem;
-  border-bottom: .5px solid #b2b1b1;
+
+  /* border-bottom: .5px solid #b2b1b1; */
 }
 
 footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) p:first-child img {

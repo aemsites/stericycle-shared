@@ -81,7 +81,6 @@ function applyVerticalCellAlignment(block) {
     }
   });
 }
-
 export function applyCellAlignment(block) {
   applyHorizontalCellAlignment(block);
   applyVerticalCellAlignment(block);

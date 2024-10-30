@@ -50,9 +50,26 @@ main .section.featuretable-container > div {
   background-color: var(--color-blue);
 }
 
-/* striped variant */
-.featuretable.striped tbody tr:nth-child(odd) {
-  background-color: var(--overlay-background-color);
+.featuretable.white-header table thead tr {
+  background-color: var(--color-white)
+}
+
+.featuretable table thead tr p {
+  color: var(--color-white);
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.featuretable table > tbody > tr > td > p {
+  line-height: 24px;
+}
+
+.featuretable.white-header.tiers table thead th:nth-child(1) p {
+  color: var(--color-blue);
+}
+
+.featuretable.white-header.tiers table thead th:nth-child(2) p {
+  color: var(--color-blue);
 }
 
 .featuretable > table > thead > tr:nth-child(1) > th {
@@ -74,15 +91,44 @@ main .section.featuretable-container > div {
   width: 14%;
 }
 
-.featuretable table thead tr p {
-  color: var(--color-white);
-  line-height: 24px;
-  font-weight: 700;
+.featuretable.white-header.tiers table thead th:nth-child(3) {
+  background-color: var(--color-navy);
+}
+
+.featuretable.white-header.tiers table thead th:nth-child(4) {
+  background-color: var(--color-blue);
+}
+
+.featuretable.white-header.tiers table thead th:nth-child(5) {
+  background-color: var(--color-dark-gray);
+}
+
+.featuretable table > tbody > tr > td > p > a {
+  text-decoration: underline;
+}
+
+.featuretable.white-header.tiers table thead th:nth-child(3) a {
+  background-color: var(--color-navy);
+  border-color: var(--color-navy);
+}
+
+.featuretable.white-header.tiers table thead th:nth-child(5) a {
+  background-color: var(--color-dark-gray);
+  border-color: var(--color-dark-gray);
+}
+
+/* striped variant */
+.featuretable.striped tbody tr:nth-child(odd) {
+  background-color: var(--overlay-background-color);
 }
 
 .featuretable table > tbody > tr > td {
   border: 1.5px solid var(--color-light-gray);
   padding: 20px;
+}
+
+.featuretable table > tbody > tr > td:nth-child(1) {
+  text-align: center;
 }
 
 .featuretable table > tbody > tr > td:nth-child(n+2) {
@@ -104,10 +150,42 @@ main .section.featuretable-container > div {
   width: 25px;
 }
 
-.featuretable table > tbody > tr > td > p {
-  line-height: 24px;
+.section.featuretable-container.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
-.featuretable table > tbody > tr > td > p > a {
-  text-decoration: underline;
+.section.featuretable-container.flex-row .featuretable-wrapper {
+  width: 65%;
+}
+
+.section.featuretable-container.cyan-border.flex-row .featuretable-wrapper table {
+  border: solid;
+  border-color: var(--color-cyan);
+}
+
+.section.featuretable-container.cyan-border.flex-row .featuretable-wrapper table tbody tr > td {
+  border-color: var(--color-cyan);
+}
+
+.section.featuretable-container.cyan-border.flex-row .featuretable-wrapper table thead > tr > th{
+  border: solid;
+  border-color: var(--color-cyan);
+}
+
+
+.section.featuretable-container.cyan-border.flex-row .default-content-wrapper p:first-of-type a {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-black);
+}
+
+.section.featuretable-container.cyan-border.flex-row .default-content-wrapper p:last-of-type a {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+}
+
+.section.featuretable-container.cyan-border.flex-row .text-wrapper {
+  justify-items: flex-end;
 }
