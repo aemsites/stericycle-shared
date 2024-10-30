@@ -492,6 +492,15 @@
           letter-spacing: .01px;
           color: var(--color-dark-gunmetal);
           text-decoration-color: var(--color-dark-gunmetal);;
+          background-color: var(--color-button-primary);
+          z-index: 3000;
+
+          &:hover {
+            color: var(--color-dark-gunmetal);
+            text-decoration-color: var(--color-dark-gunmetal);;
+            background-color: var(--color-button-primary);
+            border-color: var(--color-dark-gunmetal);
+          }
         }
 
       }
@@ -953,6 +962,17 @@
             font-weight: var(--lato-bold);
             margin-top: 5px;
             margin-bottom: 0;
+            color: var(--color-dark-gunmetal);
+            text-decoration-color: var(--color-dark-gunmetal);;
+            background-color: var(--color-button-primary);
+            z-index: 3000;
+
+            :hover {
+              color: var(--color-dark-gunmetal);
+              text-decoration-color: var(--color-dark-gunmetal);;
+              background-color: var(--color-button-primary);
+              border-color: var(--color-dark-gunmetal);
+            }
           }
         }
       }
