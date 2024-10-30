@@ -337,6 +337,7 @@ function addLocationListeners(nav) {
     e.stopPropagation();
     const { value } = locateForm.querySelector('input[type="text"]');
     window.location.href = `${locateForm.action}#${value}`;
+    if (window.location.pathname === new URL(locateForm.action).pathname) window.location.reload();
     return false;
   });
 }
