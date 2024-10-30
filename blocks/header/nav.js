@@ -457,7 +457,7 @@ export default async function decorate(block) {
       navSearch,
       div({ class: 'quote-wrapper' },
         p({ class: 'button-container' },
-          a({ href: '#', class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Request a Free Quote'),
+          a({ href: '/forms/modals/modal', class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Request a Free Quote'),
         ),
       ),
     ),
