@@ -423,7 +423,7 @@ export default async function decorate(block) {
         input({ id: 'searchLocationInput', type: 'text', name: 'searchQuery', placeholder: 'Search', required: true, pattern: '^.{4,}$' }),
         button({ type: 'submit', 'aria-label': 'Search for Location' }),
       ),
-      a({ href: `/${locale}/locations`, 'aria-label': 'Service Locations' }, 'Service Locations'),
+      a({ href: `/${locale}/service-locations`, 'aria-label': 'Service Locations' }, 'Service Locations'),
     ),
   );
 
