@@ -359,7 +359,7 @@ async function decorateTemplates(main) {
 /**
  * decorates external links to open in new window
  * for styling updates via CSS
- * @param {Element}s element The element to decorate
+ * @param {Element[]} externalAnchors The elements to decorate
  * @returns {void}
  */
 export function decorateExternalAnchors(externalAnchors) {
@@ -388,6 +388,7 @@ export function decorateAnchors(element = document) {
     (a) => a.href && !a.href.match(`^http[s]*://${window.location.host}/`),
   ));
 }
+
 /**
  * Loads footer-subscription-form
  * @param main main element
@@ -402,6 +403,16 @@ async function appendSubscriptionForm(main) {
     decorateBlock(form);
     loadBlock(form);
   }
+}
+
+/**
+ * Adds id attribute to those sections which specify one.
+ * @param {Element} main The main element
+ */
+function decorateSectionIds(main) {
+  main.querySelectorAll('.section[data-id]').forEach((section) => {
+    section.id = section.getAttribute('data-id').trim().toLowerCase();
+  });
 }
 
 /**
@@ -420,6 +431,7 @@ export function decorateMain(main) {
   modifyBigNumberList(main);
   decorateSectionTemplates(main);
   consolidateOfferBoxes(main);
+  decorateSectionIds(main);
 }
 
 /**
