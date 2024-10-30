@@ -816,28 +816,31 @@ main .footer-subscription-form form .fragment-wrapper > div p:nth-of-type(2) {
 }
 
 main .two-column.form-container {
+    display: flex;
+    justify-content: center;
     margin: 0;
     padding: 0;
 }
 
-main .two-column.form-container > div {
-    display: flex;
-    max-width: var(--section-width);
-}
-
 main .two-column.form-container .default-content-wrapper {
-    width: 67%;
-    padding-right: 3rem;
+    flex: 0 0 67%;
+    max-width: 884px;
+    padding: 0;
+    margin: 2rem 4rem 0;
 }
 
 main .two-column.form-container .form-wrapper {
-    width:33%;
+    flex: 0 0 33%;
+    max-width: 436px;
+    padding: 0;
+    margin: 2rem 0 0;
 }
 
 @media (max-width: 1000px) {
-    main .two-column.form-container > div {
+    main .two-column.form-container {
         flex-direction: column; /* Stack items vertically */
         align-items: center;
+        overflow-x: hidden;
     }
 
     main .two-column.form-container .default-content-wrapper {
@@ -848,11 +851,11 @@ main .two-column.form-container .form-wrapper {
         width:90%;
     }
 
-    main .form form .panel-wrapper.field-requesttype{
+    main .form form .panel-wrapper.field-requesttype, main .form form .panel-wrapper.field-frequncy{
        grid-template-columns: 1fr 1fr;
     }
 
-    main .form form .panel-wrapper.field-requesttype .radio-wrapper.field-quote-type{
+    main .form form .panel-wrapper.field-requesttype, main .form form .panel-wrapper.field-frequncy .radio-wrapper.field-quote-type{
         grid-column: span 1;
         width: 100%;
         padding: 13px 0;

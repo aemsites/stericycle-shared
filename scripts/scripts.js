@@ -403,17 +403,6 @@ async function appendSubscriptionForm(main) {
   }
 }
 
-function decorateTwoColumnSections(main) {
-  const twoColumnSections = main.querySelectorAll('.section.two-column');
-  twoColumnSections.forEach((section) => {
-    const wrapperDiv = document.createElement('div');
-    while (section.firstChild) {
-      wrapperDiv.appendChild(section.firstChild);
-    }
-    section.appendChild(wrapperDiv);
-  });
-}
-
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -430,7 +419,6 @@ export function decorateMain(main) {
   modifyBigNumberList(main);
   decorateSectionTemplates(main);
   consolidateOfferBoxes(main);
-  decorateTwoColumnSections(main);
 }
 
 /**
