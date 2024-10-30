@@ -485,6 +485,7 @@
         }
 
         & a {
+          position: relative;
           margin-top: 30px;
           font-size: .875rem;
           padding: 0 14px;
@@ -958,6 +959,7 @@
           border: none;
 
           & a {
+            position: relative;
             font-size: var(--body-font-size-m);
             font-weight: var(--lato-bold);
             margin-top: 5px;
