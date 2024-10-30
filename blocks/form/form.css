@@ -823,7 +823,7 @@ main .campaign-form.form form {
 
 main .campaign-form.form .fragment-wrapper[data-id='header'] {
     font-size: var(--heading-font-size-m);
-    padding: 1rem 0.8rem 0;
+    padding: 2rem 0.8rem 0;
     margin-bottom: 1rem;
     font-weight: normal;
     gap:0;
