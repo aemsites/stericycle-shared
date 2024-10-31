@@ -188,10 +188,10 @@ main .section.faq-container > div {
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper h2 {
     color: var(--color-blue);
-    font-size: 2rem;
+    font-size: var(--heading-font-size-xl);
     font-weight: var(--lato-bold);
     line-height: 2.375rem;
-    letter-spacing: -.0009rem;
+    letter-spacing: -0.0009rem;
   }
 }
 
