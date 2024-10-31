@@ -90,7 +90,7 @@
 }
 
 .offer-box h2 {
-    font-size: 2rem;
+    font-size: var(--heading-font-size-l);
     color: var(--color-blue);
     padding-left: 1rem;
 }
@@ -130,12 +130,12 @@
     color: var(--color-black)
 }
 
-.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h1, 
+.block.offer-box.alternate-2 .offer-box-header .icon-with-heading h1,
 .block.offer-box.alternate-2 .offer-box-header .icon-with-heading h2,
 .block.offer-box.alternate-2 .offer-box-header .icon-with-heading h3,
 .block.offer-box.alternate-2 .offer-box-header .icon-with-heading h4 {
     width: 75%;
-    font-size: 2rem;
+    font-size: var(--heading-font-size-l);
     line-height: 3.2rem;
     font-weight: 600;
 }
@@ -149,7 +149,7 @@
 }
 
 .offer-box.alternate-1 .offer-box-list-container p {
-	font-size: 1rem;
+	font-size: var(--text-font-size-m);
 	font-weight: 700;
 }
 
@@ -254,7 +254,7 @@
 }
 
 .offer-box.alternate-1 .head-copy {
-    font-size: 1.25rem;
+    font-size: var(--text-font-size-l);
     font-weight: 700;
     margin-bottom: .75rem;
 }
