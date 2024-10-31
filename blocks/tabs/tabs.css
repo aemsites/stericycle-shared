@@ -36,7 +36,7 @@ main section .tabs-container > div {
     margin-bottom: 40px;
 }
 
-.block.tabs.vertical .tabs-panel { 
+.block.tabs.vertical .tabs-panel {
     display: flex;
     flex-direction: row;
     margin: 0;
@@ -95,7 +95,7 @@ main section .tabs-container > div {
     border-top: none;
     border-bottom: 1px solid var(--color-light-silver);
 }
-  
+
 .block.tabs.vertical .tabs-panel:nth-of-type(2) details:first-of-type {
     border-top: 1px solid var(--color-light-silver);
 }
@@ -149,7 +149,7 @@ main section .tabs-container > div {
 .block.tabs:not(.vertical) .tabs-panel[aria-hidden="true"] {
     display: none;
 }
-  
+
 
 .block.tabs .tabs-panel details[open] summary {
     padding: .5rem 2.5rem .5rem .5rem;
@@ -163,13 +163,13 @@ main section .tabs-container > div {
 .block.tabs .tabs-panel details summary p {
     color: var(--color-dark-gunmetal);
     font-weight: var(--lato-bold);
-    font-size: var(--body-font-size-m);
+    font-size: var(--text-font-size-m);
     line-height: 16px;
 }
 
 .block.tabs.vertical .tab-item-body {
     max-height: 0;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 @keyframes open-animation {
@@ -258,12 +258,12 @@ main section .tabs-container > div {
         flex-shrink: 0;
         border-right: 2px solid #c0c6c6;
     }
-    
+
     .block.tabs.vertical {
         display: flex;
         flex-direction: row;
     }
-    
+
     .block.tabs.vertical .tabs-panel {
         display: flex;
         margin: 0;
@@ -273,17 +273,17 @@ main section .tabs-container > div {
         border: 1px solid var(--dark-color);
         overflow: auto;
     }
-    
+
     .block.tabs.vertical .tabs-list button .icon {
         width: 30px;
         height: 30px;
         line-height: 1.5rem;
     }
-    
+
     .block.tabs.vertical .tabs-panel>div:last-of-type {
         flex-basis: 40%
     }
-        
+
     .block.tabs.vertical .tabs-panel>div:first-of-type {
         flex-basis: 60%;
     }
@@ -315,7 +315,7 @@ main section .tabs-container > div {
     }
 
 
-    
+
     .block.tabs.vertical .tabs-list button {
         display: flex;
         flex: 0 0 max-content;
@@ -334,7 +334,7 @@ main section .tabs-container > div {
         white-space: unset;
         transition: background-color 0.2s;
     }
-    
+
     .block.tabs.vertical .tabs-list button[aria-selected="true"] {
         border-bottom: 1px solid var(--background-color);
         background-color: var(--background-color);
@@ -345,20 +345,20 @@ main section .tabs-container > div {
     .block.tabs.vertical .tabs-list button[aria-selected="false"] {
         filter: grayscale(100%);
     }
-    
+
     .block.tabs.vertical .tabs-list button[aria-selected="false"]:hover,
     .block.tabs.vertical .tabs-list button[aria-selected="false"]:focus {
         background-color: var(--dark-color);
     }
-    
-    .block.tabs.vertical .tabs-panel h3 { 
+
+    .block.tabs.vertical .tabs-panel h3 {
         color: var(--color-background-header);
     }
-    
+
     .block.tabs.vertical .tabs-panel[aria-hidden="true"] {
         display: none;
     }
-    
+
     .block.tabs.vertical .tabs-list button[aria-selected="false"]:hover{
         filter: none;
         text-decoration: underline;
@@ -367,7 +367,7 @@ main section .tabs-container > div {
     .block.tabs.vertical .tabs-list .tabs-panel[aria-hidden="false"]{
         display: block;
     }
-    
+
     .block.tabs.vertical .tabs-panel picture {
         display: block;
     }
