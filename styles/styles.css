@@ -138,8 +138,8 @@
 
 
   /* Additional typography variables */
-  --eyebrow-md-font-size: 14px;
-  --quote-font-size: 24px;
+  --eyebrow-md-font-size: 0.875rem;
+  --quote-font-size: 1.5rem;
 
   /* icon sizes */
   --icon-size-xs: 10px;
