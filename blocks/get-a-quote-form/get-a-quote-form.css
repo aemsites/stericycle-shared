@@ -7,7 +7,7 @@
 .get-a-quote-form > .header {
   background-color: var(--color-yellow);
   text-align: center;
-  font-size: var(--heading-font-size-m);
+  font-size: var(--heading-font-size-s);
   font-weight: 700;
   padding: 16px 48px;
 }
