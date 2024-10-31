@@ -3,7 +3,7 @@
 footer {
   padding: 2rem 0.8rem;
   background-color: var(--color-blue);
-  font-size: var(--body-font-size-s);
+  font-size: var(--text-font-size-s);
   color: var(--color-white);
 }
 
@@ -784,7 +784,7 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
   footer .default-content-wrapper .columns.quote p:nth-child(3),
   footer .default-content-wrapper .columns.quote p:nth-child(4) {
     gap: 0 1.5rem;
-  } 
+  }
 }
 
 @media screen and (min-width: 1400px /* --breakpoint-xxl */) {
