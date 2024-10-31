@@ -72,13 +72,13 @@ main .section.faq-container > div {
 .faq details summary p {
   color: var(--color-dark-gunmetal);
   font-weight: var(--lato-bold);
-  font-size: var(--body-font-size-m);
+  font-size: var(--text-font-size-m);
   line-height: 16px;
 }
 
 @media screen and (min-width: 992px) {
   .faq details summary p {
-    font-size: var(--body-font-size-l);
+    font-size: var(--text-font-size-l);
     font-weight: 600;
     line-height: 30px;
   }
@@ -178,7 +178,7 @@ main .section.faq-container > div {
 
 .faq-container .default-content-wrapper > h2 {
   color: var(--color-blue);
-  font-size: var(--body-font-size-l);
+  font-size: var(--text-font-size-l);
   line-height: 1.625rem;
   letter-spacing: -.0009rem;
   margin-bottom: .5rem;
@@ -197,7 +197,7 @@ main .section.faq-container > div {
 
 /* stylelint-disable-next-line no-descending-specificity */
 .faq-container .default-content-wrapper > p {
-  font-size: var(--body-font-size-xxs);
+  font-size: var(--text-font-size-xs);
   line-height: .875rem;
   letter-spacing: -.0006rem;
   padding: 0 12px;
@@ -205,7 +205,7 @@ main .section.faq-container > div {
 
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper p {
-    font-size: var(--body-font-size-xs);
+    font-size: var(--text-font-size-s);
     line-height: 1.125rem;
   }
 }
@@ -236,7 +236,7 @@ main .section.faq-container > div {
 
   .faq-plain > div:first-child {
     width: 25%;
-    
+
   }
 
   .faq-plain div:nth-child(2){
