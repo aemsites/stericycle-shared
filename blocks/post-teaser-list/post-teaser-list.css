@@ -52,7 +52,7 @@
 
 .post-teaser-list > .teaser-list > .teaser > .teaser-content > .teaser-category {
   color: var(--color-dark-gray);
-  font-size: var(--body-font-size-xs);
+  font-size: var(--text-font-size-s);
   font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 24px;
