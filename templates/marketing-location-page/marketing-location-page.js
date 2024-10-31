@@ -16,7 +16,7 @@ function buildMarketingPage(main) {
   const formPath = getMetadata('form-path');
   const formStyleClass = getMetadata('form-style');
   const form = buildBlock('form', { elems: [`<a href="${formPath}"></a>`] });
-  form.classList.add(formStyleClass);
+  if (formStyleClass) form.classList.add(formStyleClass);
   formSection.prepend(form);
 
   const locationDiv = div({ class: 'location' });

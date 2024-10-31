@@ -87,6 +87,7 @@ const createLocDiv = async () => {
     }
 
     const zipCodeText = zipCode ? `zip=${zipCode}&` : '';
+    // eslint-disable-next-line max-len
     const url = `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?${zipCodeText}adobe_mc=MCMID%3D47228127826121584233605487843606294434%7CMCORGID%3DFB4A583F5FEDA3EA0A495EE3%2540AdobeOrg%7CTS%3D1729746363`;
     const buyNowAnchor = a({ class: 'button primary', href: url, target: '_blank' }, ph.buynowtext || 'Buy Now');
     decorateButtons(buyNowAnchor);
@@ -163,6 +164,7 @@ async function buildServiceLocationAutoBlocks(main) {
   const ctaButtonWrapper = document.createElement('div');
   const ctaButton = document.createElement('a');
   ctaButton.textContent = 'Buy Online';
+  // eslint-disable-next-line max-len
   ctaButton.href = 'https://shop-shredit.stericycle.com/commerce_storefront_ui/PurgeWizard.aspx?referrer_url=https://www.shredit.com/en-us/service-locations/greensboro&adobe_mc=MCMID%3D62149416262388660511472413641287259536%7CMCORGID%3DFB4A583F5FEDA3EA0A495EE3%2540AdobeOrg%7CTS%3D1724077192';
   ctaButtonWrapper.append(ctaButton);
   decorateButtons(ctaButtonWrapper);

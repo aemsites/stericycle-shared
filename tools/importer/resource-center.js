@@ -10,7 +10,6 @@
  * governing permissions and limitations under the License.
  */
 /* global WebImporter */
-/* eslint-disable no-console, class-methods-use-this */
 const req = new XMLHttpRequest();
 let tags = {};
 const baseDomain = 'https://main--shredit--stericycle.aem.page';
@@ -52,13 +51,11 @@ function fixVideo(elm) {
     const embedTable = WebImporter.DOMUtils.createTable(vb, elm.ownerDocument);
     embedP.append(embedTable);
     video.replaceWith(embedP);
-    // console.log('Found video:', video.src);
   }
 }
 
 function transformFAQ(main) {
   const faqs = main.querySelectorAll('#accordion > div.cmp-accordion__item');
-  console.log(faqs.length);
   if (faqs && faqs.length > 0) {
     const cells = [['faq']];
     faqs.forEach((faq) => {
@@ -84,7 +81,6 @@ function setMetadata(meta, document) {
   const path = getPath(url);
   const pubDate = document.querySelector('p.cmp-calendarattributeprojection');
   meta.template = 'resource-center';
-  console.log(document.documentURI);
   if (document.documentURI.includes('info-sheets')) {
     meta['media-type'] = 'Info Sheets';
   } else if (document.documentURI.includes('/resource-center/newsletters/')) {
@@ -131,13 +127,17 @@ const createSectionMetadataForListBullets = (main, document) => {
 };
 
 function transformDownloadBlock(main, document) {
-  const downloadBlock = main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid') ? main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid') : main.querySelector('div.col-lg-3.cmp-columnrow__item div.pagesection > div.cmp-pagesection > div.aem-Grid');
+  const downloadBlock = main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid')
+    ? main.querySelector('div.col-lg-3.cmp-columnrow__item > div.pagesection > div.cmp-pagesection > div.aem-Grid')
+    : main.querySelector('div.col-lg-3.cmp-columnrow__item div.pagesection > div.cmp-pagesection > div.aem-Grid');
 
   if (downloadBlock) {
     const cells = [['Download']];
     let title = '';
     if (downloadBlock.querySelector('h4')) {
-      title = downloadBlock.querySelector('div.text > h4') ? downloadBlock.querySelector('div.text > h4').innerText : downloadBlock.querySelector('div.cmp-previeweddownload__title > h4').innerText;
+      title = downloadBlock.querySelector('div.text > h4')
+        ? downloadBlock.querySelector('div.text > h4').innerText
+        : downloadBlock.querySelector('div.cmp-previeweddownload__title > h4').innerText;
     }
     cells.push(['title', title]);
     cells.push(['image', downloadBlock.querySelector('div.previeweddownload > div.cmp-previeweddownload > div.cmp-previeweddownload__image > a > img')]);
@@ -183,7 +183,6 @@ export default {
     main.querySelectorAll('a').forEach((a) => {
       const href = a.getAttribute('href');
       if (href && href.startsWith('/') && href.endsWith('.pdf')) {
-        console.log('Found PDF link:', href);
         const u = new URL(href, url);
         const newPath = WebImporter.FileUtils.sanitizePath(u.pathname);
         // no "element", the "from" property is provided instead

@@ -101,6 +101,7 @@ const createLocDiv = async () => {
     }
 
     const zipCodeText = zipCode ? `zip=${zipCode}&` : '';
+    // eslint-disable-next-line max-len
     const url = `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?${zipCodeText}adobe_mc=MCMID%3D47228127826121584233605487843606294434%7CMCORGID%3DFB4A583F5FEDA3EA0A495EE3%2540AdobeOrg%7CTS%3D1729746363`;
     const buyNowAnchor = a({ class: 'button primary', href: url, target: '_blank' }, ph.buynowtext || 'Buy Now');
     decorateButtons(buyNowAnchor);
@@ -128,12 +129,14 @@ const createLocDiv = async () => {
 };
 
 function addServiceCards(main) {
+  /* eslint-disable max-len */
   const services = [
     { icon: 'sid-local-service-one-time-shredding-icon-b', title: '2- or 5-day One-Time Shredding ', description: 'With our Express and Priority services, we are committed to providing you the same high level of customer service and security – just faster, so we’re there when you need us.' },
     { icon: 'sid-local-service-mobile-onsite-icon-b', title: 'Mobile Shredding Service', description: 'Mobile shredding offers customers the same safe, end-to-end secure Chain of Custody as our off-site services while still at your location.' },
     { icon: 'sid-local-service-regularly-schedule-shredding-icon-b', title: 'Regularly Scheduled Paper Shredding', description: 'Protect your information end-toend using our secure containers paired with scheduled service.' },
     { icon: 'sid-local-service-hard-drive-icon-b', title: 'Hard Drive Destruction', description: 'Confidential information can be found on more than paper; Shred-it has solutions for harddrive and media destruction.' },
   ];
+  /* eslint-enable max-len */
 
   // Populate card content
   const cards = [[], [], [], []];
