@@ -128,7 +128,7 @@ footer .default-content-wrapper p:first-child img {
 footer .default-content-wrapper a {
   font-family: var(--font-family-footer);
   font-weight: var(--lato-regular);
-  font-size: 1rem;
+  font-size: var(--text-font-size-m);
   line-height: 1.25rem;
   letter-spacing: .0006rem;
 }
@@ -139,7 +139,7 @@ footer .default-content-wrapper > p > a {
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
   footer .default-content-wrapper:nth-child(2) > p:nth-of-type(1) a {
-    font-size: .875rem;
+    font-size: var(--text-font-size-s);
     line-height: 1.125rem;
   }
 }
@@ -164,7 +164,7 @@ footer .default-content-wrapper:nth-child(2) > p,
 footer .default-content-wrapper:nth-child(2) > p > a  {
   font-family: var(--font-family-footer);
   font-weight: var(--lato-regular);
-  font-size: .75rem;
+  font-size: var(--text-font-size-s);
   line-height: .9375rem;
   letter-spacing: .0006rem;
   text-align: center;
@@ -193,14 +193,14 @@ footer .default-content-wrapper:nth-child(2) > p:nth-of-type(1) {
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
   footer .default-content-wrapper:nth-child(2) > p:nth-of-type(1) {
-    font-size: .875rem;
+    font-size: var(--text-font-size-s);
     line-height: 1.125rem;
     grid-area: 3 / 1 / 4 / 6;
     margin-top: 96px;
   }
 
   footer .default-content-wrapper:nth-child(2) > p:nth-of-type(2) {
-    font-size: .875rem;
+    font-size: var(--text-font-size-s);
     line-height: 29px;
     grid-area: 4 / 1 / 5 / 6;
     margin-bottom: 16px;
@@ -236,7 +236,7 @@ footer .default-content-wrapper:first-child p:nth-of-type(2) {
   }
 
   footer .default-content-wrapper p:nth-of-type(2) a {
-    font-size: 1.125rem;
+    font-size: var(--text-font-size-m);
     line-height: 2.25rem;
     letter-spacing: normal;
   }
@@ -301,7 +301,7 @@ footer .default-content-wrapper ul.footer-ul-2 {
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
   .footer-accordion-content-wrapper > .footer-accordion-content-inner-wrapper > ul > li > a {
-    font-size: .875rem;
+    font-size: var(--text-font-size-s);
     height: 100%;
     line-height: 1.5rem;
   }
@@ -311,13 +311,13 @@ footer .default-content-wrapper ul.footer-ul-2 li > a {
   padding-right: 1rem;
   border-right: 1px solid;
   margin-right: 1rem;
-  font-size: .75rem;
+  font-size: var(--text-font-size-s);
   line-height: .9375rem;
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
   footer .default-content-wrapper ul.footer-ul-2 li > a {
-    font-size: .875rem;
+    font-size: var(--text-font-size-s);
     line-height: 29px;
   }
 }
@@ -458,7 +458,7 @@ footer .default-content-wrapper .footer-accordion-container .footer-accordion-li
   cursor: pointer;
   padding: 20px 0;
   font-family: lato-regular, sans-serif;
-  font-size: 1rem;
+  font-size: var(--text-font-size-m);
   line-height: 1.25rem;
   letter-spacing: .0006rem;
   pointer-events: all;
@@ -479,6 +479,7 @@ footer .default-content-wrapper .footer-accordion-container .footer-accordion-li
   padding: 16px 0 12px;
   font-weight: 500;
   font-size: 15px;
+  font-size: var(--text-font-size-m);
   line-height: 1.3rem;
   color: var(--color-white);
   letter-spacing: .7px;
@@ -508,7 +509,7 @@ footer .default-content-wrapper .footer-accordion-container .footer-accordion-li
   footer .default-content-wrapper .footer-accordion-container .footer-accordion-link-wrapper a {
     padding: 16px 0 2px;
     display: block;
-    font-size: .875rem;
+    font-size: var(--text-font-size-s);
     margin-bottom: 0;
     text-transform: uppercase;
     line-height: 1.5rem;
@@ -676,7 +677,7 @@ footer .default-content-wrapper .columns.quote p:nth-child(6) {
 footer .default-content-wrapper .columns.quote p:nth-child(n+2) > a {
   color: var(--color-white);
   text-decoration: none;
-  font-size: 1rem;
+  font-size: var(--text-font-size-m);
   line-height: inherit;
   letter-spacing: .0006rem;
   font-family: var(--font-family-footer);
@@ -684,7 +685,7 @@ footer .default-content-wrapper .columns.quote p:nth-child(n+2) > a {
 }
 
 footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) > p:nth-of-type(5) > a {
-  font-size: .625rem;
+  font-size: var(--text-font-size-xs);
   line-height: .875rem;
   letter-spacing: -.0006rem;
   padding-top: 20px;
@@ -702,12 +703,12 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
   }
 
   footer .default-content-wrapper .columns.quote p:nth-child(n+2) > a {
-    font-size: 14px;
+    font-size: var(--text-font-size-s);
   }
 }
 
 footer .default-content-wrapper .columns.quote .button-container:first-child a {
-  font-size: 1rem;
+  font-size: var(--text-font-size-m);
   line-height: 24px;
   font-family: var(--font-family-footer);
   font-weight: var(--lato-regular);
@@ -772,7 +773,7 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
   footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) > p:nth-of-type(n+3) {
-    font-size: 1rem;
+    font-size: var(--text-font-size-m);
     padding-top: 16px;
   }
 
@@ -795,7 +796,7 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
 }
 
 footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) > p:nth-of-type(5) {
-  font-size: .625rem;
+  font-size: var(--text-font-size-xs);
   line-height: .875rem;
   letter-spacing: -.0006rem;
   padding-top: 20px;
