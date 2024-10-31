@@ -19,7 +19,7 @@
 .resource-center main .breadcrumb a,
 .resource-center main .breadcrumb span {
   color: var(--color-dark-gunmetal);
-  font-size: .875rem;
+  font-size: var(--text-font-size-m);
   font-weight: 400;
   line-height: 1.125rem;
   text-decoration: none;
