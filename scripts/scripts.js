@@ -456,16 +456,17 @@ async function setWebPageJsonLd(doc = document) {
 
 async function fetchAndSetCustomJsonLd(doc = document) {
   // schema.xls
-  let customSchemas = await ffetch('/en-us/schemas.json')
+  let customSchemas = await ffetch('/schemas.json')
     .filter((e) => e.page?.trim().toLowerCase() === new URL(doc.documentURI).pathname.toLowerCase()
-      || e.page?.trim().toLowerCase() === '/')
+      || (e.page?.trim().endsWith('/*')
+        && new URL(doc.documentURI).pathname.toLowerCase().startsWith(e.page.trim().toLowerCase().substring(0, e.page.trim().length - 1))))
     .all();
   customSchemas = customSchemas.sort((e1, e2) => e1.page.localeCompare(e2.page));
   customSchemas.forEach((e) => setJsonLd(e.schema, e.name || ''));
 
   // per-page metadata
   [...doc.head.querySelectorAll('meta')].filter((m) => m.name === 'ld-json' || m.attributes?.property?.value?.startsWith('ld-json:')).forEach((m) => {
-    if (m) {
+    if (m.content && m.content !== '') {
       const name = m.attributes?.property?.value?.substring(8, m.attributes.property.value.length);
       if (name) {
         setJsonLd(m.content, name);
