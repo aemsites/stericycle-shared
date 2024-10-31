@@ -455,14 +455,26 @@ async function setWebPageJsonLd(doc = document) {
 }
 
 async function fetchAndSetCustomJsonLd(doc = document) {
+  // schema.xls
   let customSchemas = await ffetch('/en-us/schemas.json')
     .filter((e) => e.page?.trim().toLowerCase() === new URL(doc.documentURI).pathname.toLowerCase()
       || e.page?.trim().toLowerCase() === '/')
     .all();
-
   customSchemas = customSchemas.sort((e1, e2) => e1.page.localeCompare(e2.page));
-
   customSchemas.forEach((e) => setJsonLd(e.schema, e.name || ''));
+
+  // per-page metadata
+  [...doc.head.querySelectorAll('meta')].filter((m) => m.name === 'ld-json' || m.attributes?.property?.value?.startsWith('ld-json:')).forEach((m) => {
+    if (m) {
+      const name = m.attributes?.property?.value?.substring(8, m.attributes.property.value.length);
+      if (name) {
+        setJsonLd(m.content, name);
+      } else {
+        addJsonLd(m.content, null);
+      }
+    }
+    m.remove();
+  });
 }
 
 /**
