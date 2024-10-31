@@ -19,8 +19,6 @@ function buildMarketingPage(main) {
   if (formPath && formStyleClass) {
     form.classList.add(formStyleClass);
   }
-  formSection.prepend(form);
-
   const locationDiv = div({ class: 'location' });
   const name = getMetadata('name');
   if (name) {
