@@ -18,7 +18,7 @@
 
 .quote blockquote .quote-quotation {
   margin-bottom: 0.75rem;
-  font-size: var(--body-font-size-l);
+  font-size: var(--text-font-size-l);
   font-weight: 700;
 }
 
