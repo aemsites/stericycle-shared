@@ -98,7 +98,7 @@ main .columns span.icon > img {
 }
 
 .columns.check-list sup {
-  font-size: .75rem;
+  font-size: var(--text-font-size-s);
 }
 
 .columns.check-list ul > li {
@@ -134,7 +134,7 @@ main .columns span.icon > img {
 /* narrow-icons variant */
 
 .columns.narrow-icons h4 {
-  font-size: 1rem;
+  font-size: var(--heading-font-size-s);
 }
 
 .columns.narrow-icons h4 > a {
@@ -386,13 +386,13 @@ main .section.blue-headings .columns span.icon {
     flex-direction: column;
     margin-left: 8.3333%;
   }
-  
+
   main .block.columns.video.columns-2-cols > div div:first-of-type:has(iframe) {
     display: flex;
     flex-direction: column;
     margin-right: 8.3333%;
   }
-  
+
   main .block.columns.video.columns-2-cols > div div iframe {
     height: 100%;
   }
@@ -452,13 +452,13 @@ main .section.blue-headings .columns span.icon {
   main .section.columns-container .block.columns.centered-icons > div div:first-of-type:has(.icon),
   main .section.columns-container .block.columns.centered-icons > div div:last-of-type:has(.icon) {
     align-items: center;
-    
+
   }
 
   main .section.columns-container .block.columns.align-left > div div:first-of-type:has(.icon),
   main .section.columns-container .block.columns.align-left > div div:last-of-type:has(.icon) {
     align-items: start;
-    
+
   }
 
   main .section.columns-container.large-icon .block.columns.columns-2-cols div:first-of-type:has(.icon) span,
