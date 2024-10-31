@@ -753,7 +753,7 @@ header nav.alt-nav .default-content-wrapper {
   }
 
   header nav .nav-sections ul li {
-    font-size: var(--body-font-size-s);
+    font-size: var(--text-font-size-s);
     justify-content: flex-end;
   }
 
@@ -859,7 +859,7 @@ header nav.alt-nav .default-content-wrapper {
 
   header nav p a.button.primary {
     margin: 0;
-    font-size: var(--body-font-size-m);
+    font-size: var(--text-font-size-m);
   }
 
   header nav a:any-link {
@@ -883,14 +883,14 @@ header nav.alt-nav .default-content-wrapper {
   /* brand */
   header .nav-brand {
     grid-area: brand;
-    font-size: var(--heading-font-size-s);
+    font-size: var(--heading-font-size-m);
     font-weight: 700;
     line-height: 1;
     align-items: center;
   }
 
   header .alt-two .nav-brand {
-    font-size: var(--heading-font-size-s);
+    font-size: var(--heading-font-size-m);
     font-weight: 700;
     line-height: 1;
     flex-basis: 33%;
@@ -1039,7 +1039,7 @@ header nav.alt-nav .default-content-wrapper {
   .tel::before {
     content: "";
     font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
-    font-size: var(--body-font-size-xs);
+    font-size: var(--text-font-size-s);
     left: -1.25rem;
     position: absolute;
     display: block;
@@ -1048,7 +1048,7 @@ header nav.alt-nav .default-content-wrapper {
   .alt-two .tel::before {
     content: "";
     font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
-    font-size: var(--body-font-size-xs);
+    font-size: var(--text-font-size-s);
     left: -1.25rem;
     position: absolute;
     display: block;
