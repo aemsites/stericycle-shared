@@ -753,7 +753,7 @@ main .get-a-quote-form-alternate form {
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] {
     background-color: var(--color-yellow);
-    font-size: var(--heading-font-size-m);
+    font-size: var(--heading-font-size-s);
     padding: 16px 48px;
     margin-bottom: 1rem;
     font-weight: normal;
