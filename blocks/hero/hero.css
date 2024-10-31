@@ -40,7 +40,7 @@ main .section.hero-container {
       & p.button-container {
         & a {
           font-weight: var(--lato-regular);
-          font-size: var(--body-font-size-s);
+          font-size: var(--text-font-size-s);
           border-width: 1px;
         }
 
@@ -80,7 +80,7 @@ main .section.hero-container {
 
         & p.button-container a {
           border-width: 2px;
-          font-size: var(--body-font-size-xs);
+          font-size: var(--text-font-size-s);
         }
       }
     }
