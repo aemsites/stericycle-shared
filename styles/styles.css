@@ -126,17 +126,18 @@
   --heading-font-size-s: 1.25rem;
   --heading-font-size-xs: 12px; */
 
-  /* header font sizes */
-  --header-font-size-xl: 32px;
-  --header-font-size-l: 24px;
-  --header-font-size-m: 20px;
-  --header-font-size-s: 16px;
+  /* Heading font sizes */
+  --heading-font-size-xl: 2rem;      /* 32px */
+  --heading-font-size-l: 1.5rem;     /* 24px */
+  --heading-font-size-m: 1.25rem;    /* 20px */
+  --heading-font-size-s: 1rem;       /* 16px */
 
   /* Text font sizes (base/mobile view) */
-  --text-font-size-l: 18px;
-  --text-font-size-m: 14px;
-  --text-font-size-s: 12px;
-  --text-font-size-xs: 10px;
+  --text-font-size-l: 1.125rem;      /* 18px */
+  --text-font-size-m: 0.875rem;      /* 14px */
+  --text-font-size-s: 0.75rem;       /* 12px */
+  --text-font-size-xs: 0.625rem;     /* 10px */
+
 
   /* Additional typography variables */
   --eyebrow-md-font-size: 14px;
@@ -188,28 +189,27 @@
 
 @media (min-width: 992px /* breakpoint-l */) {
   :root {
-    --heading-font-size-xxl: 48px;
+    /* --heading-font-size-xxl: 48px;
     --heading-font-size-xl: 32px;
     --heading-font-size-l: 26px;
-    --heading-font-size-m: 20px;
+    --heading-font-size-m: 20px; */
     --section-width: var(--content-width-l);
     --nav-height: 9.375rem;
 
-    /* header font sizes */
-    --header-font-size-xl: 48px;
-    --header-font-size-l: 32px;
-    --header-font-size-m: 24px;
-    --header-font-size-s: 18px;
+    /* Header font sizes */
+    --heading-font-size-xl: 3rem;    /* 48px */
+    --heading-font-size-l: 2rem;     /* 32px */
+    --heading-font-size-m: 1.5rem;   /* 24px */
+    --heading-font-size-s: 1.125rem; /* 18px */
 
     /* Text font sizes (desktop view) */
-    --text-font-size-l: 20px;
-    --text-font-size-m: 16px;
-    --text-font-size-s: 14px;
-    --text-font-size-xs: 10px;
+    --text-font-size-l: 1.25rem;     /* 20px */
+    --text-font-size-m: 1rem;        /* 16px */
+    --text-font-size-s: 0.875rem;    /* 14px */
 
     /* Additional typography variables */
-    --eyebrow-md-font-size: 24px;
-    --quote-font-size: 32px;
+    --eyebrow-md-font-size: 1.5rem;  /* 24px */
+    --quote-font-size: 2rem;         /* 32px */
   }
 }
 
@@ -231,7 +231,7 @@
 }
 
 body {
-  font-size: var(--body-font-size-m);
+  font-size: var(--text-font-size-m);
   margin: 0;
   font-family: var(--font-family-body);
   line-height: 20px;
@@ -372,7 +372,7 @@ main .default-content-wrapper ol {
 code, pre {
   color: var(--color-text);
   font-family: var(--font-family-fixed);
-  font-size: var(--body-font-size-s);
+  font-size: var(--text-font-size-s);
 }
 
 code {
@@ -1256,7 +1256,7 @@ main .list-with-background-image > .default-content-wrapper {
 main .list-with-background-image > div > h2 {
   font-family: var(--font-family-body);
   font-weight: var(--lato-bold);
-  font-size: var(--body-font-size-l);
+  font-size: var(--text-font-size-l);
   line-height: 26px;
   color: var(--color-navy);
   margin: 1rem 0;
@@ -1450,7 +1450,7 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: var(--header-font-size-xl);
+  font-size: var(--heading-font-size-xl);
   font-weight: var(--lato-bold);
   line-height: 120%;
 }
@@ -1462,31 +1462,31 @@ h1 {
 }
 
 h2 {
-  font-size: var(--header-font-size-l);
+  font-size: var(--heading-font-size-l);
   font-weight: var(--lato-semibold);
   line-height: 120%;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
   h2 {
-    font-size: var(--header-font-size-xl);
+    font-size: var(--heading-font-size-xl);
   }
 }
 
 h3 {
-  font-size: var(--header-font-size-m);
+  font-size: var(--heading-font-size-m);
   font-weight: var(--lato-semibold);
   line-height: 140%;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
   h3 {
-    font-size: var(--header-font-size-l);
+    font-size: var(--heading-font-size-l);
   }
 }
 
 h4 {
-  font-size: var(--header-font-size-s);
+  font-size: var(--heading-font-size-s);
   font-weight: var(--lato-bold);
   line-height: 140%;
 }
