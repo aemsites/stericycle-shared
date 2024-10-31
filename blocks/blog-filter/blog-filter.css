@@ -8,7 +8,7 @@ div.blog-filter-container > div.default-content-wrapper {
 }
 
 div.blog-filter-container h3 {
-    font-size: 1.125rem;
+    font-size: var(--heading-font-size-s);
     color: var(--color-blue);
 }
 
@@ -44,7 +44,7 @@ div.blog-filter-container > div.facet ul > li > div > i {
 }
 
 div.blog-filter-container div.results div.item-date {
-    font-size: .75rem;
+    font-size: var(--text-font-size-s);
 }
 
 .slideout {
@@ -118,7 +118,7 @@ div.blog-filter-container > div.facet ul {
 
 div.blog-filter-container > div.facet ul > li > div {
     display: flex;
-    font-size: 1rem;
+    font-size: var(--text-font-size-m);
     line-height: 1.25rem;
     font-weight: 400;
     padding-right: 3.125rem;
@@ -150,8 +150,8 @@ div.blog-filter-container > div.facet ul > li > div>  i::before {
 }
 
 div.blog-filter-container > div.results h4 {
-    font-size: 1rem;
-    margin-bottom: .4rem;
+    font-size: var(--text-font-size-m);
+    margin-bottom: 0.4rem;
 }
 
 div.blog-filter-container > div.results div.item-category {
