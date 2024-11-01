@@ -4,6 +4,7 @@
  * https://www.hlx.live/developer/block-collection/accordion
  */
 import { decorate as embed } from '../embed/embed.js';
+import { addJsonLd } from '../../scripts/scripts.js';
 
 function hasWrapper(el) {
   return !!el.firstElementChild && window.getComputedStyle(el.firstElementChild).display === 'block';
@@ -28,11 +29,39 @@ function addAccordionAnimation(details) {
   });
 }
 
+async function addFaqJsonLd(questions) {
+  const mainEntity = [];
+
+  questions.forEach((question) => {
+    mainEntity.push({
+      '@type': 'Question',
+      name: question.label,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: question.body,
+      },
+    });
+  });
+
+  addJsonLd({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity,
+  });
+}
+
 export default function decorate(block) {
+  let blockLabel;
+  if (block.classList.contains('labeled')) {
+    blockLabel = block.children[0].cloneNode(true);
+    block.children[0].remove();
+  }
+  const questions = [];
   [...block.children].forEach((row) => {
     if (block.classList.contains('plain')) {
       const label = row.children[0];
       const body = row.children[1];
+      questions.push({ label: label.textContent, body: body.innerHTML.replace(/\n */g, '') });
       const summary = document.createElement('div');
       summary.append(label, body);
       summary.className = 'faq-plain';
@@ -53,6 +82,8 @@ export default function decorate(block) {
       if (!hasWrapper(body)) {
         body.innerHTML = `<p>${body.innerHTML}</p>`;
       }
+      // push meta item
+      questions.push({ label: summary.textContent, body: body.innerHTML.replace(/\n */g, '') });
       // decorate faq item
       const details = document.createElement('details');
       details.className = 'faq-item';
@@ -72,9 +103,12 @@ export default function decorate(block) {
       }
       details.append(summary, body);
       row.replaceWith(details);
-
       // Add accordion animation
       addAccordionAnimation(details);
     }
   });
+  if (blockLabel) {
+    block.prepend(blockLabel);
+  }
+  addFaqJsonLd(questions);
 }

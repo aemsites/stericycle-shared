@@ -243,5 +243,27 @@ main .section.faq-container > div {
     width: 65%;
   }
 
+  .section.faq-container.flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: var(--section-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
 
+  .section.faq-container.flex-row > div  {
+    width: 40%;
+  }
+
+  .section.faq-container.flex-row > div:first-of-type {
+    margin: unset;
+    padding: unset;
+  }
+
+  .section.faq-container.flex-row > div:last-of-type {
+    padding: unset;
+  }
 }

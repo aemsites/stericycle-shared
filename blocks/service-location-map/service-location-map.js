@@ -524,5 +524,16 @@ export default async function decorate(block) {
   calculateLocationListDistance(locations, getCenterPoint());
   renderAndSortLocationList(locations, block, ph);
   decorateAnchors(block);
-  window.setTimeout(() => mapInitialization(locations, block, ph), 3000);
+
+  window.setTimeout(async () => {
+    await mapInitialization(locations, block, ph);
+    if (window.location.hash) {
+      map.on('load', () => {
+        window.setTimeout(() => {
+          block.querySelector('.map-input').value = window.location.hash.substring(1);
+          mapInputSearchOnCLick(block, locations, ph);
+        }, 1000);
+      });
+    }
+  }, 3000);
 }
