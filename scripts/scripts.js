@@ -454,13 +454,13 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   autolinkModals(doc);
   const main = doc.querySelector('main');
-  await loadBlocks(main);
 
   if (doc.querySelector('body.with-sidebar')) {
     await loadBlocks(main.querySelector('div.page-content'));
     await loadBlocks(main.querySelector('div.page-sidebar'));
   }
 
+  await loadBlocks(main);
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
