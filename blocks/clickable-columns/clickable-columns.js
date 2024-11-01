@@ -19,14 +19,14 @@ export default function decorate(block) {
     }
 
     // set onClick action
-    let url = rows[1].querySelector('a')?.href;
+    let url = rows[1]?.children[i]?.querySelector('a')?.href;
     if (!url) {
       url = [...rows[1].children][i]?.textContent;
     }
     try {
       url = new URL(url);
       rows[0].children[i].onclick = () => {
-        window.location.href = url;
+        window.location.href = url.toString();
       };
     } catch (e) {
       // do nothing;
