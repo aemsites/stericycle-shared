@@ -1,13 +1,3 @@
-function isValidURL(str) {
-  const pattern = new RegExp('^(https?:\\/\\/)?' // protocol
-    + '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' // domain name
-    + '((\\d{1,3}\\.){3}\\d{1,3}))' // OR ip (v4) address
-    + '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' // port and path
-    + '(\\?[;&a-z\\d%_.~+=-]*)?' // query string
-    + '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-  return !!pattern.test(str);
-}
-
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
@@ -29,10 +19,17 @@ export default function decorate(block) {
     }
 
     // set onClick action
-    const url = [...rows[1].children][i]?.textContent;
-    if (url && isValidURL(url)) {
-      // eslint-disable-next-line no-return-assign
-      rows[0].children[i].onclick = () => window.location.href = url;
+    let url = rows[1].querySelector('a')?.href;
+    if (!url) {
+      url = [...rows[1].children][i]?.textContent;
+    }
+    try {
+      url = new URL(url);
+      rows[0].children[i].onclick = () => {
+        window.location.href = url;
+      };
+    } catch (e) {
+      // do nothing;
     }
     rows[1].remove();
   });
