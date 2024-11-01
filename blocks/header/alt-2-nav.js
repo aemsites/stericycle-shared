@@ -7,7 +7,7 @@ export default async function decorate(block) {
   let locale = window.location.pathname.split('/')[1];
   locale = locale.match(/^[a-z]{2}-[a-z]{2}$/) ? locale : 'en-us'; // default to us-en if no locale in path
 
-  const navMeta = new URL(getMetadata('nav')).pathname;
+  const navMeta = new URL(getMetadata('nav'), window.location).pathname;
   const fragment = await loadFragment(navMeta);
   const navSections = fragment.querySelector('.section[data-section="sections" i]');
   navSections.replaceChildren(navSections.querySelector('ul'));
