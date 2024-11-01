@@ -7,7 +7,7 @@ export default async function decorate(block) {
   let locale = window.location.pathname.split('/')[1];
   locale = locale.match(/^[a-z]{2}-[a-z]{2}$/) ? locale : 'en-us'; // default to us-en if no locale in path
 
-  const navMeta = new URL(getMetadata('nav')).pathname;
+  const navMeta = new URL(getMetadata('nav'), window.location).pathname;
   const fragment = await loadFragment(navMeta);
   const navSections = fragment.querySelector('.section[data-section="sections" i]');
   navSections.replaceChildren(navSections.querySelector('ul'));
@@ -17,7 +17,7 @@ export default async function decorate(block) {
   navContact.classList.add('nav-contact');
   const link = li(
     { class: 'quote-link' },
-    a({ href: '#', class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Get a Quote'),
+    a({ href: '/forms/modals/modal', class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Get a Quote'),
   );
   navContact.querySelector('ul').append(link);
 

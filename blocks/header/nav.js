@@ -109,7 +109,6 @@ function focusMobileMenu() {
 }
 
 function mouseInNavSection(e) {
-  console.log('Mouse In');
   // eslint-disable-next-line no-use-before-define
   const nav = document.getElementById('nav');
   nav.querySelectorAll('[aria-expanded="true"]').forEach((expanded) => {
@@ -119,7 +118,6 @@ function mouseInNavSection(e) {
 }
 
 function mouseOutNavSection(e) {
-  console.log('Mouse Out');
   e.currentTarget.setAttribute('aria-expanded', 'false');
 }
 
@@ -339,6 +337,7 @@ function addLocationListeners(nav) {
     e.stopPropagation();
     const { value } = locateForm.querySelector('input[type="text"]');
     window.location.href = `${locateForm.action}#${value}`;
+    if (window.location.pathname === new URL(locateForm.action).pathname) window.location.reload();
     return false;
   });
 }
@@ -400,7 +399,7 @@ export default async function decorate(block) {
   const mobileSearch = div({ class: 'nav-search mobile-search' },
     a({ href: '#', class: 'icon-search', title: 'Search', 'aria-controls': 'mobile-search-popup' }, span('Search')),
     div({ class: 'search-form-wrapper', id: 'mobile-search-popup' },
-      form({ class: 'search-form', action: `/${locale}/search`, method: 'get' },
+      form({ class: 'search-form', action: `/${locale}/search`, method: 'get', autocomplete: 'off' },
         label({ for: 'siteSearch' }, 'Search Query'),
         input({ id: 'siteSearch', type: 'text', placeholder: 'Search', name: 'searchQuery', tabindex: '-1' }),
         a({ class: 'search-button', type: 'submit', 'aria-label': 'Search' }),
@@ -418,12 +417,12 @@ export default async function decorate(block) {
     a({ href: '#', title: 'Find Your Service Center', 'aria-controls': 'nav-locate' }, 'Find Your Service Center'),
     div({ class: 'locate-popup' },
       span('Find Yours:'),
-      form({ action: `/${locale}/service-locations`, method: 'get' },
+      form({ action: `/${locale}/service-locations`, method: 'get', autocomplete: 'off' },
         label({ for: 'searchLocationInput' }, 'Search by zip code, street, or city'),
         input({ id: 'searchLocationInput', type: 'text', name: 'searchQuery', placeholder: 'Search', required: true, pattern: '^.{4,}$' }),
         button({ type: 'submit', 'aria-label': 'Search for Location' }),
       ),
-      a({ href: `/${locale}/locations`, 'aria-label': 'Service Locations' }, 'Service Locations'),
+      a({ href: `/${locale}/service-locations`, 'aria-label': 'Service Locations' }, 'Service Locations'),
     ),
   );
 
@@ -458,7 +457,7 @@ export default async function decorate(block) {
       navSearch,
       div({ class: 'quote-wrapper' },
         p({ class: 'button-container' },
-          a({ href: '#', class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Request a Free Quote'),
+          a({ href: '/forms/modals/modal', class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Request a Free Quote'),
         ),
       ),
     ),

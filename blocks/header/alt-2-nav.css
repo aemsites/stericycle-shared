@@ -4,8 +4,18 @@
   --nav-height: 150px;
 }
 
+html {
+  scroll-padding-top: var(--nav-height)
+}
+
 .block.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   height: var(--nav-height);
+  background-color: var(--color-background-header);
 
   &.scroll-menu nav .logo,
   &.scroll-menu nav .nav-sections {
@@ -20,13 +30,7 @@
   }
 
   & nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
     height: var(--nav-height);
-    background-color: var(--color-background-header);
 
     & .logo {
       display: flex;
@@ -208,8 +212,12 @@
 }
 
 @media (min-width: 1200px) {
-  .block.header nav .nav-sections a {
-    white-space: nowrap;
+  .block.header nav .nav-sections ul {
+    gap: 3rem;
+
+    & a {
+      white-space: nowrap;
+    }
   }
 
   .block.header nav .nav-contact li.quote-link a {
