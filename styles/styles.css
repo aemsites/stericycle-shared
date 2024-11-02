@@ -1456,7 +1456,7 @@ main .list-with-background-image > div > ul > li:last-child {
 /* Header Styles */
 
 h1, h2, h3, h4 {
-  color: var(--font-color-text-primary);
+  color: var(--color-heading);
   font-family: var(--font-family-lato);
   font-style: normal;
   letter-spacing: 1%;
