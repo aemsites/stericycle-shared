@@ -937,7 +937,6 @@ body.resource-center p {
     font-weight: var(--lato-bold);
     line-height: var(--font-line-height-m);
     letter-spacing: var(--font-letter-spacing-s);
-    font-weight: var(--lato-bold);
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {

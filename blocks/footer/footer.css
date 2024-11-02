@@ -729,7 +729,6 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
 }
 
 footer .default-content-wrapper .columns.quote .button-container:first-child a {
-  line-height: 24px;
   font-family: var(--font-family-footer);
   font-weight: var(--lato-regular);
   line-height: var(--font-line-height-xl);
