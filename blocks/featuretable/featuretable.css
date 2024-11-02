@@ -30,6 +30,9 @@ main .section.featuretable-container > div {
   max-width: 100%;
   border-collapse: collapse;
   font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
 }
 
 .featuretable table th {

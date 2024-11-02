@@ -72,16 +72,8 @@ main .section.faq-container > div {
 .faq details summary p {
   color: var(--color-dark-gunmetal);
   font-weight: var(--lato-bold);
-  font-size: var(--text-font-size-m);
-  line-height: 16px;
-}
-
-@media screen and (min-width: 992px) {
-  .faq details summary p {
-    font-size: var(--text-font-size-l);
-    font-weight: 600;
-    line-height: 30px;
-  }
+  font-size: var(--text-font-size-l);
+  line-height: var(--font-line-height-xl);
 }
 
 .faq details summary span {
@@ -178,35 +170,32 @@ main .section.faq-container > div {
 
 .faq-container .default-content-wrapper > h2 {
   color: var(--color-blue);
-  font-size: var(--text-font-size-l);
-  line-height: 1.625rem;
-  letter-spacing: -.0009rem;
+  font-size: var(--heading-font-size-l);
+  font-weight: var(--lato-bold);
+  line-height: var(--font-line-height-m);
+  letter-spacing: var(--font-letter-spacing-s);
   margin-bottom: .5rem;
   padding: 0;
 }
 
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper h2 {
-    color: var(--color-blue);
-    font-size: var(--heading-font-size-xl);
-    font-weight: var(--lato-bold);
-    line-height: 2.375rem;
-    letter-spacing: -0.0009rem;
+    font-weight: var(--lato-semibold);
   }
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
 .faq-container .default-content-wrapper > p {
   font-size: var(--text-font-size-xs);
-  line-height: .875rem;
-  letter-spacing: -.0006rem;
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
   padding: 0 12px;
 }
 
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper p {
     font-size: var(--text-font-size-s);
-    line-height: 1.125rem;
   }
 }
 

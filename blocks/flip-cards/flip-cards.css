@@ -17,6 +17,9 @@
 
 .flip-cards h3, .flip-cards h4, .flip-cards h5, .flip-cards h6 {
     font-size: var(--text-font-size-m);
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
 }
 
 .flip-cards .icon {

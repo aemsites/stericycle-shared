@@ -53,7 +53,9 @@
 .post-teaser-list > .teaser-list > .teaser > .teaser-content > .teaser-category {
   color: var(--color-dark-gray);
   font-size: var(--text-font-size-s);
-  font-weight: 700;
+  font-weight: var(--lato-bold);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
   text-transform: uppercase;
   margin-bottom: 24px;
 }

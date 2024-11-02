@@ -54,7 +54,10 @@ div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card h5 {
     padding-right: 1rem;
     margin-top: 1rem;
     margin-bottom: 1.25rem;
-    font-size: 1rem;
+    font-size: var(--text-font-size-m);
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
 }
 
 div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card .blog-link {

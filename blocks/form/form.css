@@ -754,9 +754,11 @@ main .get-a-quote-form-alternate form {
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] {
     background-color: var(--color-yellow);
     font-size: var(--heading-font-size-s);
+    font-weight: var(--lato-bold);
+    line-height: var(--font-line-height-l);
+    letter-spacing: var(--font-letter-spacing-s);
     padding: 16px 48px;
     margin-bottom: 1rem;
-    font-weight: normal;
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] > div > p {

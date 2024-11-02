@@ -135,6 +135,9 @@ main .columns span.icon > img {
 
 .columns.narrow-icons h4 {
   font-size: var(--heading-font-size-s);
+  font-weight: var(--lato-bold);
+  line-height: var(--font-line-height-l);
+  letter-spacing: var(--font-letter-spacing-s);
 }
 
 .columns.narrow-icons h4 > a {
@@ -322,10 +325,6 @@ main .section.blue-headings .columns span.icon {
 
   .columns.steps > div > div {
     height: 100%;
-  }
-
-  .columns.narrow-icons h4 {
-    font-size: var(--heading-font-size-s);
   }
 
   .columns.narrow-icons h4 > a {

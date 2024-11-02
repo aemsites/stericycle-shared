@@ -111,6 +111,9 @@
   --font-line-height-m: 120%;
   --font-line-height-s: 100%;
 
+  /* font styles */
+  --font-style-italic: italic;
+
   /* --body-font-size-l: 20px;
   --body-font-size-m: 16px;
   --body-font-size-s: 14px;
@@ -229,10 +232,12 @@
 }
 
 body {
-  font-size: var(--text-font-size-m);
   margin: 0;
   font-family: var(--font-family-body);
-  line-height: 20px;
+  font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
   background-color: var(--color-background);
   display: none;
 }
@@ -337,16 +342,20 @@ main .section.yellow-button  a.button {
   background-color: var(--color-yellow);
   border-color: var(--color-black);
   color: var(--color-black);
-  font-size: 1rem;
-  line-height: 2pc;
+  font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
   border-width: 2px;
 }
 
 main .section.yellow-button-no-border  a.button {
   background-color: var(--color-yellow);
   color: var(--color-black);
-  font-size: 1rem;
-  line-height: 2pc;
+  font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
   border: unset;
 }
 
@@ -371,6 +380,9 @@ code, pre {
   color: var(--color-text);
   font-family: var(--font-family-fixed);
   font-size: var(--text-font-size-s);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
 }
 
 code {
@@ -741,9 +753,16 @@ body.resource-center > main > div.section.box-shadow.post-teaser-list-container 
 }
 
 body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper h3 {
-  font-size: 1.625rem;
-  line-height: 2.375rem;
-  font-weight: 700;
+  font-size: var(--heading-font-size-m);
+  font-weight: var(--lato-bold);
+  line-height: var(--font-line-height-l);
+  letter-spacing: var(--font-letter-spacing-s);
+}
+
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper h3 {
+    font-weight: var(--lato-semibold);
+  }
 }
 
 body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper .teaser > .teaser-content > a > span.teaser-date {
@@ -900,45 +919,37 @@ body.resource-center p {
 }
 
 .blog-page main .blog-content h1 {
-    font-size: 1.875rem;
-    line-height: 2.125rem;
-    letter-spacing: -.0009rem;
+    font-size: var(--heading-font-size-xl);
+    line-height: var(--font-line-height-m);
+    letter-spacing: var(--font-letter-spacing-s);
     margin-bottom: 32px;
     font-weight: var(--lato-bold);
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
   .blog-page main .blog-content h1 {
-    font-size: 3rem;
-    line-height: 3.25rem;
+    font-size: var(--heading-font-size-xl);
   }
 }
 
 .blog-page main .blog-content h2 {
-    font-size: 1.25rem;
-    line-height: 1.625rem;
-    letter-spacing: -.0009rem;
+    font-size: var(--heading-font-size-l);
+    font-weight: var(--lato-bold);
+    line-height: var(--font-line-height-m);
+    letter-spacing: var(--font-letter-spacing-s);
     font-weight: var(--lato-bold);
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
   .blog-page main .blog-content h2 {
-    font-size: 2rem;
-    line-height: 2.375rem;
+    font-weight: var(--lato-semibold);
   }
 
   .blog-page main .blog-content h3 {
-      font-size: 1.125rem;
-      line-height: 1.375rem;
-      letter-spacing: .0006rem;
-      font-weight: var(--lato-bold);
-  }
-}
-
-@media screen and (min-width: 992px /* breakpoint-l */) {
-  .blog-page main .blog-content h3 {
-    font-size: 26px;
-    line-height: 38px;
+      font-size: var(--heading-font-size-m);
+      font-weight: var(--lato-semibold);
+      line-height: var(--font-line-height-l);
+      letter-spacing: var(--font-letter-spacing-s);
   }
 }
 
@@ -964,11 +975,11 @@ body.resource-center p {
   .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > span {
     color: #1a242b;
     font-family: var(--font-family-body);
-    font-size: .875rem;
-    font-weight: 400;
-    line-height: 1.125rem;
+    font-size: var(--text-font-size-s);
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
     text-decoration: none;
-    letter-spacing: .0006rem;
   }
 
   .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > a:hover {
@@ -1027,8 +1038,10 @@ body.resource-center p {
 }
 
 .blog-page main .related-content .related-content-date {
-  font-size: .625rem;
-  line-height: .875rem;
+  font-size: var(--text-font-size-xs);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
   padding: 16px 0;
   margin-bottom: 40px;
 }
@@ -1055,16 +1068,20 @@ body.resource-center p {
 
 @media (min-width: 992px /* breakpoint-l */) {
   .blog-page main .related-content h4 {
-    font-size: 1.25rem;
-    line-height: 1.875rem;
+    font-size: var(--heading-font-size-s);
+    font-weight: var(--lato-bold);
+    line-height: var(--font-line-height-l);
+    letter-spacing: var(--font-letter-spacing-s);
   }
 }
 
 .blog-page main .related-content h5 {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  line-height: 20px;
-  font-size: 16px;
+  font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
 }
 
 main .section.extra-margin-bottom {
@@ -1253,9 +1270,10 @@ main .list-with-background-image > .default-content-wrapper {
 
 main .list-with-background-image > div > h2 {
   font-family: var(--font-family-body);
+  font-size: var(--heading-font-size-l);
   font-weight: var(--lato-bold);
-  font-size: var(--text-font-size-l);
-  line-height: 26px;
+  line-height: var(--font-line-height-m);
+  letter-spacing: var(--font-letter-spacing-s);
   color: var(--color-navy);
   margin: 1rem 0;
   padding: 0 47px;
@@ -1271,10 +1289,10 @@ main .list-with-background-image > div > h2 {
   main .list-with-background-image > div > h2 {
     grid-area: 1 / 2 / 2 / 5;
     color: var(--color-navy);
-    font-size: 2rem;
-    line-height: 2.375rem;
-    letter-spacing: -.0009rem;
-    font-weight: var(--lato-bold);
+    font-size: var(--heading-font-size-l);
+    font-weight: var(--lato-semibold);
+    line-height: var(--font-line-height-m);
+    letter-spacing: var(--font-letter-spacing-s);
     padding: 0 12px;
   }
 }
@@ -1450,47 +1468,39 @@ h1, h2, h3, h4 {
 h1 {
   font-size: var(--heading-font-size-xl);
   font-weight: var(--lato-bold);
-  line-height: 120%;
-}
-
-@media (min-width: 992px /* breakpoint-l */) {
-  h1 {
-    font-size: var(--header-font-size-xxl);
-  }
+  line-height: var(--font-line-height-m);
+  letter-spacing: var(--font-letter-spacing-s);
 }
 
 h2 {
   font-size: var(--heading-font-size-l);
-  font-weight: var(--lato-semibold);
-  line-height: 120%;
+  font-weight: var(--lato-bold);
+  line-height: var(--font-line-height-m);
+  letter-spacing: var(--font-letter-spacing-s);
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
   h2 {
-    font-size: var(--heading-font-size-xl);
+    font-weight: var(--lato-semibold);
   }
 }
 
 h3 {
   font-size: var(--heading-font-size-m);
-  font-weight: var(--lato-semibold);
-  line-height: 140%;
+  font-weight: var(--lato-bold);
+  line-height: var(--font-line-height-l);
+  letter-spacing: var(--font-letter-spacing-s);
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
   h3 {
-    font-size: var(--heading-font-size-l);
+    font-weight: var(--lato-semibold);
   }
 }
 
 h4 {
   font-size: var(--heading-font-size-s);
   font-weight: var(--lato-bold);
-  line-height: 140%;
-}
-
-@media (min-width: 992px /* breakpoint-l */) {
-  h4 {
-    font-size: var(--header-font-size-xs);
-  }
+  line-height: var(--font-line-height-l);
+  letter-spacing: var(--font-letter-spacing-s);
 }

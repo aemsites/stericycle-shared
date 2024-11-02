@@ -8,7 +8,9 @@
   background-color: var(--color-yellow);
   text-align: center;
   font-size: var(--heading-font-size-s);
-  font-weight: 700;
+  font-weight: var(--lato-bold);
+  line-height: var(--font-line-height-l);
+  letter-spacing: var(--font-letter-spacing-s);
   padding: 16px 48px;
 }
 

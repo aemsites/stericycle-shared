@@ -162,9 +162,10 @@ main section .tabs-container > div {
 
 .block.tabs .tabs-panel details summary p {
     color: var(--color-dark-gunmetal);
-    font-weight: var(--lato-bold);
     font-size: var(--text-font-size-m);
-    line-height: 16px;
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
 }
 
 .block.tabs.vertical .tab-item-body {

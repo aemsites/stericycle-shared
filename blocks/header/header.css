@@ -170,6 +170,9 @@ header nav.alt-nav ul {
   align-items: center;
   padding: 15px;
   font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
   cursor: pointer;
 }
 
@@ -355,6 +358,9 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
 }
 
 .close-button {
@@ -403,6 +409,9 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   align-items: center;
   padding: 12px;
   font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
   cursor: pointer;
 }
 
@@ -413,6 +422,9 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   align-items: center;
   padding: 0;
   font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
   cursor: pointer;
 }
 
@@ -484,6 +496,9 @@ header nav.alt-nav ul > li > a {
   padding-top: 5px;
   color: #fff;
   font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
 }
 
 .mobile-menu-item a:hover {
@@ -504,6 +519,9 @@ header nav.alt-nav ul > li > a {
   color: #000;
   display: block;
   font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
 }
 
 .list.active .expand {
@@ -514,6 +532,9 @@ header nav.alt-nav ul > li > a {
   width: 100%;
   align-items: center;
   font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
   margin-right: 100px;
 }
 
@@ -672,6 +693,9 @@ header nav.alt-nav .default-content-wrapper {
     flex: 1 1 auto;
     background-color: var(--overlay-color);
     font-size: var(--text-font-size-m);
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
     justify-content: flex-end;
   }
 
@@ -735,12 +759,14 @@ header nav.alt-nav .default-content-wrapper {
 
   header nav .nav-sections ul {
     gap: 0.5rem;
-    line-height: 2rem;
     z-index: 1;
     border-bottom: 2px solid transparent;
     padding: 0;
     font-family: lato-regular, sans-serif;
     font-size: var(--text-font-size-s);
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
   }
 
   header nav .nav-tools ul {
@@ -753,6 +779,9 @@ header nav.alt-nav .default-content-wrapper {
 
   header nav .nav-sections ul li {
     font-size: var(--text-font-size-s);
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
     justify-content: flex-end;
   }
 
@@ -766,6 +795,9 @@ header nav.alt-nav .default-content-wrapper {
 
   header nav .nav-sections ul > li > ul > li {
     font-size: var(--text-font-size-s);
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
   }
 
   header nav.alt-two .nav-sections {
@@ -773,6 +805,9 @@ header nav.alt-nav .default-content-wrapper {
     white-space: nowrap;
     background-color: var(--overlay-color);
     font-size: var(--text-font-size-m);
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
     justify-content: center;
     flex-basis: 33%;
   }
@@ -859,6 +894,9 @@ header nav.alt-nav .default-content-wrapper {
   header nav p a.button.primary {
     margin: 0;
     font-size: var(--text-font-size-m);
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
   }
 
   header nav a:any-link {
@@ -872,6 +910,9 @@ header nav.alt-nav .default-content-wrapper {
   header nav.alt-two .nav-sections a:any-link {
     color: currentcolor;
     font-size: var(--text-font-size-m);
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
   }
 
   header nav.alt-two .nav-sections a:hover {
@@ -883,15 +924,17 @@ header nav.alt-nav .default-content-wrapper {
   header .nav-brand {
     grid-area: brand;
     font-size: var(--heading-font-size-m);
-    font-weight: 700;
-    line-height: 1;
+    font-weight: var(--lato-semibold);
+    line-height: var(--font-line-height-l);
+    letter-spacing: var(--font-letter-spacing-s);
     align-items: center;
   }
 
   header .alt-two .nav-brand {
     font-size: var(--heading-font-size-m);
-    font-weight: 700;
-    line-height: 1;
+    font-weight: var(--lato-semibold);
+    line-height: var(--font-line-height-l);
+    letter-spacing: var(--font-letter-spacing-s);
     flex-basis: 33%;
   }
 
@@ -962,6 +1005,9 @@ header nav.alt-nav .default-content-wrapper {
 
   header nav.alt-two .nav-sections .default-content-wrapper > ul > li, header nav.alt-two .nav-tools .default-content-wrapper > ul > li {
     font-size: var(--text-font-size-m);
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
     white-space: nowrap;
   }
 

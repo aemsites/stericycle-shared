@@ -16,7 +16,10 @@ div.facet-list-container > div.default-content-wrapper {
 }
 
 div.facet-list-container h3 {
-    font-size: var(--heading-font-size-s);
+    font-size: var(--heading-font-size-m);
+    font-weight: var(--lato-bold);
+    line-height: var(--font-line-height-l);
+    letter-spacing: var(--font-letter-spacing-s);
     color: var(--color-blue);
 }
 
@@ -116,7 +119,7 @@ div.facet-list-wrapper ul.pagination li > button:not(:disabled) {
 
 @media screen and (min-width: 992px) {
     div.facet-list-container h3 {
-        font-size: 1.625rem;
+        font-weight: var(--lato-semibold);
     }
 
     div.section.facet-list-container {
@@ -180,8 +183,9 @@ div.facet-list-container > div.facet ul {
 div.facet-list-container > div.facet ul > li > div {
     display: flex;
     font-size: var(--text-font-size-m);
-    line-height: 1.25rem;
-    font-weight: 400;
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
     padding-right: 3.125rem;
     justify-content: space-between;
     margin-bottom: 1rem;
@@ -212,6 +216,9 @@ div.facet-list-container > div.facet ul > li > div>  i::before {
 
 div.facet-list-container > div.results h4 {
     font-size: var(--text-font-size-m);
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
     margin-bottom: 0.4rem;
 }
 

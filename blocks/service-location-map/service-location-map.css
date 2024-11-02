@@ -59,7 +59,9 @@
 
 .block.service-location-map .map-list .location-item .title {
   font-size: var(--text-font-size-m);
-  font-weight: 700;
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
   margin-bottom: 0.5rem;
 }
 
@@ -67,6 +69,9 @@
 .block.service-location-map .map-list .location-item .opening-hours,
 .block.service-location-map .map-list .location-item .appointment-detail {
   font-size: var(--text-font-size-s);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
 }
 
 .block.service-location-map .map-list .location-item .location {
@@ -114,6 +119,9 @@
 .block.service-location-map .map-search .map-input-details .map-input {
   height: 2.1rem;
   font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
 }
 
 .block.service-location-map .map-search .map-input-details .map-input-search,

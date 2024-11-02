@@ -20,10 +20,10 @@
 .resource-center main .breadcrumb span {
   color: var(--color-dark-gunmetal);
   font-size: var(--text-font-size-m);
-  font-weight: 400;
-  line-height: 1.125rem;
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
   text-decoration: none;
-  letter-spacing: .0006rem;
 }
 
 .resource-center main .breadcrumb a:hover {

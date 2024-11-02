@@ -18,8 +18,11 @@
 
 .quote blockquote .quote-quotation {
   margin-bottom: 0.75rem;
-  font-size: var(--text-font-size-l);
-  font-weight: 700;
+  font-size: var( --quote-font-size);
+  font-weight: var(--lato-semibold);
+  line-height: var(--font-line-height-s);
+  letter-spacing: var(--font-letter-spacing-s);
+  font-style: var(--font-style-italic);
 }
 
 .block.quote.alternate-1 blockquote .quote-quotation {

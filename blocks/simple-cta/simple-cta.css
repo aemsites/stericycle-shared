@@ -45,7 +45,9 @@ main .section.simple-cta-container > div {
 @media screen and (min-width: 992px /* breakpoint-l */) {
   .simple-cta > div > div:first-of-type > h4 {
     font-size: var(--heading-font-size-s);
-    line-height: 1.875rem;
+    font-weight: var(--lato-bold);
+    line-height: var(--font-line-height-l);
+    letter-spacing: var(--font-letter-spacing-s);
     margin-bottom: 0;
   }
 }
@@ -83,15 +85,18 @@ main .section.simple-cta-container > div {
     color: var(--color-text);
     width: 100%;
     font-size: var(--text-font-size-s);
-    font-weight: 400;
-    line-height: 32px;
+    font-weight: var(--lato-regular);
+    line-height: var(--font-line-height-xl);
+    letter-spacing: var(--font-letter-spacing-s);
     margin: 0;
   }
 }
 
 .simple-cta > div > div.button-container a {
   font-size: var(--text-font-size-m);
+  font-weight: var(--lato-regular);
+  line-height: var(--font-line-height-xl);
+  letter-spacing: var(--font-letter-spacing-s);
   border-width: 2px;
-  font-weight: var(--lato-bold);
   padding: 0 12px;
 }

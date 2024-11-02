@@ -39,8 +39,10 @@ main .section.hero-container {
 
       & p.button-container {
         & a {
-          font-weight: var(--lato-regular);
           font-size: var(--text-font-size-s);
+          font-weight: var(--lato-regular);
+          line-height: var(--font-line-height-xl);
+          letter-spacing: var(--font-letter-spacing-s);
           border-width: 1px;
         }
 
@@ -81,6 +83,9 @@ main .section.hero-container {
         & p.button-container a {
           border-width: 2px;
           font-size: var(--text-font-size-s);
+          font-weight: var(--lato-regular);
+          line-height: var(--font-line-height-xl);
+          letter-spacing: var(--font-letter-spacing-s);
         }
       }
     }

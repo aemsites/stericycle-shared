@@ -22,6 +22,9 @@ div.paginated-list-wrapper > ul.pagination-controls > li:first-of-type {
 
 div.paginated-list-wrapper > ul > li  h4 {
     font-size: var(--heading-font-size-s);
+    font-weight: var(--lato-bold);
+    line-height: var(--font-line-height-l);
+    letter-spacing: var(--font-letter-spacing-s);
 }
 
 div.paginated-list-wrapper > ul > li span.date-published {
