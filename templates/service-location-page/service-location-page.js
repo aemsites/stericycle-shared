@@ -3,6 +3,7 @@ import {
   buildBlock, decorateBlock, decorateButtons, decorateIcons,
   fetchPlaceholders,
   getMetadata,
+  loadBlocks,
 } from '../../scripts/aem.js';
 import {
   a, div, h3, h4, li, p,
@@ -247,6 +248,10 @@ export default async function decorate(main) {
   main.parentElement.classList.add('with-sidebar');
   decorateSidebarTemplate(main);
   await buildServiceLocationAutoBlocks(main);
+  if (document.querySelector('body.with-sidebar')) {
+    await loadBlocks(main.querySelector('div.page-content'));
+    await loadBlocks(main.querySelector('div.page-sidebar'));
+  }
 
   addLocalBusinessJsonLd();
 }
