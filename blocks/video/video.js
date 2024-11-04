@@ -4,6 +4,8 @@
  * https://www.hlx.live/developer/block-collection/video
  */
 
+import { addJsonLd } from '../../scripts/scripts.js';
+
 function embedYoutube(url, replacePlaceholder, autoplay) {
   const usp = new URLSearchParams(url.search);
   let suffix = '';
@@ -25,9 +27,15 @@ function embedYoutube(url, replacePlaceholder, autoplay) {
   }
 
   const temp = document.createElement('div');
-  temp.innerHTML = `<div>
-      <iframe src="https://www.youtube.com${vid ? `/embed/${vid}?rel=0&v=${vid}${suffix}` : embed}" 
-      allow="autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="lazy"></iframe>
+  temp.innerHTML = `
+    <div>
+      <iframe src="https://www.youtube.com${vid ? `/embed/${vid}?rel=0&v=${vid}${suffix}` : embed}"
+        allow="autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; gyroscope; picture-in-picture" 
+        allowfullscreen=""
+        scrolling="no"
+        title="Content from Youtube"
+        loading="lazy">
+    </iframe>
     </div>`;
   return temp.children.item(0);
 }
@@ -51,6 +59,45 @@ function embedVimeo(url, replacePlaceholder, autoplay) {
   return temp.children.item(0);
 }
 
+async function fetchWistiaMetadata(videoUrl) {
+  const response = await fetch(`${videoUrl}.json`);
+  if (!response.ok) {
+    throw new Error(`Response status: ${response.status}`);
+  }
+  return response.json();
+}
+
+async function addWistiaJsonLd(videoUrl) {
+  const metadata = await fetchWistiaMetadata(videoUrl);
+  if (!metadata?.media) {
+    return;
+  }
+
+  const schema = {
+    '@context': 'http://schema.org/',
+    '@type': 'VideoObject',
+    '@id': `https://fast.wistia.net/embed/iframe/${metadata.media.hashedId}`,
+    duration: `PT${Math.trunc(metadata.media.duration)}S`,
+    name: metadata.media.name,
+    embedUrl: `https://fast.wistia.net/embed/iframe/${metadata.media.hashedId}`,
+    uploadDate: new Date(1e3 * metadata.media.createdAt).toISOString(),
+    description: metadata.media.seoDescription || '(no description)',
+    transcript: metadata.media.captions?.[0]?.text || '(no transcript)',
+  };
+
+  const thumbnail = metadata.media.assets?.filter((e) => e.type === 'still_image')?.[0];
+  if (thumbnail) {
+    schema.thumbnailUrl = thumbnail.url.replace('.bin', '.jpg');
+  }
+
+  const content = metadata.media.assets?.filter((e) => e.type === 'original')?.[0];
+  if (content) {
+    schema.contentUrl = content.url.replace('.bin', '.m3u8');
+  }
+
+  addJsonLd(schema, `video-${metadata.media.hashedId}`);
+}
+
 function embedWistia(url, replacePlaceholder, autoplay) {
   let suffix = '';
   const suffixParams = {
@@ -63,9 +110,11 @@ function embedWistia(url, replacePlaceholder, autoplay) {
   }
   suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
   const temp = document.createElement('div');
+  const videoUrl = url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href;
   temp.innerHTML = `<div>
   <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed custom-shadow"
-  name="wistia_embed" src="${url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href}${suffix}"></iframe>`;
+  name="wistia_embed" src="${videoUrl}${suffix}"></iframe>`;
+  addWistiaJsonLd(videoUrl);
   return temp.children.item(0);
 }
 
