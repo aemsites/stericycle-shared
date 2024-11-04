@@ -14,10 +14,11 @@ function buildMarketingPage(main) {
   formSection.classList.add('section');
   const formPath = getMetadata('form-path');
   const formStyleClass = getMetadata('form-style');
-  const element = { elems: formPath ? [] : [`<a href="${formPath}"></a>`] };
+  const element = { elems: !formPath ? [] : [`<a href="${formPath}"></a>`] };
   const form = buildBlock(formPath ? 'form' : 'get-a-quote-form', element);
   if (formPath && formStyleClass) {
-    form.classList.add(formStyleClass);
+    const classes = formStyleClass.split(',').map((cls) => cls.trim());
+    classes.forEach((cls) => form.classList.add(cls));
   }
   const locationDiv = div({ class: 'location' });
   const name = getMetadata('name');
