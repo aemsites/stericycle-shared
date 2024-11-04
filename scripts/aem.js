@@ -663,6 +663,21 @@ async function loadBlock(block) {
   return block;
 }
 
+async function loadSection(section, loadCallback) {
+  const status = section.dataset.sectionStatus;
+  if (!status || status === 'initialized') {
+    section.dataset.sectionStatus = 'loading';
+    const blocks = [...section.querySelectorAll('div.block')];
+    for (let i = 0; i < blocks.length; i += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      await loadBlock(blocks[i]);
+    }
+    if (loadCallback) await loadCallback(section);
+    section.dataset.sectionStatus = 'loaded';
+    section.style.display = null;
+  }
+}
+
 /**
  * Loads JS and CSS for all blocks in a container element.
  * @param {Element} main The container element
@@ -731,14 +746,8 @@ async function loadFooter(footer) {
  * Load LCP block and/or wait for LCP in default content.
  * @param {Array} lcpBlocks Array of blocks
  */
-async function waitForLCP(lcpBlocks) {
-  const block = document.querySelector('.block');
-  const hasLCPBlock = block && lcpBlocks.includes(block.dataset.blockName);
-  if (hasLCPBlock) await loadBlock(block);
-
-  document.body.style.display = null;
-  const lcpCandidate = document.querySelector('main img');
-
+async function waitForLCP(section) {
+  const lcpCandidate = section.querySelector('img');
   await new Promise((resolve) => {
     if (lcpCandidate && !lcpCandidate.complete) {
       lcpCandidate.setAttribute('loading', 'eager');
@@ -780,4 +789,5 @@ export {
   waitForLCP,
   wrapTextNodes,
   isDesktop,
+  loadSection,
 };
