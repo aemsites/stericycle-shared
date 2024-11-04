@@ -2,6 +2,7 @@ import usStates from '../../blocks/service-location-map/us-states.js';
 import {
   buildBlock, decorateBlock,
   getMetadata,
+  loadBlocks,
 } from '../../scripts/aem.js';
 import { div, h3, p } from '../../scripts/dom-helpers.js';
 import { decorateSidebarTemplate } from '../templates.js';
@@ -13,6 +14,8 @@ function buildMarketingPage(main) {
   // GET-A-QUOTE FORM
   const formSection = document.createElement('div');
   formSection.classList.add('section');
+  formSection.dataset.sectionStatus = 'initialized';
+  formSection.style.display = 'none';
   const formPath = getMetadata('form-path');
   const formStyleClass = getMetadata('form-style');
   const form = buildBlock('form', { elems: [`<a href="${formPath}"></a>`] });
@@ -86,10 +89,13 @@ async function addLocalBusinessJsonLd() {
   addJsonLd(schema, 'service-location');
 }
 
-export default function decorate(main) {
+export default async function decorate(main) {
   main.parentElement.classList.add('with-sidebar');
   decorateSidebarTemplate(main);
   buildMarketingPage(main);
-
+  if (document.querySelector('body.with-sidebar')) {
+    await loadBlocks(main.querySelector('div.page-content'));
+    await loadBlocks(main.querySelector('div.page-sidebar'));
+  }
   addLocalBusinessJsonLd();
 }
