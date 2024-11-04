@@ -20,6 +20,7 @@ function buildMarketingPage(main) {
     const classes = formStyleClass.split(',').map((cls) => cls.trim());
     classes.forEach((cls) => form.classList.add(cls));
   }
+  formSection.prepend(form);
   const locationDiv = div({ class: 'location' });
   const name = getMetadata('name');
   if (name) {
