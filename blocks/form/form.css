@@ -501,6 +501,11 @@ main .form form .repeat-wrapper{
     gap: var(--form-field-vert-gap) var(--form-field-horz-gap);
 }
 
+main .campaign-form.form form .panel-wrapper {
+    padding: 5px;
+    background-color: var(--color-gray);
+}
+
 main .form form .wizard.left .panel-wrapper{
   flex: 1;
 }
@@ -814,6 +819,27 @@ main .footer-subscription-form form .fragment-wrapper > div p:nth-of-type(2) {
     main .footer-subscription-form form .panel-wrapper {
         grid-template-columns: 1fr;
     }
+}
+
+main .campaign-form.form {
+    box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+    background-color: var(--color-white);
+    border-radius: 4px;
+    max-width: 300px;
+}
+
+main .campaign-form.form form {
+    display: block;
+    margin-top: 2rem;
+    background-color: var(--color-gray);
+}
+
+main .campaign-form.form .fragment-wrapper[data-id='header'] {
+    font-size: var(--heading-font-size-m);
+    padding: 2rem 0.8rem 0;
+    margin-bottom: 1rem;
+    font-weight: normal;
+    gap:0;
 }
 
 main .two-column.form-container {
