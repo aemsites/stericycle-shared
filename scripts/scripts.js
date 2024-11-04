@@ -359,7 +359,7 @@ async function decorateTemplates(main) {
 /**
  * decorates external links to open in new window
  * for styling updates via CSS
- * @param {Element}s element The element to decorate
+ * @param {Element[]} externalAnchors The elements to decorate
  * @returns {void}
  */
 export function decorateExternalAnchors(externalAnchors) {
@@ -388,19 +388,105 @@ export function decorateAnchors(element = document) {
     (a) => a.href && !a.href.match(`^http[s]*://${window.location.host}/`),
   ));
 }
+
 /**
  * Loads footer-subscription-form
  * @param main main element
  * @returns {Promise}
  */
 async function appendSubscriptionForm(main) {
-  if (getMetadata('footer-subscription-form') === 'true') {
-    const form = buildBlock('form', { elems: ['<a href="/forms/footer-subscription.json"></a>'] });
+  const footerSubscriptionForm = getMetadata('footer-subscription-form');
+  if (footerSubscriptionForm) {
+    const form = buildBlock('form', { elems: [`<a href=${footerSubscriptionForm}></a>`] });
     form.classList.add('footer-subscription-form');
     main.append(form);
     decorateBlock(form);
     loadBlock(form);
   }
+}
+
+/*
+ * Adds id attribute to those sections which specify one.
+ * @param {Element} main The main element
+ */
+function decorateSectionIds(main) {
+  main.querySelectorAll('.section[data-id]').forEach((section) => {
+    section.id = section.getAttribute('data-id').trim().toLowerCase();
+  });
+}
+
+/**
+ * Appends a JSON-LD schema to the head
+ * @param schema The schema body
+ * @param name The schema name
+ * @param doc The document
+ */
+export function addJsonLd(schema, name, doc = document) {
+  const script = doc.createElement('script');
+  script.type = 'application/ld+json';
+  script.innerHTML = JSON.stringify(schema);
+  if (name) {
+    script.dataset.name = name;
+  }
+  doc.head.appendChild(script);
+}
+
+/**
+ * Either replaces the content of an existing JSON-LD schema or adds a new one to the head
+ * @param schema The schema body
+ * @param name The schema name
+ * @param doc The document
+ */
+export function setJsonLd(schema, name, doc = document) {
+  const existingScript = doc.head.querySelector(`script[data-name="${name}"]`);
+  if (existingScript) {
+    existingScript.innerHTML = JSON.stringify(schema);
+    return;
+  }
+  addJsonLd(schema, name);
+}
+
+async function setWebPageJsonLd(doc = document) {
+  const schema = {
+    '@context': 'https://schema.org/',
+    '@type': 'WebPage',
+    description: getMetadata('og:description', doc) || getMetadata('description', doc),
+    url: getMetadata('og:url', doc) || doc.documentURI,
+    name: getMetadata('og:title', doc),
+  };
+
+  const pageMetadata = await ffetch('/query-index.json')
+    .filter((e) => e.path?.trim().toLowerCase() === new URL(doc.documentURI).pathname.toLowerCase())
+    .first();
+  if (pageMetadata) {
+    schema.dateModified = new Date(1e3 * pageMetadata.lastModified).toISOString();
+  }
+
+  setJsonLd(schema, 'webpage');
+}
+
+async function fetchAndSetCustomJsonLd(doc = document) {
+  // schema.xls
+  let customSchemas = await ffetch('/schemas.json')
+    .filter((e) => e.page?.trim().toLowerCase() === new URL(doc.documentURI).pathname.toLowerCase()
+      || (e.page?.trim().endsWith('/*')
+        && new URL(doc.documentURI).pathname.toLowerCase().startsWith(e.page.trim().toLowerCase().substring(0, e.page.trim().length - 1))))
+    .all();
+  customSchemas = customSchemas.sort((e1, e2) => e1.page.localeCompare(e2.page));
+  customSchemas.forEach((e) => setJsonLd(e.schema, e.name || ''));
+
+  // per-page metadata
+  [...doc.head.querySelectorAll('meta')].filter((m) => m.name === 'ld-json' || m.attributes?.property?.value?.startsWith('ld-json:')).forEach((m) => {
+    if (m.content && m.content !== '') {
+      const name = m.attributes?.property?.value?.substring(8, m.attributes.property.value.length);
+      if (name) {
+        setJsonLd(m.content, name);
+      } else {
+        addJsonLd(m.content, null);
+      }
+    }
+    m.remove();
+  });
 }
 
 /**
@@ -419,6 +505,7 @@ export function decorateMain(main) {
   modifyBigNumberList(main);
   decorateSectionTemplates(main);
   consolidateOfferBoxes(main);
+  decorateSectionIds(main);
 }
 
 /**
@@ -435,6 +522,8 @@ async function loadEager(doc) {
     await waitForLCP(LCP_BLOCKS);
     await decorateTemplates(main);
   }
+  setWebPageJsonLd(doc);
+  fetchAndSetCustomJsonLd(doc);
 
   try {
     /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */

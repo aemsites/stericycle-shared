@@ -8,7 +8,7 @@ import {
   a, div, h3, h4, li, p,
   ul,
 } from '../../scripts/dom-helpers.js';
-import { getLocale, getNearByLocations } from '../../scripts/scripts.js';
+import { addJsonLd, getLocale, getNearByLocations } from '../../scripts/scripts.js';
 import { decorateSidebarTemplate } from '../templates.js';
 
 const createLocDiv = async () => {
@@ -87,6 +87,7 @@ const createLocDiv = async () => {
     }
 
     const zipCodeText = zipCode ? `zip=${zipCode}&` : '';
+    // eslint-disable-next-line max-len
     const url = `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?${zipCodeText}adobe_mc=MCMID%3D47228127826121584233605487843606294434%7CMCORGID%3DFB4A583F5FEDA3EA0A495EE3%2540AdobeOrg%7CTS%3D1729746363`;
     const buyNowAnchor = a({ class: 'button primary', href: url, target: '_blank' }, ph.buynowtext || 'Buy Now');
     decorateButtons(buyNowAnchor);
@@ -163,6 +164,7 @@ async function buildServiceLocationAutoBlocks(main) {
   const ctaButtonWrapper = document.createElement('div');
   const ctaButton = document.createElement('a');
   ctaButton.textContent = 'Buy Online';
+  // eslint-disable-next-line max-len
   ctaButton.href = 'https://shop-shredit.stericycle.com/commerce_storefront_ui/PurgeWizard.aspx?referrer_url=https://www.shredit.com/en-us/service-locations/greensboro&adobe_mc=MCMID%3D62149416262388660511472413641287259536%7CMCORGID%3DFB4A583F5FEDA3EA0A495EE3%2540AdobeOrg%7CTS%3D1724077192';
   ctaButtonWrapper.append(ctaButton);
   decorateButtons(ctaButtonWrapper);
@@ -208,8 +210,43 @@ async function buildServiceLocationAutoBlocks(main) {
   decorateBlock(teaser);
 }
 
+async function addLocalBusinessJsonLd() {
+  const schema = {
+    image: '/content/dam/stericycle/global/icons/Stericycle-Logo-with-WPWM-Bigger.svg',
+    logo: '/content/dam/stericycle/global/icons/Stericycle-Logo-with-WPWM-Bigger.svg',
+    address: {
+      addressCountry: getMetadata('country'),
+      addressLocality: getMetadata('name'),
+      addressRegion: getMetadata('state'),
+      '@type': 'PostalAddress',
+    },
+    description: getMetadata('description'),
+    url: window.location.href,
+    name: getMetadata('og:title') || getMetadata('title') || 'Service Location',
+    '@type': 'LocalBusiness',
+    '@context': 'https://schema.org/',
+  };
+
+  // GeoCoordinates
+  const latitude = parseFloat(getMetadata('latitude'));
+  const longitude = parseFloat(getMetadata('longitude'));
+  if (latitude && longitude
+    && !Number.isNaN(latitude) && !Number.isNaN(longitude)
+    && latitude !== 0.0 && longitude !== 0.0) {
+    schema.geo = {
+      latitude,
+      longitude,
+      '@type': 'GeoCoordinates',
+    };
+  }
+
+  addJsonLd(schema, 'service-location');
+}
+
 export default async function decorate(main) {
   main.parentElement.classList.add('with-sidebar');
   decorateSidebarTemplate(main);
   await buildServiceLocationAutoBlocks(main);
+
+  addLocalBusinessJsonLd();
 }
