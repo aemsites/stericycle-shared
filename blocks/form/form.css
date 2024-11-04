@@ -759,6 +759,10 @@ main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] {
     font-weight: normal;
 }
 
+main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id='header'] {
+    text-align: center;
+}
+
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] > div > p {
     font-size: 1rem;
 }
