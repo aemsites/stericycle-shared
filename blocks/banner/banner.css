@@ -1,0 +1,87 @@
+main .block.banner {
+  position: relative;
+}
+
+main .block.banner .button {
+  margin: 0;
+}
+
+main .block.banner.fixed-to-top,
+main .block.banner.fixed-to-bottom {
+  position: fixed;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+main .block.banner.fixed-to-top {
+  top: var(--nav-height);
+}
+
+main .block.banner.fixed-to-bottom {
+  bottom: 0;
+}
+
+main .block.banner > .banner-content {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  width: 100%;
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 576px /* breakpoint-s */) {
+  main .block.banner > .banner-content {
+    gap: 4rem;
+  }
+}
+
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  main .block.banner > .banner-content {
+    gap: 10rem;
+  }
+}
+
+main .block.banner > .banner-content > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main .block.banner > .banner-actions {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main .block.banner > .banner-actions > .close-button {
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255 255 255 / 50%);
+  border: unset;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 0 2px 1px;
+}
+
+main .block.banner > .banner-actions > .close-button:hover {
+  background-color: var(--color-white);
+  transform: scale(1.2);
+  padding: 0 0 1.5px 0.5px;
+}
+
+main .block.banner > .banner-actions > .close-button::before {
+  content: "×";
+  color: #525151;
+  font-size: 20px;
+  margin: auto;
+}
