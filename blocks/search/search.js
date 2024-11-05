@@ -150,11 +150,12 @@ async function handleSearch(e, block, config) {
     window.history.replaceState({}, '', url.toString());
   }
 
-  if (searchValue.length === 0) {
+  if (searchValue.length < 3) {
     const noRes = block.querySelector('.no-results');
     if (!noRes) {
       block.append(noResults);
     }
+    return;
   }
   const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
 
