@@ -1,4 +1,5 @@
 import { getMetadata } from '../../scripts/aem.js';
+import { setJsonLd } from '../../scripts/scripts.js';
 
 function getBlogBaseUrl(url) {
   try {
@@ -19,6 +20,36 @@ function getBlogBaseUrl(url) {
     console.error('Invalid URL:', error);
     return null;
   }
+}
+
+async function addBreadcrumbJsonLd(
+  blogBreadcrumb,
+  blogBreadcrumbUrl,
+  titleBreadcrumb,
+  titleBreadcrumbUrl,
+) {
+  setJsonLd({
+    itemListElement: [
+      {
+        position: 1,
+        item: {
+          name: blogBreadcrumb,
+          '@id': blogBreadcrumbUrl,
+        },
+        '@type': 'ListItem',
+      },
+      {
+        position: 2,
+        item: {
+          name: titleBreadcrumb,
+          '@id': titleBreadcrumbUrl,
+        },
+        '@type': 'ListItem',
+      },
+    ],
+    '@type': 'BreadcrumbList',
+    '@context': 'https://schema.org/',
+  }, 'blog-breadcrumb');
 }
 
 function decorate(main) {
@@ -64,6 +95,8 @@ function decorate(main) {
   breadcrumbWrapper.append(blogBreadcrumbElement);
   // add the breadcrumbWrapper to the start of the leftColumn
   mainSection.prepend(breadcrumbWrapper);
+
+  addBreadcrumbJsonLd(blogBreadcrumb, blogBaseUrl, title, window.location.href);
 }
 
 export default decorate;

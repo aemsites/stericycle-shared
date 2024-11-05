@@ -128,7 +128,7 @@ async function updateResults(checkboxChange, sheets = [], page = 1) {
     ))
     .all())).then((results) => results.flat());
 
-  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  posts.sort((a, b) => b.date - a.date);
 
   const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
   const start = (page - 1) * ITEMS_PER_PAGE;

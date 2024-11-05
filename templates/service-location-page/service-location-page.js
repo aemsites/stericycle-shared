@@ -3,12 +3,13 @@ import {
   buildBlock, decorateBlock, decorateButtons, decorateIcons,
   fetchPlaceholders,
   getMetadata,
+  loadBlocks,
 } from '../../scripts/aem.js';
 import {
   a, div, h3, h4, li, p,
   ul,
 } from '../../scripts/dom-helpers.js';
-import { getLocale, getNearByLocations } from '../../scripts/scripts.js';
+import { addJsonLd, getLocale, getNearByLocations } from '../../scripts/scripts.js';
 import { decorateSidebarTemplate } from '../templates.js';
 
 const createLocDiv = async () => {
@@ -210,8 +211,47 @@ async function buildServiceLocationAutoBlocks(main) {
   decorateBlock(teaser);
 }
 
+async function addLocalBusinessJsonLd() {
+  const schema = {
+    image: '/content/dam/stericycle/global/icons/Stericycle-Logo-with-WPWM-Bigger.svg',
+    logo: '/content/dam/stericycle/global/icons/Stericycle-Logo-with-WPWM-Bigger.svg',
+    address: {
+      addressCountry: getMetadata('country'),
+      addressLocality: getMetadata('name'),
+      addressRegion: getMetadata('state'),
+      '@type': 'PostalAddress',
+    },
+    description: getMetadata('description'),
+    url: window.location.href,
+    name: getMetadata('og:title') || getMetadata('title') || 'Service Location',
+    '@type': 'LocalBusiness',
+    '@context': 'https://schema.org/',
+  };
+
+  // GeoCoordinates
+  const latitude = parseFloat(getMetadata('latitude'));
+  const longitude = parseFloat(getMetadata('longitude'));
+  if (latitude && longitude
+    && !Number.isNaN(latitude) && !Number.isNaN(longitude)
+    && latitude !== 0.0 && longitude !== 0.0) {
+    schema.geo = {
+      latitude,
+      longitude,
+      '@type': 'GeoCoordinates',
+    };
+  }
+
+  addJsonLd(schema, 'service-location');
+}
+
 export default async function decorate(main) {
   main.parentElement.classList.add('with-sidebar');
   decorateSidebarTemplate(main);
   await buildServiceLocationAutoBlocks(main);
+  if (document.querySelector('body.with-sidebar')) {
+    await loadBlocks(main.querySelector('div.page-content'));
+    await loadBlocks(main.querySelector('div.page-sidebar'));
+  }
+
+  addLocalBusinessJsonLd();
 }

@@ -2,9 +2,11 @@ import usStates from '../../blocks/service-location-map/us-states.js';
 import {
   buildBlock, decorateBlock,
   getMetadata,
+  loadBlocks,
 } from '../../scripts/aem.js';
 import { div, h3, p } from '../../scripts/dom-helpers.js';
 import { decorateSidebarTemplate } from '../templates.js';
+import { addJsonLd } from '../../scripts/scripts.js';
 
 function buildMarketingPage(main) {
   const pageSidebar = main.querySelector('div.body-wrapper > div.page-sidebar');
@@ -12,12 +14,17 @@ function buildMarketingPage(main) {
   // GET-A-QUOTE FORM
   const formSection = document.createElement('div');
   formSection.classList.add('section');
+  formSection.dataset.sectionStatus = 'initialized';
+  formSection.style.display = 'none';
   const formPath = getMetadata('form-path');
   const formStyleClass = getMetadata('form-style');
-  const form = buildBlock('form', { elems: [`<a href="${formPath}"></a>`] });
-  if (formStyleClass) form.classList.add(formStyleClass);
+  const element = { elems: !formPath ? [] : [`<a href="${formPath}"></a>`] };
+  const form = buildBlock(formPath ? 'form' : 'get-a-quote-form', element);
+  if (formPath && formStyleClass) {
+    const classes = formStyleClass.split(',').map((cls) => cls.trim());
+    classes.forEach((cls) => form.classList.add(cls));
+  }
   formSection.prepend(form);
-
   const locationDiv = div({ class: 'location' });
   const name = getMetadata('name');
   if (name) {
@@ -52,8 +59,46 @@ function buildMarketingPage(main) {
   decorateBlock(form);
 }
 
-export default function decorate(main) {
+async function addLocalBusinessJsonLd() {
+  const schema = {
+    image: '/content/dam/stericycle/global/icons/Stericycle-Logo-with-WPWM-Bigger.svg',
+    logo: '/content/dam/stericycle/global/icons/Stericycle-Logo-with-WPWM-Bigger.svg',
+    address: {
+      addressCountry: getMetadata('country'),
+      addressLocality: getMetadata('name'),
+      addressRegion: getMetadata('state'),
+      '@type': 'PostalAddress',
+    },
+    description: getMetadata('description'),
+    url: window.location.href,
+    name: getMetadata('og:title') || getMetadata('title') || 'Service Location',
+    '@type': 'LocalBusiness',
+    '@context': 'https://schema.org/',
+  };
+
+  // GeoCoordinates
+  const latitude = parseFloat(getMetadata('latitude'));
+  const longitude = parseFloat(getMetadata('longitude'));
+  if (latitude && longitude
+    && !Number.isNaN(latitude) && !Number.isNaN(longitude)
+    && latitude !== 0.0 && longitude !== 0.0) {
+    schema.geo = {
+      latitude,
+      longitude,
+      '@type': 'GeoCoordinates',
+    };
+  }
+
+  addJsonLd(schema, 'service-location');
+}
+
+export default async function decorate(main) {
   main.parentElement.classList.add('with-sidebar');
   decorateSidebarTemplate(main);
   buildMarketingPage(main);
+  if (document.querySelector('body.with-sidebar')) {
+    await loadBlocks(main.querySelector('div.page-content'));
+    await loadBlocks(main.querySelector('div.page-sidebar'));
+  }
+  addLocalBusinessJsonLd();
 }
