@@ -144,7 +144,7 @@ export async function getRelatedPosts(types, tags, limit) {
   let posts = [];
   const fetchResults = await Promise.all(sheets.map(async (sheet) => ffetch('/query-index.json').sheet(sheet).all()));
   fetchResults.forEach((fetchResult) => posts.push(...fetchResult));
-  if (types.length > 1) {
+  if (nTypes.length > 1) {
     // this could become a performance problem with a huge volume of posts
     posts = posts.sort((a, b) => b.date - a.date);
   }
