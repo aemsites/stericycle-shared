@@ -2,25 +2,9 @@ import {
   fetchPlaceholders,
 } from '../../scripts/aem.js';
 
+import ffetch from '../../scripts/ffetch.js';
+
 const searchParams = new URLSearchParams(window.location.search);
-
-export async function fetchData(source) {
-  const response = await fetch(source);
-  if (!response.ok) {
-    // eslint-disable-next-line no-console
-    console.error('error loading API response', response);
-    return null;
-  }
-
-  const json = await response.json();
-  if (!json) {
-    // eslint-disable-next-line no-console
-    console.error('empty API response', source);
-    return null;
-  }
-
-  return json.data;
-}
 
 function clearSearchResults(block) {
   const searchResults = block.querySelector('.search-results');
@@ -167,7 +151,7 @@ async function handleSearch(e, block, config) {
       window.localStorage.setItem('searchIndex', config.source);
     }
   }
-  const data = await fetchData(window.localStorage.getItem('searchIndex'));
+  const data = await ffetch(window.localStorage.getItem('searchIndex')).sheet('search').all();
   const filteredData = filterData(searchTerms, data);
   const placeholders = await fetchPlaceholders();
   const source = block.querySelector('a[href]') ? block.querySelector('a[href]').href : '/query-index.json';
