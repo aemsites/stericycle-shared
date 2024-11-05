@@ -96,7 +96,7 @@ async function buildPagination(releases, ul, controls, page) {
     ul.appendChild(listItem);
   });
 
-  if(releases.length > 10){
+  if (releases.length > 10) {
     controls.classList.add('pagination-controls');
 
     const prev = document.createElement('li');
@@ -108,7 +108,7 @@ async function buildPagination(releases, ul, controls, page) {
       currentPage -= 1;
       buildPagination(releases, ul, controls, currentPage);
     });
-  
+
     const next = document.createElement('li');
     const buttonNext = document.createElement('button');
     buttonNext.textContent = 'Next';
@@ -118,7 +118,7 @@ async function buildPagination(releases, ul, controls, page) {
       currentPage += 1;
       buildPagination(releases, ul, controls, currentPage);
     });
-    
+
     controls.append(prev, next);
     prev.append(buttonPrev);
     next.append(buttonNext);
@@ -166,9 +166,9 @@ async function handleSearch(e, block, config) {
   // no results content
   const noResults = document.createElement('p');
   noResults.classList.add('no-results');
-  noResults.innerHTML = `No Results. Please Try Again.&nbsp`;
+  noResults.innerHTML = 'No Results. Please Try Again.&nbsp';
 
-  if(filteredData.length === 0){
+  if (filteredData.length === 0) {
     block.append(noResults);
   }
 
@@ -178,9 +178,6 @@ async function handleSearch(e, block, config) {
   await buildPagination(filteredData, prList, pagination, currentPage);
   block.append(prList);
   prList.insertAdjacentElement('afterend', pagination);
-  if(filteredData.length === 0){
-    
-  }
   clearSearchResults(block);
 }
 
