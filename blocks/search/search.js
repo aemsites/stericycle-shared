@@ -126,6 +126,9 @@ async function buildPagination(releases, ul, controls, page) {
 }
 
 async function handleSearch(e, block, config) {
+  // set currentPage pagination to 1
+  currentPage = 1;
+  
   // no results content
   const noResults = document.createElement('p');
   noResults.classList.add('no-results');
