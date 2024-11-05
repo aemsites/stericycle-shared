@@ -13,8 +13,16 @@ function clearSearchResults(block) {
   }
 }
 
+function clearPagination(block) {
+  const paginationControls = block.querySelector('.pagination-controls');
+  if (paginationControls) {
+    paginationControls.innerHTML = '';
+  }
+}
+
 function clearSearch(block) {
   clearSearchResults(block);
+  clearPagination(block);
   if (window.history.replaceState) {
     const url = new URL(window.location.href);
     url.search = '';
@@ -169,10 +177,11 @@ async function handleSearch(e, block, config) {
       searchBox(block, { source, placeholders }),
     );
 
-    if(filteredData.length === 0){
+    if (filteredData.length === 0) {
+      clearSearch(block);
       block.append(noResults);
     }
-  
+
     // add paginated result list below searchBox
     const prList = document.createElement('ul');
     prList.classList.add('search-results');
@@ -180,8 +189,8 @@ async function handleSearch(e, block, config) {
     await buildPagination(filteredData, prList, pagination, currentPage);
     block.append(prList);
     prList.insertAdjacentElement('afterend', pagination);
-  }else{
-    clearSearchResults(block);
+  } else {
+    clearSearch(block);
     const noRes = block.querySelector('.no-results');
     if (!noRes) {
       block.append(noResults);

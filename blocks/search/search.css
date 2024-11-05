@@ -13,6 +13,12 @@
   padding: 0 12px;
 }
 
+div.search-wrapper > ul > li {
+  border-bottom: 1px solid var(--color-gray);
+  margin-bottom: .75rem;
+  padding-bottom: .75rem;
+}
+
 .block.search ul li {
   display: flex;
   flex-direction: column;
@@ -77,12 +83,6 @@ div.search-wrapper > ul {
     list-style: none;
     margin-left: 0;
     margin-bottom: 1rem;
-}
-
-div.search-wrapper > ul > li {
-    border-bottom: 1px solid var(--color-gray);
-    margin-bottom: .75rem;
-    padding-bottom: .75rem;
 }
 
 div.search-wrapper > ul.pagination-controls > li {
