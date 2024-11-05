@@ -772,6 +772,18 @@ main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] {
     font-weight: normal;
 }
 
+main .campaign-form.form .fragment-wrapper[data-id='header'] {
+    font-size: var(--heading-font-size-m);
+    padding: 2rem 0.8rem 0;
+    margin-bottom: 1rem;
+    font-weight: normal;
+    gap:0;
+}
+
+main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id='header'] {
+    text-align: center;
+}
+
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] > div > p {
     font-size: 1rem;
 }
@@ -832,14 +844,6 @@ main .campaign-form.form form {
     display: block;
     margin-top: 2rem;
     background-color: var(--color-gray);
-}
-
-main .campaign-form.form .fragment-wrapper[data-id='header'] {
-    font-size: var(--heading-font-size-m);
-    padding: 2rem 0.8rem 0;
-    margin-bottom: 1rem;
-    font-weight: normal;
-    gap:0;
 }
 
 main .two-column.form-container {
