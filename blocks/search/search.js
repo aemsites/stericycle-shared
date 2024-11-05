@@ -142,10 +142,6 @@ async function handleSearch(e, block, config) {
     window.history.replaceState({}, '', url.toString());
   }
 
-  if (searchValue.length < 3) {
-    clearSearch(block);
-    return;
-  }
   const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
 
   if (!Object.hasOwn(window.localStorage, 'searchIndex')) {
