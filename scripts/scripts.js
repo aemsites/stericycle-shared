@@ -15,10 +15,9 @@ import {
   toClassName,
   decorateBlock,
   loadBlock,
+  loadSection,
 } from './aem.js';
 import ffetch from './ffetch.js';
-
-const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 
 export function convertExcelDate(excelDate) {
   const secondsInDay = 86400;
@@ -145,7 +144,7 @@ export async function getRelatedPosts(types, tags, limit) {
   let posts = [];
   const fetchResults = await Promise.all(sheets.map(async (sheet) => ffetch('/query-index.json').sheet(sheet).all()));
   fetchResults.forEach((fetchResult) => posts.push(...fetchResult));
-  if (types.length > 1) {
+  if (nTypes.length > 1) {
     // this could become a performance problem with a huge volume of posts
     posts = posts.sort((a, b) => b.date - a.date);
   }
@@ -519,7 +518,7 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
-    await waitForLCP(LCP_BLOCKS);
+    await loadSection(main.querySelector('.section'), waitForLCP);
     await decorateTemplates(main);
   }
   setWebPageJsonLd(doc);
@@ -543,11 +542,6 @@ async function loadLazy(doc) {
   autolinkModals(doc);
   const main = doc.querySelector('main');
   await loadBlocks(main);
-
-  if (doc.querySelector('body.with-sidebar')) {
-    await loadBlocks(main.querySelector('div.page-content'));
-    await loadBlocks(main.querySelector('div.page-sidebar'));
-  }
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;

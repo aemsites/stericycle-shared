@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { getMetadata, loadBlocks } from '../../scripts/aem.js';
 import { a, div } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { decorateSidebarTemplate } from '../templates.js';
@@ -54,7 +54,7 @@ const buildBreadcrumbBlock = async (main) => {
   main.prepend(newSection);
 };
 
-export default function decorate(main) {
+export default async function decorate(main) {
   const childWithPosition = Array.from(main.children)
     .find((child) => child.getAttribute('data-position'));
 
@@ -62,5 +62,7 @@ export default function decorate(main) {
   if (childWithPosition) {
     main.parentElement.classList.add('with-sidebar');
     decorateSidebarTemplate(main);
+    await loadBlocks(main.querySelector('div.page-content'));
+    await loadBlocks(main.querySelector('div.page-sidebar'));
   }
 }

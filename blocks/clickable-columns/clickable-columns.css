@@ -35,6 +35,9 @@
   }
 
   .clickable-columns > div > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     flex: 1;
     order: unset;
     cursor: pointer;

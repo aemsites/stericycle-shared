@@ -47,7 +47,11 @@ function addPost(list, post, isLoading) {
   category.classList.add('teaser-category');
   const mediaType = post['media-type'];
   category.setAttribute('aria-label', mediaType);
-  category.href = '#'; // TODO: category url from index
+
+  // Fix type to be non-plural and lowercase
+  const type = mediaType.toLowerCase().replaceAll(' ', '-').slice(0, -1);
+  category.href = post.path.substring(0, post.path.indexOf('/', (post.path.indexOf(type) + type.length)));
+
   category.textContent = mediaType;
   content.append(category);
   const buttonWrapper = document.createElement('p');
