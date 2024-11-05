@@ -126,6 +126,11 @@ async function buildPagination(releases, ul, controls, page) {
 }
 
 async function handleSearch(e, block, config) {
+  // no results content
+  const noResults = document.createElement('p');
+  noResults.classList.add('no-results');
+  noResults.innerHTML = 'No Results. Please Try Again.&nbsp';
+
   let searchValue;
   const dispatchedEventCheck = Object.hasOwn(e, 'target') && Object.hasOwn(e.target, 'value');
   if (dispatchedEventCheck) {
@@ -142,6 +147,12 @@ async function handleSearch(e, block, config) {
     window.history.replaceState({}, '', url.toString());
   }
 
+  if (searchValue.length === 0) {
+    const noRes = block.querySelector('.no-results');
+    if(!noRes){
+      block.append(noResults);
+    }
+  }
   const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
 
   if (!Object.hasOwn(window.localStorage, 'searchIndex')) {
@@ -159,11 +170,6 @@ async function handleSearch(e, block, config) {
     searchBox(block, { source, placeholders }),
   );
 
-  // no results content
-  const noResults = document.createElement('p');
-  noResults.classList.add('no-results');
-  noResults.innerHTML = 'No Results. Please Try Again.&nbsp';
-
   if (filteredData.length === 0) {
     block.append(noResults);
   }
@@ -174,7 +180,6 @@ async function handleSearch(e, block, config) {
   await buildPagination(filteredData, prList, pagination, currentPage);
   block.append(prList);
   prList.insertAdjacentElement('afterend', pagination);
-  clearSearchResults(block);
 }
 
 function searchInput(block, config) {
@@ -202,7 +207,7 @@ function searchIcon(block, config) {
   icon.addEventListener('click', (e) => {
     e.preventDefault();
     const input = block.querySelector('input');
-    if (input.value) {
+    if (input.value !== undefined) {
       searchParams.delete('searchQuery');
       searchParams.set('searchQuery', input.value);
       handleSearch(e, block, config);
