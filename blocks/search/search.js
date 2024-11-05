@@ -150,40 +150,43 @@ async function handleSearch(e, block, config) {
     window.history.replaceState({}, '', url.toString());
   }
 
-  if (searchValue.length < 3) {
-    const noRes = block.querySelector('.no-results');
-    if (!noRes) {
-      block.append(noResults);
-    }
-    return;
-  }
-  const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
-
   if (!Object.hasOwn(window.localStorage, 'searchIndex')) {
     if (config.source.endsWith('.json')) {
       window.localStorage.setItem('searchIndex', config.source);
     }
   }
-  const data = await ffetch(window.localStorage.getItem('searchIndex')).sheet('search').all();
-  const filteredData = filterData(searchTerms, data);
-  const placeholders = await fetchPlaceholders();
-  const source = block.querySelector('a[href]') ? block.querySelector('a[href]').href : '/query-index.json';
-  block.innerHTML = '';
-  block.append(
-    // eslint-disable-next-line no-use-before-define
-    searchBox(block, { source, placeholders }),
-  );
 
-  if (filteredData.length === 0) {
-    block.append(noResults);
+  if (searchValue.length >= 3) {
+    const data = await ffetch(window.localStorage.getItem('searchIndex')).sheet('search').all();
+
+    const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
+    const filteredData = filterData(searchTerms, data);
+    const placeholders = await fetchPlaceholders();
+    const source = block.querySelector('a[href]') ? block.querySelector('a[href]').href : '/query-index.json';
+    block.innerHTML = '';
+    block.append(
+      // eslint-disable-next-line no-use-before-define
+      searchBox(block, { source, placeholders }),
+    );
+
+    if(filteredData.length === 0){
+      block.append(noResults);
+    }
+  
+    // add paginated result list below searchBox
+    const prList = document.createElement('ul');
+    prList.classList.add('search-results');
+    const pagination = document.createElement('ul');
+    await buildPagination(filteredData, prList, pagination, currentPage);
+    block.append(prList);
+    prList.insertAdjacentElement('afterend', pagination);
+  }else{
+    clearSearchResults(block);
+    const noRes = block.querySelector('.no-results');
+    if (!noRes) {
+      block.append(noResults);
+    }
   }
-
-  // add paginated result list below searchBox
-  const prList = document.createElement('ul');
-  const pagination = document.createElement('ul');
-  await buildPagination(filteredData, prList, pagination, currentPage);
-  block.append(prList);
-  prList.insertAdjacentElement('afterend', pagination);
 }
 
 function searchInput(block, config) {
