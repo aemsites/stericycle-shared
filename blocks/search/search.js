@@ -96,31 +96,33 @@ async function buildPagination(releases, ul, controls, page) {
     ul.appendChild(listItem);
   });
 
-  controls.classList.add('pagination-controls');
+  if(releases.length > 10){
+    controls.classList.add('pagination-controls');
 
-  const prev = document.createElement('li');
-  const buttonPrev = document.createElement('button');
-  buttonPrev.textContent = 'Previous';
-  buttonPrev.classList.add('fa-chevron-left');
-  buttonPrev.disabled = page === 1;
-  buttonPrev.addEventListener('click', () => {
-    currentPage -= 1;
-    buildPagination(releases, ul, controls, currentPage);
-  });
-
-  const next = document.createElement('li');
-  const buttonNext = document.createElement('button');
-  buttonNext.textContent = 'Next';
-  buttonNext.disabled = page === totalPages;
-  buttonNext.classList.add('fa-chevron-right');
-  buttonNext.addEventListener('click', () => {
-    currentPage += 1;
-    buildPagination(releases, ul, controls, currentPage);
-  });
-
-  controls.append(prev, next);
-  prev.append(buttonPrev);
-  next.append(buttonNext);
+    const prev = document.createElement('li');
+    const buttonPrev = document.createElement('button');
+    buttonPrev.textContent = 'Previous';
+    buttonPrev.classList.add('fa-chevron-left');
+    buttonPrev.disabled = page === 1;
+    buttonPrev.addEventListener('click', () => {
+      currentPage -= 1;
+      buildPagination(releases, ul, controls, currentPage);
+    });
+  
+    const next = document.createElement('li');
+    const buttonNext = document.createElement('button');
+    buttonNext.textContent = 'Next';
+    buttonNext.disabled = page === totalPages;
+    buttonNext.classList.add('fa-chevron-right');
+    buttonNext.addEventListener('click', () => {
+      currentPage += 1;
+      buildPagination(releases, ul, controls, currentPage);
+    });
+    
+    controls.append(prev, next);
+    prev.append(buttonPrev);
+    next.append(buttonNext);
+  }
 }
 
 async function handleSearch(e, block, config) {
@@ -161,11 +163,24 @@ async function handleSearch(e, block, config) {
     searchBox(block, { source, placeholders }),
   );
 
+  // no results content
+  const noResults = document.createElement('p');
+  noResults.classList.add('no-results');
+  noResults.innerHTML = `No Results. Please Try Again.&nbsp`;
+
+  if(filteredData.length === 0){
+    block.append(noResults);
+  }
+
+  // add paginated result list below searchBox
   const prList = document.createElement('ul');
   const pagination = document.createElement('ul');
   await buildPagination(filteredData, prList, pagination, currentPage);
   block.append(prList);
   prList.insertAdjacentElement('afterend', pagination);
+  if(filteredData.length === 0){
+    
+  }
   clearSearchResults(block);
 }
 
