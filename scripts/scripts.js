@@ -69,6 +69,30 @@ export function getLocale() {
   return 'en-us';
 }
 
+export function getLocaleAsBCP47() {
+  const locale = getLocale();
+  const parts = locale.split('-');
+  parts[0] = parts[0].toLowerCase();
+  for (let i = 1; i < parts.length; i += 1) {
+    const part = parts[i];
+    if (part === 'x') {
+      parts[i] = 'x';
+      if (i + 1 < parts.length) {
+        parts[i + 1] = parts[i + 1].toLowerCase();
+      }
+    } else if (part.length === 2) {
+      parts[i] = part.toUpperCase();
+    } else if (part.length === 3) {
+      parts[i] = part.toLowerCase();
+    } else if (part.length > 3) {
+      parts[i] = part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+    } else {
+      parts[i] = part.toLowerCase();
+    }
+  }
+  return parts.join('-');
+}
+
 const toRadians = (degrees) => ((degrees * Math.PI) / 180);
 
 export const haversineDistance = (lat1, lon1, lat2, lon2) => {
@@ -512,7 +536,7 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-  document.documentElement.lang = 'en';
+  document.documentElement.lang = getLocaleAsBCP47();
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
