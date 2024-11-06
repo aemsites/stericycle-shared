@@ -634,12 +634,13 @@ main .section.with-image {
 
 /* section background image styles */
 
-main div.section.hard-drive-background {
-  background-size: contain;
+main div.body-wrapper:has(.page-content .hard-drive-background) {
+  background-size: cover;
   background-position-x: 50%;
-  background-position-y: 100%;
+  background-position-y: 50%;
   background-image: url("/images/sid-shreded-hard-drive-background-1920x1080.png");
   background-repeat: no-repeat;
+  width: 100%;
 }
 
 main div.section.shredded-paper-background-column {
