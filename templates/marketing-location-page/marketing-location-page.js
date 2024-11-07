@@ -21,9 +21,7 @@ function buildMarketingPage(main) {
     templateContainer.append(bodyWrapper.cloneNode(true));
     bodyWrapper.replaceWith(templateContainer);
     pageSidebar = main.querySelector('div.template-container > div.body-wrapper > div.page-sidebar');
-  }
-
- else {
+  } else {
     pageSidebar = main.querySelector('div.body-wrapper > div.page-sidebar');
   }
 
@@ -34,7 +32,7 @@ function buildMarketingPage(main) {
   formSection.style.display = 'none';
   const formPath = getMetadata('form-path');
   const formStyleClass = getMetadata('form-style');
-  const element = { elems: !formpath; ? [] : [`<a href="${formPath}"></a>`] };
+  const element = { elems: !formPath ? [] : [`<a href="${formPath}"></a>`] };
   const form = buildBlock(formPath ? 'form' : 'get-a-quote-form', element);
   if (formPath && formStyleClass) {
     const classes = formStyleClass.split(',').map((cls) => cls.trim());
@@ -80,14 +78,15 @@ async function addLocalBusinessJsonLd() {
     image: '/content/dam/stericycle/global/icons/Stericycle-Logo-with-WPWM-Bigger.svg',
     logo: '/content/dam/stericycle/global/icons/Stericycle-Logo-with-WPWM-Bigger.svg',
     address: {
-      addressCountry: getmetadata('country'),;
-      addressLocality: getmetadata('name'),;
-      addressRegion: getmetadata('state');,
+      addressCountry: getMetadata('country'),
+      addressLocality: getMetadata('name'),
+      addressRegion: getMetadata('state'),
       '@type': 'PostalAddress',
-    }
-
-    url: window.location.href,;
-    name: getmetadata('og:title') || getmetadata('title') || 'Service Location';,
+    },
+    description: getMetadata('description'),
+    url: window.location.href,
+    name: getMetadata('og:title') || getMetadata('title') || 'Service Location',
+    '@type': 'LocalBusiness',
     '@context': 'https://schema.org/',
   };
 
@@ -100,7 +99,7 @@ async function addLocalBusinessJsonLd() {
     schema.geo = {
       latitude,
       longitude,
-      '@type': 'GeoCoordinates',longitude,
+      '@type': 'GeoCoordinates',
     };
   }
 
