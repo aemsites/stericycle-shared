@@ -9,7 +9,7 @@ import {
   a, div, h3, h4, li, p,
   ul,
 } from '../../scripts/dom-helpers.js';
-import { addJsonLd, getLocale, getNearByLocations } from '../../scripts/scripts.js';
+import { addJsonLd, formatPhone, getLocale, getNearByLocations } from '../../scripts/scripts.js';
 import { decorateSidebarTemplate } from '../templates.js';
 
 const createLocDiv = async () => {
@@ -56,19 +56,15 @@ const createLocDiv = async () => {
 
   const phoneDiv = div({ class: 'phone' });
 
-  const salesNo = ph.salesno || '844-618-7651'; // fallback number also added
-  if (salesNo) {
-    phoneDiv.append(
-      div(a({ href: `tel:${salesNo}` }, salesNo), p(` - ${ph.salestext || 'Sales'}`)),
-    );
-  }
+  const salesNo = ph.salesno || '8446187651'; // fallback number also added
+  phoneDiv.append(
+    div(a({ href: `tel:${salesNo}` }, formatPhone(salesNo)), p(` - ${ph.salestext || 'Sales'}`)),
+  );
 
-  const customerNo = ph.customerserviceno || '800-697-4733'; // fallback number also added
-  if (customerNo) {
-    phoneDiv.append(
-      div(a({ href: `tel:${customerNo}` }, customerNo), p(` - ${ph.customerservicetext || 'Customer Service'}`)),
-    );
-  }
+  const customerNo = ph.customerserviceno || '8006974733'; // fallback number also added
+  phoneDiv.append(
+    div(a({ href: `tel:${customerNo}` }, formatPhone(customerNo)), p(` - ${ph.customerservicetext || 'Customer Service'}`)),
+  );
 
   locationDiv.append(phoneDiv);
 
