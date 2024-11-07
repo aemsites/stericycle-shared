@@ -1,6 +1,12 @@
 .simple-cta {
   margin-bottom: 48px;
-  padding: 2rem;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  .simple-cta {
+    padding: 2rem;
+  }
 }
 
 .simple-cta.slim {
@@ -11,7 +17,23 @@
 .simple-cta > div {
   display: flex;
   align-items: center;
-  text-align: start;
+  flex-direction: column;
+  text-align: center;
+  gap: 1rem;
+}
+
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  .simple-cta > div {
+    flex-direction: row;
+    text-align: start;
+    gap: 0;
+  }
+}
+
+@media screen and (max-width: 991px /* breakpoint-l */) {
+  .simple-cta * {
+    font-weight: 400 !important;
+  }
 }
 
 .simple-cta > div > div {
@@ -31,20 +53,31 @@
   margin-bottom: 0;
 }
 
-.simple-cta .button-container:first-child > a.button {
+.simple-cta .button-container:first-child a.button {
   margin: 0;
+}
+
+
+/* IMG STYLE */
+
+@media screen and (max-width: 991px /* breakpoint-l */) {
+  .simple-cta > div > div.simple-cta-img-col img {
+    width: 100%;
+    max-width: unset;
+  }
 }
 
 
 /* ALT STYLE */
 
+.simple-cta.alt .button-container a.button {
+  width: 100%;
+}
+
 .simple-cta.alt > div > div.simple-cta-img-col img {
   width: 100%;
 }
 
-.simple-cta.alt a.button {
-  width: 100%;
-}
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
   .simple-cta.alt a.button {
