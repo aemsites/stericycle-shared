@@ -2,7 +2,7 @@ import usStates from '../../blocks/service-location-map/us-states.js';
 import {
   buildBlock, decorateBlock,
   getMetadata,
-  loadBlocks,
+  loadBlocks, waitForLCP
 } from '../../scripts/aem.js';
 import { div, h3, p } from '../../scripts/dom-helpers.js';
 import { decorateSidebarTemplate } from '../templates.js';
