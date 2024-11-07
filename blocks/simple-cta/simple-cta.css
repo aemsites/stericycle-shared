@@ -1,8 +1,42 @@
 .simple-cta {
-  background: var(--color-blue);
   margin-bottom: 48px;
   padding: 2rem;
 }
+
+.simple-cta.slim {
+  margin: 0;
+  padding: 0;
+}
+
+.simple-cta > div {
+  display: flex;
+  align-items: center;
+  text-align: start;
+}
+
+.simple-cta > div > div {
+  width: 100%;
+}
+
+.simple-cta > div > div:last-of-type {
+  width: fit-content;
+}
+
+.simple-cta > div > div > h1,
+.simple-cta > div > div > h2,
+.simple-cta > div > div > h3,
+.simple-cta > div > div > h4,
+.simple-cta > div > div > h5,
+.simple-cta > div > div > h6 {
+  margin-bottom: 0;
+}
+
+.simple-cta a.button {
+  margin: 0;
+}
+
+
+/* ALT STYLE */
 
 .simple-cta.alt {
   background: unset;
@@ -12,58 +46,7 @@
   width: 100%;
 }
 
-.simple-cta > div {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-main .section.simple-cta-container > div {
-  padding: 0 1.5rem;
-}
-
-.simple-cta > div > div:first-of-type {
-  width: 100%;
-}
-
 @media screen and (min-width: 992px /* breakpoint-l */) {
-  .simple-cta > div > div:first-of-type {
-    width: 75%;
-    flex: 0 0 auto;
-  }
-}
-
-.simple-cta > div > div:first-of-type > h4 {
-  color: var(--color-white);
-  font-size: .9375rem;
-  line-height: 1.5625rem;
-  letter-spacing: .0008rem;
-  font-weight: var(--lato-bold);
-  margin-bottom: 1.5rem;
-}
-
-@media screen and (min-width: 992px /* breakpoint-l */) {
-  .simple-cta > div > div:first-of-type > h4 {
-    font-size: 1.25rem;
-    line-height: 1.875rem;
-    margin-bottom: 0;
-  }
-}
-
-.simple-cta > div > div:last-of-type {
-  width: 100%;
-}
-
-.simple-cta.alt a.button {
-  width: 100%;
-}
-
-@media screen and (min-width: 992px /* breakpoint-l */) {
-  .simple-cta > div > div:last-of-type {
-    width: 25%;
-    flex: 1 0 0;
-  }
-
   .simple-cta.alt a.button {
     width: 33%;
   }
@@ -76,22 +59,8 @@ main .section.simple-cta-container > div {
     width: 77%;
     margin-left: 8.3%;
   }
-
-  .simple-cta > div > div.button-container a {
-    background-color: var(--color-button-primary);
-    border-color: var(--color-button-primary);
-    color: var(--color-text);
-    width: 100%;
-    font-size: .875rem;
-    font-weight: 400;
-    line-height: 32px;
-    margin: 0;
-  }
 }
 
-  .simple-cta > div > div.button-container a {
-    font-size: 1rem;
-    border-width: 2px;
-    font-weight: var(--lato-bold);
-    padding: 0 12px;
-  }
+.simple-cta.alt a.button {
+  width: 100%;
+}
