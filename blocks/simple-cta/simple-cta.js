@@ -2,7 +2,7 @@ import { decorateAnchors } from '../../scripts/scripts.js';
 import { decorateButtons } from '../../scripts/aem.js';
 
 export default function decorate(block) {
-  if (!(/-background/.test(block.className))) {
+  if (!block.classList.contains('alt') && !(/-background/.test(block.className))) {
     block.classList.add('blue-background');
   }
 
