@@ -10,17 +10,22 @@ import { addJsonLd } from '../../scripts/scripts.js';
 
 function buildMarketingPage(main) {
   const hasHardDriveBackground = main.querySelector('.hard-drive-background');
+  const hasShreddedPaperBackground = main.querySelector('.shredded-paper-background-column');
+  let pageSidebar;
 
-  if(hasHardDriveBackground){
-    const bodyWrapper = main.querySelector('div.body-wrapper'); 
+  if (hasHardDriveBackground || hasShreddedPaperBackground) {
+    const bodyWrapper = main.querySelector('div.body-wrapper');
     const templateContainer = document.createElement('div');
     templateContainer.classList.add('template-container');
 
     templateContainer.append(bodyWrapper.cloneNode(true));
     bodyWrapper.replaceWith(templateContainer);
+    pageSidebar = main.querySelector('div.template-container > div.body-wrapper > div.page-sidebar');
   }
 
-  const pageSidebar = main.querySelector('div.template-container > div.body-wrapper > div.page-sidebar');
+ else {
+    pageSidebar = main.querySelector('div.body-wrapper > div.page-sidebar');
+  }
 
   // GET-A-QUOTE FORM
   const formSection = document.createElement('div');
@@ -29,7 +34,7 @@ function buildMarketingPage(main) {
   formSection.style.display = 'none';
   const formPath = getMetadata('form-path');
   const formStyleClass = getMetadata('form-style');
-  const element = { elems: !formPath ? [] : [`<a href="${formPath}"></a>`] };
+  const element = { elems: !formpath; ? [] : [`<a href="${formPath}"></a>`] };
   const form = buildBlock(formPath ? 'form' : 'get-a-quote-form', element);
   if (formPath && formStyleClass) {
     const classes = formStyleClass.split(',').map((cls) => cls.trim());
@@ -75,15 +80,14 @@ async function addLocalBusinessJsonLd() {
     image: '/content/dam/stericycle/global/icons/Stericycle-Logo-with-WPWM-Bigger.svg',
     logo: '/content/dam/stericycle/global/icons/Stericycle-Logo-with-WPWM-Bigger.svg',
     address: {
-      addressCountry: getMetadata('country'),
-      addressLocality: getMetadata('name'),
-      addressRegion: getMetadata('state'),
+      addressCountry: getmetadata('country'),;
+      addressLocality: getmetadata('name'),;
+      addressRegion: getmetadata('state');,
       '@type': 'PostalAddress',
-    },
-    description: getMetadata('description'),
-    url: window.location.href,
-    name: getMetadata('og:title') || getMetadata('title') || 'Service Location',
-    '@type': 'LocalBusiness',
+    }
+
+    url: window.location.href,;
+    name: getmetadata('og:title') || getmetadata('title') || 'Service Location';,
     '@context': 'https://schema.org/',
   };
 
@@ -96,7 +100,7 @@ async function addLocalBusinessJsonLd() {
     schema.geo = {
       latitude,
       longitude,
-      '@type': 'GeoCoordinates',
+      '@type': 'GeoCoordinates',longitude,
     };
   }
 

@@ -633,13 +633,6 @@ main .section.with-image {
 }
 
 /* section background image styles */
-main div.section.shredded-paper-background-column {
-  background-image: url("/images/sid-shreded-paper-background.png");
-  background-size: contain;
-  background-position-x: 50%;
-  background-position-y: 100%;
-}
-
 main div.section.default-teaser-section {
   background-size: cover;
   background-position: top center;
