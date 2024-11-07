@@ -10,29 +10,37 @@ main .section > div.hero-wrapper {
     margin: unset;
 }
 
-.with-sidebar main > .body-wrapper {
+.with-sidebar main > .template-container > .body-wrapper {
     max-width: var(--section-width);
     margin: 0 auto;
   }
 
-  .with-sidebar main > .body-wrapper > .page-sidebar > .section > div {
+  .with-sidebar main > .template-container > .body-wrapper > .page-sidebar > .section > div {
     padding: 0;
     margin-bottom: 30px;
   }
 
+  main div.template-container:has(.hard-drive-background) {
+    background-size: cover;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-image: url("/images/sid-shreded-hard-drive-background-1920x1080.png");
+    background-repeat: no-repeat;
+  }
+
   @media (min-width: 992px /* breakpoint-l */) {
-    .with-sidebar main > .body-wrapper {
+    .with-sidebar main > .template-container > .body-wrapper {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       padding: 0;
     }
 
-    .with-sidebar main > .body-wrapper > .page-content {
+    .with-sidebar main > .template-container > .body-wrapper > .page-content {
       width: 66.6667%;
     }
 
-    .with-sidebar main > .body-wrapper > .page-sidebar {
+    .with-sidebar main > .template-container > .body-wrapper > .page-sidebar {
       width: 31%;
       z-index: 1;
     }

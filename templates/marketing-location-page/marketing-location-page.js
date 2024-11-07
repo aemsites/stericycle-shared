@@ -9,7 +9,18 @@ import { decorateSidebarTemplate } from '../templates.js';
 import { addJsonLd } from '../../scripts/scripts.js';
 
 function buildMarketingPage(main) {
-  const pageSidebar = main.querySelector('div.body-wrapper > div.page-sidebar');
+  const hasHardDriveBackground = main.querySelector('.hard-drive-background');
+
+  if(hasHardDriveBackground){
+    const bodyWrapper = main.querySelector('div.body-wrapper'); 
+    const templateContainer = document.createElement('div');
+    templateContainer.classList.add('template-container');
+
+    templateContainer.append(bodyWrapper.cloneNode(true));
+    bodyWrapper.replaceWith(templateContainer);
+  }
+
+  const pageSidebar = main.querySelector('div.template-container > div.body-wrapper > div.page-sidebar');
 
   // GET-A-QUOTE FORM
   const formSection = document.createElement('div');

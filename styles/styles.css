@@ -633,15 +633,6 @@ main .section.with-image {
 }
 
 /* section background image styles */
-
-main div.section.hard-drive-background {
-  background-size: contain;
-  background-position-x: 50%;
-  background-position-y: 100%;
-  background-image: url("/images/sid-shreded-hard-drive-background-1920x1080.png");
-  background-repeat: no-repeat;
-}
-
 main div.section.shredded-paper-background-column {
   background-image: url("/images/sid-shreded-paper-background.png");
   background-size: contain;
