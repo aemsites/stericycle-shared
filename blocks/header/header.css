@@ -23,7 +23,7 @@ header .nav-wrapper {
 }
 
 header .nav-wrapper:has(.blue) {
-  background-color: var(--color-blue);
+  background-color: var(--color-primary-1);
 }
 
 header .nav-wrapper:has(.logo-only) {
@@ -46,7 +46,8 @@ header nav.alt-two {
 }
 
 header nav.alt-two.show {
-  transition: opacity .4s ease, transform .4s ease, -webkit-transform .4s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease,
+    -webkit-transform 0.4s ease;
   visibility: visible;
 }
 
@@ -87,7 +88,7 @@ header nav .nav-hamburger {
   right: -90%;
   width: 90%;
   height: 100vh;
-  background-color: white;
+  background-color: var(--color-white);
   transition: right 0.3s ease-in-out;
   z-index: 1000;
 }
@@ -101,12 +102,13 @@ nav.alt-two .nav-brand {
 }
 
 nav.alt-two .nav-tools,
-nav.alt-two .nav-hamburger, nav.alt-two .mobile-menu {
+nav.alt-two .nav-hamburger,
+nav.alt-two .mobile-menu {
   display: none;
 }
 
 nav.alt-two .nav-brand {
- width: 100%;
+  width: 100%;
   flex: 0 0 100%;
   height: 2rem;
 }
@@ -154,7 +156,7 @@ header .unhide {
 }
 
 header nav.alt-nav ul {
-  color: #fff;
+  color: var(--color-white);
   display: flex;
   width: 100%;
   padding-left: unset;
@@ -175,7 +177,7 @@ header nav.alt-nav ul {
 
 header nav.alt-nav ul > li {
   flex: 1;
-  padding: 0 .625rem;
+  padding: 0 0.625rem;
   white-space: nowrap;
   box-sizing: border-box;
   text-align: center;
@@ -184,7 +186,7 @@ header nav.alt-nav ul > li {
 .list.active li {
   list-style: none;
   padding: 15px;
-  background-color: #fff;
+  background-color: var(--color-white);
   border-bottom: 1px solid #ddd;
 }
 
@@ -193,11 +195,11 @@ header nav.alt-nav ul > li {
 }
 
 header nav.alt-nav ul > li:first-of-type {
-  border-right: #133b5c solid 1px;
+  border-right: var(--color-primary-2) solid 1px;
 }
 
 header nav.alt-nav ul > li:last-of-type {
-  border-left: #133b5c solid 1px;
+  border-left: var(--color-primary-2) solid 1px;
 }
 
 .nav-sections .default-content-wrapper ul {
@@ -273,7 +275,7 @@ header nav .nav-hamburger-icon::after {
 
 header nav .nav-hamburger-icon::before,
 header nav .nav-hamburger-icon::after {
-  content: '';
+  content: "";
   position: absolute;
   background: currentcolor;
 }
@@ -326,7 +328,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   left: 0;
   width: 100%;
   min-width: 100%;
-  background-color: white;
+  background-color: var(--color-white);
   padding: 2rem 0;
   z-index: 1000;
   display: flex;
@@ -342,7 +344,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   left: 0;
   width: 100%;
   min-width: 100%;
-  background-color: white;
+  background-color: var(--color-white);
   align-items: center;
   justify-content: center;
   padding: 2rem 0;
@@ -352,7 +354,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
 .search-box {
   width: 60%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-light-gray);
   border-radius: 4px;
   font-size: 16px;
 }
@@ -389,7 +391,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   border: none;
   font-size: 2em;
   cursor: pointer;
-  color: black;
+  color: var(--color-black);
 }
 
 .mobile-menu-open .mobile-menu-content {
@@ -426,7 +428,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   border-bottom: 1px solid #e0e0e0;
   width: 100%;
   padding: 14px;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   position: relative;
 }
 
@@ -438,7 +440,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   height: 20px;
   border-radius: 10px;
   padding: 0;
-  color: black;
+  color: var(--color-black);
   border: none;
   margin: 0;
   background-color: transparent;
@@ -454,7 +456,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
 .mobile-menu-item-drop.block .title .inner-back-arrow {
   margin-right: auto;
   position: absolute;
-  left: 0
+  left: 0;
 }
 
 .mobile-menu-item-drop.block ul {
@@ -482,9 +484,9 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
 
 header nav.alt-nav ul > li > a {
   padding-top: 5px;
-  color: #fff;
+  color: var(--color-white);
   font-size: 16px;
-  font-family: ;
+  font-family: var(--font-family-body);
 }
 
 .mobile-menu-item a:hover {
@@ -497,12 +499,12 @@ header nav.alt-nav ul > li > a {
 
 .tel-item.active a {
   position: relative;
-  color: black;
+  color: var(--color-black);
 }
 
 .list.active li a {
   text-decoration: none;
-  color: #000;
+  color: var(--color-black);
   display: block;
   font-size: 16px;
 }
@@ -525,12 +527,12 @@ header nav.alt-nav ul > li > a {
 
 .arrow::before,
 .inner-arrow::before {
-  content: '';
+  content: "";
   display: inline-block;
   width: 0.6em;
   height: 0.5em;
-  border-right: 2px solid black;
-  border-top: 2px solid black;
+  border-right: 2px solid var(--color-black);
+  border-top: 2px solid var(--color-black);
   transform: rotate(45deg);
   margin-right: 5px;
   position: absolute;
@@ -539,12 +541,12 @@ header nav.alt-nav ul > li > a {
 
 .back-arrow::before,
 .inner-back-arrow::before {
-  content: '';
+  content: "";
   display: inline-block;
   width: 0.6em;
   height: 0.5em;
-  border-right: 2px solid black;
-  border-top: 2px solid black;
+  border-right: 2px solid var(--color-black);
+  border-top: 2px solid var(--color-black);
   transform: rotate(-135deg);
   margin-right: 5px;
   position: absolute;
@@ -595,7 +597,7 @@ strong.remove {
 }
 
 .tel-item.active a::before {
-  color: black;
+  color: var(--color-black);
   content: "";
   font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
   font-size: 1rem;
@@ -616,7 +618,7 @@ header nav .logo-only + .nav-hamburger {
 }
 
 div.alt-nav-wrapper {
-  background-color: #1a242b;
+  background-color: var(--color-dark-gunmetal);
   position: fixed;
   width: 100%;
   top: 75px;
@@ -651,7 +653,8 @@ header nav.alt-nav .default-content-wrapper {
     display: none;
   }
 
-  header nav.alt-two.hide, header nav.alt-nav.hide {
+  header nav.alt-two.hide,
+  header nav.alt-nav.hide {
     opacity: 0;
     display: none;
   }
@@ -703,8 +706,8 @@ header nav.alt-nav .default-content-wrapper {
     box-sizing: border-box;
     display: grid;
     grid-template-areas:
-      'brand tools'
-      'brand sections';
+      "brand tools"
+      "brand sections";
     align-items: center;
     margin: auto;
     height: 150px;
@@ -727,7 +730,7 @@ header nav.alt-nav .default-content-wrapper {
   }
 
   header .logo-only.blue {
-    background-color: var(--color-blue);
+    background-color: var(--color-primary-1);
   }
 
   header nav ul {
@@ -741,14 +744,14 @@ header nav.alt-nav .default-content-wrapper {
     border-bottom: 2px solid transparent;
     padding: 0;
     font-family: lato-regular, sans-serif;
-    font-size: .875rem;
+    font-size: 0.875rem;
   }
 
   header nav .nav-tools ul {
     margin-top: 0;
     gap: 2.3rem;
     line-height: 1.5rem;
-    font-size: .75rem;
+    font-size: 0.75rem;
     visibility: unset;
   }
 
@@ -766,7 +769,7 @@ header nav.alt-nav .default-content-wrapper {
   }
 
   header nav .nav-sections ul > li > ul > li {
-    font-size: .875rem;
+    font-size: 0.875rem;
   }
 
   header nav.alt-two .nav-sections {
@@ -794,9 +797,9 @@ header nav.alt-nav .default-content-wrapper {
   }
 
   .nav-tools ul li.nav-drop::after {
-    content: '\2304';
+    content: "\2304";
     font-size: 14px;
-    color: white;
+    color: var(--color-white);
     margin-left: 5px;
     align-items: center;
     padding-bottom: 7px;
@@ -877,7 +880,7 @@ header nav.alt-nav .default-content-wrapper {
 
   header nav.alt-two .nav-sections a:hover {
     text-decoration: none;
-    border-bottom: 2px solid #006cb4;
+    border-bottom: 2px solid var(--color-primary-1);
   }
 
   /* brand */
@@ -906,12 +909,13 @@ header nav.alt-nav .default-content-wrapper {
     filter: brightness(0) invert(1);
   }
 
-  header nav .nav-sections ul, header nav .nav-tools ul  {
+  header nav .nav-sections ul,
+  header nav .nav-tools ul {
     list-style: none;
     padding-left: 0;
     font-weight: 500;
     display: flex;
-    font-size: .75rem;
+    font-size: 0.75rem;
     flex-flow: wrap;
     align-items: center;
     justify-content: flex-end;
@@ -924,13 +928,14 @@ header nav.alt-nav .default-content-wrapper {
     margin-top: 0;
   }
 
-  header nav.alt-two .nav-sections ul, header nav.alt-two .nav-tools ul  {
+  header nav.alt-two .nav-sections ul,
+  header nav.alt-two .nav-tools ul {
     list-style: none;
     padding-left: 0;
     font-weight: 500;
     display: flex;
     flex-wrap: nowrap;
-    font-size: .75rem;
+    font-size: 0.75rem;
     align-items: center;
     justify-content: flex-end;
     word-wrap: break-word;
@@ -944,7 +949,8 @@ header nav.alt-nav .default-content-wrapper {
     flex-basis: 33%;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li, header nav .nav-tools .default-content-wrapper > ul > li {
+  header nav .nav-sections .default-content-wrapper > ul > li,
+  header nav .nav-tools .default-content-wrapper > ul > li {
     position: relative;
     font-weight: 500;
   }
@@ -961,7 +967,8 @@ header nav.alt-nav .default-content-wrapper {
     padding: 8px 0;
   }
 
-  header nav.alt-two .nav-sections .default-content-wrapper > ul > li, header nav.alt-two .nav-tools .default-content-wrapper > ul > li {
+  header nav.alt-two .nav-sections .default-content-wrapper > ul > li,
+  header nav.alt-two .nav-tools .default-content-wrapper > ul > li {
     font-size: 1rem;
     white-space: nowrap;
   }
@@ -974,7 +981,8 @@ header nav.alt-nav .default-content-wrapper {
     padding: 4px 0;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul, header nav .nav-tools .default-content-wrapper > ul > li > ul {
+  header nav .nav-sections .default-content-wrapper > ul > li > ul,
+  header nav .nav-tools .default-content-wrapper > ul > li > ul {
     display: none;
     position: relative;
   }
@@ -991,7 +999,7 @@ header nav.alt-nav .default-content-wrapper {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: white;
+    background-color: var(--color-white);
     /* stylelint-disable-next-line color-function-notation */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 20%);
     z-index: 1;
@@ -1000,10 +1008,16 @@ header nav.alt-nav .default-content-wrapper {
     margin: 0;
     width: 60px;
     height: auto;
-    color: black;
-}
+    color: var(--color-black);
+  }
 
-  header nav .nav-tools .default-content-wrapper > ul > li[aria-expanded="true"] > ul {
+  header
+    nav
+    .nav-tools
+    .default-content-wrapper
+    > ul
+    > li[aria-expanded="true"]
+    > ul {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -1015,7 +1029,14 @@ header nav.alt-nav .default-content-wrapper {
     height: 1.5rem;
   }
 
-  header nav .nav-tools .default-content-wrapper > ul > li[aria-expanded="true"] > ul a {
+  header
+    nav
+    .nav-tools
+    .default-content-wrapper
+    > ul
+    > li[aria-expanded="true"]
+    > ul
+    a {
     display: flex;
     gap: 0.5rem;
     text-decoration: none;
@@ -1029,7 +1050,13 @@ header nav.alt-nav .default-content-wrapper {
     margin-top: 0;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li:hover > ul.single-column {
+  header
+    nav
+    .nav-sections
+    .default-content-wrapper
+    > ul
+    > li:hover
+    > ul.single-column {
     display: flex;
     flex-direction: column;
     gap: unset;
@@ -1057,7 +1084,7 @@ header nav.alt-nav .default-content-wrapper {
   .loc::before {
     content: "";
     font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
-    font-size: .75rem;
+    font-size: 0.75rem;
     left: -1.25rem;
     position: absolute;
     display: block;
@@ -1075,12 +1102,12 @@ header nav.alt-nav .default-content-wrapper {
     position: absolute;
     top: 100%;
     width: 100%;
-    background-color: white;
+    background-color: var(--color-white);
     z-index: 1;
     padding: 20px;
     margin: 0;
     white-space: nowrap;
-    color: black;
+    color: var(--color-black);
     min-width: 600px;
     left: -50%;
     transform: translateX(-40%);

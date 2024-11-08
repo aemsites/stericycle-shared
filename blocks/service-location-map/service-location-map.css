@@ -94,7 +94,7 @@
 }
 
 .block.service-location-map .map-list .location-item.highlight p {
-  color: var(--color-blue);
+  color: var(--color-primary-1);
 }
 
 .block.service-location-map .map-list .location-item .buy-now:hover {
@@ -125,15 +125,33 @@
   height: 2.5rem;
 }
 
-.block.service-location-map .map-search .map-input-details .map-input-search:active,
-.block.service-location-map .map-search .map-input-details .map-input-location:active {
+.block.service-location-map
+  .map-search
+  .map-input-details
+  .map-input-search:active,
+.block.service-location-map
+  .map-search
+  .map-input-details
+  .map-input-location:active {
   opacity: 0.6;
 }
 
-.block.service-location-map .map-search .map-input-details .map-input-search:focus,
-.block.service-location-map .map-search .map-input-details .map-input-location:focus,
-.block.service-location-map .map-search .map-input-details .map-input-search:hover,
-.block.service-location-map .map-search .map-input-details .map-input-location:hover {
+.block.service-location-map
+  .map-search
+  .map-input-details
+  .map-input-search:focus,
+.block.service-location-map
+  .map-search
+  .map-input-details
+  .map-input-location:focus,
+.block.service-location-map
+  .map-search
+  .map-input-details
+  .map-input-search:hover,
+.block.service-location-map
+  .map-search
+  .map-input-details
+  .map-input-location:hover {
   background-color: var(--color-button-default);
   color: var(--color-white);
 }
@@ -155,7 +173,10 @@
   }
 
   .block.service-location-map .map-search .map-input-details .map-input-search,
-  .block.service-location-map .map-search .map-input-details .map-input-location {
+  .block.service-location-map
+    .map-search
+    .map-input-details
+    .map-input-location {
     width: 30%;
   }
 }
@@ -178,7 +199,10 @@
   }
 
   .block.service-location-map .map-search .map-input-details .map-input-search,
-  .block.service-location-map .map-search .map-input-details .map-input-location {
+  .block.service-location-map
+    .map-search
+    .map-input-details
+    .map-input-location {
     width: 21%;
   }
 
@@ -186,7 +210,11 @@
     width: 70%;
   }
 
-  .block.service-location-map .map-list .location-item .drop-off-details p:has(a) {
+  .block.service-location-map
+    .map-list
+    .location-item
+    .drop-off-details
+    p:has(a) {
     width: 70% !important;
   }
 }

@@ -1,4 +1,4 @@
-main .testimonial-container>div {
+main .testimonial-container > div {
   max-width: unset;
   padding-left: 0;
   padding-right: 0;
@@ -13,7 +13,7 @@ main .testimonial-container>div {
 }
 
 .block.testimonial .content {
-  background-color: var(--color-navy);
+  background-color: var(--color-primary-2);
   padding: 3rem;
   position: relative;
 }
@@ -33,7 +33,7 @@ main .testimonial-container>div {
   flex-direction: column;
 }
 
-.block.testimonial .quotes>div {
+.block.testimonial .quotes > div {
   border: solid var(--color-orange);
   border-width: 0 0 0 0.25rem;
   padding-left: 1.5rem;
@@ -41,18 +41,18 @@ main .testimonial-container>div {
   flex: 1;
 }
 
-.block.testimonial .quotes>div>div:last-of-type {
+.block.testimonial .quotes > div > div:last-of-type {
   padding-top: 2rem;
 }
 
-.block.testimonial .quotes>div>div:last-of-type p {
-  color: var(--color-cyan);
+.block.testimonial .quotes > div > div:last-of-type p {
+  color: var(--color-secondary-3);
 }
 
 @media (min-width: 576px) {
   main .testimonial-container .testimonial-wrapper {
-    background: url("../../icons/testimonial.svg")
-      no-repeat top -0.9rem right 1.5rem, top;
+    background: url("../../icons/testimonial.svg") no-repeat top -0.9rem right 1.5rem,
+      top;
     padding-top: 1rem;
     margin-top: 2rem;
   }

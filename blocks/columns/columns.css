@@ -38,8 +38,8 @@
 }
 
 main .columns span.icon > img {
-  width:2.5rem;
-  height:2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .columns.columns-has-image.steps img {
@@ -67,7 +67,6 @@ main .columns span.icon > img {
 .columns.box-shadow-hover.columns span.icon {
   display: flex;
   height: 150px;
-
 }
 
 .columns.labeled > div:last-of-type span.icon {
@@ -83,7 +82,8 @@ main .columns span.icon > img {
   margin-bottom: auto;
 }
 
-.columns.numeric-list > div, .columns.check-list > div {
+.columns.numeric-list > div,
+.columns.check-list > div {
   align-items: flex-start;
 }
 
@@ -98,12 +98,12 @@ main .columns span.icon > img {
 }
 
 .columns.check-list sup {
-  font-size: .75rem;
+  font-size: 0.75rem;
 }
 
 .columns.check-list ul > li {
-  border-bottom: .0625rem solid #dad6d6;
-  padding: .75rem 3rem;
+  border-bottom: 0.0625rem solid var(--color-light-silver);
+  padding: 0.75rem 3rem;
   background: url("/icons/check-mark-new.svg") no-repeat left center;
 }
 
@@ -160,7 +160,7 @@ main .columns span.icon > img {
 }
 
 .columns.steps h3 {
-  color: var(--color-cyan);
+  color: var(--color-secondary-3);
 }
 
 .columns.steps > div > div > p:nth-of-type(2) {
@@ -188,14 +188,20 @@ main .columns span.icon > img {
 
 .columns.orange-accent-border > div > div::after,
 .columns.cyan-accent-border > div > div::after,
-.columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img))::after,
-.columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img))::after {
+.columns.orange-accent-border.columns-has-image
+  > div
+  > div
+  > p:not(:has(img))::after,
+.columns.cyan-accent-border.columns-has-image
+  > div
+  > div
+  > p:not(:has(img))::after {
   position: absolute;
   left: 0;
   max-height: 80px;
   height: 100%;
   width: 4px;
-  content: '';
+  content: "";
   display: block;
 }
 
@@ -212,13 +218,19 @@ main .columns span.icon > img {
 }
 
 .columns.orange-accent-border > div > div::after,
-.columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img))::after {
+.columns.orange-accent-border.columns-has-image
+  > div
+  > div
+  > p:not(:has(img))::after {
   background: var(--color-orange);
 }
 
 .columns.cyan-accent-border > div > div::after,
-.columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img))::after {
-  background: var(--color-cyan);
+.columns.cyan-accent-border.columns-has-image
+  > div
+  > div
+  > p:not(:has(img))::after {
+  background: var(--color-secondary-3);
 }
 
 .block.columns.center-align > div {
@@ -238,7 +250,7 @@ main .section.blue-headings .columns span.icon {
 
 .columns.numeric-list h3 {
   font-size: 4rem;
-  color: var(--color-cyan);
+  color: var(--color-secondary-3);
 }
 
 .columns.numeric-list ul {
@@ -265,30 +277,31 @@ main .section.blue-headings .columns span.icon {
 
 .columns.numeric-list li:first-of-type > strong {
   font-size: 4rem;
-  color: var(--color-cyan);
+  color: var(--color-secondary-3);
 }
 
 .columns.box-shadow-hover > div > div > h3 {
-  color: #133b5c;
+  color: var(--color-primary-2);
 }
 
-.columns.box-shadow-hover > div > div:hover > h3, .columns.box-shadow-hover > div > div:hover img {
-  color: #006cb4;
-  fill: #006cb4;
+.columns.box-shadow-hover > div > div:hover > h3,
+.columns.box-shadow-hover > div > div:hover img {
+  color: var(--color-primary-1);
+  fill: var(--color-primary-1);
 }
 
 .columns.box-shadow-hover.columns span.icon > img {
   height: 150px;
-  width:auto;
+  width: auto;
 }
 
 .columns.box-shadow-hover > div > div:hover {
-  filter: drop-shadow(0 0 .5rem #DAD6D6);
+  filter: drop-shadow(0 0 0.5rem var(--color-light-silver));
   background-color: var(--color-white);
 }
 
 .section.border-between-rows .columns > div > .columns-img-col img {
-  margin-left: 16.6667%
+  margin-left: 16.6667%;
 }
 
 .section.border-between-rows .columns > div > div {
@@ -296,11 +309,11 @@ main .section.blue-headings .columns span.icon {
 }
 
 .section.border-between-rows .columns > div:first-child {
-  border-bottom: .5px solid var(--color-light-gray);
+  border-bottom: 0.5px solid var(--color-light-gray);
   margin: 1rem 0;
 }
 
-.section.border-between-rows .columns div:nth-child(2) div:nth-child(2)  {
+.section.border-between-rows .columns div:nth-child(2) div:nth-child(2) {
   align-items: flex-start;
 }
 
@@ -357,8 +370,8 @@ main .section.blue-headings .columns span.icon {
   }
 
   main .columns.numeric-list span.icon > img {
-    width:3.75rem;
-    height:3.75rem;
+    width: 3.75rem;
+    height: 3.75rem;
   }
 
   main .columns.logos.columns-4-cols span.icon > img {
@@ -380,19 +393,18 @@ main .section.blue-headings .columns span.icon {
     justify-content: flex-start;
   }
 
-
   main .block.columns.video.columns-2-cols > div div:last-of-type:has(iframe) {
     display: flex;
     flex-direction: column;
     margin-left: 8.3333%;
   }
-  
+
   main .block.columns.video.columns-2-cols > div div:first-of-type:has(iframe) {
     display: flex;
     flex-direction: column;
     margin-right: 8.3333%;
   }
-  
+
   main .block.columns.video.columns-2-cols > div div iframe {
     height: 100%;
   }
@@ -406,22 +418,40 @@ main .section.blue-headings .columns span.icon {
     flex-wrap: wrap;
   }
 
-  main .section.columns-container .block.columns.columns-2-cols.icon-list > div {
+  main
+    .section.columns-container
+    .block.columns.columns-2-cols.icon-list
+    > div {
     display: flex;
     width: 50%;
   }
 
-  main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div:first-of-type {
+  main
+    .section.columns-container
+    .block.columns.columns-2-cols.icon-list
+    > div
+    > div:first-of-type {
     max-width: 25%;
     width: 25%;
     justify-content: flex-start;
   }
 
-  main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div:last-of-type > p:nth-child(2) {
+  main
+    .section.columns-container
+    .block.columns.columns-2-cols.icon-list
+    > div
+    > div:last-of-type
+    > p:nth-child(2) {
     margin-top: 1rem;
   }
 
-  main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div > p.button-container:has(a) > a.button {
+  main
+    .section.columns-container
+    .block.columns.columns-2-cols.icon-list
+    > div
+    > div
+    > p.button-container:has(a)
+    > a.button {
     display: inline-block;
     text-decoration: none;
     background-color: unset;
@@ -439,7 +469,13 @@ main .section.blue-headings .columns span.icon {
     border-radius: unset;
   }
 
-  main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div > p.button-container:has(a) > a.button::after {
+  main
+    .section.columns-container
+    .block.columns.columns-2-cols.icon-list
+    > div
+    > div
+    > p.button-container:has(a)
+    > a.button::after {
     content: "\2B95";
     font-size: 1em;
     font-weight: 500;
@@ -447,40 +483,86 @@ main .section.blue-headings .columns span.icon {
     vertical-align: -0.1em;
   }
 
-
-
-  main .section.columns-container .block.columns.centered-icons > div div:first-of-type:has(.icon),
-  main .section.columns-container .block.columns.centered-icons > div div:last-of-type:has(.icon) {
+  main
+    .section.columns-container
+    .block.columns.centered-icons
+    > div
+    div:first-of-type:has(.icon),
+  main
+    .section.columns-container
+    .block.columns.centered-icons
+    > div
+    div:last-of-type:has(.icon) {
     align-items: center;
-    
   }
 
-  main .section.columns-container .block.columns.align-left > div div:first-of-type:has(.icon),
-  main .section.columns-container .block.columns.align-left > div div:last-of-type:has(.icon) {
+  main
+    .section.columns-container
+    .block.columns.align-left
+    > div
+    div:first-of-type:has(.icon),
+  main
+    .section.columns-container
+    .block.columns.align-left
+    > div
+    div:last-of-type:has(.icon) {
     align-items: start;
-    
   }
 
-  main .section.columns-container.large-icon .block.columns.columns-2-cols div:first-of-type:has(.icon) span,
-  main .section.columns-container.large-icon .block.columns.columns-2-cols div:last-of-type:has(.icon) span {
+  main
+    .section.columns-container.large-icon
+    .block.columns.columns-2-cols
+    div:first-of-type:has(.icon)
+    span,
+  main
+    .section.columns-container.large-icon
+    .block.columns.columns-2-cols
+    div:last-of-type:has(.icon)
+    span {
     height: 100%;
     width: 100%;
   }
 
-  main .section.columns-container .block.columns.centered-icons div:first-of-type:has(.icon) img,
-  main .section.columns-container .block.columns.centered-icons div:last-of-type:has(.icon) img {
+  main
+    .section.columns-container
+    .block.columns.centered-icons
+    div:first-of-type:has(.icon)
+    img,
+  main
+    .section.columns-container
+    .block.columns.centered-icons
+    div:last-of-type:has(.icon)
+    img {
     height: 100%;
     width: 100%;
   }
 
-  main .section.columns-container.large-icon .block.columns.columns-2-cols div:first-of-type:has(.icon) img,
-  main .section.columns-container.large-icon .block.columns.columns-2-cols div:last-of-type:has(.icon) img {
+  main
+    .section.columns-container.large-icon
+    .block.columns.columns-2-cols
+    div:first-of-type:has(.icon)
+    img,
+  main
+    .section.columns-container.large-icon
+    .block.columns.columns-2-cols
+    div:last-of-type:has(.icon)
+    img {
     width: 100%;
     height: 100%;
   }
 
-  main .section.columns-container .block.columns.centered-icons.absolute-position > div div:first-of-type:has(.icon) p,
-  main .section.columns-container .block.columns.centered-icons.absolute-position > div div:last-of-type:has(.icon) p {
+  main
+    .section.columns-container
+    .block.columns.centered-icons.absolute-position
+    > div
+    div:first-of-type:has(.icon)
+    p,
+  main
+    .section.columns-container
+    .block.columns.centered-icons.absolute-position
+    > div
+    div:last-of-type:has(.icon)
+    p {
     position: absolute;
   }
 }

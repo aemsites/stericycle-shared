@@ -61,18 +61,34 @@
 :root {
   /* colors */
   --color-white: #fff;
+  --color-black: #000;
+
+  /* used but not included in the design tokens */
   --color-gray: #f2f6f7;
   --color-light-gray: #ccc;
   --color-medium-gray: #E2E6E7;
   --color-dark-gray: #707271;
   --color-light-silver: #dad6d6;
-  --color-black: #000;
-  --color-navy: #133b5c;
-  --color-blue: #006cb4;
-  --color-cyan: #40bbd5;
+
   --color-orange: #ff5633;
   --color-yellow: #ffc62b;
   --color-dark-gunmetal: #1a242b;
+
+  /* design tokens */
+  --color-primary-1: #006CB4;
+  --color-primary-2: #133B5C;
+
+  --color-secondary-1: #FF5733;
+  --color-secondary-2: #00ABEC;
+  --color-secondary-3: #40BBD5;
+  --color-secondary-4: #FFBA3C;
+
+  --color-tertiary-1: #E4ECED;
+  --color-tertiary-2: #53558B;
+  --color-tertiary-3: #007FAA;
+
+  --color-error: #DC3545;
+  --color-success: #198754;
 
   /* functional colors */
   --color-background: var(--color-white);
@@ -80,8 +96,8 @@
   --color-text: var(--color-black);
   --color-heading: var(--color-black);
   --color-link: #0075aa;
-  --color-link-hover: var(--color-blue);
-  --color-button-default: var(--color-blue);
+  --color-link-hover: var(--color-primary-1);
+  --color-button-default: var(--color-primary-1);
   --color-button-primary: var(--color-yellow);
   --color-button-secondary: var(--color-text);
 
@@ -235,26 +251,26 @@ main li {
 main .section.column-with-list.navy-background.columns-container {
   display: flex;
   flex-wrap: wrap;
-  background-color: var(--color-navy);
+  background-color: var(--color-primary-2);
 }
 
 main .section.column-with-list.blue-background.columns-container {
   display: flex;
   flex-wrap: wrap;
-  background-color: var(--color-blue);
+  background-color: var(--color-primary-1);
 }
 
 main .section.column-with-list.navy-background.columns-container li {
   display: flex;
   padding: .75rem 0;
-  border-bottom: .0625rem solid #dad6d6;
+  border-bottom: .0625rem solid var(--color-light-silver);
   gap: 1rem;
 }
 
 main .section.column-with-list.blue-background.columns-container li {
   display: flex;
   padding: .75rem 0;
-  border-bottom: .0625rem solid #dad6d6;
+  border-bottom: .0625rem solid var(--color-light-silver);
   gap: 1rem;
 }
 
@@ -296,7 +312,7 @@ main .section.faq-container:not(.cyan-border) > div.default-content-wrapper h2 {
 
 main .section.quote-container.orange-border .quote-wrapper::before {
   display: block;
-  background-color: #ff5633;
+  background-color: var(--color-orange);
   content: "";
   height: 100%;
   left: 0;
@@ -306,7 +322,7 @@ main .section.quote-container.orange-border .quote-wrapper::before {
 }
 
 main .section.quote-container.orange-border .quote-attribution p {
-  color: #ff5633;
+  color: var(--color-orange);
 }
 
 main .section.yellow-button  a.button {
@@ -487,12 +503,12 @@ main > div.section.gray-background > div.default-content-wrapper p {
 
 main .section.navy-background,
 main .block.navy-background {
-  background-image: linear-gradient(180deg, var(--color-navy) 0, var(--color-navy));
+  background-image: linear-gradient(180deg, var(--color-primary-2) 0, var(--color-primary-2));
 }
 
 @media screen and (min-width: 576px /* breakpoint-s */) {
   main .section.navy-background.image {
-    background-image: url("/icons/section-bg.svg"), linear-gradient(180deg, transparent 5rem, var(--color-navy) 0, var(--color-navy));
+    background-image: url("/icons/section-bg.svg"), linear-gradient(180deg, transparent 5rem, var(--color-primary-2) 0, var(--color-primary-2));
     background-position: top right;
     background-repeat: no-repeat;
     margin-top: -2rem;
@@ -504,7 +520,7 @@ main .block.navy-background {
 main .section.shredded-paper-background {
   background-image: url("/images/media_1fbb3017116cabdcfddffa6fc667e77de61f301fd.png");
   background-size: cover;
-  background-color: var(--color-navy);
+  background-color: var(--color-primary-2);
   background-position-x: 50%;
   background-position-y: calc(100% - 75px);
   background-repeat: no-repeat;
@@ -525,7 +541,7 @@ main .section.shredded-paper-background > div:first-of-type > p > span.icon > im
 
 main .section.blue-background,
 main .block.blue-background {
-  background-color: var(--color-blue);
+  background-color: var(--color-primary-1);
 }
 
 main .block.center-align * {
@@ -575,15 +591,15 @@ main .centered-headings h6 {
 }
 
 main .cyan-headings {
-  --color-heading: var(--color-cyan);
+  --color-heading: var(--color-secondary-3);
 }
 
 main .blue-headings {
-  --color-heading: var(--color-blue);
+  --color-heading: var(--color-primary-1);
 }
 
 main .navy-headings {
-  --color-heading: var(--color-navy);
+  --color-heading: var(--color-primary-2);
 }
 
 main .list-style-orange-triangles ul {
@@ -938,7 +954,7 @@ body.resource-center p {
 
   .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > a,
   .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > span {
-    color: #1a242b;
+    color: var(--color-dark-gunmetal);
     font-family: var(--font-family-body);
     font-size: .875rem;
     font-weight: 400;
@@ -952,7 +968,7 @@ body.resource-center p {
   }
 
   .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > .title-breadcrumb::before {
-    color: #1a242b;
+    color: var(--color-dark-gunmetal);
     content: "|";
     padding-left: 8px;
     padding-right: 8px;
@@ -1179,7 +1195,7 @@ main .list-style-big-numbers ol > li::before {
   height: 100%;
   max-height: 80px;
   content: "0" counter(items);
-  color: var(--color-cyan);
+  color: var(--color-secondary-3);
   font-weight: 700;
   font-size: 2.5rem;
   line-height: 3.25rem;
@@ -1232,7 +1248,7 @@ main .list-with-background-image > div > h2 {
   font-weight: var(--lato-bold);
   font-size: var(--body-font-size-l);
   line-height: 26px;
-  color: var(--color-navy);
+  color: var(--color-primary-2);
   margin: 1rem 0;
   padding: 0 47px;
 }
@@ -1246,7 +1262,7 @@ main .list-with-background-image > div > h2 {
 @media screen and (min-width: 992px /* breakpoint-l */) {
   main .list-with-background-image > div > h2 {
     grid-area: 1 / 2 / 2 / 5;
-    color: var(--color-navy);
+    color: var(--color-primary-2);
     font-size: 2rem;
     line-height: 2.375rem;
     letter-spacing: -.0009rem;
@@ -1370,7 +1386,7 @@ main .list-with-background-image > div > ul > li:last-child {
     border-style: solid;
     border-color: var(--color-orange);
     content: "0" counter(items);
-    color: var(--color-cyan);
+    color: var(--color-secondary-3);
     font-weight: 700;
     font-size: 4rem;
     line-height: 3.5rem;

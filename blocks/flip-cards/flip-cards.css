@@ -15,7 +15,10 @@
   width: 100%;
 }
 
-.flip-cards h3, .flip-cards h4, .flip-cards h5, .flip-cards h6 {
+.flip-cards h3,
+.flip-cards h4,
+.flip-cards h5,
+.flip-cards h6 {
   font-size: 16px;
 }
 
@@ -40,7 +43,7 @@
 }
 
 .flip-cards > a > div > .flip-card-front {
-  background-color: var(--color-navy);
+  background-color: var(--color-primary-2);
   padding: 3rem 1.5rem;
 }
 
@@ -58,7 +61,7 @@
 }
 
 .flip-cards > a > div > .flip-card-back {
-  background-color: var(--color-blue);
+  background-color: var(--color-primary-1);
   display: none;
   justify-content: space-between;
   padding: 16px 24px;

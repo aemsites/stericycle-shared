@@ -1,5 +1,5 @@
 .simple-cta {
-  background: var(--color-blue);
+  background: var(--color-primary-1);
   margin-bottom: 48px;
   padding: 2rem;
 }
@@ -35,9 +35,9 @@ main .section.simple-cta-container > div {
 
 .simple-cta > div > div:first-of-type > h4 {
   color: var(--color-white);
-  font-size: .9375rem;
+  font-size: 0.9375rem;
   line-height: 1.5625rem;
-  letter-spacing: .0008rem;
+  letter-spacing: 0.0008rem;
   font-weight: var(--lato-bold);
   margin-bottom: 1.5rem;
 }
@@ -82,16 +82,16 @@ main .section.simple-cta-container > div {
     border-color: var(--color-button-primary);
     color: var(--color-text);
     width: 100%;
-    font-size: .875rem;
+    font-size: 0.875rem;
     font-weight: 400;
     line-height: 32px;
     margin: 0;
   }
 }
 
-  .simple-cta > div > div.button-container a {
-    font-size: 1rem;
-    border-width: 2px;
-    font-weight: var(--lato-bold);
-    padding: 0 12px;
-  }
+.simple-cta > div > div.button-container a {
+  font-size: 1rem;
+  border-width: 2px;
+  font-weight: var(--lato-bold);
+  padding: 0 12px;
+}

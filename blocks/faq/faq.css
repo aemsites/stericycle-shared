@@ -15,19 +15,19 @@ main .section.faq-container > div {
   gap: 1rem;
   padding: 1rem 0;
   text-align: left;
-  border-bottom: .0625rem solid var(--color-light-silver);
+  border-bottom: 0.0625rem solid var(--color-light-silver);
 }
 
 .faq-plain:first-child {
-  border-top: .0625rem solid var(--color-light-silver);
+  border-top: 0.0625rem solid var(--color-light-silver);
 }
 
 .section.cyan-border .faq-plain {
-  border-bottom: .0625rem solid var(--color-cyan)
+  border-bottom: 0.0625rem solid var(--color-secondary-3);
 }
 
 .section.cyan-border .faq-plain:first-child {
-  border-top: .0625rem solid var(--color-cyan);
+  border-top: 0.0625rem solid var(--color-secondary-3);
 }
 
 .faq details {
@@ -42,7 +42,7 @@ main .section.faq-container > div {
 
 .faq details summary {
   position: relative;
-  padding: .75rem 2.5rem .75rem .5rem;
+  padding: 0.75rem 2.5rem 0.75rem 0.5rem;
   padding-right: 40px;
   cursor: pointer;
   list-style: none;
@@ -57,7 +57,7 @@ main .section.faq-container > div {
 }
 
 .faq details[open] summary {
-  padding: .5rem 2.5rem .5rem .5rem;
+  padding: 0.5rem 2.5rem 0.5rem 0.5rem;
 }
 
 .faq details summary:focus,
@@ -101,7 +101,7 @@ main .section.faq-container > div {
   height: 1rem;
   top: -7px;
   left: 7px;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .faq details[open] summary span::after {
@@ -121,12 +121,12 @@ main .section.faq-container > div {
 /* Keyframes for opening animation */
 @keyframes open-animation {
   from {
-    padding: .125rem 1rem 1rem;
+    padding: 0.125rem 1rem 1rem;
     max-height: 0;
   }
 
   to {
-    padding: .125rem .5rem .5rem;
+    padding: 0.125rem 0.5rem 0.5rem;
     max-height: 5000vh;
   }
 }
@@ -134,24 +134,24 @@ main .section.faq-container > div {
 /* Keyframes for closing animation */
 @keyframes close-animation {
   from {
-    padding: .125rem .5rem .5rem;
+    padding: 0.125rem 0.5rem 0.5rem;
     max-height: 5000vh;
   }
 
   to {
-    padding: .125rem 1rem 1rem;
+    padding: 0.125rem 1rem 1rem;
     max-height: 0;
   }
 }
 
 /* Applying keyframes when the details element is opened */
 .faq-item.open .faq-item-body {
-  animation: open-animation .3s ease-in-out forwards;
+  animation: open-animation 0.3s ease-in-out forwards;
 }
 
 /* Applying keyframes when the details element is closed */
 .faq-item.close .faq-item-body {
-  animation: close-animation .3s ease-in-out forwards;
+  animation: close-animation 0.3s ease-in-out forwards;
 }
 
 .faq details[open] .faq-item-body p {
@@ -177,29 +177,29 @@ main .section.faq-container > div {
 }
 
 .faq-container .default-content-wrapper > h2 {
-  color: var(--color-blue);
+  color: var(--color-primary-1);
   font-size: var(--body-font-size-l);
   line-height: 1.625rem;
-  letter-spacing: -.0009rem;
-  margin-bottom: .5rem;
+  letter-spacing: -0.0009rem;
+  margin-bottom: 0.5rem;
   padding: 0;
 }
 
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper h2 {
-    color: var(--color-blue);
+    color: var(--color-primary-1);
     font-size: 2rem;
     font-weight: var(--lato-bold);
     line-height: 2.375rem;
-    letter-spacing: -.0009rem;
+    letter-spacing: -0.0009rem;
   }
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
 .faq-container .default-content-wrapper > p {
   font-size: var(--body-font-size-xxs);
-  line-height: .875rem;
-  letter-spacing: -.0006rem;
+  line-height: 0.875rem;
+  letter-spacing: -0.0006rem;
   padding: 0 12px;
 }
 
@@ -219,27 +219,26 @@ main .section.faq-container > div {
     gap: 1rem;
     padding: 1rem 0;
     text-align: left;
-    border-bottom: .0625rem solid var(--color-light-silver);
+    border-bottom: 0.0625rem solid var(--color-light-silver);
   }
 
   .faq-plain:first-child {
-    border-top: .0625rem solid var(--color-light-silver);
+    border-top: 0.0625rem solid var(--color-light-silver);
   }
 
   .section.cyan-border .faq-plain {
-    border-bottom: .0625rem solid var(--color-cyan)
+    border-bottom: 0.0625rem solid var(--color-secondary-3);
   }
 
   .section.cyan-border .faq-plain:first-child {
-    border-top: .0625rem solid var(--color-cyan);
+    border-top: 0.0625rem solid var(--color-secondary-3);
   }
 
   .faq-plain > div:first-child {
     width: 25%;
-    
   }
 
-  .faq-plain div:nth-child(2){
+  .faq-plain div:nth-child(2) {
     width: 65%;
   }
 
@@ -254,7 +253,7 @@ main .section.faq-container > div {
     padding: 0 1.5rem;
   }
 
-  .section.faq-container.flex-row > div  {
+  .section.faq-container.flex-row > div {
     width: 40%;
   }
 
