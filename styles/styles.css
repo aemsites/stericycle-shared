@@ -566,7 +566,8 @@ main .block.blue-background {
   --color-link-hover: var(--color-white);
 }
 
-main .centered-text {
+main .section.centered-text .default-content-wrapper ,
+main .block.centered-text {
   text-align: center;
 }
 
