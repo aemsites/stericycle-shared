@@ -243,8 +243,9 @@ main .section.blue-headings .columns span.icon {
   margin-bottom: 1.5rem;
 }
 
-.columns.numeric-list h4,
-.columns.numeric-list p {
+/* stylelint-disable-next-line no-descending-specificity */
+.columns.numeric-list p,
+.columns.numeric-list h4 {
   margin-bottom: 1.5rem;
 }
 
