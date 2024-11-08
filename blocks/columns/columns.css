@@ -87,6 +87,7 @@ main .columns span.icon > img {
   align-items: flex-start;
 }
 
+
 .columns.steps > div {
   align-items: flex-start;
 }
@@ -239,6 +240,12 @@ main .section.blue-headings .columns span.icon {
 .columns.numeric-list h3 {
   font-size: 4rem;
   color: var(--color-cyan);
+  margin-bottom: 1.5rem;
+}
+
+.columns.numeric-list h4,
+.columns.numeric-list p {
+  margin-bottom: 1.5rem;
 }
 
 .columns.numeric-list ul {
@@ -359,6 +366,7 @@ main .section.blue-headings .columns span.icon {
   main .columns.numeric-list span.icon > img {
     width:3.75rem;
     height:3.75rem;
+    max-width: unset;
   }
 
   main .columns.logos.columns-4-cols span.icon > img {

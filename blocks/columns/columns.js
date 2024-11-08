@@ -59,7 +59,7 @@ function applyHorizontalCellAlignment(block) {
       d.style.display = 'flex';
       d.style.flexDirection = 'column';
       d.style.alignItems = 'stretch';
-      d.style.justifyContent = d.dataset.align;
+      d.style.justifyContent = 'space-between';
     }
   });
 }
