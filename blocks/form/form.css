@@ -87,9 +87,9 @@ main .form-container {
     background-color: var(--form-background-color);
     padding: var(--form-padding);
     width: var(--form-width);
-    margin: var(--nav-height) auto;
     overflow: visible;
 }
+
 
 main .form {
     background-color: var(--form-background-color);
