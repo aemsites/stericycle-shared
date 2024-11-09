@@ -159,12 +159,13 @@ async function buildServiceLocationAutoBlocks(main) {
   ctaText.textContent = 'Buy your one-time shredding services online now';
   const cta = buildBlock('simple-cta', { elems: [ctaText] });
   const ctaButtonWrapper = document.createElement('div');
+  const ctaButtonModifier = document.createElement('strong');
   const ctaButton = document.createElement('a');
   ctaButton.textContent = 'Buy Online';
   // eslint-disable-next-line max-len
   ctaButton.href = 'https://shop-shredit.stericycle.com/commerce_storefront_ui/PurgeWizard.aspx?referrer_url=https://www.shredit.com/en-us/service-locations/greensboro&adobe_mc=MCMID%3D62149416262388660511472413641287259536%7CMCORGID%3DFB4A583F5FEDA3EA0A495EE3%2540AdobeOrg%7CTS%3D1724077192';
-  ctaButtonWrapper.append(ctaButton);
-  decorateButtons(ctaButtonWrapper);
+  ctaButtonModifier.append(ctaButton);
+  ctaButtonWrapper.append(ctaButtonModifier);
   cta.querySelector('div').append(ctaButtonWrapper);
   ctaWrapper.append(cta);
   lastContentSection.append(ctaWrapper);
