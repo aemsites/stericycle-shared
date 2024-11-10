@@ -96,7 +96,7 @@ async function prepareRequest(form, captcha) {
     'Content-Type': 'application/json',
   };
   const body = { data: payload };
-  const url = getSubmitBaseUrl();
+  const url = `${getSubmitBaseUrl()}/bin/edgedelivery/form`;
   return { headers, body, url };
 }
 

@@ -258,7 +258,7 @@ async function loadFonts() {
   }
 }
 
-function autolinkModals(element) {
+async function autolinkModals(element) {
   element.addEventListener('click', async (e) => {
     const origin = e.target.closest('a');
 
@@ -268,6 +268,18 @@ function autolinkModals(element) {
       openModal(origin.href);
     }
   });
+
+  const config = {
+    path: getMetadata('trigger-modal-path'),
+    size: getMetadata('trigger-modal-size'),
+    type: getMetadata('trigger-type'),
+    value: getMetadata('trigger-type-value'),
+  };
+  const { path, type, value } = config;
+  if (path && type && value) {
+    const { openOnTrigger } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
+    openOnTrigger(config);
+  }
 }
 
 /**

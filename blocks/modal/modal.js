@@ -2,6 +2,7 @@ import { loadFragment } from '../fragment/fragment.js';
 import {
   buildBlock, decorateBlock, loadBlock, loadCSS,
 } from '../../scripts/aem.js';
+import { getSubmitBaseUrl } from '../form/constant.js';
 
 /*
   This is not a traditional block, so there is no decorate function.
@@ -9,7 +10,12 @@ import {
   Other blocks can also use the createModal() and openModal() functions.
 */
 
-export async function createModal(contentNodes) {
+let timer;
+let modelOpened = false;
+let stopScroll = true;
+let scrollHandler;
+
+export async function createModal(contentNodes, config) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/modal/modal.css`);
   const dialog = document.createElement('dialog');
   const dialogContent = document.createElement('div');
@@ -42,7 +48,11 @@ export async function createModal(contentNodes) {
   });
 
   dialog.addEventListener('close', () => {
+    if (config) {
+      sessionStorage.setItem(config?.path, true); // prevent closed model from triggering again in same session
+    }
     document.body.classList.remove('modal-open');
+    modelOpened = false;
     block.remove();
   });
 
@@ -56,16 +66,128 @@ export async function createModal(contentNodes) {
       // reset scroll position
       setTimeout(() => { dialogContent.scrollTop = 0; }, 0);
       document.body.classList.add('modal-open');
+      const event = new CustomEvent('modal-opened', { bubbles: true });
+      block.dispatchEvent(event);
     },
   };
 }
 
-export async function openModal(fragmentUrl) {
+export async function openModal(fragmentUrl, config) {
   const path = fragmentUrl.startsWith('http')
     ? new URL(fragmentUrl, window.location).pathname
     : fragmentUrl;
 
   const fragment = await loadFragment(path);
-  const { showModal } = await createModal(fragment.childNodes);
+  const { block, showModal } = await createModal(fragment.childNodes, config);
+  block.addEventListener('modal-opened', () => {
+    if (!config?.path) {
+      if (timer) clearTimeout(timer); // prevent overlapping of modals
+      modelOpened = true;
+    }
+    if (scrollHandler) {
+      document.removeEventListener('scroll', scrollHandler);
+    }
+  });
   showModal();
+}
+
+async function fetchSubmittedForms() {
+  try {
+    const response = await fetch(`${getSubmitBaseUrl()}/bin/submittedforms`);
+    return response.json();
+  } catch (e) {
+    console.log('Error fetching submitted Forms', e);
+  }
+  return null;
+}
+
+function triggerHandler(config) {
+  const { path, value } = config;
+  fetchSubmittedForms().then((data) => {
+    if (!data) {
+      if (!sessionStorage.getItem(path)) { // prevent trigger modal from opening if already closed
+        timer = setTimeout(() => {
+          openModal(path, config);
+        }, parseInt(value, 10) * 1000);
+      }
+    }
+  });
+}
+
+/**
+ * This method triggers the modal after config[value] seconds has elapsed
+ * If a non trigger modal is already open, it will not trigger another modal.
+ * @param {Object} config
+ */
+function openOnPageTime(config) {
+  triggerHandler(config);
+}
+
+/** Limits the execution of the callbackFn function to once every limit milliseconds. */
+function throttle(callbackFn, limit) {
+  if (stopScroll) {
+    let wait = false;
+    return (...args) => {
+      if (!wait) {
+        callbackFn(...args);
+        wait = true;
+
+        setTimeout(() => {
+          wait = false;
+        }, limit);
+      }
+    };
+  }
+  return null;
+}
+
+/** This method triggers the modal if user scrolls to config[value] percentage of the page */
+function scroll(config) {
+  const value = parseInt(config.value, 10);
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = value <= 90 ? (winScroll / height) * 100 : (winScroll / height) * 100 + 10;
+
+  if (stopScroll) {
+    if (scrolled >= value && !sessionStorage.getItem(config.path) && !modelOpened) {
+      modelOpened = true;
+      stopScroll = false;
+      openModal(config.path, config);
+    }
+  }
+}
+
+function openOnScroll(config) {
+  scrollHandler = () => {
+    throttle(() => { scroll(config); }, 200)(config);
+  };
+  document.addEventListener('scroll', scrollHandler);
+}
+
+/**
+ * This method triggers the modal if user tries to exit the page after config[value] seconds has elapsed
+ * If a non trigger modal is already open, it will not trigger another modal.
+ * @param {Object} config
+ */
+function openOnExitIntent(config) {
+  document.addEventListener('mouseleave', () => {
+    if (!modelOpened) triggerHandler(config); // prevent opening of multiple modals
+  });
+
+  document.addEventListener('mouseenter', () => {
+    if (timer) clearTimeout(timer);
+  });
+}
+
+export async function openOnTrigger(config) {
+  const { type } = config;
+  // eslint-disable-next-line default-case
+  switch (type.toLowerCase().trim()) {
+    case 'page-time': openOnPageTime(config);
+      break;
+    case 'scroll-percentage': openOnScroll(config);
+      break;
+    case 'exit-intent': openOnExitIntent(config);
+      break;
+  }
 }
