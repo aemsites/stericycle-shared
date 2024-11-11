@@ -1,69 +1,69 @@
 div.section.download-container {
-    align-items: flex-start;
-    height: 100%;
-    overflow: visible;
+  align-items: flex-start;
+  height: 100%;
+  overflow: visible;
 }
 
 div.section.download-container .default-content-wrapper a {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 div.section.download-container.has-block {
-    padding-right: calc(1.5rem * 0.5);
-    padding-left: calc(1.5rem * 0.5);
+  padding-right: calc(1.5rem * 0.5);
+  padding-left: calc(1.5rem * 0.5);
 }
 
 div.section.download-container > div.download-wrapper {
-    width: 100%;
-    padding-right: calc(1.5rem * 0.5);
-    padding-left: calc(1.5rem * 0.5);
-    display: flex;
-    align-items: flex-start;
-    margin-top: 10px;
-    margin-bottom: unset;
-    top: 120px;
+  width: 100%;
+  padding-right: calc(1.5rem * 0.5);
+  padding-left: calc(1.5rem * 0.5);
+  display: flex;
+  align-items: flex-start;
+  margin-top: 10px;
+  margin-bottom: unset;
+  top: 120px;
 }
 
 div.section.download-container > div.download-wrapper > div.ig-container {
-    background-color: var(--color-gray);
-    width: 100%;
-    padding: 2rem 3rem;
+  background-color: var(--color-gray);
+  width: 100%;
+  padding: 2rem 3rem;
 }
 
 div.section.download-container > div.download-wrapper > div.ig-container h4 {
-    text-align: center;
+  text-align: center;
 }
 
 div.section.download-container
-    > div.download-wrapper
-    > div.ig-container
-    p.button-container {
-    text-align: center;
+  > div.download-wrapper
+  > div.ig-container
+  p.button-container {
+  text-align: center;
 }
 
 div.section.download-container
-    > div.download-wrapper
-    > div.ig-container
-    p.button-container
-    a.button {
-    width: 100%;
+  > div.download-wrapper
+  > div.ig-container
+  p.button-container
+  a.button {
+  width: 100%;
 }
 
 @media screen and (min-width: 992px) {
-    div.section.download-container {
-        height: 100%;
-        overflow: visible;
-        display: flex;
-        align-items: flex-start;
-    }
+  div.section.download-container {
+    height: 100%;
+    overflow: visible;
+    display: flex;
+    align-items: flex-start;
+  }
 
-    div.section.download-container > div.download-wrapper {
-        position: sticky;
-        margin-left: 8.33%;
-        width: 25%;
-    }
+  div.section.download-container > div.download-wrapper {
+    position: sticky;
+    margin-left: 8.33%;
+    width: 25%;
+  }
 
-    div.section.download-container.has-block > div.download-wrapper {
-        width: 100%;
-    }
+  div.section.download-container.has-block > div.download-wrapper {
+    width: 100%;
+  }
 }
