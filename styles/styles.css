@@ -69,7 +69,6 @@
   --color-medium-gray: #E2E6E7;
   --color-dark-gray: #707271;
   --color-light-silver: #dad6d6;
-
   --color-orange: #ff5633;
   --color-yellow: #ffc62b;
   --color-dark-gunmetal: #1a242b;
@@ -77,16 +76,13 @@
   /* design tokens */
   --color-primary-1: #006CB4;
   --color-primary-2: #133B5C;
-
   --color-secondary-1: #FF5733;
   --color-secondary-2: #00ABEC;
   --color-secondary-3: #40BBD5;
   --color-secondary-4: #FFBA3C;
-
   --color-tertiary-1: #E4ECED;
   --color-tertiary-2: #53558B;
   --color-tertiary-3: #007FAA;
-
   --color-error: #DC3545;
   --color-success: #198754;
 
