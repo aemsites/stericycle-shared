@@ -1436,12 +1436,12 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) {
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3)  > div {
-  padding: 1.5rem;
   cursor: pointer;
   box-shadow: 2px 1px 4px rgb(0 0 0 / 20%);
   border-radius:0.5rem;
   background-color: var(--color-gray);
   position: relative;
+  padding: 0rem
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3)  > div:hover {
@@ -1454,6 +1454,8 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover > p {
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div a {
   all: unset;
+  position: relative;
+  display: flex;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child {
@@ -1462,11 +1464,19 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child {
     margin-bottom: 0.8rem;
 }
 
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child > a {
+  padding: 1.5rem 0 0 1.5rem;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child > a {
+  padding: 0 0 1.5rem 1.5rem;
+}
+
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child {
   font-size: 0.875rem;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div  a.button::after {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div::after{
   background-color: var(--color-black);
   border-radius: 50%;
   color: var(--color-white);
@@ -1482,9 +1492,11 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div  a.button::after 
   text-rendering: auto;
   transform: translateY(-50%);
   width: 2rem;
+  margin-left: 8px;
+  pointer-events: none;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover  a.button::after {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover::after {
   background-color: var(--color-white);
   color: var(--color-black);
 }
