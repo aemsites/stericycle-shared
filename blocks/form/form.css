@@ -785,6 +785,14 @@ main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='
     text-align: center;
 }
 
+main .get-a-quote-form-alternate.no-header-color form .fragment-wrapper[data-id^='header'] {
+    background-color: unset;
+}
+
+main .get-a-quote-form-alternate.grey-background form {
+    background-color: var(--color-gray);
+}
+
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] > div > p {
     font-size: 1rem;
 }
