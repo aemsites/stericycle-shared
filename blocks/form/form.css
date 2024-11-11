@@ -1,8 +1,8 @@
 :root {
-    --form-styles-background-color-primary: #fff;
-    --form-styles-label-color: #000;
+    --form-styles-background-color-primary: var(--color-white);
+    --form-styles-label-color: var(--color-black);
     --form-styles-border-color: #818a91;
-    --form-error-color: #dc3545;
+    --form-error-color: var(--color-error);
     --form-styles-button-primary-color: #006cb4;
     --form-styles-button-disable-color: #666;
     --form-styles-button-secondary-color: #ffc62b;
@@ -26,7 +26,7 @@
     --form-input-font-size: 1rem;
     --form-input-disable-color: #ebebe4;
     --form-input-border-size: 1px;
-    --form-input-border-color: #000;
+    --form-input-border-color: var(--color-black);
     --form-input-background-color: var(--form-styles-background-color-primary);
     --form-paragraph-color: var(--form-styles-label-color);
     --form-paragraph-margin: 0 0 0.9rem;
@@ -159,7 +159,7 @@ main .form input[type='radio'] {
     margin: 0;
     position: static;
     z-index: 1;
-    accent-color: #000;
+    accent-color: var(--color-black);
 }
 
 main .form textarea {
@@ -303,7 +303,7 @@ main .file-wrapper .field-dropregion {
 
 main .form form .item-remove {
     padding: 0;
-    background: #fff;
+    background: var(--color-white);
     padding-left: 10px;
 }
 
@@ -360,7 +360,7 @@ main .form .button-wrapper button {
 }
 
 main .form .button-wrapper button:hover {
-    background: #fff;
+    background: var(--color-white);
     color: var(--form-button-background-color);
     border: 2px solid var(--form-button-background-color);
 }
@@ -377,11 +377,11 @@ main .form .button-wrapper button[disabled]:hover {
 
 main .form .button-wrapper.wizard-button-next button, main .form .button-wrapper.submit-wrapper button{
     background-color: var(--form-styles-button-secondary-color);
-    color: #000;
+    color: var(--color-black);
 }
 
 main .form .button-wrapper.wizard-button-next button:hover, main .form .button-wrapper.submit-wrapper button:hover{
-  border: 2px solid #000;
+  border: 2px solid var(--color-black);
 }
 
 /** Wizard Styling */
@@ -642,7 +642,7 @@ main .form .field-wrapper.floating-field > label {
 
 main .form form .panel-wrapper.field-requesttype .radio-wrapper label,
 main .form form .panel-wrapper.field-frequncy .radio-wrapper label{
-    color: #fff;
+    color: var(--color-white);
     cursor: pointer;
 }
 
@@ -720,7 +720,7 @@ main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked) 
   display: block;
   width: 8px;
   height: 13px;
-  border: solid #fff;
+  border: solid var(--color-white);
   border-width: 0 2px 2px 0;
   position: absolute;
   top: 45%;
@@ -812,7 +812,7 @@ main .footer-subscription-form .button-wrapper.field-wrapper.submit-wrapper butt
 
 
 main .footer-subscription-form #get-informed-stay-protected{
-    color:var(--color-blue);
+    color:var(--color-primary-1);
 }
 
 main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-policy"] {

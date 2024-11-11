@@ -9,7 +9,7 @@ div.blog-filter-container > div.default-content-wrapper {
 
 div.blog-filter-container h3 {
     font-size: 1.125rem;
-    color: var(--color-blue);
+    color: var(--color-primary-1);
 }
 
 div.blog-filter-container > div.facet {

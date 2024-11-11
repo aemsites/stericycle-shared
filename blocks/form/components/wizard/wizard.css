@@ -14,15 +14,15 @@ main .form form .wizard .wizard-menu-items .wizard-menu-item {
   border-radius: 15px;
   width: 30px;
   height: 30px;
-  background-color: #fff;
+  background-color: var(--color-white);
 }
 
 main .form form .wizard .wizard-menu-items .wizard-menu-item.wizard-menu-active-item {
-  background-color: #006cb4;
+  background-color: var(--color-primary-1);
 }
 
 main .form form .wizard .wizard-menu-items .wizard-menu-item:has(~ .wizard-menu-active-item) {
-  background-color: #006cb4;
+  background-color: var(--color-primary-1);
   display: inline-block;
   position: relative;
 }
@@ -31,7 +31,7 @@ main .form form .wizard .wizard-menu-items .wizard-menu-item:has(~ .wizard-menu-
   display: block;
   width: 8px;
   height: 13px;
-  border: solid #fff;
+  border: solid var(--color-white);
   border-width: 0 2px 2px 0;
   position: absolute;
   top: 45%;

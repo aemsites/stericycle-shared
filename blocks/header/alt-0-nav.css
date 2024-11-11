@@ -6,7 +6,7 @@
 .block.header {
   position: fixed;
   height: var(--nav-height);
-  background-color: var(--color-blue);
+  background-color: var(--color-primary-1);
   color: var(--color-white);
   width: 100%;
   z-index: 2;

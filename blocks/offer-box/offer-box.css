@@ -91,7 +91,7 @@
 
 .offer-box h2 {
     font-size: 2rem;
-    color: var(--color-blue);
+    color: var(--color-primary-1);
     padding-left: 1rem;
 }
 
@@ -99,7 +99,7 @@
 .offer-box.alternate-1 h3 {
 	padding-left: 0;
 	text-align: center;
-	color: #133b5c;
+	color: var(--color-primary-2);
 }
 
 .block.offer-box.alternate-2 .offer-box-row h3 {

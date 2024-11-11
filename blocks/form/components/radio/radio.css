@@ -19,8 +19,8 @@ main .form form .radio-wrapper.radio-icon label span.icon {
 
 main .form form .radio-wrapper.radio-icon input:checked + label,
 main .form form .radio-wrapper.radio-icon label:hover {
-  color: #006cb4;
-  border-color: #006cb4;
+  color: var(--color-primary-1);
+  border-color: var(--color-primary-1);
 }
 
 main .form form .radio-wrapper.radio-icon input:checked + label > span.icon > img,

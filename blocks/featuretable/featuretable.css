@@ -19,7 +19,7 @@ main .section.featuretable-container > div {
 }
 
 .featuretable-container .default-content-wrapper h2 {
-  color: var(--color-blue);
+  color: var(--color-primary-1);
   line-height: 38px;
   margin-bottom: 24px;
 }
@@ -47,7 +47,7 @@ main .section.featuretable-container > div {
 
 .featuretable table thead tr {
   border: 1.5px solid var(--color-light-gray);
-  background-color: var(--color-blue);
+  background-color: var(--color-primary-1);
 }
 
 .featuretable.white-header table thead tr {
@@ -65,11 +65,11 @@ main .section.featuretable-container > div {
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(1) p {
-  color: var(--color-blue);
+  color: var(--color-primary-1);
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(2) p {
-  color: var(--color-blue);
+  color: var(--color-primary-1);
 }
 
 .featuretable > table > thead > tr:nth-child(1) > th {
@@ -92,11 +92,11 @@ main .section.featuretable-container > div {
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(3) {
-  background-color: var(--color-navy);
+  background-color: var(--color-primary-2);
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(4) {
-  background-color: var(--color-blue);
+  background-color: var(--color-primary-1);
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(5) {
@@ -108,8 +108,8 @@ main .section.featuretable-container > div {
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(3) a {
-  background-color: var(--color-navy);
-  border-color: var(--color-navy);
+  background-color: var(--color-primary-2);
+  border-color: var(--color-primary-2);
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(5) a {
@@ -162,16 +162,16 @@ main .section.featuretable-container > div {
 
 .section.featuretable-container.cyan-border.flex-row .featuretable-wrapper table {
   border: solid;
-  border-color: var(--color-cyan);
+  border-color: var(--color-secondary-3);
 }
 
 .section.featuretable-container.cyan-border.flex-row .featuretable-wrapper table tbody tr > td {
-  border-color: var(--color-cyan);
+  border-color: var(--color-secondary-3);
 }
 
 .section.featuretable-container.cyan-border.flex-row .featuretable-wrapper table thead > tr > th{
   border: solid;
-  border-color: var(--color-cyan);
+  border-color: var(--color-secondary-3);
 }
 
 
