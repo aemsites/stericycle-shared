@@ -1435,43 +1435,38 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) {
   padding: 2rem;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div {
+main .columns.get-a-quote-popup.block > div:nth-child(3)  > div {
   padding: 1.5rem;
   cursor: pointer;
-}
-
-main .columns.get-a-quote-popup.block > div:nth-child(3)  > div.button-container {
   box-shadow: 2px 1px 4px rgb(0 0 0 / 20%);
   border-radius:0.5rem;
   background-color: var(--color-gray);
   position: relative;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div.button-container a {
+main .columns.get-a-quote-popup.block > div:nth-child(3)  > div:hover {
+  background-color: var(--color-navy);
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover > p {
+  color:var(--color-white);
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div a {
   all: unset;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div.button-container a.button {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child {
   font-size: 0.875rem;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div:nth-child(1).button-container a.button::before {
-  content: "2-Day Express";
-  display: block;
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding-bottom: 0.8rem;
-}
-
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div:nth-child(2).button-container a.button::before {
-  content: "5-Day Priority";
-  display: block;
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding-bottom: 0.8rem;
-}
-
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div.button-container a.button::after {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p::after {
   background-color: var(--color-black);
   border-radius: 50%;
   color: var(--color-white);
@@ -1487,6 +1482,11 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div.button-container 
   text-rendering: auto;
   transform: translateY(-50%);
   width: 2rem;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover > p::after {
+  background-color: var(--color-white);
+  color: var(--color-black);
 }
 
 
