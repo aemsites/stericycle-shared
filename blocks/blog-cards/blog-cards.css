@@ -6,8 +6,7 @@ div.blog-card-section {
     overflow: hidden;
 }
 
-div.blog-card-section > div.default-content-wrapper,
-div.blog-card-section > div.default-content-wrapper > h1 {
+div.blog-card-section > div.default-content-wrapper, div.blog-card-section > div.default-content-wrapper > h1 {
     padding-bottom: unset;
     margin-bottom: unset;
 }
@@ -45,12 +44,7 @@ div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card {
     height: 100%;
 }
 
-div.blog-card-section
-    div.latest-posts
-    ul
-    > li
-    > div.blog-teaser-card
-    p.button-container {
+div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card p.button-container {
     margin-left: 1rem;
     margin-bottom: 1rem;
 }
@@ -63,12 +57,9 @@ div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card h5 {
     font-size: 1rem;
 }
 
-div.blog-card-section
-    div.latest-posts
-    ul
-    > li
-    > div.blog-teaser-card
-    .blog-link {
+div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card .blog-link {
+    font-size: .75rem;
+    line-height: .875rem;
     font-size: 0.75rem;
     line-height: 0.875rem;
     padding-left: 1rem;
@@ -76,19 +67,12 @@ div.blog-card-section
     margin-top: auto;
 }
 
-div.blog-card-section
-    div.latest-posts
-    ul
-    > li
-    > div.blog-teaser-card
-    .blog-link
-    a {
+div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card .blog-link a {
     color: var(--color-dark-gray);
     font-weight: 400;
 }
 
-div.blog-card-section a.button.secondary,
-button.secondary {
+div.blog-card-section a.button.secondary, button.secondary {
     background-color: var(--color-primary-1);
     border-color: currentcolor;
     color: var(--color-white);

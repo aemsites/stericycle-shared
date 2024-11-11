@@ -1,52 +1,52 @@
 .clickable-columns {
-    margin: 16px 0;
+  margin: 16px 0;
 }
 
 .clickable-columns > div {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .clickable-columns img {
-    width: 100%;
+  width: 100%;
 }
 
 .clickable-columns .icon {
-    width: auto !important;
+  width: auto !important;
 }
 
 .clickable-columns > div > div {
-    padding: 24px;
-    order: 1;
+  padding: 24px;
+  order: 1;
 }
 
 .clickable-columns > div > .columns-img-col {
-    order: 0;
+  order: 0;
 }
 
 .clickable-columns > div > .columns-img-col img {
-    display: block;
+  display: block;
 }
 
 @media (min-width: 900px) {
-    .clickable-columns > div {
-        flex-direction: unset;
-        gap: 24px;
-    }
+  .clickable-columns > div {
+      flex-direction: unset;
+      gap: 24px;
+  }
 
-    .clickable-columns > div > div {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex: 1;
-        order: unset;
-        cursor: pointer;
-    }
+  .clickable-columns > div > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      order: unset;
+      cursor: pointer;
+  }
 
-    .clickable-columns > div > div:hover {
-        --color-heading: var(--color-primary-1);
+  .clickable-columns > div > div:hover {
+      --color-heading: var(--color-primary-1);
 
-        box-shadow: 0 0.5rem 1rem rgba(0 0 0 / 15%);
-        background-color: var(--color-white);
-    }
+      box-shadow: 0 0.5rem 1rem rgba(0 0 0 / 15%);
+      background-color: var(--color-white);
+  }
 }
