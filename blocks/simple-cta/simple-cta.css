@@ -1,47 +1,47 @@
 .simple-cta {
-  margin-bottom: 48px;
-  padding: 1rem;
+    margin-bottom: 48px;
+    padding: 1rem;
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
-  .simple-cta {
-    padding: 2rem;
-  }
+    .simple-cta {
+        padding: 2rem;
+    }
 }
 
 .simple-cta.slim {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .simple-cta > div {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  gap: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
-  .simple-cta > div {
-    flex-direction: row;
-    text-align: start;
-    gap: 0;
-  }
+    .simple-cta > div {
+        flex-direction: row;
+        text-align: start;
+        gap: 0;
+    }
 }
 
 @media screen and (max-width: 991px /* breakpoint-l */) {
-  .simple-cta * {
-    font-weight: 400 !important;
-  }
+    .simple-cta * {
+        font-weight: 400 !important;
+    }
 }
 
 .simple-cta > div > div {
-  width: 100%;
+    width: 100%;
 }
 
 .simple-cta > div > div:last-of-type {
-  width: fit-content;
+    width: fit-content;
 }
 
 .simple-cta > div > div > h1:last-child,
@@ -50,43 +50,43 @@
 .simple-cta > div > div > h4:last-child,
 .simple-cta > div > div > h5:last-child,
 .simple-cta > div > div > h6:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .simple-cta .button-container:first-child a.button {
-  margin: 0;
+    margin: 0;
 }
 
 /* IMG STYLE */
 
 @media screen and (max-width: 991px /* breakpoint-l */) {
-  .simple-cta > div > div.simple-cta-img-col img {
-    width: 100%;
-    max-width: unset;
-  }
+    .simple-cta > div > div.simple-cta-img-col img {
+        width: 100%;
+        max-width: unset;
+    }
 }
 
 /* ALT STYLE */
 
 .simple-cta.alt .button-container a.button {
-  width: 100%;
+    width: 100%;
 }
 
 .simple-cta.alt > div > div.simple-cta-img-col img {
-  width: 100%;
+    width: 100%;
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
-  .simple-cta.alt a.button {
-    width: 33%;
-  }
+    .simple-cta.alt a.button {
+        width: 33%;
+    }
 
-  .simple-cta.alt > div > div.simple-cta-img-col {
-    width: 33%;
-  }
+    .simple-cta.alt > div > div.simple-cta-img-col {
+        width: 33%;
+    }
 
-  .simple-cta.alt > div > div:last-of-type {
-    width: 77%;
-    margin-left: 8.3%;
-  }
+    .simple-cta.alt > div > div:last-of-type {
+        width: 77%;
+        margin-left: 8.3%;
+    }
 }

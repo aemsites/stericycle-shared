@@ -1,208 +1,208 @@
 .section.featuretable-container {
-  display: none;
+    display: none;
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
-  .section.featuretable-container {
-    display: block;
-    padding: 32px;
-  }
+    .section.featuretable-container {
+        display: block;
+        padding: 32px;
+    }
 }
 
 main .section.featuretable-container > div {
-  padding: 0 12px;
+    padding: 0 12px;
 }
 
 .featuretable {
-  width: 100%;
-  overflow-x: auto;
+    width: 100%;
+    overflow-x: auto;
 }
 
 .featuretable-container .default-content-wrapper h2 {
-  color: var(--color-primary-1);
-  line-height: 38px;
-  margin-bottom: 24px;
+    color: var(--color-primary-1);
+    line-height: 38px;
+    margin-bottom: 24px;
 }
 
 .featuretable table {
-  border: 4px solid var(--color-light-gray);
-  width: 100%;
-  max-width: 100%;
-  border-collapse: collapse;
-  font-size: var(--body-font-size-m);
+    border: 4px solid var(--color-light-gray);
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    font-size: var(--body-font-size-m);
 }
 
 .featuretable table th {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .featuretable table th,
 .featuretable table td {
-  padding: 8px 16px;
+    padding: 8px 16px;
 }
 
 .featuretable table th:nth-child(1) {
-  width: 50%;
+    width: 50%;
 }
 
 .featuretable table thead tr {
-  border: 1.5px solid var(--color-light-gray);
-  background-color: var(--color-primary-1);
+    border: 1.5px solid var(--color-light-gray);
+    background-color: var(--color-primary-1);
 }
 
 .featuretable.white-header table thead tr {
-  background-color: var(--color-white);
+    background-color: var(--color-white);
 }
 
 .featuretable table thead tr p {
-  color: var(--color-white);
-  line-height: 24px;
-  font-weight: 700;
+    color: var(--color-white);
+    line-height: 24px;
+    font-weight: 700;
 }
 
 .featuretable table > tbody > tr > td > p {
-  line-height: 24px;
+    line-height: 24px;
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(1) p {
-  color: var(--color-primary-1);
+    color: var(--color-primary-1);
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(2) p {
-  color: var(--color-primary-1);
+    color: var(--color-primary-1);
 }
 
 .featuretable > table > thead > tr:nth-child(1) > th {
-  padding: 20px;
-  height: fit-content;
-  text-align: center;
-  border: 1.5px solid var(--color-light-gray);
+    padding: 20px;
+    height: fit-content;
+    text-align: center;
+    border: 1.5px solid var(--color-light-gray);
 }
 
 .featuretable.bordered table th:nth-child(1) {
-  width: 44%;
+    width: 44%;
 }
 
 .featuretable.bordered table th:nth-child(2) {
-  width: 42%;
+    width: 42%;
 }
 
 .featuretable.bordered table th:nth-child(3) {
-  width: 14%;
+    width: 14%;
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(3) {
-  background-color: var(--color-primary-2);
+    background-color: var(--color-primary-2);
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(4) {
-  background-color: var(--color-primary-1);
+    background-color: var(--color-primary-1);
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(5) {
-  background-color: var(--color-dark-gray);
+    background-color: var(--color-dark-gray);
 }
 
 .featuretable table > tbody > tr > td > p > a {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(3) a {
-  background-color: var(--color-primary-2);
-  border-color: var(--color-primary-2);
+    background-color: var(--color-primary-2);
+    border-color: var(--color-primary-2);
 }
 
 .featuretable.white-header.tiers table thead th:nth-child(5) a {
-  background-color: var(--color-dark-gray);
-  border-color: var(--color-dark-gray);
+    background-color: var(--color-dark-gray);
+    border-color: var(--color-dark-gray);
 }
 
 /* striped variant */
 .featuretable.striped tbody tr:nth-child(odd) {
-  background-color: var(--overlay-background-color);
+    background-color: var(--overlay-background-color);
 }
 
 .featuretable table > tbody > tr > td {
-  border: 1.5px solid var(--color-light-gray);
-  padding: 20px;
+    border: 1.5px solid var(--color-light-gray);
+    padding: 20px;
 }
 
 .featuretable table > tbody > tr > td:nth-child(1) {
-  text-align: center;
+    text-align: center;
 }
 
 .featuretable table > tbody > tr > td:nth-child(n + 2) {
-  text-align: center;
+    text-align: center;
 }
 
 .featuretable > table > thead > tr:nth-child(2) > td {
-  padding: 20px;
-  height: fit-content;
-  border: 1.5px solid var(--color-light-gray);
+    padding: 20px;
+    height: fit-content;
+    border: 1.5px solid var(--color-light-gray);
 }
 
 .featuretable > table > thead > tr:nth-child(2) > td:nth-child(n + 2) {
-  text-align: center;
+    text-align: center;
 }
 
 .featuretable table > tbody > tr > td:nth-child(n + 2) .icon {
-  height: 25px;
-  width: 25px;
+    height: 25px;
+    width: 25px;
 }
 
 .section.featuretable-container.flex-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .section.featuretable-container.flex-row .featuretable-wrapper {
-  width: 65%;
+    width: 65%;
 }
 
 .section.featuretable-container.cyan-border.flex-row
-  .featuretable-wrapper
-  table {
-  border: solid;
-  border-color: var(--color-secondary-3);
+    .featuretable-wrapper
+    table {
+    border: solid;
+    border-color: var(--color-secondary-3);
 }
 
 .section.featuretable-container.cyan-border.flex-row
-  .featuretable-wrapper
-  table
-  tbody
-  tr
-  > td {
-  border-color: var(--color-secondary-3);
+    .featuretable-wrapper
+    table
+    tbody
+    tr
+    > td {
+    border-color: var(--color-secondary-3);
 }
 
 .section.featuretable-container.cyan-border.flex-row
-  .featuretable-wrapper
-  table
-  thead
-  > tr
-  > th {
-  border: solid;
-  border-color: var(--color-secondary-3);
+    .featuretable-wrapper
+    table
+    thead
+    > tr
+    > th {
+    border: solid;
+    border-color: var(--color-secondary-3);
 }
 
 .section.featuretable-container.cyan-border.flex-row
-  .default-content-wrapper
-  p:first-of-type
-  a {
-  background-color: var(--color-white);
-  color: var(--color-black);
-  border-color: var(--color-black);
+    .default-content-wrapper
+    p:first-of-type
+    a {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border-color: var(--color-black);
 }
 
 .section.featuretable-container.cyan-border.flex-row
-  .default-content-wrapper
-  p:last-of-type
-  a {
-  background-color: var(--color-yellow);
-  color: var(--color-black);
+    .default-content-wrapper
+    p:last-of-type
+    a {
+    background-color: var(--color-yellow);
+    color: var(--color-black);
 }
 
 .section.featuretable-container.cyan-border.flex-row .text-wrapper {
-  justify-items: flex-end;
+    justify-items: flex-end;
 }
