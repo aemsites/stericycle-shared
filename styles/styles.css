@@ -1466,7 +1466,7 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child {
   font-size: 0.875rem;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p::after {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div  a.button::after {
   background-color: var(--color-black);
   border-radius: 50%;
   color: var(--color-white);
@@ -1484,7 +1484,7 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p::after {
   width: 2rem;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover > p::after {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover  a.button::after {
   background-color: var(--color-white);
   color: var(--color-black);
 }
