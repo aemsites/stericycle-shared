@@ -758,13 +758,14 @@ main .get-a-quote-form-alternate form {
     display: block;
 }
 
-main .get-a-quote-form-alternate form .fragment-wrapper[data-id='privacy-policy']  p{
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='privacy-policy']  p,
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='policy']  p{
     font-size: 0.75rem;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
 }
 
-main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] {
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {
     background-color: var(--color-yellow);
     font-size: var(--heading-font-size-m);
     padding: 1rem 2rem;
@@ -772,7 +773,7 @@ main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] {
     font-weight: normal;
 }
 
-main .campaign-form.form .fragment-wrapper[data-id='header'] {
+main .campaign-form.form .fragment-wrapper[data-id^='header'] {
     font-size: var(--heading-font-size-m);
     padding: 2rem 0.8rem 0;
     margin-bottom: 1rem;
@@ -780,15 +781,15 @@ main .campaign-form.form .fragment-wrapper[data-id='header'] {
     gap:0;
 }
 
-main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id='header'] {
+main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='header'] {
     text-align: center;
 }
 
-main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] > div > p {
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] > div > p {
     font-size: 1rem;
 }
 
-main .get-a-quote-form-alternate form .fragment-wrapper[data-id='header'] a{
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] a{
     color: #1a242b;
     text-decoration: underline;
 }

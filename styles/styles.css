@@ -1400,3 +1400,94 @@ main .list-with-background-image > div > ul > li:last-child {
     padding: 32px 48px;
   }
 }
+
+main .columns.get-a-quote-popup.block {
+  box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+  background-color: var(--color-white);
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(1){
+  padding: 1rem;
+  background-color: var(--color-yellow);
+  text-align: center;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(1) a {
+  text-decoration: underline;
+  color: var(--color-text);
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(2) {
+  padding: 1rem;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) {
+  padding: 2rem;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3)  > div {
+  cursor: pointer;
+  box-shadow: 2px 1px 4px rgb(0 0 0 / 20%);
+  border-radius:0.5rem;
+  background-color: var(--color-gray);
+  position: relative;
+  padding: 0;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3)  > div:hover {
+  background-color: var(--color-navy);
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover > p {
+  color:var(--color-white);
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div a {
+  all: unset;
+  position: relative;
+  display: flex;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child > a {
+  padding: 1.5rem 0 0.8rem 1.5rem;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child > a {
+  padding: 0 0 1.5rem 1.5rem;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child {
+  font-size: 0.875rem;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div::after{
+  background-color: var(--color-black);
+  border-radius: 50%;
+  color: var(--color-white);
+  content: ">";
+  display: inline-block;
+  height: 2rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  padding-left: .55rem;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  text-rendering: auto;
+  transform: translateY(-50%);
+  width: 2rem;
+  margin-left: 8px;
+  pointer-events: none;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover::after {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+
