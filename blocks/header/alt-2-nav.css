@@ -1,0 +1,227 @@
+/* stylelint-disable no-descending-specificity */
+
+:root {
+  --nav-height: 150px;
+}
+
+html {
+  scroll-padding-top: var(--nav-height)
+}
+
+.block.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  background-color: var(--color-background-header);
+
+  &.scroll-menu nav .logo,
+  &.scroll-menu nav .nav-sections {
+    opacity: 1;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  &.scroll-menu.hidden nav .logo,
+  &.scroll-menu.hidden nav .nav-sections {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  & nav {
+    height: var(--nav-height);
+
+    & .logo {
+      display: flex;
+      height: 76px;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1rem 2.2rem;
+      background-color: var(--color-background-header);
+
+      & a {
+        display: block;
+        padding: 0 12px;
+        line-height: 1rem;
+        text-decoration: none;
+
+        & img {
+          width: 119px;
+          height: 100%;
+        }
+      }
+    }
+
+    & .nav-sections ul {
+      display: flex;
+      padding: 1rem 5px;
+      list-style: none;
+      height: calc(var(--nav-height) - 78px);
+      background-color: var(--color-dark-gunmetal);;
+
+      & li {
+        display: flex;
+        flex: 1;
+        padding: 0 10px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        &:not(:first-of-type) {
+          border-left: 1px solid var(--color-navy);
+        }
+
+        & a {
+          color: var(--color-white);
+        }
+      }
+    }
+
+    & .nav-contact {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background-color: var(--color-white);
+      box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+
+      & ul {
+        display: flex;
+        list-style: none;
+        padding: 1rem 2rem;
+        justify-content: space-evenly;
+
+        & li {
+          order: 2;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0 .75rem;
+
+          & a[href^="tel:"] {
+            text-align: right;
+            text-decoration: underline;
+
+            &::before {
+              content: 'Call '
+            }
+          }
+        }
+
+        & li.quote-link {
+          order: 1;
+
+          & a {
+            margin: 0;
+            padding: 0 1em;
+            font-size: var(--body-font-size-s);
+            font-weight: var(--lato-regular);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  :root {
+    --nav-height: 130px;
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --nav-height: 76px;
+  }
+
+  .block.header {
+    &.scroll-menu nav .logo,
+    &.scroll-menu nav .nav-sections {
+      opacity: unset;
+      transition: unset;
+    }
+
+    &.scroll-menu.hidden nav .logo,
+    &.scroll-menu.hidden nav .nav-sections {
+      opacity: unset;
+      transform: unset;
+    }
+
+    & nav {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      max-width: 1920px;
+      margin: 0 auto;
+      z-index: 100;
+      background-color: var(--color-background-header);
+
+      & .logo {
+        max-width: unset;
+        margin: 0;
+      }
+
+      & .nav-sections ul {
+        height: 100%;
+        background-color: unset;
+      }
+
+      & .nav-contact {
+        position: relative;
+        background-color: unset;
+        box-shadow: unset;
+
+        & ul {
+          height: 100%;
+
+          & li {
+            order: 1;
+
+            & a[href^="tel:"] {
+              color: var(--color-white);
+
+              &::before {
+                font-family: var(--font-family-fa-free);
+                content: '\f3cd';
+                padding-right: .5rem;
+              }
+            }
+
+            &.quote-link a {
+              font-size: var(--body-font-size-m);
+              font-weight: var(--lato-bold);
+            }
+          }
+        }
+      }
+    }
+
+    &.scroll-menu nav {
+      opacity: 1;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    &.scroll-menu.hidden nav {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .block.header nav .nav-sections ul {
+    gap: 3rem;
+
+    & a {
+      white-space: nowrap;
+    }
+  }
+
+  .block.header nav .nav-contact li.quote-link a {
+    min-width: 186px;
+  }
+}
+

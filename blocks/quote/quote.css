@@ -49,6 +49,10 @@
   margin-top: 2rem;
 }
 
+.block.quote.alternate-1 blockquote .quote-attribution p {
+  color: var(--color-orange);
+}
+
 .block.quote.alternate-1 blockquote .quote-quotation h3 {
   font-weight: 500;
 }

@@ -191,7 +191,6 @@ main .section.faq-container > div {
     font-size: 2rem;
     font-weight: var(--lato-bold);
     line-height: 2.375rem;
-    letter-spacing: -0.0009rem;
   }
 }
 
@@ -199,14 +198,14 @@ main .section.faq-container > div {
 .faq-container .default-content-wrapper > p {
   font-size: var(--body-font-size-xxs);
   line-height: 0.875rem;
-  letter-spacing: -0.0006rem;
+  letter-spacing: 0.01px;
   padding: 0 12px;
 }
 
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper p {
-    font-size: var(--body-font-size-xs);
-    line-height: 1.125rem;
+    font-size: var(--body-font-size-m);
+    line-height: 1.25rem;
   }
 }
 

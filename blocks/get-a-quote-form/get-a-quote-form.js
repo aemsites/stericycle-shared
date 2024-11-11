@@ -9,7 +9,7 @@ export default async function decorate(block) {
   block.append(header);
   const content = document.createElement('div');
   content.classList.add('content');
-  const page = await loadFragment('/forms/multistep-inline');
+  const page = await loadFragment('/forms/location');
   const form = page.querySelector('.form-container');
   content.append(form);
   block.append(content);
