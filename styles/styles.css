@@ -1461,11 +1461,11 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div a {
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child {
     font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 0.8rem;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child > a {
   padding: 1.5rem 0 0 1.5rem;
+  margin-bottom: 0.8rem;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child > a {
