@@ -99,7 +99,7 @@
 }
 
 .block.service-location-map .map-list .location-item.highlight p {
-  color: var(--color-blue);
+  color: var(--color-primary-1);
 }
 
 .block.service-location-map .map-list .location-item .buy-now:hover {

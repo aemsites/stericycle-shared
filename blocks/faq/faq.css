@@ -23,11 +23,11 @@ main .section.faq-container > div {
 }
 
 .section.cyan-border .faq-plain {
-  border-bottom: .0625rem solid var(--color-cyan)
+  border-bottom: .0625rem solid var(--color-secondary-3)
 }
 
 .section.cyan-border .faq-plain:first-child {
-  border-top: .0625rem solid var(--color-cyan);
+  border-top: .0625rem solid var(--color-secondary-3);
 }
 
 .faq details {
@@ -169,11 +169,11 @@ main .section.faq-container > div {
 }
 
 .faq-container .default-content-wrapper > h2 {
-  color: var(--color-blue);
   font-size: var(--heading-font-size-l);
   font-weight: var(--lato-bold);
   line-height: var(--font-line-height-m);
   letter-spacing: var(--font-letter-spacing-s);
+  color: var(--color-primary-1);
   margin-bottom: .5rem;
   padding: 0;
 }
@@ -181,6 +181,9 @@ main .section.faq-container > div {
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper h2 {
     font-weight: var(--lato-semibold);
+    color: var(--color-primary-1);
+    font-size: 2rem;
+    line-height: 2.375rem;
   }
 }
 
@@ -196,6 +199,7 @@ main .section.faq-container > div {
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper p {
     font-size: var(--text-font-size-s);
+    line-height: 1.25rem;
   }
 }
 
@@ -216,11 +220,11 @@ main .section.faq-container > div {
   }
 
   .section.cyan-border .faq-plain {
-    border-bottom: .0625rem solid var(--color-cyan)
+    border-bottom: .0625rem solid var(--color-secondary-3)
   }
 
   .section.cyan-border .faq-plain:first-child {
-    border-top: .0625rem solid var(--color-cyan);
+    border-top: .0625rem solid var(--color-secondary-3);
   }
 
   .faq-plain > div:first-child {

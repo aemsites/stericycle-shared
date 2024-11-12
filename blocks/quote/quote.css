@@ -13,7 +13,7 @@
 
 .block.quote.alternate-1 blockquote {
   padding-left: 0;
-  border-left: 4px solid #ff5633;
+  border-left: 4px solid var(--color-orange);
 }
 
 .quote blockquote .quote-quotation {
@@ -50,6 +50,10 @@
 .block.quote.alternate-1 blockquote .quote-attribution {
   padding-left: 54px;
   margin-top: 2rem;
+}
+
+.block.quote.alternate-1 blockquote .quote-attribution p {
+  color: var(--color-orange);
 }
 
 .block.quote.alternate-1 blockquote .quote-quotation h3 {

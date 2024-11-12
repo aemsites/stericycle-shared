@@ -35,13 +35,16 @@
   }
 
   .clickable-columns > div > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     flex: 1;
     order: unset;
     cursor: pointer;
   }
 
   .clickable-columns > div > div:hover {
-    --color-heading: var(--color-blue);
+    --color-heading: var(--color-primary-1);
 
     box-shadow: 0 0.5rem 1rem rgba(0 0 0 / 15%);
     background-color: var(--color-white);

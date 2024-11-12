@@ -87,6 +87,7 @@ main .columns span.icon > img {
   align-items: flex-start;
 }
 
+
 .columns.steps > div {
   align-items: flex-start;
 }
@@ -163,7 +164,7 @@ main .columns span.icon > img {
 }
 
 .columns.steps h3 {
-  color: var(--color-cyan);
+  color: var(--color-secondary-3);
 }
 
 .columns.steps > div > div > p:nth-of-type(2) {
@@ -221,7 +222,7 @@ main .columns span.icon > img {
 
 .columns.cyan-accent-border > div > div::after,
 .columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img))::after {
-  background: var(--color-cyan);
+  background: var(--color-secondary-3);
 }
 
 .block.columns.center-align > div {
@@ -241,7 +242,14 @@ main .section.blue-headings .columns span.icon {
 
 .columns.numeric-list h3 {
   font-size: 4rem;
-  color: var(--color-cyan);
+  color: var(--color-secondary-3);
+  margin-bottom: 1.5rem;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.columns.numeric-list p,
+.columns.numeric-list h4 {
+  margin-bottom: 1.5rem;
 }
 
 .columns.numeric-list ul {
@@ -268,16 +276,16 @@ main .section.blue-headings .columns span.icon {
 
 .columns.numeric-list li:first-of-type > strong {
   font-size: 4rem;
-  color: var(--color-cyan);
+  color: var(--color-secondary-3);
 }
 
 .columns.box-shadow-hover > div > div > h3 {
-  color: #133b5c;
+  color: var(--color-primary-2);
 }
 
 .columns.box-shadow-hover > div > div:hover > h3, .columns.box-shadow-hover > div > div:hover img {
-  color: #006cb4;
-  fill: #006cb4;
+  color: var(--color-primary-1);
+  fill: var(--color-primary-1);
 }
 
 .columns.box-shadow-hover.columns span.icon > img {
@@ -358,6 +366,7 @@ main .section.blue-headings .columns span.icon {
   main .columns.numeric-list span.icon > img {
     width:3.75rem;
     height:3.75rem;
+    max-width: unset;
   }
 
   main .columns.logos.columns-4-cols span.icon > img {

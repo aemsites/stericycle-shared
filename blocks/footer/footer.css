@@ -2,11 +2,11 @@
 
 footer {
   padding: 2rem 0.8rem;
-  background-color: var(--color-blue);
   font-size: var(--text-font-size-s);
   font-weight: var(--lato-regular);
   line-height: var(--font-line-height-xl);
   letter-spacing: var(--font-letter-spacing-s);
+  background-color: var(--color-primary-1);
   color: var(--color-white);
 }
 

@@ -12,7 +12,7 @@ div.blog-filter-container h3 {
     font-weight: var(--lato-bold);
     line-height: var(--font-line-height-l);
     letter-spacing: var(--font-letter-spacing-s);
-    color: var(--color-blue);
+    color: var(--color-primary-1);
 }
 
 div.blog-filter-container > div.facet {
