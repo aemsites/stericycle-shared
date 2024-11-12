@@ -227,10 +227,7 @@ p, dl, ol, ul, pre, blockquote {
   margin: 0;
 }
 
-main li {
-  position: relative;
-  list-style: none;
-}
+
 
 main .section.column-with-list.navy-background.columns-container {
   display: flex;
@@ -333,15 +330,21 @@ main div.column-with-list li::before {
 
 main .default-content-wrapper p,
 main .default-content-wrapper dl,
-main .default-content-wrapper ul,
 main .default-content-wrapper pre,
 main .default-content-wrapper blockquote {
-  margin: 0 0 16px;
+  margin: 0 0 1rem;
 }
 
-main .default-content-wrapper ol {
+main .default-content-wrapper ol,
+main .default-content-wrapper ul {
   margin: 0 0 1rem 1rem;
 }
+
+main .default-content-wrapper ul {
+  padding: 0;
+  list-style-type: disc;
+}
+
 
 code, pre {
   color: var(--color-text);
