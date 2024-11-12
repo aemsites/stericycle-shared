@@ -902,3 +902,27 @@ main .two-column.form-container .form-wrapper {
         margin-top: 0;
     }
 }
+
+main .two-column-alternate {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    max-width: var(--section-width);
+    margin: auto;
+}
+
+main .two-column-alternate > div:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+main .two-column-alternate > div:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+main .two-column-alternate > div:nth-child(3) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+}
