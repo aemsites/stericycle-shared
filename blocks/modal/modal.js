@@ -10,9 +10,8 @@ import { getSubmitBaseUrl } from '../form/constant.js';
   Other blocks can also use the createModal() and openModal() functions.
 */
 
+let stopTrigger = false;
 let timer;
-let modelOpened = false;
-let stopScroll = true;
 let scrollHandler;
 
 export async function createModal(contentNodes, config) {
@@ -51,8 +50,8 @@ export async function createModal(contentNodes, config) {
     if (config) {
       sessionStorage.setItem(config?.path, true); // prevent closed model from triggering again in same session
     }
+    stopTrigger = false;
     document.body.classList.remove('modal-open');
-    modelOpened = false;
     block.remove();
   });
 
@@ -80,10 +79,7 @@ export async function openModal(fragmentUrl, config) {
   const fragment = await loadFragment(path);
   const { block, showModal } = await createModal(fragment.childNodes, config);
   block.addEventListener('modal-opened', () => {
-    if (!config?.path) {
-      if (timer) clearTimeout(timer); // prevent overlapping of modals
-      modelOpened = true;
-    }
+    stopTrigger = true; // stop triggering when modal is open
     if (scrollHandler) {
       document.removeEventListener('scroll', scrollHandler);
     }
@@ -107,7 +103,7 @@ function triggerHandler(config) {
     if (!data) {
       if (!sessionStorage.getItem(path)) { // prevent trigger modal from opening if already closed
         timer = setTimeout(() => {
-          openModal(path, config);
+          if (!stopTrigger) openModal(path, config); // stop trigger modal from opening if another modal is open
         }, parseInt(value, 10) * 1000);
       }
     }
@@ -125,11 +121,11 @@ function openOnPageTime(config) {
 
 /** Limits the execution of the callbackFn function to once every limit milliseconds. */
 function throttle(callbackFn, limit) {
-  if (stopScroll) {
+  if (!stopTrigger) {
     let wait = false;
-    return (...args) => {
+    return () => {
       if (!wait) {
-        callbackFn(...args);
+        callbackFn();
         wait = true;
 
         setTimeout(() => {
@@ -148,19 +144,14 @@ function scroll(config) {
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   const scrolled = value <= 90 ? (winScroll / height) * 100 : (winScroll / height) * 100 + 10;
 
-  if (stopScroll) {
-    if (scrolled >= value && !sessionStorage.getItem(config.path) && !modelOpened) {
-      modelOpened = true;
-      stopScroll = false;
-      openModal(config.path, config);
-    }
+  if (scrolled >= value && !sessionStorage.getItem(config.path) && !stopTrigger) {
+    stopTrigger = true;
+    openModal(config.path, config);
   }
 }
 
 function openOnScroll(config) {
-  scrollHandler = () => {
-    throttle(() => { scroll(config); }, 200)(config);
-  };
+  scrollHandler = throttle(() => { scroll(config); }, 200);
   document.addEventListener('scroll', scrollHandler);
 }
 
@@ -171,7 +162,7 @@ function openOnScroll(config) {
  */
 function openOnExitIntent(config) {
   document.addEventListener('mouseleave', () => {
-    if (!modelOpened) triggerHandler(config); // prevent opening of multiple modals
+    triggerHandler(config);
   });
 
   document.addEventListener('mouseenter', () => {
@@ -181,7 +172,6 @@ function openOnExitIntent(config) {
 
 export async function openOnTrigger(config) {
   const { type } = config;
-  // eslint-disable-next-line default-case
   switch (type.toLowerCase().trim()) {
     case 'page-time': openOnPageTime(config);
       break;
@@ -189,5 +179,6 @@ export async function openOnTrigger(config) {
       break;
     case 'exit-intent': openOnExitIntent(config);
       break;
+    default: throw new Error('Invalid trigger type');
   }
 }
