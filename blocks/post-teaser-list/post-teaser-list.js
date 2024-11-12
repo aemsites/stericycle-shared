@@ -87,10 +87,10 @@ export default function decorate(block) {
     addPost(list, null, true);
   }
 
-  getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
-    list.innerHTML = '';
-    posts.forEach((post) => {
-      addPost(list, post, false);
-    });
-  });
+  // getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
+  //   list.innerHTML = '';
+  //   posts.forEach((post) => {
+  //     addPost(list, post, false);
+  //   });
+  // });
 }
