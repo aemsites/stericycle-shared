@@ -506,6 +506,58 @@
     &[aria-expanded="true"] .primary-nav-wrapper {
       left: 15%;
     }
+
+    & > .floating-contact {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      gap: 1px;
+      background-color: var(--color-white);
+
+      & > div {
+        flex: 1;
+
+        & > a {
+          display: flex;
+          gap: 8px;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 8px;
+          align-items: center;
+          justify-content: center;
+          background-color: var(--color-button-primary);
+          border: none;
+          border-radius: 0;
+          font-size: var(--body-font-size-s);
+          color: var(--color-black);
+          font-weight: var(--lato-bold);
+        }
+
+        &.sales-contact a::before {
+          content: '\f095';
+          color: var(--color-black);
+          font-family: var(--font-family-fa-free);
+          font-size: 16px;
+          cursor: pointer;
+          font-weight: 900;
+          text-align: center;
+          transform: rotate(-10deg);
+        }
+
+        &.quote-container a::before {
+          content: '\f15c';
+          color: var(--color-black);
+          font-family: var(--font-family-fa-free);
+          font-size: 16px;
+          cursor: pointer;
+          font-weight: 900;
+          text-align: center;
+        }
+      }
+    }
   }
 }
 
@@ -960,6 +1012,10 @@
       &[aria-expanded="true"] .primary-nav-wrapper {
         inset: unset;
         left: unset;
+      }
+
+      & > .floating-contact {
+        display: none;
       }
     }
   }
