@@ -270,10 +270,10 @@ async function autolinkModals(element) {
   });
 
   const config = {
-    path: getMetadata('trigger-modal-path'),
-    size: getMetadata('trigger-modal-size'),
-    type: getMetadata('trigger-type'),
-    value: getMetadata('trigger-type-value'),
+    path: getMetadata('modal-path'),
+    size: getMetadata('modal-size'),
+    type: getMetadata('modal-trigger'),
+    value: getMetadata('modal-trigger-threshold'),
   };
   const { path, type, value } = config;
   if (path && type && value) {

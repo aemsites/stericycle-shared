@@ -173,11 +173,11 @@ function openOnExitIntent(config) {
 export async function openOnTrigger(config) {
   const { type } = config;
   switch (type.toLowerCase().trim()) {
-    case 'page-time': openOnPageTime(config);
+    case 'time': openOnPageTime(config);
       break;
-    case 'scroll-percentage': openOnScroll(config);
+    case 'scroll': openOnScroll(config);
       break;
-    case 'exit-intent': openOnExitIntent(config);
+    case 'exit': openOnExitIntent(config);
       break;
     default: throw new Error('Invalid trigger type');
   }
