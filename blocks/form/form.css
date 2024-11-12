@@ -789,6 +789,10 @@ main .get-a-quote-form-alternate.no-header-color form .fragment-wrapper[data-id^
     background-color: unset;
 }
 
+main .footer-subscription-form  form {
+    gap: 0;
+}
+
 main .get-a-quote-form-alternate.grey-background form {
     background-color: var(--color-gray);
 }
@@ -826,10 +830,6 @@ main .footer-subscription-form #get-informed-stay-protected{
 main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-policy"] {
     text-decoration: underline;
     font-size: 0.87rem;
-}
-
-main .footer-subscription-form  form {
-    gap: 0;
 }
 
 main .footer-subscription-form form .fragment-wrapper > div p:nth-of-type(2) {
