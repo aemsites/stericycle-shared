@@ -39,7 +39,7 @@ main .section.hero-container {
 
       & p.button-container {
         & a {
-          font-weight: var(--lato-regular);
+          font-weight: var(--lato-bold);
           font-size: var(--body-font-size-s);
           border-width: 1px;
         }
