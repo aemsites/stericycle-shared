@@ -773,7 +773,8 @@ main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {
     font-weight: normal;
 }
 
-main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h3{
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h3,
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h2{
     color: var(--color-black);
 }
 
