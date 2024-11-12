@@ -17,6 +17,16 @@ function buildMarketingPage(main) {
     const bodyWrapper = main.querySelector('div.body-wrapper');
     const templateContainer = document.createElement('div');
     templateContainer.classList.add('template-container');
+    if(hasHardDriveBackground){
+      templateContainer.style.backgroundImage = `url(/images/media_18801dc9f2feef2abd2efd2bf6dfacd12e4469a20.png)`;
+      templateContainer.style.backgroundPositionY = '50%';
+    } else if (hasShreddedPaperBackground) {
+      templateContainer.style.backgroundImage = `url("/images/sid-shreded-paper-background.png")`
+      templateContainer.style.backgroundPositionY = '100%';
+    }
+    templateContainer.style.backgroundSize = 'cover';
+    templateContainer.style.backgroundPositionX = '50%';
+    templateContainer.style.backgroundRepeat = 'no-repeat';
 
     templateContainer.append(bodyWrapper.cloneNode(true));
     bodyWrapper.replaceWith(templateContainer);

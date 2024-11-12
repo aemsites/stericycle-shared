@@ -30,21 +30,6 @@ main .section > div.hero-wrapper {
   width: 2.5rem;
 }
 
-main div.template-container:has(.hard-drive-background) {
-  background-size: cover;
-  background-position-x: 50%;
-  background-position-y: 50%;
-  background-image: url("/images/media_18801dc9f2feef2abd2efd2bf6dfacd12e4469a20.png");
-  background-repeat: no-repeat;
-}
-
-main div.template-container:has(.shredded-paper-background-column) {
-  background-image: url("/images/sid-shreded-paper-background.png");
-  background-size: cover;
-  background-position-x: 50%;
-  background-position-y: 100%;
-}
-
 @media (min-width: 992px /* breakpoint-l */
 ) {
   .with-sidebar main > .template-container > .body-wrapper {
@@ -72,5 +57,23 @@ main div.template-container:has(.shredded-paper-background-column) {
   .with-sidebar main > .template-container > .body-wrapper > .page-sidebar {
     width: 33.3333%;
     z-index: 1;
+  }
+
+  @media (min-width: 992px /* breakpoint-l */) {
+    .with-sidebar main > .template-container > .body-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0;
+    }
+
+    .with-sidebar main > .template-container > .body-wrapper > .page-content {
+      width: 66.6667%;
+    }
+
+    .with-sidebar main > .template-container > .body-wrapper > .page-sidebar {
+      width: 31%;
+      z-index: 1;
+    }
   }
 }
