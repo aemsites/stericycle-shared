@@ -88,9 +88,9 @@ export default function decorate(block) {
   }
 
   getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
-    list.innerHTML = '';
-    posts.forEach((post) => {
-      addPost(list, post, false);
+    requestAnimationFrame(() => {
+      list.innerHTML = ''; // Clear dummies
+      posts.forEach((post) => addPost(list, post, false));
     });
   });
 }
