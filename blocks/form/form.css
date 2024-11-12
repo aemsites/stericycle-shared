@@ -860,34 +860,7 @@ main .campaign-form.form form {
     background-color: var(--color-gray);
 }
 
-main .two-column.form-container {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-main .two-column.form-container .default-content-wrapper {
-    flex: 0 0 67%;
-    max-width: 884px;
-    padding: 0;
-    margin: 2rem 4rem 0;
-}
-
-main .two-column.form-container .form-wrapper {
-    flex: 0 0 33%;
-    max-width: 436px;
-    padding: 0;
-    margin: 2rem 0 0;
-}
-
 @media (max-width: 1000px) {
-    main .two-column.form-container {
-        flex-direction: column; /* Stack items vertically */
-        align-items: center;
-        overflow-x: hidden;
-    }
-
     main .two-column.form-container .default-content-wrapper {
         width: 90%;
     }
@@ -907,34 +880,28 @@ main .two-column.form-container .form-wrapper {
         margin-top: 0;
     }
 
-    main .two-column-alternate.form-container {
+    main .two-column.form-container {
         display: table-row;
     }
 
 }
 
-main .two-column-alternate {
+
+main .two-column.form-container {
     display: grid;
     grid-template-columns: minmax(0, 884px) minmax(0, 436px); /* Set max-width for each column */
-    grid-template-rows: auto 2fr;
+    grid-auto-rows: auto;
     margin: auto;
-    grid-gap: 0;
+    gap: 0;
     justify-content: center;
 }
 
-main .two-column-alternate > div:nth-child(1) {
+main .two-column.form-container > div {
     grid-column: 1;
-    grid-row: 1;
-    margin-bottom: 0;
 }
 
-main .two-column-alternate > div:nth-child(2) {
-    grid-column: 1;
-    grid-row: 2;
-    margin-top:0;
-}
-
-main .two-column-alternate > div:nth-child(3) {
+/* Place the last child in the second column */
+main .two-column.form-container > div:nth-last-child(1) {
     grid-column: 2;
-    grid-row: 1 / span 2;
+    grid-row: 1 / span 4;
 }
