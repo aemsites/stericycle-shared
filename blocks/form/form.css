@@ -773,6 +773,10 @@ main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {
     font-weight: normal;
 }
 
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h3{
+    color: var(--color-black);
+}
+
 main .campaign-form.form .fragment-wrapper[data-id^='header'] {
     font-size: var(--heading-font-size-m);
     padding: 2rem 0.8rem 0;
@@ -901,25 +905,32 @@ main .two-column.form-container .form-wrapper {
         padding: 13px 0;
         margin-top: 0;
     }
+
+    main .two-column-alternate.form-container {
+        display: table-row;
+    }
+
 }
 
 main .two-column-alternate {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto;
-    align-items: center;
-    max-width: var(--section-width);
+    grid-template-columns: minmax(0, 884px) minmax(0, 436px); /* Set max-width for each column */
+    grid-template-rows: auto 2fr;
     margin: auto;
+    grid-gap: 0;
+    justify-content: center;
 }
 
 main .two-column-alternate > div:nth-child(1) {
     grid-column: 1;
     grid-row: 1;
+    margin-bottom: 0;
 }
 
 main .two-column-alternate > div:nth-child(2) {
     grid-column: 1;
     grid-row: 2;
+    margin-top:0;
 }
 
 main .two-column-alternate > div:nth-child(3) {
