@@ -6,11 +6,6 @@ main .facet-list-container ul li::before {
     content: unset;
 }
 
-div.facet-list-container {
-    display: flex;
-    flex-flow: column;
-}
-
 div.facet-list-container > div.default-content-wrapper {
     width: 100%;
 }
@@ -27,6 +22,7 @@ div.facet-list-container > div.facet {
 div.facet-list-container > div.facet > i.filter-icon {
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 0.5rem;
 }
 
 div.facet-list-container > div.facet > i.filter-icon::before {
@@ -47,8 +43,9 @@ div.facet-list-container > div.results {
     width: 100%;
 }
 
-div.facet-list-container > div.facet ul > li > div > i {
+div.facet-list-container > div.facet .head > i {
     display: none;
+    cursor: pointer;
 }
 
 div.facet-list-container div.results div.item-date {
@@ -114,6 +111,15 @@ div.facet-list-wrapper ul.pagination li > button:not(:disabled) {
     margin-right: .5rem;
 }
 
+div.facet .facet-list-container {
+    display: none;
+    flex-direction: column;
+}
+
+div.facet .facet-list-container.unhide {
+    display: flex;
+}
+
 @media screen and (min-width: 992px) {
     div.facet-list-container h3 {
         font-size: 1.625rem;
@@ -160,11 +166,15 @@ div.facet-list-wrapper ul.pagination li > button:not(:disabled) {
         max-width: 75%;
     }
 
-    div.facet-list-container > div.facet ul > li > div > i {
+    div.facet-list-container > div.facet .head > i {
         display: inline-block;
         font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
         text-transform: uppercase;
         font-style: normal;
+    }
+
+    div.facet .facet-list-container {
+        display: flex;
     }
 }
 
@@ -175,6 +185,7 @@ div.facet-list-container > div.facet div.facet-group {
 div.facet-list-container > div.facet ul {
     margin: 0;
     padding-left: 0;
+    margin-bottom: 1rem;
 }
 
 div.facet-list-container > div.facet ul > li > div {
@@ -187,13 +198,19 @@ div.facet-list-container > div.facet ul > li > div {
     margin-bottom: 1rem;
 }
 
-div.facet-list-container > div.facet ul > li > div.topic-head {
+div.facet-list-container > div.head {
     font-family: var(--font-family-lato), sans-serif;
     font-weight: 800;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 3.125rem;
 }
 
 div.facet-list-container > div.facet ul > li > div.facet-group {
-    display: block;
+    display: flex;
+    justify-content: start;
 }
 
 div.facet-list-container > div.facet ul > li > div.facet-group > input[type="checkbox"] {
@@ -205,7 +222,7 @@ div.facet-list-container > div.facet ul > li > div.facet-group > input[type="che
     width: 1rem;
 }
 
-div.facet-list-container > div.facet ul > li > div>  i::before {
+div.facet-list-container > div.facet .head > i::before {
     content: "";
     font-size: .5rem;
 }
