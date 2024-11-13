@@ -72,29 +72,29 @@ function addPost(list, post, isLoading, index) {
 }
 
 export default function decorate(block) {
-  const { type, columns } = readBlockConfig(block);
-  let columnCount = parseInt(columns, 10);
-  if (Number.isNaN(columnCount)) {
-    columnCount = 4;
-  }
-  block.innerHTML = '';
-
-  // create wrapper
-  const list = document.createElement('ul');
-  list.classList.add('teaser-list');
-  block.append(list);
-
-  // populate with dummies while loading
-  // for (let i = 0; i < columnCount; i += 1) {
-  //   addPost(list, null, true, i);
+  // const { type, columns } = readBlockConfig(block);
+  // let columnCount = parseInt(columns, 10);
+  // if (Number.isNaN(columnCount)) {
+  //   columnCount = 4;
   // }
+  // block.innerHTML = '';
 
-   // Use DocumentFragment for batch DOM updates
-   const fragment = document.createDocumentFragment();
-   for (let i = 0; i < columnCount; i += 1) {
-     addPost(fragment, null, true, i);
-   }
-   list.append(fragment);
+  // // create wrapper
+  // const list = document.createElement('ul');
+  // list.classList.add('teaser-list');
+  // block.append(list);
+
+  // // populate with dummies while loading
+  // // for (let i = 0; i < columnCount; i += 1) {
+  // //   addPost(list, null, true, i);
+  // // }
+
+  //  // Use DocumentFragment for batch DOM updates
+  //  const fragment = document.createDocumentFragment();
+  //  for (let i = 0; i < columnCount; i += 1) {
+  //    addPost(fragment, null, true, i);
+  //  }
+  //  list.append(fragment);
 
    
 
