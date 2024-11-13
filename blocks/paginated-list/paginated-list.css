@@ -2,6 +2,7 @@ div.paginated-list-wrapper > ul {
     list-style: none;
     margin-left: 0;
     margin-bottom: 1rem;
+    padding: 0;
 }
 
 div.paginated-list-wrapper > ul > li {
