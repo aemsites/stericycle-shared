@@ -356,7 +356,8 @@ main .file-wrapper .file-description button::after{
 }
 
 main .form .button-wrapper button {
-    cursor:pointer
+    cursor:pointer;
+    border-radius: 100px;
 }
 
 main .form .button-wrapper button:hover {
@@ -369,7 +370,7 @@ main .form .button-wrapper.wizard-button-next button, main .form .button-wrapper
     background-color: var(--form-styles-button-secondary-color);
     border: none;
     outline: 1px solid var(--color-secondary-5);
-    color: var(--color-black);
+    color: var(--color-text-primary);
 }
 
 main .form .button-wrapper button[disabled], main .form .button-wrapper.wizard-button-next button:disabled {
