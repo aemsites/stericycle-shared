@@ -2,7 +2,6 @@ import { loadFragment } from '../fragment/fragment.js';
 import {
   buildBlock, decorateBlock, loadBlock, loadCSS,
 } from '../../scripts/aem.js';
-import { getSubmitBaseUrl } from '../form/constant.js';
 
 /*
   This is not a traditional block, so there is no decorate function.
