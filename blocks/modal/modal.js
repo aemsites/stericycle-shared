@@ -170,6 +170,6 @@ export async function openOnTrigger(config) {
       break;
     case 'exit': openOnExitIntent(config);
       break;
-    default: throw new Error('Invalid trigger type');
+    default: throw new Error('Invalid trigger type specified for modal');
   }
 }
