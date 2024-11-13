@@ -72,42 +72,64 @@ function addPost(list, post, isLoading, index) {
 }
 
 export default function decorate(block) {
-  // const { type, columns } = readBlockConfig(block);
-  // let columnCount = parseInt(columns, 10);
-  // if (Number.isNaN(columnCount)) {
-  //   columnCount = 4;
+  const { type, columns } = readBlockConfig(block);
+  let columnCount = parseInt(columns, 10);
+  if (Number.isNaN(columnCount)) {
+    columnCount = 4;
+  }
+  block.innerHTML = '';
+
+  // create wrapper
+  const list = document.createElement('ul');
+  list.classList.add('teaser-list');
+  block.append(list);
+
+  // populate with dummies while loading
+  // for (let i = 0; i < columnCount; i += 1) {
+  //   addPost(list, null, true, i);
   // }
-  // block.innerHTML = '';
 
-  // // create wrapper
-  // const list = document.createElement('ul');
-  // list.classList.add('teaser-list');
-  // block.append(list);
+   // Use DocumentFragment for batch DOM updates
+   const fragment = document.createDocumentFragment();
+   for (let i = 0; i < columnCount; i += 1) {
+     addPost(fragment, null, true, i);
+   }
+   list.append(fragment);
 
-  // // populate with dummies while loading
-  // // for (let i = 0; i < columnCount; i += 1) {
-  // //   addPost(list, null, true, i);
-  // // }
+   getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
+    requestAnimationFrame(() => {
+      list.innerHTML = ''; // Clear dummies
+  
+      // Offload the work of adding posts
+      const addPostsInChunks = (posts1, chunkSize = 1) => {
+        const chunk = posts1.splice(0, chunkSize);
+        chunk.forEach((post, index) => addPost(list, post, false, index));
+  
+        if (posts1.length > 0) {
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => addPostsInChunks(posts1, chunkSize));
+          } else {
+            setTimeout(() => addPostsInChunks(posts1, chunkSize), 0);
+          }
+        }
+      };
+  
+      addPostsInChunks(posts);
+    });
+  });
 
-  //  // Use DocumentFragment for batch DOM updates
-  //  const fragment = document.createDocumentFragment();
-  //  for (let i = 0; i < columnCount; i += 1) {
-  //    addPost(fragment, null, true, i);
-  //  }
-  //  list.append(fragment);
-
-   
+  //  getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
+  //   // Replace dummies with real content during idle time to reduce TBT
+  //   requestIdleCallback(() => {
+  //     list.innerHTML = ''; // Clear dummies
+  //     const postFragment = document.createDocumentFragment();
+  //     posts.forEach((post, index) => addPost(postFragment, post, false, index));
+  //     list.append(postFragment);
+  //   });
+  // });
 
   // window.setTimeout(() => {
-  //   getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
-  //     // Replace dummies with real content during idle time to reduce TBT
-  //     requestIdleCallback(() => {
-  //       list.innerHTML = ''; // Clear dummies
-  //       const postFragment = document.createDocumentFragment();
-  //       posts.forEach((post, index) => addPost(postFragment, post, false, index));
-  //       list.append(postFragment);
-  //     });
-  //   });
+    
   // }, 1000);
 
   // getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
