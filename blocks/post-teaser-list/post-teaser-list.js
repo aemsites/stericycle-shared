@@ -96,15 +96,19 @@ export default function decorate(block) {
    }
    list.append(fragment);
 
-   getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
-    // Replace dummies with real content during idle time to reduce TBT
-    requestIdleCallback(() => {
-      list.innerHTML = ''; // Clear dummies
-      const postFragment = document.createDocumentFragment();
-      posts.forEach((post, index) => addPost(postFragment, post, false, index));
-      list.append(postFragment);
+   
+
+  window.setTimeout(() => {
+    getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
+      // Replace dummies with real content during idle time to reduce TBT
+      requestIdleCallback(() => {
+        list.innerHTML = ''; // Clear dummies
+        const postFragment = document.createDocumentFragment();
+        posts.forEach((post, index) => addPost(postFragment, post, false, index));
+        list.append(postFragment);
+      });
     });
-  });
+  }, 1000);
 
   // getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
   //   requestAnimationFrame(() => {
