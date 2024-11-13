@@ -87,27 +87,19 @@ export async function openModal(fragmentUrl, config) {
   showModal();
 }
 
-async function fetchSubmittedForms() {
-  try {
-    const response = await fetch(`${getSubmitBaseUrl()}/bin/submittedforms`);
-    return response.json();
-  } catch (e) {
-    console.log('Error fetching submitted Forms', e);
-  }
-  return null;
+function isFormSubmitted() {
+  return sessionStorage.getItem('formSubmitted');
 }
 
 function triggerHandler(config) {
   const { path, value } = config;
-  fetchSubmittedForms().then((data) => {
-    if (!data) {
-      if (!sessionStorage.getItem(path)) { // prevent trigger modal from opening if already closed
-        timer = setTimeout(() => {
-          if (!stopTrigger) openModal(path, config); // stop trigger modal from opening if another modal is open
-        }, parseInt(value, 10) * 1000);
-      }
+  if (!isFormSubmitted()) {
+    if (!sessionStorage.getItem(path)) { // prevent trigger modal from opening if already closed
+      timer = setTimeout(() => {
+        if (!stopTrigger) openModal(path, config); // stop trigger modal from opening if another modal is open
+      }, parseInt(value, 10) * 1000);
     }
-  });
+  }
 }
 
 /**
