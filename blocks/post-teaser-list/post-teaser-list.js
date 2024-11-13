@@ -27,7 +27,7 @@ function addPost(list, post, isLoading) {
   if (isLoading) {
     thumbnail = document.createElement('div');
   } else {
-    thumbnail = createOptimizedPicture(post.image, post.title);
+    thumbnail = createOptimizedPicture(post.image, post.title, true);
   }
   thumbnail.classList.add('teaser-thumbnail');
   thumbnailLink.append(thumbnail);
