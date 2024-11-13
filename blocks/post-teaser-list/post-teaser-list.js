@@ -29,7 +29,7 @@ function addPost(list, post, isLoading, index) {
   if (isLoading) {
     thumbnail = document.createElement('div');
   } else {
-    thumbnail = createOptimizedPicture(post.image, post.title, index === 0 || index === 1);
+    thumbnail = createOptimizedPicture(post.image, post.title);
   }
   thumbnail.classList.add('teaser-thumbnail');
   thumbnailLink.append(thumbnail);
@@ -101,7 +101,7 @@ export default function decorate(block) {
       list.innerHTML = ''; // Clear dummies
   
       // Offload the work of adding posts
-      const addPostsInChunks = (posts1, chunkSize = 1) => {
+      const addPostsInChunks = (posts1, chunkSize = 2) => {
         const chunk = posts1.splice(0, chunkSize);
         chunk.forEach((post, index) => addPost(list, post, false, index));
   
