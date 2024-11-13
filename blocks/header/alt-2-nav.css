@@ -118,7 +118,7 @@ html {
             margin: 0;
             padding: 0 1em;
             font-size: var(--body-font-size-s);
-            font-weight: var(--lato-regular);
+            font-weight: var(--font-weight-regular);
           }
         }
       }
@@ -192,7 +192,7 @@ html {
 
             &.quote-link a {
               font-size: var(--body-font-size-m);
-              font-weight: var(--lato-bold);
+              font-weight: var(--font-weight-bold);
             }
           }
         }

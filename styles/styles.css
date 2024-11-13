@@ -106,8 +106,8 @@
   --font-family-fa-free: 'Font Awesome 6 Free';
 
   /* font weights */
-  --lato-regular: 400;
-  --lato-bold: 700;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
 
   /* body sizes */
   --body-font-size-l: 20px;
@@ -216,7 +216,7 @@ header {
 h1, h2, h3,
 h4, h5, h6 {
   font-family: var(--font-family-heading);
-  font-weight: 600;
+  font-weight: var(--font-weight-bold);
   line-height: 1.25;
   color: var(--color-heading);
   margin-top: 0;
@@ -898,7 +898,7 @@ body.resource-center p {
     line-height: 2.125rem;
     letter-spacing: -.0009rem;
     margin-bottom: 32px;
-    font-weight: var(--lato-bold);
+    font-weight: var(--font-weight-bold);
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
@@ -912,7 +912,7 @@ body.resource-center p {
     font-size: 1.25rem;
     line-height: 1.625rem;
     letter-spacing: -.0009rem;
-    font-weight: var(--lato-bold);
+    font-weight: var(--font-weight-bold);
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
@@ -925,7 +925,7 @@ body.resource-center p {
       font-size: 1.125rem;
       line-height: 1.375rem;
       letter-spacing: .0006rem;
-      font-weight: var(--lato-bold);
+      font-weight: var(--font-weight-bold);
   }
 }
 
@@ -1249,7 +1249,7 @@ main .list-with-background-image > .default-content-wrapper {
 
 main .list-with-background-image > div > h2 {
   font-family: var(--font-family-body);
-  font-weight: var(--lato-bold);
+  font-weight: var(--font-weight-bold);
   font-size: var(--body-font-size-l);
   line-height: 26px;
   color: var(--color-primary-2);
@@ -1270,7 +1270,7 @@ main .list-with-background-image > div > h2 {
     font-size: 2rem;
     line-height: 2.375rem;
     letter-spacing: -.0009rem;
-    font-weight: var(--lato-bold);
+    font-weight: var(--font-weight-bold);
     padding: 0 12px;
   }
 }

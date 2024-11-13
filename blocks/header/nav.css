@@ -533,7 +533,7 @@
           border-radius: 0;
           font-size: var(--body-font-size-s);
           color: var(--color-black);
-          font-weight: var(--lato-bold);
+          font-weight: var(--font-weight-bold);
         }
 
         &.sales-contact a::before {
@@ -761,7 +761,7 @@
             border: 1px solid var(--color-light-silver);
 
             & > span {
-              font-weight: var(--lato-bold);
+              font-weight: var(--font-weight-bold);
               color: var(--color-black);
             }
 
@@ -936,7 +936,7 @@
                     & span {
                       text-transform: uppercase;
                       font-size: var(--body-font-size-s);
-                      font-weight: var(--lato-bold);
+                      font-weight: var(--font-weight-bold);
                     }
 
                     & ul {
@@ -1002,7 +1002,7 @@
 
           & a {
             font-size: var(--body-font-size-m);
-            font-weight: var(--lato-bold);
+            font-weight: var(--font-weight-bold);
             margin-top: 5px;
             margin-bottom: 0;
           }

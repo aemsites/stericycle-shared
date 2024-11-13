@@ -71,7 +71,7 @@ main .section.faq-container > div {
 
 .faq details summary p {
   color: var(--color-dark-gunmetal);
-  font-weight: var(--lato-bold);
+  font-weight: var(--font-weight-bold);
   font-size: var(--body-font-size-m);
   line-height: 16px;
 }
@@ -189,7 +189,7 @@ main .section.faq-container > div {
   .faq-container .default-content-wrapper h2 {
     color: var(--color-primary-1);
     font-size: 2rem;
-    font-weight: var(--lato-bold);
+    font-weight: var(--font-weight-bold);
     line-height: 2.375rem;
   }
 }
