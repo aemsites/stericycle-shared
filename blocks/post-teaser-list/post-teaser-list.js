@@ -29,7 +29,7 @@ function addPost(list, post, isLoading, index) {
   if (isLoading) {
     thumbnail = document.createElement('div');
   } else {
-    thumbnail = createOptimizedPicture(post.image, post.title, index === 0 || index === 1);
+    thumbnail = createOptimizedPicture(post.image, post.title);
   }
   thumbnail.classList.add('teaser-thumbnail');
   thumbnailLink.append(thumbnail);
@@ -85,14 +85,31 @@ export default function decorate(block) {
   block.append(list);
 
   // populate with dummies while loading
-  for (let i = 0; i < columnCount; i += 1) {
-    addPost(list, null, true, i);
-  }
+  // for (let i = 0; i < columnCount; i += 1) {
+  //   addPost(list, null, true, i);
+  // }
 
-  getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
-    requestAnimationFrame(() => {
+   // Use DocumentFragment for batch DOM updates
+   const fragment = document.createDocumentFragment();
+   for (let i = 0; i < columnCount; i += 1) {
+     addPost(fragment, null, true, i);
+   }
+   list.append(fragment);
+
+   getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
+    // Replace dummies with real content during idle time to reduce TBT
+    requestIdleCallback(() => {
       list.innerHTML = ''; // Clear dummies
-      posts.forEach((post, index) => addPost(list, post, false, index));
+      const postFragment = document.createDocumentFragment();
+      posts.forEach((post, index) => addPost(postFragment, post, false, index));
+      list.append(postFragment);
     });
   });
+
+  // getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
+  //   requestAnimationFrame(() => {
+  //     list.innerHTML = ''; // Clear dummies
+  //     posts.forEach((post, index) => addPost(list, post, false, index));
+  //   });
+  // });
 }
