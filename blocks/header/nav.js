@@ -1,6 +1,7 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { a, button, div, domEl, form, img, input, label, p, span, ul } from '../../scripts/dom-helpers.js';
+import { a, button, div, domEl, form, img, input, label, p, span, ul, li } from '../../scripts/dom-helpers.js';
+import { formatPhone, getLocale } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 1200px)');
@@ -369,6 +370,7 @@ function addDropButtons(navEl) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
+  const placeHolders = await fetchPlaceholders(`/${getLocale()}`);
   block.textContent = '';
   let locale = window.location.pathname.split('/')[1];
   locale = locale.match(/^[a-z]{2}-[a-z]{2}$/) ? locale : 'en-us'; // default to us-en if no locale in path
@@ -377,7 +379,11 @@ export default async function decorate(block) {
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : `/${locale}/nav`;
   const fragment = await loadFragment(navPath);
 
-  const contactList = fragment.querySelector('.section[data-section="contact" i] ul');
+  const contactList = ul(
+    // eslint-disable-next-line max-len
+    li(a({ href: `tel:+1${placeHolders.customerserviceno}`, title: 'Customer Service', 'aria-label': 'Customer Service' }, `Customer Service: ${formatPhone(placeHolders.customerserviceno)}`)),
+    li(a({ href: `tel:+1${placeHolders.salesno}`, title: 'Sales', 'aria-label': 'Sales' }, `Sales: ${formatPhone(placeHolders.salesno)}`)),
+  );
   const navSections = fragment.querySelector('.section[data-section="sections" i]');
   navSections.replaceChildren(navSections.querySelector('ul'));
   navSections.classList.replace('section', 'nav-sections');
@@ -460,6 +466,10 @@ export default async function decorate(block) {
           a({ href: '/forms/modals/modal', class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Request a Free Quote'),
         ),
       ),
+    ),
+    div({ class: 'floating-contact' },
+      div({ class: 'sales-contact' }, a({ href: `tel:+1${placeHolders.salesno}`, title: 'Sales', 'aria-label': 'Sales' }, `${formatPhone(placeHolders.salesno, true)}`)),
+      div({ class: 'quote-container' }, a({ href: '/forms/modals/modal', class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Request a Free Quote')),
     ),
   );
   /* eslint-enable function-paren-newline,function-call-argument-newline */
