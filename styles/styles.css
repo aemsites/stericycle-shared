@@ -81,7 +81,6 @@
   --color-secondary-3: #40BBD5;
   --color-secondary-4: #FFBA3C;
   --color-secondary-5: #BA8D37;
-
   --color-tertiary-1: #E4ECED;
   --color-tertiary-2: #53558B;
   --color-tertiary-3: #007FAA;
@@ -409,7 +408,6 @@ a.button:any-link, button {
   text-align: center;
   font-style: normal;
   font-weight: 700;
-  cursor: pointer;
   color: var(--color-primary-1);
   background-color: transparent;
   margin: 1rem 0;
@@ -458,7 +456,6 @@ a.button.primary:focus , button.primary:focus {
 
 a.button.secondary, button.secondary {
   padding: .5rem 2rem;
-  border-radius: 100px;
   background-color: var(--color-white);
   border: 2px solid var(--color-primary-1);
   color: var(--color-primary-1);
@@ -479,7 +476,6 @@ a.button.secondary:focus, button.secondary:focus {
 }
 
 @media screen and (min-width: 768px /* breakpoint-m */) {
-
   a.button:any-link, button {
     font-size: 14px;
   }
