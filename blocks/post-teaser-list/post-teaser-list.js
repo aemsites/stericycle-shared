@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import { formatDate, getDateFromExcel, getRelatedPosts } from '../../scripts/scripts.js';
 import { createOptimizedPicture, decorateButtons, readBlockConfig } from '../../scripts/aem.js';
+import { div } from '../../scripts/dom-helpers.js';
 
 function createPostLink(post) {
   const anchor = document.createElement('a');
@@ -11,13 +12,14 @@ function createPostLink(post) {
   return anchor;
 }
 
-function addPost(list, post, isLoading) {
+function addPost(list, post, isLoading, index) {
   // create teaser
   const teaser = document.createElement('li');
   teaser.classList.add('teaser');
   if (isLoading) {
     teaser.classList.add('loading');
   }
+  // teaser.classList.add('loading');
   list.append(teaser);
 
   // create thumbnail
@@ -27,7 +29,7 @@ function addPost(list, post, isLoading) {
   if (isLoading) {
     thumbnail = document.createElement('div');
   } else {
-    thumbnail = createOptimizedPicture(post.image, post.title, true);
+    thumbnail = createOptimizedPicture(post.image, post.title, index === 0 || index === 1);
   }
   thumbnail.classList.add('teaser-thumbnail');
   thumbnailLink.append(thumbnail);
@@ -84,13 +86,13 @@ export default function decorate(block) {
 
   // populate with dummies while loading
   for (let i = 0; i < columnCount; i += 1) {
-    addPost(list, null, true);
+    addPost(list, null, true, i);
   }
 
   getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
     requestAnimationFrame(() => {
       list.innerHTML = ''; // Clear dummies
-      posts.forEach((post) => addPost(list, post, false));
+      posts.forEach((post, index) => addPost(list, post, false, index));
     });
   });
 }

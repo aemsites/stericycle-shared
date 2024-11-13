@@ -518,6 +518,7 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
+    console.log(main.querySelector('.section'));
     await loadSection(main.querySelector('.section'), waitForLCP);
     await decorateTemplates(main);
   }

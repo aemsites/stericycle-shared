@@ -665,9 +665,12 @@ async function loadBlock(block) {
 
 async function loadSection(section, loadCallback) {
   const status = section.dataset.sectionStatus;
+  console.log('loading section', section, status);
   if (!status || status === 'initialized') {
     section.dataset.sectionStatus = 'loading';
     const blocks = [...section.querySelectorAll('div.block')];
+    console.log(blocks);
+
     for (let i = 0; i < blocks.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
       await loadBlock(blocks[i]);
