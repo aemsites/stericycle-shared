@@ -56,9 +56,11 @@ function addPost(list, post, isLoading) {
   content.append(category);
   const buttonWrapper = document.createElement('p');
   content.append(buttonWrapper);
+  const emWrapper = document.createElement('em');
+  buttonWrapper.append(emWrapper);
   const button = createPostLink(post);
   button.textContent = 'Read More';
-  buttonWrapper.append(button);
+  emWrapper.append(button);
   const dateAnchor = document.createElement('a');
   dateAnchor.href = post.path;
   const dateSpan = document.createElement('span');

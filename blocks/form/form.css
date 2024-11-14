@@ -3,9 +3,9 @@
     --form-styles-label-color: var(--color-black);
     --form-styles-border-color: #818a91;
     --form-error-color: var(--color-error);
-    --form-styles-button-primary-color: #006cb4;
+    --form-styles-button-primary-color: var(--color-primary-1);
     --form-styles-button-disable-color: #666;
-    --form-styles-button-secondary-color: #ffc62b;
+    --form-styles-button-secondary-color: var(--color-secondary-4);
     --form-styles-button-primary-hover-color: #035fe6;
     --form-font-size-m: 22px;
     --form-font-size-s: 18px;
@@ -356,7 +356,8 @@ main .file-wrapper .file-description button::after{
 }
 
 main .form .button-wrapper button {
-    cursor:pointer
+    cursor:pointer;
+    border-radius: 100px;
 }
 
 main .form .button-wrapper button:hover {
@@ -365,23 +366,29 @@ main .form .button-wrapper button:hover {
     border: 2px solid var(--form-button-background-color);
 }
 
-main .form .button-wrapper button[disabled] {
-    cursor:auto
-}
-
-main .form .button-wrapper button[disabled]:hover {
-    border: 3px solid var(--form-styles-button-disable-color);
-    color: var(--form-styles-button-disable-color);
-    background-color: transparent;
-}
-
 main .form .button-wrapper.wizard-button-next button, main .form .button-wrapper.submit-wrapper button{
     background-color: var(--form-styles-button-secondary-color);
-    color: var(--color-black);
+    border: none;
+    outline: 1px solid var(--color-secondary-5);
+    color: var(--color-text-primary);
+}
+
+main .form .button-wrapper button[disabled], main .form .button-wrapper.wizard-button-next button:disabled {
+    cursor: not-allowed;
+    border: none;
+    outline: none;
+    color: var(--form-styles-button-disable-color);
+    background-color: var(--color-tertiary-4);
 }
 
 main .form .button-wrapper.wizard-button-next button:hover, main .form .button-wrapper.submit-wrapper button:hover{
-  border: 2px solid var(--color-black);
+  outline-width: 3px;
+}
+
+main .form .button-wrapper.wizard-button-next button:focus, main .form .button-wrapper.submit-wrapper button:focus{
+  outline: 3px solid var(--color-primary-1);
+  outline-offset: 3px;
+  border: 3px solid var(--color-secondary-5);    
 }
 
 /** Wizard Styling */
@@ -822,9 +829,32 @@ main .footer-subscription-form {
     padding: 0 1.5rem;
 }
 
-main .footer-subscription-form .button-wrapper.field-wrapper.submit-wrapper button{
-    background-color: var(--color-button-default);
-    color:var(--color-white);
+main .footer-subscription-form .button-wrapper.field-wrapper.submit-wrapper button {
+    background-color: var(--color-white);
+    border: 2px solid var(--color-primary-1);
+    color: var(--color-primary-1);
+    outline: none;
+}
+
+main .footer-subscription-form .button-wrapper.field-wrapper.submit-wrapper button:hover {
+    background-color: var(--color-primary-1);
+    color: var(--color-white);
+    outline: none;
+}
+
+main .footer-subscription-form .button-wrapper.field-wrapper.submit-wrapper button:focus {
+    background-color: var(--color-primary-1);
+    color: var(--color-white);
+    outline: 3px solid var(--color-primary-1);
+    outline-offset: 3px;
+}
+
+main .footer-subscription-form .button-wrapper.field-wrapper.submit-wrapper button:disabled {
+    cursor: not-allowed;
+    border: none;
+    outline: none;
+    color: var(--form-styles-button-disable-color);
+    background-color: var(--color-tertiary-4);
 }
 
 

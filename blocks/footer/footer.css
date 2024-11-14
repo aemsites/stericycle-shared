@@ -711,16 +711,16 @@ footer .default-content-wrapper .columns.quote .button-container:first-child a {
   line-height: 24px;
   font-family: var(--font-family-footer);
   font-weight: var(--lato-regular);
-  background: #ffc62b;
-  color: #1a242b;
+  background: var(--color-secondary-4);
+  color: var(--color-text-primary);
   height: auto;
   display: flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
   white-space: normal;
-  border: 1px solid transparent;
-  padding: 0;
+  border-radius: 100px;
+  padding: .25rem 1rem;
   margin: 0 0 16px ;
 }
 
