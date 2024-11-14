@@ -67,9 +67,9 @@ export default async function decorate(block) {
       const body = tabpanelCopy;
       body.className = 'tab-item-body';
       if (!hasWrapper(body)) {
-        let bodyText = body.children[1].querySelector('p');
-        let bodyList = body.children[1].querySelector('ul');
-        if (bodyText){
+        const bodyText = body.children[1].querySelector('p');
+        const bodyList = body.children[1].querySelector('ul');
+        if (bodyText) {
           body.innerHTML = `<p>${bodyText ? bodyText.innerText : ''}</p>`;
         }
         if (bodyList) {

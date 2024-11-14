@@ -49,15 +49,15 @@
   margin-top: 2rem;
 }
 
-.block.quote.alternate-1 blockquote .quote-attribution p {
-  color: var(--color-orange);
-}
-
 .block.quote blockquote .quote-quotation h1,
 .block.quote blockquote .quote-quotation h2,
 .block.quote blockquote .quote-quotation h3,
 .block.quote blockquote .quote-quotation p {
   font-weight: 500;
+}
+
+.block.quote.alternate-1 blockquote .quote-attribution p {
+  color: var(--color-orange);
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
