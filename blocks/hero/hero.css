@@ -31,7 +31,7 @@ main .section.hero-container {
       gap: 20px;
 
       & > h1 {
-        font-weight: var(--lato-bold);
+        font-weight: var(--font-weight-bold);
         margin: 16px 0 8px;
         line-height: 34px;
         letter-spacing: -0.015px;
@@ -39,7 +39,7 @@ main .section.hero-container {
 
       & p.button-container {
         & a {
-          font-weight: var(--lato-bold);
+          font-weight: var(--font-weight-bold);
           font-size: var(--body-font-size-s);
           border-width: 1px;
         }
@@ -72,7 +72,7 @@ main .section.hero-container {
         width: 58.3333%;
 
         & > h1 {
-          font-weight: var(--lato-bold);
+          font-weight: var(--font-weight-bold);
           margin: 16px 0 8px;
           line-height: 52px;
           letter-spacing: -0.015px;
@@ -80,7 +80,7 @@ main .section.hero-container {
 
         & p.button-container a {
           border-width: 2px;
-          font-size: var(--body-font-size-m);
+          font-size: var(--body-font-size-default);
         }
       }
     }

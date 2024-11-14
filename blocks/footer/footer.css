@@ -127,7 +127,7 @@ footer .default-content-wrapper p:first-child img {
 
 footer .default-content-wrapper a {
   font-family: var(--font-family-footer);
-  font-weight: var(--lato-regular);
+  font-weight: var(--font-weight-regular);
   font-size: 1rem;
   line-height: 1.25rem;
   letter-spacing: .0006rem;
@@ -163,7 +163,7 @@ footer .default-content-wrapper:nth-child(2) > p {
 footer .default-content-wrapper:nth-child(2) > p,
 footer .default-content-wrapper:nth-child(2) > p > a  {
   font-family: var(--font-family-footer);
-  font-weight: var(--lato-regular);
+  font-weight: var(--font-weight-regular);
   font-size: .75rem;
   line-height: .9375rem;
   letter-spacing: .0006rem;
@@ -488,7 +488,7 @@ footer .default-content-wrapper .footer-accordion-container .footer-accordion-li
 
 footer .default-content-wrapper .footer-accordion-container .footer-accordion-link-wrapper:first-child a {
   width: fit-content;
-  font-weight: var(--lato-bold);
+  font-weight: var(--font-weight-bold);
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
@@ -512,7 +512,7 @@ footer .default-content-wrapper .footer-accordion-container .footer-accordion-li
     margin-bottom: 0;
     text-transform: uppercase;
     line-height: 1.5rem;
-    font-weight: var(--lato-bold);
+    font-weight: var(--font-weight-bold);
   }
 }
 
@@ -680,7 +680,7 @@ footer .default-content-wrapper .columns.quote p:nth-child(n+2) > a {
   line-height: inherit;
   letter-spacing: .0006rem;
   font-family: var(--font-family-footer);
-  font-weight: var(--lato-regular);
+  font-weight: var(--font-weight-regular);
 }
 
 footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) > p:nth-of-type(5) > a {
@@ -766,7 +766,7 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
   line-height: 1.25rem;
   letter-spacing: .0006rem;
   font-family: var(--font-family-footer);
-  font-weight: var(--lato-regular);
+  font-weight: var(--font-weight-regular);
   padding-top: 50px;
 }
 
@@ -891,7 +891,7 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
 footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper))
 > p:nth-of-type(2) > a:nth-of-type(2) {
   font-family: var(--font-family-footer);
-  font-weight: var(--lato-bold);
+  font-weight: var(--font-weight-bold);
   background: #ffc62b;
   color: #1a242b;
   height: auto;

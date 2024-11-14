@@ -130,8 +130,8 @@ main section .tabs-container > div {
 
 .block.tabs .tabs-panel details summary p {
     color: var(--color-dark-gunmetal);
-    font-weight: var(--lato-bold);
-    font-size: var(--body-font-size-m);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--body-font-size-default);
     line-height: 16px;
 }
 

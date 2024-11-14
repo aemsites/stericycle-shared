@@ -72,9 +72,9 @@
   --color-orange: #ff5633;
   --color-yellow: #ffc62b;
   --color-dark-gunmetal: #1a242b;
-  --color-text-primary: #1F1F20;
 
   /* design tokens */
+  --color-text-primary: #1F1F20;
   --color-primary-1: #006CB4;
   --color-primary-2: #133B5C;
   --color-secondary-1: #FF5733;
@@ -92,8 +92,8 @@
   /* functional colors */
   --color-background: var(--color-white);
   --color-background-header: #133b5c;
-  --color-text: var(--color-black);
-  --color-heading: var(--color-black);
+  --color-text: var(--color-text-primary);
+  --color-heading: var(--color-text-primary);
   --color-link: #0075aa;
   --color-link-hover: var(--color-primary-1);
   --color-button-default: var(--color-primary-1);
@@ -109,22 +109,22 @@
   --font-family-fa-free: 'Font Awesome 6 Free';
 
   /* font weights */
-  --lato-regular: 400;
-  --lato-bold: 700;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
 
   /* body sizes */
   --body-font-size-l: 20px;
-  --body-font-size-m: 16px;
+  --body-font-size-default: 14px;
   --body-font-size-s: 14px;
   --body-font-size-xs: 12px;
   --body-font-size-xxs: 10px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 30px;
-  --heading-font-size-xl: 20px;
-  --heading-font-size-l: 18px;
+  --heading-font-size-xxl: 32px;
+  --heading-font-size-xl: 24px;
+  --heading-font-size-l: 20px;
   --heading-font-size-m: 16px;
-  --heading-font-size-s: 1.25rem;
+  --heading-font-size-s: 14px;
   --heading-font-size-xs: 12px;
 
   /* icon sizes */
@@ -175,8 +175,9 @@
   :root {
     --heading-font-size-xxl: 48px;
     --heading-font-size-xl: 32px;
-    --heading-font-size-l: 26px;
-    --heading-font-size-m: 20px;
+    --heading-font-size-l: 24px;
+    --heading-font-size-m: 18px;
+    --body-font-size-default: 16px;
     --section-width: var(--content-width-l);
   }
 }
@@ -200,10 +201,10 @@
 }
 
 body {
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-default);
   margin: 0;
   font-family: var(--font-family-body);
-  line-height: 20px;
+  line-height: 1.6;
   background-color: var(--color-background);
   display: none;
 }
@@ -217,25 +218,29 @@ header {
 }
 
 h1, h2, h3,
-h4, h5, h6 {
+h4, h5, h6,
+.heading-1, .heading-2, .heading-3,
+.heading-4, .heading-5, .heading-6 {
   font-family: var(--font-family-heading);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
   color: var(--color-heading);
   margin-top: 0;
   margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 {
-  font-size: var(--heading-font-size-xxl);
-  line-height: 3.25rem;
+h3, h4, h5, h6,
+.heading-3, .heading-4, .heading-5, .heading-6 {
+  line-height: 1.4;
 }
-h2 { font-size: var(--heading-font-size-xl) }
-h3 { font-size: var(--heading-font-size-l) }
-h4 { font-size: var(--heading-font-size-m) }
-h5 { font-size: var(--heading-font-size-s) }
-h6 { font-size: var(--heading-font-size-xs) }
+
+h1, .heading-1 { font-size: var(--heading-font-size-xxl); }
+h2, .heading-2 { font-size: var(--heading-font-size-xl); }
+h3, .heading-3 { font-size: var(--heading-font-size-l); }
+h4, .heading-4 { font-size: var(--heading-font-size-m); }
+h5, .heading-5 { font-size: var(--heading-font-size-s); }
+h6, .heading-6 { font-size: var(--heading-font-size-xs); }
 
 p, dl, ol, ul, pre, blockquote {
   color: var(--color-text);
@@ -941,7 +946,7 @@ body.resource-center p {
     line-height: 2.125rem;
     letter-spacing: -.0009rem;
     margin-bottom: 32px;
-    font-weight: var(--lato-bold);
+    font-weight: var(--font-weight-bold);
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
@@ -955,7 +960,7 @@ body.resource-center p {
     font-size: 1.25rem;
     line-height: 1.625rem;
     letter-spacing: -.0009rem;
-    font-weight: var(--lato-bold);
+    font-weight: var(--font-weight-bold);
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
@@ -968,7 +973,7 @@ body.resource-center p {
       font-size: 1.125rem;
       line-height: 1.375rem;
       letter-spacing: .0006rem;
-      font-weight: var(--lato-bold);
+      font-weight: var(--font-weight-bold);
   }
 }
 
@@ -1292,7 +1297,7 @@ main .list-with-background-image > .default-content-wrapper {
 
 main .list-with-background-image > div > h2 {
   font-family: var(--font-family-body);
-  font-weight: var(--lato-bold);
+  font-weight: var(--font-weight-bold);
   font-size: var(--body-font-size-l);
   line-height: 26px;
   color: var(--color-primary-2);
@@ -1313,7 +1318,7 @@ main .list-with-background-image > div > h2 {
     font-size: 2rem;
     line-height: 2.375rem;
     letter-spacing: -.0009rem;
-    font-weight: var(--lato-bold);
+    font-weight: var(--font-weight-bold);
     padding: 0 12px;
   }
 }

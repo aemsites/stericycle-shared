@@ -75,8 +75,8 @@ main .section.faq-container > div {
 
 .faq details summary p {
   color: var(--color-dark-gunmetal);
-  font-weight: var(--lato-bold);
-  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--body-font-size-default);
   line-height: 16px;
 }
 
@@ -201,7 +201,7 @@ main div.faq-container:has(.plain) .default-content-wrapper {
   .faq-container .default-content-wrapper h2 {
     color: var(--color-primary-1);
     font-size: 2rem;
-    font-weight: var(--lato-bold);
+    font-weight: var(--font-weight-bold);
     line-height: 2.375rem;
   }
 }
@@ -216,7 +216,7 @@ main div.faq-container:has(.plain) .default-content-wrapper {
 
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper p {
-    font-size: var(--body-font-size-m);
+    font-size: var(--body-font-size-default);
     line-height: 1.25rem;
   }
 }
