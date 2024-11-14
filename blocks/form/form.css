@@ -87,9 +87,9 @@ main .form-container {
     background-color: var(--form-background-color);
     padding: var(--form-padding);
     width: var(--form-width);
-    margin: var(--nav-height) auto;
     overflow: visible;
 }
+
 
 main .form {
     background-color: var(--form-background-color);
@@ -890,6 +890,10 @@ main .campaign-form.form form {
     background-color: var(--color-gray);
 }
 
+main .two-column.form-container .form-wrapper {
+    justify-self: flex-end;
+}
+
 @media (max-width: 1000px) {
     main .two-column.form-container .default-content-wrapper {
         width: 90%;
@@ -911,19 +915,18 @@ main .campaign-form.form form {
     }
 
     main .section.two-column.form-container {
-        display: table-row;
+        display: block;
     }
 
 }
 
-
 main .two-column.form-container {
     display: grid;
-    grid-template-columns: minmax(0, 884px) minmax(0, 436px); /* Set max-width for each column */
+    grid-template-columns: 65% 35%; /* Set max-width for each column */
     grid-auto-rows: auto;
     margin: auto;
     gap: 0;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 main .two-column.form-container > div {

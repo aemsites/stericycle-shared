@@ -847,7 +847,6 @@ footer .no-nav .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-
   footer .no-nav .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-wrapper)) > p:nth-of-type(4) {
     border-top: 1px solid rgb(255 255 255 / 25%);
     padding-top: 3rem;
-    margin-top: 5rem;
   }
 }
 
