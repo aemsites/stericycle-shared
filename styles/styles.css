@@ -463,7 +463,7 @@ a.button.primary:focus , button.primary:focus {
 
 a.button.secondary, button.secondary {
   padding: 6px 2rem;
-  background-color: transparent;
+  background-color: var(--color-white);
   border: 2px solid var(--color-primary-1);
   color: var(--color-primary-1);
   border-radius: 100px;
