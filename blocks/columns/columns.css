@@ -487,13 +487,11 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
   main .section.columns-container .block.columns.centered-icons > div div:first-of-type:has(.icon),
   main .section.columns-container .block.columns.centered-icons > div div:last-of-type:has(.icon) {
     align-items: center;
-
   }
 
   main .section.columns-container .block.columns.align-left > div div:first-of-type:has(.icon),
   main .section.columns-container .block.columns.align-left > div div:last-of-type:has(.icon) {
     align-items: start;
-
   }
 
   main .section.columns-container.large-icon .block.columns.columns-2-cols div:first-of-type:has(.icon) span,
