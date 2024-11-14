@@ -277,7 +277,7 @@ async function autolinkModals(element) {
   };
   const { path, type, value } = config;
   if (path && type && value) {
-    const { openOnTrigger } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
+    const { openOnTrigger } = await import(`${window.hlx.codeBasePath}/blocks/form/trigger.js`);
     openOnTrigger(config);
   }
 }
