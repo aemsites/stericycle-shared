@@ -1,3 +1,5 @@
+import { h3, h4, p } from '../../scripts/dom-helpers.js';
+
 async function getQueryIdx(url) {
   let json;
   const page = await fetch(url);
@@ -59,6 +61,35 @@ export default async function decorate(block) {
       }
       if (desc) {
         cardBack.appendChild(desc);
+      }
+    } else {
+      // Whenever Flipcard refers to an external link, we get the details directly from the doc/author
+      const rowChildren = block.children[1] ? [...block.children[1].children] : [];
+      if (rowChildren && rowChildren[idx]) {
+        const defaultCardDetails = rowChildren[idx];
+        const icon = rows[0]?.children?.item(0);
+        const titleh3 = h3();
+        const titleh4 = h4();
+        const defaultH4 = defaultCardDetails.querySelector('h4');
+        titleh3.textContent = defaultH4?.textContent;
+        titleh4.textContent = defaultH4?.textContent;
+        const desc = p();
+        defaultCardDetails.querySelectorAll('p:not(.button-container):not(:last-of-type)')?.forEach((para) => {
+          desc.appendChild(document.createTextNode(para.textContent));
+        });
+
+        if (icon) {
+          cardFront.appendChild(icon);
+        }
+        if (titleh3) {
+          cardFront.appendChild(titleh3);
+        }
+        if (titleh4) {
+          cardBack.appendChild(titleh4);
+        }
+        if (desc) {
+          cardBack.appendChild(desc);
+        }
       }
     }
     fronts.push(cardFront);
