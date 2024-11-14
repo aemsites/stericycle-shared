@@ -1,3 +1,7 @@
+main div.faq-container div {
+  max-width: 100%;
+}
+
 main .section.faq-container > div {
   padding: 0 12px;
 }
@@ -168,6 +172,14 @@ main .section.faq-container > div {
 
 .faq-container .default-content-wrapper:last-child {
   margin-bottom: 1rem;
+}
+
+main .section div.faq-wrapper {
+  margin: 0 2rem;
+}
+
+main div.faq-container:has(.plain) .default-content-wrapper {
+  margin: 2rem;
 }
 
 @media screen and (min-width: 992px) {
