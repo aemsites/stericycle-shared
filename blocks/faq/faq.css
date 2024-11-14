@@ -170,6 +170,19 @@ main .section.faq-container > div {
   margin-bottom: 1rem;
 }
 
+main .section div.faq-wrapper {
+  margin: 0 2rem;
+}
+
+main div.faq-container:has(.plain) .default-content-wrapper,
+main div.faq-container:has(.plain) .default-content-wrapper {
+  margin: 2rem 2rem;
+}
+
+main div.faq-container div {
+  max-width: 100%;
+}
+
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper {
     margin-bottom: 1.5rem;

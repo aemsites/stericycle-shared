@@ -229,6 +229,11 @@ p, dl, ol, ul, pre, blockquote {
 
 
 
+main .section.column-with-list .columns-wrapper {
+  margin: 0 2rem;
+  max-width: 100%;
+}
+
 main .section.column-with-list.navy-background.columns-container {
   display: flex;
   flex-wrap: wrap;
@@ -650,7 +655,7 @@ main div.section.default-teaser-section {
   overflow: hidden;
 }
 
-main div.template-container:has(.hard-drive-background) {
+main div.hard-drive-background {
   background-size: cover;
   background-position-x: 50%;
   background-position-y: 50%;
@@ -658,11 +663,11 @@ main div.template-container:has(.hard-drive-background) {
   background-repeat: no-repeat;
 }
 
-main div.template-container:has(.shredded-paper-background-column) {
+main div.shredded-paper-background-column {
   background-image: url("/images/sid-shreded-paper-background.png");
   background-size: cover;
   background-position-x: 50%;
-  background-position-y: 100%;
+  background-position-y: 25%;
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
