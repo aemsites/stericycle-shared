@@ -31,6 +31,20 @@ export function convertExcelDate(excelDate) {
 }
 
 /**
+ * Formats a phone number for displaying.
+ * @param {String} num phone number to format
+ * @param {Boolean} parens whether to wrap the area code in parens
+ */
+export function formatPhone(num, parens = false) {
+  const match = num.match(/(\d{3})(\d{3})(\d{4})/);
+  if (!match) {
+    return num;
+  }
+  const [area, prefix, line] = match.slice(1);
+  return parens ? `(${area}) ${prefix}-${line}` : `${area}-${prefix}-${line}`;
+}
+
+/**
  * Converts excel datetime strings to a Date object
  * @returns {Date} Date object
  */
@@ -541,9 +555,9 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    await decorateTemplates(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForLCP);
-    await decorateTemplates(main);
   }
   setWebPageJsonLd(doc);
   fetchAndSetCustomJsonLd(doc);
