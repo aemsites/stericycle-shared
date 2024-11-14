@@ -214,7 +214,9 @@ header {
 }
 
 h1, h2, h3,
-h4, h5, h6 {
+h4, h5, h6,
+.heading-1, .heading-2, .heading-3,
+.heading-4, .heading-5, .heading-6 {
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-bold);
   line-height: 1.2;
@@ -224,33 +226,17 @@ h4, h5, h6 {
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h3, h4, h5, h6 {
+h3, h4, h5, h6,
+.heading-3, .heading-4, .heading-5, .heading-6 {
   line-height: 1.4;
 }
 
-h1 {
-  font-size: var(--heading-font-size-xxl);
-}
-
-h2 { 
-  font-size: var(--heading-font-size-xl);
-
-}
-h3 { 
-  font-size: var(--heading-font-size-l);
-}
-
-h4 { 
-  font-size: var(--heading-font-size-m);
-}
-
-h5 { 
-  font-size: var(--heading-font-size-s);
-}
-
-h6 { 
-  font-size: var(--heading-font-size-xs);
-}
+h1, .heading-1 { font-size: var(--heading-font-size-xxl); }
+h2, .heading-2 { font-size: var(--heading-font-size-xl); }
+h3, .heading-3 { font-size: var(--heading-font-size-l); }
+h4, .heading-4 { font-size: var(--heading-font-size-m); }
+h5, .heading-5 { font-size: var(--heading-font-size-s); }
+h6, .heading-6 { font-size: var(--heading-font-size-xs); }
 
 p, dl, ol, ul, pre, blockquote {
   color: var(--color-text);
