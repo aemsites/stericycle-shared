@@ -29,11 +29,13 @@ main section .tabs-container > div {
 
 .block.tabs .tabs-list {
     display: none;
+    scrollbar-width: none;
 }
 
 .block.tabs .tabs-panel {
     padding: 0;
     margin-bottom: 40px;
+    scrollbar-width: none;
 }
 
 .block.tabs.vertical .tabs-panel { 
@@ -110,7 +112,7 @@ main section .tabs-container > div {
 
 .block.tabs:not(.vertical) .tabs-list button {
     flex: 0 0 max-content;
-    margin: 0;
+    margin-right: 2rem;
     border: 1px solid var(--dark-color);
     border-radius: 0;
     padding: 8px 16px;
@@ -126,6 +128,10 @@ main section .tabs-container > div {
     transition: background-color 0.2s;
 }
 
+.block.tabs.vertical .tabs-list p:last-child {
+    margin-left: .75rem;
+}
+
 .block.tabs:not(.vertical) .tabs-list button[aria-selected="true"] {
     border-bottom: 5px solid var(--color-blue);
     background-color: var(--background-color);
@@ -139,8 +145,9 @@ main section .tabs-container > div {
 
 .block.tabs:not(.vertical) .tabs-panel {
     display: flex;
+    width: 100%;
     margin-top: -1px;
-    padding: 2rem;
+    padding: 2rem 0px;
     border: 1px solid var(--dark-color);
     overflow: auto;
     justify-content: center;
@@ -230,7 +237,7 @@ main section .tabs-container > div {
 }
 
 .block.tabs.topics .tabs-panel div {
-    width: 30%;
+    width: 50%;
 
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 1.5rem;
@@ -253,7 +260,7 @@ main section .tabs-container > div {
         gap: 8px;
         max-width: 100%;
         overflow-x: auto;
-        margin-bottom: 3.75rem;
+        margin-bottom: .10rem;
         flex-basis: 30%;
         flex-shrink: 0;
         border-right: 2px solid #c0c6c6;
@@ -262,6 +269,11 @@ main section .tabs-container > div {
     .block.tabs.vertical {
         display: flex;
         flex-direction: row;
+    }
+
+    .block.tabs.vertical.video.block {
+        max-width: var(--section-width);
+        margin: 32px 0px;
     }
     
     .block.tabs.vertical .tabs-panel {
@@ -272,6 +284,7 @@ main section .tabs-container > div {
         padding: 0 16px;
         border: 1px solid var(--dark-color);
         overflow: auto;
+        scrollbar-width: none;
     }
     
     .block.tabs.vertical .tabs-list button .icon {
@@ -370,5 +383,9 @@ main section .tabs-container > div {
     
     .block.tabs.vertical .tabs-panel picture {
         display: block;
+    }
+
+    .block.tabs.topics .tabs-panel div {
+        width: 30%;
     }
 }
