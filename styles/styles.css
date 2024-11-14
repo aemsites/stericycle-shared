@@ -62,7 +62,6 @@
   /* colors */
   --color-white: #fff;
   --color-black: #000;
-  --color-text-primary: #1F1F20;
 
   /* used but not included in the design tokens */
   --color-gray: #f2f6f7;
@@ -75,6 +74,7 @@
   --color-dark-gunmetal: #1a242b;
 
   /* design tokens */
+  --color-text-primary: #1F1F20;
   --color-primary-1: #006CB4;
   --color-primary-2: #133B5C;
   --color-secondary-1: #FF5733;
