@@ -62,6 +62,7 @@
   /* colors */
   --color-white: #fff;
   --color-black: #000;
+  --color-text-primary: #1F1F20;
 
   /* used but not included in the design tokens */
   --color-gray: #f2f6f7;
@@ -89,8 +90,8 @@
   /* functional colors */
   --color-background: var(--color-white);
   --color-background-header: #133b5c;
-  --color-text: var(--color-black);
-  --color-heading: var(--color-black);
+  --color-text: var(--color-text-primary);
+  --color-heading: var(--color-text-primary);
   --color-link: #0075aa;
   --color-link-hover: var(--color-primary-1);
   --color-button-default: var(--color-primary-1);
