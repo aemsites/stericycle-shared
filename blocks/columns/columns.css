@@ -79,8 +79,8 @@ main .columns span.icon > img {
 }
 
 .columns.narrow-icons span.icon {
-  height: 4rem;
-  width: 4rem;
+  height: var(--icon-size-xl);
+  width: var(--icon-size-xl);
 }
 
 .columns.box-shadow-hover.columns span.icon {
@@ -177,8 +177,8 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 }
 
 .columns.narrow-icons span.icon > img {
-  height: 4rem;
-  width: 4rem;
+  height: var(--icon-size-xl);
+  width: var(--icon-size-xl);
 }
 
 .columns.narrow-icons p.button-container {
