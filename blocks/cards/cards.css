@@ -98,6 +98,15 @@
   width: 10%;
 }
 
+.block.cards.divider.centered-headings.navy-headings .icon img {
+  height: 10em;
+  width: 10em;
+}
+
+.block.cards.divider.centered-headings.navy-headings .icon {
+  text-align: center;
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
   .cards > ul {
     display: flex;

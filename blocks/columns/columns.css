@@ -81,13 +81,23 @@ main .columns span.icon > img {
 .columns.box-shadow-hover.columns span.icon {
   display: flex;
   height: 150px;
-
 }
 
 .columns.labeled > div:last-of-type span.icon {
   width: 8.3%;
   height: auto;
   text-align: left;
+}
+
+main .section.blue-headings .columns span.icon {
+  width: unset;
+  height: unset;
+}
+
+main .section.columns-container.list-style-orange-triangles .columns.box-shadow-hover.columns span.icon {
+  display: flex;
+  height: unset;
+  width: 80%;
 }
 
 .columns.labeled > div:last-of-type strong {
@@ -245,11 +255,6 @@ main .columns span.icon > img {
 .columns.cyan-accent-border.columns-has-image > div > div {
   border: unset;
   padding-left: 0;
-}
-
-main .section.blue-headings .columns span.icon {
-  width: unset;
-  height: unset;
 }
 
 .columns.numeric-list h3 {

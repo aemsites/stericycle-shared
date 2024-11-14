@@ -227,7 +227,10 @@ p, dl, ol, ul, pre, blockquote {
   margin: 0;
 }
 
-
+main .section.column-with-list .columns-wrapper {
+  margin: 0 2rem;
+  max-width: 100%;
+}
 
 main .section.column-with-list.navy-background.columns-container {
   display: flex;
@@ -642,28 +645,27 @@ main .section.with-image {
 }
 
 /* section background image styles */
-
-main div.section.hard-drive-background {
-  background-size: contain;
-  background-position-x: 50%;
-  background-position-y: 100%;
-  background-image: url("/images/sid-shreded-hard-drive-background-1920x1080.png");
-  background-repeat: no-repeat;
-}
-
-main div.section.shredded-paper-background-column {
-  background-image: url("/images/sid-shreded-paper-background.png");
-  background-size: contain;
-  background-position-x: 50%;
-  background-position-y: 100%;
-}
-
 main div.section.default-teaser-section {
   background-size: cover;
   background-position: top center;
   background-image: url("/icons/SID-Resources-Center-Gray_Desktop.svg");
   background-repeat: no-repeat;
   overflow: hidden;
+}
+
+main div.hard-drive-background {
+  background-size: cover;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  background-image: url("/images/media_18801dc9f2feef2abd2efd2bf6dfacd12e4469a20.png");
+  background-repeat: no-repeat;
+}
+
+main div.shredded-paper-background-column {
+  background-image: url("/images/sid-shreded-paper-background.png");
+  background-size: cover;
+  background-position-x: 50%;
+  background-position-y: 25%;
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
