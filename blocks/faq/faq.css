@@ -76,7 +76,7 @@ main .section.faq-container > div {
 .faq details summary p {
   color: var(--color-dark-gunmetal);
   font-weight: var(--font-weight-bold);
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-default);
   line-height: 16px;
 }
 
@@ -216,7 +216,7 @@ main div.faq-container:has(.plain) .default-content-wrapper {
 
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper p {
-    font-size: var(--body-font-size-m);
+    font-size: var(--body-font-size-default);
     line-height: 1.25rem;
   }
 }

@@ -119,7 +119,7 @@
             color: var(--color-dark-gunmetal);
 
             &::placeholder {
-              font-size: var(--body-font-size-m);
+              font-size: var(--body-font-size-default);
               color: var(--color-dark-gunmetal);
               font-family: var(--font-family-body);
             }
@@ -228,7 +228,7 @@
                   line-height: 20px;
                   text-align: left;
                   font-weight: 400;
-                  font-size: var(--body-font-size-m);
+                  font-size: var(--body-font-size-default);
                   color: var(--color-text);
                 }
               }
@@ -344,7 +344,7 @@
           & button {
             grid-area: button;
             font-family: var(--font-family-fa-free);
-            font-size: var(--body-font-size-m);
+            font-size: var(--body-font-size-default);
             line-height: 1.5rem;
             font-weight: 900;
             color: var(--color-black);
@@ -616,7 +616,7 @@
                   left: -20px;
                   content: '\f095';
                   font-family: var(--font-family-fa-free);
-                  font-size: var(--body-font-size-m);
+                  font-size: var(--body-font-size-default);
                   transform: rotate(-10deg);
                 }
               }
@@ -805,7 +805,7 @@
                   content: '\f04b';
                   font-family: var(--font-family-fa-free);
                   font-weight: 900;
-                  font-size: var(--body-font-size-m);
+                  font-size: var(--body-font-size-default);
                   color: var(--color-white);
                   text-align: center;
                 }
@@ -1001,7 +1001,7 @@
           border: none;
 
           & a {
-            font-size: var(--body-font-size-m);
+            font-size: var(--body-font-size-default);
             font-weight: var(--font-weight-bold);
             margin-top: 5px;
             margin-bottom: 0;

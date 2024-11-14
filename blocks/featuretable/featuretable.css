@@ -29,7 +29,7 @@ main .section.featuretable-container > div {
   width: 100%;
   max-width: 100%;
   border-collapse: collapse;
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-default);
 }
 
 .featuretable table th {

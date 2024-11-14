@@ -191,7 +191,7 @@ html {
             }
 
             &.quote-link a {
-              font-size: var(--body-font-size-m);
+              font-size: var(--body-font-size-default);
               font-weight: var(--font-weight-bold);
             }
           }

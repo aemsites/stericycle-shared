@@ -80,7 +80,7 @@ main .section.hero-container {
 
         & p.button-container a {
           border-width: 2px;
-          font-size: var(--body-font-size-m);
+          font-size: var(--body-font-size-default);
         }
       }
     }
