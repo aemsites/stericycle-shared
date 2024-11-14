@@ -531,9 +531,9 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    await decorateTemplates(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForLCP);
-    await decorateTemplates(main);
   }
   setWebPageJsonLd(doc);
   fetchAndSetCustomJsonLd(doc);
