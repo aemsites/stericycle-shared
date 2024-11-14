@@ -94,6 +94,11 @@ main .section.blue-headings .columns span.icon {
   height: unset;
 }
 
+main .section.blue-headings .columns span.icon > img {
+  width: var(--icon-size-xl);
+  height: var(--icon-size-xl);
+}
+
 main .section.columns-container.list-style-orange-triangles .columns.box-shadow-hover.columns span.icon {
   display: flex;
   height: unset;
@@ -425,11 +430,6 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 
   main .block.columns.video.columns-2-cols > div div iframe {
     height: 100%;
-  }
-
-  main .section.blue-headings .columns span.icon > img {
-    width: var(--icon-size-xl);
-    height: var(--icon-size-xl);
   }
 
   main .section.columns-container.flex-row .block.columns.columns-2-cols > div {
