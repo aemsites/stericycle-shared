@@ -72,6 +72,7 @@
   --color-orange: #ff5633;
   --color-yellow: #ffc62b;
   --color-dark-gunmetal: #1a242b;
+  --color-text-primary: #1F1F20;
 
   /* design tokens */
   --color-text-primary: #1F1F20;
@@ -81,9 +82,11 @@
   --color-secondary-2: #00ABEC;
   --color-secondary-3: #40BBD5;
   --color-secondary-4: #FFBA3C;
+  --color-secondary-5: #BA8D37;
   --color-tertiary-1: #E4ECED;
   --color-tertiary-2: #53558B;
   --color-tertiary-3: #007FAA;
+  --color-tertiary-4: #CBCBCD;
   --color-error: #DC3545;
   --color-success: #198754;
 
@@ -95,7 +98,7 @@
   --color-link: #0075aa;
   --color-link-hover: var(--color-primary-1);
   --color-button-default: var(--color-primary-1);
-  --color-button-primary: var(--color-yellow);
+  --color-button-primary: var(--color-secondary-4);
   --color-button-secondary: var(--color-text);
 
   /* fonts */
@@ -407,57 +410,92 @@ a:hover {
 
 a.button:any-link, button {
   font-family: var(--font-family-body);
-  display: inline-block;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
   text-decoration: none;
-  border: 2px solid var(--color-button-default);
-  padding: 0 32px;
-  line-height: 32px;
+  padding: 0 8px;
+  line-height: 26px;
   text-align: center;
   font-style: normal;
-  font-weight: 600;
-  cursor: pointer;
-  color: var(--color-white);
-  background-color: var(--color-button-default);
-  margin: 16px 0;
+  font-weight: 700;
+  color: var(--color-primary-1);
+  background-color: transparent;
+  margin: 1rem 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  border-radius: 100px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
-a.button:hover, a.button:focus, button:hover, button:focus  {
+a.button:hover, button:hover {
   background-color: var(--color-white);
   color: var(--color-button-default);
-  cursor: pointer;
+}
+
+a.button:focus, button:focus {
+  outline: 2px solid var(--color-primary-1);
 }
 
 button:disabled, button:disabled:hover {
-  background-color: var(--color-gray);
-  cursor: unset;
+  cursor: not-allowed;
+  border: none;
+  outline: none;
+  color: var(--form-styles-button-disable-color);
+  background-color: var(--color-tertiary-4);
 }
 
 a.button.primary, button.primary {
+  padding: .5rem 2rem;
   background-color: var(--color-button-primary);
-  border-color: var(--color-button-primary);
-  color: var(--color-black);
+  border: none;
+  color: var(--color-text-primary);
+  outline: 1px solid var(--color-secondary-5);
+  border-radius: 100px;
 }
 
-a.button.primary:hover, a.button.primary:focus, button.primary:hover, button.primary:focus {
-  background-color: var(--color-button-primary);
-  border-color: currentcolor;
-  color: var(--color-black);
+a.button.primary:hover, button.primary:hover{
+  outline-width: 3px;
+}
+
+a.button.primary:focus , button.primary:focus {
+  outline: 3px solid var(--color-primary-1);
+  outline-offset: 3px;
+  border: 3px solid var(--color-secondary-5);
 }
 
 a.button.secondary, button.secondary {
+  padding: 6px 2rem;
   background-color: var(--color-white);
-  border-color: currentcolor;
-  color: var(--color-button-secondary);
+  border: 2px solid var(--color-primary-1);
+  color: var(--color-primary-1);
+  border-radius: 100px;
 }
 
-a.button.secondary:hover, a.button.secondary:focus, button.secondary:hover, button.secondary:focus {
-  background-color: var(--color-button-secondary);
-  border-color: var(--color-button-secondary);
+a.button.secondary:hover, button.secondary:hover {
+  background-color: var(--color-primary-1);
   color: var(--color-white);
+  border-color: currentcolor;
+}
+
+a.button.secondary:focus, button.secondary:focus {
+  background-color: var(--color-primary-1);
+  color: var(--color-white);
+  outline: 3px solid var(--color-primary-1);
+  outline-offset: 3px;
+}
+
+@media screen and (min-width: 768px /* breakpoint-m */) {
+  a.button:any-link, button {
+    font-size: 14px;
+  }
+
+  a.button.primary, button.primary, a.button.secondary, button.secondary {
+    font-size: 16px;
+  }
 }
 
 main img {
