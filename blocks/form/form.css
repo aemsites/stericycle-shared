@@ -916,6 +916,14 @@ main .two-column.form-container > div {
     grid-column: 1;
 }
 
+main .two-column.form-container > div:not(:first-child, .form-wrapper) {
+    margin: 0;
+}
+
+main .two-column.form-container > div:first-child {
+    margin-bottom: 0;
+}
+
 /* Place the last child in the second column */
 main .two-column.form-container > div:nth-last-child(1) {
     grid-column: 2;
