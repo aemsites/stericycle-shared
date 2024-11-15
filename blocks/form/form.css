@@ -889,7 +889,7 @@ main .two-column.form-container .form-wrapper {
         margin: 0;
     }
 
-    main .page-sidebar .form-container {
+    main .body-wrapper .page-sidebar > div.form-container {
         padding-left: 1rem;
     }
 
