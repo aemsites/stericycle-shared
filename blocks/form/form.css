@@ -884,10 +884,10 @@ main .two-column.form-container .form-wrapper {
         margin-top: 0;
     }
 
-    main .section.two-column.form-container {
+    main .section.two-column.form-container,
+    main .section.two-column.form-container.full-width {
         display: table-row;
     }
-
 }
 
 main .two-column.form-container {
