@@ -1,9 +1,9 @@
-main:has(.section.two-column.full-width) div.faq-container div {
-  max-width: 100%;
-}
-
 main .section.faq-container > div {
   padding: 0 12px;
+}
+
+main:has(.section.two-column.full-width) div.faq-container div {
+  max-width: 100%;
 }
 
 .faq {

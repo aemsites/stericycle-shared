@@ -889,7 +889,7 @@ main .two-column.form-container .form-wrapper {
     }
 }
 
-main .two-column.form-container:not(.shredded-paper-background-column):not(.hard-drive-background) {
+main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background) {
     display: grid;
     grid-template-columns: minmax(0, 884px) minmax(0, 436px); /* Set max-width for each column */
     grid-auto-rows: auto;
