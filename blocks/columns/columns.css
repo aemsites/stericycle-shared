@@ -78,6 +78,11 @@ main .columns span.icon > img {
   justify-content: flex-start;
 }
 
+.columns.narrow-icons span.icon {
+  height: var(--icon-size-xl);
+  width: var(--icon-size-xl);
+}
+
 .columns.box-shadow-hover.columns span.icon {
   display: flex;
   height: 150px;
@@ -172,7 +177,8 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 }
 
 .columns.narrow-icons span.icon > img {
-  height: unset;
+  height: var(--icon-size-xl);
+  width: var(--icon-size-xl);
 }
 
 .columns.narrow-icons p.button-container {
