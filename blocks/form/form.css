@@ -916,3 +916,8 @@ main .two-column.form-container > div:nth-last-child(1) {
     grid-column: 2;
     grid-row: 1 / span 4;
 }
+
+main .form-wrapper .form.contact-us-form{
+    padding: 2rem;
+    box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+}
