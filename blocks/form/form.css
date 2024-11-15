@@ -885,18 +885,18 @@ main .two-column.form-container .form-wrapper {
     }
 
     main .section.two-column.form-container {
-        display: block;
+        display: table-row;
     }
 
 }
 
 main .two-column.form-container {
     display: grid;
-    grid-template-columns: 65% 35%; /* Set max-width for each column */
+    grid-template-columns: minmax(0, 884px) minmax(0, 436px); /* Set max-width for each column */
     grid-auto-rows: auto;
     margin: auto;
     gap: 0;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 main .two-column.form-container > div {
