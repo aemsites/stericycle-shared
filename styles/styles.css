@@ -227,6 +227,12 @@ p, dl, ol, ul, pre, blockquote {
   margin: 0;
 }
 
+main:has(.section.two-column.section.shredded-paper-background-column) .section.column-with-list .columns-wrapper,
+main:has(.section.two-column.section.hard-drive-background) .section.column-with-list .columns-wrapper {
+  margin: 0 2rem;
+  max-width: 100%;
+}
+
 main .section.column-with-list.navy-background.columns-container {
   display: flex;
   flex-wrap: wrap;
