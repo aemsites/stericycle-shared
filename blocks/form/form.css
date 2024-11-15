@@ -501,6 +501,10 @@ main .form form .repeat-wrapper{
     gap: var(--form-field-vert-gap) var(--form-field-horz-gap);
 }
 
+main .get-a-quote-form-alternate form .panel-wrapper {
+    gap:unset;
+}
+
 main .campaign-form.form form .panel-wrapper {
     padding: 5px;
     background-color: var(--color-gray);
@@ -758,11 +762,6 @@ main .get-a-quote-form-alternate form {
     display: block;
 }
 
-main .get-a-quote-form-alternate form .panel-wrapper {
-    gap:unset;
-}
-
-
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='privacy-policy']  p,
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='policy']  p{
     font-size: 0.75rem;
@@ -885,7 +884,7 @@ main .two-column.form-container .form-wrapper {
     main .form form .panel-wrapper.field-requesttype, main .form form .panel-wrapper.field-frequncy .radio-wrapper.field-quote-type{
         grid-column: span 1;
         width: 100%;
-        padding: 1.5rem 1.5rem 0;
+        padding: 1.5rem 1.5rem 0.5rem;
         margin: 0;
     }
 
