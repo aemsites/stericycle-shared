@@ -899,6 +899,19 @@ main .two-column.form-container {
     justify-content: center;
 }
 
+main .two-column.full-width.form-container {
+    display: grid;
+    grid-template-columns: 65% 35%;; /* Set max-width for each column */
+    grid-auto-rows: auto;
+    margin: auto;
+    gap: 0;
+    justify-content: flex-start;
+}
+
+main .two-column.full-width.form-container .form-wrapper {
+    max-width: 612px;
+}
+
 main .two-column.form-container > div {
     grid-column: 1;
 }
