@@ -437,7 +437,7 @@ function decorateSectionIds(main) {
 export function addJsonLd(schema, name, doc = document) {
   const script = doc.createElement('script');
   script.type = 'application/ld+json';
-  script.innerHTML = JSON.stringify(schema);
+  script.innerHTML = schema;
   if (name) {
     script.dataset.name = name;
   }
@@ -453,7 +453,7 @@ export function addJsonLd(schema, name, doc = document) {
 export function setJsonLd(schema, name, doc = document) {
   const existingScript = doc.head.querySelector(`script[data-name="${name}"]`);
   if (existingScript) {
-    existingScript.innerHTML = JSON.stringify(schema);
+    existingScript.innerHTML = schema;
     return;
   }
   addJsonLd(schema, name);
