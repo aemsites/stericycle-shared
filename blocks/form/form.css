@@ -1,11 +1,10 @@
 :root {
     --form-styles-background-color-primary: var(--color-white);
-    --form-styles-label-color: var(--color-black);
+    --form-styles-label-color: var(--color-text-secondary);
     --form-styles-border-color: #818a91;
-    --form-error-color: var(--color-error);
+    --form-error-color: var(--color-error-2);
     --form-styles-button-primary-color: var(--color-primary-1);
     --form-styles-button-disable-color: #666;
-    --form-styles-button-secondary-color: var(--color-secondary-4);
     --form-styles-button-primary-hover-color: #035fe6;
     --form-font-size-m: 22px;
     --form-font-size-s: 18px;
@@ -17,23 +16,21 @@
     --form-columns: 12;
     --form-field-horz-gap: 40px;
     --form-field-vert-gap: 20px;
-    --form-invalid-border-color: #ff5f3f;
     --form-input-invalid-border-color: var(--form-error-color);
-    --form-input-valid-border-color: #48cfa0;
     --form-input-focus-shadow: 0 0 0 .25rem rgb(13 110 253 / 25%);
     --form-input-invalid-shadow: 0 0 0 .25rem rgb(220 53 69 / 25%);
     --form-input-padding: 1rem 0.75rem;
     --form-input-font-size: 1rem;
-    --form-input-disable-color: #ebebe4;
+    --form-input-disable-color: var(--color-tertiary-5);
     --form-input-border-size: 1px;
-    --form-input-border-color: var(--color-black);
+    --form-input-border-color: var(--color-tertiary-1);
     --form-input-background-color: var(--form-styles-background-color-primary);
     --form-paragraph-color: var(--form-styles-label-color);
     --form-paragraph-margin: 0 0 0.9rem;
     --form-paragraph-font-style: none;
     --form-paragraph-font-size: var(--form-font-size-s);
     --form-label-color: var(--form-styles-label-color);
-    --form-label-font-size: var(--form-font-size-xxs);
+    --form-label-font-size: var(--form-font-size-xs);
     --form-label-font-weight: 400;
     --form-title-font-weight: 600;
     --form-fieldset-border: 0;
@@ -128,10 +125,11 @@ main .form input,
 main .form textarea,
 main .form select {
     background-color: var(--form-input-background-color);
+    border-radius: 4px;
     border: var(--form-input-border-size) solid var(--form-input-border-color);
     width: 100%;
-    height: 52px;
-    color: var(--form-label-color);
+    height: 48px;
+    color: var(--color-text-primary);
     padding: var(--form-input-padding);
     font-size: var(--form-input-font-size);
     max-width: unset;
@@ -260,14 +258,14 @@ main .form button:disabled {
 }
 
 main .form input:focus, main .form textarea:focus, main .form select:focus {
-  outline: 0;
-  box-shadow: var(--form-input-focus-shadow);
+  outline: 3px solid var(--color-primary-1);
+  outline-offset: 3px;
 }
 
 main .form .field-wrapper.field-valid input,
 main .form .field-wrapper.field-valid textarea,
 main .form .field-wrapper.field-valid select {
-  border-color: var(--form-input-valid-border-color);
+  border-color: var(--color-success-2);
 }
 
 main .form .field-wrapper.field-invalid input,
@@ -284,8 +282,8 @@ main .form .field-wrapper.field-invalid select {
 main .form .field-wrapper.field-invalid input:focus,
 main .form .field-wrapper.field-invalid textarea:focus,
 main .form .field-wrapper.field-invalid select:focus {
-  outline: 0;
-  box-shadow: var(--form-input-invalid-shadow);
+    outline: 3px solid var(--color-primary-1);
+    outline-offset: 3px;
 }
 
 main .file-wrapper.decorated input[type="file"] {
@@ -367,7 +365,7 @@ main .form .button-wrapper button:hover {
 }
 
 main .form .button-wrapper.wizard-button-next button, main .form .button-wrapper.submit-wrapper button{
-    background-color: var(--form-styles-button-secondary-color);
+    background-color: var(--color-secondary-4);
     border: none;
     outline: 1px solid var(--color-secondary-5);
     color: var(--color-text-primary);
@@ -641,7 +639,7 @@ main .form .field-wrapper.floating-field {
 }
 
 main .form .field-wrapper.floating-field > label {
-    padding: 15px 0 0 15px;
+    padding: 9px 0 0 1rem;
     position: absolute;
     transition: .3s cubic-bezier(.25,.8,.5,1);
     top: 10px;
