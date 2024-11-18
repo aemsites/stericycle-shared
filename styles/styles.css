@@ -75,6 +75,7 @@
 
   /* design tokens */
   --color-text-primary: #1F1F20;
+  --color-text-secondary: #757982;
   --color-primary-1: #006CB4;
   --color-primary-2: #133B5C;
   --color-secondary-1: #FF5733;
@@ -86,8 +87,11 @@
   --color-tertiary-2: #53558B;
   --color-tertiary-3: #007FAA;
   --color-tertiary-4: #CBCBCD;
-  --color-error: #DC3545;
-  --color-success: #198754;
+  --color-tertiary-5: #EFEFEF;
+  --color-error-1: #DC3545;
+  --color-error-2: #CB3529;
+  --color-success-1: #198754;
+  --color-success-2: #71CCA3;
 
   /* functional colors */
   --color-background: var(--color-white);
