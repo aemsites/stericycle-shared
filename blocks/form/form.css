@@ -232,6 +232,7 @@ main .form input[type="radio"]:checked {
 
 main .form input[type="radio"]:disabled {
     border: 2px solid var(--color-tertiary-4) !important;
+    cursor: not-allowed;
 }
 
 main .form input[type="radio"]:checked::before {
