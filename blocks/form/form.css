@@ -151,8 +151,6 @@ main .form input[type='file'] {
 
 main .form input[type="checkbox"] {
     appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     margin: .25rem;
     padding: .4rem;
     width: 1rem;
@@ -186,20 +184,25 @@ main .form input[type="checkbox"]:focus::after {
     border-right: 1px solid var(--color-primary-1);
 }
 
-main .form input[type="checkbox"]:hover:not(:focus)::after {
-    border-bottom: 1px solid var(--color-white);
-    border-right: 1px solid var(--color-white);
-}
-
 main .form input[type="checkbox"]:focus {
     background-color: var(--color-tertiary-6);
     outline: 2px solid var(--color-primary-1);
- }
+}
 
 main .form input[type="checkbox"]:disabled {
     background-color: var(--color-white);
     border: 1px solid var(--color-tertiary-4) !important;
     cursor: not-allowed;
+}
+
+main .form input[type="checkbox"]:disabled::after {
+    border-bottom: 1px solid var(--color-tertiary-4);
+    border-right: 1px solid var(--color-tertiary-4);
+}
+
+main .form input[type="checkbox"]:hover:not(:focus)::after {
+    border-bottom: 1px solid var(--color-white);
+    border-right: 1px solid var(--color-white);
 }
 
 main .form input[type="checkbox"]:disabled:hover::after {
@@ -209,8 +212,6 @@ main .form input[type="checkbox"]:disabled:hover::after {
 
 main .form input[type="radio"] {
     appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     width: 1rem;
     height: 1rem;
     border-radius: 50%;
@@ -231,10 +232,6 @@ main .form input[type="radio"]:checked {
 
 main .form input[type="radio"]:disabled {
     border: 2px solid var(--color-tertiary-4) !important;
-}
-main .form input[type="checkbox"]:disabled::after {
-    border-bottom: 1px solid var(--color-tertiary-4);
-    border-right: 1px solid var(--color-tertiary-4);
 }
 
 main .form input[type="radio"]:checked::before {
