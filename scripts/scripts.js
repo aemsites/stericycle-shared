@@ -258,6 +258,13 @@ async function loadFonts() {
   }
 }
 
+/**
+ * @typedef {Object} Config
+ * @property {string} type - The type of trigger ('time' or 'exit' or 'scroll').
+ * @property {string} size - The size of the modal.
+ * @property {string} value - The value associated with the trigger (e.g., time in seconds).
+ * @property {string} path - The path to the modal content.
+ */
 export function fetchTriggerConfig() {
   return {
     path: getMetadata('modal-path'),

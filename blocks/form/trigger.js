@@ -1,5 +1,4 @@
 import { openModal } from '../modal/modal.js';
-import { fetchTriggerConfig } from '../../scripts/scripts.js';
 
 let stopTrigger = false;
 let timer;
@@ -56,8 +55,11 @@ function registerEventListeners() {
   });
 }
 
-export function openOnTrigger() {
-  const config = fetchTriggerConfig();
+/**
+ * This function triggers a modal based on the specified configuration.
+ * @param {Config} config - The configuration object for triggering the modal.
+ */
+export function openOnTrigger(config) {
   const { path, type, value } = config;
   if (path && type && value) {
     registerEventListeners();
