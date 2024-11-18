@@ -78,6 +78,11 @@ main .columns span.icon > img {
   justify-content: flex-start;
 }
 
+.columns.narrow-icons span.icon {
+  height: var(--icon-size-xl);
+  width: var(--icon-size-xl);
+}
+
 .columns.box-shadow-hover.columns span.icon {
   display: flex;
   height: 150px;
@@ -172,7 +177,8 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 }
 
 .columns.narrow-icons span.icon > img {
-  height: unset;
+  height: var(--icon-size-xl);
+  width: var(--icon-size-xl);
 }
 
 .columns.narrow-icons p.button-container {
@@ -270,9 +276,11 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 }
 
 .columns.numeric-list ul {
-  list-style-type: none;
   display: flex;
-  height: 5rem;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  height: 7rem;
   padding-bottom: 2rem;
   padding-left: unset;
 }
@@ -333,6 +341,11 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
   align-items: flex-start;
 }
 
+main .section.blue-headings .columns span.icon > img {
+  width: var(--icon-size-xl);
+  height: var(--icon-size-xl);
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
   .columns > div {
     flex-direction: unset;
@@ -385,6 +398,10 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
     padding-left: 0;
   }
 
+  main .columns.numeric-list ul {
+    flex-direction: row;
+  }
+
   main .columns.numeric-list span.icon > img {
     width:3.75rem;
     height:3.75rem;
@@ -416,13 +433,13 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
     flex-direction: column;
     margin-left: 8.3333%;
   }
-  
+
   main .block.columns.video.columns-2-cols > div div:first-of-type:has(iframe) {
     display: flex;
     flex-direction: column;
     margin-right: 8.3333%;
   }
-  
+
   main .block.columns.video.columns-2-cols > div div iframe {
     height: 100%;
   }
@@ -482,13 +499,11 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
   main .section.columns-container .block.columns.centered-icons > div div:first-of-type:has(.icon),
   main .section.columns-container .block.columns.centered-icons > div div:last-of-type:has(.icon) {
     align-items: center;
-    
   }
 
   main .section.columns-container .block.columns.align-left > div div:first-of-type:has(.icon),
   main .section.columns-container .block.columns.align-left > div div:last-of-type:has(.icon) {
     align-items: start;
-    
   }
 
   main .section.columns-container.large-icon .block.columns.columns-2-cols div:first-of-type:has(.icon) span,

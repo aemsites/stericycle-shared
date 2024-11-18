@@ -44,8 +44,10 @@
   padding: 3rem 1.5rem;
 }
 
-.flip-cards > a:hover > div > .flip-card-front {
-  display: none;
+@media (min-width: 768px /* breakpoint-m */) {
+  .flip-cards > a:hover > div > .flip-card-front {
+    display: none;
+  }
 }
 
 .flip-cards.light > a > div > .flip-card-front {
@@ -64,8 +66,10 @@
   padding: 16px 24px;
 }
 
-.flip-cards > a:hover > div > .flip-card-back {
-  display: flex;
+@media (min-width: 768px /* breakpoint-m */) {
+  .flip-cards > a:hover > div > .flip-card-back {
+    display: flex;
+  }
 }
 
 .flip-cards > a > div > .flip-card-back > p {
