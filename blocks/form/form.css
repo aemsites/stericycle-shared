@@ -759,7 +759,7 @@ main .get-a-quote-form-alternate {
 
 main .get-a-quote-form-alternate form {
     margin:0;
-    gap:unset;
+    gap: unset;
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='privacy-policy']  p,
