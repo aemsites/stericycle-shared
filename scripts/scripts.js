@@ -258,6 +258,15 @@ async function loadFonts() {
   }
 }
 
+export function fetchTriggerConfig() {
+  return {
+    path: getMetadata('modal-path'),
+    size: getMetadata('modal-size'),
+    type: getMetadata('modal-trigger'),
+    value: getMetadata('modal-trigger-threshold'),
+  };
+}
+
 async function autolinkModals(element) {
   element.addEventListener('click', async (e) => {
     const origin = e.target.closest('a');
@@ -268,18 +277,8 @@ async function autolinkModals(element) {
       openModal(origin.href);
     }
   });
-
-  const config = {
-    path: getMetadata('modal-path'),
-    size: getMetadata('modal-size'),
-    type: getMetadata('modal-trigger'),
-    value: getMetadata('modal-trigger-threshold'),
-  };
-  const { path, type, value } = config;
-  if (path && type && value) {
-    const { openOnTrigger } = await import(`${window.hlx.codeBasePath}/blocks/form/trigger.js`);
-    openOnTrigger(config);
-  }
+  const { openOnTrigger } = await import(`${window.hlx.codeBasePath}/blocks/form/trigger.js`);
+  openOnTrigger(fetchTriggerConfig());
 }
 
 /**

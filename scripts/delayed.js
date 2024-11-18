@@ -3,7 +3,7 @@ import {
   fetchPlaceholders, getMetadata, loadCSS, sampleRUM,
 } from './aem.js';
 // eslint-disable-next-line import/no-cycle
-import { getDateFromExcel, getRelatedPosts } from './scripts.js';
+import { getDateFromExcel, getRelatedPosts, fetchTriggerConfig } from './scripts.js';
 import decorate from '../blocks/post-teaser-list/post-teaser-list.js';
 
 // Core Web Vitals RUM collection
@@ -120,4 +120,37 @@ if (document.querySelector('body.resource-center')
     && (document.querySelector('meta[name="media-type"]')?.getAttribute('content') === 'Infographic'
         || document.querySelector('meta[name="media-type"]')?.getAttribute('content') === 'Info Sheets')) {
   await loadYMAL();
+}
+
+/**
+ * This method triggers the modal if user scrolls to config[value]  percentage of the visible page
+ * @param {Object} config
+ */
+async function openOnScroll(config) {
+  const value = parseInt(config.value, 10);
+  const target = document.createElement('div');
+  const documentHeight = document.documentElement.scrollHeight;
+  const triggerPosition = (value / 100) * documentHeight;
+  target.style.position = 'absolute';
+  target.style.top = `${triggerPosition}px`;
+  target.classList.add('test');
+  document.body.appendChild(target);
+  const { openModal } = await import('../blocks/modal/modal.js');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !sessionStorage.getItem(config.path)) {
+        openModal(config.path, config);
+        observer.disconnect();
+      }
+    });
+  }, {
+    root: null, // Observe relative to the viewport
+    threshold: 0, // Trigger when any part of the element is visible
+  });
+  observer.observe(target);
+}
+
+const config = fetchTriggerConfig();
+if (config?.type === 'scroll') {
+  openOnScroll(config);
 }

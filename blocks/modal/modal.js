@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { loadFragment } from '../fragment/fragment.js';
 import {
   buildBlock, decorateBlock, loadBlock, loadCSS,
