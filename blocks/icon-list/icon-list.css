@@ -33,6 +33,11 @@ div.icon-list > div > div span {
     width: 100%;
 }
 
+main div.icon-list.plain > div > div span {
+    height: 5rem;
+    width: 5rem;
+}
+
 div.icon-list > div > div:first-of-type {
     width: 33%;
 }
@@ -48,8 +53,16 @@ div.icon-list > div > div:nth-of-type(2) {
     align-items: center;
 }
 
+div.icon-list.plain > div > div:first-of-type {
+    width: 33%;
+    height: 5rem;
+    padding: unset;
+    margin: unset;
+}
+
 div.icon-list.plain > div > div:nth-of-type(2) {
     display: flex;
+    height: fit-content;
     align-items: start;
     border-left: unset;
     flex-direction: column;
