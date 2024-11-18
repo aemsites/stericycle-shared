@@ -247,7 +247,9 @@ p, dl, ol, ul, pre, blockquote {
   margin: 0;
 }
 
-main .section.column-with-list .columns-wrapper {
+main:has(.section.two-column.shredded-paper-background-column) .section.column-with-list .columns-wrapper,
+main:has(.section.two-column.hard-drive-background) .section.column-with-list .columns-wrapper,
+main:has(.section.shredded-paper-background) .section.column-with-list .columns-wrapper {
   margin: 0 2rem;
   max-width: 100%;
 }
@@ -1114,6 +1116,10 @@ main .section.extra-margin-bottom {
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
+  h1 {
+    line-height: 3.25rem;
+  }
+
   .blog-page main .related-content h5 {
     line-height: 24px;
   }

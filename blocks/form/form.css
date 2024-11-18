@@ -914,23 +914,52 @@ main .two-column.form-container .form-wrapper {
         margin-top: 0;
     }
 
-    main .section.two-column.form-container {
-        display: block;
+    main .section.two-column.form-container,
+    main .section.two-column.form-container.full-width{
+        display: table-row;
     }
-
 }
 
-main .two-column.form-container {
+main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background) {
     display: grid;
-    grid-template-columns: 65% 35%; /* Set max-width for each column */
+    grid-template-columns: minmax(0, 884px) minmax(0, 436px); /* Set max-width for each column */
+    grid-auto-rows: auto;
+    margin: auto;
+    gap: 0;
+    justify-content: center;
+}
+
+main .shredded-paper-background-column.two-column.form-container,
+main .navy-background.cyan-border.two-column.form-container,
+main .hard-drive-background.two-column.form-container {
+    display: grid;
+    grid-template-columns: 65% 35%;; /* Set max-width for each column */
     grid-auto-rows: auto;
     margin: auto;
     gap: 0;
     justify-content: flex-start;
 }
 
+main .shredded-paper-background-column.two-column,
+main .hard-drive-background.two-column {
+    padding: 0 2rem;
+}
+
+
+main .two-column.full-width.form-container .form-wrapper {
+    max-width: 612px;
+}
+
 main .two-column.form-container > div {
     grid-column: 1;
+}
+
+main .two-column.form-container > div:not(:first-child, .form-wrapper) {
+    margin: 0;
+}
+
+main .two-column.form-container > div:first-child {
+    margin-bottom: 0;
 }
 
 /* Place the last child in the second column */
