@@ -17,6 +17,7 @@ import {
   loadBlock,
   loadSection,
 } from './aem.js';
+import { div } from './dom-helpers.js';
 import ffetch from './ffetch.js';
 
 export function convertExcelDate(excelDate) {
@@ -257,6 +258,10 @@ async function fetchWistiaMetadata(videoUrl) {
  * @param {Element} main The container element
  */
 function buildHeroBlock(main) {
+  // blog pages don't use the hero block
+  if (!document.querySelector('body.blog-page')) {
+    return;
+  }
   const firstSection = main.querySelector('div');
   const h1 = firstSection.querySelector('h1');
   if (!h1) {
@@ -270,6 +275,13 @@ function buildHeroBlock(main) {
   // create block
   const block = buildBlock('hero', { elems: Array.from(firstSection.children) });
   firstSection.append(block);
+}
+
+function buildBreadcrumb(main) {
+  const breadcrumb = getMetadata('breadcrumb');
+  if (breadcrumb.toLowerCase() === 'true') {
+    main.prepend(div(buildBlock('breadcrumb', { elems: [] })));
+  }
 }
 
 /**
@@ -302,10 +314,8 @@ function autolinkModals(element) {
  */
 function buildAutoBlocks(main) {
   try {
-    if (!document.querySelector('body.blog-page')) {
-      // blog pages don't use the hero block
-      buildHeroBlock(main);
-    }
+    buildHeroBlock(main);
+    buildBreadcrumb(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -449,7 +459,7 @@ function decorateSectionIds(main) {
 export function addJsonLd(schema, name, doc = document) {
   const script = doc.createElement('script');
   script.type = 'application/ld+json';
-  script.innerHTML = JSON.stringify(schema);
+  script.innerHTML = schema;
   if (name) {
     script.dataset.name = name;
   }
@@ -465,7 +475,7 @@ export function addJsonLd(schema, name, doc = document) {
 export function setJsonLd(schema, name, doc = document) {
   const existingScript = doc.head.querySelector(`script[data-name="${name}"]`);
   if (existingScript) {
-    existingScript.innerHTML = JSON.stringify(schema);
+    existingScript.innerHTML = schema;
     return;
   }
   addJsonLd(schema, name);

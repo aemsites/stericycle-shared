@@ -1,6 +1,5 @@
 /* stylelint-disable no-descending-specificity */
 .block.header {
-  position: fixed;
   height: var(--nav-height);
   background-color: var(--color-background-header);
   color: var(--color-white);

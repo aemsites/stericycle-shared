@@ -34,6 +34,7 @@ export async function loadFragment(path) {
       resetAttributeBase('source', 'srcset');
 
       decorateMain(main);
+      main.querySelector('.section.breadcrumb-container')?.remove(); // remove auto-block breadcrumb
       await loadBlocks(main);
       return main;
     }
