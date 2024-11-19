@@ -271,7 +271,7 @@ export function embedWistia(url) {
  */
 function buildHeroBlock(main) {
   // blog pages don't use the hero block
-  if (!document.querySelector('body.blog-page')) {
+  if (document.querySelector('body.blog-page')) {
     return;
   }
   const firstSection = main.querySelector('div');
