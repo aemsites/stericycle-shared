@@ -335,7 +335,8 @@ async function autolinkModals(element) {
     }
   });
   const { openOnTrigger } = await import(`${window.hlx.codeBasePath}/blocks/form/trigger.js`);
-  openOnTrigger(fetchTriggerConfig());
+  const { openModal } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
+  openOnTrigger(fetchTriggerConfig(), openModal);
 }
 
 /**

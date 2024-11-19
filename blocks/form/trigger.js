@@ -1,5 +1,3 @@
-import { openModal } from '../modal/modal.js';
-
 let stopTrigger = false;
 let timer;
 
@@ -7,36 +5,64 @@ export function isFormSubmitted() {
   return sessionStorage.getItem('formSubmitted');
 }
 
-async function triggerHandler(config) {
+async function triggerHandler(config, trigger) {
   const { path, value } = config;
   if (!isFormSubmitted()) {
     if (!sessionStorage.getItem(path)) { // prevent trigger modal from opening if already closed
       timer = setTimeout(async () => {
         if (!stopTrigger) { // stop triggering when another modal is open
-          openModal(config.path, config);
+          trigger(config.path, config);
         }
       }, parseInt(value, 10) * 1000);
     }
   }
+}
+/**
+ * This method triggers the modal if user scrolls to config[value]  percentage of the visible page
+ * @param {Object} config
+ * @param trigger
+ */
+export async function openOnScroll(config, trigger) {
+  const value = parseInt(config.value, 10);
+  const target = document.createElement('div');
+  const documentHeight = document.documentElement.scrollHeight;
+  const triggerPosition = (value / 100) * documentHeight;
+  target.style.position = 'absolute';
+  target.style.top = `${triggerPosition}px`;
+  document.body.appendChild(target);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !sessionStorage.getItem(config.path)) {
+        trigger(config.path, config);
+        observer.disconnect();
+      }
+    });
+  }, {
+    root: null, // Observe relative to the viewport
+    threshold: 0, // Trigger when any part of the element is visible
+  });
+  observer.observe(target);
 }
 
 /**
  * This method triggers the modal after config[value] seconds has elapsed
  * If a non trigger modal is already open, it will not trigger another modal.
  * @param {Object} config
+ * @param trigger
  */
-function openOnPageTime(config) {
-  triggerHandler(config);
+function openOnPageTime(config, trigger) {
+  triggerHandler(config, trigger);
 }
 
 /**
  * This method triggers the modal if user tries to exit the page after config[value] seconds has elapsed
  * If a non trigger modal is already open, it will not trigger another modal.
  * @param {Object} config
+ * @param trigger
  */
-function openOnExitIntent(config) {
+function openOnExitIntent(config, trigger) {
   document.addEventListener('mouseleave', () => {
-    triggerHandler(config);
+    triggerHandler(config, trigger);
   });
   document.addEventListener('mouseenter', () => {
     if (timer) clearTimeout(timer);
@@ -58,15 +84,16 @@ function registerEventListeners() {
 /**
  * This function triggers a modal based on the specified configuration.
  * @param {Config} config - The configuration object for triggering the modal.
+ * @param trigger - The callback to be invoked when user action is triggered.
  */
-export function openOnTrigger(config) {
+export function openOnTrigger(config, trigger) {
   const { path, type, value } = config;
   if (path && type && value) {
     registerEventListeners();
     if (type.toLowerCase().trim() === 'time') {
-      openOnPageTime(config);
+      openOnPageTime(config, trigger);
     } else if (type.toLowerCase().trim() === 'exit') {
-      openOnExitIntent(config);
+      openOnExitIntent(config, trigger);
     }
   }
 }
