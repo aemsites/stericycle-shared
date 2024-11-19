@@ -346,6 +346,18 @@ main .section.blue-headings .columns span.icon > img {
   height: var(--icon-size-xl);
 }
 
+.columns.small-images.centered > div > div > p:first-of-type img {
+  width: 50%;
+}
+
+.columns.small-images.centered > div > div > p:first-of-type {
+  text-align: center;
+}
+
+.columns.small-images.centered > div > div > p:last-of-type {
+  text-align: center;
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
   .columns > div {
     flex-direction: unset;
