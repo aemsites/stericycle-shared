@@ -8,6 +8,15 @@
   gap: 1.5rem;
 }
 
+.columns.cyan-accent-border > div {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.columns.cyan-accent-border > div > div {
+  flex: 35%;
+}
+
 .columns > div > div {
   order: 1;
   display: flex;
@@ -362,6 +371,11 @@ main .section.blue-headings .columns span.icon > img {
   .columns > div {
     flex-direction: unset;
     gap: 24px;
+  }
+
+  .columns.cyan-accent-border > div {
+    flex-direction: row;
+    flex-wrap: unset;
   }
 
   .columns > div > div {
