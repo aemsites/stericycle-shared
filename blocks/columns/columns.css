@@ -276,9 +276,11 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 }
 
 .columns.numeric-list ul {
-  list-style-type: none;
   display: flex;
-  height: 5rem;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  height: 7rem;
   padding-bottom: 2rem;
   padding-left: unset;
 }
@@ -394,6 +396,10 @@ main .section.blue-headings .columns span.icon > img {
   .columns.orange-accent-border.columns-has-image > div > div:first-of-type,
   .columns.cyan-accent-border.columns-has-image > div > div:first-of-type {
     padding-left: 0;
+  }
+
+  main .columns.numeric-list ul {
+    flex-direction: row;
   }
 
   main .columns.numeric-list span.icon > img {
