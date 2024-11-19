@@ -3,6 +3,7 @@ import { getDateFromExcel, getLocale } from '../../scripts/scripts.js';
 import {
   createOptimizedPicture, fetchPlaceholders, readBlockConfig,
 } from '../../scripts/aem.js';
+import { div } from '../../scripts/dom-helpers.js';
 
 const ITEMS_PER_PAGE = 10;
 let CURRENT_PAGE = 1;
@@ -16,7 +17,7 @@ const formatDate = (date) => date.toLocaleDateString('en-US', {
 /*
     * This function decorates the results from the query-index.json file
  */
-function decorateResults(posts, list, sheet) {
+function decorateResults(posts, list) {
   posts.forEach((post) => {
     const item = document.createElement('li');
     item.classList.add('list-item');
@@ -27,13 +28,17 @@ function decorateResults(posts, list, sheet) {
     const heading = document.createElement('h4');
     const categoryDiv = document.createElement('div');
     categoryDiv.classList.add('item-category');
-    const categoryLink = document.createElement('a');
+
+    if (post.type && post.type !== '0') {
+      const categoryLink = document.createElement('a');
+      categoryLink.href = window.location.pathname;
+      categoryLink.innerText = post.type;
+      categoryLink.classList.add('initial-caps');
+      categoryLink.setAttribute('aria-label', post.type);
+      categoryDiv.append(categoryLink);
+    }
+
     const dateDiv = document.createElement('div');
-    categoryLink.href = window.location.pathname;
-    categoryLink.innerText = post.type;
-    categoryLink.classList.add('initial-caps');
-    categoryLink.setAttribute('aria-label', sheet);
-    categoryDiv.append(categoryLink);
     heading.classList.add('item-title');
     const headingLink = document.createElement('a');
     headingLink.href = post.path;
@@ -105,54 +110,6 @@ function filterTags(cbox, includes) {
 }
 
 /*
-    * This function updates the results based on the checkbox that was clicked
-    * @param {Object} checkboxChange - the checkbox that was clicked
-    * @param {String} sheet - the sheet name
- */
-async function updateResults(checkboxChange, sheets = [], page = 1) {
-  let sheetList = Array.isArray(sheets) ? sheets : sheets.split(',');
-  sheetList = sheetList.map((sheet) => String(sheet.trim()));
-
-  const posts = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json').sheet(sheet)
-    .map((post) => ({
-      tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
-      title: post.title,
-      date: post.date,
-      image: post.image,
-      path: post.path,
-      type: post['media-type'],
-    }))
-    .filter((post) => !checkboxChange || filterTags(
-      checkboxChange,
-      post.tags.includes(checkboxChange.value),
-    ))
-    .all())).then((results) => results.flat());
-
-  posts.sort((a, b) => b.date - a.date);
-
-  const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
-  const start = (page - 1) * ITEMS_PER_PAGE;
-  const end = start + ITEMS_PER_PAGE;
-  const paginatedPosts = posts.slice(start, end);
-
-  const flc = document.querySelector('div.facet-list-container> div.results> ul');
-  flc.innerHTML = '';
-  decorateResults(paginatedPosts, flc, sheetList.join(', '));
-
-  const paginationControls = document.querySelector('div.pagination-controls');
-  createPaginationControls(totalPages, page, flc, paginationControls, sheetList.join(', '));
-
-  if (checkboxChange) {
-    const checkboxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]');
-    checkboxes.forEach((checkbox) => {
-      if (checkbox.value !== checkboxChange.value) {
-        checkbox.checked = false;
-      }
-    });
-  }
-}
-
-/*
     * This function gets the results from the query-index.json file based on sheet name
  */
 async function getResults(sheets = []) {
@@ -181,22 +138,41 @@ async function getFacets(sheets = []) {
     .then((results) => results.flat());
 
   const tagJson = {};
+  const mediaTypeArr = [];
+
+  const transformedArr = sheetList.map((item) => {
+    const words = item.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+    const capitalized = words.join(' ');
+    return capitalized === 'Blog' ? 'Blogs' : capitalized;
+  });
+
   facets.forEach((facet) => {
     const tags = facet.tags.split(',');
     tags.forEach((tag) => {
       const cleanTag = tag.trim().replaceAll(/["[\]]/g, '');
-      if (cleanTag === '' || sheetList.some((sheet) => cleanTag.toLowerCase().includes(sheet))) {
+      if (cleanTag === '') {
         return;
       }
-      const existingTag = facetArray.find((e) => e.tag === cleanTag);
-      if (existingTag) {
-        existingTag.count += 1;
+      if (transformedArr.includes(cleanTag)) {
+        const existingTag = mediaTypeArr.find((e) => e.tag === cleanTag);
+        if (existingTag) {
+          existingTag.count += 1;
+        } else {
+          mediaTypeArr.push({ tag: cleanTag, count: 1 });
+        }
       } else {
-        facetArray.push({ tag: cleanTag, count: 1 });
+        const existingTag = facetArray.find((e) => e.tag === cleanTag);
+        if (existingTag) {
+          existingTag.count += 1;
+        } else {
+          facetArray.push({ tag: cleanTag, count: 1 });
+        }
       }
     });
   });
+
   tagJson.tags = facetArray;
+  tagJson.mediaType = mediaTypeArr;
   return tagJson;
 }
 
@@ -204,18 +180,175 @@ async function getFacets(sheets = []) {
     * This function toggles the facets on and off
  */
 function toggleFacets() {
-  const facets = document.querySelector('div.facet-list-container > div.facet > ul');
-  facets.style.display = facets.style.display === 'none' ? 'unset' : 'none';
+  const facets = document.querySelectorAll('div.facet-list-container > div.facet > .facet-list-container');
+  facets?.forEach((facet) => {
+    facet.classList.toggle('unhide');
+  });
 }
 
-function clickChevron() {
-  const fl = document.querySelector('ul.facet-list');
-  if (fl.classList.contains('slideout')) {
-    fl.classList.remove('slideout');
-  } else {
-    fl.classList.add('slideout');
-  }
+function clickChevron(chevron, facetList) {
+  facetList.classList.toggle('slideout');
+  chevron.classList.toggle('fa-chevron-down');
+  chevron.classList.toggle('fa-chevron-up');
 }
+
+const isResourceCenterPages = () => {
+  const path = window.location.pathname;
+  if (path.endsWith('resource-center')) {
+    return true;
+  }
+  return false;
+};
+
+const createFacetList = (name) => {
+  const topDiv = div({ class: 'facet-list-container' });
+  const head = div({ class: 'head' }, name);
+  const chevron = document.createElement('i');
+  chevron.classList.add('fa-chevron-down');
+  chevron.addEventListener('click', () => {
+    const facetList = chevron.parentElement.nextElementSibling;
+    if (facetList && facetList.classList.contains('facet-list')) {
+      clickChevron(chevron, facetList);
+    }
+  });
+  head.append(chevron);
+  const facetUL = document.createElement('ul');
+  facetUL.classList.add('facet-list');
+  topDiv.append(head, facetUL);
+  return topDiv;
+};
+
+const updateFacets = (posts, sheetList) => {
+  const tagJson = {};
+  const mediaTypeArr = [];
+  const facetArray = [];
+
+  const transformedArr = sheetList.map((item) => {
+    const words = item.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+    const capitalized = words.join(' ');
+    return capitalized === 'Blog' ? 'Blogs' : capitalized;
+  });
+
+  posts.forEach((facet) => {
+    const { tags } = facet;
+    tags.forEach((tag) => {
+      const cleanTag = tag.trim().replaceAll(/["[\]]/g, '');
+      if (cleanTag === '') {
+        return;
+      }
+      if (transformedArr.includes(cleanTag)) {
+        const existingTag = mediaTypeArr.find((e) => e.tag === cleanTag);
+        if (existingTag) {
+          existingTag.count += 1;
+        } else {
+          mediaTypeArr.push({ tag: cleanTag, count: 1 });
+        }
+      } else {
+        const existingTag = facetArray.find((e) => e.tag === cleanTag);
+        if (existingTag) {
+          existingTag.count += 1;
+        } else {
+          facetArray.push({ tag: cleanTag, count: 1 });
+        }
+      }
+    });
+  });
+
+  tagJson.tags = facetArray;
+  tagJson.mediaType = mediaTypeArr;
+
+  const facetList = document.querySelectorAll('div.facet-list-container > div.facet .facet-list');
+  facetList.forEach((facet) => {
+    facet.innerHTML = '';
+  });
+
+  const facetContainers = document.querySelectorAll('div.facet .facet-list-container');
+  if (facetContainers.length) {
+    if (isResourceCenterPages()) {
+      // eslint-disable-next-line no-use-before-define
+      createFacet(tagJson.mediaType, facetContainers[0], sheetList);
+    }
+    // eslint-disable-next-line no-use-before-define
+    createFacet(tagJson.tags, facetContainers.length === 2 ? facetContainers[1] : facetContainers[0], sheetList);
+  }
+};
+
+/*
+    * This function updates the results based on the checkbox that was clicked
+    * @param {Object} checkboxChange - the checkbox that was clicked
+    * @param {String} sheet - the sheet name
+ */
+async function updateResults(checkboxChange, sheets = [], page = 1, updateFacetsOrNot = false) {
+  let sheetList = Array.isArray(sheets) ? sheets : sheets.split(',');
+  sheetList = sheetList.map((sheet) => String(sheet.trim()));
+
+  const posts = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json').sheet(sheet)
+    .map((post) => ({
+      tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
+      title: post.title,
+      date: post.date,
+      image: post.image,
+      path: post.path,
+      type: post['media-type'],
+    }))
+    .filter((post) => !checkboxChange || filterTags(
+      checkboxChange,
+      post.tags.includes(checkboxChange.value),
+    ))
+    .all())).then((results) => results.flat());
+
+  posts.sort((a, b) => b.date - a.date);
+
+  if (updateFacetsOrNot) {
+    updateFacets(posts, sheetList);
+  }
+
+  const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
+  const start = (page - 1) * ITEMS_PER_PAGE;
+  const end = start + ITEMS_PER_PAGE;
+  const paginatedPosts = posts.slice(start, end);
+
+  const flc = document.querySelector('div.facet-list-container> div.results> ul');
+  flc.innerHTML = '';
+  decorateResults(paginatedPosts, flc, sheetList.join(', '));
+
+  const paginationControls = document.querySelector('div.pagination-controls');
+  createPaginationControls(totalPages, page, flc, paginationControls, sheetList.join(', '));
+
+  if (checkboxChange) {
+    const checkboxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.value !== checkboxChange.value || checkboxChange?.checked === false) {
+        checkbox.checked = false;
+      } else if (checkboxChange?.checked === true) {
+        checkbox.checked = true;
+      }
+    });
+  }
+
+  return posts;
+}
+
+const createFacet = (facets, topDiv, sheets) => {
+  facets.sort((a, b) => a.tag.localeCompare(b.tag));
+  facets.forEach((facet) => {
+    const facetItem = document.createElement('li');
+    const topic = document.createElement('div');
+    topic.classList.add('facet-group');
+    const checkbox = document.createElement('input');
+    const label = document.createElement('label');
+    label.innerText = `${facet.tag} (${facet.count})`;
+    checkbox.type = 'checkbox';
+    checkbox.value = facet.tag;
+    checkbox.addEventListener('change', (cb) => {
+      updateResults(cb.target, sheets, 1, true);
+    });
+    topic.append(checkbox);
+    topic.append(label);
+    facetItem.append(topic);
+    topDiv?.querySelector('ul').append(facetItem);
+  });
+};
 
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
@@ -230,40 +363,17 @@ export default async function decorate(block) {
   });
   facetDiv.append(mobileFilter);
   facetDiv.classList.add('facet');
-  const facetList = document.createElement('ul');
-  const facetLI = document.createElement('li');
-  const topicHead = document.createElement('div');
-  topicHead.classList.add('topic-head');
-  const chevron = document.createElement('i');
-  chevron.classList.add('fa-chevron-down');
-  chevron.addEventListener('click', () => {
-    clickChevron();
-  });
-  topicHead.innerText = blogtopic;
-  topicHead.append(chevron);
-  facetLI.append(topicHead);
-  facetList.append(facetLI);
-  const facetUL = document.createElement('ul');
-  facetUL.classList.add('facet-list');
-  facetLI.append(facetUL);
-  facets.tags.forEach((facet) => {
-    const facetItem = document.createElement('li');
-    const topic = document.createElement('div');
-    topic.classList.add('facet-group');
-    const checkbox = document.createElement('input');
-    const label = document.createElement('label');
-    label.innerText = `${facet.tag} (${facet.count})`;
-    checkbox.type = 'checkbox';
-    checkbox.value = facet.tag;
-    checkbox.addEventListener('change', (cb) => {
-      updateResults(cb.target, cfg.sheet.split(','));
-    });
-    topic.append(checkbox);
-    topic.append(label);
-    facetItem.append(topic);
-    facetUL.append(facetItem);
-  });
-  facetDiv.append(facetList);
+
+  const topDiv1 = createFacetList('Media Type');
+  const topDiv2 = createFacetList(blogtopic);
+  createFacet(facets.tags, topDiv2, cfg.sheet.split(','));
+  if (isResourceCenterPages()) {
+    createFacet(facets.mediaType, topDiv1, cfg.sheet.split(','));
+    facetDiv.append(topDiv1, topDiv2);
+  } else {
+    facetDiv.append(topDiv2);
+  }
+
   const resultsDiv = document.createElement('div');
   resultsDiv.classList.add('results');
   const resultsList = document.createElement('ul');
@@ -279,6 +389,5 @@ export default async function decorate(block) {
   const paginationControls = document.createElement('div');
   paginationControls.classList.add('pagination-controls');
   blogFilterContainer.insertAdjacentElement('afterend', paginationControls);
-
   await updateResults(null, cfg.sheet, CURRENT_PAGE);
 }

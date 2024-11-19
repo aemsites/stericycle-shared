@@ -1,62 +1,51 @@
-div.section.download-container {
-    align-items: flex-start;
-    height: 100%;
-    overflow: visible;
-}
 
-div.section.download-container .default-content-wrapper a {
-	text-decoration: underline;
-}
+.download.block {
+  background-color: var(--color-gray);
+  width: 100%;
+  padding: 2rem .75rem;
 
-div.section.download-container.has-block {
-	padding-right: calc(1.5rem* 0.5);
-	padding-left: calc(1.5rem* 0.5);
-}
+  & .download-head {
+    margin-bottom: 1.5rem;
 
-div.section.download-container > div.download-wrapper {
-    width: 100%;
-    padding-right: calc(1.5rem * 0.5);
-    padding-left: calc(1.5rem * 0.5);
-    display: flex;
-    align-items: flex-start;
-    margin-top: 10px;
-    margin-bottom: unset;
-    top: 120px;
-}
+    & h4 {
+      margin-bottom: .75rem;
+      text-align: center;
+    }
+  }
 
-div.section.download-container > div.download-wrapper > div.ig-container {
-    background-color: #f2f6f7;
-    width: 100%;
-    padding: 2rem 3rem;
-}
+  & .download-image {
+    margin-bottom: 2rem;
 
-div.section.download-container > div.download-wrapper > div.ig-container h4 {
-    text-align: center;
-}
+    picture {
+      display: block;
+      position: relative;
+      height: 100%;
+      width: 100%;
 
-div.section.download-container > div.download-wrapper > div.ig-container p.button-container {
-    text-align: center;
-}
 
-div.section.download-container > div.download-wrapper > div.ig-container p.button-container a.button {
-    width: 100%;
-}
-
-@media screen and (min-width: 992px) {
-    div.section.download-container {
+      & img {
+        position: absolute;
         height: 100%;
-        overflow: visible;
-				display: flex;
-        align-items: flex-start;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        object-fit: cover;
+        object-position: center;
+      }
     }
+  }
 
-    div.section.download-container > div.download-wrapper {
-        position: sticky;
-        margin-left: 8.33%;
-				width: 25%;
+  & .download-cta p.button-container {
+    margin-bottom: 0;
+    text-align: center;
+
+    & a.button {
+      margin: 0;
+      width: 100%;
     }
+  }
+}
 
-		div.section.download-container.has-block > div.download-wrapper {
-			width: 100%;
-		}
+.sidebar-right .download-wrapper .download.block {
+  padding: 2rem 3em;
 }
