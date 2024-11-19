@@ -78,7 +78,6 @@ export default async function decorate(block) {
   // decorate footer DOM
   block.textContent = '';
   const footer = document.createElement('div');
-  fragment.querySelector('.section.breadcrumb-container')?.remove(); // remove auto-block breadcrumb
   while (fragment?.firstElementChild) footer.append(fragment.firstElementChild);
 
   block.append(footer);
