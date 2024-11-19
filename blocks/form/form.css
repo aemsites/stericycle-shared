@@ -879,6 +879,16 @@ main .hard-drive-background.two-column.form-container {
     justify-content: flex-start;
 }
 
+
+main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background) {
+    display: grid;
+    grid-template-columns: minmax(0, 884px) minmax(0, 436px); /* Set max-width for each column */
+    grid-auto-rows: auto;
+    margin: auto;
+    gap: 0;
+    justify-content: center;
+}
+
 @media (max-width: 1000px) {
     main .two-column.form-container .default-content-wrapper {
         width: 90%;
@@ -917,15 +927,6 @@ main .hard-drive-background.two-column.form-container {
     {
         display: table-row;
     }
-}
-
-main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background) {
-    display: grid;
-    grid-template-columns: minmax(0, 884px) minmax(0, 436px); /* Set max-width for each column */
-    grid-auto-rows: auto;
-    margin: auto;
-    gap: 0;
-    justify-content: center;
 }
 
 main .shredded-paper-background-column.two-column,
