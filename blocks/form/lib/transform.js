@@ -170,6 +170,7 @@ export default class DocBasedFormToAF {
     'Min Error Message': 'constraintMessages.min',
     'Max Error Message': 'constraintMessages.max',
     'Submit Error Message': 'submitErrorMessage',
+    'Submit Success Message': 'submitSuccessMessage',
   };
 
   fieldMapping = new Map([
@@ -224,10 +225,13 @@ export default class DocBasedFormToAF {
         if (field?.fieldType === 'submit') {
           const submitValue = field.value;
           const errorMsg = field.submitErrorMessage;
-          if (submitValue.startsWith('https') && !submitValue.indexOf('forms/fragments')) {
+          const thankYouMessage = field.submitSuccessMessage;
+          if (submitValue.startsWith('https')) {
             formDef.redirectUrl = submitValue;
-          } else if (submitValue) {
-            formDef.thankYouMsg = submitValue;
+          }
+
+          if (thankYouMessage) {
+            formDef.thankYouMsg = thankYouMessage;
           }
 
           if (errorMsg) {
