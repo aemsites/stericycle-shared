@@ -198,7 +198,10 @@ body.appear {
 }
 
 header {
+  position: sticky;
+  top: 0;
   height: var(--nav-height);
+  z-index: 100;
 }
 
 h1, h2, h3,
@@ -645,6 +648,11 @@ main .section.with-image {
   padding: 0 24px 32px;
 }
 
+main > .section.box-shadow {
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 25%);
+}
+
+
 /* section background image styles */
 main div.section.default-teaser-section {
   background-size: cover;
@@ -708,84 +716,6 @@ main .section.with-image > div.section-image-wrapper:first-child {
   grid-column: 1;
 }
 
-/* resource center styles */
-
-body.resource-center > main > div.section {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-body.resource-center > main > div.section.box-shadow.post-teaser-list-container {
-  margin-right: unset;
-  margin-left: unset;
-  max-width: unset;
-  box-shadow: 0 0 4px 0 rgb(0 0 0 / 25%);
-}
-
-body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper h3 {
-  font-size: 1.625rem;
-  line-height: 2.375rem;
-  font-weight: 700;
-}
-
-body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper .teaser > .teaser-content > a > span.teaser-date {
-  display: unset;
-}
-
-body.resource-center > main > div.section.box-shadow.post-teaser-list-container > div.default-content-wrapper .teaser > .teaser-content > p.button-container {
-  display: none;
-}
-
-body.resource-center > main > div.section.default-teaser-section {
-  margin-left: unset;
-  margin-right: unset;
-  max-width: 100%;
-}
-
-body.resource-center > main > div.section.default-teaser-section > div.default-content-wrapper, body.resource-center > main > div.section.default-teaser-section > div.default-content-wrapper > h1 {
-  padding-bottom: unset;
-  margin-bottom: unset;
-}
-
-@media (min-width: 576px) {
-  body.resource-center > main > div.section {
-    max-width: 540px;
-  }
-}
-
-@media (min-width: 768px) {
-  body.resource-center > main > div.section {
-    max-width: 45pc;
-  }
-}
-
-@media (min-width: 992px) {
-  body.resource-center > main > div.section {
-    max-width: 60pc;
-  }
-}
-
-@media (min-width: 1200px) {
-  body.resource-center > main > div.section {
-    max-width: 855pt;
-  }
-}
-
-@media (min-width: 1400px) {
-  body.resource-center > main > div.section {
-    max-width: 990pt;
-  }
-}
-
-body.resource-center p {
-  margin-bottom: 1rem;
-}
 
 /* blog styles */
 
