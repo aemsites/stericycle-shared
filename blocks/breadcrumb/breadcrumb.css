@@ -1,0 +1,51 @@
+.section.breadcrumb-container { /* Breadcrumb will always be in its own section */
+  display: none;
+
+  .breadcrumb-wrapper {
+    margin: 0 auto 1rem;
+
+    .breadcrumb.block {
+      margin: 0 auto;
+      padding-top: 15px;
+
+      & ol {
+
+        & .breadcrumb-item {
+          display: inline;
+          list-style-type: none;
+          padding: 0;
+
+          & a,
+          & span {
+            color: var(--color-dark-gunmetal);
+            font-size: .875rem;
+            font-weight: 400;
+            line-height: 1.125rem;
+            text-decoration: none;
+            letter-spacing: .0006rem;
+          }
+
+          & a:hover {
+            text-decoration: underline;
+          }
+
+          &:not(:first-of-type) {
+            padding-left: 8px;
+
+            &::before {
+              color: var(--color-dark-gunmetal);
+              content: "|";
+              padding-right: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .section.breadcrumb-container {
+    display: block;
+  }
+}
