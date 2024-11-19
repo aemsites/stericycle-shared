@@ -877,6 +877,7 @@ main .hard-drive-background.two-column.form-container {
     margin: auto;
     gap: 0;
     justify-content: flex-start;
+    width:100%;
 }
 
 
