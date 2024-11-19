@@ -120,10 +120,6 @@ export async function submitForm(form, captcha) {
     // eslint-disable-next-line no-unused-vars
     const { headers, body, url } = await prepareRequest(form, captcha);
     const formData = createFormData(body.data);
-    if (captcha) {
-      token = await captcha.getToken();
-      formData.append('g-recaptcha-response', token);
-    }
     const response = await fetch(url, {
       method: 'POST',
       body: formData,
