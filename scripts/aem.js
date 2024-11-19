@@ -324,7 +324,15 @@ function createOptimizedPicture(
   eager = false,
   breakpoints = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }],
 ) {
-  const url = new URL(src, window.location.href);
+  let url;
+  // Check for URL/Ancestor Origin
+  try {
+    url = new URL(src, window.location.href);
+  } catch (e) {
+    if (Object.hasOwn(window.location, 'ancestorOrigins') && window.location.ancestorOrigins.length > 0) {
+      url = new URL(src, window.location.ancestorOrigins.item(0));
+    }
+  }
   const picture = document.createElement('picture');
   const { pathname } = url;
   const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
@@ -625,32 +633,49 @@ async function loadBlock(block) {
   if (status !== 'loading' && status !== 'loaded') {
     block.dataset.blockStatus = 'loading';
     const { blockName } = block.dataset;
-    try {
-      const cssLoaded = loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`);
-      const decorationComplete = new Promise((resolve) => {
-        (async () => {
-          try {
-            const mod = await import(
-              `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.js`
-            );
-            if (mod.default) {
-              await mod.default(block);
+    if (blockName) {
+      try {
+        const cssLoaded = loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`);
+        const decorationComplete = new Promise((resolve) => {
+          (async () => {
+            try {
+              const mod = await import(
+                `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.js`
+              );
+              if (mod.default) {
+                await mod.default(block);
+              }
+            } catch (error) {
+              // eslint-disable-next-line no-console
+              console.log(`failed to load module for ${blockName}`, error);
             }
-          } catch (error) {
-            // eslint-disable-next-line no-console
-            console.log(`failed to load module for ${blockName}`, error);
-          }
-          resolve();
-        })();
-      });
-      await Promise.all([cssLoaded, decorationComplete]);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(`failed to load block ${blockName}`, error);
+            resolve();
+          })();
+        });
+        await Promise.all([cssLoaded, decorationComplete]);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log(`failed to load block ${blockName}`, error);
+      }
     }
     block.dataset.blockStatus = 'loaded';
   }
   return block;
+}
+
+async function loadSection(section, loadCallback) {
+  const status = section.dataset.sectionStatus;
+  if (!status || status === 'initialized') {
+    section.dataset.sectionStatus = 'loading';
+    const blocks = [...section.querySelectorAll('div.block')];
+    for (let i = 0; i < blocks.length; i += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      await loadBlock(blocks[i]);
+    }
+    if (loadCallback) await loadCallback(section);
+    section.dataset.sectionStatus = 'loaded';
+    section.style.display = null;
+  }
 }
 
 /**
@@ -721,14 +746,8 @@ async function loadFooter(footer) {
  * Load LCP block and/or wait for LCP in default content.
  * @param {Array} lcpBlocks Array of blocks
  */
-async function waitForLCP(lcpBlocks) {
-  const block = document.querySelector('.block');
-  const hasLCPBlock = block && lcpBlocks.includes(block.dataset.blockName);
-  if (hasLCPBlock) await loadBlock(block);
-
-  document.body.style.display = null;
-  const lcpCandidate = document.querySelector('main img');
-
+async function waitForLCP(section) {
+  const lcpCandidate = section.querySelector('img');
   await new Promise((resolve) => {
     if (lcpCandidate && !lcpCandidate.complete) {
       lcpCandidate.setAttribute('loading', 'eager');
@@ -770,4 +789,5 @@ export {
   waitForLCP,
   wrapTextNodes,
   isDesktop,
+  loadSection,
 };

@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from '../../scripts/aem.js';
+import { embedWistia } from '../../scripts/scripts.js';
 
 function hasWrapper(el) {
   return !!el.firstElementChild && window.getComputedStyle(el.firstElementChild).display === 'block';
@@ -29,6 +30,7 @@ export default async function decorate(block) {
   const tablist = document.createElement('div');
   tablist.className = 'tabs-list';
   tablist.setAttribute('role', 'tablist');
+  let wistiaEmbed;
 
   // decorate tabs and tabpanels
   const tabs = [...block.children].map((child) => child.firstElementChild);
@@ -42,12 +44,17 @@ export default async function decorate(block) {
     tabpanel.setAttribute('aria-hidden', !!i);
     tabpanel.setAttribute('aria-labelledby', `tab-${id}`);
     tabpanel.setAttribute('role', 'tabpanel');
+    if (block.classList.contains('vertical') && block.classList.contains('video')) {
+      const wistiaLink = tabpanel.querySelector('a');
+      wistiaEmbed = embedWistia(wistiaLink);
+      tabpanel.replaceChildren(wistiaEmbed);
+    }
     if (!hasWrapper(tabpanel.lastElementChild)) {
       tabpanel.lastElementChild.innerHTML = `<p>${tabpanel.lastElementChild.innerHTML}</p>`;
     }
 
     // decorate faq item label
-    if (tabpanelCopy.children.length >= 3) {
+    if (block.classList.contains('vertical') && tabpanelCopy.children.length >= 3) {
       const label = tabpanelCopy.children[1].querySelector('h3');
       const summary = document.createElement('summary');
       summary.className = 'tab-item-label';
@@ -61,7 +68,13 @@ export default async function decorate(block) {
       body.className = 'tab-item-body';
       if (!hasWrapper(body)) {
         const bodyText = body.children[1].querySelector('p');
-        body.innerHTML = `<p>${bodyText ? bodyText.innerText : ''}</p>`;
+        const bodyList = body.children[1].querySelector('ul');
+        if (bodyText) {
+          body.innerHTML = `<p>${bodyText ? bodyText.innerText : ''}</p>`;
+        }
+        if (bodyList) {
+          body.innerHTML = `${bodyList ? bodyList.outerHTML : ''}`;
+        }
       }
       // decorate faq item
       const details = document.createElement('details');
@@ -69,6 +82,25 @@ export default async function decorate(block) {
       details.append(summary, body);
       tabpanel.append(details);
 
+      addAccordionAnimation(details);
+    }
+    if (block.classList.contains('video')) {
+      const summary = document.createElement('summary');
+      summary.className = 'tab-item-label';
+      const label = document.createElement('h3');
+      label.textContent = tabpanelCopy.children[0].textContent.replaceAll('\n', '').replaceAll('  ', '');
+      summary.append(label);
+      if (!hasWrapper(summary)) {
+        summary.innerHTML = `${summary.innerHTML}`;
+        summary.innerHTML += '<span></span>';
+      }
+      const body = tabpanel.cloneNode(true);
+      body.className = 'tab-item-body';
+
+      const details = document.createElement('details');
+      details.className = 'tab-item';
+      details.append(summary, body);
+      tabpanel.append(details);
       addAccordionAnimation(details);
     }
 

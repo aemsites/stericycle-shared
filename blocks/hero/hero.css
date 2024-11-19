@@ -22,24 +22,24 @@ main .section.hero-container {
     max-width: var(--section-width);
     margin: auto;
     position: relative;
-    padding: 0 2.9375rem;
+    padding: 0 1.5rem;
     width: 100%;
 
     & .hero-content {
       display: flex;
-      flex-wrap: wrap;
+      flex-flow: column wrap;
       gap: 20px;
 
       & > h1 {
         font-weight: var(--lato-bold);
-        margin: 16px 0 8px;
+        margin: 0 0 8px;
         line-height: 34px;
         letter-spacing: -0.015px;
       }
 
       & p.button-container {
         & a {
-          font-weight: var(--lato-regular);
+          font-weight: var(--lato-bold);
           font-size: var(--body-font-size-s);
           border-width: 1px;
         }
@@ -58,7 +58,7 @@ main .section.hero-container {
   .block.hero {
     & div.hero-content-container {
       padding: 0 12px;
-      margin: auto;
+      margin: 1rem auto;
       max-width: var(--section-width);
     }
   }
@@ -73,14 +73,14 @@ main .section.hero-container {
 
         & > h1 {
           font-weight: var(--lato-bold);
-          margin: 16px 0 8px;
+          margin: 0 0 8px;
           line-height: 52px;
           letter-spacing: -0.015px;
         }
 
         & p.button-container a {
           border-width: 2px;
-          font-size: var(--body-font-size-xs);
+          font-size: var(--body-font-size-m);
         }
       }
     }

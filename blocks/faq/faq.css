@@ -2,6 +2,10 @@ main .section.faq-container > div {
   padding: 0 12px;
 }
 
+main:has(.section.two-column.full-width) div.faq-container div {
+  max-width: 100%;
+}
+
 .faq {
   padding: 0;
   margin-bottom: 40px;
@@ -170,6 +174,18 @@ main .section.faq-container > div {
   margin-bottom: 1rem;
 }
 
+main:has(.section.two-column.shredded-paper-background-column) div.faq-wrapper,
+main:has(.section.two-column.hard-drive-background) div.faq-wrapper,
+main:has(.section.shredded-paper-background) div.faq-container div.faq-wrapper{
+  margin: 0 2rem;
+}
+
+main:has(.section.shredded-paper-background) .faq-container .default-content-wrapper,
+main:has(.section.two-column.shredded-paper-background-column) .faq-container:has(.plain) .default-content-wrapper,
+main:has(.section.two-column.hard-drive-background) .faq-container:has(.plain) .default-content-wrapper {
+  margin: 2rem;
+}
+
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper {
     margin-bottom: 1.5rem;
@@ -191,7 +207,6 @@ main .section.faq-container > div {
     font-size: 2rem;
     font-weight: var(--lato-bold);
     line-height: 2.375rem;
-    letter-spacing: -.0009rem;
   }
 }
 
@@ -199,14 +214,14 @@ main .section.faq-container > div {
 .faq-container .default-content-wrapper > p {
   font-size: var(--body-font-size-xxs);
   line-height: .875rem;
-  letter-spacing: -.0006rem;
+  letter-spacing: 0.01px;
   padding: 0 12px;
 }
 
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper p {
-    font-size: var(--body-font-size-xs);
-    line-height: 1.125rem;
+    font-size: var(--body-font-size-m);
+    line-height: 1.25rem;
   }
 }
 
@@ -243,5 +258,27 @@ main .section.faq-container > div {
     width: 65%;
   }
 
+  .section.faq-container.flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: var(--section-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
 
+  .section.faq-container.flex-row > div  {
+    width: 40%;
+  }
+
+  .section.faq-container.flex-row > div:first-of-type {
+    margin: unset;
+    padding: unset;
+  }
+
+  .section.faq-container.flex-row > div:last-of-type {
+    padding: unset;
+  }
 }

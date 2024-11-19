@@ -91,6 +91,7 @@
   --font-family-heading: var(--font-family-body);
   --font-family-footer: var(--font-family-body);
   --font-family-fixed: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+  --font-family-fa-free: 'Font Awesome 6 Free';
 
   /* font weights */
   --lato-regular: 400;
@@ -120,7 +121,7 @@
   --icon-size-xxl: 100px;
 
   /* misc */
-  --nav-height: 5rem;
+  --nav-height: 78px;
 
   /* break points */
   --breakpoint-s: 576px; /* <= mobile */
@@ -162,20 +163,20 @@
     --heading-font-size-l: 26px;
     --heading-font-size-m: 20px;
     --section-width: var(--content-width-l);
-    --nav-height: 9.375rem;
   }
 }
 
 @media (min-width: 1200px /* breakpoint-xl */) {
   :root {
     --section-width: var(--content-width-xl);
-    --nav-height: 8.125rem;
+    --nav-height: 165px;
   }
 }
 
 @media (min-width: 1400px /* breakpoint-xxl */) {
   :root {
     --section-width: var(--content-width-xxl);
+    --nav-height: 128px;
   }
 }
 
@@ -198,7 +199,6 @@ body.appear {
 
 header {
   height: var(--nav-height);
-  visibility: hidden;
 }
 
 h1, h2, h3,
@@ -214,7 +214,6 @@ h4, h5, h6 {
 
 h1 {
   font-size: var(--heading-font-size-xxl);
-  line-height: 3.25rem;
 }
 h2 { font-size: var(--heading-font-size-xl) }
 h3 { font-size: var(--heading-font-size-l) }
@@ -227,9 +226,11 @@ p, dl, ol, ul, pre, blockquote {
   margin: 0;
 }
 
-main li {
-  position: relative;
-  list-style: none;
+main:has(.section.two-column.shredded-paper-background-column) .section.column-with-list .columns-wrapper,
+main:has(.section.two-column.hard-drive-background) .section.column-with-list .columns-wrapper,
+main:has(.section.shredded-paper-background) .section.column-with-list .columns-wrapper {
+  margin: 0 2rem;
+  max-width: 100%;
 }
 
 main .section.column-with-list.navy-background.columns-container {
@@ -278,7 +279,7 @@ main .section.column-with-list.blue-background.columns-container .icon {
   width: fit-content;
 }
 
-main .section.column-with-list .columns > div > div {
+main .section.column-with-list .columns.columns-2-cols > div > div {
   justify-content: space-between;
 }
 
@@ -291,10 +292,6 @@ main .section.faq-container:not(.cyan-border) > div.default-content-wrapper h2 {
   color: var(--color-black);
   font-size: 3rem;
   line-height: 3.2rem;
-  font-weight: 600;
-}
-
-main .section.faq-container > div p {
   font-weight: 600;
 }
 
@@ -313,13 +310,21 @@ main .section.quote-container.orange-border .quote-attribution p {
   color: #ff5633;
 }
 
-main .section.yellow-button  div.default-content-wrapper .button-container a {
+main .section.yellow-button  a.button {
   background-color: var(--color-yellow);
   border-color: var(--color-black);
   color: var(--color-black);
   font-size: 1rem;
   line-height: 2pc;
   border-width: 2px;
+}
+
+main .section.yellow-button-no-border  a.button {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+  font-size: 1rem;
+  line-height: 2pc;
+  border: unset;
 }
 
 /* remove bullets for list items in columns -  might be too aggressive */
@@ -329,15 +334,21 @@ main div.column-with-list li::before {
 
 main .default-content-wrapper p,
 main .default-content-wrapper dl,
-main .default-content-wrapper ul,
 main .default-content-wrapper pre,
 main .default-content-wrapper blockquote {
-  margin: 0 0 16px;
+  margin: 0 0 1rem;
 }
 
-main .default-content-wrapper ol {
+main .default-content-wrapper ol,
+main .default-content-wrapper ul {
   margin: 0 0 1rem 1rem;
 }
+
+main .default-content-wrapper ul {
+  padding: 0;
+  list-style-type: disc;
+}
+
 
 code, pre {
   color: var(--color-text);
@@ -459,6 +470,11 @@ main .section > div {
   padding: 0 1.5rem;
 }
 
+main .section.no-spacing > div {
+  margin: 0;
+}
+
+
 /* section styles */
 
 main .section.light,
@@ -535,6 +551,11 @@ main .block.divider hr {
   color: inherit;
 }
 
+main .section.narrow {
+  max-width: var(--section-width);
+  margin: auto;
+}
+
 main .section.orange-background {
   background-position: center center;
   background-size: auto;
@@ -552,7 +573,8 @@ main .block.blue-background {
   --color-link-hover: var(--color-white);
 }
 
-main .centered-text {
+main .section.centered-text .default-content-wrapper ,
+main .block.centered-text {
   text-align: center;
 }
 
@@ -595,6 +617,13 @@ main .list-style-bullets ul li {
   padding-bottom: 0.5rem;
 }
 
+main .list-style-checkmarks ul {
+  position: relative;
+  padding: 0;
+  margin: 0 0 0 1.5rem;
+  list-style: none;
+}
+
 main ol {
   position: relative;
   padding: 0;
@@ -617,28 +646,27 @@ main .section.with-image {
 }
 
 /* section background image styles */
-
-main div.section.hard-drive-background {
-  background-size: contain;
-  background-position-x: 50%;
-  background-position-y: 100%;
-  background-image: url("/images/sid-shreded-hard-drive-background-1920x1080.png");
-  background-repeat: no-repeat;
-}
-
-main div.section.shredded-paper-background-column {
-  background-image: url("/images/sid-shreded-paper-background.png");
-  background-size: contain;
-  background-position-x: 50%;
-  background-position-y: 100%;
-}
-
 main div.section.default-teaser-section {
   background-size: cover;
   background-position: top center;
   background-image: url("/icons/SID-Resources-Center-Gray_Desktop.svg");
   background-repeat: no-repeat;
   overflow: hidden;
+}
+
+main div.hard-drive-background {
+  background-size: cover;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  background-image: url("/images/media_18801dc9f2feef2abd2efd2bf6dfacd12e4469a20.png");
+  background-repeat: no-repeat;
+}
+
+main div.shredded-paper-background-column {
+  background-image: url("/images/sid-shreded-paper-background.png");
+  background-size: cover;
+  background-position-x: 50%;
+  background-position-y: 25%;
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
@@ -1027,7 +1055,15 @@ body.resource-center p {
   font-size: 16px;
 }
 
+main .section.extra-margin-bottom {
+  margin-bottom: 2rem;
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
+  h1 {
+    line-height: 3.25rem;
+  }
+
   .blog-page main .related-content h5 {
     line-height: 24px;
   }
@@ -1123,6 +1159,12 @@ main .list-style-orange-triangles ul > li::before {
 
 main .list-style-orange-triangles ul > li {
   padding-bottom: 1rem;
+}
+
+main .list-style-checkmarks div.card-body ul > li::before {
+  content: '✓';
+  position: absolute;
+  left: -1.5rem;
 }
 
 main .list-style-big-numbers h2 {
@@ -1385,34 +1427,93 @@ main .list-with-background-image > div > ul > li:last-child {
   }
 }
 
-main .footer-subscription-form.form-container {
-  margin:0;
+main .columns.get-a-quote-popup.block {
+  box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+  background-color: var(--color-white);
 }
 
-main .footer-subscription-form.form-container .form-wrapper {
-  margin-top:0;
+main .columns.get-a-quote-popup.block > div:nth-child(1){
+  padding: 1rem;
+  background-color: var(--color-yellow);
+  text-align: center;
 }
 
-main .footer-subscription-form.form-container .default-content-wrapper {
-  margin-bottom:0;
+main .columns.get-a-quote-popup.block > div:nth-child(1) a {
+  text-decoration: underline;
+  color: var(--color-text);
 }
 
-main .footer-subscription-form .form .button-wrapper.submit-wrapper button{
-  background-color: var(--color-button-default);
+main .columns.get-a-quote-popup.block > div:nth-child(2) {
+  padding: 1rem;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) {
+  padding: 2rem;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3)  > div {
+  cursor: pointer;
+  box-shadow: 2px 1px 4px rgb(0 0 0 / 20%);
+  border-radius:0.5rem;
+  background-color: var(--color-gray);
+  position: relative;
+  padding: 0;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3)  > div:hover {
+  background-color: var(--color-navy);
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover > p {
   color:var(--color-white);
 }
 
-
-main .footer-subscription-form #get-informed-stay-protected{
-  color:var(--color-blue);
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div a {
+  all: unset;
+  position: relative;
+  display: flex;
 }
 
-main .footer-subscription-form .default-content-wrapper p:not(.button-container){
-  font-size: 1.25rem;
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child {
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
-main .footer-subscription-form .default-content-wrapper a[title="Privacy Policy"]{
-  all:unset;
-  text-decoration: underline;
-  color: var(--color-blue);
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child > a {
+  padding: 1.5rem 0 0.8rem 1.5rem;
 }
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child > a {
+  padding: 0 0 1.5rem 1.5rem;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child {
+  font-size: 0.875rem;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div::after{
+  background-color: var(--color-black);
+  border-radius: 50%;
+  color: var(--color-white);
+  content: ">";
+  display: inline-block;
+  height: 2rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  padding-left: .55rem;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  text-rendering: auto;
+  transform: translateY(-50%);
+  width: 2rem;
+  margin-left: 8px;
+  pointer-events: none;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover::after {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+

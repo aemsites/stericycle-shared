@@ -22,6 +22,20 @@
   width: 100%;
 }
 
+.columns ul {
+  padding: 0;
+  margin: 0 0 1rem 1rem;
+  list-style-type: disc;
+
+  & > li {
+    margin-bottom: .5rem;
+  }
+}
+
+.columns p {
+  margin-bottom: 1rem;
+}
+
 .columns.img-33 img {
   width: 33.333%;
 }
@@ -64,16 +78,31 @@ main .columns span.icon > img {
   justify-content: flex-start;
 }
 
+.columns.narrow-icons span.icon {
+  height: var(--icon-size-xl);
+  width: var(--icon-size-xl);
+}
+
 .columns.box-shadow-hover.columns span.icon {
   display: flex;
   height: 150px;
-
 }
 
 .columns.labeled > div:last-of-type span.icon {
   width: 8.3%;
   height: auto;
   text-align: left;
+}
+
+main .section.blue-headings .columns span.icon {
+  width: unset;
+  height: unset;
+}
+
+main .section.columns-container.list-style-orange-triangles .columns.box-shadow-hover.columns span.icon {
+  display: flex;
+  height: unset;
+  width: 80%;
 }
 
 .columns.labeled > div:last-of-type strong {
@@ -86,6 +115,7 @@ main .columns span.icon > img {
 .columns.numeric-list > div, .columns.check-list > div {
   align-items: flex-start;
 }
+
 
 .columns.steps > div {
   align-items: flex-start;
@@ -102,6 +132,7 @@ main .columns span.icon > img {
 }
 
 .columns.check-list ul > li {
+  list-style: none;
   border-bottom: .0625rem solid #dad6d6;
   padding: .75rem 3rem;
   background: url("/icons/check-mark-new.svg") no-repeat left center;
@@ -146,7 +177,8 @@ main .columns span.icon > img {
 }
 
 .columns.narrow-icons span.icon > img {
-  height: unset;
+  height: var(--icon-size-xl);
+  width: var(--icon-size-xl);
 }
 
 .columns.narrow-icons p.button-container {
@@ -207,6 +239,10 @@ main .columns span.icon > img {
   margin-top: 1rem;
 }
 
+.columns.vertical-center-align > div > div {
+  justify-content: center;
+}
+
 .columns.orange-accent-border > div > div::after,
 .columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img))::after {
   background: var(--color-orange);
@@ -227,19 +263,24 @@ main .columns span.icon > img {
   padding-left: 0;
 }
 
-main .section.blue-headings .columns span.icon {
-  width: unset;
-  height: unset;
-}
-
 .columns.numeric-list h3 {
   font-size: 4rem;
   color: var(--color-cyan);
+  margin-bottom: 1.5rem;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.columns.numeric-list p,
+.columns.numeric-list h4 {
+  margin-bottom: 1.5rem;
 }
 
 .columns.numeric-list ul {
   display: flex;
-  height: 5rem;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  height: 7rem;
   padding-bottom: 2rem;
   padding-left: unset;
 }
@@ -300,6 +341,11 @@ main .section.blue-headings .columns span.icon {
   align-items: flex-start;
 }
 
+main .section.blue-headings .columns span.icon > img {
+  width: var(--icon-size-xl);
+  height: var(--icon-size-xl);
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
   .columns > div {
     flex-direction: unset;
@@ -352,13 +398,134 @@ main .section.blue-headings .columns span.icon {
     padding-left: 0;
   }
 
+  main .columns.numeric-list ul {
+    flex-direction: row;
+  }
+
   main .columns.numeric-list span.icon > img {
     width:3.75rem;
     height:3.75rem;
+    max-width: unset;
   }
 
   main .columns.logos.columns-4-cols span.icon > img {
     height: 72px;
     width: 100%;
+  }
+}
+
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  main .block.columns.video {
+    max-width: unset;
+  }
+
+  main .block.columns.columns-2-cols > div div {
+    justify-content: center;
+  }
+
+  main .section.justify-start .block.columns.columns-2-cols > div div {
+    justify-content: flex-start;
+  }
+
+
+  main .block.columns.video.columns-2-cols > div div:last-of-type:has(iframe) {
+    display: flex;
+    flex-direction: column;
+    margin-left: 8.3333%;
+  }
+
+  main .block.columns.video.columns-2-cols > div div:first-of-type:has(iframe) {
+    display: flex;
+    flex-direction: column;
+    margin-right: 8.3333%;
+  }
+
+  main .block.columns.video.columns-2-cols > div div iframe {
+    height: 100%;
+  }
+
+  main .section.columns-container.flex-row .block.columns.columns-2-cols > div {
+    display: flex;
+  }
+
+  main .section.columns-container .block.columns.columns-2-cols.icon-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  main .section.columns-container .block.columns.columns-2-cols.icon-list > div {
+    display: flex;
+    width: 50%;
+  }
+
+  main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div:first-of-type {
+    max-width: 25%;
+    width: 25%;
+    justify-content: flex-start;
+  }
+
+  main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div:last-of-type > p:nth-child(2) {
+    margin-top: 1rem;
+  }
+
+  main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div > p.button-container:has(a) > a.button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: unset;
+    border: unset;
+    padding: unset;
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+    cursor: pointer;
+    color: unset;
+    margin-bottom: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: unset;
+  }
+
+  main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div > p.button-container:has(a) > a.button::after {
+    content: "\2B95";
+    font-size: 1em;
+    font-weight: 500;
+    padding: 0 0.5em;
+    vertical-align: -0.1em;
+  }
+
+
+
+  main .section.columns-container .block.columns.centered-icons > div div:first-of-type:has(.icon),
+  main .section.columns-container .block.columns.centered-icons > div div:last-of-type:has(.icon) {
+    align-items: center;
+  }
+
+  main .section.columns-container .block.columns.align-left > div div:first-of-type:has(.icon),
+  main .section.columns-container .block.columns.align-left > div div:last-of-type:has(.icon) {
+    align-items: start;
+  }
+
+  main .section.columns-container.large-icon .block.columns.columns-2-cols div:first-of-type:has(.icon) span,
+  main .section.columns-container.large-icon .block.columns.columns-2-cols div:last-of-type:has(.icon) span {
+    height: 100%;
+    width: 100%;
+  }
+
+  main .section.columns-container .block.columns.centered-icons div:first-of-type:has(.icon) img,
+  main .section.columns-container .block.columns.centered-icons div:last-of-type:has(.icon) img {
+    height: 100%;
+    width: 100%;
+  }
+
+  main .section.columns-container.large-icon .block.columns.columns-2-cols div:first-of-type:has(.icon) img,
+  main .section.columns-container.large-icon .block.columns.columns-2-cols div:last-of-type:has(.icon) img {
+    width: 100%;
+    height: 100%;
+  }
+
+  main .section.columns-container .block.columns.centered-icons.absolute-position > div div:first-of-type:has(.icon) p,
+  main .section.columns-container .block.columns.centered-icons.absolute-position > div div:last-of-type:has(.icon) p {
+    position: absolute;
   }
 }

@@ -1,3 +1,14 @@
+.section.cards-container.cards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 990pt;
+  margin: auto;
+}
+
+.section.cards-container.cards-grid .cards-wrapper {
+  flex: 0 0 33.3333%;
+}
+
 .cards > ul {
   list-style: none;
   margin: 0;
@@ -59,6 +70,41 @@
   border: 0.5px solid #b2b1b1;
   opacity: .25;
   color: inherit;
+}
+
+.section.cards-container.list-styles ul {
+  position: relative;
+  padding: 0;
+  margin: 0 0 0 1.5rem;
+  list-style: none;
+}
+
+.section.cards-container.list-style-checkmarks div.card-body ul > li::before {
+  content: '✓';
+}
+
+.section.cards-container.heading-image-row .card-head .card-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.section.cards-container.heading-image-row .card-head .card-section h3 {
+  order: 1;
+  margin-left: 20px;
+}
+
+.section.cards-container.heading-image-row .card-head .card-section p:has(picture) {
+  width: 10%;
+}
+
+.block.cards.divider.centered-headings.navy-headings .icon img {
+  height: 10em;
+  width: 10em;
+}
+
+.block.cards.divider.centered-headings.navy-headings .icon {
+  text-align: center;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {

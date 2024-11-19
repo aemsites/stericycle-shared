@@ -24,7 +24,11 @@ export default function decorate(block) {
 
         if (isFirstSection) {
           // create card head
-          if (cardSection.firstElementChild?.querySelector('span.icon')) {
+          if (cardSection.firstElementChild?.querySelector('span.icon')
+           || cardSection.lastElementChild?.querySelector('p > picture > img')
+           || (block.classList.contains('full-width')
+            && cardSection.firstElementChild?.querySelector('img')
+           )) {
             const cardHead = document.createElement('div');
             cardHead.classList.add('card-head');
             cardHead.append(cardSection);

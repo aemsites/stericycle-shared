@@ -13,10 +13,11 @@ import {
   sampleRUM,
   waitForLCP,
   toClassName,
+  decorateBlock,
+  loadBlock,
+  loadSection,
 } from './aem.js';
 import ffetch from './ffetch.js';
-
-const LCP_BLOCKS = []; // add your LCP blocks to the list
 
 export function convertExcelDate(excelDate) {
   const secondsInDay = 86400;
@@ -27,6 +28,20 @@ export function convertExcelDate(excelDate) {
   const excelTimestampAsUnixTimestamp = excelDate * secondsInDay * 1000;
   const parsed = excelTimestampAsUnixTimestamp + delta;
   return Number.isNaN(parsed) ? null : new Date(parsed);
+}
+
+/**
+ * Formats a phone number for displaying.
+ * @param {String} num phone number to format
+ * @param {Boolean} parens whether to wrap the area code in parens
+ */
+export function formatPhone(num, parens = false) {
+  const match = num.match(/(\d{3})(\d{3})(\d{4})/);
+  if (!match) {
+    return num;
+  }
+  const [area, prefix, line] = match.slice(1);
+  return parens ? `(${area}) ${prefix}-${line}` : `${area}-${prefix}-${line}`;
 }
 
 /**
@@ -68,6 +83,74 @@ export function getLocale() {
   return 'en-us';
 }
 
+export function getLocaleAsBCP47() {
+  const locale = getLocale();
+  const parts = locale.split('-');
+  parts[0] = parts[0].toLowerCase();
+  for (let i = 1; i < parts.length; i += 1) {
+    const part = parts[i];
+    if (part === 'x') {
+      parts[i] = 'x';
+      if (i + 1 < parts.length) {
+        parts[i + 1] = parts[i + 1].toLowerCase();
+      }
+    } else if (part.length === 2) {
+      parts[i] = part.toUpperCase();
+    } else if (part.length === 3) {
+      parts[i] = part.toLowerCase();
+    } else if (part.length > 3) {
+      parts[i] = part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+    } else {
+      parts[i] = part.toLowerCase();
+    }
+  }
+  return parts.join('-');
+}
+
+const toRadians = (degrees) => ((degrees * Math.PI) / 180);
+
+export const haversineDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 6371; // Radius of the Earth in kilometers
+  const dLat = toRadians(lat2 - lat1);
+  const dLon = toRadians(lon2 - lon1);
+  const tempA = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+    + Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2))
+    * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(tempA), Math.sqrt(1 - tempA));
+  return Math.round(R * c); // Distance in kilometers
+};
+
+// Remove dedup based on name, specific to the locations
+// eslint-disable-next-line max-len
+export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.4672, limit = 5) => {
+  const isDropoff = getMetadata('sub-type')?.trim().toLowerCase();
+  const locations = await ffetch('/query-index.json').sheet('locations')
+    .filter((x) => {
+      const latitude = parseFloat(x.latitude);
+      const longitude = parseFloat(x.longitude);
+      // eslint-disable-next-line max-len
+      const havDistance = haversineDistance(currentLoc.latitude, currentLoc.longitude, latitude, longitude);
+      x.distance = havDistance;
+      return latitude !== 0 && longitude !== 0
+        && (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true)
+        && x.locale?.trim().toLowerCase() === getLocale()
+        && x.name !== currentLoc.name
+        && havDistance <= thresholdDistanceInKm;
+    })
+    .limit(limit)
+    .all();
+
+  return locations
+    .reduce((acc, current) => {
+      const x = acc.find((item) => item.name === current.name);
+      if (!x) {
+        acc.push(current);
+      }
+      return acc;
+    }, [])
+    .sort((x, y) => x.distance - y.distance);
+};
+
 /**
  * Get related posts based on page tags. Currently doesn't filter out the existing page or
  * fill up the array if there are not enough related posts
@@ -99,7 +182,7 @@ export async function getRelatedPosts(types, tags, limit) {
   let posts = [];
   const fetchResults = await Promise.all(sheets.map(async (sheet) => ffetch('/query-index.json').sheet(sheet).all()));
   fetchResults.forEach((fetchResult) => posts.push(...fetchResult));
-  if (types.length > 1) {
+  if (nTypes.length > 1) {
     // this could become a performance problem with a huge volume of posts
     posts = posts.sort((a, b) => b.date - a.date);
   }
@@ -123,14 +206,14 @@ export async function getRelatedPosts(types, tags, limit) {
   return filteredPosts;
 }
 
-function makeTwoColumns(main) {
-  const columnTarget = main.querySelector('.section.offer-box-container.two-columns > div.default-content-wrapper');
+function makeTwoColumns(section) {
+  const columnTarget = section.querySelector('.offer-box-container.two-columns > div.default-content-wrapper');
   const columnA = document.createElement('div');
   columnA.classList.add('column-a');
   columnA.append(...columnTarget.children);
   const columnB = document.createElement('div');
   columnB.classList.add('column-b');
-  const columnBItems = main.querySelector('.section.offer-box-container.two-columns > div.offer-box-wrapper');
+  const columnBItems = section.querySelector('.offer-box-container.two-columns > div.offer-box-wrapper');
   columnB.append(columnBItems);
   columnTarget.append(columnA, columnB);
 }
@@ -141,21 +224,44 @@ function makeTwoColumns(main) {
  * @param main
  */
 function consolidateOfferBoxes(main) {
-  const ob = main.querySelectorAll('.offer-box-wrapper');
-  let firstOB;
-  if (ob && ob.length > 1) {
-    ob.forEach((box, index) => {
-      if (index === 0) {
-        firstOB = box;
-      } else {
-        firstOB.append(...box.children);
-        box.remove();
+  const sections = main.querySelectorAll('.section');
+  sections?.forEach((section) => {
+    const ob = section.querySelectorAll('.offer-box-wrapper');
+    let firstOB;
+    if (ob && ob.length > 1) {
+      ob.forEach((box, index) => {
+        if (index === 0) {
+          firstOB = box;
+        } else {
+          firstOB.append(...box.children);
+          box.remove();
+        }
+      });
+      if (section.querySelector('offer-box-container.two-columns')) {
+        makeTwoColumns(section);
       }
-    });
-    if (main.querySelector('.section.offer-box-container.two-columns')) {
-      makeTwoColumns(main);
     }
-  }
+  });
+}
+
+/**
+ * get embed code for Wistia videos
+ *
+ * @param {*} url
+ * @returns
+ */
+export function embedWistia(url) {
+  let suffix = '';
+  const suffixParams = {
+    playerColor: '006cb4',
+  };
+
+  suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
+  const temp = document.createElement('div');
+  temp.innerHTML = `<div>
+  <iframe loading="lazy" allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed custom-shadow"
+  name="wistia_embed" src="${url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href}${suffix}"></iframe>`;
+  return temp.children.item(0);
 }
 
 /**
@@ -290,7 +396,7 @@ async function decorateTemplates(main) {
 /**
  * decorates external links to open in new window
  * for styling updates via CSS
- * @param {Element}s element The element to decorate
+ * @param {Element[]} externalAnchors The elements to decorate
  * @returns {void}
  */
 export function decorateExternalAnchors(externalAnchors) {
@@ -321,6 +427,106 @@ export function decorateAnchors(element = document) {
 }
 
 /**
+ * Loads footer-subscription-form
+ * @param main main element
+ * @returns {Promise}
+ */
+async function appendSubscriptionForm(main) {
+  const footerSubscriptionForm = getMetadata('footer-subscription-form');
+  if (footerSubscriptionForm) {
+    const form = buildBlock('form', { elems: [`<a href=${footerSubscriptionForm}></a>`] });
+    form.classList.add('footer-subscription-form');
+    main.append(form);
+    decorateBlock(form);
+    loadBlock(form);
+  }
+}
+
+/*
+ * Adds id attribute to those sections which specify one.
+ * @param {Element} main The main element
+ */
+function decorateSectionIds(main) {
+  main.querySelectorAll('.section[data-id]').forEach((section) => {
+    section.id = section.getAttribute('data-id').trim().toLowerCase();
+  });
+}
+
+/**
+ * Appends a JSON-LD schema to the head
+ * @param schema The schema body
+ * @param name The schema name
+ * @param doc The document
+ */
+export function addJsonLd(schema, name, doc = document) {
+  const script = doc.createElement('script');
+  script.type = 'application/ld+json';
+  script.innerHTML = JSON.stringify(schema);
+  if (name) {
+    script.dataset.name = name;
+  }
+  doc.head.appendChild(script);
+}
+
+/**
+ * Either replaces the content of an existing JSON-LD schema or adds a new one to the head
+ * @param schema The schema body
+ * @param name The schema name
+ * @param doc The document
+ */
+export function setJsonLd(schema, name, doc = document) {
+  const existingScript = doc.head.querySelector(`script[data-name="${name}"]`);
+  if (existingScript) {
+    existingScript.innerHTML = JSON.stringify(schema);
+    return;
+  }
+  addJsonLd(schema, name);
+}
+
+async function setWebPageJsonLd(doc = document) {
+  const schema = {
+    '@context': 'https://schema.org/',
+    '@type': 'WebPage',
+    description: getMetadata('og:description', doc) || getMetadata('description', doc),
+    url: getMetadata('og:url', doc) || doc.documentURI,
+    name: getMetadata('og:title', doc),
+  };
+
+  const pageMetadata = await ffetch('/query-index.json')
+    .filter((e) => e.path?.trim().toLowerCase() === new URL(doc.documentURI).pathname.toLowerCase())
+    .first();
+  if (pageMetadata) {
+    schema.dateModified = new Date(1e3 * pageMetadata.lastModified).toISOString();
+  }
+
+  setJsonLd(schema, 'webpage');
+}
+
+async function fetchAndSetCustomJsonLd(doc = document) {
+  // schema.xls
+  let customSchemas = await ffetch('/schemas.json')
+    .filter((e) => e.page?.trim().toLowerCase() === new URL(doc.documentURI).pathname.toLowerCase()
+      || (e.page?.trim().endsWith('/*')
+        && new URL(doc.documentURI).pathname.toLowerCase().startsWith(e.page.trim().toLowerCase().substring(0, e.page.trim().length - 1))))
+    .all();
+  customSchemas = customSchemas.sort((e1, e2) => e1.page.localeCompare(e2.page));
+  customSchemas.forEach((e) => setJsonLd(e.schema, e.name || ''));
+
+  // per-page metadata
+  [...doc.head.querySelectorAll('meta')].filter((m) => m.name === 'ld-json' || m.attributes?.property?.value?.startsWith('ld-json:')).forEach((m) => {
+    if (m.content && m.content !== '') {
+      const name = m.attributes?.property?.value?.substring(8, m.attributes.property.value.length);
+      if (name) {
+        setJsonLd(m.content, name);
+      } else {
+        addJsonLd(m.content, null);
+      }
+    }
+    m.remove();
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -336,6 +542,7 @@ export function decorateMain(main) {
   modifyBigNumberList(main);
   decorateSectionTemplates(main);
   consolidateOfferBoxes(main);
+  decorateSectionIds(main);
 }
 
 /**
@@ -343,15 +550,17 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-  document.documentElement.lang = 'en';
+  document.documentElement.lang = getLocaleAsBCP47();
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
     await decorateTemplates(main);
     document.body.classList.add('appear');
-    await waitForLCP(LCP_BLOCKS);
+    await loadSection(main.querySelector('.section'), waitForLCP);
   }
+  setWebPageJsonLd(doc);
+  fetchAndSetCustomJsonLd(doc);
 
   try {
     /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
@@ -371,10 +580,6 @@ async function loadLazy(doc) {
   autolinkModals(doc);
   const main = doc.querySelector('main');
   await loadBlocks(main);
-  if (doc.querySelector('body.with-sidebar')) {
-    await loadBlocks(main.querySelector('div.page-content'));
-    await loadBlocks(main.querySelector('div.page-sidebar'));
-  }
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
@@ -382,6 +587,7 @@ async function loadLazy(doc) {
 
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
+  await appendSubscriptionForm(main);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();

@@ -73,8 +73,12 @@ function getFieldValue(fe, payload) {
   return null;
 }
 
-function constructPayload(form) {
-  const payload = { __id__: generateUnique() };
+async function constructPayload(form, captcha) {
+  const payload = {
+    __id__: generateUnique(),
+    ':currentPagePath': '/content/shred-it/us/en',
+    jobPropertiesUrl: `https://main--shredit--stericycle.aem.page${form.dataset.action}.json`,
+  };
   [...form.elements].forEach((fe) => {
     if (fe.name && !fe.matches('button') && !fe.disabled && fe.tagName !== 'FIELDSET') {
       const value = getFieldValue(fe, payload);
@@ -85,6 +89,11 @@ function constructPayload(form) {
       }
     }
   });
+
+  if (captcha) {
+    const token = await captcha.getToken();
+    payload['g-recaptcha-response'] = token;
+  }
   return { payload };
 }
 
@@ -96,13 +105,13 @@ function createFormData(payload) {
   return formData;
 }
 
-async function prepareRequest(form) {
-  const { payload } = constructPayload(form);
+async function prepareRequest(form, captcha) {
+  const { payload } = await constructPayload(form, captcha);
   const headers = {
     'Content-Type': 'application/json',
   };
   const body = { data: payload };
-  const url = `${getSubmitBaseUrl()}${payload?.xfpath}.form`;
+  const url = getSubmitBaseUrl();
   return { headers, body, url };
 }
 
@@ -110,7 +119,6 @@ export async function submitForm(form, captcha) {
   try {
     // eslint-disable-next-line no-unused-vars
     const { headers, body, url } = await prepareRequest(form, captcha);
-    let token = null;
     const formData = createFormData(body.data);
     if (captcha) {
       token = await captcha.getToken();

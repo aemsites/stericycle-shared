@@ -1,18 +1,18 @@
 :root {
-    --background-color-primary: #fff;
-    --label-color: #000;
-    --border-color: #818a91;
+    --form-styles-background-color-primary: #fff;
+    --form-styles-label-color: #000;
+    --form-styles-border-color: #818a91;
     --form-error-color: #dc3545;
-    --button-primary-color: #006cb4;
-    --button-disable-color: #666;
-    --button-secondary-color: #ffc62b;
-    --button-primary-hover-color: #035fe6;
+    --form-styles-button-primary-color: #006cb4;
+    --form-styles-button-disable-color: #666;
+    --form-styles-button-secondary-color: #ffc62b;
+    --form-styles-button-primary-hover-color: #035fe6;
     --form-font-size-m: 22px;
     --form-font-size-s: 18px;
     --form-font-size-xs: 16px;
     --form-font-size-xxs: 14px;
     --form-font-size-xxxs: 12px;
-    --form-background-color: var(--background-color-primary);
+    --form-background-color: var(--form-styles-background-color-primary);
     --form-padding: 0;
     --form-columns: 12;
     --form-field-horz-gap: 40px;
@@ -27,12 +27,12 @@
     --form-input-disable-color: #ebebe4;
     --form-input-border-size: 1px;
     --form-input-border-color: #000;
-    --form-input-background-color: var(--background-color-primary);
-    --form-paragraph-color: var(--label-color);
+    --form-input-background-color: var(--form-styles-background-color-primary);
+    --form-paragraph-color: var(--form-styles-label-color);
     --form-paragraph-margin: 0 0 0.9rem;
     --form-paragraph-font-style: none;
     --form-paragraph-font-size: var(--form-font-size-s);
-    --form-label-color: var(--label-color);
+    --form-label-color: var(--form-styles-label-color);
     --form-label-font-size: var(--form-font-size-xxs);
     --form-label-font-weight: 400;
     --form-title-font-weight: 600;
@@ -44,21 +44,21 @@
     --form-fieldset-legend-font-weight: var(--form-title-font-weight);
     --form-fieldset-legend-border: none;
     --form-fieldset-legend-padding: 0;
-    --form-button-color: var(--background-color-primary);
+    --form-button-color: var(--form-styles-background-color-primary);
     --form-button-font-size: var(--form-font-size-xs);
-    --form-button-background-color: var(--button-primary-color);
-    --form-button-background-hover-color: var(--button-primary-hover-color);
+    --form-button-background-color: var(--form-styles-button-primary-color);
+    --form-button-background-hover-color: var(--form-styles-button-primary-hover-color);
     --form-button-border: 2px solid transparent;
     --form-button-padding: 4px 18px;
     --form-upload-color: var(--form-label-color);
     --form-upload-font-size: var(--form-font-size-xs);
-    --form-upload-background-color: var(--background-color-primary);
+    --form-upload-background-color: var(--form-styles-background-color-primary);
     --form-submit-width: 100%;
-    --form-width: 95%;
+    --form-width: 100%;
     --form-wizard-border: 0;
-    --form-wizard-background-color: var(--background-color-primary);
+    --form-wizard-background-color: var(--form-styles-background-color-primary);
     --form-wizard-border-color: #757575;
-    --form-wizard-number-color: var(--button-primary-color);
+    --form-wizard-number-color: var(--form-styles-button-primary-color);
     --form-wizard-padding: 30px;
     --form-wizard-padding-bottom: 160px;
     --form-wizard-step-legend-padding: 10px;
@@ -87,8 +87,9 @@ main .form-container {
     background-color: var(--form-background-color);
     padding: var(--form-padding);
     width: var(--form-width);
-    margin: var(--nav-height) auto;
+    overflow: visible;
 }
+
 
 main .form {
     background-color: var(--form-background-color);
@@ -136,7 +137,6 @@ main .form select {
     max-width: unset;
     margin-top: .5rem;
     margin-bottom: .25rem;
-    border-radius: 0.25rem;
 }
 
 main .form select {
@@ -340,7 +340,7 @@ main .file-wrapper .file-description button {
     height: 12px;
     border: none;
     text-align: center;
-    background: var(--border-color);
+    background: var(--form-styles-border-color);
     cursor: pointer;
     position: relative;
     border-radius: 3px;
@@ -351,7 +351,7 @@ main .file-wrapper .file-description button::after{
     position: absolute;
     top: 50%;
     left: 50%;
-    color: var(--background-color-primary);
+    color: var(--form-styles-background-color-primary);
     transform: translate(-50%, -50%);
 }
 
@@ -370,13 +370,13 @@ main .form .button-wrapper button[disabled] {
 }
 
 main .form .button-wrapper button[disabled]:hover {
-    border: 3px solid var(--button-disable-color);
-    color: var(--button-disable-color);
+    border: 3px solid var(--form-styles-button-disable-color);
+    color: var(--form-styles-button-disable-color);
     background-color: transparent;
 }
 
 main .form .button-wrapper.wizard-button-next button, main .form .button-wrapper.submit-wrapper button{
-    background-color: var(--button-secondary-color);
+    background-color: var(--form-styles-button-secondary-color);
     color: #000;
 }
 
@@ -420,6 +420,11 @@ main .form form .wizard .wizard-button-wrapper{
     grid-column: span 12;
 }
 
+main .get-a-quote-form-alternate form > .field-wrapper {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
 main .form form .wizard .wizard-button-wrapper .field-wrapper{
     flex: unset;
 }
@@ -458,7 +463,7 @@ main .form form .wizard .wizard-menu-item::before {
 main .form form .wizard .wizard-menu-active-item::before{
   border: 2px solid var(--form-wizard-number-color);
   background: var(--form-wizard-number-color);
-  color: var(--background-color-primary);
+  color: var(--form-styles-background-color-primary);
   font-weight: 600;
 }
 
@@ -494,6 +499,11 @@ main .form form .repeat-wrapper{
     display: grid;
     grid-template-columns: repeat(var(--form-columns), minmax(0, 1fr));
     gap: var(--form-field-vert-gap) var(--form-field-horz-gap);
+}
+
+main .campaign-form.form form .panel-wrapper {
+    padding: 5px;
+    background-color: var(--color-gray);
 }
 
 main .form form .wizard.left .panel-wrapper{
@@ -532,7 +542,7 @@ main .form .form-message.error-message p {
 }
 
 main .form .file-wrapper .file-drag-area {
-  border: 1px dashed var(--border-color);
+  border: 1px dashed var(--form-styles-border-color);
   border-radius: 5px;
   padding: 10px 5px;
   display: flex;
@@ -629,9 +639,10 @@ main .form .field-wrapper.floating-field > label {
     top: 10px;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper label{
-  color: #fff;
-  cursor: pointer;
+main .form form .panel-wrapper.field-requesttype .radio-wrapper label,
+main .form form .panel-wrapper.field-frequncy .radio-wrapper label{
+    color: #fff;
+    cursor: pointer;
 }
 
 /* Style for labels when input is focused */
@@ -639,7 +650,7 @@ main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkb
 main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox']):focus + label{
     padding: 15px 0 0 15px;
     font-size: 12px;
-    color: var(--label-color);
+    color: var(--form-styles-label-color);
     transform: translateY(-15px);
     z-index: 1;
 }
@@ -655,46 +666,55 @@ main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkb
     color: transparent;
 }
 
-main .form form .panel-wrapper.field-requesttype{
-  grid-template-columns: 12fr 1fr 1fr;
-  gap: 0;
-  margin-top: 20px;
+main .form form .panel-wrapper.field-requesttype,
+main .form form .panel-wrapper.field-frequncy{
+    grid-template-columns: 12fr 1fr 1fr;
+    gap: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-main .form form .panel-wrapper.field-requesttype legend{
+main .form form .panel-wrapper.field-requesttype legend,
+main .form form .panel-wrapper.field-frequncy legend{
   grid-column: 1;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper input{
+main .form form .panel-wrapper.field-requesttype .radio-wrapper input,
+main .form form .panel-wrapper.field-frequncy .radio-wrapper input{
   opacity: 0;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper{
+main .form form .panel-wrapper.field-requesttype .radio-wrapper,
+main .form form .panel-wrapper.field-frequncy .radio-wrapper{
   grid-column: 2;
   display: flex;
   align-items: center;
   margin-top: -45px;
   width: 120px;
   text-align: center;
-  background: var(--border-color);
+  background: var(--form-styles-border-color);
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(2){
+main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(2),
+main .form form .panel-wrapper.field-frequncy .radio-wrapper:nth-child(2){
   border-bottom-left-radius: 6.25rem;
   border-top-left-radius: 6.25rem;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(3){
+main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(3),
+main .form form .panel-wrapper.field-frequncy .radio-wrapper:nth-child(3){
   grid-column: 3;
   border-bottom-right-radius: 6.25rem;
   border-top-right-radius: 6.25rem;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked){
-  background: var(--button-primary-color);
+main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked),
+main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked){
+  background: var(--form-styles-button-primary-color);
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked) label::before{
+main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked) label::before,
+main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked) label::before{
   content: '';
   display: block;
   width: 8px;
@@ -727,4 +747,196 @@ main .form .panel-wrapper[data-required="true"].field-invalid legend::after {
 
 main .form form.submit-success .fragment-wrapper {
     display: none;
+}
+
+main .get-a-quote-form-alternate {
+    box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+    background-color: var(--color-white);
+    border-radius: 4px;
+    padding-top: 0;
+}
+
+main .get-a-quote-form-alternate form {
+    margin:0;
+    display: block;
+}
+
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='privacy-policy']  p,
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='policy']  p{
+    font-size: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {
+    background-color: var(--color-yellow);
+    font-size: var(--heading-font-size-m);
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h3,
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h2{
+    color: var(--color-black);
+}
+
+main .campaign-form.form .fragment-wrapper[data-id^='header'] {
+    font-size: var(--heading-font-size-m);
+    padding: 2rem 0.8rem 0;
+    margin-bottom: 1rem;
+    font-weight: normal;
+    gap:0;
+}
+
+main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='header'] {
+    text-align: center;
+}
+
+main .get-a-quote-form-alternate.no-header-color form .fragment-wrapper[data-id^='header'] {
+    background-color: unset;
+}
+
+main .footer-subscription-form  form {
+    gap: 0;
+}
+
+main .get-a-quote-form-alternate.grey-background form {
+    background-color: var(--color-gray);
+}
+
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] > div > p {
+    font-size: 1rem;
+}
+
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] a{
+    color: #1a242b;
+    text-decoration: underline;
+}
+
+main .footer-subscription-form.form-container {
+    margin:0;
+    padding-top: 1rem;
+}
+
+main .footer-subscription-form {
+    max-width: var(--section-width);
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+main .footer-subscription-form .button-wrapper.field-wrapper.submit-wrapper button{
+    background-color: var(--color-button-default);
+    color:var(--color-white);
+}
+
+
+main .footer-subscription-form #get-informed-stay-protected{
+    color:var(--color-blue);
+}
+
+main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-policy"] {
+    text-decoration: underline;
+    font-size: 0.87rem;
+}
+
+main .footer-subscription-form form .fragment-wrapper > div p:nth-of-type(2) {
+    margin-bottom: 0.4rem;
+}
+
+@media (max-width: 1000px) {
+    main .footer-subscription-form form .panel-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+main .campaign-form.form {
+    box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+    background-color: var(--color-white);
+    border-radius: 4px;
+    max-width: 300px;
+}
+
+main .campaign-form.form form {
+    display: block;
+    margin-top: 2rem;
+    background-color: var(--color-gray);
+}
+
+main .two-column.form-container .form-wrapper {
+    justify-self: flex-end;
+}
+
+@media (max-width: 1000px) {
+    main .two-column.form-container .default-content-wrapper {
+        width: 90%;
+    }
+
+    main .two-column.form-container .form-wrapper {
+        width:90%;
+    }
+
+    main .form form .panel-wrapper.field-requesttype, main .form form .panel-wrapper.field-frequncy{
+       grid-template-columns: 1fr 1fr;
+    }
+
+    main .form form .panel-wrapper.field-requesttype, main .form form .panel-wrapper.field-frequncy .radio-wrapper.field-quote-type{
+        grid-column: span 1;
+        width: 100%;
+        padding: 13px 0;
+        margin-top: 0;
+    }
+
+    main .section.two-column.form-container,
+    main .section.two-column.form-container.full-width{
+        display: table-row;
+    }
+}
+
+main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background) {
+    display: grid;
+    grid-template-columns: minmax(0, 884px) minmax(0, 436px); /* Set max-width for each column */
+    grid-auto-rows: auto;
+    margin: auto;
+    gap: 0;
+    justify-content: center;
+}
+
+main .shredded-paper-background-column.two-column.form-container,
+main .navy-background.cyan-border.two-column.form-container,
+main .hard-drive-background.two-column.form-container {
+    display: grid;
+    grid-template-columns: 65% 35%;; /* Set max-width for each column */
+    grid-auto-rows: auto;
+    margin: auto;
+    gap: 0;
+    justify-content: flex-start;
+}
+
+main .shredded-paper-background-column.two-column,
+main .hard-drive-background.two-column {
+    padding: 0 2rem;
+}
+
+
+main .two-column.full-width.form-container .form-wrapper {
+    max-width: 612px;
+}
+
+main .two-column.form-container > div {
+    grid-column: 1;
+}
+
+main .two-column.form-container > div:not(:first-child, .form-wrapper) {
+    margin: 0;
+}
+
+main .two-column.form-container > div:first-child {
+    margin-bottom: 0;
+}
+
+/* Place the last child in the second column */
+main .two-column.form-container > div:nth-last-child(1) {
+    grid-column: 2;
+    grid-row: 1 / span 4;
 }

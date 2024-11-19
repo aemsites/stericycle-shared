@@ -63,8 +63,15 @@ main .testimonial-container>div {
 }
 
 @media screen and (min-width: 992px) {
+  .block.testimonial .heading {
+    max-width: var(--section-width);
+    margin: 0 auto;
+  }
+
   .block.testimonial .quotes {
     flex-direction: row;
+    max-width: var(--section-width);
+    margin: 0 auto;
   }
 
   .block.testimonial .quotes p {
