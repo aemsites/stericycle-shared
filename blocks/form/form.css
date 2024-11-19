@@ -149,15 +149,106 @@ main .form input[type='file'] {
     color: unset;
 }
 
-main .form input[type='checkbox'],
-main .form input[type='radio'] {
-    width: 16px;
-    height: 16px;
-    flex: none;
-    margin: 0;
-    position: static;
-    z-index: 1;
-    accent-color: var(--color-black);
+main .form input[type="checkbox"] {
+    appearance: none;
+    margin: .25rem;
+    padding: .4rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-primary-1);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+main .form input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 5px;
+    transform: rotate(45deg);
+    display: inline-block;
+    height: 10px;
+    width: 4px;
+    border-bottom: 1px solid var(--color-primary-1);
+    border-right: 1px solid var(--color-primary-1);
+}
+
+main .form input[type="checkbox"]:hover {
+    background-color:  var(--color-primary-1);
+}
+
+main .form input[type="checkbox"]:focus::after {
+    border-bottom: 1px solid var(--color-primary-1); 
+    border-right: 1px solid var(--color-primary-1);
+}
+
+main .form input[type="checkbox"]:focus {
+    background-color: var(--color-tertiary-6);
+    outline: 2px solid var(--color-primary-1);
+}
+
+main .form input[type="checkbox"]:disabled {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-tertiary-4) !important;
+    cursor: not-allowed;
+}
+
+main .form input[type="checkbox"]:disabled::after {
+    border-bottom: 1px solid var(--color-tertiary-4);
+    border-right: 1px solid var(--color-tertiary-4);
+}
+
+main .form input[type="checkbox"]:hover:not(:focus)::after {
+    border-bottom: 1px solid var(--color-white);
+    border-right: 1px solid var(--color-white);
+}
+
+main .form input[type="checkbox"]:disabled:hover::after {
+    border-bottom: 1px solid var(--color-tertiary-4); 
+    border-right: 1px solid var(--color-tertiary-4);
+}
+
+main .form input[type="radio"] {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-primary-1);
+    margin-right: .5rem;
+    padding: 0;
+    position: relative;
+}
+
+main .form input[type="radio"]:focus {
+    border: 2px solid var(--color-primary-1);
+    outline: none;
+}
+
+main .form input[type="radio"]:checked {
+    background-color: var(--color-white);
+}
+
+main .form input[type="radio"]:disabled {
+    border: 2px solid var(--color-tertiary-4) !important;
+    cursor: not-allowed;
+}
+
+main .form input[type="radio"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-primary-1);
+}
+
+main .form input[type="radio"]:disabled::before {
+    background-color: var(--color-tertiary-4);
 }
 
 main .form textarea {
@@ -203,7 +294,7 @@ main .form form p {
 
 main .form form .checkbox-wrapper, main .form form .radio-wrapper {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     margin: 0;
     gap: 8px;
 }
@@ -266,6 +357,10 @@ main .form .field-wrapper.field-valid input,
 main .form .field-wrapper.field-valid textarea,
 main .form .field-wrapper.field-valid select {
   border-color: var(--color-success-2);
+}
+
+main .form .field-wrapper.field-valid input[type="radio"] {
+    border-color: var(--color-primary-1);
 }
 
 main .form .field-wrapper.field-invalid input,
