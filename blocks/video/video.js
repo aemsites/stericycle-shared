@@ -187,13 +187,14 @@ export default async function decorate(block) {
     block.append(wrapper);
   } else {
     block.classList.add('lazy-loading');
-    const observer = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        observer.disconnect();
-        loadVideoEmbed(block, link, false, block.classList.contains('autoplay'));
-        block.classList.remove('lazy-loading');
-      }
-    });
-    observer.observe(block);
+    setTimeout(() => {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          observer.disconnect();
+          loadVideoEmbed(block, link, false, block.classList.contains('autoplay'));
+        }
+      });
+      observer.observe(block);
+    }, 4000);
   }
 }
