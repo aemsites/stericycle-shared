@@ -72,7 +72,7 @@ async function loadYMAL() {
   const mltSection = document.createElement('div');
   mltSection.className = 'section box-shadow post-teaser-list-container';
   const mltWrapper = document.createElement('div');
-  mltWrapper.className = 'default-content-wrapper';
+  mltWrapper.className = 'post-teaser-list-wrapper';
   mltSection.append(mltWrapper);
   const ptlBlock = document.createElement('div');
   ptlBlock.className = 'post-teaser-list cards';

@@ -2,6 +2,10 @@ main .section.faq-container > div {
   padding: 0 12px;
 }
 
+main:has(.section.two-column.full-width) div.faq-container div {
+  max-width: 100%;
+}
+
 .faq {
   padding: 0;
   margin-bottom: 40px;
@@ -168,6 +172,18 @@ main .section.faq-container > div {
 
 .faq-container .default-content-wrapper:last-child {
   margin-bottom: 1rem;
+}
+
+main:has(.section.two-column.shredded-paper-background-column) div.faq-wrapper,
+main:has(.section.two-column.hard-drive-background) div.faq-wrapper,
+main:has(.section.shredded-paper-background) div.faq-container div.faq-wrapper{
+  margin: 0 2rem;
+}
+
+main:has(.section.shredded-paper-background) .faq-container .default-content-wrapper,
+main:has(.section.two-column.shredded-paper-background-column) .faq-container:has(.plain) .default-content-wrapper,
+main:has(.section.two-column.hard-drive-background) .faq-container:has(.plain) .default-content-wrapper {
+  margin: 2rem;
 }
 
 @media screen and (min-width: 992px) {

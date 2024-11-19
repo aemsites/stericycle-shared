@@ -87,9 +87,9 @@ main .form-container {
     background-color: var(--form-background-color);
     padding: var(--form-padding);
     width: var(--form-width);
-    margin: var(--nav-height) auto;
     overflow: visible;
 }
+
 
 main .form {
     background-color: var(--form-background-color);
@@ -773,6 +773,11 @@ main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {
     font-weight: normal;
 }
 
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h3,
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h2{
+    color: var(--color-black);
+}
+
 main .campaign-form.form .fragment-wrapper[data-id^='header'] {
     font-size: var(--heading-font-size-m);
     padding: 2rem 0.8rem 0;
@@ -783,6 +788,18 @@ main .campaign-form.form .fragment-wrapper[data-id^='header'] {
 
 main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='header'] {
     text-align: center;
+}
+
+main .get-a-quote-form-alternate.no-header-color form .fragment-wrapper[data-id^='header'] {
+    background-color: unset;
+}
+
+main .footer-subscription-form  form {
+    gap: 0;
+}
+
+main .get-a-quote-form-alternate.grey-background form {
+    background-color: var(--color-gray);
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] > div > p {
@@ -820,10 +837,6 @@ main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-
     font-size: 0.87rem;
 }
 
-main .footer-subscription-form  form {
-    gap: 0;
-}
-
 main .footer-subscription-form form .fragment-wrapper > div p:nth-of-type(2) {
     margin-bottom: 0.4rem;
 }
@@ -847,34 +860,11 @@ main .campaign-form.form form {
     background-color: var(--color-gray);
 }
 
-main .two-column.form-container {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-main .two-column.form-container .default-content-wrapper {
-    flex: 0 0 67%;
-    max-width: 884px;
-    padding: 0;
-    margin: 2rem 4rem 0;
-}
-
 main .two-column.form-container .form-wrapper {
-    flex: 0 0 33%;
-    max-width: 436px;
-    padding: 0;
-    margin: 2rem 0 0;
+    justify-self: flex-end;
 }
 
 @media (max-width: 1000px) {
-    main .two-column.form-container {
-        flex-direction: column; /* Stack items vertically */
-        align-items: center;
-        overflow-x: hidden;
-    }
-
     main .two-column.form-container .default-content-wrapper {
         width: 90%;
     }
@@ -893,4 +883,57 @@ main .two-column.form-container .form-wrapper {
         padding: 13px 0;
         margin-top: 0;
     }
+
+    main .section.two-column.form-container,
+    main .section.two-column.form-container.full-width{
+        display: table-row;
+    }
+}
+
+main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background) {
+    display: grid;
+    grid-template-columns: minmax(0, 884px) minmax(0, 436px); /* Set max-width for each column */
+    grid-auto-rows: auto;
+    margin: auto;
+    gap: 0;
+    justify-content: center;
+}
+
+main .shredded-paper-background-column.two-column.form-container,
+main .navy-background.cyan-border.two-column.form-container,
+main .hard-drive-background.two-column.form-container {
+    display: grid;
+    grid-template-columns: 65% 35%;; /* Set max-width for each column */
+    grid-auto-rows: auto;
+    margin: auto;
+    gap: 0;
+    justify-content: flex-start;
+}
+
+main .shredded-paper-background-column.two-column,
+main .hard-drive-background.two-column {
+    padding: 0 2rem;
+}
+
+
+main .two-column.full-width.form-container .form-wrapper {
+    max-width: 612px;
+}
+
+main .two-column.form-container > div {
+    grid-column: 1;
+}
+
+main .two-column.form-container > div:not(:first-child, .form-wrapper) {
+    margin: 0;
+}
+
+main .two-column.form-container > div:first-child {
+    margin-bottom: 0;
+}
+
+/* Place the last child in the second column */
+main .two-column.form-container > div:nth-last-child(1) {
+    grid-column: 2;
+    grid-row: 1 / span 4;
 }
