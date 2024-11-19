@@ -868,6 +868,17 @@ main .two-column.form-container .form-wrapper {
     justify-self: flex-end;
 }
 
+main .shredded-paper-background-column.two-column.form-container,
+main .navy-background.cyan-border.two-column.form-container,
+main .hard-drive-background.two-column.form-container {
+    display: grid;
+    grid-template-columns: 65% 35%;; /* Set max-width for each column */
+    grid-auto-rows: auto;
+    margin: auto;
+    gap: 0;
+    justify-content: flex-start;
+}
+
 @media (max-width: 1000px) {
     main .two-column.form-container .default-content-wrapper {
         width: 90%;
@@ -899,7 +910,11 @@ main .two-column.form-container .form-wrapper {
     }
 
     main .section.two-column.form-container,
-    main .section.two-column.form-container.full-width{
+    main .section.two-column.form-container.full-width,
+    main .shredded-paper-background-column.two-column.form-container,
+    main .navy-background.cyan-border.two-column.form-container,
+    main .hard-drive-background.two-column.form-container
+    {
         display: table-row;
     }
 }
@@ -911,17 +926,6 @@ main .two-column.form-container:not(.shredded-paper-background-column, .hard-dri
     margin: auto;
     gap: 0;
     justify-content: center;
-}
-
-main .shredded-paper-background-column.two-column.form-container,
-main .navy-background.cyan-border.two-column.form-container,
-main .hard-drive-background.two-column.form-container {
-    display: grid;
-    grid-template-columns: 65% 35%;; /* Set max-width for each column */
-    grid-auto-rows: auto;
-    margin: auto;
-    gap: 0;
-    justify-content: flex-start;
 }
 
 main .shredded-paper-background-column.two-column,
