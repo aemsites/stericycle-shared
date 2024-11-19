@@ -9,7 +9,6 @@
       padding-top: 15px;
 
       & ol {
-
         & .breadcrumb-item {
           display: inline;
           list-style-type: none;

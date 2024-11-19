@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import { a, div, li, ol, span } from '../../scripts/dom-helpers.js';
+import { a, li, ol, span } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   let { pathname } = new URL(window.location.href);
