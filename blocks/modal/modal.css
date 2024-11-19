@@ -9,7 +9,7 @@ body.modal-open {
 .modal dialog {
   overscroll-behavior: none;
   overflow-y: hidden;
-  position: relative;
+  position: fixed;
   width: calc(100vw - 48px);
   max-width: 900px;
   max-height: calc(100dvh - (2 * var(--header-height)));
@@ -84,4 +84,37 @@ body.modal-open {
 .modal dialog .section {
   padding: 0;
   margin:0;
+}
+
+.modal dialog .modal-content form .fragment-wrapper p{
+  font-size: 1rem;
+}
+
+.modal dialog .modal-content form .fragment-wrapper[data-id^='privacy-policy']  p,
+.modal dialog .modal-content form .fragment-wrapper[data-id^='privacypolicy']  p,
+.modal dialog .modal-content form .fragment-wrapper[data-id^='policy']  p{
+  font-size: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .modal .modal-content form fieldset.panel-wrapper {
+    gap: unset;
+  }
+
+  .modal dialog .modal-content {
+    padding: 1rem;
+    margin-top: 0;
+  }
+
+  .modal dialog .modal-content form {
+    column-gap: unset;
+  }
+
+  .modal dialog  {
+    max-width: none;
+    width: calc(100vw - 16px);
+    max-height: calc(100dvh - 16px);
+  }
 }
