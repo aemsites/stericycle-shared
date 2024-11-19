@@ -745,7 +745,7 @@ main .form .panel-wrapper[data-required="true"].field-invalid legend::after {
   color: var(--form-error-color);
 }
 
-main .form form.submit-success .fragment-wrapper {
+main .form form.submit-success .fragment-wrapper:not([data-id^="header"]) {
     display: none;
 }
 

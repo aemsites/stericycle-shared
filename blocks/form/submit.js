@@ -10,10 +10,8 @@ export async function submitSuccess(e, form) {
     errorMessage.remove();
   }
   const { payload } = e;
-  const redirectUrl = payload?.body?.redirectUrl;
-  if (redirectUrl) {
-    window.location.assign(encodeURI(redirectUrl));
-  } else {
+  const thankYouMessageURL = payload?.body?.thankYouMessage;
+  if (thankYouMessageURL) {
     let thankYouMsgEl = form.parentNode.querySelector('.form-message.success-message');
     if (!thankYouMsgEl) {
       thankYouMsgEl = document.createElement('div');
@@ -22,7 +20,7 @@ export async function submitSuccess(e, form) {
     const currentWizardPanel = form.querySelector('.current-wizard-step');
     if (currentWizardPanel) {
       currentWizardPanel.querySelectorAll('.field-wrapper').forEach((node) => { node.dataset.visible = 'false'; });
-      await appendFragment(thankYouMsgEl, payload?.body?.thankYouMessage);
+      await appendFragment(thankYouMsgEl, thankYouMessageURL);
       currentWizardPanel.append(thankYouMsgEl);
       form.querySelector('.wizard-button-prev').dataset.visible = 'false';
       form.querySelector('.wizard-button-next').dataset.visible = 'false';
