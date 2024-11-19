@@ -26,7 +26,7 @@ export async function submitSuccess(e, form) {
       form.querySelector('.wizard-button-next').dataset.visible = 'false';
       form.querySelector('.submit-wrapper').dataset.visible = 'false';
     } else {
-      form.querySelectorAll('.field-wrapper').forEach((node) => { node.dataset.visible = 'false'; });
+      form.querySelectorAll('.field-wrapper:not(.field-header)').forEach((node) => { node.dataset.visible = 'false'; });
       await appendFragment(thankYouMsgEl, payload?.body?.thankYouMessage);
       form.append(thankYouMsgEl);
     }
