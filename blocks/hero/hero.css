@@ -22,7 +22,7 @@ main .section.hero-container {
     max-width: var(--section-width);
     margin: auto;
     position: relative;
-    padding: 0 2.9375rem;
+    padding: 0 1.5rem;
     width: 100%;
 
     & .hero-content {
