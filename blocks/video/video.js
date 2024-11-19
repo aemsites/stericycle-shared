@@ -195,6 +195,6 @@ export default async function decorate(block) {
         }
       });
       observer.observe(block);
-    }, 3000);
+    }, 4000);
   }
 }
