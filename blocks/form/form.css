@@ -54,7 +54,7 @@
     --form-upload-font-size: var(--form-font-size-xs);
     --form-upload-background-color: var(--form-styles-background-color-primary);
     --form-submit-width: 100%;
-    --form-width: 100%;
+    --form-width: 95%;
     --form-wizard-border: 0;
     --form-wizard-background-color: var(--form-styles-background-color-primary);
     --form-wizard-border-color: #757575;
@@ -501,6 +501,10 @@ main .form form .repeat-wrapper{
     gap: var(--form-field-vert-gap) var(--form-field-horz-gap);
 }
 
+main .get-a-quote-form-alternate form .panel-wrapper {
+    gap:unset;
+}
+
 main .campaign-form.form form .panel-wrapper {
     padding: 5px;
     background-color: var(--color-gray);
@@ -755,7 +759,7 @@ main .get-a-quote-form-alternate {
 
 main .get-a-quote-form-alternate form {
     margin:0;
-    display: block;
+    gap: unset;
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='privacy-policy']  p,
@@ -864,31 +868,18 @@ main .two-column.form-container .form-wrapper {
     justify-self: flex-end;
 }
 
-@media (max-width: 1000px) {
-    main .two-column.form-container .default-content-wrapper {
-        width: 90%;
-    }
-
-    main .two-column.form-container .form-wrapper {
-        width:90%;
-    }
-
-    main .form form .panel-wrapper.field-requesttype, main .form form .panel-wrapper.field-frequncy{
-       grid-template-columns: 1fr 1fr;
-    }
-
-    main .form form .panel-wrapper.field-requesttype, main .form form .panel-wrapper.field-frequncy .radio-wrapper.field-quote-type{
-        grid-column: span 1;
-        width: 100%;
-        padding: 13px 0;
-        margin-top: 0;
-    }
-
-    main .section.two-column.form-container,
-    main .section.two-column.form-container.full-width{
-        display: table-row;
-    }
+main .shredded-paper-background-column.two-column.form-container,
+main .navy-background.cyan-border.two-column.form-container,
+main .hard-drive-background.two-column.form-container {
+    display: grid;
+    grid-template-columns: 65% 35%;; /* Set max-width for each column */
+    grid-auto-rows: auto;
+    margin: auto;
+    gap: 0;
+    justify-content: flex-start;
+    width:100%;
 }
+
 
 main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background) {
     display: grid;
@@ -899,15 +890,44 @@ main .two-column.form-container:not(.shredded-paper-background-column, .hard-dri
     justify-content: center;
 }
 
-main .shredded-paper-background-column.two-column.form-container,
-main .navy-background.cyan-border.two-column.form-container,
-main .hard-drive-background.two-column.form-container {
-    display: grid;
-    grid-template-columns: 65% 35%;; /* Set max-width for each column */
-    grid-auto-rows: auto;
-    margin: auto;
-    gap: 0;
-    justify-content: flex-start;
+@media (max-width: 1000px) {
+    main .two-column.form-container .default-content-wrapper {
+        width: 90%;
+    }
+
+    main .two-column.form-container .form-wrapper {
+        width:90%;
+    }
+
+    main .form form .panel-wrapper.field-requesttype, main .form form .panel-wrapper.field-frequncy {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    main .form form .panel-wrapper.field-requesttype legend, main .form form .panel-wrapper.field-frequncy legend{
+       padding: 1.5rem 0 0 1rem;
+    }
+
+    main .form form .panel-wrapper.field-requesttype .radio-wrapper.field-quote-type,
+    main .form form .panel-wrapper.field-frequncy .radio-wrapper.field-servicetype1
+    {
+        grid-column: span 1;
+        width: 100%;
+        padding: 13px 0;
+        margin-top: 0;
+    }
+
+    main .body-wrapper .page-sidebar > div.form-container {
+        padding-left: 1rem;
+    }
+
+    main .section.two-column.form-container,
+    main .section.two-column.form-container.full-width,
+    main .shredded-paper-background-column.two-column.form-container,
+    main .navy-background.cyan-border.two-column.form-container,
+    main .hard-drive-background.two-column.form-container
+    {
+        display: table-row;
+    }
 }
 
 main .shredded-paper-background-column.two-column,
@@ -936,4 +956,13 @@ main .two-column.form-container > div:first-child {
 main .two-column.form-container > div:nth-last-child(1) {
     grid-column: 2;
     grid-row: 1 / span 4;
+}
+
+main .form-wrapper .form.contact-us-form{
+    padding: 2rem;
+    box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+}
+
+main .form-wrapper .form.contact-us-form form {
+    gap:unset;
 }
