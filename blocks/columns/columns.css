@@ -112,6 +112,11 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
   margin-bottom: auto;
 }
 
+.columns.numeric-list > div, .columns.check-list > div {
+  align-items: flex-start;
+}
+
+
 .columns.steps > div {
   align-items: flex-start;
 }
@@ -131,6 +136,10 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
   border-bottom: .0625rem solid #dad6d6;
   padding: .75rem 3rem;
   background: url("/icons/check-mark-new.svg") no-repeat left center;
+}
+
+.columns.numeric-list li::before {
+  content: unset;
 }
 
 .columns.check-list ul > li::before {
@@ -254,8 +263,46 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
   padding-left: 0;
 }
 
+.columns.numeric-list h3 {
+  font-size: 4rem;
+  color: var(--color-cyan);
+  margin-bottom: 1.5rem;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.columns.numeric-list p,
+.columns.numeric-list h4 {
+  margin-bottom: 1.5rem;
+}
+
+.columns.numeric-list ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  height: 7rem;
+  padding-bottom: 2rem;
+  padding-left: unset;
+}
+
 .columns.box-shadow-hover > div li {
   padding-bottom: 1rem;
+}
+
+.columns.numeric-list li:last-of-type {
+  margin-left: 2rem;
+  padding-left: 1rem;
+  border-left: var(--color-orange) solid 4px;
+  height: 100%;
+}
+
+.columns.numeric-list li:first-of-type {
+  top: 1rem;
+}
+
+.columns.numeric-list li:first-of-type > strong {
+  font-size: 4rem;
+  color: var(--color-cyan);
 }
 
 .columns.box-shadow-hover > div > div > h3 {
@@ -349,6 +396,16 @@ main .section.blue-headings .columns span.icon > img {
   .columns.orange-accent-border.columns-has-image > div > div:first-of-type,
   .columns.cyan-accent-border.columns-has-image > div > div:first-of-type {
     padding-left: 0;
+  }
+
+  main .columns.numeric-list ul {
+    flex-direction: row;
+  }
+
+  main .columns.numeric-list span.icon > img {
+    width:3.75rem;
+    height:3.75rem;
+    max-width: unset;
   }
 
   main .columns.logos.columns-4-cols span.icon > img {
