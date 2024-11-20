@@ -33,6 +33,7 @@ export default async function decorate(block) {
   const ctaStrong = document.createElement('strong');
   const ctaA = document.createElement('a');
   ctaA.classList.add('button');
+  ctaA.target = '_blank';
   ctaA.href = cfg.download;
   ctaA.textContent = downloadnow;
   ctaStrong.appendChild(ctaA);

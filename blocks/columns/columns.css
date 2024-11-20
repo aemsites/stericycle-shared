@@ -14,6 +14,10 @@
   flex-direction: column;
 }
 
+.columns.cyan-accent-border > div {
+  flex-flow: row wrap;
+}
+
 .columns.labeled > div {
   align-items: flex-start;
 }
@@ -152,6 +156,10 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 
 .columns.align-top > div {
   align-items: flex-start;
+}
+
+.columns.cyan-accent-border > div > div {
+  flex: 35%;
 }
 
 .columns.steps > div > div {
@@ -346,6 +354,18 @@ main .section.blue-headings .columns span.icon > img {
   height: var(--icon-size-xl);
 }
 
+.columns.small-images.centered > div > div > p:first-of-type img {
+  width: 50%;
+}
+
+.columns.small-images.centered > div > div > p:first-of-type {
+  text-align: center;
+}
+
+.columns.small-images.centered > div > div > p:last-of-type {
+  text-align: center;
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
   .columns > div {
     flex-direction: unset;
@@ -355,6 +375,11 @@ main .section.blue-headings .columns span.icon > img {
   .columns > div > div {
     flex: 1;
     order: unset;
+  }
+
+  .columns.cyan-accent-border > div {
+    flex-direction: row;
+    flex-wrap: unset;
   }
 
   .columns.narrow-icons > div {
