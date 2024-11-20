@@ -53,6 +53,7 @@ main:has(.section.two-column.full-width) div.faq-container div {
   border-bottom: none;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .faq details + details {
   border-top: none;
   border-bottom: 1px solid var(--color-tertiary-1);
@@ -87,7 +88,7 @@ main:has(.section.two-column.full-width) div.faq-container div {
   border-radius: 8px;
   border-bottom: 1px solid var(--color-tertiary-1);
   background: var(--color-white);
-  box-shadow: 0px 0px 0px 2px var(--color-primary-1);
+  box-shadow: 0 0 0 2px var(--color-primary-1);
   outline-color: var(--color-primary-1);
 }
 
