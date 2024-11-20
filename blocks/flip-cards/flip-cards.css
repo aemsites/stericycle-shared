@@ -108,6 +108,10 @@ main .section.flip-cards-container {
   padding: 32px 0;
 }
 
+main .section.flip-cards-container.gray-background {
+  padding-top: 0;
+}
+
 /* stylelint-disable-next-line no-descending-specificity */
 main .section.flip-cards-container > .flip-cards-wrapper {
   padding: 0 32px;

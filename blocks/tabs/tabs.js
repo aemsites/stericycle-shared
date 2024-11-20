@@ -46,7 +46,7 @@ export default async function decorate(block) {
     tabpanel.setAttribute('role', 'tabpanel');
     if (block.classList.contains('vertical') && block.classList.contains('video')) {
       const wistiaLink = tabpanel.querySelector('a');
-      wistiaEmbed = embedWistia(wistiaLink);
+      wistiaEmbed = embedWistia(wistiaLink, false, false, 'contain', 'true');
       tabpanel.replaceChildren(wistiaEmbed);
     }
     if (!hasWrapper(tabpanel.lastElementChild)) {
@@ -114,6 +114,7 @@ export default async function decorate(block) {
     button.setAttribute('role', 'tab');
     button.setAttribute('type', 'button');
     button.addEventListener('click', () => {
+      window.history.pushState(null, null, `#${button.id}`);
       block.querySelectorAll('[role=tabpanel]').forEach((panel) => {
         panel.setAttribute('aria-hidden', true);
       });
@@ -126,6 +127,13 @@ export default async function decorate(block) {
     tablist.append(button);
     tab.remove();
   });
+
+  if (window.location.hash) {
+    const tab = tablist.querySelector(window.location.hash);
+    if (tab) {
+      tab.click();
+    }
+  }
 
   block.prepend(tablist);
 }

@@ -2,6 +2,7 @@ import { DEFAULT_THANK_YOU_MESSAGE, getSubmitBaseUrl } from './constant.js';
 
 // eslint-disable-next-line no-unused-vars
 export function submitSuccess(e, form) {
+  sessionStorage.setItem('formSubmitted', 'true');
   const { payload } = e;
   const redirectUrl = payload?.body?.redirectUrl;
   const thankYouMessage = payload?.body?.thankYouMessage;
@@ -96,7 +97,7 @@ async function prepareRequest(form, captcha) {
     'Content-Type': 'application/json',
   };
   const body = { data: payload };
-  const url = getSubmitBaseUrl();
+  const url = `${getSubmitBaseUrl()}/bin/edgedelivery/form`;
   return { headers, body, url };
 }
 

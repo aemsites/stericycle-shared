@@ -245,6 +245,22 @@ main section .tabs-container > div {
     margin: calc(var(--bs-gutter-y) * 0.5) calc(var(--bs-gutter-x)* 0.5);
 }
 
+.block.tabs.topics .tabs-panel picture {
+    display: block;
+    position: relative;
+    padding-bottom: calc(4 / 7 * 100%);
+    height: 100%;
+    width: 100%;
+
+    & > img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
 @media (min-width: 992px) {
     .block.tabs.vertical .tabs-panel > div {
         display: block;
