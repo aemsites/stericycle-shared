@@ -8,7 +8,7 @@ export function isFormSubmitted() {
 async function triggerHandler(config, trigger) {
   const { path, value } = config;
   if (!isFormSubmitted()) {
-    if (!sessionStorage.getItem(path)) { // prevent trigger modal from opening if already closed
+    if (!sessionStorage.getItem(path) && trigger) { // prevent trigger modal from opening if already closed
       timer = setTimeout(async () => {
         if (!stopTrigger) { // stop triggering when another modal is open
           trigger(config.path, config);
