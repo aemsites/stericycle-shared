@@ -20,7 +20,7 @@ async function triggerHandler(config, trigger) {
 /**
  * This method triggers the modal if user scrolls to config[value]  percentage of the visible page
  * @param {Object} config
- * @param trigger
+ * @param trigger - The callback to be invoked when user action is triggered.
  */
 function openOnScroll(config, trigger) {
   const value = parseInt(config.value, 10);
@@ -48,7 +48,7 @@ function openOnScroll(config, trigger) {
  * This method triggers the modal after config[value] seconds has elapsed
  * If a non trigger modal is already open, it will not trigger another modal.
  * @param {Object} config
- * @param trigger
+ * @param trigger - The callback to be invoked when user action is triggered.
  */
 function openOnPageTime(config, trigger) {
   triggerHandler(config, trigger);
@@ -58,7 +58,7 @@ function openOnPageTime(config, trigger) {
  * This method triggers the modal if user tries to exit the page after config[value] seconds has elapsed
  * If a non trigger modal is already open, it will not trigger another modal.
  * @param {Object} config
- * @param trigger
+ * @param trigger - The callback to be invoked when user action is triggered.
  */
 function openOnExitIntent(config, trigger) {
   document.addEventListener('mouseleave', () => {
