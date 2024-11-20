@@ -58,7 +58,7 @@ html {
       padding: 1rem 5px;
       list-style: none;
       height: calc(var(--nav-height) - 78px);
-      background-color: var(--color-dark-gunmetal);;
+      background-color: var(--color-secondary-5);;
 
       & li {
         display: flex;

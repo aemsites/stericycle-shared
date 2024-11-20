@@ -115,11 +115,11 @@
             margin: auto 1rem auto auto;
             padding: 0 12px;
             border: 1px solid var(--color-gray);
-            color: var(--color-dark-gunmetal);
+            color: var(--color-secondary-5);
 
             &::placeholder {
               font-size: var(--body-font-size-default);
-              color: var(--color-dark-gunmetal);
+              color: var(--color-secondary-5);
               font-family: var(--font-family-body);
             }
           }
@@ -488,8 +488,8 @@
           font-size: .875rem;
           font-weight: 400;
           letter-spacing: .01px;
-          color: var(--color-dark-gunmetal);
-          text-decoration-color: var(--color-dark-gunmetal);;
+          color: var(--color-secondary-5);
+          text-decoration-color: var(--color-secondary-5);;
         }
 
       }
@@ -777,7 +777,7 @@
                 height: 50px;
                 padding: 0 12px;
                 width: 75%;
-                border: 1px solid var(--color-dark-gunmetal);
+                border: 1px solid var(--color-secondary-5);
 
                 &::placeholder {
                   color: transparent;
@@ -786,7 +786,7 @@
                 }
 
                 &:focus::placeholder {
-                  color: var(--color-dark-gunmetal);
+                  color: var(--color-secondary-5);
                 }
               }
 
@@ -840,7 +840,7 @@
                 content: '';
                 position: absolute;
                 border-style: solid;
-                border-color: transparent transparent var(--color-dark-gunmetal);
+                border-color: transparent transparent var(--color-secondary-5);
                 border-width: 0 5px 7px;
                 right: 14px;
                 top: -.5rem;

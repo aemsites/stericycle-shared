@@ -182,7 +182,7 @@ main .section.featuretable-container > div {
 }
 
 .section.featuretable-container.cyan-border.flex-row .default-content-wrapper p:last-of-type a {
-  background-color: var(--color-yellow);
+  background-color: var(--color-secondary-4);
   color: var(--color-black);
 }
 
