@@ -3,9 +3,8 @@ import {
   fetchPlaceholders, getMetadata, loadCSS, sampleRUM,
 } from './aem.js';
 // eslint-disable-next-line import/no-cycle
-import { getDateFromExcel, getRelatedPosts, fetchTriggerConfig } from './scripts.js';
+import { getDateFromExcel, getRelatedPosts } from './scripts.js';
 import decorate from '../blocks/post-teaser-list/post-teaser-list.js';
-import { openOnScroll } from '../blocks/form/trigger.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -121,10 +120,4 @@ if (document.querySelector('body.resource-center')
     && (document.querySelector('meta[name="media-type"]')?.getAttribute('content') === 'Infographic'
         || document.querySelector('meta[name="media-type"]')?.getAttribute('content') === 'Info Sheets')) {
   await loadYMAL();
-}
-
-const config = fetchTriggerConfig();
-if (config?.type === 'scroll') {
-  const { openModal } = await import('../blocks/modal/modal.js');
-  openOnScroll(config, openModal);
 }

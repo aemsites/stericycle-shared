@@ -22,7 +22,7 @@ async function triggerHandler(config, trigger) {
  * @param {Object} config
  * @param trigger
  */
-export async function openOnScroll(config, trigger) {
+function openOnScroll(config, trigger) {
   const value = parseInt(config.value, 10);
   const target = document.createElement('div');
   const documentHeight = document.documentElement.scrollHeight;
@@ -90,10 +90,19 @@ export function openOnTrigger(config, trigger) {
   const { path, type, value } = config;
   if (path && type && value) {
     registerEventListeners();
-    if (type.toLowerCase().trim() === 'time') {
-      openOnPageTime(config, trigger);
-    } else if (type.toLowerCase().trim() === 'exit') {
-      openOnExitIntent(config, trigger);
+    switch (type.toLowerCase().trim()) {
+      case 'time':
+        openOnPageTime(config, trigger);
+        break;
+      case 'exit':
+        openOnExitIntent(config, trigger);
+        break;
+      case 'scroll':
+        setTimeout(() => {
+          openOnScroll(config, trigger);
+        }, 3000);
+        break;
+      default: throw new Error('Invalid trigger type specified for modal');
     }
   }
 }
