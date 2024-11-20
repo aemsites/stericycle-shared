@@ -245,24 +245,12 @@ function consolidateOfferBoxes(main) {
   });
 }
 
-/**
- * get embed code for Wistia videos
- *
- * @param {*} url
- * @returns
- */
-export function embedWistia(url) {
-  let suffix = '';
-  const suffixParams = {
-    playerColor: '006cb4',
-  };
-
-  suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
-  const temp = document.createElement('div');
-  temp.innerHTML = `<div>
-  <iframe loading="lazy" allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed custom-shadow"
-  name="wistia_embed" src="${url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href}${suffix}"></iframe>`;
-  return temp.children.item(0);
+async function fetchWistiaMetadata(videoUrl) {
+  const response = await fetch(`${videoUrl}.json`);
+  if (!response.ok) {
+    throw new Error(`Response status: ${response.status}`);
+  }
+  return response.json();
 }
 
 /**
@@ -308,7 +296,23 @@ async function loadFonts() {
   }
 }
 
-function autolinkModals(element) {
+/**
+ * @typedef {Object} Config
+ * @property {string} type - The type of trigger ('time' or 'exit' or 'scroll').
+ * @property {string} size - The size of the modal.
+ * @property {string} value - The value associated with the trigger (e.g., time in seconds).
+ * @property {string} path - The path to the modal content.
+ */
+export function fetchTriggerConfig() {
+  return {
+    path: getMetadata('modal-path'),
+    size: getMetadata('modal-size'),
+    type: getMetadata('modal-trigger'),
+    value: getMetadata('modal-trigger-threshold'),
+  };
+}
+
+async function autolinkModals(element) {
   element.addEventListener('click', async (e) => {
     const origin = e.target.closest('a');
 
@@ -318,6 +322,9 @@ function autolinkModals(element) {
       openModal(origin.href);
     }
   });
+  const { openOnTrigger } = await import(`${window.hlx.codeBasePath}/blocks/form/trigger.js`);
+  const { openModal } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
+  openOnTrigger(fetchTriggerConfig(), openModal);
 }
 
 /**
@@ -471,7 +478,7 @@ function decorateSectionIds(main) {
 export function addJsonLd(schema, name, doc = document) {
   const script = doc.createElement('script');
   script.type = 'application/ld+json';
-  script.innerHTML = schema;
+  script.innerHTML = JSON.stringify(schema);
   if (name) {
     script.dataset.name = name;
   }
@@ -487,7 +494,7 @@ export function addJsonLd(schema, name, doc = document) {
 export function setJsonLd(schema, name, doc = document) {
   const existingScript = doc.head.querySelector(`script[data-name="${name}"]`);
   if (existingScript) {
-    existingScript.innerHTML = schema;
+    existingScript.innerHTML = JSON.stringify(schema);
     return;
   }
   addJsonLd(schema, name);
@@ -520,20 +527,97 @@ async function fetchAndSetCustomJsonLd(doc = document) {
         && new URL(doc.documentURI).pathname.toLowerCase().startsWith(e.page.trim().toLowerCase().substring(0, e.page.trim().length - 1))))
     .all();
   customSchemas = customSchemas.sort((e1, e2) => e1.page.localeCompare(e2.page));
-  customSchemas.forEach((e) => setJsonLd(e.schema, e.name || ''));
+  customSchemas.forEach((e) => {
+    let schema;
+    try {
+      schema = JSON.parse(e.schema);
+    } catch (ignored) {
+      // eslint-disable-next-line
+      console.error('Tried to add invalid JSON-LD schema');
+      return;
+    }
+    setJsonLd(schema, e.name || '');
+  });
 
   // per-page metadata
   [...doc.head.querySelectorAll('meta')].filter((m) => m.name === 'ld-json' || m.attributes?.property?.value?.startsWith('ld-json:')).forEach((m) => {
     if (m.content && m.content !== '') {
       const name = m.attributes?.property?.value?.substring(8, m.attributes.property.value.length);
+      let schema;
+      try {
+        schema = JSON.parse(m.content);
+      } catch (ignored) {
+        // eslint-disable-next-line no-console
+        console.error('Tried to add invalid JSON-LD schema');
+        return;
+      }
       if (name) {
-        setJsonLd(m.content, name);
+        setJsonLd(schema, name);
       } else {
-        addJsonLd(m.content, null);
+        addJsonLd(schema, null);
       }
     }
     m.remove();
   });
+}
+
+async function addWistiaJsonLd(videoUrl) {
+  const metadata = await fetchWistiaMetadata(videoUrl);
+  if (!metadata?.media) {
+    return;
+  }
+
+  const schema = {
+    '@context': 'http://schema.org/',
+    '@type': 'VideoObject',
+    '@id': `https://fast.wistia.net/embed/iframe/${metadata.media.hashedId}`,
+    duration: `PT${Math.trunc(metadata.media.duration)}S`,
+    name: metadata.media.name,
+    embedUrl: `https://fast.wistia.net/embed/iframe/${metadata.media.hashedId}`,
+    uploadDate: new Date(1e3 * metadata.media.createdAt).toISOString(),
+    description: metadata.media.seoDescription || '(no description)',
+    transcript: metadata.media.captions?.[0]?.text || '(no transcript)',
+  };
+
+  const thumbnail = metadata.media.assets?.filter((e) => e.type === 'still_image')?.[0];
+  if (thumbnail) {
+    schema.thumbnailUrl = thumbnail.url.replace('.bin', '.jpg');
+  }
+
+  const content = metadata.media.assets?.filter((e) => e.type === 'original')?.[0];
+  if (content) {
+    schema.contentUrl = content.url.replace('.bin', '.m3u8');
+  }
+
+  addJsonLd(schema, `video-${metadata.media.hashedId}`);
+}
+
+/**
+ * get embed code for Wistia videos
+ *
+ * @param {*} url
+ * @returns
+ */
+export function embedWistia(url, replacePlaceholder, autoplay, fitStrategy = 'cover', videoFoam = 'false') {
+  let suffix = '';
+  const suffixParams = {
+    playerColor: '006cb4',
+    fitStrategy,
+    videoFoam,
+  };
+
+  if (replacePlaceholder || autoplay) {
+    suffixParams.autoplay = '1';
+    suffixParams.background = autoplay ? '1' : '0';
+  }
+  suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
+  const temp = document.createElement('div');
+  const videoUrl = url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href;
+  temp.innerHTML = `<div>
+  <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed custom-shadow"
+  name="wistia_embed" src="${videoUrl}${suffix}"></iframe>`;
+  addWistiaJsonLd(videoUrl);
+  return temp.children.item(0);
 }
 
 /**

@@ -9,12 +9,12 @@
 
 .video.block {
     width: unset;
-    text-align: center;
+    text-align: left;
     max-width: 800px;
     margin: 32px auto;
 }
 
-.video.lazy-loading {
+.video.block.lazy-loading {
     /* reserve an approximate space to avoid extensive layout shifts */
     aspect-ratio: 16 / 9;
 }

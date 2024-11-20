@@ -4,7 +4,7 @@
  * https://www.hlx.live/developer/block-collection/video
  */
 
-import { addJsonLd } from '../../scripts/scripts.js';
+import { embedWistia } from '../../scripts/scripts.js';
 
 function embedYoutube(url, replacePlaceholder, autoplay) {
   const usp = new URLSearchParams(url.search);
@@ -56,65 +56,6 @@ function embedVimeo(url, replacePlaceholder, autoplay) {
       frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen  
       title="Content from Vimeo" loading="lazy"></iframe>
     </div>`;
-  return temp.children.item(0);
-}
-
-async function fetchWistiaMetadata(videoUrl) {
-  const response = await fetch(`${videoUrl}.json`);
-  if (!response.ok) {
-    throw new Error(`Response status: ${response.status}`);
-  }
-  return response.json();
-}
-
-async function addWistiaJsonLd(videoUrl) {
-  const metadata = await fetchWistiaMetadata(videoUrl);
-  if (!metadata?.media) {
-    return;
-  }
-
-  const schema = {
-    '@context': 'http://schema.org/',
-    '@type': 'VideoObject',
-    '@id': `https://fast.wistia.net/embed/iframe/${metadata.media.hashedId}`,
-    duration: `PT${Math.trunc(metadata.media.duration)}S`,
-    name: metadata.media.name,
-    embedUrl: `https://fast.wistia.net/embed/iframe/${metadata.media.hashedId}`,
-    uploadDate: new Date(1e3 * metadata.media.createdAt).toISOString(),
-    description: metadata.media.seoDescription || '(no description)',
-    transcript: metadata.media.captions?.[0]?.text || '(no transcript)',
-  };
-
-  const thumbnail = metadata.media.assets?.filter((e) => e.type === 'still_image')?.[0];
-  if (thumbnail) {
-    schema.thumbnailUrl = thumbnail.url.replace('.bin', '.jpg');
-  }
-
-  const content = metadata.media.assets?.filter((e) => e.type === 'original')?.[0];
-  if (content) {
-    schema.contentUrl = content.url.replace('.bin', '.m3u8');
-  }
-
-  addJsonLd(schema, `video-${metadata.media.hashedId}`);
-}
-
-function embedWistia(url, replacePlaceholder, autoplay) {
-  let suffix = '';
-  const suffixParams = {
-    playerColor: '006cb4',
-  };
-
-  if (replacePlaceholder || autoplay) {
-    suffixParams.autoplay = '1';
-    suffixParams.background = autoplay ? '1' : '0';
-  }
-  suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
-  const temp = document.createElement('div');
-  const videoUrl = url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href;
-  temp.innerHTML = `<div>
-  <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed custom-shadow"
-  name="wistia_embed" src="${videoUrl}${suffix}"></iframe>`;
-  addWistiaJsonLd(videoUrl);
   return temp.children.item(0);
 }
 
@@ -187,13 +128,14 @@ export default async function decorate(block) {
     block.append(wrapper);
   } else {
     block.classList.add('lazy-loading');
-    const observer = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        observer.disconnect();
-        loadVideoEmbed(block, link, false, block.classList.contains('autoplay'));
-        block.classList.remove('lazy-loading');
-      }
-    });
-    observer.observe(block);
+    setTimeout(() => {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          observer.disconnect();
+          loadVideoEmbed(block, link, false, block.classList.contains('autoplay'));
+        }
+      });
+      observer.observe(block);
+    }, 4000);
   }
 }

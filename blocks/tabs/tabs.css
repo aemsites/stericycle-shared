@@ -129,7 +129,7 @@ main section .tabs-container > div {
 }
 
 .block.tabs .tabs-panel details summary p {
-    color: var(--color-dark-gunmetal);
+    color: var(--color-secondary-5);
     font-weight: var(--font-weight-bold);
     font-size: var(--body-font-size-default);
     line-height: 16px;
@@ -243,6 +243,22 @@ main section .tabs-container > div {
     --bs-gutter-y: 1.5rem;
 
     margin: calc(var(--bs-gutter-y) * 0.5) calc(var(--bs-gutter-x)* 0.5);
+}
+
+.block.tabs.topics .tabs-panel picture {
+    display: block;
+    position: relative;
+    padding-bottom: calc(4 / 7 * 100%);
+    height: 100%;
+    width: 100%;
+
+    & > img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
 }
 
 @media (min-width: 992px) {

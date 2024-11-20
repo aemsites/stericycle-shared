@@ -59,44 +59,62 @@
 /* styles */
 
 :root {
-  /* colors */
-  --color-white: #fff;
-  --color-black: #000;
-
   /* used but not included in the design tokens */
   --color-gray: #f2f6f7;
   --color-light-gray: #ccc;
   --color-medium-gray: #E2E6E7;
   --color-dark-gray: #707271;
   --color-light-silver: #dad6d6;
-  --color-orange: #ff5633;
-  --color-yellow: #ffc62b;
-  --color-dark-gunmetal: #1a242b;
 
-  /* design tokens */
+  /* Design system tokens */
+  --color-primary-1: #006CB4; /* Blue */
+  --color-primary-2: #133B5C; /* Dark Blue */
+  --color-secondary-1: #FF5733; /* Orange */     
+  --color-secondary-2: #00AB9C; /* Teal */
+  --color-secondary-3: #40BBD5; /* Light Blue */
+  --color-secondary-4: #FFC62B; /* Yellow */
+  --color-secondary-5: #010101; /* Gunmetal */
+  --color-tertiary-1: #007FAA;
+
+  /* Greyscale */
+  --color-black: #1F1F20; /* Black */
+  --color-grey200: #E4ECED; /* Grey-200 */
+  --color-grey500: #53585B; /* Grey-500 */
+  --color-white: #FFF; /* White */
+
+  /* UI */
+  --color-ui-error: #DC3545; /* Red */
+  --color-ui-success: #198754; /* Green */
+
+  /* Alert */
+  --color-alert-error: #DC3545;
+  --color-alert-warning: #FF5733;
+
+  /* Backgrounds */
+  --color-bg-primary: #FFF;
+  --color-bg-secondary: #E4ECED;
+  --color-bg-tertiary: #133B5C; 
+  --color-accent-1: #006CB4;
+  --color-accent-2: #40BBD5;
+  --color-accent-3: #FF5733;  
+  --color-accent-link: #FFC62B;
+  
+  /* Interactive */
+  --color-border-primary: #006CB4;
+  --color-border-secondary: #133B5C;
+  --color-border-tertiary: #FF5733;
+  --color-icon-primary: #006CB4;
+  --color-icon-secondary: #133B5C;
+  --color-icon-tertiary: #FFF;
+  --color-icon-accent: #40BBD5;
   --color-text-primary: #1F1F20;
-  --color-text-secondary: #757982;
-  --color-primary-1: #006CB4;
-  --color-primary-2: #133B5C;
-  --color-secondary-1: #FF5733;
-  --color-secondary-2: #00ABEC;
-  --color-secondary-3: #40BBD5;
-  --color-secondary-4: #FFBA3C;
-  --color-secondary-5: #BA8D37;
-  --color-tertiary-1: #E4ECED;
-  --color-tertiary-2: #53558B;
-  --color-tertiary-3: #007FAA;
-  --color-tertiary-4: #CBCBCD;
-  --color-tertiary-5: #EFEFEF;
-  --color-tertiary-6: #F0F4F4;
-  --color-error-1: #DC3545;
-  --color-error-2: #CB3529;
-  --color-success-1: #198754;
-  --color-success-2: #71CCA3;
+  --color-text-secondary: #757982; /* FIX: Previous blue */
+  --color-text-tertiary: #fff;
+  --color-disabled: #53585B;
 
   /* functional colors */
   --color-background: var(--color-white);
-  --color-background-header: #133b5c;
+  --color-background-header: var(--color-bg-tertiary);
   --color-text: var(--color-text-primary);
   --color-heading: var(--color-text-primary);
   --color-link: #0075aa;
@@ -335,7 +353,7 @@ main .section.faq-container:not(.cyan-border) > div.faq-wrapper h4 {
 
 main .section.quote-container.orange-border .quote-wrapper::before {
   display: block;
-  background-color: var(--color-orange);
+  background-color: var(--color-secondary-1);
   content: "";
   height: 100%;
   left: 0;
@@ -345,11 +363,11 @@ main .section.quote-container.orange-border .quote-wrapper::before {
 }
 
 main .section.quote-container.orange-border .quote-attribution p {
-  color: var(--color-orange);
+  color: var(--color-secondary-1);
 }
 
 main .section.yellow-button  a.button {
-  background-color: var(--color-yellow);
+  background-color: var(--color-secondary-4);
   border-color: var(--color-black);
   color: var(--color-black);
   font-size: 1rem;
@@ -358,7 +376,7 @@ main .section.yellow-button  a.button {
 }
 
 main .section.yellow-button-no-border  a.button {
-  background-color: var(--color-yellow);
+  background-color: var(--color-secondary-4);
   color: var(--color-black);
   font-size: 1rem;
   line-height: 2pc;
@@ -463,7 +481,7 @@ button:disabled, button:disabled:hover {
   border: none;
   outline: none;
   color: var(--form-styles-button-disable-color);
-  background-color: var(--color-tertiary-4);
+  background-color: var(--color-disabled);
 }
 
 a.button.primary, button.primary {
@@ -471,7 +489,7 @@ a.button.primary, button.primary {
   background-color: var(--color-button-primary);
   border: none;
   color: var(--color-text-primary);
-  outline: 1px solid var(--color-secondary-5);
+  outline: 1px solid var(--color-bg-secondary);
   border-radius: 100px;
 }
 
@@ -482,7 +500,7 @@ a.button.primary:hover, button.primary:hover{
 a.button.primary:focus , button.primary:focus {
   outline: 3px solid var(--color-primary-1);
   outline-offset: 3px;
-  border: 3px solid var(--color-secondary-5);
+  border: 3px solid var(--color-bg-secondary);
 }
 
 a.button.secondary, button.secondary {
@@ -559,7 +577,7 @@ main .block.gray-background {
 
 main > div.section.gray-background > div.default-content-wrapper h1,
 main > div.section.gray-background > div.default-content-wrapper h2 {
-  color: var(--color-dark-gunmetal);
+  color: var(--color-secondary-5);
 }
 
 main > div.section.gray-background.post-teaser-list-container > div.default-content-wrapper h2 {
@@ -950,7 +968,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
 
   .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > a,
   .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > span {
-    color: var(--color-dark-gunmetal);
+    color: var(--color-secondary-5);
     font-family: var(--font-family-body);
     font-size: .875rem;
     font-weight: 400;
@@ -964,7 +982,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
   }
 
   .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > .title-breadcrumb::before {
-    color: var(--color-dark-gunmetal);
+    color: var(--color-secondary-5);
     content: "|";
     padding-left: 8px;
     padding-right: 8px;
@@ -1153,7 +1171,7 @@ main .list-style-orange-triangles ul > li::before {
   margin-right: 0.75rem;
   font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
   content: "";
-  color: var(--color-orange);
+  color: var(--color-secondary-1);
   font-size: 1.5rem;
 }
 
@@ -1209,7 +1227,7 @@ main .list-style-big-numbers ol > li::before {
 main .list-style-big-numbers ol > li > span {
   display: table-cell;
   vertical-align: middle;
-  border-color: var(--color-orange);
+  border-color: var(--color-secondary-1);
   border-width: 0 0 0 4px;
   border-style: solid;
   height: 80px;
@@ -1386,7 +1404,7 @@ main .list-with-background-image > div > ul > li:last-child {
     padding-right: 1rem;
     border-width: 0 4px 0 0;
     border-style: solid;
-    border-color: var(--color-orange);
+    border-color: var(--color-secondary-1);
     content: "0" counter(items);
     color: var(--color-secondary-3);
     font-weight: 700;
@@ -1434,7 +1452,7 @@ main .columns.get-a-quote-popup.block {
 
 main .columns.get-a-quote-popup.block > div:nth-child(1){
   padding: 1rem;
-  background-color: var(--color-yellow);
+  background-color: var(--color-secondary-4);
   text-align: center;
 }
 

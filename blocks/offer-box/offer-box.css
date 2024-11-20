@@ -80,6 +80,7 @@
     display: flex;
     flex-direction: column;
     min-height: 25%;
+    align-items: flex-start;
 }
 
 .block.offer-box.alternate-3 .offer-box-header {
@@ -130,8 +131,8 @@
 }
 
 .block.offer-box.alternate-2 div.offer-box-row:last-child p a {
-    background-color: var(--color-yellow);
-    border-color: var(--color-yellow);
+    background-color: var(--color-secondary-4);
+    border-color: var(--color-secondary-4);
     color: var(--color-black)
 }
 
@@ -141,7 +142,7 @@
 .block.offer-box.alternate-2 .offer-box-header .icon-with-heading h4 {
     width: 75%;
     font-size: 2rem;
-    line-height: 3.2rem;
+    line-height: 2.5rem;
     font-weight: 600;
 }
 
@@ -199,7 +200,7 @@
 .block.offer-box.alternate-2 .offer-box-header .promotion-with-text .text-with-badge {
     flex-direction: column;
     justify-items: flex-start;
-    background: #ffc62b;
+    background: var(--color-secondary-4);
     border-radius: .5rem;
     color: #000;
     display: inline-block;
@@ -312,6 +313,7 @@
         display: flex;
         flex-direction: row;
     }
+    
 
     .section.three-column-offer .offer-box-wrapper, .section.offer-box-container.three-columns > div.offer-box-wrapper {
         display: flex;
@@ -337,5 +339,36 @@
     .offer-box.big-icon span.icon {
         height: 100%;
         width: 109px;
+    }
+
+    .section.offer-with-text {
+        display: flex;
+        flex-direction: row;
+        align-content: flex-start;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+        max-width: var(--section-width);
+    }
+
+    .section.offer-with-text.offer-box-container.two-columns > div.default-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 85%;
+        margin: unset;
+        padding: unset;
+    }
+
+    .section.offer-with-text.offer-box-container.two-columns > div.offer-box-wrapper {
+        height: 65%;
+        margin-top: 5px;
+    }
+
+    .section.offer-with-text.offer-box-container.two-columns > div.offer-box-wrapper .offer-box {
+        padding: .75rem;
+        justify-content: space-between;
+    }
+
+    .section.offer-with-text.offer-box-container.two-columns > div.offer-box-wrapper .offer-box:first-of-type {
+        padding-left: 1.25rem;
     }
 }
