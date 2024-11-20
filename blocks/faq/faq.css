@@ -46,7 +46,7 @@ main:has(.section.two-column.full-width) div.faq-container div {
 }
 
 .faq details {
-  border-bottom: 1px solid var(--color-tertiary-1);
+  border-bottom: 1px solid var(--color-grey200);
 }
 
 .faq details:hover:not(.open) {
@@ -56,7 +56,7 @@ main:has(.section.two-column.full-width) div.faq-container div {
 /* stylelint-disable-next-line no-descending-specificity */
 .faq details + details {
   border-top: none;
-  border-bottom: 1px solid var(--color-tertiary-1);
+  border-bottom: 1px solid var(--color-grey200);
 }
 
 .faq details summary {
@@ -79,14 +79,14 @@ main:has(.section.two-column.full-width) div.faq-container div {
 }
 
 .faq details summary:hover {
-  background-color: var(--color-tertiary-6);
+  background-color: var(--color-anti-flash-white);
   border-radius: 12px;
-  border-bottom: 1px solid var(--color-tertiary-1);
+  border-bottom: 1px solid var(--color-grey200);
 }
 
 .faq details summary:focus-visible {
   border-radius: 8px;
-  border-bottom: 1px solid var(--color-tertiary-1);
+  border-bottom: 1px solid var(--color-grey200);
   background: var(--color-white);
   box-shadow: 0 0 0 2px var(--color-primary-1);
   outline-color: var(--color-primary-1);

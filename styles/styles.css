@@ -65,11 +65,12 @@
   --color-medium-gray: #E2E6E7;
   --color-dark-gray: #707271;
   --color-light-silver: #dad6d6;
+  --color-anti-flash-white: #F0F4F4;
 
   /* Design system tokens */
   --color-primary-1: #006CB4; /* Blue */
   --color-primary-2: #133B5C; /* Dark Blue */
-  --color-secondary-1: #FF5733; /* Orange */     
+  --color-secondary-1: #FF5733; /* Orange */
   --color-secondary-2: #00AB9C; /* Teal */
   --color-secondary-3: #40BBD5; /* Light Blue */
   --color-secondary-4: #FFC62B; /* Yellow */
@@ -93,12 +94,12 @@
   /* Backgrounds */
   --color-bg-primary: #FFF;
   --color-bg-secondary: #E4ECED;
-  --color-bg-tertiary: #133B5C; 
+  --color-bg-tertiary: #133B5C;
   --color-accent-1: #006CB4;
   --color-accent-2: #40BBD5;
-  --color-accent-3: #FF5733;  
+  --color-accent-3: #FF5733;
   --color-accent-link: #FFC62B;
-  
+
   /* Interactive */
   --color-border-primary: #006CB4;
   --color-border-secondary: #133B5C;
