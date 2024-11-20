@@ -14,7 +14,7 @@
     margin: 32px auto;
 }
 
-.video.lazy-loading {
+.video.block.lazy-loading {
     /* reserve an approximate space to avoid extensive layout shifts */
     aspect-ratio: 16 / 9;
 }
