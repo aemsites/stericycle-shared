@@ -477,6 +477,10 @@ main .section.no-spacing > div {
   margin: 0;
 }
 
+main .section.underline-links a {
+  text-decoration: underline;
+}
+
 
 /* section styles */
 
