@@ -114,6 +114,7 @@ export default async function decorate(block) {
     button.setAttribute('role', 'tab');
     button.setAttribute('type', 'button');
     button.addEventListener('click', () => {
+      window.history.pushState(null, null, `#${button.id}`);
       block.querySelectorAll('[role=tabpanel]').forEach((panel) => {
         panel.setAttribute('aria-hidden', true);
       });
@@ -126,6 +127,13 @@ export default async function decorate(block) {
     tablist.append(button);
     tab.remove();
   });
+
+  if (window.location.hash) {
+    const tab = tablist.querySelector(window.location.hash);
+    if (tab) {
+      tab.click();
+    }
+  }
 
   block.prepend(tablist);
 }
