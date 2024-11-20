@@ -1138,7 +1138,6 @@ main .list-style-big-numbers ol > li::before {
 
 main .list-style-big-numbers ol > li > span {
   display: table-cell;
-  vertical-align: middle;
   border-color: var(--color-orange);
   border-width: 0 0 0 4px;
   border-style: solid;
