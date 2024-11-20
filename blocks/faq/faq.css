@@ -185,6 +185,12 @@ main:has(.section.two-column.full-width) div.faq-container div {
   margin-bottom: 8px;
 }
 
+@media screen and (min-width: 992px) {
+  .faq details[open] .faq-item-body p {
+    max-width: 948px;
+  }
+}
+
 .faq details[open] .faq-item-body p > a {
   text-decoration: underline;
 }
