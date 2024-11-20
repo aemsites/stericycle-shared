@@ -16,7 +16,7 @@
 
           & a,
           & span {
-            color: var(--color-dark-gunmetal);
+            color: var(--color-secondary-5);
             font-size: .875rem;
             font-weight: 400;
             line-height: 1.125rem;
@@ -32,7 +32,7 @@
             padding-left: 8px;
 
             &::before {
-              color: var(--color-dark-gunmetal);
+              color: var(--color-secondary-5);
               content: "|";
               padding-right: 8px;
             }

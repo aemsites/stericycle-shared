@@ -196,7 +196,7 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 }
 
 .columns.steps > div > div > p:nth-of-type(2) {
-  border-left: 4px solid var(--color-orange);
+  border-left: 4px solid var(--color-secondary-1);
   padding-left: 1rem;
   height: 100%;
   margin-top: 1rem;
@@ -245,7 +245,7 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 
 .columns.orange-accent-border > div > div::after,
 .columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img))::after {
-  background: var(--color-orange);
+  background: var(--color-secondary-1);
 }
 
 .columns.cyan-accent-border > div > div::after,
@@ -292,7 +292,7 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 .columns.numeric-list li:last-of-type {
   margin-left: 2rem;
   padding-left: 1rem;
-  border-left: var(--color-orange) solid 4px;
+  border-left: var(--color-secondary-1) solid 4px;
   height: 100%;
 }
 

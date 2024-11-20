@@ -129,7 +129,7 @@ main section .tabs-container > div {
 }
 
 .block.tabs .tabs-panel details summary p {
-    color: var(--color-dark-gunmetal);
+    color: var(--color-secondary-5);
     font-weight: var(--font-weight-bold);
     font-size: var(--body-font-size-default);
     line-height: 16px;

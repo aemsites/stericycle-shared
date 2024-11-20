@@ -2,7 +2,7 @@
     --form-styles-background-color-primary: var(--color-white);
     --form-styles-label-color: var(--color-text-secondary);
     --form-styles-border-color: #818a91;
-    --form-error-color: var(--color-error-2);
+    --form-error-color: var(--color-ui-error);
     --form-styles-button-primary-color: var(--color-primary-1);
     --form-styles-button-disable-color: #666;
     --form-styles-button-primary-hover-color: #035fe6;
@@ -21,9 +21,9 @@
     --form-input-invalid-shadow: 0 0 0 .25rem rgb(220 53 69 / 25%);
     --form-input-padding: 1rem 0.75rem;
     --form-input-font-size: 1rem;
-    --form-input-disable-color: var(--color-tertiary-5);
+    --form-input-disabled-color: var(--color-bg-secondary);
     --form-input-border-size: 1px;
-    --form-input-border-color: var(--color-tertiary-1);
+    --form-input-border-color: var(--color-bg-secondary);
     --form-input-background-color: var(--form-styles-background-color-primary);
     --form-paragraph-color: var(--form-styles-label-color);
     --form-paragraph-margin: 0 0 0.9rem;
@@ -156,6 +156,7 @@ main .form input[type="checkbox"] {
     width: 1rem;
     height: 1rem;
     border-radius: 4px;
+    background-color: var(--color-bg-secondary);
     border: 1px solid var(--color-primary-1);
     position: relative;
     cursor: pointer;
@@ -185,19 +186,19 @@ main .form input[type="checkbox"]:focus::after {
 }
 
 main .form input[type="checkbox"]:focus {
-    background-color: var(--color-tertiary-6);
+    background-color: var(--color-bg-secondary);
     outline: 2px solid var(--color-primary-1);
 }
 
 main .form input[type="checkbox"]:disabled {
     background-color: var(--color-white);
-    border: 1px solid var(--color-tertiary-4) !important;
+    border: 1px solid var(--color-disabled) !important;
     cursor: not-allowed;
 }
 
 main .form input[type="checkbox"]:disabled::after {
-    border-bottom: 1px solid var(--color-tertiary-4);
-    border-right: 1px solid var(--color-tertiary-4);
+    border-bottom: 1px solid var(--color-disabled);
+    border-right: 1px solid var(--color-disabled);
 }
 
 main .form input[type="checkbox"]:hover:not(:focus)::after {
@@ -206,8 +207,8 @@ main .form input[type="checkbox"]:hover:not(:focus)::after {
 }
 
 main .form input[type="checkbox"]:disabled:hover::after {
-    border-bottom: 1px solid var(--color-tertiary-4); 
-    border-right: 1px solid var(--color-tertiary-4);
+    border-bottom: 1px solid var(--color-disabled); 
+    border-right: 1px solid var(--color-disabled);
 }
 
 main .form input[type="radio"] {
@@ -231,7 +232,7 @@ main .form input[type="radio"]:checked {
 }
 
 main .form input[type="radio"]:disabled {
-    border: 2px solid var(--color-tertiary-4) !important;
+    border: 2px solid var(--color-disabled) !important;
     cursor: not-allowed;
 }
 
@@ -248,7 +249,7 @@ main .form input[type="radio"]:checked::before {
 }
 
 main .form input[type="radio"]:disabled::before {
-    background-color: var(--color-tertiary-4);
+    background-color: var(--color-disabled);
 }
 
 main .form textarea {
@@ -345,18 +346,18 @@ main .form input:disabled,
 main .form textarea:disabled,
 main .form select:disabled,
 main .form button:disabled {
-    background-color: var(--form-input-disable-color);
+    background-color: var(--form-input-disabled-color);
 }
 
 main .form input:focus, main .form textarea:focus, main .form select:focus {
-  outline: 3px solid var(--color-primary-1);
+  outline: 3px solid var(--color-bg-tertiary);
   outline-offset: 3px;
 }
 
 main .form .field-wrapper.field-valid input,
 main .form .field-wrapper.field-valid textarea,
 main .form .field-wrapper.field-valid select {
-  border-color: var(--color-success-2);
+    border-color: var(--color-ui-success);
 }
 
 main .form .field-wrapper.field-valid input[type="radio"] {
@@ -366,7 +367,7 @@ main .form .field-wrapper.field-valid input[type="radio"] {
 main .form .field-wrapper.field-invalid input,
 main .form .field-wrapper.field-invalid textarea,
 main .form .field-wrapper.field-invalid select {
-  border-color: var(--form-input-invalid-border-color);
+    border-color: var(--form-input-invalid-border-color);
     padding-right: calc(1.5em + .75rem);
     background-image: url('../../icons/invalid.svg');
     background-repeat: no-repeat;
@@ -374,10 +375,15 @@ main .form .field-wrapper.field-invalid select {
     background-size: calc(.75em + .375rem) calc(.75em + .375rem)
 }
 
+main .form .field-wrapper.field-invalid input[type="radio"] {
+    width: 32px;
+    height: 32px;
+}
+
 main .form .field-wrapper.field-invalid input:focus,
 main .form .field-wrapper.field-invalid textarea:focus,
 main .form .field-wrapper.field-invalid select:focus {
-    outline: 3px solid var(--color-primary-1);
+    outline: 3px solid var(--color-bg-tertiary);
     outline-offset: 3px;
 }
 
@@ -462,7 +468,7 @@ main .form .button-wrapper button:hover {
 main .form .button-wrapper.wizard-button-next button, main .form .button-wrapper.submit-wrapper button{
     background-color: var(--color-secondary-4);
     border: none;
-    outline: 1px solid var(--color-secondary-5);
+    outline: 1px solid var(--color-bg-secondary);
     color: var(--color-text-primary);
 }
 
@@ -471,7 +477,7 @@ main .form .button-wrapper button[disabled], main .form .button-wrapper.wizard-b
     border: none;
     outline: none;
     color: var(--form-styles-button-disable-color);
-    background-color: var(--color-tertiary-4);
+    background-color: var(--color-disabled);
 }
 
 main .form .button-wrapper.wizard-button-next button:hover, main .form .button-wrapper.submit-wrapper button:hover{
@@ -479,9 +485,9 @@ main .form .button-wrapper.wizard-button-next button:hover, main .form .button-w
 }
 
 main .form .button-wrapper.wizard-button-next button:focus, main .form .button-wrapper.submit-wrapper button:focus{
-  outline: 3px solid var(--color-primary-1);
+  outline: 3px solid var(--color-bg-tertiary);
   outline-offset: 3px;
-  border: 3px solid var(--color-secondary-5);    
+  border: 3px solid var(--color-bg-secondary);    
 }
 
 /** Wizard Styling */
@@ -870,7 +876,7 @@ main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='policy']  p{
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {
-    background-color: var(--color-yellow);
+    background-color: var(--color-secondary-4);
     font-size: var(--heading-font-size-m);
     padding: 1rem 2rem;
     margin-bottom: 1rem;
@@ -942,7 +948,7 @@ main .footer-subscription-form .button-wrapper.field-wrapper.submit-wrapper butt
 main .footer-subscription-form .button-wrapper.field-wrapper.submit-wrapper button:focus {
     background-color: var(--color-primary-1);
     color: var(--color-white);
-    outline: 3px solid var(--color-primary-1);
+    outline: 3px solid var(--color-bg-tertiary);
     outline-offset: 3px;
 }
 
@@ -951,7 +957,7 @@ main .footer-subscription-form .button-wrapper.field-wrapper.submit-wrapper butt
     border: none;
     outline: none;
     color: var(--form-styles-button-disable-color);
-    background-color: var(--color-tertiary-4);
+    background-color: var(--color-disabled);
 }
 
 
