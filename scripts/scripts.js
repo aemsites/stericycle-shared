@@ -296,7 +296,23 @@ async function loadFonts() {
   }
 }
 
-function autolinkModals(element) {
+/**
+ * @typedef {Object} Config
+ * @property {string} type - The type of trigger ('time' or 'exit' or 'scroll').
+ * @property {string} size - The size of the modal.
+ * @property {string} value - The value associated with the trigger (e.g., time in seconds).
+ * @property {string} path - The path to the modal content.
+ */
+export function fetchTriggerConfig() {
+  return {
+    path: getMetadata('modal-path'),
+    size: getMetadata('modal-size'),
+    type: getMetadata('modal-trigger'),
+    value: getMetadata('modal-trigger-threshold'),
+  };
+}
+
+async function autolinkModals(element) {
   element.addEventListener('click', async (e) => {
     const origin = e.target.closest('a');
 
@@ -306,6 +322,9 @@ function autolinkModals(element) {
       openModal(origin.href);
     }
   });
+  const { openOnTrigger } = await import(`${window.hlx.codeBasePath}/blocks/form/trigger.js`);
+  const { openModal } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
+  openOnTrigger(fetchTriggerConfig(), openModal);
 }
 
 /**

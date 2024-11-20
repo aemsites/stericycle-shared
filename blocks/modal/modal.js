@@ -9,7 +9,7 @@ import {
   Other blocks can also use the createModal() and openModal() functions.
 */
 
-export async function createModal(contentNodes) {
+export async function createModal(contentNodes, config) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/modal/modal.css`);
   const dialog = document.createElement('dialog');
   const dialogContent = document.createElement('div');
@@ -44,6 +44,7 @@ export async function createModal(contentNodes) {
   dialog.addEventListener('close', () => {
     document.body.classList.remove('modal-open');
     block.remove();
+    document.dispatchEvent(new CustomEvent('modal-closed', { bubbles: true, detail: config }));
   });
 
   block.innerHTML = '';
@@ -56,16 +57,16 @@ export async function createModal(contentNodes) {
       // reset scroll position
       setTimeout(() => { dialogContent.scrollTop = 0; }, 0);
       document.body.classList.add('modal-open');
+      document.dispatchEvent(new CustomEvent('modal-open', { bubbles: true }));
     },
   };
 }
 
-export async function openModal(fragmentUrl) {
+export async function openModal(fragmentUrl, config) {
   const path = fragmentUrl.startsWith('http')
     ? new URL(fragmentUrl, window.location).pathname
     : fragmentUrl;
-
   const fragment = await loadFragment(path);
-  const { showModal } = await createModal(fragment.childNodes);
+  const { showModal } = await createModal(fragment.childNodes, config);
   showModal();
 }
