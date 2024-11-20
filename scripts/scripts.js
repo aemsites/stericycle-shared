@@ -478,7 +478,7 @@ function decorateSectionIds(main) {
 export function addJsonLd(schema, name, doc = document) {
   const script = doc.createElement('script');
   script.type = 'application/ld+json';
-  script.innerHTML = schema;
+  script.innerHTML = JSON.stringify(schema);
   if (name) {
     script.dataset.name = name;
   }
@@ -494,7 +494,7 @@ export function addJsonLd(schema, name, doc = document) {
 export function setJsonLd(schema, name, doc = document) {
   const existingScript = doc.head.querySelector(`script[data-name="${name}"]`);
   if (existingScript) {
-    existingScript.innerHTML = schema;
+    existingScript.innerHTML = JSON.stringify(schema);
     return;
   }
   addJsonLd(schema, name);
@@ -527,16 +527,34 @@ async function fetchAndSetCustomJsonLd(doc = document) {
         && new URL(doc.documentURI).pathname.toLowerCase().startsWith(e.page.trim().toLowerCase().substring(0, e.page.trim().length - 1))))
     .all();
   customSchemas = customSchemas.sort((e1, e2) => e1.page.localeCompare(e2.page));
-  customSchemas.forEach((e) => setJsonLd(e.schema, e.name || ''));
+  customSchemas.forEach((e) => {
+    let schema;
+    try {
+      schema = JSON.parse(e.schema);
+    } catch (ignored) {
+      // eslint-disable-next-line
+      console.error('Tried to add invalid JSON-LD schema');
+      return;
+    }
+    setJsonLd(schema, e.name || '');
+  });
 
   // per-page metadata
   [...doc.head.querySelectorAll('meta')].filter((m) => m.name === 'ld-json' || m.attributes?.property?.value?.startsWith('ld-json:')).forEach((m) => {
     if (m.content && m.content !== '') {
       const name = m.attributes?.property?.value?.substring(8, m.attributes.property.value.length);
+      let schema;
+      try {
+        schema = JSON.parse(m.content);
+      } catch (ignored) {
+        // eslint-disable-next-line no-console
+        console.error('Tried to add invalid JSON-LD schema');
+        return;
+      }
       if (name) {
-        setJsonLd(m.content, name);
+        setJsonLd(schema, name);
       } else {
-        addJsonLd(m.content, null);
+        addJsonLd(schema, null);
       }
     }
     m.remove();
