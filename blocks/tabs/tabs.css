@@ -225,6 +225,10 @@ main section .tabs-container > div {
     text-decoration: underline;
 }
 
+.block.tabs.video iframe {
+    aspect-ratio: 16 / 9;
+}
+
 .block.tabs.vertical.video .tabs-panel details iframe {
     width: 100%;
     height: 100%;
@@ -324,10 +328,6 @@ main section .tabs-container > div {
     .block.tabs.vertical.video .tabs-panel > div > p {
         height: 100%;
         width: 100%;
-    }
-
-    .block.tabs.video iframe {
-        aspect-ratio: 16 / 9;
     }
 
     .block.tabs.vertical.video .tabs-panel iframe {
