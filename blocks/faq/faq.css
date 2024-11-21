@@ -78,6 +78,7 @@ main:has(.section.two-column.full-width) div.faq-container div {
   padding: 24px 56px 24px 16px;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .faq details:hover {
   background-color: var(--color-grey200);
   border-radius: 12px;
