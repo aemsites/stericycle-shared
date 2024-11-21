@@ -1,0 +1,117 @@
+.tabs.block.fetch {
+  & .tab-control {
+    display: none;
+  }
+
+  & .tab-panel {
+    border-bottom: 1px solid var(--color-light-silver);
+
+    & .section > div {
+      margin: unset;
+      padding: .75rem .5rem;
+    }
+
+    & .tab-title {
+      margin: 0;
+
+      & button {
+        position: relative;
+        width: 100%;
+        padding: .75rem .5rem;
+        margin: 0;
+        text-align: left;
+        font-size: var(--body-font-size-m);
+        font-weight: var(--lato-regular);
+        line-height: 1rem;
+        color: var(--color-dark-gunmetal);
+        background-color: unset;
+        border: unset;
+
+        & .icon {
+          position: absolute;
+          height: 2px;
+          width: 1rem;
+          right: .5rem;
+          top: calc(50% - 2px);
+          background-color: var(--color-dark-gunmetal);
+
+          &::after {
+            content: '';
+            position: absolute;
+            height: 1rem;
+            width: 2px;
+            top: calc(-.5rem + 1px);
+            right: calc(50% - 1px);
+            background-color: var(--color-dark-gunmetal);
+            transition: all .3s ease-in-out;
+          }
+        }
+
+        &[aria-expanded='true'] .icon::after {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    & .tab-content {
+      transition: height .3s ease-in-out;
+      height: auto;
+      overflow: hidden;
+
+      &[aria-hidden="true"] {
+        height: 0;
+      }
+    }
+  }
+
+  & .tab-panel:first-of-type {
+    border-top: 1px solid var(--color-light-silver);
+  }
+}
+
+@media (min-width: 768px) {
+  .tabs.block.fetch {
+    & .tab-control {
+      display: block;
+      
+      & .tab-list {
+        display: flex;
+        list-style: none;
+        column-gap: 2rem;
+
+        & .tab-item {
+          padding: .625rem 1rem;
+          cursor: pointer;
+          list-style-type: none;
+
+          &[aria-expanded="true"] {
+            border-bottom: 5px solid var(--color-blue);
+          }
+        }
+      }
+    }
+
+    & .tab-panel {
+      border-bottom: none;
+      border-top: none;
+
+      & .tab-title {
+        display: none;
+      }
+
+      & .tab-content {
+        display: block;
+        padding: 2rem 0;
+        transition: unset;
+        overflow: initial;
+        scroll-margin-top: var(--nav-height);
+
+        &[aria-hidden="true"] {
+          display: none;
+          height: auto;
+        }
+      }
+    }
+  }
+
+}
