@@ -78,8 +78,8 @@ main:has(.section.two-column.full-width) div.faq-container div {
   padding: 24px 56px 24px 16px;
 }
 
-.faq details summary:hover {
-  background-color: var(--color-anti-flash-white);
+.faq details:hover {
+  background-color: var(--color-grey200);
   border-radius: 12px;
   border-bottom: 1px solid var(--color-grey200);
 }
