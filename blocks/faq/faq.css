@@ -1,5 +1,16 @@
 main .section.faq-container > div {
-  padding: 0 12px;
+  padding: 0 24px;
+}
+
+@media screen and (min-width: 992px) {
+  main .section.faq-container > div {
+    max-width: 1440px;
+    padding: 0 150px;
+  }
+}
+
+main .section.faq-container > .faq-wrapper {
+  margin-top: 0;
 }
 
 main:has(.section.two-column.full-width) div.faq-container div {
@@ -35,19 +46,22 @@ main:has(.section.two-column.full-width) div.faq-container div {
 }
 
 .faq details {
-  border-top: 1px solid var(--color-light-silver);
-  border-bottom: 1px solid var(--color-light-silver);
+  border-bottom: 1px solid var(--color-grey200);
 }
 
+.faq details:hover:not(.open) {
+  border-bottom: none;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
 .faq details + details {
   border-top: none;
-  border-bottom: 1px solid var(--color-light-silver);
+  border-bottom: 1px solid var(--color-grey200);
 }
 
 .faq details summary {
   position: relative;
-  padding: .75rem 2.5rem .75rem .5rem;
-  padding-right: 40px;
+  padding: 24px 56px 24px 16px;
   cursor: pointer;
   list-style: none;
   overflow: auto;
@@ -61,13 +75,41 @@ main:has(.section.two-column.full-width) div.faq-container div {
 }
 
 .faq details[open] summary {
-  padding: .5rem 2.5rem .5rem .5rem;
+  padding: 24px 56px 24px 16px;
 }
 
-.faq details summary:focus,
-.faq details summary:hover {
-  background-color: var(--dark-color);
+/* stylelint-disable-next-line no-descending-specificity */
+.faq details:hover {
+  background-color: var(--color-grey200);
+  border-radius: 12px;
+  border-bottom: 1px solid var(--color-grey200);
 }
+
+.faq details:not([open]) summary:focus-visible {
+  border-radius: 8px;
+  border-bottom: 1px solid var(--color-grey200);
+  background: var(--color-white);
+  box-shadow: 0 0 0 2px var(--color-primary-1);
+  outline-color: var(--color-primary-1);
+}
+
+.faq details[open] {
+  outline: none;
+}
+
+.faq details[open] summary:focus-visible {
+  outline: none;
+}
+
+.faq details[open]:has(summary:focus-visible) {
+  border-radius: 8px;
+  border-bottom: 1px solid var(--color-grey200);
+  background: var(--color-white);
+  box-shadow: 0 0 0 2px var(--color-primary-1);
+  outline-color: var(--color-primary-1);
+}
+
+
 
 .faq details summary::-webkit-details-marker {
   display: none;
@@ -90,22 +132,19 @@ main:has(.section.two-column.full-width) div.faq-container div {
 
 .faq details summary span {
   position: absolute;
-  width: 1rem;
-  height: 2px;
-  right: 1rem;
-  top: calc(50% - 2px);
-  background: var(--color-black);
+  right: 16px;
+  top: 40%;
+  width: 24px;
+  height: 24px;
+  background-image: url('/icons/plus-sign.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  transition: background-image 0.3s ease;
 }
 
-.faq details summary span::after {
-  background: var(--color-black);
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 1rem;
-  top: -7px;
-  left: 7px;
-  transition: all .3s ease-in-out;
+.faq-item.open summary span {
+  background-image: url('/icons/minus-sign.svg');
 }
 
 .faq details[open] summary span::after {
@@ -125,12 +164,12 @@ main:has(.section.two-column.full-width) div.faq-container div {
 /* Keyframes for opening animation */
 @keyframes open-animation {
   from {
-    padding: .125rem 1rem 1rem;
+    transform: translateX(-10px);
     max-height: 0;
   }
 
   to {
-    padding: .125rem .5rem .5rem;
+    transform: translateX(0);
     max-height: 5000vh;
   }
 }
@@ -138,28 +177,39 @@ main:has(.section.two-column.full-width) div.faq-container div {
 /* Keyframes for closing animation */
 @keyframes close-animation {
   from {
-    padding: .125rem .5rem .5rem;
+    transform: translateX(0);
     max-height: 5000vh;
   }
 
   to {
-    padding: .125rem 1rem 1rem;
+    transform: translateX(-10px);
     max-height: 0;
   }
 }
 
 /* Applying keyframes when the details element is opened */
 .faq-item.open .faq-item-body {
+  display: flex;
+  flex-direction: column;
+  padding: 2px 16px 16px;
+  gap: 24px;
   animation: open-animation .3s ease-in-out forwards;
 }
 
 /* Applying keyframes when the details element is closed */
 .faq-item.close .faq-item-body {
+  padding: 2px 16px 16px;
   animation: close-animation .3s ease-in-out forwards;
 }
 
 .faq details[open] .faq-item-body p {
-  margin-bottom: 24px;
+  margin-bottom: 8px;
+}
+
+@media screen and (min-width: 992px) {
+  .faq details[open] .faq-item-body p {
+    max-width: 948px;
+  }
 }
 
 .faq details[open] .faq-item-body p > a {
@@ -251,7 +301,7 @@ main:has(.section.two-column.hard-drive-background) .faq-container:has(.plain) .
 
   .faq-plain > div:first-child {
     width: 25%;
-    
+
   }
 
   .faq-plain div:nth-child(2){
