@@ -366,6 +366,11 @@ main .section.blue-headings .columns span.icon > img {
   text-align: center;
 }
 
+main .block.columns.video iframe {
+  aspect-ratio: 16 / 9;
+}
+
+
 @media (min-width: 992px /* breakpoint-l */) {
   .columns > div {
     flex-direction: unset;
@@ -463,6 +468,10 @@ main .section.blue-headings .columns span.icon > img {
     display: flex;
     flex-direction: column;
     margin-right: 8.3333%;
+  }
+
+  main .block.columns.video.block.columns-2-cols > div div:has(iframe) {
+    aspect-ratio: 16 / 9;
   }
 
   main .block.columns.video.columns-2-cols > div div iframe {
