@@ -85,13 +85,31 @@ main:has(.section.two-column.full-width) div.faq-container div {
   border-bottom: 1px solid var(--color-grey200);
 }
 
-.faq details summary:focus-visible {
+.faq details:not([open]) summary:focus-visible {
   border-radius: 8px;
   border-bottom: 1px solid var(--color-grey200);
   background: var(--color-white);
   box-shadow: 0 0 0 2px var(--color-primary-1);
   outline-color: var(--color-primary-1);
 }
+
+.faq details[open] {
+  outline: none;
+}
+
+.faq details[open] summary:focus-visible {
+  outline: none;
+}
+
+.faq details[open]:has(summary:focus-visible) {
+  border-radius: 8px;
+  border-bottom: 1px solid var(--color-grey200);
+  background: var(--color-white);
+  box-shadow: 0 0 0 2px var(--color-primary-1);
+  outline-color: var(--color-primary-1);
+}
+
+
 
 .faq details summary::-webkit-details-marker {
   display: none;
