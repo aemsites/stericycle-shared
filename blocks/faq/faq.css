@@ -164,12 +164,12 @@ main:has(.section.two-column.full-width) div.faq-container div {
 /* Keyframes for opening animation */
 @keyframes open-animation {
   from {
-    padding: 2px 8px 8px;
+    transform: translateX(-10px);
     max-height: 0;
   }
 
   to {
-    padding: 2px 16px 16px;
+    transform: translateX(0);
     max-height: 5000vh;
   }
 }
@@ -177,12 +177,12 @@ main:has(.section.two-column.full-width) div.faq-container div {
 /* Keyframes for closing animation */
 @keyframes close-animation {
   from {
-    padding: 2px 16px 16px;
+    transform: translateX(0);
     max-height: 5000vh;
   }
 
   to {
-    padding: 2px 8px 8px;
+    transform: translateX(-10px);
     max-height: 0;
   }
 }
@@ -191,12 +191,14 @@ main:has(.section.two-column.full-width) div.faq-container div {
 .faq-item.open .faq-item-body {
   display: flex;
   flex-direction: column;
+  padding: 2px 16px 16px;
   gap: 24px;
   animation: open-animation .3s ease-in-out forwards;
 }
 
 /* Applying keyframes when the details element is closed */
 .faq-item.close .faq-item-body {
+  padding: 2px 16px 16px;
   animation: close-animation .3s ease-in-out forwards;
 }
 

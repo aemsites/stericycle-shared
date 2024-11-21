@@ -21,7 +21,7 @@ function addAccordionAnimation(details) {
       setTimeout(() => {
         details.removeAttribute('open');
         details.classList.remove('close');
-      }, 100); // Match this duration with the CSS animation duration
+      }, 300); // Match this duration with the CSS animation duration
     } else {
       details.classList.add('open');
       details.setAttribute('open', '');
