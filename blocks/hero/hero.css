@@ -14,6 +14,26 @@ main .section.hero-container {
   padding: 2.625rem 0;
   overflow: hidden;
 
+  & picture.hero-background.mobile-only {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    & img {
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  & picture.hero-background.desktop-only {
+    display: none;
+  }
+
   & picture.hero-background {
     display: none;
   }
@@ -67,6 +87,14 @@ main .section.hero-container {
 /* breakpoint-l */
 @media screen and (min-width: 992px) {
   .block.hero {
+    & picture.hero-background.desktop-only {
+      display: unset;
+    }
+
+    & picture.hero-background.mobile-only {
+      display: none;
+    }
+
     & .hero-content-container {
       & .hero-content {
         width: 58.3333%;
