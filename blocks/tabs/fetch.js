@@ -1,6 +1,6 @@
 import { loadFragment } from '../fragment/fragment.js';
 import { toClassName } from '../../scripts/aem.js';
-import { button, div, h3, i, li, ol, span } from '../../scripts/dom-helpers.js';
+import { button, div, h3, li, ol, span } from '../../scripts/dom-helpers.js';
 import { BREAKPOINTS } from '../../scripts/scripts.js';
 
 // Transition derived from https://css-tricks.com/using-css-transitions-auto-dimensions/
@@ -86,7 +86,6 @@ export default async function decorate(block) {
 
   const content = await loadFragment(target);
   if (content) {
-
     const list = ol({ class: 'tab-list' });
     const tabs = div({ class: 'tab-control' }, list);
     content.querySelectorAll('.section').forEach((section, idx) => {
