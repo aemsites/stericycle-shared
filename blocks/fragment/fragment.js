@@ -27,7 +27,7 @@ export async function loadFragment(path) {
       // reset base path for media to fragment base
       const resetAttributeBase = (tag, attr) => {
         main.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((elem) => {
-          const base = window.location.ancestorOrigins ? window.location.ancestorOrigins[0] : window.location.origin;
+          const base = window.location.ancestorOrigins?.length > 0 ? window.location.ancestorOrigins[0] : window.location.origin;
           elem[attr] = new URL(elem.getAttribute(attr), new URL(path, base)).href;
         });
       };
