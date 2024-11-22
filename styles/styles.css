@@ -434,6 +434,10 @@ a:any-link {
   text-decoration: none;
 }
 
+a:any-link:not(.button-container a, .header a, .footer a) {
+  text-decoration: underline;
+}
+
 a:hover {
   text-decoration: underline;
   color: var(--color-link-hover);
