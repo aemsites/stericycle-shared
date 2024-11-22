@@ -1,5 +1,5 @@
 import { hr } from '../../scripts/dom-helpers.js';
-import { embedWistia } from '../../scripts/scripts.js';
+import renderVideo from '../video/video.js';
 
 export function applySplitPercentages(block) {
   const ratios = [];
@@ -42,7 +42,7 @@ function findEmbeds(block) {
   wistia.forEach((link) => {
     if (link.href.startsWith('https://fast.wistia')) {
       const embedPosition = link.closest('div');
-      embedPosition.replaceWith(embedWistia(link));
+      renderVideo(embedPosition);
     }
   });
 }
