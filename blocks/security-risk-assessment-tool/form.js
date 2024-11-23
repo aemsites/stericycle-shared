@@ -1,12 +1,11 @@
-// import Oval from "https://cdn.skypack.dev/dist/loader/Oval";
-import { ClipLoader } from "https://esm.sh/react-spinners";
-import CustomLoader from "./Oval.js";
+
 import React, { useState, useEffect, useRef } from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
 import ReactDOM from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
 import axios from 'https://esm.sh/axios@0.21.4';
 import htm from 'https://esm.sh/htm';
 
 import PDFLink from './PDFLink.js';
+import CustomLoader from "./Oval.js";
 
 import masking from './maskedInputs.js';
 
@@ -24,7 +23,7 @@ const SecurityRiskAssessmentTool = ({
   prepopulated,
   generalScorePreloaded,
 }) => {
-  let phonePattern = '^(\\(\\d{3}\\) |\\d{3})?\\d{3}-?\\d{4}$';
+  const phonePattern = '^(\\(\\d{3}\\) |\\d{3})?\\d{3}-?\\d{4}$';
   let postalCodeHandler = 'postalCode';
   let defaultZipLength = 5;
   let placeHolderZipcode = '_____';
