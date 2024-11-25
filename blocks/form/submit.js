@@ -61,11 +61,11 @@ function getFieldValue(fe, payload) {
 
 function getCountryAndLanguage() {
   const { pathname } = window.location;
-  const trimmedPath = pathname.startsWith('/') ? pathname.slice(1) : pathname;
-  const segments = trimmedPath.split('/');
+  const trimmedPath = pathname?.startsWith('/') ? pathname?.slice(1) : pathname;
+  const segments = trimmedPath?.split('/');
   // The first segment should contain the language and country (e.g., 'en-us')
   const locale = segments[0];
-  return locale.split('-');
+  return locale?.split('-');
 }
 
 async function constructPayload(form, captcha) {
