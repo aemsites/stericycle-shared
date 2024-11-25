@@ -99,10 +99,12 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        flex: 0 0 33.3333%;
-    }    
+        max-width: var(--section-width);
+        margin: 0 auto;
+
+    }
     
     .section.video-container.video-row .video-wrapper {
-        flex: 1 0 0%
+        flex: 1 0 0%;
     }
 }

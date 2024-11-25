@@ -346,6 +346,10 @@ const mapInitialization = async (locations, block, ph) => {
 
   map.on('load', () => {
     map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+    const mapInputLocationButton = block.querySelector('.map-input-location');
+    mapInputLocationButton?.classList.remove('disabled');
+    const mapInputSearchButton = block.querySelector('.map-input-search');
+    mapInputSearchButton?.classList.remove('disabled');
   });
 
   map.on('dragend', () => {
@@ -443,11 +447,10 @@ const mapInputLocationOnClick = (block, locations, ph) => {
     await map?.flyTo({
       center: [position.coords.longitude, position.coords.latitude],
       zoom: 8,
-      speed: 1.2,
+      speed: 2,
       curve: 1.5,
       easing: (t) => t,
       essential: true,
-      duration: 1000,
     });
   };
 
@@ -481,12 +484,12 @@ const mapInputLocationOnClick = (block, locations, ph) => {
  * @returns
  */
 const mapSearch = (ph, block, locations) => {
-  const mapInputSearch = button({ class: 'map-input-search' }, ph.searchtext);
+  const mapInputSearch = button({ class: 'map-input-search disabled' }, ph.searchtext);
   mapInputSearch.addEventListener('click', async () => {
     await mapInputSearchOnCLick(block, locations, ph);
   });
 
-  const mapInputLocation = button({ class: 'map-input-location' }, ph.uselocationtext);
+  const mapInputLocation = button({ class: 'map-input-location disabled' }, ph.uselocationtext);
   mapInputLocation.addEventListener('click', async () => {
     mapInputLocationOnClick(block, locations, ph);
   });
