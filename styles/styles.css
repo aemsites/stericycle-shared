@@ -134,6 +134,7 @@
   /* font weights */
   --font-weight-regular: 400;
   --font-weight-bold: 700;
+  --font-weight-extra-bold: 900;
 
   /* body sizes */
   --body-font-size-l: 20px;
@@ -267,6 +268,21 @@ h3, .heading-3 { font-size: var(--heading-font-size-l); }
 h4, .heading-4 { font-size: var(--heading-font-size-m); }
 h5, .heading-5 { font-size: var(--heading-font-size-s); }
 h6, .heading-6 { font-size: var(--heading-font-size-xs); }
+
+/* styles here */
+.eyebrow-small {
+  font-size: var(--body-font-size-xs);
+  font-weight: var(--font-weight-extra-bold);
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 1.4px;
+}
+
+@media (min-width: 768px /* breakpoint-m */) {
+  .eyebrow-small {
+    font-size: var(--body-font-size-s);
+  }
+}
 
 p, dl, ol, ul, pre, blockquote {
   color: var(--color-text);

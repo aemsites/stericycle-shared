@@ -21,6 +21,8 @@ export default function decorate(block) {
 
     // Decorate content
     const promoBadge = heroText.querySelector("#off-drop-off-services");
+    const eyebrow = heroText.querySelector("p");
 
+    eyebrow?.classList?.add("eyebrow-small");
     promoBadge?.classList?.add("hero-banner__promo-badge");
 }

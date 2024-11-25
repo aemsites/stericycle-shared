@@ -84,16 +84,37 @@
 
     .hero-banner__image {
         width: 70%;
-        height: 28vw;
+        height: 45vw;
+        margin-bottom: 0;
         max-width: 100%;
-        max-height: 545px;
+        max-height: 586px;
     }
 
     .hero-banner__image img {
-        max-height: 545px;
+        max-height: 586px;
+        object-fit: cover;
     }
 
     /* Variants */
+    .hero-banner-secondary {
+        background-color: var(--color-bg-secondary);
+    }
+
+    .hero-banner-tertiary {
+        background-color: var(--color-bg-tertiary);
+    }
+
+    .hero-banner-tertiary .hero-banner__content__text h1,
+    .hero-banner-tertiary .hero-banner__content__text p {
+        color: var(--color-white);
+    }
+
+    .hero-banner-tertiary .hero-banner__content__ctas a:not(.primary) {
+        border-color: var(--color-white);
+        background: transparent;
+        color: var(--color-white);
+    }
+
     .hero-banner-graphic .hero-banner__image {
         object-position: top;
         max-height: 330px;
@@ -130,5 +151,13 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
+    }
+}
+
+
+@media screen and (min-width: 1200px) {
+
+    .hero-banner__content__text {
+        padding-left: 80px;
     }
 }
