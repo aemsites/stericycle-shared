@@ -1,5 +1,5 @@
 import React from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
-import htm from 'https://esm.sh/htm';
+import htm from 'https://cdn.jsdelivr.net/npm/htm@3.1.1/+esm';
 const html = htm.bind(React.createElement);
 
 const CustomLoader = ({ color = "#006CB4", size = 150 }) => (

@@ -9,7 +9,7 @@ import {
   Text,
   StyleSheet,
 } from 'https://cdn.jsdelivr.net/npm/@react-pdf/renderer@3.1.14/+esm';
-import htm from 'https://esm.sh/htm';
+import htm from 'https://cdn.jsdelivr.net/npm/htm@3.1.1/+esm';
 import pdfStyles from './styles/pdfStyles.js';
 
 const html = htm.bind(React.createElement);

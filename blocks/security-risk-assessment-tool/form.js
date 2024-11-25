@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect, useRef } from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
 import ReactDOM from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
-import axios from 'https://esm.sh/axios@0.21.4';
-import htm from 'https://esm.sh/htm';
+import axios from 'https://cdn.jsdelivr.net/npm/axios@0.21.4/+esm';
+import htm from 'https://cdn.jsdelivr.net/npm/htm@3.1.1/+esm';
 
 import PDFLink from './PDFLink.js';
-import CustomLoader from "./Oval.js";
+import CustomLoader from './Oval.js';
 
 import masking from './maskedInputs.js';
 
@@ -2233,7 +2232,7 @@ const SecurityRiskAssessmentTool = ({
     // function to process the select dropdown options that are defined in questions.json
     const selectOptionArr = [
       html`<option key="default" value="default" disabled hidden>
-        ${Granite.I18n.get("Select One")}
+        ${Granite.I18n.get('Select One')}
       </option>`,
     ];
     for (const value of options) {
@@ -2902,7 +2901,7 @@ const SecurityRiskAssessmentTool = ({
                 <div className="cmp-text mb-3 pe-3">
                   <p className="ss-font-color--primary">
                     <strong className=" ss-font-color--black">
-                      ${Granite.I18n.get('Conducted For')}${": "}
+                      ${Granite.I18n.get('Conducted For')}${': '}
                     </strong>
                     ${userInfo.conductedFor || ''}
                     ${!userInfo.conductedFor
@@ -2975,13 +2974,13 @@ const SecurityRiskAssessmentTool = ({
                       </p>
                     </div>
                     <p className="cmp-title__text ss-font-color--primary">
-                      <b>${Granite.I18n.get('Your Shred-it Service Recommendation')}${": "}</b><span className="ss-font-color--black">${recommendations.serviceRecommended}</span>
+                      <b>${Granite.I18n.get('Your Shred-it Service Recommendation')}${': '}</b><span className="ss-font-color--black">${recommendations.serviceRecommended}</span>
                     </p>
                     <p className="cmp-title__text ss-font-color--primary">
-                      <b>${Granite.I18n.get('Your Custom Console Service Recommendation')}${": "}</b><span className="ss-font-color--black">${recommendations.consoleService}${" "}${Granite.I18n.get("Standard Containers")}</span>
+                      <b>${Granite.I18n.get('Your Custom Console Service Recommendation')}${': '}</b><span className="ss-font-color--black">${recommendations.consoleService}${' '}${Granite.I18n.get('Standard Containers')}</span>
                     </p>
                     <p className="cmp-title__text ss-font-color--primary">
-                      <b>${Granite.I18n.get('Frequency Recommendation')}${": "}</b><span className="ss-font-color--black">${recommendations.frequency}</span>
+                      <b>${Granite.I18n.get('Frequency Recommendation')}${': '}</b><span className="ss-font-color--black">${recommendations.frequency}</span>
                     </p>
 <!--                    {/*<p className="cmp-title__text ss-font-color&#45;&#45;primary">-->
 <!--                      <b>{Granite.I18n.get("Training Recommendation")}{": "}</b><span className="ss-font-color&#45;&#45;black">{recommendations.training}</span>-->
@@ -3142,6 +3141,4 @@ export const initSecurityRiskAssessment = async () => {
 
 window.Granite = {};
 window.Granite.I18n = {};
-window.Granite.I18n.get = (x) => x;
-// prepop test url
-// http://localhost:8080/?ct_1=No&ct_2=Pharmacy&ct_3=Other&ct_4=Yes&ct_5=No&ct_6=No&ct_7=Yes&ct_8=No&ct_9=Yes&ct_10=No&ct_11=No&ct_12=Yes&ct_13=No&ct_14=No&ct_15=No&ct_16=Yes&ct_17=No&ct_18=Yes&ct_19=No&firstName=Tom&lastName=Scott&companyName=Avionos%20Test&emailAddress=tom.scott@avionos.com&phoneNumber=(206)%20555-5555&zipCode=98059&date=11-03-2021#salesAccess
+window.Granite.I18n.get = (x) => x; // TODO: convert this to a placeholder implementation
