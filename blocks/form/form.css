@@ -207,7 +207,7 @@ main .form form .checkbox-wrapper, main .form form .radio-wrapper {
     display: flex;
     align-items: baseline;
     margin: 0;
-    gap: 8px;
+    gap: 0.8rem;
 }
 
 main .form form fieldset > .radio-wrapper:first-of-type,
