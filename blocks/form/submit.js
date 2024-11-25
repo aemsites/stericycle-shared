@@ -59,11 +59,24 @@ function getFieldValue(fe, payload) {
   return null;
 }
 
+function getCountryAndLanguage() {
+  const { pathname } = window.location;
+  const trimmedPath = pathname.startsWith('/') ? pathname.slice(1) : pathname;
+  const segments = trimmedPath.split('/');
+  // The first segment should contain the language and country (e.g., 'en-us')
+  const locale = segments[0];
+  return locale.split('-');
+}
+
 async function constructPayload(form, captcha) {
+  const [language, country] = getCountryAndLanguage();
   const payload = {
     __id__: generateUnique(),
     ':currentPagePath': '/content/shred-it/us/en',
     jobPropertiesUrl: `https://main--shredit--stericycle.aem.page${form.dataset.action}.json`,
+    formURL: form.dataset?.action,
+    webCountry: country,
+    webLanguage: language,
   };
   [...form.elements].forEach((fe) => {
     if (fe.name && !fe.matches('button') && !fe.disabled && fe.tagName !== 'FIELDSET') {
