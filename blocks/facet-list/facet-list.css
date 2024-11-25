@@ -150,7 +150,6 @@ div.facet-list-wrapper ul.pagination li > button:not(:disabled) {
     border: unset;
     background-color: unset;
     margin-right: .5rem;
-    outline: none;
     color: var(--color-primary-1);
     font-size: var(--body-font-size-default);
     font-weight: var(--font-weight-bold);
