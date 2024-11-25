@@ -30,15 +30,15 @@ const MyDoc = ({ userInfo, generalScore, recommendations }) => {
   };
 
   const riskLevel = (color) => {
-    if (color == '#DD1C1A') return 'High';
-    if (color == '#ffba3c') return 'Moderate';
-    if (color == '#00857A') return 'Low';
+    if (color === '#DD1C1A') return 'High';
+    if (color === '#ffba3c') return 'Moderate';
+    if (color === '#00857A') return 'Low';
   };
 
   const riskLevelText = (color) => {
-    if (color == '#DD1C1A') return 'There are gaps in your organization’s confidential information security that should be addressed. It’s important to take measures as soon as possible to reduce your risk and protect your organization’s confidential information from getting into the wrong hands.';
-    if (color == '#ffba3c') return 'While your organization’s confidential information security is strong in some areas, you appear to have a medium risk for an information breach which means there are weaknesses. It’s important to take measures as soon as possible to secure your confidential information and protect one of your most important assets: your information.';
-    if (color == '#00857A') return 'You seem to have a good handle on your organization’s confidential information and appear to have a low risk for an information breach. However, you should still be vigilant when it comes to protecting your information security and there are a few things you should do to further secure your confidential information and protect your organization from risk in the future.';
+    if (color === '#DD1C1A') return 'There are gaps in your organization’s confidential information security that should be addressed. It’s important to take measures as soon as possible to reduce your risk and protect your organization’s confidential information from getting into the wrong hands.';
+    if (color === '#ffba3c') return 'While your organization’s confidential information security is strong in some areas, you appear to have a medium risk for an information breach which means there are weaknesses. It’s important to take measures as soon as possible to secure your confidential information and protect one of your most important assets: your information.';
+    if (color === '#00857A') return 'You seem to have a good handle on your organization’s confidential information and appear to have a low risk for an information breach. However, you should still be vigilant when it comes to protecting your information security and there are a few things you should do to further secure your confidential information and protect your organization from risk in the future.';
   };
 
   return html`
