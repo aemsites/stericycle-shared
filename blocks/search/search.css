@@ -126,10 +126,6 @@ div.search-wrapper ul.pagination-controls {
   opacity: 0.8;
 }
 
-.fa-chevron-left:active {
-  transform: scale(0.95);
-}
-
 .fa-chevron-right::after {
     content: '';
     display: inline-block;
@@ -144,10 +140,6 @@ div.search-wrapper ul.pagination-controls {
 
 .fa-chevron-right:hover {
   opacity: 0.8;
-}
-
-.fa-chevron-right:active {
-  transform: scale(0.95);
 }
 
 .fa-chevron-left:disabled::before {
