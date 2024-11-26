@@ -278,7 +278,6 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
   margin-bottom: 1.5rem;
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
 .columns.numeric-list p,
 .columns.numeric-list h4 {
   margin-bottom: 1.5rem;
