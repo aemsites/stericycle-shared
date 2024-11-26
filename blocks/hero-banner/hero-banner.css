@@ -8,6 +8,7 @@
 
 .hero-banner__content__text {
     padding: 24px 16px;
+    padding-top: 12px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -30,6 +31,7 @@
 
 .hero-banner__promo-badge {
     display: flex;
+    margin-bottom: 20px;
     padding: 8px 16px;
     align-items: center;
     gap: 16px;
@@ -39,34 +41,59 @@
 }
 
 .hero-banner__image {
-    margin-bottom: 22px;
     width: 100%;
     height: 100%;
-    max-height: 240px;
 }
 
 .hero-banner__image img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
-    max-height: 240px;
+}
+
+/* Variants */
+.hero-banner-secondary {
+    background-color: var(--color-bg-secondary);
+}
+
+.hero-banner-tertiary {
+    background-color: var(--color-bg-tertiary);
+}
+
+.hero-banner-tertiary .hero-banner__content__text h1,
+.hero-banner-tertiary .hero-banner__content__text p {
+    color: var(--color-white);
+}
+
+.hero-banner-tertiary .hero-banner__content__ctas a:not(.primary) {
+    border-color: var(--color-white);
+    background: transparent;
+    color: var(--color-white);
 }
 
 .hero-banner-graphic .hero-banner__image img {
     max-height: 76px;
+    object-fit: contain;
     object-position: right;
+}
+
+.masked-image-wrapper {
+    -webkit-mask-image: url(/icons/hero-mask.svg);
+    mask-image: url(/icons/hero-mask.svg);
+    mask-repeat: no-repeat;
 }
 
 @media screen and (min-width: 768px) {
     .hero-banner__content {
         flex-direction: row;
+        align-items: flex-start;
     }
 
     .hero-banner__content__text {
         padding: 80px 0;
-        width: 70%;
-        max-width: 600px;
+        padding-left: 40px;
+        max-width: 700px;
     }
 
     .hero-banner__content__text h1 {
@@ -83,41 +110,20 @@
     }
 
     .hero-banner__image {
-        width: 70%;
-        height: 45vw;
         margin-bottom: 0;
-        max-width: 100%;
-        max-height: 586px;
+        max-width: 856px;
+        max-height: 545px;
     }
 
     .hero-banner__image img {
-        max-height: 586px;
         object-fit: cover;
+        max-height: 545px;
     }
 
     /* Variants */
-    .hero-banner-secondary {
-        background-color: var(--color-bg-secondary);
-    }
-
-    .hero-banner-tertiary {
-        background-color: var(--color-bg-tertiary);
-    }
-
-    .hero-banner-tertiary .hero-banner__content__text h1,
-    .hero-banner-tertiary .hero-banner__content__text p {
-        color: var(--color-white);
-    }
-
-    .hero-banner-tertiary .hero-banner__content__ctas a:not(.primary) {
-        border-color: var(--color-white);
-        background: transparent;
-        color: var(--color-white);
-    }
-
     .hero-banner-graphic .hero-banner__image {
-        object-position: top;
         max-height: 330px;
+        width: 50%;
     }
 
     .hero-banner-graphic .hero-banner__image img {
@@ -131,18 +137,20 @@
 
     .hero-banner-full .hero-banner__content {
         flex-direction: column;
+        align-items: center;
     }
 
     .hero-banner-full .hero-banner__content__text {
         text-align: center;
         align-items: center;
+        padding-left: 0;
         max-width: 700px;
         z-index: 1;
     }
 
     .hero-banner-full .hero-banner__image {
         position: absolute;
-        width: 100%;
+        max-width: 100%;
         height: 100%;
     }
 
@@ -154,9 +162,7 @@
     }
 }
 
-
 @media screen and (min-width: 1200px) {
-
     .hero-banner__content__text {
         padding-left: 80px;
     }

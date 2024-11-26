@@ -20,9 +20,23 @@ export default function decorate(block) {
     heroText.appendChild(parentDiv);
 
     // Decorate content
-    const promoBadge = heroText.querySelector("#off-drop-off-services");
+    const promoBadge = heroText.querySelector("h4");
     const eyebrow = heroText.querySelector("p");
 
     eyebrow?.classList?.add("eyebrow-small");
     promoBadge?.classList?.add("hero-banner__promo-badge");
+
+    const isImageVariant = block.classList.contains("hero-banner-image");
+
+    // decorate hero image
+    if (heroImage && isImageVariant) {
+        const img = heroImage.querySelector("img");
+        const imgWrapper = document.createElement("div");
+
+        imgWrapper.classList.add("masked-image-wrapper");
+
+        imgWrapper.appendChild(img);
+
+        heroImage.appendChild(imgWrapper);
+    }
 }
