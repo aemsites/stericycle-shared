@@ -6,7 +6,7 @@ main .form form .radio-wrapper.radio-icon input {
 main .form form .radio-wrapper.radio-icon label {
   display: flex;
   gap: 1rem;
-  margin: 0 1.625rem .6875rem 0;
+  margin: 0 0 .6875rem;
   border: 1px solid #dad6d6;
   padding: 0.5rem;
   cursor: pointer;
@@ -18,15 +18,23 @@ main .form form .radio-wrapper.radio-icon label span.icon {
   height: 2rem;
 }
 
+main .form form .radio-wrapper.radio-icon label > p {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+
 main .form form .radio-wrapper.radio-icon input:checked + label,
-main .form form .radio-wrapper.radio-icon label:hover {
+main .form form .radio-wrapper.radio-icon label:hover,
+main .form form .radio-wrapper.radio-icon label:hover > p {
   color: var(--color-primary-1);
   border-color: var(--color-primary-1);
 }
 
 main .form form .radio-wrapper.radio-icon input:checked + label > span.icon > img,
+main .form form .radio-wrapper.radio-icon input:checked + label > p,
 main .form form .radio-wrapper.radio-icon label:hover > span.icon > img {
-  -webkit-filter: invert(31%) sepia(91%) saturate(5681%) hue-rotate(190deg) brightness(91%) contrast(101%);
+  filter: invert(31%) sepia(91%) saturate(5681%) hue-rotate(190deg) brightness(91%) contrast(101%);
   filter: invert(31%) sepia(91%) saturate(5681%) hue-rotate(190deg) brightness(91%) contrast(101%);
 }
 

@@ -297,7 +297,7 @@ main .form form .checkbox-wrapper, main .form form .radio-wrapper {
     display: flex;
     align-items: center;
     margin: 0;
-    gap: 8px;
+    gap: 0.8rem;
 }
 
 main .form form fieldset > .radio-wrapper:first-of-type,
@@ -616,6 +616,10 @@ main .campaign-form.form form .panel-wrapper {
     background-color: var(--color-gray);
 }
 
+main .get-a-quote-form-alternate.grey-background form .panel-wrapper{
+    background-color: var(--color-gray);
+}
+
 main .form form .wizard.left .panel-wrapper{
   flex: 1;
 }
@@ -900,6 +904,10 @@ main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='
     text-align: center;
 }
 
+main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='header'] > div > p > strong {
+    font-size: 1.4rem;
+}
+
 main .get-a-quote-form-alternate.no-header-color form .fragment-wrapper[data-id^='header'] {
     background-color: unset;
 }
@@ -1017,46 +1025,7 @@ main .two-column.form-container:not(.shredded-paper-background-column, .hard-dri
     margin: auto;
     gap: 0;
     justify-content: center;
-}
-
-@media (max-width: 1000px) {
-    main .two-column.form-container .default-content-wrapper {
-        width: 90%;
-    }
-
-    main .two-column.form-container .form-wrapper {
-        width:90%;
-    }
-
-    main .form form .panel-wrapper.field-requesttype, main .form form .panel-wrapper.field-frequncy {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    main .form form .panel-wrapper.field-requesttype legend, main .form form .panel-wrapper.field-frequncy legend{
-       padding: 1.5rem 0 0 1rem;
-    }
-
-    main .form form .panel-wrapper.field-requesttype .radio-wrapper.field-quote-type,
-    main .form form .panel-wrapper.field-frequncy .radio-wrapper.field-servicetype1
-    {
-        grid-column: span 1;
-        width: 100%;
-        padding: 13px 0;
-        margin-top: 0;
-    }
-
-    main .body-wrapper .page-sidebar > div.form-container {
-        padding-left: 1rem;
-    }
-
-    main .section.two-column.form-container,
-    main .section.two-column.form-container.full-width,
-    main .shredded-paper-background-column.two-column.form-container,
-    main .navy-background.cyan-border.two-column.form-container,
-    main .hard-drive-background.two-column.form-container
-    {
-        display: table-row;
-    }
+    width:100%;
 }
 
 main .shredded-paper-background-column.two-column,
@@ -1085,6 +1054,54 @@ main .two-column.form-container > div:first-child {
 main .two-column.form-container > div:nth-last-child(1) {
     grid-column: 2;
     grid-row: 1 / span 4;
+}
+
+@media (max-width: 1000px) {
+    main .two-column.form-container .default-content-wrapper {
+        width: 90%;
+    }
+
+    main .two-column.form-container .form-wrapper {
+        width:90%;
+    }
+
+    main .form form .panel-wrapper.field-requesttype, main .form form .panel-wrapper.field-frequncy {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    main .form form .panel-wrapper.field-requesttype .radio-wrapper.field-quote-type,
+    main .form form .panel-wrapper.field-frequncy .radio-wrapper.field-servicetype1
+    {
+        grid-column: span 1;
+        width: 100%;
+        padding: 13px 0;
+        margin-top: 0;
+    }
+
+    main .body-wrapper .page-sidebar > div.form-container {
+        padding-left: 1rem;
+    }
+
+    main .section.two-column.form-container,
+    main .section.two-column.form-container.full-width,
+    main .shredded-paper-background-column.two-column.form-container,
+    main .navy-background.cyan-border.two-column.form-container,
+    main .hard-drive-background.two-column.form-container
+    {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    /* stylelint-disable */
+    main .section.two-column.form-container > div,
+    main .section.two-column.form-container.full-width > div,
+    main .shredded-paper-background-column.two-column.form-container > div,
+    main .navy-background.cyan-border.two-column.form-container > div,
+    main .hard-drive-background.two-column.form-container > div {
+        grid-column: span 1;
+        grid-row: unset;
+    }
+
 }
 
 main .form-wrapper .form.contact-us-form{
