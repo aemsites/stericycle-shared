@@ -31,12 +31,13 @@ export default function decorate(block) {
     // decorate hero image
     if (heroImage && isImageVariant) {
         const img = heroImage.querySelector("img");
+        const picture = heroImage.querySelector("picture");
         const imgWrapper = document.createElement("div");
 
         imgWrapper.classList?.add("masked-image-wrapper");
 
         imgWrapper.appendChild(img);
 
-        heroImage.appendChild(imgWrapper);
+        picture.appendChild(imgWrapper);
     }
 }
