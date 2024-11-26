@@ -1,4 +1,5 @@
 import { DEFAULT_THANK_YOU_MESSAGE, getSubmitBaseUrl } from './constant.js';
+import { getMetadata } from '../../scripts/aem';
 
 // eslint-disable-next-line no-unused-vars
 export function submitSuccess(e, form) {
@@ -60,11 +61,7 @@ function getFieldValue(fe, payload) {
 }
 
 function getCountryAndLanguage() {
-  const { pathname } = window.location;
-  const trimmedPath = pathname?.startsWith('/') ? pathname?.slice(1) : pathname;
-  const segments = trimmedPath?.split('/');
-  // The first segment should contain the language and country (e.g., 'en-us')
-  const locale = segments[0];
+  const locale = getMetadata('locale');
   return locale?.split('-');
 }
 
