@@ -1,5 +1,5 @@
 import { hr } from '../../scripts/dom-helpers.js';
-import { embedWistia } from '../../scripts/scripts.js';
+import renderVideo from '../video/video.js';
 
 export function applySplitPercentages(block) {
   const ratios = [];
@@ -36,15 +36,17 @@ export function applySplitPercentages(block) {
   }
 }
 
-function findEmbeds(block) {
+async function findEmbeds(block) {
   const wistia = block.querySelectorAll('a');
+  const promises = [];
 
   wistia.forEach((link) => {
     if (link.href.startsWith('https://fast.wistia')) {
       const embedPosition = link.closest('div');
-      embedPosition.replaceWith(embedWistia(link));
+      promises.push(renderVideo(embedPosition));
     }
   });
+  await Promise.all(promises);
 }
 
 function applyHorizontalCellAlignment(block) {
@@ -86,7 +88,7 @@ export function applyCellAlignment(block) {
   applyVerticalCellAlignment(block);
 }
 
-export default function decorate(block) {
+export default async function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
   let isImageLink = false;
@@ -105,7 +107,7 @@ export default function decorate(block) {
       const link = col.querySelector('a');
 
       if (pic && link && link.href
-        && new URL(link.href).pathname === link.innerText) {
+        && new URL(link.href).pathname === new URL(link.innerText).pathname) {
         link.innerHTML = '';
         link.appendChild(pic);
         isImageLink = true;
@@ -124,7 +126,7 @@ export default function decorate(block) {
     });
   });
 
-  findEmbeds(block);
+  await findEmbeds(block);
   applySplitPercentages(block);
   applyCellAlignment(block);
 }

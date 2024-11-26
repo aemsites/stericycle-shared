@@ -278,6 +278,7 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
   margin-bottom: 1.5rem;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .columns.numeric-list p,
 .columns.numeric-list h4 {
   margin-bottom: 1.5rem;
@@ -365,6 +366,11 @@ main .section.blue-headings .columns span.icon > img {
 .columns.small-images.centered > div > div > p:last-of-type {
   text-align: center;
 }
+
+main .block.columns.video iframe {
+  aspect-ratio: 16 / 9;
+}
+
 
 @media (min-width: 992px /* breakpoint-l */) {
   .columns.block:not(.wrap-mobile) > div {
@@ -463,6 +469,10 @@ main .section.blue-headings .columns span.icon > img {
     display: flex;
     flex-direction: column;
     margin-right: 8.3333%;
+  }
+
+  main .block.columns.video.block.columns-2-cols > div div:has(iframe) {
+    aspect-ratio: 16 / 9;
   }
 
   main .block.columns.video.columns-2-cols > div div iframe {
