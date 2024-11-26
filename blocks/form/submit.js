@@ -1,5 +1,5 @@
 import { DEFAULT_THANK_YOU_MESSAGE, getSubmitBaseUrl } from './constant.js';
-import { getMetadata } from '../../scripts/aem';
+import { getMetadata } from '../../scripts/aem.js';
 
 // eslint-disable-next-line no-unused-vars
 export function submitSuccess(e, form) {
