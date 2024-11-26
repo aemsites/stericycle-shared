@@ -13,9 +13,9 @@ export default function decorate(block) {
 
     const parentDiv = document.createElement("div");
 
-    parentDiv.classList.add("hero-banner__content__ctas");
-    buttons.forEach((button) => {
-        parentDiv.appendChild(button);
+    parentDiv?.classList?.add("hero-banner__content__ctas");
+    buttons?.forEach((button) => {
+        parentDiv?.appendChild(button);
     });
     heroText.appendChild(parentDiv);
 
@@ -26,14 +26,14 @@ export default function decorate(block) {
     eyebrow?.classList?.add("eyebrow-small");
     promoBadge?.classList?.add("hero-banner__promo-badge");
 
-    const isImageVariant = block.classList.contains("hero-banner-image");
+    const isImageVariant = block.classList?.contains("hero-banner-image");
 
     // decorate hero image
     if (heroImage && isImageVariant) {
         const img = heroImage.querySelector("img");
         const imgWrapper = document.createElement("div");
 
-        imgWrapper.classList.add("masked-image-wrapper");
+        imgWrapper.classList?.add("masked-image-wrapper");
 
         imgWrapper.appendChild(img);
 
