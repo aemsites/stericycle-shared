@@ -470,12 +470,22 @@ function decorateIcon(span, prefix = '', alt = '') {
   const iconName = Array.from(span.classList)
     .find((c) => c.startsWith('icon-'))
     .substring(5);
-  const img = document.createElement('img');
-  img.dataset.iconName = iconName;
-  img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
-  img.alt = alt;
-  img.loading = 'lazy';
-  span.append(img);
+  if (span.closest('.button-container')) {
+    span.setAttribute('data-icon-src', `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`);
+    if (alt) {
+      span.setAttribute('data-icon-alt', alt);
+    }
+    if (iconName) {
+      span.style.setProperty('--mask-image', `url(${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg)`);
+    }
+  } else {
+    const img = document.createElement('img');
+    img.dataset.iconName = iconName;
+    img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
+    img.alt = alt;
+    img.loading = 'lazy';
+    span.append(img);
+  }
 }
 
 /**

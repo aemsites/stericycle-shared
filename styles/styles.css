@@ -493,6 +493,18 @@ a.button.primary, button.primary {
   border-radius: 100px;
 }
 
+.button-container a.button .icon {
+  --icon-color: var(--color-primary-1);
+}
+
+.button-container a.button.primary .icon, .button-container button.primary .icon {
+  --icon-color: var(--color-black);
+}
+
+.button-container a.button.secondary .icon, .button-container button.secondary .icon {
+  --icon-color: var(--color-primary-1);
+}
+
 a.button.primary:hover, button.primary:hover{
   outline-width: 3px;
 }
@@ -544,6 +556,36 @@ main img {
   display: inline-block;
   height: 24px;
   width: 24px;
+}
+
+.button-container .icon {
+  display: inline-block;
+  margin: 0 auto;
+  height: 24px;
+  width: 24px;
+  background-color: var(--icon-color);
+  mask-repeat: no-repeat;
+  mask-position: center center;
+  mask-size: contain;
+  mask-image: var(--mask-image);
+}
+
+.button-container .button {
+  gap: 4px;
+}
+
+.button-container .button.primary, .button-container .button.secondary {
+  gap: 8px;
+}
+
+.button-container .button .icon {
+  width: 8px;
+  height: 8.8px;
+}
+
+.button-container .button.primary .icon, .button-container .button.secondary .icon {
+  width: 24px;
+  height: 24px;
 }
 
 .icon img {
