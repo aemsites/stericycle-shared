@@ -259,7 +259,8 @@ async function fetchWistiaMetadata(videoUrl) {
  */
 function buildHeroBlock(main) {
   // blog pages don't use the hero block
-  if (document.querySelector('body.blog-page')) {
+  // If hero block already added on the page
+  if (document.querySelector('body.blog-page') || main.querySelector(':scope > div > div.hero')) {
     return;
   }
   const firstSection = main.querySelector('div');
