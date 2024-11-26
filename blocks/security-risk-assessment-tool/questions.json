@@ -1,0 +1,230 @@
+[{
+  "order": 1,
+  "title": "Which best describes you?",
+  "inputType": "select",
+  "options": ["Residential", "Business", "Business run from residential property"],
+  "userSelection": "",
+  "visible": true,
+  "score": 0,
+  "typeSection" : "general",
+  "hasScore": false
+}, {
+  "order": 2,
+  "title": "How many employees does your company have?",
+  "inputType": "select",
+  "options": ["0-10", "10-50", "50-100","100+"],
+  "userSelection": "",
+  "visible": false,
+  "score": 0,
+  "typeSection" : "general",
+  "hasScore": false
+}, {
+  "order": 3,
+  "title": "What is your current method for paper shredding and disposal?",
+  "options": ["In-house Paper Shredders", "Shredding Provider","None", "Other"],
+  "inputType": "select",
+  "userSelection": "",
+  "visible": false,
+  "score": 15,
+  "typeSection" : "general",
+  "hasScore": true
+}, {
+  "order": 4,
+  "title": "Do you use a One-Time Shredding service or a Regular Shredding service?",
+  "options": ["One-Time", "Regular","No/Unsure"],
+  "inputType": "select",
+  "userSelection": "",
+  "visible": false,
+  "score": 0,
+  "typeSection" : "general",
+  "hasScore": false
+}, {
+  "order": 5,
+  "title": "How many shredding containers/consoles do you have in your workplace?",
+  "options": ["1", "2-5","10+"],
+  "inputType": "select",
+  "userSelection": "",
+  "visible": false,
+  "score": 0,
+  "typeSection" : "general",
+  "hasScore": false
+}, {
+  "order": 6,
+  "title": "How many paper shredders do you have in your workplace?",
+  "options": ["0","1", "2-5","10+"],
+  "inputType": "select",
+  "userSelection": 0,
+  "visible": false,
+  "score": 0,
+  "typeSection" : "general",
+  "hasScore": false
+}, {
+  "order": 7,
+  "title": "How many times a year do you use a one-time shredding service?",
+  "options": ["1", "2","3","4","5","6","7","8","9","10+"],
+  "inputType": "select",
+  "userSelection": "",
+  "visible": false,
+  "score": 0,
+  "typeSection" : "general",
+  "hasScore": false
+}, {
+  "order": 8,
+  "title": "Does your business produce proprietary materials such as corporate promotional items, employee ID badges and/or building entry cards?",
+  "inputType": "radio",
+  "options": ["Yes","No/Unsure"],
+  "userSelection": "",
+  "visible": false,
+  "score": 0,
+  "typeSection" : "general",
+  "hasScore": false
+}, {
+  "order": 9,
+  "title": "How many printers do you have in your workplace?",
+  "options": ["1", "2","3","4","5","6","7","8","9","10+"],
+  "inputType": "select",
+  "userSelection": "",
+  "visible": false,
+  "score": 0,
+  "typeSection" : "general",
+  "hasScore": false
+},{
+  "order": 10,
+  "title": "How often do you remove confidential documents from your facility?",
+  "options": ["Daily", "Weekly","Bi-Weekly","Monthly","Bi-Monthly"],
+  "inputType": "select",
+  "userSelection": "",
+  "visible": false,
+  "score": 0,
+  "typeSection" : "general",
+  "hasScore": false
+}, {
+  "order": 11,
+  "title": "Are staff aware of what confidential information they need to securely dispose of?",
+  "options": ["Yes", "No/Unsure"],
+  "inputType": "radio",
+  "userSelection": "",
+  "score": 15,
+  "typeSection" : "training",
+  "hasScore": true
+}, {
+  "order": 12,
+  "title": "Does it appear staff are using the right system/process to dispose of this information?",
+  "options": ["Yes", "No/Unsure"],
+  "inputType": "radio",
+  "userSelection": "",
+  "visible": false,
+  "score": 15,
+  "typeSection" : "training",
+  "hasScore": true
+}, {
+  "order": 13,
+  "title": "Are shred containers available in high traffic areas and easily accessible to all employees?",
+  "options": ["Yes", "No/Unsure"],
+  "inputType": "radio",
+  "userSelection": "",
+  "visible": false,
+  "score": 10,
+  "typeSection" : "training",
+  "hasScore": true
+}, {
+  "order": 14,
+  "title": "Is all confidential information disposed of separately from general waste?",
+  "options": ["Yes", "No/Unsure"],
+  "inputType": "radio",
+  "userSelection": "",
+  "visible": false,
+  "score": 15,
+  "typeSection" : "training",
+  "hasScore": true
+}, {
+  "order": 15,
+  "title": "Is confidential waste kept secure from unauthorized access? (i.e. in locked containers)",
+  "options": ["Yes", "No/Unsure"],
+  "inputType": "radio",
+  "userSelection": "",
+  "visible": false,
+  "score": 15,
+  "typeSection" : "training",
+  "hasScore": true
+}, {
+  "order": 16,
+  "title": "When printing or photocopying work-related documents, are unused copies always shredded?",
+  "options": ["Yes", "No/Unsure"],
+  "inputType": "radio",
+  "userSelection": "",
+  "visible": false,
+  "score": 10,
+  "typeSection" : "training",
+  "hasScore": true
+},{
+  "order": 17,
+  "title": "Do you have information security training programs available for employees?",
+  "options": ["Yes", "No/Unsure"],
+  "inputType": "radio",
+  "userSelection": "",
+  "visible": false,
+  "score": 10,
+  "typeSection" : "training",
+  "hasScore": true
+}, {
+  "order": 18,
+  "title": "Is a log/record kept of any shredding activity?",
+  "options": ["N/A", "Yes", "No/Unsure"],
+  "inputType": "select",
+  "userSelection": "",
+  "visible": false,
+  "score": 10,
+  "typeSection" : "documentation",
+  "hasScore": true
+}, {
+  "order": 19,
+  "title": "Are employees trained on your shredding program and is there documentation on this training?",
+  "options": ["Yes", "No/Unsure"],
+  "inputType": "radio",
+  "userSelection": "",
+  "visible": false,
+  "score": 15,
+  "typeSection" : "documentation",
+  "hasScore": true
+}, {
+  "order": 20,
+  "title": "Does your business deal with consumer records including personal information of customers?",
+  "options": ["Yes", "No/Unsure"],
+  "inputType": "radio",
+  "userSelection": "",
+  "visible": false,
+  "score": 15,
+  "typeSection" : "documentation",
+  "hasScore": true
+}, {
+  "order": 21,
+  "title": "Does your business take reasonable measures to destroy consumer records? (Ex: Pulverize or Shredding)",
+  "options": ["N/A", "Yes", "No/Unsure"],
+  "inputType": "select",
+  "userSelection": "",
+  "visible": false,
+  "score": 15,
+  "typeSection" : "documentation",
+  "hasScore": true
+},{
+  "order": 22,
+  "title": "Is your cleaning company/maintenance staff checked and vetted by a criminal records bureau?",
+  "options": ["Yes", "No/Unsure"],
+  "inputType": "radio",
+  "userSelection": "",
+  "visible": false,
+  "score": 15,
+  "typeSection" : "redFlags",
+  "hasScore": true
+  },{
+  "order": 23,
+  "title": "How often do you change your computer hard drives?",
+  "options": ["Never" ,"Annually", "2-5 years","5+ years"],
+  "inputType": "select",
+  "userSelection": 0,
+  "visible": false,
+  "score": 0,
+  "typeSection" : "redFlags",
+  "hasScore": false
+}]
