@@ -746,6 +746,13 @@ main .list-style-orange-triangles ul {
   list-style: none;
 }
 
+main .list-style-blue-checkmark ul {
+  position: relative;
+  padding: 0;
+  margin: 0 0 0 1.5rem;
+  list-style: none;
+}
+
 main .list-style-bullets ul {
   position: relative;
   padding: 0;
@@ -1224,8 +1231,32 @@ main .list-style-orange-triangles ul > li::before {
   font-size: 1.5rem;
 }
 
+main .list-style-blue-checkmark ul > li::before {
+  content: '';
+  position: absolute;
+  left: -25px;
+  margin-right: 0.75rem;
+  background: url("/icons/check-mark-light-blue.svg") no-repeat left center;
+  background-size: cover;
+  width: 32px;
+  height: 32px;
+}
+
 main .list-style-orange-triangles ul > li {
   padding-bottom: 1rem;
+}
+
+main .list-style-blue-checkmark ul > li {
+  display: flex;
+  align-items: center;
+  padding-bottom: 16px;
+  padding-left: 16px;
+}
+
+main .list-style-blue-checkmark ul > li sup {
+  vertical-align: super;
+  margin-top: -10px;
+  margin-right: 2px;
 }
 
 main .list-style-checkmarks div.card-body ul > li::before {
