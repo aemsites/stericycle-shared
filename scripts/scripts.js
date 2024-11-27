@@ -20,6 +20,11 @@ import {
 import { div } from './dom-helpers.js';
 import ffetch from './ffetch.js';
 
+export const BREAKPOINTS = {
+  tablet: window.matchMedia('(min-width: 768px)'),
+  desktop: window.matchMedia('(min-width: 992px)'),
+};
+
 export function convertExcelDate(excelDate) {
   const secondsInDay = 86400;
   const excelEpoch = new Date(1899, 11, 31);
