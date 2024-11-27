@@ -530,7 +530,9 @@ a.button.secondary:hover, button.secondary:hover {
 }
 
 .button-container a.button.secondary:hover .icon,
-.button-container button.secondary:hover .icon {
+.button-container a.button.secondary:focus .icon,
+.button-container button.secondary:hover .icon,
+.button-container button.secondary:focus .icon {
   --icon-color: var(--color-white);
 }
 
