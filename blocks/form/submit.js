@@ -62,7 +62,7 @@ function getFieldValue(fe, payload) {
 
 function getCountryAndLanguage() {
   const locale = getMetadata('locale');
-  return locale?.split('-');
+  return locale?.split('-') || ['en', 'us'];
 }
 
 async function constructPayload(form, captcha) {
