@@ -283,7 +283,11 @@ main .section.column-with-list.blue-background.columns-container .icon {
 }
 
 main .section.column-with-list .columns.columns-2-cols > div > div {
-  justify-content: space-between;
+  justify-content: start;
+}
+
+main .section.column-with-list.small-footnote .columns.columns-2-cols > div > div p:last-of-type {
+  font-size: 0.75rem;
 }
 
 main .section.column-with-list .columns > div > div h2 {

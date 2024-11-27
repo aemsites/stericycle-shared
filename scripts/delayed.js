@@ -25,7 +25,7 @@ async function loadRelatedContent(type) {
   if (type === 'blog-page') {
     posts = await getRelatedPosts(['Blogs'], tags, RELATED_LIMIT);
   } else if (type === 'pr-page') {
-    posts = await getRelatedPosts(['Press Releases'], tags, 3);
+    posts = await getRelatedPosts(['Press Releases', 'Blogs'], tags, 3);
   }
 
   const rcTeasers = document.createElement('ul');
