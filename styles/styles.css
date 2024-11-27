@@ -529,6 +529,11 @@ a.button.secondary:hover, button.secondary:hover {
   border-color: currentcolor;
 }
 
+.button-container a.button.secondary:hover .icon,
+.button-container button.secondary:hover .icon {
+  --icon-color: var(--color-white);
+}
+
 a.button.secondary:focus, button.secondary:focus {
   background-color: var(--color-primary-1);
   color: var(--color-white);
