@@ -197,13 +197,16 @@
     max-height: 100%;
 }
 
+.block.offer-box.alternate-2 .offer-box-header .promotion-with-text:has(.text-with-badge) > p {
+    padding-left: 1rem;
+}
+
 .block.offer-box.alternate-2 .offer-box-header .promotion-with-text .text-with-badge {
     flex-direction: column;
     justify-items: flex-start;
     background: #ffc62b;
     border-radius: .5rem;
     color: #000;
-    display: inline-block;
     font-size: .75rem;
     font-weight: 600;
     min-width: 6rem;
@@ -211,6 +214,8 @@
     text-align: center;
     text-transform: uppercase;
     width: 6rem;
+    display: flex;
+    gap: 0.5rem;
 }
 
 .block.offer-box.alternate-2 .offer-box-header .promotion-with-text .text-with-badge > p:nth-child(2) {
