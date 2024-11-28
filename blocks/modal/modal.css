@@ -52,7 +52,7 @@ body.modal-open {
   border-radius: 0;
   padding: 0;
   background-color: transparent;
-  color: var(--text-color);
+  color: var(--color-dark-gray);
   line-height: 0;
 }
 
@@ -117,4 +117,16 @@ body.modal-open {
     width: calc(100vw - 16px);
     max-height: calc(100dvh - 16px);
   }
+}
+
+.modal dialog h6 {
+  font-size: 1rem;
+}
+
+.modal dialog form {
+  row-gap: 0.2rem;
+}
+
+.modal dialog form .checkbox-wrapper {
+  padding-top:0.4rem;
 }
