@@ -954,6 +954,54 @@ main .two-column.form-container > div:nth-last-child(1) {
     grid-row: 1 / span 4;
 }
 
+
+main .contact-us{
+    margin: auto;
+    column-gap: 0;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    max-width: var(--section-width);
+}
+
+main .contact-us .form-wrapper {
+    grid-row: span 3;
+}
+
+main .contact-us .columns-wrapper .columns-img-col {
+    max-width: 138px;
+    max-height: 138px;
+}
+
+main .contact-us .columns-wrapper .columns-has-image > div {
+    position: relative;
+}
+
+main .contact-us .columns-wrapper .columns-has-image > div > div:nth-child(2)::before {
+    content: "";
+    display: block;
+    margin: 0;
+    height: 100%;
+    border-left: 4px solid #40bbd5;
+    position: absolute;
+    left: 9rem;
+    top: 0;
+    width: 0;
+}
+
+main .contact-us .columns-wrapper {
+    box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+}
+
+/* stylelint-disable */
+main .contact-us > div:nth-child(3) {
+    margin-top: 0;
+}
+
+main .contact-us > div:nth-child(4) {
+    margin: 0;
+    padding: 0;
+}
+
 @media (max-width: 1000px) {
     main .two-column.form-container .default-content-wrapper {
         width: 90%;
@@ -998,6 +1046,32 @@ main .two-column.form-container > div:nth-last-child(1) {
     main .hard-drive-background.two-column.form-container > div {
         grid-column: span 1;
         grid-row: unset;
+    }
+
+    main .section.contact-us {
+        grid-template-columns: 1fr;
+    }
+
+    main .section.contact-us .form-wrapper {
+        padding: 0.2rem;
+    }
+
+    main .section.contact-us > div:nth-child(4) {
+        display: none;
+    }
+
+    main .contact-us .columns-wrapper .columns-img-col {
+        max-height: 58px;
+        max-width: 58px;
+    }
+
+    main .contact-us .columns-wrapper .columns-has-image > div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    main .contact-us > div:nth-child(2) {
+        margin-top: 0;
     }
 
 }
