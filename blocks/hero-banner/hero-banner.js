@@ -7,7 +7,7 @@ export default function decorate(block) {
   const heroImage = heroText?.nextElementSibling;
   const heroDesktopImage = wrapper?.nextElementSibling;
 
-  heroDesktopImage?.classList?.add('hero-banner-asset--desktop');
+  heroDesktopImage?.classList?.add('hero-banner-asset-desktop');
 
   heroText?.classList?.add('hero-banner-content-text');
   heroImage?.classList?.add('hero-banner-asset');
@@ -18,7 +18,7 @@ export default function decorate(block) {
 
   parentDiv?.classList?.add('hero-banner-content-ctas');
   buttons?.forEach((button) => {
-      parentDiv?.appendChild(button);
+    parentDiv?.appendChild(button);
   });
   heroText.appendChild(parentDiv);
 
@@ -33,36 +33,35 @@ export default function decorate(block) {
   const isFullWidthVariant = block.classList?.contains('hero-banner-full');
 
   if (isFullWidthVariant && heroDesktopImage) {
-      const mobileImg = heroImage.querySelector('img');
-      const desktopImg = heroDesktopImage.querySelector('img');
-      const img = heroImage.querySelector('img');
+    const mobileImg = heroImage.querySelector('img');
+    const desktopImg = heroDesktopImage.querySelector('img');
 
-      if (desktopImg) {
-          const picture = heroImage.querySelector('picture');
-          const newPicture = document.createElement('picture');
-          const mobileSource = document.createElement('source');
-          const desktopSource = document.createElement('source');
+    if (desktopImg) {
+      const picture = heroImage.querySelector('picture');
+      const newPicture = document.createElement('picture');
+      const mobileSource = document.createElement('source');
+      const desktopSource = document.createElement('source');
 
-          mobileSource.media = '(max-width: 767px)';
-          mobileSource.srcset = mobileImg.src;
+      mobileSource.media = '(max-width: 767px)';
+      mobileSource.srcset = mobileImg.src;
 
-          desktopSource.media = '(min-width: 768px)';
-          desktopSource.srcset = desktopImg.src;
+      desktopSource.media = '(min-width: 768px)';
+      desktopSource.srcset = desktopImg.src;
 
-          newPicture.appendChild(mobileSource);
-          newPicture.appendChild(desktopSource);
+      newPicture.appendChild(mobileSource);
+      newPicture.appendChild(desktopSource);
 
-          // default image source
-          const newImg = document.createElement('img');
-          newImg.src = desktopImg.src;
-          newImg.alt = img.alt;
+      // default image source
+      const newImg = document.createElement('img');
+      newImg.src = desktopImg.src;
+      newImg.alt = desktopImg.alt;
 
-          newPicture.appendChild(newImg);
+      newPicture.appendChild(newImg);
 
-          // add new picture to hero image
-          heroImage.removeChild(picture);
-          heroImage.appendChild(newPicture);
-      }
+      // add new picture to hero image
+      heroImage.removeChild(picture);
+      heroImage.appendChild(newPicture);
+    }
   }
 
   // Decorate variant hero image
