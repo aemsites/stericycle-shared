@@ -1003,6 +1003,11 @@ main .section.contact-us > div:nth-child(3) {
     margin-top: 0;
 }
 
+main .section.contact-us > div:nth-child(3) .button-container > a.button {
+    border-color: var(--color-yellow);
+    max-width: 100%;
+}
+
 main .section.contact-us > div:nth-child(4) {
     margin: 0;
     padding: 0;
@@ -1011,6 +1016,11 @@ main .section.contact-us > div:nth-child(4) {
 
 main .section .default-content-wrapper h1[id='contact-us'] {
     margin-left: 2rem;
+    margin-bottom: 0;
+}
+
+main .section.contact-us-title > .default-content-wrapper {
+    margin-bottom: 0;
 }
 
 @media (max-width: 1000px) {
