@@ -992,7 +992,6 @@ main .contact-us .columns-wrapper {
     box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
 }
 
-/* stylelint-disable */
 main .contact-us > div:nth-child(3) {
     margin-top: 0;
 }
@@ -1000,6 +999,14 @@ main .contact-us > div:nth-child(3) {
 main .contact-us > div:nth-child(4) {
     margin: 0;
     padding: 0;
+}
+
+main .section .default-content-wrapper h1[id='contact-us'] {
+    margin-left: 2rem;
+}
+
+main .contact-us .fragment-wrapper[data-id="contact"] > div > p{
+    font-size: 0.9rem;
 }
 
 @media (max-width: 1000px) {
@@ -1053,6 +1060,7 @@ main .contact-us > div:nth-child(4) {
     }
 
     main .section.contact-us .form-wrapper {
+        margin-top: 0;
         padding: 0.2rem;
     }
 
@@ -1074,6 +1082,10 @@ main .contact-us > div:nth-child(4) {
         margin-top: 0;
     }
 
+    main .section .default-content-wrapper h1[id='contact-us'] {
+        margin:0;
+    }
+
 }
 
 main .form-wrapper .form.contact-us-form{
@@ -1082,7 +1094,8 @@ main .form-wrapper .form.contact-us-form{
 }
 
 main .form-wrapper .form.contact-us-form form {
-    gap:unset;
+    row-gap: 0.5rem;
+    column-gap: unset;
 }
 
 main .form fieldset legend[for^="requesttype"] {
@@ -1092,4 +1105,11 @@ main .form fieldset legend[for^="requesttype"] {
 main .form fieldset legend[for^="selectservice"]{
     padding-left: 0.6rem;
     font-weight: unset;
+}
+
+main form .fragment-wrapper[data-id^='privacy-policy']  p,
+main form .fragment-wrapper[data-id^='policy']  p{
+    font-size: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
 }
