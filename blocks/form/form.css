@@ -702,13 +702,14 @@ main .form form .panel-wrapper.field-frequncy .radio-wrapper input{
 
 main .form form .panel-wrapper.field-requesttype .radio-wrapper,
 main .form form .panel-wrapper.field-frequncy .radio-wrapper{
-  grid-column: 2;
-  display: flex;
-  align-items: center;
-  margin-top: -45px;
-  width: 120px;
-  text-align: center;
-  background: var(--form-styles-border-color);
+    position: relative;
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    margin-top: -45px;
+    width: 120px;
+    text-align: center;
+    background: var(--form-styles-border-color);
 }
 
 main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(2),
@@ -770,7 +771,8 @@ main .get-a-quote-form-alternate {
 
 main .get-a-quote-form-alternate form {
     margin:0;
-    gap: unset;
+    column-gap: unset;
+    row-gap: 0.4rem;
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='privacy-policy']  p,
@@ -778,6 +780,7 @@ main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='policy']  p{
     font-size: 0.75rem;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
+    margin-bottom:0;
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {
@@ -815,6 +818,10 @@ main .footer-subscription-form form .fragment-wrapper > div p:nth-of-type(2) {
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] > div > p {
     font-size: 1rem;
+}
+
+main .section.contact-us .fragment-wrapper[data-id="contact"] > div > p{
+    font-size: 0.9rem;
 }
 
 main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='header'] > div > p {
@@ -899,6 +906,10 @@ main .campaign-form.form form {
     background-color: var(--color-gray);
 }
 
+main .section.contact-us .form-wrapper {
+    grid-row: span 3;
+}
+
 main .two-column.form-container .form-wrapper {
     justify-self: flex-end;
 }
@@ -963,10 +974,6 @@ main .contact-us{
     max-width: var(--section-width);
 }
 
-main .contact-us .form-wrapper {
-    grid-row: span 3;
-}
-
 main .contact-us .columns-wrapper .columns-img-col {
     max-width: 138px;
     max-height: 138px;
@@ -992,11 +999,11 @@ main .contact-us .columns-wrapper {
     box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
 }
 
-main .contact-us > div:nth-child(3) {
+main .section.contact-us > div:nth-child(3) {
     margin-top: 0;
 }
 
-main .contact-us > div:nth-child(4) {
+main .section.contact-us > div:nth-child(4) {
     margin: 0;
     padding: 0;
     max-width: 500px;
@@ -1004,10 +1011,6 @@ main .contact-us > div:nth-child(4) {
 
 main .section .default-content-wrapper h1[id='contact-us'] {
     margin-left: 2rem;
-}
-
-main .contact-us .fragment-wrapper[data-id="contact"] > div > p{
-    font-size: 0.9rem;
 }
 
 @media (max-width: 1000px) {
