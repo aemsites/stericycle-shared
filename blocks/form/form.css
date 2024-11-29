@@ -1059,6 +1059,10 @@ main .section .default-content-wrapper h1[id='contact-us'] {
         grid-row: unset;
     }
 
+    main .section.two-column.form-container > div.default-content-wrapper {
+        padding: 0;
+    }
+
     main .section.contact-us {
         grid-template-columns: 1fr;
     }
