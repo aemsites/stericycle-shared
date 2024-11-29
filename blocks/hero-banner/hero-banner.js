@@ -5,6 +5,9 @@ export default function decorate(block) {
 
   const heroText = wrapper.querySelector('div');
   const heroImage = heroText?.nextElementSibling;
+  const heroDesktopImage = wrapper?.nextElementSibling;
+
+  heroDesktopImage?.classList?.add('hero-banner-asset--desktop');
 
   heroText?.classList?.add('hero-banner-content-text');
   heroImage?.classList?.add('hero-banner-asset');
@@ -15,7 +18,7 @@ export default function decorate(block) {
 
   parentDiv?.classList?.add('hero-banner-content-ctas');
   buttons?.forEach((button) => {
-    parentDiv?.appendChild(button);
+      parentDiv?.appendChild(button);
   });
   heroText.appendChild(parentDiv);
 
@@ -27,8 +30,42 @@ export default function decorate(block) {
   promoBadge?.classList?.add('hero-banner-promo-badge');
 
   const isImageVariant = block.classList?.contains('hero-banner-image');
+  const isFullWidthVariant = block.classList?.contains('hero-banner-full');
 
-  // decorate hero image
+  if (isFullWidthVariant && heroDesktopImage) {
+      const mobileImg = heroImage.querySelector('img');
+      const desktopImg = heroDesktopImage.querySelector('img');
+      const img = heroImage.querySelector('img');
+
+      if (desktopImg) {
+          const picture = heroImage.querySelector('picture');
+          const newPicture = document.createElement('picture');
+          const mobileSource = document.createElement('source');
+          const desktopSource = document.createElement('source');
+
+          mobileSource.media = '(max-width: 767px)';
+          mobileSource.srcset = mobileImg.src;
+
+          desktopSource.media = '(min-width: 768px)';
+          desktopSource.srcset = desktopImg.src;
+
+          newPicture.appendChild(mobileSource);
+          newPicture.appendChild(desktopSource);
+
+          // default image source
+          const newImg = document.createElement('img');
+          newImg.src = desktopImg.src;
+          newImg.alt = img.alt;
+
+          newPicture.appendChild(newImg);
+
+          // add new picture to hero image
+          heroImage.removeChild(picture);
+          heroImage.appendChild(newPicture);
+      }
+  }
+
+  // Decorate variant hero image
   if (heroImage && isImageVariant) {
     const img = heroImage.querySelector('img');
     const picture = heroImage.querySelector('picture');
