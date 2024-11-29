@@ -139,6 +139,7 @@
     }
 
     .hero-banner-full .hero-banner-content {
+        padding: 0 40px;
         flex-direction: column;
         align-items: center;
     }
