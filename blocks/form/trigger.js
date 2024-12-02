@@ -1,3 +1,5 @@
+import { sampleRUM } from '../../scripts/aem.js';
+
 let stopTrigger = false;
 let timer;
 
@@ -12,6 +14,7 @@ async function triggerHandler(config, trigger) {
       timer = setTimeout(async () => {
         if (!stopTrigger) { // stop triggering when another modal is open
           trigger(config.path, config);
+          sampleRUM('modal-triggered', { source: config?.type });
         }
       }, parseInt(value, 10) * 1000);
     }
@@ -34,6 +37,7 @@ function openOnScroll(config, trigger) {
     entries.forEach((entry) => {
       if (entry.isIntersecting && !sessionStorage.getItem(config.path)) {
         trigger(config.path, config);
+        sampleRUM('modal-triggered', { source: config?.type });
         observer.disconnect();
       }
     });

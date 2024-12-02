@@ -326,6 +326,7 @@ async function autolinkModals(element) {
       e.preventDefault();
       const { openModal } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
       openModal(origin.href);
+      sampleRUM('modal-triggered', { source: 'button' });
     }
   });
   const { openOnTrigger } = await import(`${window.hlx.codeBasePath}/blocks/form/trigger.js`);
