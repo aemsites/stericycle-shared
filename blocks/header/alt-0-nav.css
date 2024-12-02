@@ -43,7 +43,6 @@ header.header-wrapper {
 footer.footer-wrapper .block.footer {
   max-width: var(--section-width);
   margin: 0 auto;
-  padding: 1rem 1.5rem;
 }
 
 @media (min-width: 600px) {
