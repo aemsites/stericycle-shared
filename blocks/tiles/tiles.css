@@ -1,0 +1,123 @@
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  margin: 4px 0;
+  text-align: center;
+  font-size: var(--body-font-size-s);
+}
+
+.tiles a {
+  text-decoration: none;
+}
+
+.tiles img {
+  width: 100%;
+}
+
+.tiles h3, .tiles h4, .tiles h5, .tiles h6 {
+  font-size: 16px;
+}
+
+.tiles .icon {
+  width: 60px;
+  height: auto;
+}
+
+.tiles > a > div > div {
+  --color-heading: var(--color-white);
+  --color-text: var(--color-white);
+  --color-link: var(--color-white);
+  --color-link-hover: var(--color-white);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  height: 200px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.tiles > a > div > .flip-card-front {
+  background-color: var(--color-primary-2);
+  padding: 3rem 1.5rem;
+}
+
+@media (min-width: 768px /* breakpoint-m */) {
+  .tiles > a:hover > div > .flip-card-front {
+    display: none;
+  }
+}
+
+.tiles.light > a > div > .flip-card-front {
+  --color-heading: var(--color-black);
+  --color-text: var(--color-black);
+  --color-link: var(--color-black);
+  --color-link-hover: var(--color-black);
+
+  background-color: var(--color-gray);
+}
+
+.tiles > a > div > .flip-card-back {
+  background-color: var(--color-primary-1);
+  display: none;
+  justify-content: space-between;
+  padding: 16px 24px;
+}
+
+@media (min-width: 768px /* breakpoint-m */) {
+  .tiles > a:hover > div > .flip-card-back {
+    display: flex;
+  }
+}
+
+.tiles > a > div > .flip-card-back > p {
+  text-align: left;
+  max-height: 100px;
+  overflow: hidden;
+}
+
+.tiles > a > div > .flip-card-back > p > span > a {
+  text-decoration: underline;
+}
+
+.tiles > a > div > .flip-card-back > p > span > a::after {
+  display: inline-block;
+  content: "\f054";
+  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+  margin-left: 4px;
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  .tiles {
+    display: flex;
+  }
+
+  .tiles > a {
+    flex: 1;
+  }
+
+  .tiles > a > div > div {
+    height: 250px;
+  }
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.tiles-container {
+  padding: 32px 0;
+}
+
+main .section.tiles-container.gray-background {
+  padding-top: 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.tiles-container > .tiles-wrapper {
+  padding: 0 32px;
+}
+
+main .section.tiles-container > div.tiles-wrapper {
+  margin-bottom: 0;
+  margin-top: 0;
+}
