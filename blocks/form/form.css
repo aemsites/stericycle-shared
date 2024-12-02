@@ -95,6 +95,12 @@ main .form {
     background-color: var(--form-background-color);
 }
 
+main .footer-subscription-form > div {
+    max-width: var(--section-width);
+    width: 100%;
+    padding: 2rem 1.5rem;
+}
+
 main .form > div:not(:first-child) {
     display: none;
 }
@@ -435,7 +441,7 @@ main .form form .wizard .wizard-button-wrapper .field-wrapper{
     flex-wrap: wrap;
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0.5rem 1rem;
     font-weight: var(--form-fieldset-legend-font-weight);
     font-size: var(--form-fieldset-legend-font-size);
     color: var(--form-fieldset-legend-color);
@@ -508,6 +514,7 @@ main .get-a-quote-form-alternate form .panel-wrapper {
 main .campaign-form.form form .panel-wrapper {
     padding: 5px;
     background-color: var(--color-gray);
+    display: block;
 }
 
 main .get-a-quote-form-alternate.grey-background form .panel-wrapper{
@@ -695,13 +702,14 @@ main .form form .panel-wrapper.field-frequncy .radio-wrapper input{
 
 main .form form .panel-wrapper.field-requesttype .radio-wrapper,
 main .form form .panel-wrapper.field-frequncy .radio-wrapper{
-  grid-column: 2;
-  display: flex;
-  align-items: center;
-  margin-top: -45px;
-  width: 120px;
-  text-align: center;
-  background: var(--form-styles-border-color);
+    position: relative;
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    margin-top: -45px;
+    width: 120px;
+    text-align: center;
+    background: var(--form-styles-border-color);
 }
 
 main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(2),
@@ -763,7 +771,8 @@ main .get-a-quote-form-alternate {
 
 main .get-a-quote-form-alternate form {
     margin:0;
-    gap: unset;
+    column-gap: unset;
+    row-gap: 0.4rem;
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='privacy-policy']  p,
@@ -771,6 +780,7 @@ main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='policy']  p{
     font-size: 0.75rem;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
+    margin-bottom:0;
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {
@@ -802,6 +812,31 @@ main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='
     font-size: 1.4rem;
 }
 
+main .footer-subscription-form form .fragment-wrapper > div p:nth-of-type(2) {
+    margin-bottom: 0.4rem;
+}
+
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] > div > p {
+    font-size: 1rem;
+}
+
+main .section.contact-us .fragment-wrapper[data-id="contact"] > div > p{
+    font-size: 0.9rem;
+}
+
+main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='header'] > div > p {
+    margin-bottom: 0;
+    padding: 0.8rem;
+}
+
+main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='contact-fragment'] > div > p {
+    margin-bottom: 0;
+    padding: 0.8rem 0.8rem 0.4rem;
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+
 main .get-a-quote-form-alternate.no-header-color form .fragment-wrapper[data-id^='header'] {
     background-color: unset;
 }
@@ -812,10 +847,6 @@ main .footer-subscription-form  form {
 
 main .get-a-quote-form-alternate.grey-background form {
     background-color: var(--color-gray);
-}
-
-main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] > div > p {
-    font-size: 1rem;
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] a{
@@ -829,9 +860,10 @@ main .footer-subscription-form.form-container {
 }
 
 main .footer-subscription-form {
-    max-width: var(--section-width);
-    margin: 2rem auto;
-    padding: 0 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
 }
 
 main .footer-subscription-form .button-wrapper.field-wrapper.submit-wrapper button{
@@ -849,13 +881,15 @@ main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-
     font-size: 0.87rem;
 }
 
-main .footer-subscription-form form .fragment-wrapper > div p:nth-of-type(2) {
-    margin-bottom: 0.4rem;
-}
-
 @media (max-width: 1000px) {
     main .footer-subscription-form form .panel-wrapper {
         grid-template-columns: 1fr;
+    }
+
+    main .footer-subscription-form {
+        max-width: var(--section-width);
+        margin: auto;
+        padding: 2rem 1.5rem;
     }
 }
 
@@ -870,6 +904,10 @@ main .campaign-form.form form {
     display: block;
     margin-top: 2rem;
     background-color: var(--color-gray);
+}
+
+main .section.contact-us .form-wrapper {
+    grid-row: span 3;
 }
 
 main .two-column.form-container .form-wrapper {
@@ -927,6 +965,64 @@ main .two-column.form-container > div:nth-last-child(1) {
     grid-row: 1 / span 4;
 }
 
+
+main .contact-us{
+    margin: auto;
+    column-gap: 0;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    max-width: var(--section-width);
+}
+
+main .contact-us .columns-wrapper .columns-img-col {
+    max-width: 138px;
+    max-height: 138px;
+}
+
+main .contact-us .columns-wrapper .columns-has-image > div {
+    position: relative;
+}
+
+main .contact-us .columns-wrapper .columns-has-image > div > div:nth-child(2)::before {
+    content: "";
+    display: block;
+    margin: 0;
+    height: 100%;
+    border-left: 4px solid #40bbd5;
+    position: absolute;
+    left: 9rem;
+    top: 0;
+    width: 0;
+}
+
+main .contact-us .columns-wrapper {
+    box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+}
+
+main .section.contact-us > div:nth-child(3) {
+    margin-top: 0;
+}
+
+main .section.contact-us > div:nth-child(3) .button-container > a.button {
+    border-color: var(--color-yellow);
+    max-width: 100%;
+}
+
+main .section.contact-us > div:nth-child(4) {
+    margin: 0;
+    padding: 0;
+    max-width: 500px;
+}
+
+main .section .default-content-wrapper h1[id='contact-us'] {
+    margin-left: 2rem;
+    margin-bottom: 0;
+}
+
+main .section.contact-us-title > .default-content-wrapper {
+    margin-bottom: 0;
+}
+
 @media (max-width: 1000px) {
     main .two-column.form-container .default-content-wrapper {
         width: 90%;
@@ -973,6 +1069,41 @@ main .two-column.form-container > div:nth-last-child(1) {
         grid-row: unset;
     }
 
+    main .section.two-column.form-container > div.default-content-wrapper {
+        padding: 0;
+    }
+
+    main .section.contact-us {
+        grid-template-columns: 1fr;
+    }
+
+    main .section.contact-us .form-wrapper {
+        margin-top: 0;
+        padding: 0.2rem;
+    }
+
+    main .section.contact-us > div:nth-child(4) {
+        display: none;
+    }
+
+    main .contact-us .columns-wrapper .columns-img-col {
+        max-height: 58px;
+        max-width: 58px;
+    }
+
+    main .contact-us .columns-wrapper .columns-has-image > div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    main .contact-us > div:nth-child(2) {
+        margin-top: 0;
+    }
+
+    main .section .default-content-wrapper h1[id='contact-us'] {
+        margin:0;
+    }
+
 }
 
 main .form-wrapper .form.contact-us-form{
@@ -981,5 +1112,22 @@ main .form-wrapper .form.contact-us-form{
 }
 
 main .form-wrapper .form.contact-us-form form {
-    gap:unset;
+    row-gap: 0.5rem;
+    column-gap: unset;
+}
+
+main .form fieldset legend[for^="requesttype"] {
+    font-weight: unset;
+}
+
+main .form fieldset legend[for^="selectservice"]{
+    padding-left: 0.6rem;
+    font-weight: unset;
+}
+
+main form .fragment-wrapper[data-id^='privacy-policy']  p,
+main form .fragment-wrapper[data-id^='policy']  p{
+    font-size: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
 }
