@@ -1,6 +1,6 @@
 import usStates from '../../blocks/service-location-map/us-states.js';
 import {
-  buildBlock, decorateBlock,
+  decorateBlock,
   getMetadata,
   loadBlocks,
 } from '../../scripts/aem.js';
