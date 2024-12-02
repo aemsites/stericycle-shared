@@ -7,7 +7,13 @@ main section .tabs-container > div {
 }
 
 .block.tabs .tabs-list {
-    margin-bottom: 28px;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 42px;
+    max-width: 100%;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--color-grey200);
     scrollbar-width: none;
 }
 
@@ -107,15 +113,6 @@ main section .tabs-container > div {
     border-top: 1px solid var(--color-light-silver);
 }
 
-.block.tabs:not(.vertical) .tabs-list {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-    max-width: 100%;
-    overflow-x: auto;
-    border-bottom: 1px solid var(--color-grey200);
-}
-
 .block.tabs .tabs-list button {
     flex: 0 0 max-content;
     margin: 4px 2px;
@@ -123,7 +120,6 @@ main section .tabs-container > div {
     border-radius: 0;
     padding: 10px 14px;
     width: 100%;
-    background-color: var(--light-color);
     color: var(--color-primary-1);
     font-size: var(--heading-font-size-m);
     font-weight: bold;
@@ -150,11 +146,6 @@ main section .tabs-container > div {
     & >  * {
         color: var(--color-primary-1);
     }
-}
-
-.block.tabs .tabs-list button[aria-selected="false"]:hover,
-.block.tabs .tabs-list button[aria-selected="false"]:focus {
-    border-radius: 4px;
 }
 
 .block.tabs .tabs-panel[aria-hidden="true"] {
@@ -254,17 +245,25 @@ main section .tabs-container > div {
         display: none;
     }
 
+    .block.tabs .tabs-list {
+        margin-bottom: 28px;
+    }
+
+    .block.tabs .tabs-panel {
+        flex-direction: row;
+    }
+
     .block.tabs.vertical .tabs-list {
         display: flex;
         flex-direction: column;
         gap: 8px;
         max-width: 100%;
-        overflow-x: auto;
+        overflow-x: visible;
         margin-bottom: .10rem;
         padding: 0 2px;
         flex-basis: 30%;
         flex-shrink: 0;
-        border-right: 2px solid var(--color-grey200);
+        border-bottom: none;
     }
     
     .block.tabs.vertical {
