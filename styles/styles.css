@@ -635,6 +635,14 @@ main .list-style-checkmarks ul {
   list-style: none;
 }
 
+main .list-style-checkmarks li::marker, 
+main .list-style-bullets li::marker, 
+main .list-style-orange-triangles li::marker,
+main .list-style-big-numbers li::marker, 
+main .list-style-more-space li::marker {
+  content: "";
+}
+
 main ol {
   position: relative;
   padding: 0;
@@ -784,6 +792,10 @@ main .section.with-image > div.section-image-wrapper:first-child {
 
   .blog-page main .breadcrumb-wrapper {
     max-width: 1320px;
+  }
+
+  main div.shredded-paper-background-column {
+    background-position-y: 50%;
   }
 }
 
