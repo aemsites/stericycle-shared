@@ -39,18 +39,18 @@
   cursor: pointer;
 }
 
-.tiles > a > div > .flip-card-front {
+.tiles > a > div > .tiles-front {
   background-color: var(--color-primary-2);
   padding: 3rem 1.5rem;
 }
 
 @media (min-width: 768px /* breakpoint-m */) {
-  .tiles > a:hover > div > .flip-card-front {
+  .tiles > a:hover > div > .tiles-front {
     display: none;
   }
 }
 
-.tiles.light > a > div > .flip-card-front {
+.tiles.light > a > div > .tiles-front {
   --color-heading: var(--color-black);
   --color-text: var(--color-black);
   --color-link: var(--color-black);
@@ -59,7 +59,7 @@
   background-color: var(--color-gray);
 }
 
-.tiles > a > div > .flip-card-back {
+.tiles > a > div > .tiles-back {
   background-color: var(--color-primary-1);
   display: none;
   justify-content: space-between;
@@ -67,22 +67,22 @@
 }
 
 @media (min-width: 768px /* breakpoint-m */) {
-  .tiles > a:hover > div > .flip-card-back {
+  .tiles > a:hover > div > .tiles-back {
     display: flex;
   }
 }
 
-.tiles > a > div > .flip-card-back > p {
+.tiles > a > div > .tiles-back > p {
   text-align: left;
   max-height: 100px;
   overflow: hidden;
 }
 
-.tiles > a > div > .flip-card-back > p > span > a {
+.tiles > a > div > .tiles-back > p > span > a {
   text-decoration: underline;
 }
 
-.tiles > a > div > .flip-card-back > p > span > a::after {
+.tiles > a > div > .tiles-back > p > span > a::after {
   display: inline-block;
   content: "\f054";
   font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
