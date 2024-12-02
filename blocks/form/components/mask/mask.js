@@ -112,6 +112,7 @@ const masking = {
 };
 
 export default function decorate(field) {
+  field.classList.add('mask');
   const input = field?.querySelector('input');
   input.dataset.type = input?.type === 'tel' ? '' : 'postalCode';
   masking.init(input);
