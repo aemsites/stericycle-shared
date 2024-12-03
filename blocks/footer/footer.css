@@ -7,6 +7,12 @@ footer {
   color: var(--color-white);
 }
 
+/** apply this styling when dealing with alt-0 nav **/
+body:has(header > div.block.header > nav.alt-0-nav) footer.footer-wrapper .block.footer {
+  max-width: var(--section-width);
+  margin: 0 auto;
+}
+
 footer .icon.icon-shredit-logo {
   height: auto;
   width: auto;
