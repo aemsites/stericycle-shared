@@ -14,11 +14,11 @@
   filter: none;
 }
 
-.flip-cards.gray img {
+.flip-cards.light img {
   filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
 }
 
-.flip-cards.blue img{
+.flip-cards.dark img{
   filter: none;
 }
 
@@ -36,13 +36,14 @@
   justify-content: space-between;
   padding: 32px;
   border-radius: 12px;
+  height: 452px;
 }
 
-.flip-cards.gray > .wrapper > div {
+.flip-cards.light > .wrapper > div {
   background: var(--color-grey200);
 }
 
-.flip-cards.blue > .wrapper > div {
+.flip-cards.dark > .wrapper > div {
   background: var(--color-bg-tertiary);
 }
 
@@ -74,17 +75,16 @@
   color: var(--color-text-tertiary);
 }
 
-.flip-cards.blue > .wrapper > div .clamp-title, .flip-cards.blue > .wrapper > div .clamp-description {
+.flip-cards.dark > .wrapper > div .clamp-title, .flip-cards.dark > .wrapper > div .clamp-description {
   color: var(--color-text-tertiary);
 }
 
-
-.flip-cards.gray > .wrapper > div .clamp-title, .flip-cards.gray > .wrapper > div .clamp-description {
+.flip-cards.light > .wrapper > div .clamp-title, .flip-cards.light > .wrapper > div .clamp-description {
   color: var(--color-text);
 }
 
 .flip-cards > .wrapper > div a.button.primary {
-  margin: 0;
+  margin: 8px 0 0;
   padding: 8px 24px;
   line-height: 160%;
   letter-spacing: 0.32px;
@@ -128,7 +128,7 @@ main .section.flip-cards-container {
   padding: 32px 0;
 }
 
-main .section.flip-cards-container.gray-background {
+main .section.flip-cards-container.light-background {
   padding-top: 0;
 }
 
