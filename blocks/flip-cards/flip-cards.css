@@ -1,105 +1,125 @@
 .flip-cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4px;
+  gap: 43px;
   margin: 4px 0;
-  text-align: center;
   font-size: var(--body-font-size-s);
 }
 
-.flip-cards a {
+.flip-cards .wrapper {
   text-decoration: none;
 }
 
 .flip-cards img {
   width: 100%;
+  filter: none;
 }
 
-.flip-cards h3, .flip-cards h4, .flip-cards h5, .flip-cards h6 {
-  font-size: 16px;
+.flip-cards.light img {
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
 }
 
-.flip-cards .icon {
+.flip-cards.dark img{
+  filter: none;
+}
+
+.flip-cards > .wrapper > div > div:first-child .icon {
   width: 60px;
   height: auto;
 }
 
-.flip-cards > a > div > div {
-  --color-heading: var(--color-white);
-  --color-text: var(--color-white);
-  --color-link: var(--color-white);
-  --color-link-hover: var(--color-white);
 
+.flip-cards > .wrapper > div {
+  background: var(--color-bg-tertiary);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 16px;
-  height: 200px;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.flip-cards > a > div > .flip-card-front {
-  background-color: var(--color-primary-2);
-  padding: 3rem 1.5rem;
-}
-
-@media (min-width: 768px /* breakpoint-m */) {
-  .flip-cards > a:hover > div > .flip-card-front {
-    display: none;
-  }
-}
-
-.flip-cards.light > a > div > .flip-card-front {
-  --color-heading: var(--color-black);
-  --color-text: var(--color-black);
-  --color-link: var(--color-black);
-  --color-link-hover: var(--color-black);
-
-  background-color: var(--color-gray);
-}
-
-.flip-cards > a > div > .flip-card-back {
-  background-color: var(--color-primary-1);
-  display: none;
+  align-items: flex-start;
   justify-content: space-between;
-  padding: 16px 24px;
+  padding: 32px;
+  border-radius: 12px;
+  height: 452px;
 }
 
-@media (min-width: 768px /* breakpoint-m */) {
-  .flip-cards > a:hover > div > .flip-card-back {
-    display: flex;
-  }
+.flip-cards.light > .wrapper > div {
+  background: var(--color-grey200);
 }
 
-.flip-cards > a > div > .flip-card-back > p {
-  text-align: left;
-  max-height: 100px;
+.flip-cards.dark > .wrapper > div {
+  background: var(--color-bg-tertiary);
+}
+
+.flip-cards > .wrapper > div > div:last-of-type {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.flip-cards > .wrapper > div .clamp-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0;
 }
 
-.flip-cards > a > div > .flip-card-back > p > span > a {
-  text-decoration: underline;
+.flip-cards > .wrapper > div .clamp-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.flip-cards > a > div > .flip-card-back > p > span > a::after {
+.flip-cards > .wrapper > div .clamp-title, .flip-cards > .wrapper > div .clamp-description {
+  color: var(--color-text-tertiary);
+}
+
+.flip-cards.dark > .wrapper > div .clamp-title, .flip-cards.dark > .wrapper > div .clamp-description {
+  color: var(--color-text-tertiary);
+}
+
+.flip-cards.light > .wrapper > div .clamp-title, .flip-cards.light > .wrapper > div .clamp-description {
+  color: var(--color-text);
+}
+
+.flip-cards > .wrapper > div a.button.primary {
+  margin: 8px 0 0;
+  padding: 8px 24px;
+  line-height: 160%;
+  letter-spacing: 0.32px;
+}
+
+.flip-cards > .wrapper > div a.button.primary .icon {
+  --icon-color: var(--color-black);
+
   display: inline-block;
-  content: "\f054";
-  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
-  margin-left: 4px;
+  margin: 0 auto;
+  height: 24px;
+  width: 24px;
+  background-color: var(--icon-color);
+  mask-repeat: no-repeat;
+  mask-position: center center;
+  mask-size: contain;
+  mask-image: var(--mask-image);
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
   .flip-cards {
     display: flex;
+    gap: 8px;
   }
 
-  .flip-cards > a {
+  .flip-cards > .wrapper {
     flex: 1;
   }
 
-  .flip-cards > a > div > div {
-    height: 250px;
+  .flip-cards > .wrapper > div {
+    height: 420px;
+  }
+
+  .flip-cards.flip-cards-4-cols > .wrapper > div {
+    height: 472px;
   }
 }
 
@@ -108,7 +128,7 @@ main .section.flip-cards-container {
   padding: 32px 0;
 }
 
-main .section.flip-cards-container.gray-background {
+main .section.flip-cards-container.light-background {
   padding-top: 0;
 }
 
