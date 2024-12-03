@@ -675,7 +675,7 @@ async function loadEager(doc) {
   document.documentElement.lang = getLocaleAsBCP47();
 
   const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('load-martech').toLowerCase() === 'eager') {
+  if (urlParams.get('load-martech')?.toLowerCase() === 'eager') {
     await initMartech();
   }
 

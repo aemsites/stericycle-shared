@@ -10,7 +10,7 @@ import decorate from '../blocks/post-teaser-list/post-teaser-list.js';
 sampleRUM('cwv');
 // Full Martech stack
 const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.get('load-martech').toLowerCase() === 'delayed') {
+if (urlParams.get('load-martech')?.toLowerCase() === 'delayed') {
   initMartech();
 }
 
