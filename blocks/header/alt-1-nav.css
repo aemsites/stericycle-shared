@@ -3,8 +3,12 @@
   --nav-height: 116px;
 }
 
+header.header-wrapper {
+  position: relative;
+}
+
 .block.header {
-  position: fixed;
+  position: relative;
   height: var(--nav-height);
   background-color: var(--color-primary-1);
   color: var(--color-white);

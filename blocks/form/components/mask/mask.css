@@ -1,12 +1,11 @@
-main .form form .field-wrapper {
+main .form form .field-wrapper.mask {
     position: relative;
 }
 
-main .form form .field-wrapper .shell {
+main .form form .field-wrapper.mask .shell {
     position: absolute;
     line-height: 1;
     display: -webkit-box;
-    display: flexbox;
     display: flex;
     top: 33px;
     left: 10px;
@@ -14,24 +13,37 @@ main .form form .field-wrapper .shell {
     opacity: 0;
 }
 
-main .form form .field-wrapper .shell span {
+main .form.get-a-quote-form-alternate form >.field-wrapper.mask .shell{
+    left: 18px;
+}
+
+main .form form .field-wrapper.mask .shell span {
     position: absolute;
     left: 3px;
     top: 3px;
     pointer-events: none;
-    width: 100%
+    width: 100%;
+    letter-spacing: 1px;
+    font-family: var(--font-family-lato), sans-serif;
 }
 
-main .form form .field-wrapper .shell i {
+main .form form .field-wrapper.mask .shell i {
     color: transparent;
     opacity: 0;
-    visibility: hidden
+    visibility: hidden;
+    letter-spacing: 1px;
+    font-family: var(--font-family-lato), sans-serif;
 }
 
-main .form form .field-wrapper.focus .shell {
+main .form form .field-wrapper.mask.focus .shell {
     opacity: 1
 }
 
-main .form form .field-wrapper input:focus::placeholder {
+main .form form .field-wrapper.mask input:focus::placeholder {
     opacity: 0
 }
+
+main .form form .field-wrapper.mask input {
+    letter-spacing: 1px;
+}
+
