@@ -1,4 +1,5 @@
-import { h3, h4, p } from '../../scripts/dom-helpers.js';
+import { decorateButtons } from '../../scripts/aem.js';
+import { a, h3, p, span } from '../../scripts/dom-helpers.js';
 
 async function getQueryIdx(url) {
   let json;
@@ -12,13 +13,10 @@ async function getQueryIdx(url) {
 }
 
 export default async function decorate(block) {
-  const cols = [...block.firstElementChild.children];
   const rows = [...block.children];
-  let fronts = [];
   let backs = [];
-  let links = [];
 
-  block.classList.add(`.flip-cards-${cols.length}-cols`);
+  block.classList.add(`flip-cards-${rows[0].children.length}-cols`);
 
   if (block.children.length === 0) {
     block.innerHTML = 'Malformed block structure. No content.';
@@ -38,105 +36,91 @@ export default async function decorate(block) {
 
   pages.forEach((page, idx) => {
     const pagePath = new URL(page.href).pathname;
-    const cardFront = document.createElement('div');
     const cardBack = document.createElement('div');
-    const link = pages[idx];
     if (Object.hasOwn(lookupTable, pagePath)) {
       const cardDetails = lookupTable[pagePath];
       const icon = rows[0].children.item(0);
+      if (icon) {
+        cardBack.appendChild(icon);
+      }
       const titleh3 = document.createElement('h3');
-      const titleh4 = document.createElement('h4');
       titleh3.textContent = cardDetails.title;
-      titleh4.textContent = cardDetails.title;
+      titleh3.classList.add('clamp-title');
+
       const desc = document.createElement('p');
       desc.textContent = cardDetails.description;
-      if (icon) {
-        cardFront.appendChild(icon);
-      }
-      if (titleh3) {
-        cardFront.appendChild(titleh3);
-      }
-      if (titleh4) {
-        cardBack.appendChild(titleh4);
-      }
-      if (desc) {
-        cardBack.appendChild(desc);
-      }
+      desc.classList.add('clamp-description');
+
+      const url = page.href;
+      const readMoreButton = a(
+        { class: 'button primary', href: url, target: '_self' },
+        page.title || 'Read More',
+        span({ class: 'icon icon-right-arrow', 'data-icon-src': '/icons/right-arrow.svg', style: '--mask-image: url(/icons/right-arrow.svg);' }),
+      );
+      decorateButtons(readMoreButton);
+
+      const contentDiv = document.createElement('div');
+      contentDiv.appendChild(titleh3);
+      contentDiv.appendChild(desc);
+      contentDiv.appendChild(readMoreButton);
+
+      cardBack.appendChild(contentDiv);
+
+      backs.push(cardBack);
     } else {
-      // Whenever Flipcard refers to an external link, we get the details directly from the doc/author
+      // Whenever flip-cards refers to an external link, we get the details directly from the doc/author
       const rowChildren = block.children[1] ? [...block.children[1].children] : [];
       if (rowChildren && rowChildren[idx]) {
         const defaultCardDetails = rowChildren[idx];
-        const icon = rows[0]?.children?.item(0);
+        const icon = rows[0].children.item(0);
+        if (icon) {
+          cardBack.appendChild(icon);
+        }
         const titleh3 = h3();
-        const titleh4 = h4();
-        const defaultH4 = defaultCardDetails.querySelector('h4');
-        titleh3.textContent = defaultH4?.textContent;
-        titleh4.textContent = defaultH4?.textContent;
+        const defaultH3 = defaultCardDetails.querySelector('h3');
+        titleh3.textContent = defaultH3?.textContent;
+        titleh3.classList.add('clamp-title');
         const desc = p();
         defaultCardDetails.querySelectorAll('p:not(.button-container):not(:last-of-type)')?.forEach((para) => {
           desc.appendChild(document.createTextNode(para.textContent));
         });
+        desc.classList.add('clamp-description');
 
-        if (icon) {
-          cardFront.appendChild(icon);
-        }
-        if (titleh3) {
-          cardFront.appendChild(titleh3);
-        }
-        if (titleh4) {
-          cardBack.appendChild(titleh4);
-        }
-        if (desc) {
-          cardBack.appendChild(desc);
-        }
+        const url = page.href;
+        const readMoreButton = a(
+          { class: 'button primary', href: url, target: '_self' },
+          page.title || 'Read More',
+          span({ class: 'icon icon-right-arrow', 'data-icon-src': '/icons/right-arrow.svg', style: '--mask-image: url(/icons/right-arrow.svg);' }),
+        );
+        decorateButtons(readMoreButton);
+
+        const contentDiv = document.createElement('div');
+        contentDiv.appendChild(titleh3);
+        contentDiv.appendChild(desc);
+        contentDiv.appendChild(readMoreButton);
+
+        cardBack.appendChild(contentDiv);
+
+        backs.push(cardBack);
       }
     }
-    fronts.push(cardFront);
-    backs.push(cardBack);
-    links.push(link);
   });
 
-  if (fronts.length === 0 && backs.length === 0 && links.length === 0) {
-    fronts = [...rows[0].children];
+  if (backs.length === 0) {
     backs = rows[1] ? [...rows[1].children] : [];
-    links = rows[2] ? [...rows[2].children] : [];
   }
 
-  const linkBacks = [...links];
-  // decorate backs
-  backs.forEach((card, i) => {
-    const paragraph = document.createElement('p');
-    const readMore = document.createElement('span');
-    links[i].classList.remove('button');
-    readMore.append(linkBacks[i]);
-    paragraph.appendChild(readMore);
-    card.appendChild(paragraph);
-  });
-
-  // create combined card
-  fronts.forEach((front, i) => {
-    // create link wrapper
+  // Append backs directly to the block
+  backs.forEach((back, i) => {
     const anchor = document.createElement('a');
     block.appendChild(anchor);
-    const wrapper = document.createElement('div');
-    anchor.appendChild(wrapper);
-    front.classList.add('flip-card-front');
-    wrapper.appendChild(front);
+    anchor.appendChild(back);
 
     // add href
-    if (links.length > i) {
-      anchor.href = links[i].href;
-      anchor.title = links[i].title;
+    if (pages.length > i) {
+      anchor.href = pages[i].href;
+      anchor.title = pages[i].title;
     }
-
-    // add backs
-    if (backs.length <= i) {
-      return;
-    }
-    const back = backs[i];
-    back.classList.add('flip-card-back');
-    wrapper.appendChild(back);
   });
 
   // cleanup
