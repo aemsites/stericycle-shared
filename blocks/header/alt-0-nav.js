@@ -7,7 +7,7 @@ export default async function decorate(block) {
 
   // @formatter:off
   /* eslint-disable function-paren-newline,function-call-argument-newline */
-  const nav = domEl('nav', { id: 'nav' },
+  const nav = domEl('nav', { id: 'nav', class: 'alt-0-nav' },
     div({ class: 'logo' },
       a({ href: `/${locale}`, class: 'logo-link', title: 'Shred-it' },
         img({
