@@ -39,7 +39,6 @@ export default async function decorate(block) {
     if (Object.hasOwn(lookupTable, pagePath)) {
       const cardDetails = lookupTable[pagePath];
       const icon = rows[0].children.item(0);
-      const readMoreButton = rows[1].children.item(0);
       if (icon) {
         cardBack.appendChild(icon);
       }
@@ -50,6 +49,17 @@ export default async function decorate(block) {
       const desc = document.createElement('p');
       desc.textContent = cardDetails.description;
       desc.classList.add('clamp-description');
+
+      const readMoreButton = document.createElement('a');
+      readMoreButton.href = page.href;
+      readMoreButton.className = 'button primary';
+      readMoreButton.textContent = page.title;
+      const iconSpan = document.createElement('span');
+      iconSpan.className = 'icon icon-right-arrow';
+      iconSpan.setAttribute('data-icon-src', '/icons/right-arrow.svg');
+      iconSpan.style.setProperty('--mask-image', 'url(/icons/right-arrow.svg)');
+
+      readMoreButton.appendChild(iconSpan);
 
       const contentDiv = document.createElement('div');
       contentDiv.appendChild(titleh3);
@@ -65,7 +75,6 @@ export default async function decorate(block) {
       if (rowChildren && rowChildren[idx]) {
         const defaultCardDetails = rowChildren[idx];
         const icon = rows[0].children.item(0);
-        const readMoreButton = rows[1].children.item(0);
         if (icon) {
           cardBack.appendChild(icon);
         }
@@ -78,6 +87,17 @@ export default async function decorate(block) {
           desc.appendChild(document.createTextNode(para.textContent));
         });
         desc.classList.add('clamp-description');
+        const readMoreButton = document.createElement('a');
+        readMoreButton.href = page.href;
+        readMoreButton.className = 'button primary';
+        readMoreButton.textContent = page.title;
+
+        const iconSpan = document.createElement('span');
+        iconSpan.className = 'icon icon-right-arrow';
+        iconSpan.setAttribute('data-icon-src', '/icons/right-arrow.svg');
+        iconSpan.style.setProperty('--mask-image', 'url(/icons/right-arrow.svg)');
+
+        readMoreButton.appendChild(iconSpan);
 
         const contentDiv = document.createElement('div');
         contentDiv.appendChild(titleh3);

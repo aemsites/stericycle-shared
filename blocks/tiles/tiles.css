@@ -1,6 +1,6 @@
 .tiles {
   display: grid;
-  gap: 8px;
+  gap: 43px;
   margin: 4px 0;
   font-size: var(--body-font-size-s);
 }
@@ -11,9 +11,6 @@
 
 .tiles img {
   width: 100%;
-}
-
-.tiles img {
   filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
 }
 
@@ -77,9 +74,31 @@
   color: var(--color-text-tertiary);
 }
 
+.tiles > a > div a.button.primary {
+  margin: 0;
+  padding: 8px 24px;
+  line-height: 160%;
+  letter-spacing: 0.32px;
+}
+
+.tiles > a > div a.button.primary .icon {
+  --icon-color: var(--color-black);
+
+  display: inline-block;
+  margin: 0 auto;
+  height: 24px;
+  width: 24px;
+  background-color: var(--icon-color);
+  mask-repeat: no-repeat;
+  mask-position: center center;
+  mask-size: contain;
+  mask-image: var(--mask-image);
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
   .tiles {
     display: flex;
+    gap: 8px;
   }
 
   .tiles > a {
