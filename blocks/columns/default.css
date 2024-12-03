@@ -370,6 +370,32 @@ main .block.columns.video iframe {
   aspect-ratio: 16 / 9;
 }
 
+main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div > p.button-container:has(a) > a.button {
+  display: inline-block;
+  text-decoration: none;
+  background-color: unset;
+  border: unset;
+  padding: unset;
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  cursor: pointer;
+  color: unset;
+  margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: unset;
+}
+
+main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div > p.button-container:has(a) > a.button::after {
+  content:"\279E";
+  font-size: 1em;
+  font-weight: 500;
+  padding: 0 0.5em;
+  vertical-align: -0.1em;
+}
+
 
 @media (min-width: 992px /* breakpoint-l */) {
   .columns.block:not(.wrap-mobile) > div {
@@ -501,34 +527,6 @@ main .block.columns.video iframe {
   main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div:last-of-type > p:nth-child(2) {
     margin-top: 1rem;
   }
-
-  main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div > p.button-container:has(a) > a.button {
-    display: inline-block;
-    text-decoration: none;
-    background-color: unset;
-    border: unset;
-    padding: unset;
-    text-align: center;
-    font-style: normal;
-    font-weight: 600;
-    cursor: pointer;
-    color: unset;
-    margin-bottom: 16px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    border-radius: unset;
-  }
-
-  main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div > p.button-container:has(a) > a.button::after {
-    content: "\2B95";
-    font-size: 1em;
-    font-weight: 500;
-    padding: 0 0.5em;
-    vertical-align: -0.1em;
-  }
-
-
 
   main .section.columns-container .block.columns.centered-icons > div div:first-of-type:has(.icon),
   main .section.columns-container .block.columns.centered-icons > div div:last-of-type:has(.icon) {

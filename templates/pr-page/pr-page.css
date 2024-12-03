@@ -27,6 +27,10 @@
     padding: unset;
 }
 
+.pr-page main .related-content ul.related-content-teasers li.related-content-teaser {
+    list-style: none;
+}
+
 .pr-page main .related-content .related-content-teaser a picture {
     width: 100%;
     height: 0;
