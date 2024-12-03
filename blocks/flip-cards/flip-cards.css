@@ -5,7 +5,7 @@
   font-size: var(--body-font-size-s);
 }
 
-.flip-cards a {
+.flip-cards .wrapper {
   text-decoration: none;
 }
 
@@ -22,13 +22,13 @@
   filter: none;
 }
 
-.flip-cards > a > div > div:first-child .icon {
+.flip-cards > .wrapper > div > div:first-child .icon {
   width: 60px;
   height: auto;
 }
 
 
-.flip-cards > a > div {
+.flip-cards > .wrapper > div {
   background: var(--color-bg-tertiary);
   display: flex;
   flex-direction: column;
@@ -38,22 +38,22 @@
   border-radius: 12px;
 }
 
-.flip-cards.gray > a > div {
+.flip-cards.gray > .wrapper > div {
   background: var(--color-grey200);
 }
 
-.flip-cards.blue > a > div {
+.flip-cards.blue > .wrapper > div {
   background: var(--color-bg-tertiary);
 }
 
-.flip-cards > a > div > div:last-of-type {
+.flip-cards > .wrapper > div > div:last-of-type {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 8px;
 }
 
-.flip-cards > a > div .clamp-title {
+.flip-cards > .wrapper > div .clamp-title {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -62,7 +62,7 @@
   margin-bottom: 0;
 }
 
-.flip-cards > a > div .clamp-description {
+.flip-cards > .wrapper > div .clamp-description {
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
@@ -70,27 +70,27 @@
   text-overflow: ellipsis;
 }
 
-.flip-cards > a > div .clamp-title, .flip-cards > a > div .clamp-description {
+.flip-cards > .wrapper > div .clamp-title, .flip-cards > .wrapper > div .clamp-description {
   color: var(--color-text-tertiary);
 }
 
-.flip-cards.blue > a > div .clamp-title, .flip-cards.blue > a > div .clamp-description {
+.flip-cards.blue > .wrapper > div .clamp-title, .flip-cards.blue > .wrapper > div .clamp-description {
   color: var(--color-text-tertiary);
 }
 
 
-.flip-cards.gray > a > div .clamp-title, .flip-cards.gray > a > div .clamp-description {
+.flip-cards.gray > .wrapper > div .clamp-title, .flip-cards.gray > .wrapper > div .clamp-description {
   color: var(--color-text);
 }
 
-.flip-cards > a > div a.button.primary {
+.flip-cards > .wrapper > div a.button.primary {
   margin: 0;
   padding: 8px 24px;
   line-height: 160%;
   letter-spacing: 0.32px;
 }
 
-.flip-cards > a > div a.button.primary .icon {
+.flip-cards > .wrapper > div a.button.primary .icon {
   --icon-color: var(--color-black);
 
   display: inline-block;
@@ -110,15 +110,15 @@
     gap: 8px;
   }
 
-  .flip-cards > a {
+  .flip-cards > .wrapper {
     flex: 1;
   }
 
-  .flip-cards > a > div {
+  .flip-cards > .wrapper > div {
     height: 420px;
   }
 
-  .flip-cards.flip-cards-4-cols > a > div {
+  .flip-cards.flip-cards-4-cols > .wrapper > div {
     height: 472px;
   }
 }

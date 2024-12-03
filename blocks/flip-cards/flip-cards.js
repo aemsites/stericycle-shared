@@ -111,16 +111,11 @@ export default async function decorate(block) {
   }
 
   // Append backs directly to the block
-  backs.forEach((back, i) => {
-    const anchor = document.createElement('a');
-    block.appendChild(anchor);
-    anchor.appendChild(back);
-
-    // add href
-    if (pages.length > i) {
-      anchor.href = pages[i].href;
-      anchor.title = pages[i].title;
-    }
+  backs.forEach((back) => {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('wrapper');
+    block.appendChild(wrapper);
+    wrapper.appendChild(back);
   });
 
   // cleanup
