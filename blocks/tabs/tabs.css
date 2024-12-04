@@ -11,6 +11,7 @@ main section .tabs-container > div {
     flex-direction: row;
     gap: 16px;
     margin-bottom: 42px;
+    padding: 4px 0;
     max-width: 100%;
     overflow-x: auto;
     border-bottom: 1px solid var(--color-grey200);
@@ -115,7 +116,7 @@ main section .tabs-container > div {
 
 .block.tabs .tabs-list button {
     flex: 0 0 max-content;
-    margin: 4px 2px;
+    margin: 0 2px;
     border: none;
     border-radius: 0;
     padding: 10px 14px;
@@ -128,7 +129,11 @@ main section .tabs-container > div {
     text-overflow: unset;
     overflow: unset;
     white-space: unset;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
+}
+
+.block.tabs .tabs-list button:hover {
+    box-shadow: 0 4px 0 0 var(--color-primary-1);
 }
 
 .block.tabs .tabs-panel details summary p {
@@ -140,7 +145,7 @@ main section .tabs-container > div {
 
 .block.tabs .tabs-list button[aria-selected="true"] {
     margin-bottom: 0;
-    border-bottom: 4px solid var(--color-primary-1);
+    box-shadow: 0 4px 0 0 var(--color-primary-1);
     cursor: initial;
 
     & >  * {
@@ -298,8 +303,7 @@ main section .tabs-container > div {
 
     .block.tabs.vertical .tabs-list button[aria-selected="true"] {
         margin-bottom: 4px;
-        border-bottom: none;
-        border-left: 4px solid var(--color-primary-1);
+        box-shadow: 0 4px 0 0 var(--color-primary-1);
     }
 
     .block.tabs.topics .tabs-panel div {

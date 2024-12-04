@@ -472,7 +472,7 @@ a.button:hover, button:hover {
   color: var(--color-button-default);
 }
 
-a.button:focus, button:focus {
+a.button:focus-visible, button:focus-visible {
   outline: 2px solid var(--color-primary-1);
 }
 
@@ -509,7 +509,7 @@ a.button.primary:hover, button.primary:hover{
   outline-width: 3px;
 }
 
-a.button.primary:focus , button.primary:focus {
+a.button.primary:focus-visible , button.primary:focus-visible {
   outline: 3px solid var(--color-primary-1);
   outline-offset: 3px;
   border: 3px solid var(--color-bg-secondary);
@@ -530,13 +530,13 @@ a.button.secondary:hover, button.secondary:hover {
 }
 
 .button-container a.button.secondary:hover .icon,
-.button-container a.button.secondary:focus .icon,
+.button-container a.button.secondary:focus-visible .icon,
 .button-container button.secondary:hover .icon,
-.button-container button.secondary:focus .icon {
+.button-container button.secondary:focus-visible .icon {
   --icon-color: var(--color-white);
 }
 
-a.button.secondary:focus, button.secondary:focus {
+a.button.secondary:focus-visible, button.secondary:focus-visible {
   background-color: var(--color-primary-1);
   color: var(--color-white);
   outline: 3px solid var(--color-primary-1);
