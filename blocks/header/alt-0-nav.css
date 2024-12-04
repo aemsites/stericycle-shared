@@ -3,8 +3,12 @@
   --nav-height: 116px;
 }
 
+header.header-wrapper {
+  position: relative;
+}
+
 .block.header {
-  position: fixed;
+  position: relative;
   height: var(--nav-height);
   background-color: var(--color-blue);
   color: var(--color-white);
@@ -14,9 +18,9 @@
 
   & nav {
     height: var(--nav-height);
-    padding: 1rem 12px;
+    padding: 1rem 1.5rem;
     margin: 0 auto;
-    max-width: 300px;
+    max-width: var(--section-width);
 
     & .logo {
       padding: 1rem 0;
@@ -42,7 +46,8 @@
 
   .block.header {
     & nav {
-      max-width: 540px;
+      max-width: var(--section-width);
+      padding: 1rem 1.5rem;
     }
   }
 }
@@ -54,7 +59,8 @@
 
   .block.header {
     & nav {
-      max-width: 720px;
+      max-width: var(--section-width);
+      padding: 1rem 1.5rem;
     }
   }
 }
@@ -66,7 +72,8 @@
 
   .block.header {
     & nav {
-      max-width: 1140px;
+      max-width: var(--section-width);
+      padding: 1rem 1.5rem;
 
       & .logo {
         width: 25%;
@@ -82,7 +89,8 @@
 
   .block.header {
     & nav {
-      max-width: 1320px;
+      max-width: var(--section-width);
+      padding: 1rem 1.5rem;
 
       & .logo {
         width: 25%;

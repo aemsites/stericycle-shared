@@ -72,12 +72,16 @@ export default async function decorate(block) {
   const locale = window.location.pathname.split('/')[1] || 'en-us'; // default to us-en if no locale in path
   // load footer as fragment
   const footerMeta = getMetadata('footer');
+  const navMeta = getMetadata('nav');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : `/${locale}/footer`;
   const fragment = await loadFragment(footerPath);
 
   // decorate footer DOM
   block.textContent = '';
   const footer = document.createElement('div');
+  if (navMeta === '/en-us/alt-0-nav' || navMeta === '/en-us/alt-1-nav') {
+    block.classList.add('narrow');
+  }
   while (fragment?.firstElementChild) footer.append(fragment.firstElementChild);
 
   block.append(footer);
