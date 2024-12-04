@@ -1638,3 +1638,17 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover::after {
   color: var(--color-black);
 }
 
+/* Eyebrow */
+.eyebrow-small {
+  font-size: var(--body-font-size-xs);
+  font-weight: var(--font-weight-extra-bold);
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 1.4px;
+}
+
+@media (min-width: 768px /* breakpoint-m */) {
+  .eyebrow-small {
+    font-size: var(--body-font-size-s);
+  }
+}

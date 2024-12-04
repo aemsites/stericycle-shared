@@ -30,7 +30,7 @@ export default async function decorate(block) {
   blockquote.append(quotation);
   // decoration attribution
   if (attribution) {
-    attribution.className = 'quote-attribution';
+    attribution.className = 'quote-attribution eyebrow-small';
     if (!hasWrapper(attribution)) {
       attribution.innerHTML = `<p>${attribution.innerHTML}</p>`;
     }

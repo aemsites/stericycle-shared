@@ -1,34 +1,35 @@
-.quote {
-  margin: 16px 0 32px;
-  padding: 0 10px;
+.block.quote blockquote {
+  position: relative;
+  display: flex;
+  column-gap: 24px;
+  row-gap: 24px;
+  flex-direction: column;
+  padding-left: 24px;
+  padding-bottom: 24px;
 }
 
-.block.quote.alternate-1 {
-  padding-left: 0;
-}
-
-.quote blockquote {
-  font-style: italic;
-}
-
-.block.quote.alternate-1 blockquote {
-  padding-left: 0;
-  border-left: 4px solid var(--color-secondary-1);
+.block.quote blockquote::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  max-height: 128px;
+  background-color: var(--color-primary-1);
 }
 
 .quote blockquote .quote-quotation {
-  margin-bottom: 0.75rem;
-  font-size: var(--body-font-size-l);
-  font-weight: 700;
+  font-size: var(--heading-font-size-m);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-text-primary);
 }
 
-.block.quote.alternate-1 blockquote .quote-quotation {
-  padding-left: 3rem;
-}
-
-.quote blockquote .quote-quotation > :first-child {
-  padding: 0 6px;
-  text-indent: -0.6ch;
+@media (min-width: 768px /* breakpoint-m */) {
+  .quote blockquote .quote-quotation {
+    font-size: var(--body-font-size-l);
+  }
 }
 
 .quote blockquote .quote-quotation > :first-child::before,
@@ -36,36 +37,10 @@
   line-height: 0;
 }
 
-.quote blockquote .quote-quotation > :first-child::before {
-  content: "“";
+.block.quote blockquote .quote-attribution p {
+  color: var(--color-text-primary);
+  font-style: normal;
+  font-weight: 900;
 }
 
-.quote blockquote .quote-quotation > :last-child::after {
-  content: "”";
-}
 
-.block.quote.alternate-1 blockquote .quote-attribution {
-  padding-left: 54px;
-  margin-top: 2rem;
-}
-
-.block.quote blockquote .quote-quotation h1,
-.block.quote blockquote .quote-quotation h2,
-.block.quote blockquote .quote-quotation h3,
-.block.quote blockquote .quote-quotation p {
-  font-weight: 500;
-}
-
-.block.quote.alternate-1 blockquote .quote-attribution p {
-  color: var(--color-secondary-1);
-}
-
-@media (min-width: 992px /* breakpoint-l */) {
-  .block.quote blockquote .quote-quotation h1,
-  .block.quote blockquote .quote-quotation h2,
-  .block.quote blockquote .quote-quotation h3,
-  .block.quote blockquote .quote-quotation p {
-    font-size: 1.625rem;
-    line-height: 2.375rem;
-  }
-}
