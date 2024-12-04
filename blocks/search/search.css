@@ -92,6 +92,11 @@ div.search-wrapper > ul.pagination-controls > li {
     padding-bottom: unset;
 }
 
+.block.search ul:not(.pagination-controls) li {
+  margin-bottom: .75rem;
+  padding-bottom: .75rem;
+}
+
 div.search-wrapper > ul.pagination-controls > li:first-of-type {
     margin-left: auto;
 }

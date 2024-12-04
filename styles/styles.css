@@ -220,6 +220,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -343,7 +347,11 @@ main .section.column-with-list.blue-background.columns-container .icon {
 }
 
 main .section.column-with-list .columns.columns-2-cols > div > div {
-  justify-content: space-between;
+  justify-content: start;
+}
+
+main .section.column-with-list.small-footnote .columns.columns-2-cols > div > div p:last-of-type {
+  font-size: 0.75rem;
 }
 
 main .section.column-with-list .columns > div > div h2 {
@@ -509,6 +517,18 @@ a.button.primary, button.primary {
   border-radius: 100px;
 }
 
+.button-container a.button .icon {
+  --icon-color: var(--color-primary-1);
+}
+
+.button-container a.button.primary .icon, .button-container button.primary .icon {
+  --icon-color: var(--color-black);
+}
+
+.button-container a.button.secondary .icon, .button-container button.secondary .icon {
+  --icon-color: var(--color-primary-1);
+}
+
 a.button.primary:hover, button.primary:hover{
   outline-width: 3px;
 }
@@ -531,6 +551,13 @@ a.button.secondary:hover, button.secondary:hover {
   background-color: var(--color-primary-1);
   color: var(--color-white);
   border-color: currentcolor;
+}
+
+.button-container a.button.secondary:hover .icon,
+.button-container a.button.secondary:focus .icon,
+.button-container button.secondary:hover .icon,
+.button-container button.secondary:focus .icon {
+  --icon-color: var(--color-white);
 }
 
 a.button.secondary:focus, button.secondary:focus {
@@ -562,6 +589,36 @@ main img {
   width: 24px;
 }
 
+.button-container .icon {
+  display: inline-block;
+  margin: 0 auto;
+  height: 24px;
+  width: 24px;
+  background-color: var(--icon-color);
+  mask-repeat: no-repeat;
+  mask-position: center center;
+  mask-size: contain;
+  mask-image: var(--mask-image);
+}
+
+.button-container .button {
+  gap: 4px;
+}
+
+.button-container .button.primary, .button-container .button.secondary {
+  gap: 8px;
+}
+
+.button-container .button .icon {
+  width: 8px;
+  height: 8.8px;
+}
+
+.button-container .button.primary .icon, .button-container .button.secondary .icon {
+  width: 24px;
+  height: 24px;
+}
+
 .icon img {
   height: 100%;
   width: 100%;
@@ -579,6 +636,10 @@ main .section > div {
 
 main .section.no-spacing > div {
   margin: 0;
+}
+
+main .section.underline-links a {
+  text-decoration: underline;
 }
 
 
@@ -713,6 +774,13 @@ main .list-style-orange-triangles ul {
   list-style: none;
 }
 
+main .list-style-blue-checkmark ul {
+  position: relative;
+  padding: 0;
+  margin: 0 0 0 1.5rem;
+  list-style: none;
+}
+
 main .list-style-bullets ul {
   position: relative;
   padding: 0;
@@ -729,6 +797,14 @@ main .list-style-checkmarks ul {
   padding: 0;
   margin: 0 0 0 1.5rem;
   list-style: none;
+}
+
+main .list-style-checkmarks li::marker, 
+main .list-style-bullets li::marker, 
+main .list-style-orange-triangles li::marker,
+main .list-style-big-numbers li::marker, 
+main .list-style-more-space li::marker {
+  content: "";
 }
 
 main ol {
@@ -880,6 +956,10 @@ main .section.with-image > div.section-image-wrapper:first-child {
 
   .blog-page main .breadcrumb-wrapper {
     max-width: 1320px;
+  }
+
+  main div.shredded-paper-background-column {
+    background-position-y: 50%;
   }
 }
 
@@ -1191,8 +1271,32 @@ main .list-style-orange-triangles ul > li::before {
   font-size: 1.5rem;
 }
 
+main .list-style-blue-checkmark ul > li::before {
+  content: '';
+  position: absolute;
+  left: -25px;
+  margin-right: 0.75rem;
+  background: url("/icons/check-mark-light-blue.svg") no-repeat left center;
+  background-size: cover;
+  width: 32px;
+  height: 32px;
+}
+
 main .list-style-orange-triangles ul > li {
   padding-bottom: 1rem;
+}
+
+main .list-style-blue-checkmark ul > li {
+  display: flex;
+  align-items: center;
+  padding-bottom: 16px;
+  padding-left: 16px;
+}
+
+main .list-style-blue-checkmark ul > li sup {
+  vertical-align: super;
+  margin-top: -10px;
+  margin-right: 2px;
 }
 
 main .list-style-checkmarks div.card-body ul > li::before {
