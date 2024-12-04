@@ -136,6 +136,10 @@ main section .tabs-container > div {
     box-shadow: 0 4px 0 0 var(--color-primary-1);
 }
 
+.block.tabs.vertical .tabs-list button:hover {
+    box-shadow: -4px 0 0 0 var(--color-primary-1);
+}
+
 .block.tabs .tabs-panel details summary p {
     color: var(--color-secondary-5);
     font-weight: var(--font-weight-bold);
@@ -302,8 +306,7 @@ main section .tabs-container > div {
     }
 
     .block.tabs.vertical .tabs-list button[aria-selected="true"] {
-        margin-bottom: 4px;
-        box-shadow: 0 4px 0 0 var(--color-primary-1);
+        box-shadow: -4px 0 0 0 var(--color-primary-1);
     }
 
     .block.tabs.topics .tabs-panel div {
