@@ -1,4 +1,5 @@
 import { DEFAULT_THANK_YOU_MESSAGE, getSubmitBaseUrl } from './constant.js';
+import { getMetadata } from '../../scripts/aem.js';
 
 // eslint-disable-next-line no-unused-vars
 export function submitSuccess(e, form) {
@@ -59,11 +60,20 @@ function getFieldValue(fe, payload) {
   return null;
 }
 
+function getCountryAndLanguage() {
+  const locale = getMetadata('locale');
+  return locale?.split('-') || ['en', 'us'];
+}
+
 async function constructPayload(form, captcha) {
+  const [language, country] = getCountryAndLanguage();
   const payload = {
     __id__: generateUnique(),
     ':currentPagePath': '/content/shred-it/us/en',
     jobPropertiesUrl: `https://main--shredit--stericycle.aem.page${form.dataset.action}.json`,
+    formURL: form.dataset?.action,
+    webCountry: country,
+    webLanguage: language,
   };
   [...form.elements].forEach((fe) => {
     if (fe.name && !fe.matches('button') && !fe.disabled && fe.tagName !== 'FIELDSET') {
