@@ -1,6 +1,7 @@
 main .form form .radio-wrapper.radio-icon input {
-  width: 0;
-  height: 38px;
+  margin-bottom: 16px;
+  width: 24px;
+  height: 24px;
 }
 
 main .form form .radio-wrapper.radio-icon label {

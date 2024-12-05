@@ -51,7 +51,7 @@
     --form-upload-font-size: var(--form-font-size-xs);
     --form-upload-background-color: var(--form-styles-background-color-primary);
     --form-submit-width: 100%;
-    --form-width: 95%;
+    --form-width: 100%;
     --form-wizard-border: 0;
     --form-wizard-background-color: var(--form-styles-background-color-primary);
     --form-wizard-border-color: #757575;
@@ -103,9 +103,16 @@ main .form > div:not(:first-child) {
 }
 
 main .form form {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     grid-template-columns: repeat(var(--form-columns), minmax(0, 1fr));
     gap: var(--form-field-vert-gap) var(--form-field-horz-gap);
+}
+
+@media (min-width: 600px) {
+    main .form form {
+        display: grid;
+    }
 }
 
 main .form form fieldset {
@@ -289,6 +296,7 @@ main .form form .repeat-wrapper,
 main .form form .field-wrapper {
     margin: var(--form-field-gap);
     color: var(--form-label-color);
+    width: 100%;
     grid-column: span 12;
 }
 
@@ -476,6 +484,7 @@ main .form .button-wrapper.wizard-button-next button, main .form .button-wrapper
     border: none;
     outline: 1px solid var(--color-bg-secondary);
     color: var(--color-text-primary);
+    margin-left: auto;
 }
 
 main .form .button-wrapper button[disabled], main .form .button-wrapper.wizard-button-next button:disabled {
