@@ -432,6 +432,7 @@ export default async function decorate(block) {
     ),
   );
   const navModalPath = getMetadata('nav-modal-path') || '/forms/modals/modal';
+  const modalButtonTitle = placeHolders.requestafreequote || 'Request a Free Quote';
   const nav = domEl('nav', { id: 'nav' },
     div({ class: 'logo' },
       a({ href: `/${locale}`, class: 'logo-link', title: 'Shred-it' },
@@ -463,13 +464,13 @@ export default async function decorate(block) {
       navSearch,
       div({ class: 'quote-wrapper' },
         p({ class: 'button-container' },
-          a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Request a Free Quote'),
+          a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle }, modalButtonTitle),
         ),
       ),
     ),
     div({ class: 'floating-contact' },
       div({ class: 'sales-contact' }, a({ href: `tel:+1${placeHolders.salesno}`, title: 'Sales', 'aria-label': 'Sales' }, `${formatPhone(placeHolders.salesno, true)}`)),
-      div({ class: 'quote-container' }, a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Request a Free Quote')),
+      div({ class: 'quote-container' }, a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle }, modalButtonTitle)),
     ),
   );
   /* eslint-enable function-paren-newline,function-call-argument-newline */

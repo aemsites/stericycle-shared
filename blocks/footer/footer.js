@@ -1,6 +1,7 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { a, p } from '../../scripts/dom-helpers.js';
+import { getLocale } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 992px)');
@@ -71,17 +72,23 @@ function createMenuAccordion(footer) {
  * @param locale
  * Creates the modal trigger button in footer
  */
-function createModalButton(fragment, footerPath, locale) {
+async function createModalButton(fragment, footerPath, locale) {
+  const ph = await fetchPlaceholders(`/${getLocale()}`);
   const footerModalPath = getMetadata('footer-modal-path') || '/forms/modals/modal';
+  const modalButtonTitle = ph.requestafreequote || 'Request a Free Quote';
   const btn = p(
     { class: 'button-container quote-wrapper' },
-    a({ href: footerModalPath, class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Request a Free Quote'),
+    a({
+      href: footerModalPath,
+      class: 'quote-button button primary',
+      'aria-label': modalButtonTitle,
+    }, modalButtonTitle),
   );
   if (footerPath.includes('alt-0-footer')) {
     const parentWrapper = fragment.querySelector('.default-content-wrapper');
     parentWrapper.children[2]?.insertAdjacentElement('beforebegin', btn);
   } else if (footerPath === `/${locale}/footer`) {
-    btn.querySelector('a').textContent = 'Get a Quote';
+    btn.querySelector('a').textContent = ph.getaquote || 'Get a Quote';
     const parentWrapper = fragment.querySelector('.columns.quote > div > div');
     parentWrapper.children[0]?.insertAdjacentElement('beforebegin', btn);
   }
