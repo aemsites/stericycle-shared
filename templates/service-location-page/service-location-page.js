@@ -11,6 +11,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { addJsonLd, formatPhone, getLocale, getNearByLocations } from '../../scripts/scripts.js';
 import { decorateSidebarTemplate } from '../templates.js';
+import { createFormFromMetadata } from '../../blocks/form/form.js';
 
 const createLocDiv = async () => {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
@@ -125,7 +126,7 @@ async function buildServiceLocationAutoBlocks(main) {
   const formSection = document.createElement('div');
   formSection.style.display = 'none';
   formSection.classList.add('section');
-  const form = buildBlock('get-a-quote-form', { elems: [] });
+  const form = createFormFromMetadata();
   if (!pageSidebar) {
     pageSidebar = document.createElement('div');
   } else {
@@ -186,7 +187,7 @@ async function buildServiceLocationAutoBlocks(main) {
     icon.classList.add('icon', `icon-${page.icon}`);
     flipCardsIconRow.push(icon);
     const link = document.createElement('a');
-    link.textContent = page.href;
+    link.textContent = 'Read More';
     link.href = page.href;
     flipCardsLinkRow.push(link);
   });
