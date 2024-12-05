@@ -111,7 +111,8 @@ export default async function decorate(block) {
   }
 
   // Append backs directly to the block
-  backs.forEach((back) => {
+  backs.forEach((back, index) => {
+    if (index >= 4) return; // Limit to 4 cards
     const wrapper = document.createElement('div');
     wrapper.classList.add('wrapper');
     block.appendChild(wrapper);
