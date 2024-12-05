@@ -105,7 +105,7 @@ export default async function decorate(block) {
   const navMeta = getMetadata('nav');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : `/${locale}/footer`;
   const fragment = await loadFragment(footerPath);
-  createModalButton(fragment, footerPath, locale);
+  await createModalButton(fragment, footerPath, locale);
   // decorate footer DOM
   block.textContent = '';
   const footer = document.createElement('div');
