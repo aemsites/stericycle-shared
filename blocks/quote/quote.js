@@ -1,7 +1,3 @@
-function hasWrapper(el) {
-  return !!el.firstElementChild;
-}
-
 export default async function decorate(block) {
   // merge quote into surrounding default content
   const quoteWrapper = block.parentElement;

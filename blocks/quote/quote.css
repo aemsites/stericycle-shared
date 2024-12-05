@@ -1,8 +1,7 @@
 .block.quote blockquote {
   position: relative;
   display: flex;
-  column-gap: 24px;
-  row-gap: 24px;
+  gap: 24px;
   flex-direction: column;
   padding-left: 24px;
   padding-bottom: 24px;
