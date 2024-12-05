@@ -15,7 +15,7 @@ import {
   toClassName,
   decorateBlock,
   loadBlock,
-  loadSection,
+  loadSection, loadScript,
 } from './aem.js';
 import { div } from './dom-helpers.js';
 import ffetch from './ffetch.js';
@@ -80,6 +80,20 @@ function arraysHaveMatchingItem(array1, array2) {
   return false;
 }
 
+export function getEnvironment() {
+  const { host } = window.location;
+  if (host === 'localhost') {
+    return 'dev';
+  }
+  if (host.endsWith('.aem.page') || (host.startsWith('stage') && host.endsWith('.shredit.com'))) {
+    return 'stage';
+  }
+  if (host.endsWith('.aem.live') || host === 'www.shredit.com') {
+    return 'prod';
+  }
+  return 'unknown';
+}
+
 export function getLocale() {
   const locale = getMetadata('locale');
   if (locale && locale.length > 0) {
@@ -111,6 +125,19 @@ export function getLocaleAsBCP47() {
     }
   }
   return parts.join('-');
+}
+
+export async function initMartech() {
+  const launchUrls = {
+    dev: '<script src="https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js" async></script>',
+    stage: '<script src="https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-930cbc9eaafb-staging.min.js" async></script>',
+    prod: '<script src="https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-e21320e8ed46.min.js" async></script>',
+  };
+  const env = getEnvironment();
+  if (env === 'unknown') {
+    return; // unknown env -> skip martech initialization
+  }
+  await loadScript(launchUrls[env]);
 }
 
 const toRadians = (degrees) => ((degrees * Math.PI) / 180);
@@ -651,6 +678,12 @@ export function decorateMain(main) {
  */
 async function loadEager(doc) {
   document.documentElement.lang = getLocaleAsBCP47();
+
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('load-martech')?.toLowerCase() === 'eager') {
+    await initMartech();
+  }
+
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {

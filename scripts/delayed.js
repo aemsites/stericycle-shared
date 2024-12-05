@@ -3,21 +3,18 @@ import {
   fetchPlaceholders, getMetadata, loadCSS, sampleRUM,
 } from './aem.js';
 // eslint-disable-next-line import/no-cycle
-import { getDateFromExcel, getRelatedPosts } from './scripts.js';
+import { getDateFromExcel, getLocale, getRelatedPosts, initMartech } from './scripts.js';
 import decorate from '../blocks/post-teaser-list/post-teaser-list.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
-const RELATED_LIMIT = 4;
-
-function getLocale() {
-  const locale = getMetadata('locale');
-  if (locale && locale.length > 0) {
-    return locale;
-  }
-  // defaulting to en-us
-  return 'en-us';
+// Full Martech stack
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('load-martech')?.toLowerCase() === 'delayed') {
+  initMartech();
 }
+
+const RELATED_LIMIT = 4;
 
 async function loadRelatedContent(type) {
   const tags = (getMetadata('article:tag') || '').split(/,\s*]/);
