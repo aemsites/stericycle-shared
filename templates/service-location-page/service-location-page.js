@@ -187,7 +187,7 @@ async function buildServiceLocationAutoBlocks(main) {
     icon.classList.add('icon', `icon-${page.icon}`);
     flipCardsIconRow.push(icon);
     const link = document.createElement('a');
-    link.textContent = page.href;
+    link.textContent = 'Read More';
     link.href = page.href;
     flipCardsLinkRow.push(link);
   });
