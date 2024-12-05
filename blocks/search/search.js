@@ -100,7 +100,6 @@ function filterData(searchTerms, data) {
         if (minIdx >= 0) {
           result['media-type'] = 'Resource Center';
           resourceCenterPage.push({ minIdx, result });
-          return;
         }
       }
     });
@@ -162,7 +161,7 @@ async function buildPagination(releases, ul, controls, page) {
   paginatedReleases.forEach((release) => {
     const listItem = document.createElement('li');
     const type = document.createElement('a');
-    type.href = window.location.pathname;
+    type.href = release.path.split('/').filter((item, idx, arr) => idx !== (arr.length - 1)).join('/');
     type.textContent = release['media-type'];
     type.classList.add('type');
     listItem.append(type);
