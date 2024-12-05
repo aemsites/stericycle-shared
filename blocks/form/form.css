@@ -484,6 +484,7 @@ main .form .button-wrapper.wizard-button-next button, main .form .button-wrapper
     border: none;
     outline: 1px solid var(--color-bg-secondary);
     color: var(--color-text-primary);
+    margin-left: auto;
 }
 
 main .form .button-wrapper button[disabled], main .form .button-wrapper.wizard-button-next button:disabled {
