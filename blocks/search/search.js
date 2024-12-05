@@ -92,7 +92,7 @@ function filterData(searchTerms, data) {
         }
       }
 
-      if (Object.hasOwn('template', result) && ['resource-center'].includes(result.template)) {
+      if (Object.hasOwn(result, 'template') && ['resource-center'].includes(result.template)) {
         const idx = searchText.indexOf(term);
         if (idx < 0) return;
         if (minIdx < idx) minIdx = idx;
@@ -100,6 +100,7 @@ function filterData(searchTerms, data) {
         if (minIdx >= 0) {
           result['media-type'] = 'Resource Center';
           resourceCenterPage.push({ minIdx, result });
+          return;
         }
       }
     });
