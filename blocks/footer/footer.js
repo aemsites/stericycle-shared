@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { a, p } from '../../scripts/dom-helpers.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 992px)');
@@ -65,6 +66,28 @@ function createMenuAccordion(footer) {
 }
 
 /**
+ * @param fragment
+ * @param footerPath
+ * @param locale
+ * Creates the modal trigger button in footer
+ */
+function createModalButton(fragment, footerPath, locale) {
+  const footerModalPath = getMetadata('footer-modal-path') || '/forms/modals/modal';
+  const btn = p(
+    { class: 'button-container quote-wrapper' },
+    a({ href: footerModalPath, class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Request a Free Quote'),
+  );
+  if (footerPath.includes('alt-0-footer')) {
+    const parentWrapper = fragment.querySelector('.default-content-wrapper');
+    parentWrapper.children[2]?.insertAdjacentElement('beforebegin', btn);
+  } else if (footerPath === `/${locale}/footer`) {
+    btn.querySelector('a').textContent = 'Get a Quote';
+    const parentWrapper = fragment.querySelector('.columns.quote > div > div');
+    parentWrapper.children[0]?.insertAdjacentElement('beforebegin', btn);
+  }
+}
+
+/**
  * loads and decorates the footer
  * @param {Element} block The footer block element
  */
@@ -75,7 +98,7 @@ export default async function decorate(block) {
   const navMeta = getMetadata('nav');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : `/${locale}/footer`;
   const fragment = await loadFragment(footerPath);
-
+  createModalButton(fragment, footerPath, locale);
   // decorate footer DOM
   block.textContent = '';
   const footer = document.createElement('div');

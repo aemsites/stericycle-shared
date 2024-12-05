@@ -15,10 +15,10 @@ export default async function decorate(block) {
   const navContact = fragment.querySelector('.section[data-section="contact" i]');
   navContact.replaceChildren(navContact.querySelector('ul'));
   navContact.classList.add('nav-contact');
-  const modalPath = getMetadata('nav-modal-path') ?? '/forms/modals/modal';
+  const navModalPath = getMetadata('nav-modal-path') || '/forms/modals/modal';
   const link = li(
     { class: 'quote-link' },
-    a({ href: modalPath, class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Get a Quote'),
+    a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Get a Quote'),
   );
   navContact.querySelector('ul').append(link);
 
