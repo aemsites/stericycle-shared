@@ -40,49 +40,48 @@ function filterData(searchTerms, data) {
   const foundInMeta = [];
   const servicePage = [];
   const resourceCenterPage = [];
-  const industryPage = []
+  const industryPage = [];
 
   data.forEach((result) => {
     let minIdx = -1;
 
     searchTerms.forEach((term) => {
       const searchText = (result.header || result.title).concat(`${result.title} ${result.description} ${result.path}`).toLowerCase();
-      
-      if(Object.hasOwn(result, 'media-type')) {
-        const media_type = result['media-type'];
-        if(['service-page'].includes(media_type)){
+
+      if (Object.hasOwn(result, 'media-type')) {
+        const mediaType = result['media-type'];
+        if (['service-page'].includes(mediaType)) {
           const idx = searchText.indexOf(term);
           if (idx < 0) return;
           if (minIdx < idx) minIdx = idx;
 
-          if(minIdx >= 0) {
-            priorityPage.push({minIdx, result});
+          if (minIdx >= 0) {
+            servicePage.push({ minIdx, result });
           }
         }
 
-        if(['industry-page'].includes(media_type)){
+        if (['industry-page'].includes(mediaType)) {
           const idx = searchText.indexOf(term);
           if (idx < 0) return;
           if (minIdx < idx) minIdx = idx;
 
-          if(minIdx >= 0) {
-            industryPage.push({minIdx, result});
+          if (minIdx >= 0) {
+            industryPage.push({ minIdx, result });
           }
         }
       }
 
-      if(Object.hasOwn('template', result) && ['resource-center'].includes(result.template)){
+      if (Object.hasOwn('template', result) && ['resource-center'].includes(result.template)) {
         const idx = searchText.indexOf(term);
         if (idx < 0) return;
         if (minIdx < idx) minIdx = idx;
 
-        if(minIdx >= 0) {
+        if (minIdx >= 0) {
           result['media-type'] = 'resource-center';
-          resourceCenterPage.push({minIdx, result});
+          resourceCenterPage.push({ minIdx, result });
         }
       }
-
-    }); 
+    });
 
     searchTerms.forEach((term) => {
       const idx = (result.header || result.title).toLowerCase().indexOf(term);
@@ -115,7 +114,7 @@ function filterData(searchTerms, data) {
     ...foundInMeta.sort(compareFound),
   ].map((item) => {
     if (Object.hasOwn(item.result, 'media-type')) {
-      if(item.result['media-type'] === '0' || item.result['media-type'] === undefined || item.result['media-type'] === 'undefined') {
+      if (item.result['media-type'] === '0' || item.result['media-type'] === undefined || item.result['media-type'] === 'undefined') {
         item.result['media-type'] = '';
       }
     }
