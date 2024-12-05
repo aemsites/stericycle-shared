@@ -8,6 +8,11 @@
   padding-bottom: 24px;
 }
 
+.block.quote.testimonial {
+  display: flex;
+  flex-direction: column;
+}
+
 .block.quote blockquote::before {
   content: '';
   position: absolute;
@@ -26,11 +31,6 @@
   color: var(--color-text-primary);
 }
 
-@media (min-width: 768px /* breakpoint-m */) {
-  .quote blockquote .quote-quotation {
-    font-size: var(--body-font-size-l);
-  }
-}
 
 .quote blockquote .quote-quotation > :first-child::before,
 .quote blockquote .quote-quotation > :last-child::after {
@@ -43,4 +43,13 @@
   font-weight: 900;
 }
 
+@media (min-width: 992px /* breakpoint-m */) {
+    .quote blockquote .quote-quotation {
+        font-size: var(--body-font-size-l);
+    }
 
+    .block.quote.testimonial {
+        flex-direction: row;
+        gap: 52px;
+    }
+}
