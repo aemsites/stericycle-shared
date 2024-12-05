@@ -85,6 +85,7 @@
 .masked-image-wrapper {
     mask-image: url("/icons/hero-mask.svg");
     mask-repeat: no-repeat;
+    mask-size: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -115,12 +116,12 @@
     .hero-banner-asset {
         margin-bottom: 0;
         max-width: 838px;
-        height: 545px;
+        height: 70%;
     }
 
     .hero-banner-asset img {
         object-fit: cover;
-        height: 545px;
+        height: 70%;
     }
 
     /* Variants */
@@ -169,5 +170,15 @@
 @media screen and (min-width: 1200px) {
     .hero-banner-content-text {
         padding-left: 80px;
+    }
+
+    .hero-banner-asset {
+        height: 545px;
+    }
+
+    .hero-banner-asset img {
+        object-fit: contain;
+        object-position: top;
+        height: 545px;
     }
 }
