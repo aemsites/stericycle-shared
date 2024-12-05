@@ -38,9 +38,51 @@ function compareFound(hit1, hit2) {
 function filterData(searchTerms, data) {
   const foundInHeader = [];
   const foundInMeta = [];
+  const servicePage = [];
+  const resourceCenterPage = [];
+  const industryPage = []
 
   data.forEach((result) => {
     let minIdx = -1;
+
+    searchTerms.forEach((term) => {
+      const searchText = (result.header || result.title).concat(`${result.title} ${result.description} ${result.path}`).toLowerCase();
+      
+      if(Object.hasOwn(result, 'media-type')) {
+        const media_type = result['media-type'];
+        if(['service-page'].includes(media_type)){
+          const idx = searchText.indexOf(term);
+          if (idx < 0) return;
+          if (minIdx < idx) minIdx = idx;
+
+          if(minIdx >= 0) {
+            priorityPage.push({minIdx, result});
+          }
+        }
+
+        if(['industry-page'].includes(media_type)){
+          const idx = searchText.indexOf(term);
+          if (idx < 0) return;
+          if (minIdx < idx) minIdx = idx;
+
+          if(minIdx >= 0) {
+            industryPage.push({minIdx, result});
+          }
+        }
+      }
+
+      if(Object.hasOwn('template', result) && ['resource-center'].includes(result.template)){
+        const idx = searchText.indexOf(term);
+        if (idx < 0) return;
+        if (minIdx < idx) minIdx = idx;
+
+        if(minIdx >= 0) {
+          result['media-type'] = 'resource-center';
+          resourceCenterPage.push({minIdx, result});
+        }
+      }
+
+    }); 
 
     searchTerms.forEach((term) => {
       const idx = (result.header || result.title).toLowerCase().indexOf(term);
@@ -66,9 +108,19 @@ function filterData(searchTerms, data) {
   });
 
   return [
+    ...servicePage.sort(compareFound),
+    ...industryPage.sort(compareFound),
+    ...resourceCenterPage.sort(compareFound),
     ...foundInHeader.sort(compareFound),
     ...foundInMeta.sort(compareFound),
-  ].map((item) => item.result);
+  ].map((item) => {
+    if (Object.hasOwn(item.result, 'media-type')) {
+      if(item.result['media-type'] === '0' || item.result['media-type'] === undefined || item.result['media-type'] === 'undefined') {
+        item.result['media-type'] = '';
+      }
+    }
+    return item;
+  }).map((item) => item.result);
 }
 
 const itemsPerPage = 10;
@@ -165,7 +217,7 @@ async function handleSearch(e, block, config) {
   }
 
   if (searchValue.length >= 3) {
-    const data = await ffetch(window.localStorage.getItem('searchIndex')).sheet('search').all();
+    const data = await ffetch(window.localStorage.getItem('searchIndex')).sheet('default').all();
 
     const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
     const filteredData = filterData(searchTerms, data);
