@@ -81,14 +81,14 @@ function arraysHaveMatchingItem(array1, array2) {
 }
 
 export function getEnvironment() {
-  const { host } = window.location;
-  if (host === 'localhost') {
+  const { hostname } = window.location;
+  if (hostname === 'localhost') {
     return 'dev';
   }
-  if (host.endsWith('.aem.page') || (host.startsWith('stage') && host.endsWith('.shredit.com'))) {
+  if (hostname.endsWith('.aem.page') || (hostname.startsWith('stage') && hostname.endsWith('.shredit.com'))) {
     return 'stage';
   }
-  if (host.endsWith('.aem.live') || host === 'www.shredit.com') {
+  if (hostname.endsWith('.aem.live') || hostname === 'www.shredit.com') {
     return 'prod';
   }
   return 'unknown';
@@ -129,15 +129,15 @@ export function getLocaleAsBCP47() {
 
 export async function initMartech() {
   const launchUrls = {
-    dev: '<script src="https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js" async></script>',
-    stage: '<script src="https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-930cbc9eaafb-staging.min.js" async></script>',
-    prod: '<script src="https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-e21320e8ed46.min.js" async></script>',
+    dev: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js',
+    stage: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-930cbc9eaafb-staging.min.js',
+    prod: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-e21320e8ed46.min.js',
   };
   const env = getEnvironment();
   if (env === 'unknown') {
     return; // unknown env -> skip martech initialization
   }
-  await loadScript(launchUrls[env]);
+  await loadScript(launchUrls[env], { async: '' });
 }
 
 const toRadians = (degrees) => ((degrees * Math.PI) / 180);
