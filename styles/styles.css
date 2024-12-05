@@ -134,6 +134,7 @@
   /* font weights */
   --font-weight-regular: 400;
   --font-weight-bold: 700;
+  --font-weight-extra-bold: 900;
 
   /* body sizes */
   --body-font-size-l: 20px;
@@ -172,8 +173,8 @@
   --content-width-s: 540px;
   --content-width-m: 720px;
   --content-width-l: 960px;
-  --content-width-xl: 1140px;
-  --content-width-xxl: 1320px;
+  --content-width-xl: 1200px;
+  --content-width-xxl: 1920px;
   --section-width: var(--content-width-s);
 
   /* Split Columns */
@@ -217,6 +218,10 @@
     --section-width: var(--content-width-xxl);
     --nav-height: 128px;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 *, *::before, *::after {
@@ -267,6 +272,21 @@ h3, .heading-3 { font-size: var(--heading-font-size-l); }
 h4, .heading-4 { font-size: var(--heading-font-size-m); }
 h5, .heading-5 { font-size: var(--heading-font-size-s); }
 h6, .heading-6 { font-size: var(--heading-font-size-xs); }
+
+/* styles here */
+.eyebrow-small {
+  font-size: var(--body-font-size-xs);
+  font-weight: var(--font-weight-extra-bold);
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 1.4px;
+}
+
+@media (min-width: 768px /* breakpoint-m */) {
+  .eyebrow-small {
+    font-size: var(--body-font-size-s);
+  }
+}
 
 p, dl, ol, ul, pre, blockquote {
   color: var(--color-text);
@@ -327,7 +347,11 @@ main .section.column-with-list.blue-background.columns-container .icon {
 }
 
 main .section.column-with-list .columns.columns-2-cols > div > div {
-  justify-content: space-between;
+  justify-content: start;
+}
+
+main .section.column-with-list.small-footnote .columns.columns-2-cols > div > div p:last-of-type {
+  font-size: 0.75rem;
 }
 
 main .section.column-with-list .columns > div > div h2 {
@@ -472,7 +496,7 @@ a.button:hover, button:hover {
   color: var(--color-button-default);
 }
 
-a.button:focus, button:focus {
+a.button:focus-visible, button:focus-visible {
   outline: 2px solid var(--color-primary-1);
 }
 
@@ -509,7 +533,7 @@ a.button.primary:hover, button.primary:hover{
   outline-width: 3px;
 }
 
-a.button.primary:focus , button.primary:focus {
+a.button.primary:focus-visible , button.primary:focus-visible {
   outline: 3px solid var(--color-primary-1);
   outline-offset: 3px;
   border: 3px solid var(--color-bg-secondary);
@@ -530,13 +554,13 @@ a.button.secondary:hover, button.secondary:hover {
 }
 
 .button-container a.button.secondary:hover .icon,
-.button-container a.button.secondary:focus .icon,
+.button-container a.button.secondary:focus-visible .icon,
 .button-container button.secondary:hover .icon,
-.button-container button.secondary:focus .icon {
+.button-container button.secondary:focus-visible .icon {
   --icon-color: var(--color-white);
 }
 
-a.button.secondary:focus, button.secondary:focus {
+a.button.secondary:focus-visible, button.secondary:focus-visible {
   background-color: var(--color-primary-1);
   color: var(--color-white);
   outline: 3px solid var(--color-primary-1);
@@ -612,6 +636,10 @@ main .section > div {
 
 main .section.no-spacing > div {
   margin: 0;
+}
+
+main .section.underline-links a {
+  text-decoration: underline;
 }
 
 
@@ -771,6 +799,14 @@ main .list-style-checkmarks ul {
   list-style: none;
 }
 
+main .list-style-checkmarks li::marker, 
+main .list-style-bullets li::marker, 
+main .list-style-orange-triangles li::marker,
+main .list-style-big-numbers li::marker, 
+main .list-style-more-space li::marker {
+  content: "";
+}
+
 main ol {
   position: relative;
   padding: 0;
@@ -920,6 +956,10 @@ main .section.with-image > div.section-image-wrapper:first-child {
 
   .blog-page main .breadcrumb-wrapper {
     max-width: 1320px;
+  }
+
+  main div.shredded-paper-background-column {
+    background-position-y: 50%;
   }
 }
 

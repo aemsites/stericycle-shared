@@ -49,8 +49,17 @@ main:has(.section.two-column.full-width) div.faq-container div {
   border-bottom: 1px solid var(--color-grey200);
 }
 
-.faq details:hover:not(.open) {
-  border-bottom: none;
+@media screen and (min-width: 992px) {
+  /* stylelint-disable-next-line no-descending-specificity */
+  .faq details:hover {
+    background-color: var(--color-grey200);
+    border-radius: 12px;
+    border-bottom: 1px solid var(--color-grey200);
+  }
+
+  .faq details:hover:not(.open) {
+    border-bottom: none;
+  }
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -60,6 +69,7 @@ main:has(.section.two-column.full-width) div.faq-container div {
 }
 
 .faq details summary {
+  -webkit-tap-highlight-color: transparent;
   position: relative;
   padding: 24px 56px 24px 16px;
   cursor: pointer;
@@ -76,13 +86,6 @@ main:has(.section.two-column.full-width) div.faq-container div {
 
 .faq details[open] summary {
   padding: 24px 56px 24px 16px;
-}
-
-/* stylelint-disable-next-line no-descending-specificity */
-.faq details:hover {
-  background-color: var(--color-grey200);
-  border-radius: 12px;
-  border-bottom: 1px solid var(--color-grey200);
 }
 
 .faq details:not([open]) summary:focus-visible {

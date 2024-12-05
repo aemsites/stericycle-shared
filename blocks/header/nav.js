@@ -372,7 +372,7 @@ function addDropButtons(navEl) {
 export default async function decorate(block) {
   const placeHolders = await fetchPlaceholders(`/${getLocale()}`);
   block.textContent = '';
-  let locale = window.location.pathname.split('/')[1];
+  let locale = window.location.pathname.split('/')[1] || 'en-us';
   locale = locale.match(/^[a-z]{2}-[a-z]{2}$/) ? locale : 'en-us'; // default to us-en if no locale in path
   // load nav as fragment
   const navMeta = getMetadata('nav');
