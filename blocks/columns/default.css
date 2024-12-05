@@ -42,11 +42,11 @@
   align-items: flex-start;
 }
 
-.columns.img-33 img {
+.block.columns.img-33 img {
   width: 33.333%;
 }
 
-.columns.columns-has-image img {
+.block.columns.columns-has-image img {
   overflow-clip-margin: content-box;
   max-width: 100%;
   overflow: clip;

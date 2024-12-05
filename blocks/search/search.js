@@ -41,22 +41,26 @@ function filterData(searchTerms, data) {
   const servicePage = [];
   const resourceCenterPage = [];
   const industryPage = [];
+  const locationPage = [];
 
   data.forEach((result) => {
     let minIdx = -1;
 
     searchTerms.forEach((term) => {
-      const searchText = (result.header || result.title).concat(`${result.title} ${result.description} ${result.path}`).toLowerCase();
+      const checkHeader = ((result.header || result.title) || '');
+      const searchText = checkHeader.concat(`${result.title} ${result.description} ${result.path}`).toLowerCase();
 
       if (Object.hasOwn(result, 'media-type')) {
-        const mediaType = result['media-type'];
+        const mediaType = result['media-type'].toLowerCase();
         if (['service-page'].includes(mediaType)) {
           const idx = searchText.indexOf(term);
           if (idx < 0) return;
           if (minIdx < idx) minIdx = idx;
 
           if (minIdx >= 0) {
+            result['media-type'] = 'Services';
             servicePage.push({ minIdx, result });
+            return;
           }
         }
 
@@ -66,8 +70,25 @@ function filterData(searchTerms, data) {
           if (minIdx < idx) minIdx = idx;
 
           if (minIdx >= 0) {
+            result['media-type'] = 'Industry';
             industryPage.push({ minIdx, result });
+            return;
           }
+        }
+
+        if (['service location'].includes(mediaType)) {
+          const state = (result.state).toLowerCase();
+          const idx = state.indexOf(searchTerms.join(' '));
+          if (idx < 0) return;
+          if (minIdx < idx) minIdx = idx;
+
+          if (minIdx >= 0) {
+            result['media-type'] = '';
+            locationPage.push({ minIdx, result });
+            return;
+          }
+
+          minIdx = Number.POSITIVE_INFINITY;
         }
       }
 
@@ -77,39 +98,43 @@ function filterData(searchTerms, data) {
         if (minIdx < idx) minIdx = idx;
 
         if (minIdx >= 0) {
-          result['media-type'] = 'resource-center';
+          result['media-type'] = 'Resource Center';
           resourceCenterPage.push({ minIdx, result });
         }
       }
     });
 
-    searchTerms.forEach((term) => {
-      const idx = (result.header || result.title).toLowerCase().indexOf(term);
-      if (idx < 0) return;
-      if (minIdx < idx) minIdx = idx;
-    });
+    if (minIdx < 0) {
+      searchTerms.forEach((term) => {
+        const checkHeader = ((result.header || result.title) || '');
+        const idx = checkHeader.toLowerCase().indexOf(term);
+        if (idx < 0) return;
+        if (minIdx < idx) minIdx = idx;
+      });
 
-    if (minIdx >= 0) {
-      foundInHeader.push({ minIdx, result });
-      return;
-    }
+      if (minIdx >= 0) {
+        foundInHeader.push({ minIdx, result });
+        return;
+      }
 
-    const metaContents = `${result.title} ${result.description} ${result.path} ${result['media-type']}'}`.toLowerCase();
-    searchTerms.forEach((term) => {
-      const idx = metaContents.indexOf(term);
-      if (idx < 0) return;
-      if (minIdx < idx) minIdx = idx;
-    });
+      const metaContents = `${result.title} ${result.description} ${result.path} ${result['media-type']}'}`.toLowerCase();
+      searchTerms.forEach((term) => {
+        const idx = metaContents.indexOf(term);
+        if (idx < 0) return;
+        if (minIdx < idx) minIdx = idx;
+      });
 
-    if (minIdx >= 0) {
-      foundInMeta.push({ minIdx, result });
+      if (minIdx >= 0) {
+        foundInMeta.push({ minIdx, result });
+      }
     }
   });
 
   return [
-    ...servicePage.sort(compareFound),
-    ...industryPage.sort(compareFound),
-    ...resourceCenterPage.sort(compareFound),
+    ...locationPage,
+    ...servicePage,
+    ...industryPage,
+    ...resourceCenterPage,
     ...foundInHeader.sort(compareFound),
     ...foundInMeta.sort(compareFound),
   ].map((item) => {
@@ -216,7 +241,7 @@ async function handleSearch(e, block, config) {
   }
 
   if (searchValue.length >= 3) {
-    const data = await ffetch(window.localStorage.getItem('searchIndex')).sheet('default').all();
+    const data = await ffetch(window.localStorage.getItem('searchIndex')).sheet('search').all();
 
     const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
     const filteredData = filterData(searchTerms, data);
