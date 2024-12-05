@@ -33,7 +33,7 @@ export default function decorate(block) {
   if (getMetadata('template') === 'service-location-page') {
     const link = document.createElement('a');
     link.classList.add('mobile-only', 'button', 'primary');
-    link.href = '/forms/modals/modal';
+    link.href = getMetadata('nav-modal-path') || '/forms/modals/modal';
     link.textContent = 'Request a Quote';
     content.append(link);
   }
