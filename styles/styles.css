@@ -1468,4 +1468,10 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover::after {
   color: var(--color-black);
 }
 
+@media screen and (max-width: 992px) {
+  main .page-sidebar .section.get-a-quote-form-wrapper {
+    display: none;
+  }
+}
+
 
