@@ -1,8 +1,10 @@
 import { domEl, a, div, img, li } from '../../scripts/dom-helpers.js';
-import { getMetadata } from '../../scripts/aem.js';
+import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { getLocale } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
+  const ph = await fetchPlaceholders(`/${getLocale()}`);
   block.content = '';
   let locale = window.location.pathname.split('/')[1];
   locale = locale.match(/^[a-z]{2}-[a-z]{2}$/) ? locale : 'en-us'; // default to us-en if no locale in path
@@ -15,9 +17,11 @@ export default async function decorate(block) {
   const navContact = fragment.querySelector('.section[data-section="contact" i]');
   navContact.replaceChildren(navContact.querySelector('ul'));
   navContact.classList.add('nav-contact');
+  const navModalPath = getMetadata('nav-modal-path') || '/forms/modals/modal';
+  const modalButtonTitle = ph.getaquote || 'Get a Quote';
   const link = li(
     { class: 'quote-link' },
-    a({ href: '/forms/modals/modal', class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Get a Quote'),
+    a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle }, modalButtonTitle),
   );
   navContact.querySelector('ul').append(link);
 
