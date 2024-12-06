@@ -383,9 +383,9 @@ main .form .field-wrapper.field-invalid textarea,
 main .form .field-wrapper.field-invalid select {
     border-color: var(--form-input-invalid-border-color);
     padding-right: calc(1.5em + .75rem);
-    background-image: url('../../icons/invalid.svg');
+    /* background-image: url('../../icons/invalid.svg');
     background-repeat: no-repeat;
-    background-position: right calc(.375em + .1875rem) center;
+    background-position: right calc(.375em + .1875rem) center; */
     background-size: calc(.75em + .375rem) calc(.75em + .375rem)
 }
 
@@ -866,7 +866,7 @@ main .modal.block dialog .form form .wizard{
   padding: 0;
 }
 
-main .form .field-wrapper.floating-field[data-required="true"] label::after,
+/* main .form .field-wrapper.floating-field[data-required="true"] label::after,
 main .form .panel-wrapper[data-required="true"] legend::after {
   content: "*";
   color: var(--form-label-color);
@@ -875,7 +875,7 @@ main .form .panel-wrapper[data-required="true"] legend::after {
 main .form .field-wrapper.floating-field[data-required="true"].field-invalid label::after,
 main .form .panel-wrapper[data-required="true"].field-invalid legend::after {
   color: var(--form-error-color);
-}
+} */
 
 main .get-a-quote-form-alternate {
     box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
