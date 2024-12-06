@@ -383,10 +383,11 @@ main .form .field-wrapper.field-invalid textarea,
 main .form .field-wrapper.field-invalid select {
     border-color: var(--form-input-invalid-border-color);
     padding-right: calc(1.5em + .75rem);
+
     /* background-image: url('../../icons/invalid.svg');
     background-repeat: no-repeat;
-    background-position: right calc(.375em + .1875rem) center; */
-    background-size: calc(.75em + .375rem) calc(.75em + .375rem)
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem) */
 }
 
 main .form .field-wrapper.field-invalid input[type="radio"] {
