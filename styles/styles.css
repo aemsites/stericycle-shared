@@ -175,6 +175,7 @@
   --content-width-l: 960px;
   --content-width-xl: 1200px;
   --content-width-xxl: 1920px;
+  --content-width-xxxl: 1920px;
   --section-width: var(--content-width-s);
 
   /* Split Columns */
