@@ -193,14 +193,27 @@ main .form input[type="checkbox"]:hover {
     background-color:  var(--color-primary-1);
 }
 
-main .form input[type="checkbox"]:focus::after {
-    border-bottom: 1px solid var(--color-primary-1); 
+main .form input[type="checkbox"]:focus-visible::after {
+    border-bottom: 1px solid var(--color-primary-1);
     border-right: 1px solid var(--color-primary-1);
 }
 
-main .form input[type="checkbox"]:focus {
+main .form input[type="checkbox"]:focus-visible {
     background-color: var(--color-bg-secondary);
     outline: 2px solid var(--color-primary-1);
+}
+
+main .form input[type="checkbox"]:focus-visible:hover {
+    background-color:  var(--color-primary-1);
+}
+
+main .form input[type="checkbox"]:checked:focus-visible {
+    background-color: var(--color-primary-1);
+}
+
+main .form input[type="checkbox"]:checked:focus-visible::after {
+    border-bottom: 1px solid var(--color-white);
+    border-right: 1px solid var(--color-white);
 }
 
 main .form input[type="checkbox"]:disabled {
@@ -214,7 +227,7 @@ main .form input[type="checkbox"]:disabled::after {
     border-right: 1px solid var(--color-disabled);
 }
 
-main .form input[type="checkbox"]:hover:not(:focus)::after {
+main .form input[type="checkbox"]:hover:not(:focus-visible)::after {
     border-bottom: 1px solid var(--color-white);
     border-right: 1px solid var(--color-white);
 }
@@ -235,7 +248,7 @@ main .form input[type="radio"] {
     position: relative;
 }
 
-main .form input[type="radio"]:focus {
+main .form input[type="radio"]:focus-visible {
     border: 2px solid var(--color-primary-1);
     outline: none;
 }
@@ -363,7 +376,9 @@ main .form button:disabled {
     background-color: var(--form-input-disabled-color);
 }
 
-main .form input:focus, main .form textarea:focus, main .form select:focus {
+main .form input:focus:not([type="checkbox"]):not([type="radio"]), 
+main .form textarea:focus, 
+main .form select:focus {
   outline: 3px solid var(--color-bg-tertiary);
   outline-offset: 3px;
 }
