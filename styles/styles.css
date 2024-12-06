@@ -173,8 +173,8 @@
   --content-width-s: 540px;
   --content-width-m: 720px;
   --content-width-l: 960px;
-  --content-width-xl: 1200px;
-  --content-width-xxl: 1920px;
+  --content-width-xl: 1140px;
+  --content-width-xxl: 1320px;
   --section-width: var(--content-width-s);
 
   /* Split Columns */
