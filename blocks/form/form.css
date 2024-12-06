@@ -193,6 +193,21 @@ main .form input[type="checkbox"]:hover {
     background-color:  var(--color-primary-1);
 }
 
+main .form input[type="checkbox"]:focus {
+  outline: none;
+}
+
+main .form input[type="checkbox"]:disabled {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-disabled) !important;
+    cursor: not-allowed;
+}
+
+main .form input[type="checkbox"]:disabled::after {
+    border-bottom: 1px solid var(--color-disabled);
+    border-right: 1px solid var(--color-disabled);
+}
+
 main .form input[type="checkbox"]:focus-visible::after {
     border-bottom: 1px solid var(--color-primary-1);
     border-right: 1px solid var(--color-primary-1);
@@ -216,17 +231,6 @@ main .form input[type="checkbox"]:checked:focus-visible::after {
     border-right: 1px solid var(--color-white);
 }
 
-main .form input[type="checkbox"]:disabled {
-    background-color: var(--color-white);
-    border: 1px solid var(--color-disabled) !important;
-    cursor: not-allowed;
-}
-
-main .form input[type="checkbox"]:disabled::after {
-    border-bottom: 1px solid var(--color-disabled);
-    border-right: 1px solid var(--color-disabled);
-}
-
 main .form input[type="checkbox"]:hover:not(:focus-visible)::after {
     border-bottom: 1px solid var(--color-white);
     border-right: 1px solid var(--color-white);
@@ -246,6 +250,10 @@ main .form input[type="radio"] {
     margin-right: .5rem;
     padding: 0;
     position: relative;
+}
+
+main .form input[type="radio"]:focus {
+    outline: none;
 }
 
 main .form input[type="radio"]:focus-visible {
@@ -369,18 +377,18 @@ main .submit-wrapper{
     width: var(--form-submit-width);
 }
 
+main .form input:focus, 
+main .form textarea:focus, 
+main .form select:focus {
+  outline: 3px solid var(--color-bg-tertiary);
+  outline-offset: 3px;
+}
+
 main .form input:disabled,
 main .form textarea:disabled,
 main .form select:disabled,
 main .form button:disabled {
     background-color: var(--form-input-disabled-color);
-}
-
-main .form input:focus:not([type="checkbox"]):not([type="radio"]), 
-main .form textarea:focus, 
-main .form select:focus {
-  outline: 3px solid var(--color-bg-tertiary);
-  outline-offset: 3px;
 }
 
 main .form .field-wrapper.field-valid input,
@@ -392,6 +400,9 @@ main .form .field-wrapper.field-valid select {
 main .form .field-wrapper.field-valid input[type="radio"] {
     border-color: var(--color-primary-1);
 }
+
+
+
 
 main .form .field-wrapper.field-invalid input,
 main .form .field-wrapper.field-invalid textarea,
