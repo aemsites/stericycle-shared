@@ -498,7 +498,7 @@ a.button.primary, button.primary {
   background-color: var(--color-button-primary);
   border: none;
   color: var(--color-text-primary);
-  outline: 1px solid var(--color-bg-secondary);
+  outline: 1px solid var(--color-grey200);
   border-radius: 100px;
 }
 
@@ -515,7 +515,7 @@ a.button.primary, button.primary {
 }
 
 a.button.primary:hover, button.primary:hover{
-  outline-width: 3px;
+  outline: 3px solid var(--color-black);
 }
 
 a.button.primary:focus-visible , button.primary:focus-visible {
@@ -586,7 +586,7 @@ main img {
   mask-image: var(--mask-image);
 }
 
-.button-container .button {
+.button-container a.button {
   gap: 4px;
 }
 
@@ -784,10 +784,10 @@ main .list-style-checkmarks ul {
   list-style: none;
 }
 
-main .list-style-checkmarks li::marker, 
-main .list-style-bullets li::marker, 
+main .list-style-checkmarks li::marker,
+main .list-style-bullets li::marker,
 main .list-style-orange-triangles li::marker,
-main .list-style-big-numbers li::marker, 
+main .list-style-big-numbers li::marker,
 main .list-style-more-space li::marker {
   content: "";
 }
