@@ -18,6 +18,9 @@ main:has(.section.two-column.full-width) div.faq-container div {
 }
 
 .faq {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   padding: 0;
   margin-bottom: 40px;
 }
@@ -50,6 +53,11 @@ main:has(.section.two-column.full-width) div.faq-container div {
 }
 
 @media screen and (min-width: 992px) {
+
+  .faq {
+    gap: 4px;
+  }
+
   /* stylelint-disable-next-line no-descending-specificity */
   .faq details:hover {
     background-color: var(--color-grey200);
@@ -71,11 +79,15 @@ main:has(.section.two-column.full-width) div.faq-container div {
 .faq details summary {
   -webkit-tap-highlight-color: transparent;
   position: relative;
-  padding: 24px 56px 24px 16px;
+  padding: 20px 56px 24px 16px;
   cursor: pointer;
   list-style: none;
   overflow: auto;
   transition: background-color 0.2s;
+}
+
+.faq details:first-of-type summary {
+  padding-top: 24px;
 }
 
 @media screen and (min-width: 992px) {
