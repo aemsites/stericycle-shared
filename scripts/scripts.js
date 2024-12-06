@@ -85,10 +85,10 @@ export function getEnvironment() {
   if (hostname === 'localhost') {
     return 'dev';
   }
-  if (hostname.endsWith('.aem.page') || (hostname.startsWith('stage') && hostname.endsWith('.shredit.com'))) {
+  if (hostname.endsWith('.aem.page')) {
     return 'stage';
   }
-  if (hostname.endsWith('.aem.live') || hostname === 'www.shredit.com') {
+  if (hostname.endsWith('.aem.live') || hostname === 'www.shredit.com' || hostname === 'stage-us.shredit.com') {
     return 'prod';
   }
   return 'unknown';
