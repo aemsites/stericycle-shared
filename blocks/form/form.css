@@ -127,7 +127,7 @@ main .form form fieldset fieldset {
 
 main .form .field-description {
     color: var(--form-label-color);
-    font-size: var(--form-font-size-xxxs);
+    font-size: var(--form-font-size-xxs);
 }
 
 main .form form .field-invalid .field-description {
@@ -194,7 +194,7 @@ main .form input[type="checkbox"]:hover {
 }
 
 main .form input[type="checkbox"]:focus::after {
-    border-bottom: 1px solid var(--color-primary-1); 
+    border-bottom: 1px solid var(--color-primary-1);
     border-right: 1px solid var(--color-primary-1);
 }
 
@@ -220,7 +220,7 @@ main .form input[type="checkbox"]:hover:not(:focus)::after {
 }
 
 main .form input[type="checkbox"]:disabled:hover::after {
-    border-bottom: 1px solid var(--color-disabled); 
+    border-bottom: 1px solid var(--color-disabled);
     border-right: 1px solid var(--color-disabled);
 }
 
@@ -502,7 +502,7 @@ main .form .button-wrapper.wizard-button-next button:hover, main .form .button-w
 main .form .button-wrapper.wizard-button-next button:focus, main .form .button-wrapper.submit-wrapper button:focus{
   outline: 3px solid var(--color-bg-tertiary);
   outline-offset: 3px;
-  border: 3px solid var(--color-bg-secondary);    
+  border: 3px solid var(--color-bg-secondary);
 }
 
 /** Wizard Styling */
@@ -780,7 +780,7 @@ main .form form .panel-wrapper.field-frequncy .radio-wrapper label{
 main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox'], :placeholder-shown) + label,
 main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox']):focus + label{
     padding: 15px 0 0 15px;
-    font-size: 12px;
+    font-size: 10px;
     color: var(--form-styles-label-color);
     transform: translateY(-15px);
     z-index: 1;
