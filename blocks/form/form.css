@@ -216,6 +216,7 @@ main .form input[type="checkbox"]:focus-visible::after {
 main .form input[type="checkbox"]:focus-visible {
     background-color: var(--color-bg-secondary);
     outline: 2px solid var(--color-primary-1);
+    outline-offset: 0;
 }
 
 main .form input[type="checkbox"]:focus-visible:hover {
