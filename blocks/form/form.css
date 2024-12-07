@@ -173,7 +173,7 @@ main .form input[type="checkbox"] {
     border: 1px solid var(--color-primary-1);
     position: relative;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 main .form input[type="checkbox"]:checked::after {
