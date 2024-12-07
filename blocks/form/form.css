@@ -223,11 +223,7 @@ main .form input[type="checkbox"]:focus-visible:hover {
     background-color:  var(--color-primary-1);
 }
 
-main .form input[type="checkbox"]:checked:focus-visible {
-    background-color: var(--color-primary-1);
-}
-
-main .form input[type="checkbox"]:checked:focus-visible::after {
+main .form input[type="checkbox"]:hover:focus-visible::after {
     border-bottom: 1px solid var(--color-white);
     border-right: 1px solid var(--color-white);
 }
