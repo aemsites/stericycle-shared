@@ -918,11 +918,11 @@ main .shredded-paper-background-column.two-column.form-container,
 main .navy-background.cyan-border.two-column.form-container,
 main .hard-drive-background.two-column.form-container {
     display: grid;
-    grid-template-columns: 65% 35%;; /* Set max-width for each column */
+    grid-template-columns: minmax(0, 1284px) minmax(0, 636px); /* Set max-width for each column */
     grid-auto-rows: auto;
     margin: auto;
     gap: 0;
-    justify-content: flex-start;
+    justify-content: center;
     width:100%;
 }
 
