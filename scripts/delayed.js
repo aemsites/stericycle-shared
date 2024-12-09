@@ -3,15 +3,18 @@ import {
   fetchPlaceholders, getMetadata, loadCSS, sampleRUM,
 } from './aem.js';
 // eslint-disable-next-line import/no-cycle
-import { getDateFromExcel, getLocale, getRelatedPosts, initMartech } from './scripts.js';
+import { getDateFromExcel, getEnvironment, getLocale, getRelatedPosts, initMartech } from './scripts.js';
 import decorate from '../blocks/post-teaser-list/post-teaser-list.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
 // Full Martech stack
 const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.get('load-martech')?.toLowerCase() === 'delayed') {
-  initMartech();
+if (window.location.hostname === 'stage-us.shredit.com') {
+  // do nothing; special case for testing
+} if (urlParams.get('load-martech')?.toLowerCase() === 'delayed') {
+  // noinspection JSIgnoredPromiseFromCall
+  initMartech(getEnvironment());
 }
 
 const RELATED_LIMIT = 4;

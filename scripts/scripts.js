@@ -85,10 +85,10 @@ export function getEnvironment() {
   if (hostname === 'localhost') {
     return 'dev';
   }
-  if (hostname.endsWith('.aem.page')) {
+  if (hostname.endsWith('.aem.page') || (hostname.startsWith('stage') && hostname.endsWith('.shredit.com'))) {
     return 'stage';
   }
-  if (hostname.endsWith('.aem.live') || hostname === 'www.shredit.com' || hostname === 'stage-us.shredit.com') {
+  if (hostname.endsWith('.aem.live') || hostname === 'www.shredit.com') {
     return 'prod';
   }
   return 'unknown';
@@ -127,14 +127,13 @@ export function getLocaleAsBCP47() {
   return parts.join('-');
 }
 
-export async function initMartech() {
+export async function initMartech(env) {
   const launchUrls = {
     dev: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js',
     stage: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-930cbc9eaafb-staging.min.js',
     prod: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-e21320e8ed46.min.js',
   };
-  const env = getEnvironment();
-  if (env === 'unknown') {
+  if (!launchUrls.keys().includes(env)) {
     return; // unknown env -> skip martech initialization
   }
   await loadScript(launchUrls[env], { async: '' });
@@ -680,8 +679,10 @@ async function loadEager(doc) {
   document.documentElement.lang = getLocaleAsBCP47();
 
   const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('load-martech')?.toLowerCase() === 'eager') {
-    await initMartech();
+  if (window.location.hostname === 'stage-us.shredit.com') {
+    await initMartech('dev'); // special case for testing
+  } else if (urlParams.get('load-martech')?.toLowerCase() === 'eager') {
+    await initMartech(getEnvironment());
   }
 
   decorateTemplateAndTheme();
