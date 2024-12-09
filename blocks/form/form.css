@@ -1057,9 +1057,14 @@ main .section.contact-us-title > .default-content-wrapper {
     {
         display: grid;
         grid-template-columns: 1fr;
+        padding: 0;
+        /* stylelint-disable */
+        > .form-wrapper {
+            grid-row:   2;
+            padding: 0;
+        }
     }
 
-    /* stylelint-disable */
     main .section.two-column.form-container > div,
     main .section.two-column.form-container.full-width > div,
     main .shredded-paper-background-column.two-column.form-container > div,
@@ -1104,6 +1109,12 @@ main .section.contact-us-title > .default-content-wrapper {
         margin:0;
     }
 
+    main .get-a-quote-form-alternate form .field-wrapper.field-first-name,
+    main .get-a-quote-form-alternate form .field-wrapper.field-last-name{
+        grid-column: span 12;
+    }
+
+
 }
 
 main .form-wrapper .form.contact-us-form{
@@ -1120,6 +1131,10 @@ main .form fieldset legend[for^="requesttype"] {
     font-weight: unset;
 }
 
+main .form fieldset legend[for^="frequncy"] {
+    font-weight: unset;
+}
+
 main .form fieldset legend[for^="selectservice"]{
     padding-left: 0.6rem;
     font-weight: unset;
@@ -1130,4 +1145,8 @@ main form .fragment-wrapper[data-id^='policy']  p{
     font-size: 0.75rem;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
+}
+
+main .campaign-form.form form .fragment-wrapper div > p {
+    font-size: 1rem;
 }
