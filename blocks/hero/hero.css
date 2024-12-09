@@ -114,6 +114,10 @@ main .section.hero-container {
           border-width: 2px;
           font-size: var(--body-font-size-default);
         }
+
+        .mobile-only {
+          display:none;
+        }
       }
     }
   }

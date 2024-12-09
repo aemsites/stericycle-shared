@@ -1,3 +1,5 @@
+import { getMetadata } from '../../scripts/aem.js';
+
 export default function decorate(block) {
   const wrapper = block.querySelector('div');
   const contentContainer = document.createElement('div');
@@ -27,6 +29,14 @@ export default function decorate(block) {
       block.append(picture);
     }
   });
+
+  if (getMetadata('template') === 'service-location-page') {
+    const link = document.createElement('a');
+    link.classList.add('mobile-only', 'button', 'primary');
+    link.href = getMetadata('nav-modal-path') || '/forms/modals/modal';
+    link.textContent = 'Request a Quote';
+    content.append(link);
+  }
 
   // Add everything to the block
   block.append(contentContainer);
