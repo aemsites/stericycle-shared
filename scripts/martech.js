@@ -3,6 +3,13 @@ import { getMetadata, loadScript } from './aem.js';
 import { getLocaleAsBCP47 } from './scripts.js';
 
 function initDataLayer() {
+  let author = '';
+  if (window.location.host.includes('shredit')) {
+    author = 'Shred-it';
+  } else if (window.location.host.includes('stericycle')) {
+    author = 'Stericycle';
+  }
+
   window.digitalData = {
     page: {
       pageInfo: {
@@ -12,7 +19,7 @@ function initDataLayer() {
         destinationURL: window.location.href,
         referringURL: document.referrer,
         sysEnv: '', // "desktop, tablet or mobile"
-        author: '', // unavailable on EDS ?
+        author,
         language: getLocaleAsBCP47(),
         pageURL: window.location.href,
         currentPagePath: window.location.pathname,
