@@ -322,7 +322,7 @@ function searchBox(block, config) {
 export default async function decorate(block) {
   const placeholders = await fetchPlaceholders();
   const source = block.querySelector('a[href]') ? block.querySelector('a[href]').href : '/query-index.json';
-  block.innerHTML = '';
+  block.innerHTML = "";
   block.append(
     searchBox(block, { source, placeholders }),
   );
