@@ -15,10 +15,12 @@ import {
   toClassName,
   decorateBlock,
   loadBlock,
-  loadSection, loadScript,
+  loadSection,
 } from './aem.js';
 import { div } from './dom-helpers.js';
 import ffetch from './ffetch.js';
+// eslint-disable-next-line import/no-cycle
+import { initMartech } from './martech.js';
 
 export const BREAKPOINTS = {
   tablet: window.matchMedia('(min-width: 768px)'),
@@ -125,18 +127,6 @@ export function getLocaleAsBCP47() {
     }
   }
   return parts.join('-');
-}
-
-export async function initMartech(env) {
-  const launchUrls = {
-    dev: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js',
-    stage: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-930cbc9eaafb-staging.min.js',
-    prod: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-e21320e8ed46.min.js',
-  };
-  if (!launchUrls.keys().includes(env)) {
-    return; // unknown env -> skip martech initialization
-  }
-  await loadScript(launchUrls[env], { async: '' });
 }
 
 const toRadians = (degrees) => ((degrees * Math.PI) / 180);

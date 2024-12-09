@@ -3,8 +3,9 @@ import {
   fetchPlaceholders, getMetadata, loadCSS, sampleRUM,
 } from './aem.js';
 // eslint-disable-next-line import/no-cycle
-import { getDateFromExcel, getEnvironment, getLocale, getRelatedPosts, initMartech } from './scripts.js';
+import { getDateFromExcel, getEnvironment, getLocale, getRelatedPosts } from './scripts.js';
 import decorate from '../blocks/post-teaser-list/post-teaser-list.js';
+import { initMartech } from './martech.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
