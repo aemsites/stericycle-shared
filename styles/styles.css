@@ -640,7 +640,6 @@ main .list-style-checkmarks ul {
 }
 
 main .list-style-checkmarks li::marker, 
-main .list-style-bullets li::marker, 
 main .list-style-orange-triangles li::marker,
 main .list-style-big-numbers li::marker, 
 main .list-style-more-space li::marker {
