@@ -132,3 +132,11 @@ body.modal-open {
 .modal dialog .modal-content .form-container {
   width: 100%;
 }
+
+.modal .modal-content .default-content-wrapper {
+  margin-bottom: 0;
+}
+
+.modal .modal-content .form-wrapper {
+  margin-top: 0;
+}
