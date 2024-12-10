@@ -1,7 +1,7 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { a, button, div, domEl, form, img, input, label, p, span, ul, li } from '../../scripts/dom-helpers.js';
-import { formatPhone, getLocale } from '../../scripts/scripts.js';
+import {BREAKPOINTS, formatPhone, getLocale} from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 1200px)');
@@ -378,6 +378,7 @@ export default async function decorate(block) {
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : `/${locale}/nav`;
   const fragment = await loadFragment(navPath);
+  fragment.querySelectorAll('li a').forEach((item) => item.parentElement.classList.add('site-nav__item')); // analytics selector
 
   const contactList = ul(
     // eslint-disable-next-line max-len
@@ -399,6 +400,7 @@ export default async function decorate(block) {
   const navTools = fragment.querySelector('.section[data-section="tools" i]');
   navTools.replaceChildren(navTools.querySelector('ul'));
   navTools.classList.replace('section', 'nav-tools');
+  navTools.querySelectorAll('a').forEach((anchor) => anchor.classList.add('single-links__link')); // analytics selector
 
   // @formatter:off
   /* eslint-disable function-paren-newline,function-call-argument-newline */
@@ -433,6 +435,7 @@ export default async function decorate(block) {
   );
   const navModalPath = getMetadata('nav-modal-path') || '/forms/modals/modal';
   const modalButtonTitle = placeHolders.requestafreequote || 'Request a Free Quote';
+  const modalButtonId = BREAKPOINTS.mobile.matches ? 'get-a-quote-mobile' : 'get-a-quote';
   const nav = domEl('nav', { id: 'nav' },
     div({ class: 'logo' },
       a({ href: `/${locale}`, class: 'logo-link', title: 'Shred-it' },
@@ -464,7 +467,7 @@ export default async function decorate(block) {
       navSearch,
       div({ class: 'quote-wrapper' },
         p({ class: 'button-container' },
-          a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle }, modalButtonTitle),
+          a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle, id: modalButtonId }, modalButtonTitle),
         ),
       ),
     ),
