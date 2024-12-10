@@ -48,6 +48,20 @@ export default async function decorate(block) {
     el.removeAttribute('target');
   });
 
+  const servicesA = getMetadata('services-link');
+  const whyShreditA = getMetadata('why-shred-it-link');
+  const whyShredA = getMetadata('why-shred-link');
+
+  navSections?.querySelectorAll('ul li').forEach((x, index) => {
+    if (index === 0) {
+      x.querySelector('a').href = servicesA;
+    } else if (index === 1) {
+      x.querySelector('a').href = whyShreditA;
+    } else {
+      x.querySelector('a').href = whyShredA;
+    }
+  });
+
   // If the first section contains a Logo, assume that we need to only display menu when scrolling.
 
   const found = document.querySelector('main > div.section:first-of-type span.icon[class*="logo"]');
