@@ -123,10 +123,33 @@
   .cards.full-width > ul > li {
     flex-direction: row;
     gap: 24px;
+    padding: 64px 80px;
   }
 
-  .cards.full-width > ul > li > .card-head {
-    width: 25%;
+  .cards.full-width > ul > li > .card-body {
+    justify-content: space-between;
+    flex-direction: row;
+    flex: unset;
+  }
+
+  .cards.full-width > ul > li > .card-body > .card-section {
+    max-width: 715px;
+    flex: unset;
+  }
+
+  .cards.full-width > ul > li > .card-body > .card-section > p {
+    display: flex;
+    align-items: center;
+  }
+
+  .cards.full-width > ul > li > .card-body > .card-section > p.button-container {
+    justify-content: center;
+  }
+
+  .cards.full-width > ul > li > .card-head .icon > img {
+    width: 99px;
+    height: 99px;
+    object-fit: cover;
   }
 
   .cards.full-width > ul > li > .card-body > .card-section > p.button-container:last-child {
