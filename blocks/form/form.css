@@ -946,11 +946,6 @@ main .two-column.form-container:not(.shredded-paper-background-column, .hard-dri
     width:100%;
 }
 
-main .shredded-paper-background-column.two-column,
-main .hard-drive-background.two-column {
-    padding: 0 2rem;
-}
-
 main .two-column.form-container > div {
     grid-column: 1;
 }
