@@ -12,6 +12,7 @@
   <script src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
   <script type="module">
     import { sampleRUM } from '/scripts/aem.js';
+    sampleRUM('404', { source: document.referrer });
 
     window.addEventListener('load', () => {
       if (document.referrer) {
@@ -26,7 +27,6 @@
           btnContainer.append(backBtn);
         }
       }
-      sampleRUM('404', { source: document.referrer });
     });
   </script>
   <link rel="stylesheet" href="/styles/styles.css">
