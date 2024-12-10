@@ -1,7 +1,7 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { a, button, div, domEl, form, img, input, label, p, span, ul, li } from '../../scripts/dom-helpers.js';
-import {BREAKPOINTS, formatPhone, getLocale} from '../../scripts/scripts.js';
+import { BREAKPOINTS, formatPhone, getLocale } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 1200px)');
