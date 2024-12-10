@@ -372,7 +372,7 @@ function addDropButtons(navEl) {
 export default async function decorate(block) {
   const placeHolders = await fetchPlaceholders(`/${getLocale()}`);
   block.textContent = '';
-  let locale = window.location.pathname.split('/')[1];
+  let locale = window.location.pathname.split('/')[1] || 'en-us';
   locale = locale.match(/^[a-z]{2}-[a-z]{2}$/) ? locale : 'en-us'; // default to us-en if no locale in path
   // load nav as fragment
   const navMeta = getMetadata('nav');
@@ -431,7 +431,8 @@ export default async function decorate(block) {
       a({ href: `/${locale}/service-locations`, 'aria-label': 'Service Locations' }, 'Service Locations'),
     ),
   );
-
+  const navModalPath = getMetadata('nav-modal-path') || '/forms/modals/modal';
+  const modalButtonTitle = placeHolders.requestafreequote || 'Request a Free Quote';
   const nav = domEl('nav', { id: 'nav' },
     div({ class: 'logo' },
       a({ href: `/${locale}`, class: 'logo-link', title: 'Shred-it' },
@@ -463,13 +464,13 @@ export default async function decorate(block) {
       navSearch,
       div({ class: 'quote-wrapper' },
         p({ class: 'button-container' },
-          a({ href: '/forms/modals/modal', class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Request a Free Quote'),
+          a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle }, modalButtonTitle),
         ),
       ),
     ),
     div({ class: 'floating-contact' },
       div({ class: 'sales-contact' }, a({ href: `tel:+1${placeHolders.salesno}`, title: 'Sales', 'aria-label': 'Sales' }, `${formatPhone(placeHolders.salesno, true)}`)),
-      div({ class: 'quote-container' }, a({ href: '/forms/modals/modal', class: 'quote-button button primary', 'aria-label': 'Request a Free Quote' }, 'Request a Free Quote')),
+      div({ class: 'quote-container' }, a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle }, modalButtonTitle)),
     ),
   );
   /* eslint-enable function-paren-newline,function-call-argument-newline */

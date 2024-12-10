@@ -1,14 +1,15 @@
 import { getSubmitBaseUrl } from './constant.js';
 import { appendFragment } from './lib/util.js';
+import { getMetadata } from '../../scripts/aem.js';
 
 // eslint-disable-next-line no-unused-vars
 export async function submitSuccess(e, form) {
-  form.classList.add('submit-success');
   // remove error message if exists
   const errorMessage = form.querySelector('.form-message.error-message');
   if (errorMessage) {
     errorMessage.remove();
   }
+  sessionStorage.setItem('formSubmitted', 'true');
   const { payload } = e;
   const thankYouMessageURL = payload?.body?.thankYouMessage;
   if (thankYouMessageURL) {
@@ -71,11 +72,20 @@ function getFieldValue(fe, payload) {
   return null;
 }
 
+function getCountryAndLanguage() {
+  const locale = getMetadata('locale');
+  return locale?.split('-') || ['en', 'us'];
+}
+
 async function constructPayload(form, captcha) {
+  const [language, country] = getCountryAndLanguage();
   const payload = {
     __id__: generateUnique(),
     ':currentPagePath': '/content/shred-it/us/en',
     jobPropertiesUrl: `https://main--shredit--stericycle.aem.page${form.dataset.action}.json`,
+    formURL: form.dataset?.action,
+    webCountry: country,
+    webLanguage: language,
   };
   [...form.elements].forEach((fe) => {
     if (fe.name && !fe.matches('button') && !fe.disabled && fe.tagName !== 'FIELDSET') {
@@ -109,7 +119,7 @@ async function prepareRequest(form, captcha) {
     'Content-Type': 'application/json',
   };
   const body = { data: payload };
-  const url = getSubmitBaseUrl();
+  const url = `${getSubmitBaseUrl()}/bin/edgedelivery/form`;
   return { headers, body, url };
 }
 

@@ -17,7 +17,15 @@ import {
   loadBlock,
   loadSection,
 } from './aem.js';
+import { div } from './dom-helpers.js';
 import ffetch from './ffetch.js';
+// eslint-disable-next-line import/no-cycle
+import { initMartech } from './martech.js';
+
+export const BREAKPOINTS = {
+  tablet: window.matchMedia('(min-width: 768px)'),
+  desktop: window.matchMedia('(min-width: 992px)'),
+};
 
 export function convertExcelDate(excelDate) {
   const secondsInDay = 86400;
@@ -72,6 +80,20 @@ function arraysHaveMatchingItem(array1, array2) {
     }
   }
   return false;
+}
+
+export function getEnvironment() {
+  const { hostname } = window.location;
+  if (hostname === 'localhost') {
+    return 'dev';
+  }
+  if (hostname.endsWith('.aem.page') || (hostname.startsWith('stage') && hostname.endsWith('.shredit.com'))) {
+    return 'stage';
+  }
+  if (hostname.endsWith('.aem.live') || hostname === 'www.shredit.com') {
+    return 'prod';
+  }
+  return 'unknown';
 }
 
 export function getLocale() {
@@ -244,24 +266,12 @@ function consolidateOfferBoxes(main) {
   });
 }
 
-/**
- * get embed code for Wistia videos
- *
- * @param {*} url
- * @returns
- */
-export function embedWistia(url) {
-  let suffix = '';
-  const suffixParams = {
-    playerColor: '006cb4',
-  };
-
-  suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
-  const temp = document.createElement('div');
-  temp.innerHTML = `<div>
-  <iframe loading="lazy" allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed custom-shadow"
-  name="wistia_embed" src="${url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href}${suffix}"></iframe>`;
-  return temp.children.item(0);
+async function fetchWistiaMetadata(videoUrl) {
+  const response = await fetch(`${videoUrl}.json`);
+  if (!response.ok) {
+    throw new Error(`Response status: ${response.status}`);
+  }
+  return response.json();
 }
 
 /**
@@ -269,6 +279,11 @@ export function embedWistia(url) {
  * @param {Element} main The container element
  */
 function buildHeroBlock(main) {
+  // blog pages don't use the hero block
+  // If hero block already added on the page
+  if (document.querySelector('body.blog-page') || main.querySelector(':scope > div > div.hero')) {
+    return;
+  }
   const firstSection = main.querySelector('div');
   const h1 = firstSection.querySelector('h1');
   if (!h1) {
@@ -284,6 +299,13 @@ function buildHeroBlock(main) {
   firstSection.append(block);
 }
 
+function buildBreadcrumb(main) {
+  const breadcrumb = getMetadata('breadcrumb');
+  if (breadcrumb.toLowerCase() === 'true') {
+    main.prepend(div(buildBlock('breadcrumb', { elems: [] })));
+  }
+}
+
 /**
  * load fonts.css and set a session storage flag
  */
@@ -296,7 +318,23 @@ async function loadFonts() {
   }
 }
 
-function autolinkModals(element) {
+/**
+ * @typedef {Object} Config
+ * @property {string} type - The type of trigger ('time' or 'exit' or 'scroll').
+ * @property {string} size - The size of the modal.
+ * @property {string} value - The value associated with the trigger (e.g., time in seconds).
+ * @property {string} path - The path to the modal content.
+ */
+export function fetchTriggerConfig() {
+  return {
+    path: getMetadata('modal-path'),
+    size: getMetadata('modal-size'),
+    type: getMetadata('modal-trigger'),
+    value: getMetadata('modal-trigger-threshold'),
+  };
+}
+
+async function autolinkModals(element) {
   element.addEventListener('click', async (e) => {
     const origin = e.target.closest('a');
 
@@ -306,6 +344,9 @@ function autolinkModals(element) {
       openModal(origin.href);
     }
   });
+  const { openOnTrigger } = await import(`${window.hlx.codeBasePath}/blocks/form/trigger.js`);
+  const { openModal } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
+  openOnTrigger(fetchTriggerConfig(), openModal);
 }
 
 /**
@@ -314,10 +355,8 @@ function autolinkModals(element) {
  */
 function buildAutoBlocks(main) {
   try {
-    if (!document.querySelector('body.blog-page')) {
-      // blog pages don't use the hero block
-      buildHeroBlock(main);
-    }
+    buildHeroBlock(main);
+    buildBreadcrumb(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -510,20 +549,97 @@ async function fetchAndSetCustomJsonLd(doc = document) {
         && new URL(doc.documentURI).pathname.toLowerCase().startsWith(e.page.trim().toLowerCase().substring(0, e.page.trim().length - 1))))
     .all();
   customSchemas = customSchemas.sort((e1, e2) => e1.page.localeCompare(e2.page));
-  customSchemas.forEach((e) => setJsonLd(e.schema, e.name || ''));
+  customSchemas.forEach((e) => {
+    let schema;
+    try {
+      schema = JSON.parse(e.schema);
+    } catch (ignored) {
+      // eslint-disable-next-line
+      console.error('Tried to add invalid JSON-LD schema');
+      return;
+    }
+    setJsonLd(schema, e.name || '');
+  });
 
   // per-page metadata
   [...doc.head.querySelectorAll('meta')].filter((m) => m.name === 'ld-json' || m.attributes?.property?.value?.startsWith('ld-json:')).forEach((m) => {
     if (m.content && m.content !== '') {
       const name = m.attributes?.property?.value?.substring(8, m.attributes.property.value.length);
+      let schema;
+      try {
+        schema = JSON.parse(m.content);
+      } catch (ignored) {
+        // eslint-disable-next-line no-console
+        console.error('Tried to add invalid JSON-LD schema');
+        return;
+      }
       if (name) {
-        setJsonLd(m.content, name);
+        setJsonLd(schema, name);
       } else {
-        addJsonLd(m.content, null);
+        addJsonLd(schema, null);
       }
     }
     m.remove();
   });
+}
+
+async function addWistiaJsonLd(videoUrl) {
+  const metadata = await fetchWistiaMetadata(videoUrl);
+  if (!metadata?.media) {
+    return;
+  }
+
+  const schema = {
+    '@context': 'http://schema.org/',
+    '@type': 'VideoObject',
+    '@id': `https://fast.wistia.net/embed/iframe/${metadata.media.hashedId}`,
+    duration: `PT${Math.trunc(metadata.media.duration)}S`,
+    name: metadata.media.name,
+    embedUrl: `https://fast.wistia.net/embed/iframe/${metadata.media.hashedId}`,
+    uploadDate: new Date(1e3 * metadata.media.createdAt).toISOString(),
+    description: metadata.media.seoDescription || '(no description)',
+    transcript: metadata.media.captions?.[0]?.text || '(no transcript)',
+  };
+
+  const thumbnail = metadata.media.assets?.filter((e) => e.type === 'still_image')?.[0];
+  if (thumbnail) {
+    schema.thumbnailUrl = thumbnail.url.replace('.bin', '.jpg');
+  }
+
+  const content = metadata.media.assets?.filter((e) => e.type === 'original')?.[0];
+  if (content) {
+    schema.contentUrl = content.url.replace('.bin', '.m3u8');
+  }
+
+  addJsonLd(schema, `video-${metadata.media.hashedId}`);
+}
+
+/**
+ * get embed code for Wistia videos
+ *
+ * @param {*} url
+ * @returns
+ */
+export function embedWistia(url, replacePlaceholder, autoplay, fitStrategy = 'cover', videoFoam = 'false') {
+  let suffix = '';
+  const suffixParams = {
+    playerColor: '006cb4',
+    fitStrategy,
+    videoFoam,
+  };
+
+  if (replacePlaceholder || autoplay) {
+    suffixParams.autoplay = '1';
+    suffixParams.background = autoplay ? '1' : '0';
+  }
+  suffix = `?${Object.entries(suffixParams).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')}`;
+  const temp = document.createElement('div');
+  const videoUrl = url.href.endsWith('jsonp') ? url.href.replace('.jsonp', '') : url.href;
+  temp.innerHTML = `<div>
+  <iframe allowtransparency="true" title="Wistia video player" allowFullscreen frameborder="0" scrolling="no" class="wistia_embed custom-shadow"
+  name="wistia_embed" src="${videoUrl}${suffix}"></iframe>`;
+  addWistiaJsonLd(videoUrl);
+  return temp.children.item(0);
 }
 
 /**
@@ -551,6 +667,14 @@ export function decorateMain(main) {
  */
 async function loadEager(doc) {
   document.documentElement.lang = getLocaleAsBCP47();
+
+  const urlParams = new URLSearchParams(window.location.search);
+  if (window.location.hostname === 'stage-us.shredit.com') {
+    await initMartech('dev'); // special case for testing
+  } else if (urlParams.get('load-martech')?.toLowerCase() === 'eager') {
+    await initMartech(getEnvironment());
+  }
+
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {

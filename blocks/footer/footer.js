@@ -1,5 +1,7 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { a, p } from '../../scripts/dom-helpers.js';
+import { getLocale } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 992px)');
@@ -65,6 +67,34 @@ function createMenuAccordion(footer) {
 }
 
 /**
+ * @param fragment
+ * @param footerPath
+ * @param locale
+ * Creates the modal trigger button in footer
+ */
+async function createModalButton(fragment, footerPath, locale) {
+  const ph = await fetchPlaceholders(`/${getLocale()}`);
+  const footerModalPath = getMetadata('footer-modal-path') || '/forms/modals/modal';
+  const modalButtonTitle = ph.requestafreequote || 'Request a Free Quote';
+  const btn = p(
+    { class: 'button-container quote-wrapper' },
+    a({
+      href: footerModalPath,
+      class: 'quote-button button primary',
+      'aria-label': modalButtonTitle,
+    }, modalButtonTitle),
+  );
+  if (footerPath.includes('alt-0-footer')) {
+    const parentWrapper = fragment.querySelector('.default-content-wrapper');
+    parentWrapper.children[2]?.insertAdjacentElement('beforebegin', btn);
+  } else if (footerPath === `/${locale}/footer`) {
+    btn.querySelector('a').textContent = ph.getaquote || 'Get a Quote';
+    const parentWrapper = fragment.querySelector('.columns.quote > div > div');
+    parentWrapper.children[0]?.insertAdjacentElement('beforebegin', btn);
+  }
+}
+
+/**
  * loads and decorates the footer
  * @param {Element} block The footer block element
  */
@@ -72,12 +102,16 @@ export default async function decorate(block) {
   const locale = window.location.pathname.split('/')[1] || 'en-us'; // default to us-en if no locale in path
   // load footer as fragment
   const footerMeta = getMetadata('footer');
+  const navMeta = getMetadata('nav');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : `/${locale}/footer`;
   const fragment = await loadFragment(footerPath);
-
+  await createModalButton(fragment, footerPath, locale);
   // decorate footer DOM
   block.textContent = '';
   const footer = document.createElement('div');
+  if (navMeta === '/en-us/alt-0-nav' || navMeta === '/en-us/alt-1-nav') {
+    block.classList.add('narrow');
+  }
   while (fragment?.firstElementChild) footer.append(fragment.firstElementChild);
 
   block.append(footer);

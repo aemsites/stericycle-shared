@@ -15,7 +15,27 @@ main .section.hero-container {
   overflow: hidden;
 
   & picture.hero-background {
+    position: absolute;
+    top: 0;
     display: none;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    & img {
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    &.mobile-only {
+      display: block;
+    }
+
+    &.desktop-only {
+      display: none;
+    }
   }
 
   & .hero-content-container {
@@ -67,6 +87,18 @@ main .section.hero-container {
 /* breakpoint-l */
 @media screen and (min-width: 992px) {
   .block.hero {
+    & picture.hero-background {
+      display: block;
+
+      &.mobile-only {
+        display: none;
+      }
+
+      &.desktop-only {
+        display: block;
+      }
+    }
+
     & .hero-content-container {
       & .hero-content {
         width: 58.3333%;
@@ -82,23 +114,10 @@ main .section.hero-container {
           border-width: 2px;
           font-size: var(--body-font-size-m);
         }
-      }
-    }
 
-
-    & picture.hero-background {
-      position: absolute;
-      display: block;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-
-      & img {
-        object-fit: cover;
-        object-position: center;
-        width: 100%;
-        height: 100%;
+        .mobile-only {
+          display:none;
+        }
       }
     }
   }

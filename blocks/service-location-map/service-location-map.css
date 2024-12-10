@@ -125,6 +125,14 @@
   height: 2.5rem;
 }
 
+.block.service-location-map .map-search .map-input-details .map-input-search.disabled,
+.block.service-location-map .map-search .map-input-details .map-input-location.disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+  filter: blur(1px);
+  pointer-events: none;
+}
+
 .block.service-location-map .map-search .map-input-details .map-input-search:active,
 .block.service-location-map .map-search .map-input-details .map-input-location:active {
   opacity: 0.6;
