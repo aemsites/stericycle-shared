@@ -74,6 +74,10 @@ function initDataLayer() {
   };
 }
 
+async function initAdobeDataLayer() {
+  await loadScript('./scripts/adobe-client-data-layer.min.js', { async: '', defer: '' });
+}
+
 async function initLaunch(env) {
   const launchUrls = {
     dev: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js',
@@ -86,8 +90,17 @@ async function initLaunch(env) {
   await loadScript(launchUrls[env], { async: '' });
 }
 
+function cmpLoaded() {
+  window.adobeDataLayer = window.adobeDataLayer || [];
+  window.adobeDataLayer.push({
+    event: 'cmp:loaded',
+  });
+}
+
 // eslint-disable-next-line import/prefer-default-export
 export async function initMartech(env) {
   initDataLayer();
+  await initAdobeDataLayer();
   await initLaunch(env);
+  await cmpLoaded();
 }
