@@ -936,7 +936,6 @@ main .navy-background.cyan-border.two-column.form-container > .form-wrapper {
     padding: 0 2rem;
 }
 
-
 main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background) {
     display: grid;
     grid-template-columns: minmax(0, 884px) minmax(0, 436px); /* Set max-width for each column */
@@ -1127,6 +1126,9 @@ main .section.contact-us-title > .default-content-wrapper {
         grid-column: span 12;
     }
 
+    main .campaign-form.form {
+        max-width: unset;
+    }
 
 }
 
