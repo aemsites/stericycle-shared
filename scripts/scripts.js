@@ -15,10 +15,12 @@ import {
   toClassName,
   decorateBlock,
   loadBlock,
-  loadSection, loadScript,
+  loadSection,
 } from './aem.js';
 import { div } from './dom-helpers.js';
 import ffetch from './ffetch.js';
+// eslint-disable-next-line import/no-cycle
+import { initMartech } from './martech.js';
 
 export const BREAKPOINTS = {
   tablet: window.matchMedia('(min-width: 768px)'),
@@ -81,14 +83,14 @@ function arraysHaveMatchingItem(array1, array2) {
 }
 
 export function getEnvironment() {
-  const { host } = window.location;
-  if (host === 'localhost') {
+  const { hostname } = window.location;
+  if (hostname === 'localhost') {
     return 'dev';
   }
-  if (host.endsWith('.aem.page') || (host.startsWith('stage') && host.endsWith('.shredit.com'))) {
+  if (hostname.endsWith('.aem.page') || (hostname.startsWith('stage') && hostname.endsWith('.shredit.com'))) {
     return 'stage';
   }
-  if (host.endsWith('.aem.live') || host === 'www.shredit.com') {
+  if (hostname.endsWith('.aem.live') || hostname === 'www.shredit.com') {
     return 'prod';
   }
   return 'unknown';
@@ -125,19 +127,6 @@ export function getLocaleAsBCP47() {
     }
   }
   return parts.join('-');
-}
-
-export async function initMartech() {
-  const launchUrls = {
-    dev: '<script src="https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js" async></script>',
-    stage: '<script src="https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-930cbc9eaafb-staging.min.js" async></script>',
-    prod: '<script src="https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-e21320e8ed46.min.js" async></script>',
-  };
-  const env = getEnvironment();
-  if (env === 'unknown') {
-    return; // unknown env -> skip martech initialization
-  }
-  await loadScript(launchUrls[env]);
 }
 
 const toRadians = (degrees) => ((degrees * Math.PI) / 180);
@@ -680,8 +669,10 @@ async function loadEager(doc) {
   document.documentElement.lang = getLocaleAsBCP47();
 
   const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('load-martech')?.toLowerCase() === 'eager') {
-    await initMartech();
+  if (window.location.hostname === 'stage-us.shredit.com') {
+    await initMartech('dev'); // special case for testing
+  } else if (urlParams.get('load-martech')?.toLowerCase() === 'eager') {
+    await initMartech(getEnvironment());
   }
 
   decorateTemplateAndTheme();
