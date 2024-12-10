@@ -908,6 +908,8 @@ main .campaign-form.form form {
 
 main .section.contact-us .form-wrapper {
     grid-row: span 3;
+    margin-bottom: 1rem;
+    padding-left: 0;
 }
 
 main .two-column.form-container .form-wrapper {
@@ -926,6 +928,14 @@ main .hard-drive-background.two-column.form-container {
     width:100%;
 }
 
+main .two-column.full-width.form-container .form-wrapper {
+    max-width: 612px;
+}
+
+main .navy-background.cyan-border.two-column.form-container > .form-wrapper {
+    padding: 0 2rem;
+}
+
 
 main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background) {
     display: grid;
@@ -940,11 +950,6 @@ main .two-column.form-container:not(.shredded-paper-background-column, .hard-dri
 main .shredded-paper-background-column.two-column,
 main .hard-drive-background.two-column {
     padding: 0 2rem;
-}
-
-
-main .two-column.full-width.form-container .form-wrapper {
-    max-width: 612px;
 }
 
 main .two-column.form-container > div {
@@ -967,16 +972,25 @@ main .two-column.form-container > div:nth-last-child(1) {
 
 
 main .contact-us{
-    margin: auto;
     column-gap: 0;
     display: grid;
     grid-template-columns: 3fr 2fr;
     max-width: var(--section-width);
+    align-items: start;
+    margin: auto auto 2rem;
 }
 
 main .contact-us .columns-wrapper .columns-img-col {
     max-width: 138px;
     max-height: 138px;
+}
+
+main .contact-us .columns-wrapper .columns-1-cols .button-container {
+    margin-bottom: 0;
+
+    > a {
+        margin-bottom: 0;
+    }
 }
 
 main .contact-us .columns-wrapper .columns-has-image > div {
@@ -1011,7 +1025,6 @@ main .section.contact-us > div:nth-child(3) .button-container > a.button {
 main .section.contact-us > div:nth-child(4) {
     margin: 0;
     padding: 0;
-    max-width: 500px;
 }
 
 main .section .default-content-wrapper h1[id='contact-us'] {
@@ -1092,8 +1105,8 @@ main .section.contact-us-title > .default-content-wrapper {
     }
 
     main .contact-us .columns-wrapper .columns-img-col {
-        max-height: 58px;
-        max-width: 58px;
+        max-height: 100px;
+        max-width: 100px;
     }
 
     main .contact-us .columns-wrapper .columns-has-image > div {
@@ -1118,7 +1131,7 @@ main .section.contact-us-title > .default-content-wrapper {
 }
 
 main .form-wrapper .form.contact-us-form{
-    padding: 2rem;
+    padding: 2.5rem;
     box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
 }
 
