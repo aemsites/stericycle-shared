@@ -5,7 +5,7 @@ import {
 // eslint-disable-next-line import/no-cycle
 import { getDateFromExcel, getEnvironment, getLocale, getRelatedPosts } from './scripts.js';
 import decorate from '../blocks/post-teaser-list/post-teaser-list.js';
-import { initMartech } from './martech.js';
+import { addCookieBanner, initMartech } from './martech.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -17,6 +17,8 @@ if (window.location.hostname === 'stage-us.shredit.com') {
   // noinspection JSIgnoredPromiseFromCall
   initMartech(getEnvironment());
 }
+// noinspection JSIgnoredPromiseFromCall
+addCookieBanner();
 
 const RELATED_LIMIT = 4;
 

@@ -97,10 +97,17 @@ function cmpLoaded() {
   });
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export async function initMartech(env) {
   initDataLayer();
   await initAdobeDataLayer();
   await initLaunch(env);
   await cmpLoaded();
+}
+
+export async function addCookieBanner() {
+  const token = getMetadata('cookie-banner-token');
+  if (!token || token.trim() === '') {
+    return; // no token -> no cookie banner
+  }
+  await loadScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js', { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': token });
 }
