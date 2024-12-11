@@ -167,6 +167,7 @@ async function buildPagination(releases, ul, controls, page) {
     listItem.append(type);
     const title = document.createElement('h4');
     const titleA = document.createElement('a');
+    titleA.classList.add('search-results__list__item__name__link'); // analytics selector
     titleA.href = release.path;
     titleA.textContent = release.title;
     titleA.title = release.title;
