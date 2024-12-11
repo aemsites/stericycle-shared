@@ -22,6 +22,7 @@ import ffetch from './ffetch.js';
 import { initMartech } from './martech.js';
 
 export const BREAKPOINTS = {
+  mobile: window.matchMedia('(max-width: 767px)'),
   tablet: window.matchMedia('(min-width: 768px)'),
   desktop: window.matchMedia('(min-width: 992px)'),
 };
