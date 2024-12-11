@@ -75,7 +75,7 @@ function initDataLayer() {
 }
 
 async function initAdobeDataLayer() {
-  await loadScript('./scripts/adobe-client-data-layer.min.js', { async: '', defer: '' });
+  await loadScript('/scripts/adobe-client-data-layer.min.js', { async: '', defer: '' });
 }
 
 async function initLaunch(env) {
