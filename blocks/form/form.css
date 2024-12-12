@@ -544,6 +544,26 @@ main .form .form-message.success-message {
     flex: 100%;
     grid-column: span 12;
     padding: 10px;
+
+     a[href$='.pdf'] {
+         background-color: var(--color-button-primary);
+         border-color: var(--color-button-primary);
+         color: var(--color-black);
+         display: flex;
+         text-decoration: none;
+         padding: 0 32px;
+         line-height: 32px;
+         text-align: center;
+         font-style: normal;
+         font-weight: 600;
+         cursor: pointer;
+         margin: 16px 0;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         border-radius: 100px;
+         justify-content: center;
+    }
 }
 
 main .form .form-message.error-message {
@@ -839,9 +859,18 @@ main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='
     font-weight: 900;
 }
 
-
 main .get-a-quote-form-alternate.no-header-color form .fragment-wrapper[data-id^='header'] {
     background-color: unset;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+main .get-a-quote-form-alternate.no-header-color form .fragment-wrapper[data-id='privacy-policy'] {
+    padding-bottom: 0;
+
+    > div > p {
+        padding-bottom: 0;
+    }
 }
 
 main .footer-subscription-form  form {
@@ -947,11 +976,6 @@ main .two-column.form-container:not(.shredded-paper-background-column, .hard-dri
     gap: 0;
     justify-content: center;
     width:100%;
-}
-
-main .shredded-paper-background-column.two-column,
-main .hard-drive-background.two-column {
-    padding: 0 2rem;
 }
 
 main .two-column.form-container > div {
@@ -1062,6 +1086,11 @@ main .section.contact-us-title > .default-content-wrapper {
 
     main .body-wrapper .page-sidebar > div.form-container {
         padding-left: 1rem;
+    }
+
+    main .shredded-paper-background-column.two-column.form-container,
+    main .hard-drive-background.two-column.form-container {
+        background-image: none;
     }
 
     main .section.two-column.form-container,
