@@ -836,8 +836,6 @@ main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='
     font-weight: 900;
 }
 
-/*main .get-a-quote-form-alternate.no-header-color form */
-
 main .get-a-quote-form-alternate.no-header-color form .fragment-wrapper[data-id^='header'] {
     background-color: unset;
     padding-bottom: 0;
@@ -1065,6 +1063,11 @@ main .section.contact-us-title > .default-content-wrapper {
 
     main .body-wrapper .page-sidebar > div.form-container {
         padding-left: 1rem;
+    }
+
+    main .shredded-paper-background-column.two-column.form-container,
+    main .hard-drive-background.two-column.form-container {
+        background-image: none;
     }
 
     main .section.two-column.form-container,

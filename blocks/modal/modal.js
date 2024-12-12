@@ -85,4 +85,3 @@ export async function openModal(fragmentUrl, config) {
   const { showModal } = await createModal(fragment.childNodes, config);
   showModal();
 }
-
