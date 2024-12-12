@@ -111,3 +111,11 @@ export async function addCookieBanner() {
   }
   await loadScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js', { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': token });
 }
+
+export function sendDigitalDataEvent(ev) {
+  if (!window.digitalData) {
+    return; // digitalData not initialized
+  }
+  window.digitalData.event = window.digitalData.event || [];
+  window.digitalData.newEvent(ev);
+}
