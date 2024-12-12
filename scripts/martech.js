@@ -74,6 +74,10 @@ function initDataLayer() {
   };
 }
 
+async function initAdobeDataLayer() {
+  await loadScript('/scripts/adobe-client-data-layer.min.js', { async: '', defer: '' });
+}
+
 async function initLaunch(env) {
   const launchUrls = {
     dev: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js',
@@ -86,8 +90,24 @@ async function initLaunch(env) {
   await loadScript(launchUrls[env], { async: '' });
 }
 
-// eslint-disable-next-line import/prefer-default-export
+function cmpLoaded() {
+  window.adobeDataLayer = window.adobeDataLayer || [];
+  window.adobeDataLayer.push({
+    event: 'cmp:loaded',
+  });
+}
+
 export async function initMartech(env) {
   initDataLayer();
+  await initAdobeDataLayer();
   await initLaunch(env);
+  await cmpLoaded();
+}
+
+export async function addCookieBanner() {
+  const token = getMetadata('cookie-banner-token');
+  if (!token || token.trim() === '') {
+    return; // no token -> no cookie banner
+  }
+  await loadScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js', { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': token });
 }

@@ -4,7 +4,7 @@ import {
   getId,
   stripTags,
   checkValidation,
-  toClassName,
+  toClassName, appendFragment,
 } from './util.js';
 import GoogleReCaptcha from '../integrations/recaptcha.js';
 import componentDecorator from '../mappings.js';
@@ -139,20 +139,7 @@ function createHidden(fd) {
 function createFragment(fd) {
   const wrapper = createFieldWrapper(fd);
   wrapper.id = fd.Id;
-  if (fd.value) {
-    const fragmentUrl = new URL(fd.value);
-    const fragmentPath = fragmentUrl.pathname;
-    const url = fragmentPath.endsWith('.html') ? fragmentPath.replace('.html', '.plain.html') : `${fragmentPath}.plain.html`;
-    fetch(url).then(async (resp) => {
-      if (resp.ok) {
-        wrapper.innerHTML = await resp.text();
-        wrapper.querySelectorAll('a[href]').forEach((link) => {
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-        });
-      }
-    });
-  }
+  appendFragment(wrapper, fd.value);
   return wrapper;
 }
 
@@ -459,6 +446,7 @@ export async function createForm(formDef, data, {
 
   form.dataset.redirectUrl = formDef.redirectUrl || '';
   form.dataset.thankYouMsg = formDef.thankYouMsg || '';
+  form.dataset.submitErrorMessage = formDef.submitErrorMessage || '';
   form.dataset.action = formDef.action || '';
   if (typeof onFormLoad === 'function') {
     await onFormLoad({
