@@ -540,8 +540,6 @@ main .form form .wizard.left .panel-wrapper{
 }
 
 main .form .form-message.success-message {
-    color: #0f5132;
-    background-color: #d1e7dd;
     border-color: #badbcc;
     flex: 100%;
     grid-column: span 12;
@@ -550,11 +548,12 @@ main .form .form-message.success-message {
 
 main .form .form-message.error-message {
     color: #842029;
-    background-color: #f8d7da;
-    border-color: #f5c2c7;
     flex: 100%;
     grid-column: span 12;
-    padding: 10px;
+}
+
+main .form .form-message.error-message p {
+    color:var(--form-error-color);
 }
 
 main .form .file-wrapper .file-drag-area {
@@ -760,6 +759,10 @@ main .form .panel-wrapper[data-required="true"] legend::after {
 main .form .field-wrapper.floating-field[data-required="true"].field-invalid label::after,
 main .form .panel-wrapper[data-required="true"].field-invalid legend::after {
   color: var(--form-error-color);
+}
+
+main .form form.submit-success .fragment-wrapper:not([data-id^="header"]) {
+    display: none;
 }
 
 main .get-a-quote-form-alternate {
