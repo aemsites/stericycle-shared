@@ -544,6 +544,30 @@ main .form .form-message.success-message {
     flex: 100%;
     grid-column: span 12;
     padding: 10px;
+
+    > div > p {
+        align-items: center;
+    }
+
+     a[href$='.pdf'] {
+         background-color: var(--color-button-primary);
+         border-color: var(--color-button-primary);
+         color: var(--color-black);
+         display: flex;
+         text-decoration: none;
+         padding: 0 32px;
+         line-height: 32px;
+         text-align: center;
+         font-style: normal;
+         font-weight: 600;
+         cursor: pointer;
+         margin: 16px 0;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         border-radius: 100px;
+         justify-content: center;
+    }
 }
 
 main .form .form-message.error-message {
