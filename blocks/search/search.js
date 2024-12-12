@@ -5,6 +5,8 @@ import {
 import ffetch from '../../scripts/ffetch.js';
 
 const searchParams = new URLSearchParams(window.location.search);
+const itemsPerPage = 10;
+let currentPage = parseInt(searchParams.get('page'), 10) || 1;
 
 function clearSearchResults(block) {
   const searchResults = block.querySelector('.search-results');
@@ -149,9 +151,6 @@ function filterData(searchTerms, data) {
   }).map((item) => item.result);
 }
 
-const itemsPerPage = 10;
-let currentPage = 1;
-
 async function buildPagination(releases, ul, controls, page) {
   const totalPages = Math.ceil(releases.length / itemsPerPage);
   const start = (page - 1) * itemsPerPage;
@@ -210,11 +209,24 @@ async function buildPagination(releases, ul, controls, page) {
     prev.append(buttonPrev);
     next.append(buttonNext);
   }
+
+  if (window.history.replaceState) {
+    const url = new URL(window.location.href);
+    if (page === 1) {
+      searchParams.delete('page');
+    } else {
+      searchParams.set('page', page);
+    }
+    url.search = searchParams.toString();
+    window.history.replaceState({}, '', url.toString());
+  }
 }
 
 async function handleSearch(e, block, config) {
-  // set currentPage pagination to 1
-  currentPage = 1;
+  // Only reset currentPage if this is a new search (not initial load)
+  if (Object.hasOwn(e, 'target') || Object.hasOwn(e, 'preventDefault')) {
+    currentPage = 1;
+  }
 
   // no results content
   const noResults = document.createElement('p');
@@ -330,9 +342,11 @@ export default async function decorate(block) {
     searchBox(block, { source, placeholders }),
   );
 
+  // Handle both search query and pagination on initial load
   if (searchParams.get('searchQuery')) {
     const input = block.querySelector('input');
     input.value = searchParams.get('searchQuery');
-    handleSearch({}, block, { source, placeholders });
+    // Pass empty object to handleSearch to indicate this is initial load
+    await handleSearch({}, block, { source, placeholders });
   }
 }
