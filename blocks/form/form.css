@@ -545,10 +545,6 @@ main .form .form-message.success-message {
     grid-column: span 12;
     padding: 10px;
 
-    > div > p {
-        align-items: center;
-    }
-
      a[href$='.pdf'] {
          background-color: var(--color-button-primary);
          border-color: var(--color-button-primary);
