@@ -45,87 +45,89 @@ function filterData(searchTerms, data) {
 
   data.forEach((result) => {
     let minIdx = -1;
-
-    searchTerms.forEach((term) => {
-      const checkHeader = ((result.header || result.title) || '');
-      const searchText = checkHeader.concat(`${result.title} ${result.description} ${result.path}`).toLowerCase();
-
-      if (Object.hasOwn(result, 'media-type')) {
-        const mediaType = result['media-type'].toLowerCase();
-        if (['service-page'].includes(mediaType)) {
-          const idx = searchText.indexOf(term);
-          if (idx < 0) return;
-          if (minIdx < idx) minIdx = idx;
-
-          if (minIdx >= 0) {
-            result['media-type'] = 'Services';
-            servicePage.push({ minIdx, result });
-            return;
-          }
-        }
-
-        if (['industry-page'].includes(mediaType)) {
-          const idx = searchText.indexOf(term);
-          if (idx < 0) return;
-          if (minIdx < idx) minIdx = idx;
-
-          if (minIdx >= 0) {
-            result['media-type'] = 'Industry';
-            industryPage.push({ minIdx, result });
-            return;
-          }
-        }
-
-        if (['service location'].includes(mediaType)) {
-          const state = (result.state).toLowerCase();
-          const idx = state.indexOf(searchTerms.join(' '));
-          if (idx < 0) return;
-          if (minIdx < idx) minIdx = idx;
-
-          if (minIdx >= 0) {
-            result['media-type'] = '';
-            locationPage.push({ minIdx, result });
-            return;
-          }
-
-          minIdx = Number.POSITIVE_INFINITY;
-        }
-      }
-
-      if (Object.hasOwn(result, 'template') && ['resource-center'].includes(result.template)) {
-        const idx = searchText.indexOf(term);
-        if (idx < 0) return;
-        if (minIdx < idx) minIdx = idx;
-
-        if (minIdx >= 0) {
-          result['media-type'] = 'Resource Center';
-          resourceCenterPage.push({ minIdx, result });
-        }
-      }
-    });
-
-    if (minIdx < 0) {
+    const pathArr = result.path.split('/');
+    if (!pathArr.includes('email') && !pathArr.includes('marketing')){
       searchTerms.forEach((term) => {
         const checkHeader = ((result.header || result.title) || '');
-        const idx = checkHeader.toLowerCase().indexOf(term);
-        if (idx < 0) return;
-        if (minIdx < idx) minIdx = idx;
+        const searchText = checkHeader.concat(`${result.title} ${result.description} ${result.path}`).toLowerCase();
+
+        if (Object.hasOwn(result, 'media-type')) {
+          const mediaType = result['media-type'].toLowerCase();
+          if (['service-page'].includes(mediaType)) {
+            const idx = searchText.indexOf(term);
+            if (idx < 0) return;
+            if (minIdx < idx) minIdx = idx;
+
+            if (minIdx >= 0) {
+              result['media-type'] = 'Services';
+              servicePage.push({ minIdx, result });
+              return;
+            }
+          }
+
+          if (['industry-page'].includes(mediaType)) {
+            const idx = searchText.indexOf(term);
+            if (idx < 0) return;
+            if (minIdx < idx) minIdx = idx;
+
+            if (minIdx >= 0) {
+              result['media-type'] = 'Industry';
+              industryPage.push({ minIdx, result });
+              return;
+            }
+          }
+
+          if (['service location'].includes(mediaType)) {
+            const state = (result.state).toLowerCase();
+            const idx = state.indexOf(searchTerms.join(' '));
+            if (idx < 0) return;
+            if (minIdx < idx) minIdx = idx;
+
+            if (minIdx >= 0) {
+              result['media-type'] = '';
+              locationPage.push({ minIdx, result });
+              return;
+            }
+
+            minIdx = Number.POSITIVE_INFINITY;
+          }
+        }
+
+        if (Object.hasOwn(result, 'template') && ['resource-center'].includes(result.template)) {
+          const idx = searchText.indexOf(term);
+          if (idx < 0) return;
+          if (minIdx < idx) minIdx = idx;
+
+          if (minIdx >= 0) {
+            result['media-type'] = 'Resource Center';
+            resourceCenterPage.push({ minIdx, result });
+          }
+        }
       });
 
-      if (minIdx >= 0) {
-        foundInHeader.push({ minIdx, result });
-        return;
-      }
+      if (minIdx < 0) {
+        searchTerms.forEach((term) => {
+          const checkHeader = ((result.header || result.title) || '');
+          const idx = checkHeader.toLowerCase().indexOf(term);
+          if (idx < 0) return;
+          if (minIdx < idx) minIdx = idx;
+        });
 
-      const metaContents = `${result.title} ${result.description} ${result.path} ${result['media-type']}'}`.toLowerCase();
-      searchTerms.forEach((term) => {
-        const idx = metaContents.indexOf(term);
-        if (idx < 0) return;
-        if (minIdx < idx) minIdx = idx;
-      });
+        if (minIdx >= 0) {
+          foundInHeader.push({ minIdx, result });
+          return;
+        }
 
-      if (minIdx >= 0) {
-        foundInMeta.push({ minIdx, result });
+        const metaContents = `${result.title} ${result.description} ${result.path} ${result['media-type']}'}`.toLowerCase();
+        searchTerms.forEach((term) => {
+          const idx = metaContents.indexOf(term);
+          if (idx < 0) return;
+          if (minIdx < idx) minIdx = idx;
+        });
+
+        if (minIdx >= 0) {
+          foundInMeta.push({ minIdx, result });
+        }
       }
     }
   });

@@ -81,10 +81,11 @@
 
 
 @media (min-width: 992px) {
-    .pr-page main .section:first-of-type > .default-content-wrapper {
+    .pr-page main .section:has(.related-content) > .default-content-wrapper {
         display: flex;
         flex-direction: row;
         padding: 0;
+        margin: 1rem auto;
     }
 
     .pr-page main .related-content {

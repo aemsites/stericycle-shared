@@ -140,7 +140,7 @@
 
   /* Split Columns */
   --split-firstquarter: 25%:75%;
-  --split-lastquarter: 75%:25%;
+  --split-lastquarter: 100%:0%;
   --split-firstthird: 34%:66%;
   --split-lastthird: 66%:34%;
   --split-firsttwothird: 40%:60%;
@@ -330,12 +330,14 @@ main .section.yellow-button  a.button {
   border-width: 2px;
 }
 
-main .section.yellow-button-no-border  a.button {
+main a.button:hover {
+  border-style: solid;
+  border: 2px solid var(--color-black);
+}
+
+main .section.yellow-button-no-border  a {
   background-color: var(--color-yellow);
   color: var(--color-black);
-  font-size: 1rem;
-  line-height: 2pc;
-  border: unset;
 }
 
 /* remove bullets for list items in columns -  might be too aggressive */

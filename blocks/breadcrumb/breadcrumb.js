@@ -4,13 +4,13 @@ import { a, li, ol, span } from '../../scripts/dom-helpers.js';
 export default async function decorate(block) {
   let { pathname } = new URL(window.location.href);
   const paths = {};
-
+  
   while (pathname.lastIndexOf('/') > 0) {
     pathname = pathname.substring(0, pathname.lastIndexOf('/'));
     paths[pathname] = {};
   }
 
-  const keys = Object.keys(paths).sort((l, r) => l.length - r.length);
+  let keys = Object.keys(paths).sort((l, r) => l.length - r.length);
   await ffetch('/query-index.json').filter((x) => {
     if (keys.includes(x.path)) {
       paths[x.path] = x;
@@ -22,6 +22,7 @@ export default async function decorate(block) {
   const { title } = document;
   const bc = ol();
 
+  keys = keys.slice((keys.length - 1), keys.length);
   keys.forEach((k) => {
     bc.append(li({ class: 'breadcrumb-item' }, a({ href: k, 'aria-label': paths[k].title }, paths[k].title)));
   });

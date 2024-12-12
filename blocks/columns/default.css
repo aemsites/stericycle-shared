@@ -62,6 +62,17 @@ main .columns span.icon > img {
   height:2.5rem;
 }
 
+main .columns.numeric-list span.icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+main .columns.block.numeric-list {
+  max-width: var(--section-width);
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
 .columns.columns-has-image.steps img {
   width: 576px;
 }
@@ -103,6 +114,10 @@ main .columns span.icon > img {
 main .section.blue-headings .columns span.icon {
   width: unset;
   height: unset;
+}
+
+main .section.columns-container.list-style-orange-triangles ul{
+  margin: 0 0 1rem 1.5rem;
 }
 
 main .section.columns-container.list-style-orange-triangles .columns.box-shadow-hover.columns span.icon {
@@ -403,7 +418,7 @@ main .section.columns-container .block.columns.columns-2-cols.icon-list > div > 
     gap: 24px;
   }
 
-  .columns.block:not(.wrap-mobile) > div > div {
+  .columns.block:not(.wrap-mobile):not(.cta.columns-2-cols) > div > div {
     flex: 1;
     order: unset;
   }
@@ -559,5 +574,10 @@ main .section.columns-container .block.columns.columns-2-cols.icon-list > div > 
   main .section.columns-container .block.columns.centered-icons.absolute-position > div div:first-of-type:has(.icon) p,
   main .section.columns-container .block.columns.centered-icons.absolute-position > div div:last-of-type:has(.icon) p {
     position: absolute;
+  }
+
+  main .section.columns-container .columns-wrapper:has(.cta.split-lastquarter) {
+    padding-right: 12px;
+    padding-left: 1.5rem;    
   }
 }
