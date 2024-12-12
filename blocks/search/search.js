@@ -38,37 +38,115 @@ function compareFound(hit1, hit2) {
 function filterData(searchTerms, data) {
   const foundInHeader = [];
   const foundInMeta = [];
+  const servicePage = [];
+  const resourceCenterPage = [];
+  const industryPage = [];
+  const locationPage = [];
 
   data.forEach((result) => {
     let minIdx = -1;
+    const pathArr = result.path.split('/');
+    if (!pathArr.includes('email') && !pathArr.includes('marketing')) {
+      searchTerms.forEach((term) => {
+        const checkHeader = ((result.header || result.title) || '');
+        const searchText = checkHeader.concat(`${result.title} ${result.description} ${result.path}`).toLowerCase();
 
-    searchTerms.forEach((term) => {
-      const idx = (result.header || result.title).toLowerCase().indexOf(term);
-      if (idx < 0) return;
-      if (minIdx < idx) minIdx = idx;
-    });
+        if (Object.hasOwn(result, 'media-type')) {
+          const mediaType = result['media-type'].toLowerCase();
+          if (['service-page'].includes(mediaType)) {
+            const idx = searchText.indexOf(term);
+            if (idx < 0) return;
+            if (minIdx < idx) minIdx = idx;
 
-    if (minIdx >= 0) {
-      foundInHeader.push({ minIdx, result });
-      return;
-    }
+            if (minIdx >= 0) {
+              result['media-type'] = 'Services';
+              servicePage.push({ minIdx, result });
+              return;
+            }
+          }
 
-    const metaContents = `${result.title} ${result.description} ${result.path} ${result['media-type']}'}`.toLowerCase();
-    searchTerms.forEach((term) => {
-      const idx = metaContents.indexOf(term);
-      if (idx < 0) return;
-      if (minIdx < idx) minIdx = idx;
-    });
+          if (['industry-page'].includes(mediaType)) {
+            const idx = searchText.indexOf(term);
+            if (idx < 0) return;
+            if (minIdx < idx) minIdx = idx;
 
-    if (minIdx >= 0) {
-      foundInMeta.push({ minIdx, result });
+            if (minIdx >= 0) {
+              result['media-type'] = 'Industry';
+              industryPage.push({ minIdx, result });
+              return;
+            }
+          }
+
+          if (['service location'].includes(mediaType)) {
+            const state = (result.state).toLowerCase();
+            const idx = state.indexOf(searchTerms.join(' '));
+            if (idx < 0) return;
+            if (minIdx < idx) minIdx = idx;
+
+            if (minIdx >= 0) {
+              result['media-type'] = '';
+              locationPage.push({ minIdx, result });
+              return;
+            }
+
+            minIdx = Number.POSITIVE_INFINITY;
+          }
+        }
+
+        if (Object.hasOwn(result, 'template') && ['resource-center'].includes(result.template)) {
+          const idx = searchText.indexOf(term);
+          if (idx < 0) return;
+          if (minIdx < idx) minIdx = idx;
+
+          if (minIdx >= 0) {
+            result['media-type'] = 'Resource Center';
+            resourceCenterPage.push({ minIdx, result });
+          }
+        }
+      });
+
+      if (minIdx < 0) {
+        searchTerms.forEach((term) => {
+          const checkHeader = ((result.header || result.title) || '');
+          const idx = checkHeader.toLowerCase().indexOf(term);
+          if (idx < 0) return;
+          if (minIdx < idx) minIdx = idx;
+        });
+
+        if (minIdx >= 0) {
+          foundInHeader.push({ minIdx, result });
+          return;
+        }
+
+        const metaContents = `${result.title} ${result.description} ${result.path} ${result['media-type']}'}`.toLowerCase();
+        searchTerms.forEach((term) => {
+          const idx = metaContents.indexOf(term);
+          if (idx < 0) return;
+          if (minIdx < idx) minIdx = idx;
+        });
+
+        if (minIdx >= 0) {
+          foundInMeta.push({ minIdx, result });
+        }
+      }
     }
   });
 
   return [
+    ...locationPage,
+    ...servicePage,
+    ...industryPage,
+    ...resourceCenterPage,
     ...foundInHeader.sort(compareFound),
     ...foundInMeta.sort(compareFound),
-  ].map((item) => item.result);
+  ].map((item) => {
+    if (Object.hasOwn(item.result, 'media-type')) {
+      if (item.result['media-type'] === '0' || item.result['media-type'] === undefined || item.result['media-type'] === 'undefined') {
+        item.result['media-type'] = '';
+      }
+    }
+    return item;
+  }).map((item) => item.result);
 }
 
 const itemsPerPage = 10;
@@ -85,7 +163,7 @@ async function buildPagination(releases, ul, controls, page) {
   paginatedReleases.forEach((release) => {
     const listItem = document.createElement('li');
     const type = document.createElement('a');
-    type.href = window.location.pathname;
+    type.href = release.path.split('/').filter((item, idx, arr) => idx !== (arr.length - 1)).join('/');
     type.textContent = release['media-type'];
     type.classList.add('type');
     listItem.append(type);
