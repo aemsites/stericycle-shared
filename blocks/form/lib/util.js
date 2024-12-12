@@ -236,3 +236,20 @@ export function checkValidation(fieldElement) {
   const message = getValidationMessage(fieldElement, wrapper);
   updateOrCreateInvalidMsg(fieldElement, message);
 }
+
+export function appendFragment(wrapper, value) {
+  if (value) {
+    const fragmentUrl = new URL(value);
+    const fragmentPath = fragmentUrl.pathname;
+    const url = fragmentPath.endsWith('.html') ? fragmentPath.replace('.html', '.plain.html') : `${fragmentPath}.plain.html`;
+    fetch(url).then(async (resp) => {
+      if (resp.ok) {
+        wrapper.innerHTML = await resp.text();
+        wrapper.querySelectorAll('a[href]').forEach((link) => {
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        });
+      }
+    });
+  }
+}

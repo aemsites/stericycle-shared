@@ -180,7 +180,7 @@
 
   /* Split Columns */
   --split-firstquarter: 25%:75%;
-  --split-lastquarter: 75%:25%;
+  --split-lastquarter: 100%:0%;
   --split-firstthird: 34%:66%;
   --split-lastthird: 66%:34%;
   --split-firsttwothird: 40%:60%;
@@ -390,7 +390,6 @@ main .section.yellow-button-no-border  a.button {
   color: var(--color-black);
   font-size: 1rem;
   line-height: 2pc;
-  border: unset;
 }
 
 /* remove bullets for list items in columns -  might be too aggressive */
@@ -785,8 +784,8 @@ main .list-style-checkmarks ul {
   list-style: none;
 }
 
-main .list-style-checkmarks li::marker,
 main .list-style-bullets li::marker,
+main .list-style-checkmarks li::marker, 
 main .list-style-orange-triangles li::marker,
 main .list-style-big-numbers li::marker,
 main .list-style-more-space li::marker {

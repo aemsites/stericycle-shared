@@ -719,6 +719,7 @@ footer .default-content-wrapper .columns.quote .button-container:first-child a {
   font-weight: var(--lato-regular);
   background: var(--color-secondary-4);
   color: var(--color-text-primary);
+  background: #ffc62b;
   height: auto;
   display: flex;
   -webkit-box-pack: center;

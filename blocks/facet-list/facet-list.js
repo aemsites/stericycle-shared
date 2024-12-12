@@ -336,6 +336,7 @@ const createFacet = (facets, topDiv, sheets) => {
     const topic = document.createElement('div');
     topic.classList.add('facet-group');
     const checkbox = document.createElement('input');
+    checkbox.classList.add('search-results__facet-selection__group-list__item__value-list__item__input'); // analytics selector
     const label = document.createElement('label');
     label.innerText = `${facet.tag} (${facet.count})`;
     checkbox.type = 'checkbox';
