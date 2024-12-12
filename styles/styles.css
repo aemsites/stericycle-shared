@@ -330,14 +330,11 @@ main .section.yellow-button  a.button {
   border-width: 2px;
 }
 
-main a.button:hover {
-  border-style: solid;
-  border: 2px solid var(--color-black);
-}
-
-main .section.yellow-button-no-border  a {
+main .section.yellow-button-no-border  a.button {
   background-color: var(--color-yellow);
   color: var(--color-black);
+  font-size: 1rem;
+  line-height: 2pc;
 }
 
 /* remove bullets for list items in columns -  might be too aggressive */

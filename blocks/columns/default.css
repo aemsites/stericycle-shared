@@ -418,7 +418,7 @@ main .section.columns-container .block.columns.columns-2-cols.icon-list > div > 
     gap: 24px;
   }
 
-  .columns.block:not(.wrap-mobile):not(.cta.columns-2-cols) > div > div {
+  .columns.block:not(.wrap-mobile, .cta.columns-2-cols) > div > div {
     flex: 1;
     order: unset;
   }

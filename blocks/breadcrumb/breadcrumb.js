@@ -4,7 +4,7 @@ import { a, li, ol, span } from '../../scripts/dom-helpers.js';
 export default async function decorate(block) {
   let { pathname } = new URL(window.location.href);
   const paths = {};
-  
+
   while (pathname.lastIndexOf('/') > 0) {
     pathname = pathname.substring(0, pathname.lastIndexOf('/'));
     paths[pathname] = {};
