@@ -52,6 +52,7 @@ body.modal-open {
   background-color: transparent;
   color: var(--color-dark-gray);
   line-height: 0;
+  outline: none;
 }
 
 .modal .close-button .icon.icon-close {
@@ -94,6 +95,10 @@ body.modal-open {
 
   > a > p {
     margin-bottom: 0;
+
+    > picture > img {
+      display: block;
+    }
   }
 }
 
