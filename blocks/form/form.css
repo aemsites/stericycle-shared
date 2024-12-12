@@ -836,9 +836,20 @@ main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='
     font-weight: 900;
 }
 
+/*main .get-a-quote-form-alternate.no-header-color form */
 
 main .get-a-quote-form-alternate.no-header-color form .fragment-wrapper[data-id^='header'] {
     background-color: unset;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+main .get-a-quote-form-alternate.no-header-color form .fragment-wrapper[data-id='privacy-policy'] {
+    padding-bottom: 0;
+
+    > div > p {
+        padding-bottom: 0;
+    }
 }
 
 main .footer-subscription-form  form {
