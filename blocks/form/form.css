@@ -374,8 +374,8 @@ main .submit-wrapper{
     width: var(--form-submit-width);
 }
 
-main .form input:focus, 
-main .form textarea:focus, 
+main .form input:focus,
+main .form textarea:focus,
 main .form select:focus {
   outline: 3px solid var(--color-bg-tertiary);
   outline-offset: 3px;
@@ -398,9 +398,6 @@ main .form .field-wrapper.field-valid input[type="radio"] {
     border-color: var(--color-primary-1);
 }
 
-
-
-
 main .form .field-wrapper.field-invalid input,
 main .form .field-wrapper.field-invalid textarea,
 main .form .field-wrapper.field-invalid select {
@@ -421,6 +418,13 @@ main .form .field-wrapper.field-invalid input:focus,
 main .form .field-wrapper.field-invalid textarea:focus,
 main .form .field-wrapper.field-invalid select:focus {
     outline: 3px solid var(--color-bg-tertiary);
+    outline-offset: 3px;
+}
+
+main .form .field-wrapper.field-valid input:focus,
+main .form .field-wrapper.field-valid textarea:focus,
+main .form .field-wrapper.field-valid select:focus {
+    outline: 3px solid var(--color-primary-1);
     outline-offset: 3px;
 }
 
@@ -803,7 +807,7 @@ main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkb
 main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox']):focus + label{
     padding: 15px 0 0 15px;
     font-size: 10px;
-    color: var(--form-styles-label-color);
+    color: var(--color-disabled);
     transform: translateY(-15px);
     z-index: 1;
 }
