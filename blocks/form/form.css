@@ -374,8 +374,8 @@ main .submit-wrapper{
     width: var(--form-submit-width);
 }
 
-main .form input:focus, 
-main .form textarea:focus, 
+main .form input:focus,
+main .form textarea:focus,
 main .form select:focus {
   outline: 3px solid var(--color-bg-tertiary);
   outline-offset: 3px;
@@ -792,7 +792,6 @@ main .form .field-wrapper.floating-field > label {
     top: 10px;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper label,
 main .form form .panel-wrapper.field-frequncy .radio-wrapper label{
     color: var(--color-white);
     cursor: pointer;
@@ -819,7 +818,6 @@ main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkb
     color: transparent;
 }
 
-main .form form .panel-wrapper.field-requesttype,
 main .form form .panel-wrapper.field-frequncy{
     grid-template-columns: 12fr 1fr 1fr;
     gap: 0;
@@ -827,7 +825,6 @@ main .form form .panel-wrapper.field-frequncy{
     margin-bottom: 20px;
 }
 
-main .form form .panel-wrapper.field-requesttype legend,
 main .form form .panel-wrapper.field-frequncy legend{
   grid-column: 1;
 }
@@ -837,37 +834,31 @@ main .form form .panel-wrapper.field-frequncy .radio-wrapper input{
   opacity: 0;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper,
 main .form form .panel-wrapper.field-frequncy .radio-wrapper{
     position: relative;
     grid-column: 2;
     display: flex;
     align-items: center;
-    margin-top: -45px;
     width: 120px;
     text-align: center;
     background: var(--form-styles-border-color);
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(2),
 main .form form .panel-wrapper.field-frequncy .radio-wrapper:nth-child(2){
   border-bottom-left-radius: 6.25rem;
   border-top-left-radius: 6.25rem;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(3),
 main .form form .panel-wrapper.field-frequncy .radio-wrapper:nth-child(3){
   grid-column: 3;
   border-bottom-right-radius: 6.25rem;
   border-top-right-radius: 6.25rem;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked),
 main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked){
   background: var(--form-styles-button-primary-color);
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked) label::before,
 main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked) label::before{
   content: '';
   display: block;
@@ -1328,4 +1319,95 @@ main form .fragment-wrapper[data-id^='policy']  p{
 
 main .campaign-form.form form .fragment-wrapper div > p {
     font-size: 1rem;
+}
+
+/* Split buttons */
+main .form form fieldset.splitbuttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+main .form form fieldset.splitbuttons .radio-wrapper-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 8px;
+    height: 100%;
+}
+
+main .form form fieldset.splitbuttons .radio-wrapper-container .radio-wrapper:first-of-type {
+    border-bottom-left-radius: 6.25rem;
+    border-top-left-radius: 6.25rem;
+}
+
+main .form form fieldset.splitbuttons .radio-wrapper-container .radio-wrapper:last-of-type {
+    border-bottom-right-radius: 6.25rem;
+    border-top-right-radius: 6.25rem;
+}
+
+main .form form fieldset.splitbuttons legend {
+    margin-right: 8px;
+    max-width: 102px;
+    width: fit-content;
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper {
+    position: relative;
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+    background: var(--color-bg-secondary);
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper input {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    margin: 0;
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
+    padding: 11px 32px;
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) {
+    background: var(--form-styles-button-primary-color);
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 32px;
+    background: url("/icons/check-mark-new.svg") no-repeat left center;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
+    color: var(--color-text-primary);
+    cursor: pointer;
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) {
+    position: relative;
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label {
+    display: flex;
+    align-items: center;
+    color: var(--color-white);
+    cursor: pointer;
+    padding-left: 56px;
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper.field-wrapper {
+    width: fit-content;
+    padding: 0;
+    margin-top: 0;
 }
