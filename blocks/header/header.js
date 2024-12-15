@@ -16,10 +16,11 @@ export default async function decorate(block) {
       (async () => {
         try {
           const mod = await import(`${window.hlx.codeBasePath}/blocks/header/${navMeta}.js`);
+
           if (mod.default) {
             await mod.default(block);
           }
-        } catch (error) {
+        } catch (error) {          
           // eslint-disable-next-line no-console
           console.log(`failed to load sub-module for ${navMeta}`, error);
         }
