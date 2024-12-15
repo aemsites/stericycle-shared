@@ -27,6 +27,8 @@ ul {
     align-items: center;
     gap: 62px;
     margin: auto;
+    padding: 0 80px;
+    max-width: 1600px;
 }
 
 .logo {
@@ -72,9 +74,13 @@ ul {
     display: flex;
 }
 
+.nav-item-heading {
+    color: var(--color-text-secondary);
+}
+
 .list {
     display: flex;
-    gap: 32px;
+    gap: 46px;
 }
 
 .list-item {
@@ -136,7 +142,7 @@ ul {
     justify-content: flex-start;
     gap: 32px;
     background-color: var(--color-bg-primary);
-    padding: 16px 40px 32px;
+    padding: 32px 40px;
     width: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.3s ease-in-out;
@@ -146,12 +152,12 @@ ul {
     display: block;
     padding: 0.5rem;
     text-decoration: none;
-    color: black;
+    color: var(--color-text-primary);
 }
 
 .submenu a:hover,
 .submenu a:focus {
-    background-color: #eee;
+    background-color: var(--color-bg-secondary);
 }
 
 .ctas {

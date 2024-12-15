@@ -77,11 +77,12 @@ export function generateMenuFromSection(sectionElement) {
                             child.nodeType === Node.TEXT_NODE &&
                             child.textContent.trim()
                         ) {
-                            listItem.appendChild(
-                                document.createTextNode(
-                                    child.textContent.trim()
-                                )
-                            );
+                            const textWrapper = document.createElement("span");
+                            textWrapper.textContent = child.textContent.trim();
+                            textWrapper.className =
+                                "eyebrow-small nav-item-heading";
+
+                            listItem.appendChild(textWrapper);
                         }
                     });
 
