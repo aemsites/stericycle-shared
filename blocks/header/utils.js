@@ -12,6 +12,8 @@ export function generateMenuFromSection(sectionElement) {
     // Create the navigation container
     const nav = document.createElement("nav");
 
+    nav.id = "nav";
+
     // Helper function to process top-level list items
     const processTopLevelItems = (listItems) => {
         Array.from(listItems).forEach((li) => {
@@ -26,6 +28,7 @@ export function generateMenuFromSection(sectionElement) {
                 const anchor = document.createElement("a");
                 anchor.href = link.href;
                 anchor.textContent = link.textContent.trim();
+                anchor.className = "nav-link";
                 navItem.appendChild(anchor);
             } else {
                 // If no <a>, use the text content or first child element
@@ -42,6 +45,7 @@ export function generateMenuFromSection(sectionElement) {
                     ) {
                         itemWrapper.appendChild(child.cloneNode(true));
                         itemWrapper.href = "#";
+                        itemWrapper.className = "nav-link";
                         navItem.appendChild(itemWrapper);
                     }
                 });
