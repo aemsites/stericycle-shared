@@ -21,6 +21,20 @@ export default async function decorate(block) {
         : `/${locale}/navigation`;
     const fragment = await loadFragment(navPath);
 
+    // logo
+    const logo = document.createElement("div");
+    const logoLink = document.createElement("a");
+    const logoImg = document.createElement("img");
+    logoImg.src = "/icons/shredit-logo.svg";
+
+    logoLink.appendChild(logoImg);
+    logo.appendChild(logoLink);
+
+    logoLink.href = "/";
+    logoLink.className = "logo-link";
+    logo.className = "logo";
+    block.appendChild(logo);
+
     // Parsing
     const sectionElement = fragment.querySelector('[data-section="Sections"]');
     const navigationMenu = generateMenuFromSection(sectionElement);

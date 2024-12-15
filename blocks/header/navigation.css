@@ -14,7 +14,6 @@ header {
 
 nav {
     display: flex;
-    gap: 1rem;
 }
 
 ul {
@@ -24,12 +23,14 @@ ul {
 }
 
 .header {
+    display: flex;
+    align-items: center;
+    gap: 62px;
     margin: auto;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+    width: 150px;
 }
 
 .hover .nav-link {
@@ -49,15 +50,13 @@ ul {
 .nav-item {
     position: relative;
     font-size: 16px;
-    font-weight: 400;
 }
 
 .nav-item .nav-link {
-    padding: 22px 0.5rem;
+    padding: 26px 20px;
     display: inline-block;
     text-decoration: none;
     font-size: 16px;
-    font-weight: 400;
     opacity: 0.5;
     color: var(--color-white);
     transition: opacity 0.3s ease-in-out;
@@ -131,7 +130,7 @@ ul {
 
 .submenu {
     position: fixed;
-    top: 70px;
+    top: 78px;
     left: 0;
     display: none;
     justify-content: flex-start;

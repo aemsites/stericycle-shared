@@ -9,7 +9,6 @@ export function generateMenuFromSection(sectionElement) {
         return null;
     }
 
-    // Create the navigation container
     const nav = document.createElement("nav");
 
     nav.id = "nav";
