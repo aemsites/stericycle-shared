@@ -112,10 +112,25 @@ export async function addCookieBanner() {
   await loadScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js', { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': token });
 }
 
+/**
+ * Push event to custom 3rd party dataLayer
+ * @param ev event payload
+ */
 export function sendDigitalDataEvent(ev) {
   if (!window.digitalData) {
     return; // digitalData not initialized
   }
   window.digitalData.event = window.digitalData.event || [];
   window.digitalData.newEvent(ev);
+}
+
+/**
+ * Push to GTM dataLayer
+ * @param data payload
+ */
+export function pushToDataLayer(data) {
+  if (!window.dataLayer) {
+    window.dataLayer = [];
+  }
+  window.dataLayer.push(data);
 }
