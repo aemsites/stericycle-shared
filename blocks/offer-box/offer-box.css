@@ -83,11 +83,6 @@
     align-items: flex-start;
 }
 
-.block.offer-box.alternate-3 .offer-box-header {
-    height: auto;
-    max-width: 100%;
-}
-
 .block.offer-box.plain-simple .offer-box-header {
     display: flex;
     flex-direction: column;
@@ -192,9 +187,8 @@
 	object-fit: cover;
 }
 
-.block.offer-box.alternate-3 .offer-box-header img {
-    max-width: 100%;
-    max-height: 100%;
+.block.offer-box.alternate-3.offer-box-container > div.offer-box-header {
+    gap: 1rem;
 }
 
 .block.offer-box.alternate-2 .offer-box-header .promotion-with-text:has(.text-with-badge) > p {
@@ -246,7 +240,7 @@
 
 .offer-box a.button.primary {
     width: 100%;
-		text-wrap: pretty;
+	text-wrap: pretty;
 }
 
 .offer-box.big-icon .head-copy {

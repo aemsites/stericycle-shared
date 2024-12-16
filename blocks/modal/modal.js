@@ -62,11 +62,26 @@ export async function createModal(contentNodes, config) {
   };
 }
 
+function addLinkToImage(imageSection) {
+  const link = imageSection.getAttribute('data-link');
+  const defaultContentWrapper = imageSection.querySelector('.default-content-wrapper');
+  if (defaultContentWrapper) {
+    const anchor = document.createElement('a');
+    anchor.href = link;
+    anchor.append(...defaultContentWrapper.childNodes);
+    defaultContentWrapper.appendChild(anchor);
+  }
+}
+
 export async function openModal(fragmentUrl, config) {
   const path = fragmentUrl.startsWith('http')
     ? new URL(fragmentUrl, window.location).pathname
     : fragmentUrl;
   const fragment = await loadFragment(path);
+  const imageContent = fragment.querySelector('.section.image');
+  if (imageContent) {
+    addLinkToImage(imageContent);
+  }
   const { showModal } = await createModal(fragment.childNodes, config);
   showModal();
 }
