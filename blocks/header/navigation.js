@@ -26,12 +26,14 @@ export default async function decorate(block) {
     const logoLink = document.createElement("a");
     const logoImg = document.createElement("img");
     logoImg.src = "/icons/shredit-logo.svg";
+    logoImg.alt = "Shredit Logo";
 
     logoLink.appendChild(logoImg);
     logo.appendChild(logoLink);
 
     logoLink.href = "/";
     logoLink.className = "logo-link";
+    logoLink["aria-label"] = "Shredit Home";
     logo.className = "logo";
     block.appendChild(logo);
 

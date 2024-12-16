@@ -81,14 +81,21 @@ ul {
 .list {
     display: flex;
     gap: 46px;
+    width: 100%;
 }
 
 .list-item {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 8px;
     padding: 0 32px;
-    max-width: 320px;
+    width: 25%;
+    border-left: 1px solid var(--color-grey200);
+}
+
+.list-item:first-child {
+    border-left: none;
 }
 
 .list-item .icon {
@@ -101,7 +108,7 @@ ul {
 }
 
 .list-item > ul > li {
-    padding: 12px 8px;
+    padding: 12px 0;
     align-items: flex-start;
 }
 
@@ -111,27 +118,74 @@ ul {
     gap: 16px;
 }
 
-.list-item li:hover {
-    background-color: var(--color-bg-secondary);
-    border-radius: 8px;
-}
-
 .list-item li a {
-    padding: 0;
+    border-radius: 8px;
+    padding: 0 8px;
     font-size: 16px;
     font-weight: 700;
     line-height: 160%;
     color: var(--color-text-primary);
+    transition: background-color 0.3s ease-in-out;
 }
 
 .list-item li a:hover {
-    background-color: transparent;
+    background-color: var(--color-bg-secondary);
 }
 
 .list-item li > * {
     font-size: 14px;
     line-height: 160%;
     color: var(--color-text-secondary);
+}
+
+.list-item.managed li a  {
+    padding: 0;
+}
+
+.list-item.managed > ul > li {
+    padding: 16px 8px;
+}
+
+.list-item.image {
+    align-items: center;
+    text-align: center;
+}
+
+.list-item.image .icon {
+    width: 92px;
+    height: 92px;
+}
+
+.list-item.image ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-item.image ul li:first-child {
+    position: relative;
+    padding-bottom: 16px;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 120%;
+    color: var(--color-text-primary);
+}
+
+.list-item.image ul li:first-child::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background-color: var(--color-accent-2);
+}
+
+.list-item.image picture,
+.list-item.image img {
+    width: 100%;
+    height: 100%;
 }
 
 .submenu {

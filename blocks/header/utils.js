@@ -11,6 +11,7 @@ export function generateMenuFromSection(sectionElement) {
 
     const nav = document.createElement("nav");
 
+    nav.role = "menu";
     nav.id = "nav";
 
     // Helper function to process top-level list items
@@ -20,6 +21,7 @@ export function generateMenuFromSection(sectionElement) {
             navItem.className = "nav-item";
             navItem.setAttribute("aria-haspopup", "true");
             navItem.setAttribute("aria-expanded", "false");
+            navItem.setAttribute("role", "menuitem");
 
             // Handle links, text, or other content for the nav item
             const link = li.querySelector("a");
@@ -78,9 +80,21 @@ export function generateMenuFromSection(sectionElement) {
                             child.textContent.trim()
                         ) {
                             const textWrapper = document.createElement("span");
+
+                            // check if textContent includes custom selector #name and add class with that name
+                            if (child.textContent.includes("#")) {
+                                const className =
+                                    child.textContent.match(/#(\w+)/)[1];
+
+                                listItem.classList.add(className);
+
+                                child.textContent =
+                                    child.textContent.split("#")[0];
+                            }
+
                             textWrapper.textContent = child.textContent.trim();
-                            textWrapper.className =
-                                "eyebrow-small nav-item-heading";
+                            textWrapper.classList.add("nav-item-heading");
+                            textWrapper.classList.add("eyebrow-small");
 
                             listItem.appendChild(textWrapper);
                         }
