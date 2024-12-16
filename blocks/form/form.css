@@ -1403,6 +1403,10 @@ main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
     }
 }
 
+main .two-column.form-container .form form .panel-wrapper.splitbuttons .radio-wrapper label {
+    padding: 11px 22px;
+}
+
 main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) {
     background: var(--form-styles-button-primary-color);
 }
@@ -1422,6 +1426,10 @@ main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) la
     main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label::before {
         left: 32px;
     }
+}
+
+main .two-column.form-container .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label::before {
+    left: 22px;
 }
 
 main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
@@ -1455,6 +1463,10 @@ main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) la
     main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label {
        padding-left: 56px;
     }
+}
+
+main .two-column.form-container .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label {
+    padding-left: 46px;
 }
 
 main .form form .panel-wrapper.splitbuttons .radio-wrapper.field-wrapper {
