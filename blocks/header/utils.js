@@ -1,3 +1,7 @@
+import { getMetadata } from "../../scripts/aem.js";
+import { a, div, button, domEl } from "../../scripts/dom-helpers.js";
+import { formatPhone } from "../../scripts/scripts.js";
+
 /**
  * Converts a section with hierarchical structure into a navigation menu.
  * @param {HTMLElement} sectionElement - The section containing the hierarchical structure.
@@ -25,6 +29,7 @@ export function generateMenuFromSection(sectionElement) {
 
             // Handle links, text, or other content for the nav item
             const link = li.querySelector("a");
+
             if (link) {
                 const anchor = document.createElement("a");
                 anchor.href = link.href;
@@ -122,6 +127,11 @@ export function generateMenuFromSection(sectionElement) {
     return nav;
 }
 
+/**
+ * Adds functionality to the navigation menu.
+ * @param {HTMLElement} block - The navigation menu element.
+ * @returns {void}
+ */
 export function addMenuFunctionality(block) {
     document.querySelectorAll(".nav-item").forEach((item) => {
         item.addEventListener("focusin", () => {
@@ -263,4 +273,72 @@ export function addMenuFunctionality(block) {
             submenu.classList.toggle("open");
         });
     });
+}
+
+/**
+ * Function to build the company logo element.
+ * @returns {HTMLElement} - The company logo element.
+ */
+export function buildCompanyLogo() {
+    const logo = document.createElement("div");
+    const logoLink = document.createElement("a");
+    const logoImg = document.createElement("img");
+    logoImg.src = "/icons/shredit-logo.svg";
+    logoImg.alt = "Shredit Logo";
+
+    logoLink.appendChild(logoImg);
+    logo.appendChild(logoLink);
+
+    logoLink.href = "/";
+    logoLink.className = "logo-link";
+    logoLink["aria-label"] = "Shredit Home";
+    logo.className = "logo";
+
+    return logo;
+}
+
+export function buildContactModal(placeHolders) {
+    const navModalPath = getMetadata("nav-modal-path") || "/forms/modals/modal";
+    const requestQuoteModalButtonTitle =
+        placeHolders.requestafreequote || "Request a Free Quote";
+    const contactModalButtonTitle = placeHolders.contactustext || "Contact Us";
+    const searchModalButtonTitle = placeHolders.searchtext || "Search";
+    const loginButtonTitle = placeHolders.login || "Login";
+
+
+    const contactModal = domEl(
+        "div",
+        { class: "ctas-container" },
+        div(
+            {
+                class: "modal-actions",
+            },
+            button({
+                class: "icon-button button contact-button",
+                "aria-label": contactModalButtonTitle,
+            }),
+            button({
+                class: "icon-button button search-button",
+                "aria-label": searchModalButtonTitle,
+            })
+        ),
+        a(
+            {
+                href: "/login",
+                class: "quote-button button secondary",
+                "aria-label": loginButtonTitle,
+            },
+            loginButtonTitle
+        ),
+        a(
+            {
+                href: navModalPath,
+                class: "quote-button button primary",
+                "aria-label": requestQuoteModalButtonTitle,
+            },
+            requestQuoteModalButtonTitle
+        )
+    );
+
+    return contactModal;
 }

@@ -1,7 +1,12 @@
 import { fetchPlaceholders, getMetadata } from "../../scripts/aem.js";
 import { getLocale } from "../../scripts/scripts.js";
 import { loadFragment } from "../fragment/fragment.js";
-import { addMenuFunctionality, generateMenuFromSection } from "./utils.js";
+import {
+    addMenuFunctionality,
+    buildCompanyLogo,
+    buildContactModal,
+    generateMenuFromSection,
+} from "./utils.js";
 
 /**
  * loads and decorates the header, mainly the nav
@@ -22,26 +27,25 @@ export default async function decorate(block) {
     const fragment = await loadFragment(navPath);
 
     // logo
-    const logo = document.createElement("div");
-    const logoLink = document.createElement("a");
-    const logoImg = document.createElement("img");
-    logoImg.src = "/icons/shredit-logo.svg";
-    logoImg.alt = "Shredit Logo";
+    const logo = buildCompanyLogo();
 
-    logoLink.appendChild(logoImg);
-    logo.appendChild(logoLink);
-
-    logoLink.href = "/";
-    logoLink.className = "logo-link";
-    logoLink["aria-label"] = "Shredit Home";
-    logo.className = "logo";
-    block.appendChild(logo);
+    if (logo) {
+        block.append(logo);
+    }
 
     // Parsing
     const sectionElement = fragment.querySelector('[data-section="Sections"]');
     const navigationMenu = generateMenuFromSection(sectionElement);
+
     if (navigationMenu) {
         block.append(navigationMenu);
+    }
+
+    // Ctas
+    const contactModal = buildContactModal(placeHolders);
+
+    if(contactModal) {
+        block.append(contactModal);
     }
 
     // Menu functionality

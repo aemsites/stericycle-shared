@@ -25,10 +25,11 @@ ul {
 .header {
     display: flex;
     align-items: center;
-    gap: 62px;
+    gap: 40px;
     margin: auto;
     padding: 0 80px;
     max-width: 1600px;
+    width: 100%;
 }
 
 .logo {
@@ -59,7 +60,6 @@ ul {
     display: inline-block;
     text-decoration: none;
     font-size: 16px;
-    opacity: 0.5;
     color: var(--color-white);
     transition: opacity 0.3s ease-in-out;
 }
@@ -149,6 +149,7 @@ ul {
 .list-item.image {
     align-items: center;
     text-align: center;
+    max-width: 600px;
 }
 
 .list-item.image .icon {
@@ -214,26 +215,39 @@ ul {
     background-color: var(--color-bg-secondary);
 }
 
-.ctas {
+.ctas-container {
     display: flex;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
 }
 
-.ctas button {
-    background-color: #555;
-    color: var(--color-white);
+.ctas-container .modal-actions {
+    display: flex;
+    gap: 24px;
+    margin-right: 16px;
+}
+
+.ctas-container .icon-button {
+    width: 32px;
+    height: 32px;
+    background: transparent;
     border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 4px;
 }
 
-.ctas button:hover,
-.ctas button:focus {
-    background-color: #777;
+.ctas-container .contact-button {
+    background-image: url('/icons/phone-ringing.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.ctas-container .search-button {
+    background-image: url('/icons/magnifying-glass.svg');
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-/* Mobile Styles */
+
+/* Mobile Nav */
 .hamburger {
     display: none;
     flex-direction: column;
