@@ -8,6 +8,7 @@ import {
     img,
     h3,
     input,
+    form,
 } from "../../scripts/dom-helpers.js";
 import { formatPhone } from "../../scripts/scripts.js";
 
@@ -309,15 +310,20 @@ export function buildCompanyLogo() {
 /**
  * Function to build the ctas section elements.
  * @param {Object} placeHolders - The placeholder values for the modals.
+ * @param {Object} tools - The tools map for the extra header.
+ * @param {Object} contact - The contact map for the contact modal.
+ * @param {string} locale - The locale of the page.
  * @returns {HTMLElement} - The contact and search modals section.
  */
-export function buildCtasSection(placeHolders) {
+export function buildCtasSection(
+    placeHolders = {},
+    tools = {},
+    contact = {},
+    locale
+) {
     const navModalPath = getMetadata("nav-modal-path") || "/forms/modals/modal";
-    const requestQuoteModalButtonTitle =
-        placeHolders.requestafreequote || "Request a Free Quote";
     const contactModalButtonTitle = placeHolders.contactustext || "Contact Us";
     const searchModalButtonTitle = placeHolders.searchtext || "Search";
-    const loginButtonTitle = placeHolders.login || "Login";
 
     const contactModalButton = button({
         class: "icon-button button contact-button",
@@ -335,30 +341,8 @@ export function buildCtasSection(placeHolders) {
         { class: "submenu modal contact-modal", id: "contact-modal" },
         div(
             { class: "modal-content" },
-            h3({ class: "modal-title eyebrow-small" }, "Get In Touch"),
-            p(
-                { class: "modal-subtitle" },
-                "Our call center is open Monday – Friday from [8:00am] – [8:00pm]"
-            ),
-            div(
-                { class: "contact" },
-                img({
-                    class: "contact-icon",
-                    src: "/icons/phone-ringing-black.svg",
-                }),
-                div(
-                    { class: "contact-info" },
-                    p({ class: "modal-title" }, placeHolders.salestext),
-                    a(
-                        {
-                            href: `tel:+1${placeHolders.salesno}`,
-                            title: placeHolders.salestext,
-                            "aria-label": placeHolders.salestext,
-                        },
-                        `${formatPhone(placeHolders.salesno, true)}`
-                    )
-                )
-            ),
+            h3({ class: "modal-title eyebrow-small" }, contact?.title?.text),
+            p({ class: "modal-subtitle" }, contact?.description?.text),
             div(
                 { class: "contact" },
                 img({
@@ -369,15 +353,34 @@ export function buildCtasSection(placeHolders) {
                     { class: "contact-info" },
                     p(
                         { class: "modal-title" },
-                        placeHolders.customerservicetext
+                        contact?.customerservicelabel?.text
                     ),
                     a(
                         {
-                            href: `tel:+1${placeHolders.customerserviceno}`,
-                            title: placeHolders.customerservicetext,
-                            "aria-label": placeHolders.customerservicetext,
+                            href: `tel:+1${contact?.customerserviceno?.text.trim()}`,
+                            title: `${contact?.customerservicelabel?.text} number`,
+                            "aria-label": `${contact?.customerservicelabel?.text} number`,
                         },
-                        `${formatPhone(placeHolders.customerserviceno, true)}`
+                        `${formatPhone(contact?.customerserviceno?.text, true)}`
+                    )
+                )
+            ),
+            div(
+                { class: "contact" },
+                img({
+                    class: "contact-icon",
+                    src: "/icons/phone-ringing-black.svg",
+                }),
+                div(
+                    { class: "contact-info" },
+                    p({ class: "modal-title" }, contact?.saleslabel?.text),
+                    a(
+                        {
+                            href: `tel:+1${contact?.salesno?.text.trim()}`,
+                            title: `${contact?.saleslabel?.text} number`,
+                            "aria-label": `${contact?.saleslabel?.text} number`,
+                        },
+                        `${formatPhone(contact?.salesno?.text, true)}`
                     )
                 )
             ),
@@ -385,29 +388,32 @@ export function buildCtasSection(placeHolders) {
                 {
                     href: navModalPath,
                     class: "quote-button button primary",
-                    "aria-label": "Request a call back",
+                    "aria-label": contact?.cta?.text,
                 },
-                "Request a call back"
+                contact?.cta?.text || "Request a call back"
             )
         )
     );
-
-    console.log("placeHolders", placeHolders);
 
     const searchModal = div(
         { class: "submenu search-modal", id: "search-modal" },
         div(
             { class: "modal-content" },
 
-            div(
-                { class: "search-form" },
+            form(
+                {
+                    class: "search-form",
+                    action: `/${locale}/search`,
+                    method: "get",
+                    autocomplete: "off",
+                },
                 input({
                     type: "text",
-                    placeholder: "Search",
+                    placeholder: placeHolders.searchtext,
                     class: "search-input",
                 }),
                 button(
-                    { class: "close-button" },
+                    { class: "close-button", "arial-label": "Close search" },
                     img({
                         class: "contact-icon",
                         src: "/icons/close.svg",
@@ -417,26 +423,28 @@ export function buildCtasSection(placeHolders) {
         )
     );
 
+    const toolsCta = Object.keys(tools).map((tool) => {
+        const { href, text } = tools[tool];
+        const isLast = tool === Object.keys(tools).slice(-1)[0];
+
+        return a(
+            {
+                href: isLast ? navModalPath : href,
+                target: isLast ? "_self" : "_blank",
+                class: `quote-button button ${
+                    isLast ? "primary" : "secondary dark"
+                }`,
+                "aria-label": text,
+            },
+            text
+        );
+    });
+
     const ctasContainer = domEl(
         "div",
         { class: "ctas-container" },
         div({ class: "modal-actions" }, contactModalButton, searchModalButton),
-        a(
-            {
-                href: "/login",
-                class: "quote-button button secondary",
-                "aria-label": loginButtonTitle,
-            },
-            loginButtonTitle
-        ),
-        a(
-            {
-                href: navModalPath,
-                class: "quote-button button primary",
-                "aria-label": requestQuoteModalButtonTitle,
-            },
-            requestQuoteModalButtonTitle
-        ),
+        ...toolsCta,
         contactModal,
         searchModal
     );

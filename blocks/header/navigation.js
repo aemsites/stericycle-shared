@@ -8,6 +8,20 @@ import {
     generateMenuFromSection,
 } from "./utils.js";
 
+const TEXT_ELEMENTS = [
+    "a",
+    "strong",
+    "p",
+    "span",
+    "li",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+];
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -19,7 +33,7 @@ export default async function decorate(block) {
 
     let locale = window.location.pathname.split("/")[1] || "en-us";
     locale = locale.match(/^[a-z]{2}-[a-z]{2}$/) ? locale : "en-us"; // default to us-en if no locale in path
-    // load nav as fragment
+
     const navMeta = getMetadata("nav");
     const navPath = navMeta
         ? new URL(navMeta, window.location).pathname
@@ -33,7 +47,36 @@ export default async function decorate(block) {
         block.append(logo);
     }
 
-    console.log("fragment", fragment);
+    // tools
+    const navTools = fragment.querySelector('.section[data-section="Ctas" i]');
+    const navToolsLinks = navTools.querySelectorAll(TEXT_ELEMENTS);
+
+    const toolsMap = {};
+
+    navToolsLinks.forEach((link) => {
+        toolsMap[link?.textContent] = {
+            href: link?.getAttribute("href"),
+            text: link?.textContent,
+        };
+    });
+
+    // contact data
+    const contactData = fragment.querySelector(
+        '.section[data-section="Contact" i]'
+    );
+    const contactDataLinks = contactData.querySelectorAll(TEXT_ELEMENTS);
+
+    const contactMap = {};
+
+    contactDataLinks.forEach((link) => {
+        const [key, text] = link?.textContent?.split("#");
+        const field = key?.toLowerCase()?.split(" ")?.join("");
+
+        contactMap[field] = {
+            href: link?.getAttribute("href"),
+            text: text,
+        };
+    });
 
     // Parsing
     const sectionElement = fragment.querySelector('[data-section="Sections"]');
@@ -44,7 +87,12 @@ export default async function decorate(block) {
     }
 
     // Ctas
-    const ctasSection = buildCtasSection(placeHolders);
+    const ctasSection = buildCtasSection(
+        placeHolders,
+        toolsMap,
+        contactMap,
+        locale
+    );
 
     if (ctasSection) {
         block.append(ctasSection);
