@@ -623,10 +623,9 @@ main .section.no-spacing > div {
   margin: 0;
 }
 
-main .section.underline-links a {
+main .section.underline-links p:not(.button-container) a {
   text-decoration: underline;
 }
-
 
 /* section styles */
 
@@ -789,7 +788,7 @@ main .list-style-checkmarks ul {
 }
 
 main .list-style-bullets li::marker,
-main .list-style-checkmarks li::marker, 
+main .list-style-checkmarks li::marker,
 main .list-style-orange-triangles li::marker,
 main .list-style-big-numbers li::marker,
 main .list-style-more-space li::marker {
