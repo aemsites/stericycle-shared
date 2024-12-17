@@ -7,6 +7,7 @@ import {
     p,
     img,
     h3,
+    input,
 } from "../../scripts/dom-helpers.js";
 import { formatPhone } from "../../scripts/scripts.js";
 
@@ -391,9 +392,29 @@ export function buildCtasSection(placeHolders) {
         )
     );
 
+    console.log("placeHolders", placeHolders);
+
     const searchModal = div(
         { class: "submenu search-modal", id: "search-modal" },
-        div({ class: "modal-content" }, "Search content goes here")
+        div(
+            { class: "modal-content" },
+
+            div(
+                { class: "search-form" },
+                input({
+                    type: "text",
+                    placeholder: "Search",
+                    class: "search-input",
+                }),
+                button(
+                    { class: "close-button" },
+                    img({
+                        class: "contact-icon",
+                        src: "/icons/close.svg",
+                    })
+                )
+            )
+        )
     );
 
     const ctasContainer = domEl(
