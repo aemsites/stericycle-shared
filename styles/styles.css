@@ -623,7 +623,7 @@ main .section.no-spacing > div {
   margin: 0;
 }
 
-main .section.underline-links a {
+main .section p:not(.button-container) a {
   text-decoration: underline;
 }
 
@@ -741,15 +741,19 @@ main .centered-headings h6 {
 }
 
 main .cyan-headings {
-  --color-heading: var(--color-secondary-3);
+  --color-heading: var(--color-secondary-3) !important;
 }
 
 main .blue-headings {
-  --color-heading: var(--color-primary-1);
+  --color-heading: var(--color-primary-1) !important;
 }
 
 main .navy-headings {
-  --color-heading: var(--color-primary-2);
+  --color-heading: var(--color-primary-2) !important;
+}
+
+main .white-headings {
+  --color-heading: var(--color-white) !important;
 }
 
 main .list-style-orange-triangles ul {
@@ -785,7 +789,7 @@ main .list-style-checkmarks ul {
 }
 
 main .list-style-bullets li::marker,
-main .list-style-checkmarks li::marker, 
+main .list-style-checkmarks li::marker,
 main .list-style-orange-triangles li::marker,
 main .list-style-big-numbers li::marker,
 main .list-style-more-space li::marker {

@@ -300,12 +300,12 @@ main .form fieldset legend {
 main .form label {
     font-weight: var(--form-label-font-weight);
     font-size: var(--form-label-font-size);
-    color: var(--form-label-color);
+    color: var(--color-disabled);
 }
 
 main .form label.required::after {
     content: "*";
-    color: var(--form-label-color);
+    color: var(--color-disabled);
     padding-inline-start: 5px;
 }
 
@@ -374,8 +374,8 @@ main .submit-wrapper{
     width: var(--form-submit-width);
 }
 
-main .form input:focus, 
-main .form textarea:focus, 
+main .form input:focus,
+main .form textarea:focus,
 main .form select:focus {
   outline: 3px solid var(--color-bg-tertiary);
   outline-offset: 3px;
@@ -398,9 +398,6 @@ main .form .field-wrapper.field-valid input[type="radio"] {
     border-color: var(--color-primary-1);
 }
 
-
-
-
 main .form .field-wrapper.field-invalid input,
 main .form .field-wrapper.field-invalid textarea,
 main .form .field-wrapper.field-invalid select {
@@ -421,6 +418,13 @@ main .form .field-wrapper.field-invalid input:focus,
 main .form .field-wrapper.field-invalid textarea:focus,
 main .form .field-wrapper.field-invalid select:focus {
     outline: 3px solid var(--color-bg-tertiary);
+    outline-offset: 3px;
+}
+
+main .form .field-wrapper.field-valid input:focus,
+main .form .field-wrapper.field-valid textarea:focus,
+main .form .field-wrapper.field-valid select:focus {
+    outline: 3px solid var(--color-primary-1);
     outline-offset: 3px;
 }
 
@@ -682,6 +686,26 @@ main .form .form-message.success-message {
     flex: 100%;
     grid-column: span 12;
     padding: 10px;
+
+     a[href$='.pdf'] {
+         background-color: var(--color-button-primary);
+         border-color: var(--color-button-primary);
+         color: var(--color-black);
+         display: flex;
+         text-decoration: none;
+         padding: 0 32px;
+         line-height: 32px;
+         text-align: center;
+         font-style: normal;
+         font-weight: 600;
+         cursor: pointer;
+         margin: 16px 0;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         border-radius: 100px;
+         justify-content: center;
+    }
 }
 
 main .form .form-message.error-message {
@@ -792,7 +816,6 @@ main .form .field-wrapper.floating-field > label {
     top: 10px;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper label,
 main .form form .panel-wrapper.field-frequncy .radio-wrapper label{
     color: var(--color-white);
     cursor: pointer;
@@ -803,7 +826,7 @@ main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkb
 main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox']):focus + label{
     padding: 15px 0 0 15px;
     font-size: 10px;
-    color: var(--form-styles-label-color);
+    color: var(--color-disabled);
     transform: translateY(-15px);
     z-index: 1;
 }
@@ -819,7 +842,6 @@ main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkb
     color: transparent;
 }
 
-main .form form .panel-wrapper.field-requesttype,
 main .form form .panel-wrapper.field-frequncy{
     grid-template-columns: 12fr 1fr 1fr;
     gap: 0;
@@ -827,7 +849,6 @@ main .form form .panel-wrapper.field-frequncy{
     margin-bottom: 20px;
 }
 
-main .form form .panel-wrapper.field-requesttype legend,
 main .form form .panel-wrapper.field-frequncy legend{
   grid-column: 1;
 }
@@ -837,37 +858,31 @@ main .form form .panel-wrapper.field-frequncy .radio-wrapper input{
   opacity: 0;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper,
 main .form form .panel-wrapper.field-frequncy .radio-wrapper{
     position: relative;
     grid-column: 2;
     display: flex;
     align-items: center;
-    margin-top: -45px;
     width: 120px;
     text-align: center;
     background: var(--form-styles-border-color);
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(2),
 main .form form .panel-wrapper.field-frequncy .radio-wrapper:nth-child(2){
   border-bottom-left-radius: 6.25rem;
   border-top-left-radius: 6.25rem;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:nth-child(3),
 main .form form .panel-wrapper.field-frequncy .radio-wrapper:nth-child(3){
   grid-column: 3;
   border-bottom-right-radius: 6.25rem;
   border-top-right-radius: 6.25rem;
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked),
 main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked){
   background: var(--form-styles-button-primary-color);
 }
 
-main .form form .panel-wrapper.field-requesttype .radio-wrapper:has(input:checked) label::before,
 main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked) label::before{
   content: '';
   display: block;
@@ -977,9 +992,18 @@ main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='
     font-weight: 900;
 }
 
-
 main .get-a-quote-form-alternate.no-header-color form .fragment-wrapper[data-id^='header'] {
     background-color: unset;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+main .get-a-quote-form-alternate.no-header-color form .fragment-wrapper[data-id='privacy-policy'] {
+    padding-bottom: 0;
+
+    > div > p {
+        padding-bottom: 0;
+    }
 }
 
 main .footer-subscription-form  form {
@@ -1110,11 +1134,6 @@ main .two-column.form-container:not(.shredded-paper-background-column, .hard-dri
     width:100%;
 }
 
-main .shredded-paper-background-column.two-column,
-main .hard-drive-background.two-column {
-    padding: 0 2rem;
-}
-
 main .two-column.form-container > div {
     grid-column: 1;
 }
@@ -1225,6 +1244,11 @@ main .section.contact-us-title > .default-content-wrapper {
         padding-left: 1rem;
     }
 
+    main .shredded-paper-background-column.two-column.form-container,
+    main .hard-drive-background.two-column.form-container {
+        background-image: none;
+    }
+
     main .section.two-column.form-container,
     main .section.two-column.form-container.full-width,
     main .shredded-paper-background-column.two-column.form-container,
@@ -1328,4 +1352,158 @@ main form .fragment-wrapper[data-id^='policy']  p{
 
 main .campaign-form.form form .fragment-wrapper div > p {
     font-size: 1rem;
+}
+
+/* Split buttons */
+main .form form fieldset.splitbuttons {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 24px 0 0;
+    gap: 8px;
+}
+@media (min-width: 370px) {
+    main .form form fieldset.splitbuttons {
+        flex-flow: row;
+        align-items: start;
+        gap: 8px;
+    }
+}
+
+main .form form fieldset.splitbuttons .radio-wrapper-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 8px;
+    height: 100%;
+}
+
+main .form form fieldset.splitbuttons .radio-wrapper-container .radio-wrapper:first-of-type {
+    border-bottom-left-radius: 6.25rem;
+    border-top-left-radius: 6.25rem;
+}
+
+main .form form fieldset.splitbuttons .radio-wrapper-container .radio-wrapper:last-of-type {
+    border-bottom-right-radius: 6.25rem;
+    border-top-right-radius: 6.25rem;
+}
+
+main .form form fieldset.splitbuttons legend {
+    float: left;
+    font-family: var(--font-family-lato);
+    font-size: var(--form-font-size-xxs);
+    font-weight:var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: 22.4px;
+    margin-top: 8px;
+    margin-bottom: 0;
+    max-width: 102px;
+    width: fit-content;
+}
+
+@media (min-width: 1000px) {
+    main .form form fieldset.splitbuttons legend {
+        font-size: var(--form-font-size-xs);
+        line-height: 25.6px;
+    }
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper {
+    position: relative;
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+    background: var(--color-bg-secondary);
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper input {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    margin: 0;
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
+    padding: 11px 22px;
+}
+
+@media (min-width: 410px) {
+    main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
+        padding: 11px 32px;
+    }
+}
+
+main .two-column.form-container .form form .panel-wrapper.splitbuttons .radio-wrapper label {
+    padding: 11px 22px;
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) {
+    background: var(--form-styles-button-primary-color);
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 22px;
+    background: url("/icons/check-mark-new.svg") no-repeat left center;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+}
+
+@media (min-width: 410px) {
+    main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label::before {
+        left: 32px;
+    }
+}
+
+main .two-column.form-container .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label::before {
+    left: 22px;
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
+    cursor: pointer;
+    color: var(--color-text-primary);
+    font-size: var(--body-font-size-default);
+    font-weight: var(--font-weight-bold);
+    line-height: 160%;
+    letter-spacing: 0.28px;
+}
+
+@media (min-width: 1000px) {
+    main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
+        letter-spacing: 0.32px;
+    }
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) {
+    position: relative;
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label {
+    display: flex;
+    align-items: center;
+    color: var(--color-white);
+    cursor: pointer;
+    padding-left: 46px;
+}
+
+@media (min-width: 410px) {
+    main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label {
+       padding-left: 56px;
+    }
+}
+
+main .two-column.form-container .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label {
+    padding-left: 46px;
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper.field-wrapper {
+    width: fit-content;
+    padding: 0;
+    margin-top: 0;
 }
