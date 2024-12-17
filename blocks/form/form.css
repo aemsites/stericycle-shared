@@ -300,12 +300,12 @@ main .form fieldset legend {
 main .form label {
     font-weight: var(--form-label-font-weight);
     font-size: var(--form-label-font-size);
-    color: var(--form-label-color);
+    color: var(--color-disabled);
 }
 
 main .form label.required::after {
     content: "*";
-    color: var(--form-label-color);
+    color: var(--color-disabled);
     padding-inline-start: 5px;
 }
 
