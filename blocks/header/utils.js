@@ -462,32 +462,35 @@ export function buildCtasSection(
  */
 function setupModal(triggerElement, modalElement) {
     function openModal() {
+        document.querySelectorAll(".submenu").forEach((submenu) => {
+            if (submenu !== modalElement) {
+                submenu.classList.remove("is-open");
+                submenu.classList.remove("hover");
+            }
+        });
+
         modalElement.classList.add("is-open");
+
+        trapFocus(modalElement);
     }
 
     function closeModal() {
         modalElement.classList.remove("is-open");
+        triggerElement.focus();
     }
-
-    function toggleModal() {
-        modalElement.classList.toggle("is-open");
-    }
-
-    /**
-        triggerElement.addEventListener("mouseenter", openModal);
-        triggerElement.addEventListener("mouseleave", (e) => {
-        if (!modalElement.contains(e.relatedTarget)) {
-            closeModal();
-        }
-    });
-     */
 
     modalElement.addEventListener("mouseenter", openModal);
     modalElement.addEventListener("mouseleave", closeModal);
 
     triggerElement.addEventListener("click", (e) => {
         e.stopPropagation();
-        toggleModal();
+
+        if (modalElement.classList.contains("is-open")) {
+            closeModal();
+            return;
+        } else {
+            openModal();
+        }
     });
 
     document.addEventListener("click", (e) => {
@@ -499,4 +502,60 @@ function setupModal(triggerElement, modalElement) {
             closeModal();
         }
     });
+
+    // close modal on focusout
+    document.addEventListener("focusout", (e) => {
+        if (
+            modalElement.classList.contains("is-open") &&
+            !modalElement.contains(e.relatedTarget) &&
+            e.relatedTarget !== triggerElement
+        ) {
+            closeModal();
+        }
+    });
+
+    // close modal on escape key
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modalElement.classList.contains("is-open")) {
+            closeModal();
+        }
+    });
+
+    /**
+     * Function to trap focus inside a modal.
+     * @param {HTMLElement} modal - The modal element.
+     */
+    function trapFocus(modal) {
+        const focusableElements = modal.querySelectorAll(
+            'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstFocusable = focusableElements[0];
+        const lastFocusable = focusableElements[focusableElements.length - 1];
+
+        // Move focus to the first focusable element
+        firstFocusable?.focus();
+
+        modal.addEventListener("keydown", (e) => {
+            if (e.key === "Tab") {
+                if (e.shiftKey) {
+                    // Shift + Tab: Move focus to the last element if on the first
+                    if (document.activeElement === firstFocusable) {
+                        e.preventDefault();
+                        lastFocusable.focus();
+                    }
+                } else {
+                    // Tab: Move focus to the first element if on the last
+                    if (document.activeElement === lastFocusable) {
+                        e.preventDefault();
+                        firstFocusable.focus();
+                    }
+                }
+            }
+
+            // Escape key to close the modal
+            if (e.key === "Escape") {
+                closeModal();
+            }
+        });
+    }
 }

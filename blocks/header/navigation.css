@@ -25,15 +25,16 @@ ul {
 .header {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 40px;
     margin: auto;
-    padding: 0 80px;
     max-width: 1600px;
     width: 100%;
 }
 
 .logo {
     width: 150px;
+    height: 62px;
 }
 
 .hover::after {
@@ -384,6 +385,10 @@ ul {
 }
 
 @media (max-width: 768px) {
+    .ctas-container .quote-button {
+        display: none !important;
+    }
+
     nav {
         display: none;
     }
@@ -394,6 +399,18 @@ ul {
 
     .mobile-nav {
         display: flex;
+    }
+}
+
+@media (min-width: 1200px) {
+    .header {
+        padding: 0 40px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .header {
+        padding: 0 80px;
     }
 }
 
