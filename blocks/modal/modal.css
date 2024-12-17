@@ -52,6 +52,7 @@ body.modal-open {
   background-color: transparent;
   color: var(--color-dark-gray);
   line-height: 0;
+  outline: none;
 }
 
 .modal .close-button .icon.icon-close {
@@ -86,6 +87,19 @@ body.modal-open {
 
 .modal dialog .modal-content form .fragment-wrapper p{
   font-size: 1rem;
+}
+
+.modal .modal-content .image > div.default-content-wrapper {
+  margin: 0;
+  padding: 0;
+
+  > a > p {
+    margin-bottom: 0;
+
+    > picture > img {
+      display: block;
+    }
+  }
 }
 
 .modal dialog .modal-content form .fragment-wrapper[data-id^='privacy-policy']  p,
