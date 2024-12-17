@@ -1,5 +1,13 @@
 import { getMetadata } from "../../scripts/aem.js";
-import { a, div, button, domEl } from "../../scripts/dom-helpers.js";
+import {
+    a,
+    div,
+    button,
+    domEl,
+    p,
+    img,
+    h3,
+} from "../../scripts/dom-helpers.js";
 import { formatPhone } from "../../scripts/scripts.js";
 
 /**
@@ -297,7 +305,12 @@ export function buildCompanyLogo() {
     return logo;
 }
 
-export function buildContactModal(placeHolders) {
+/**
+ * Function to build the ctas section elements.
+ * @param {Object} placeHolders - The placeholder values for the modals.
+ * @returns {HTMLElement} - The contact and search modals section.
+ */
+export function buildCtasSection(placeHolders) {
     const navModalPath = getMetadata("nav-modal-path") || "/forms/modals/modal";
     const requestQuoteModalButtonTitle =
         placeHolders.requestafreequote || "Request a Free Quote";
@@ -305,23 +318,88 @@ export function buildContactModal(placeHolders) {
     const searchModalButtonTitle = placeHolders.searchtext || "Search";
     const loginButtonTitle = placeHolders.login || "Login";
 
+    const contactModalButton = button({
+        class: "icon-button button contact-button",
+        "aria-label": contactModalButtonTitle,
+        id: "contact-btn",
+    });
 
-    const contactModal = domEl(
+    const searchModalButton = button({
+        class: "icon-button button search-button",
+        "aria-label": searchModalButtonTitle,
+        id: "search-btn",
+    });
+
+    const contactModal = div(
+        { class: "submenu modal contact-modal", id: "contact-modal" },
+        div(
+            { class: "modal-content" },
+            h3({ class: "modal-title eyebrow-small" }, "Get In Touch"),
+            p(
+                { class: "modal-subtitle" },
+                "Our call center is open Monday – Friday from [8:00am] – [8:00pm]"
+            ),
+            div(
+                { class: "contact" },
+                img({
+                    class: "contact-icon",
+                    src: "/icons/phone-ringing-black.svg",
+                }),
+                div(
+                    { class: "contact-info" },
+                    p({ class: "modal-title" }, placeHolders.salestext),
+                    a(
+                        {
+                            href: `tel:+1${placeHolders.salesno}`,
+                            title: placeHolders.salestext,
+                            "aria-label": placeHolders.salestext,
+                        },
+                        `${formatPhone(placeHolders.salesno, true)}`
+                    )
+                )
+            ),
+            div(
+                { class: "contact" },
+                img({
+                    class: "contact-icon",
+                    src: "/icons/phone-ringing-black.svg",
+                }),
+                div(
+                    { class: "contact-info" },
+                    p(
+                        { class: "modal-title" },
+                        placeHolders.customerservicetext
+                    ),
+                    a(
+                        {
+                            href: `tel:+1${placeHolders.customerserviceno}`,
+                            title: placeHolders.customerservicetext,
+                            "aria-label": placeHolders.customerservicetext,
+                        },
+                        `${formatPhone(placeHolders.customerserviceno, true)}`
+                    )
+                )
+            ),
+            button(
+                {
+                    href: navModalPath,
+                    class: "quote-button button primary",
+                    "aria-label": "Request a call back",
+                },
+                "Request a call back"
+            )
+        )
+    );
+
+    const searchModal = div(
+        { class: "submenu search-modal", id: "search-modal" },
+        div({ class: "modal-content" }, "Search content goes here")
+    );
+
+    const ctasContainer = domEl(
         "div",
         { class: "ctas-container" },
-        div(
-            {
-                class: "modal-actions",
-            },
-            button({
-                class: "icon-button button contact-button",
-                "aria-label": contactModalButtonTitle,
-            }),
-            button({
-                class: "icon-button button search-button",
-                "aria-label": searchModalButtonTitle,
-            })
-        ),
+        div({ class: "modal-actions" }, contactModalButton, searchModalButton),
         a(
             {
                 href: "/login",
@@ -337,8 +415,59 @@ export function buildContactModal(placeHolders) {
                 "aria-label": requestQuoteModalButtonTitle,
             },
             requestQuoteModalButtonTitle
-        )
+        ),
+        contactModal,
+        searchModal
     );
 
-    return contactModal;
+    setupModal(contactModalButton, contactModal);
+    setupModal(searchModalButton, searchModal);
+
+    return ctasContainer;
+}
+
+/**
+ * Reusable function to handle modal open/close logic.
+ * @param {HTMLElement} triggerElement - The element that triggers the modal.
+ * @param {HTMLElement} modalElement - The modal element to show/hide.
+ */
+function setupModal(triggerElement, modalElement) {
+    function openModal() {
+        modalElement.classList.add("is-open");
+    }
+
+    function closeModal() {
+        modalElement.classList.remove("is-open");
+    }
+
+    function toggleModal() {
+        modalElement.classList.toggle("is-open");
+    }
+
+    /**
+        triggerElement.addEventListener("mouseenter", openModal);
+        triggerElement.addEventListener("mouseleave", (e) => {
+        if (!modalElement.contains(e.relatedTarget)) {
+            closeModal();
+        }
+    });
+     */
+
+    modalElement.addEventListener("mouseenter", openModal);
+    modalElement.addEventListener("mouseleave", closeModal);
+
+    triggerElement.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleModal();
+    });
+
+    document.addEventListener("click", (e) => {
+        if (
+            modalElement.classList.contains("is-open") &&
+            !modalElement.contains(e.target) &&
+            e.target !== triggerElement
+        ) {
+            closeModal();
+        }
+    });
 }

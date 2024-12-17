@@ -4,7 +4,7 @@ import { loadFragment } from "../fragment/fragment.js";
 import {
     addMenuFunctionality,
     buildCompanyLogo,
-    buildContactModal,
+    buildCtasSection,
     generateMenuFromSection,
 } from "./utils.js";
 
@@ -33,6 +33,8 @@ export default async function decorate(block) {
         block.append(logo);
     }
 
+    console.log("fragment", fragment);
+
     // Parsing
     const sectionElement = fragment.querySelector('[data-section="Sections"]');
     const navigationMenu = generateMenuFromSection(sectionElement);
@@ -42,10 +44,10 @@ export default async function decorate(block) {
     }
 
     // Ctas
-    const contactModal = buildContactModal(placeHolders);
+    const ctasSection = buildCtasSection(placeHolders);
 
-    if(contactModal) {
-        block.append(contactModal);
+    if (ctasSection) {
+        block.append(ctasSection);
     }
 
     // Menu functionality

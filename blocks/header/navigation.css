@@ -36,10 +36,6 @@ ul {
     width: 150px;
 }
 
-.hover .nav-link {
-    opacity: 1 !important;
-}
-
 .hover::after {
     content: "";
     position: absolute;
@@ -62,11 +58,6 @@ ul {
     font-size: 16px;
     color: var(--color-white);
     transition: opacity 0.3s ease-in-out;
-}
-
-.nav-item .nav-link:hover,
-.nav-item .nav-link:focus {
-    opacity: 1;
 }
 
 .nav-item.hover .submenu,
@@ -138,7 +129,7 @@ ul {
     color: var(--color-text-secondary);
 }
 
-.list-item.managed li a  {
+.list-item.managed li a {
     padding: 0;
 }
 
@@ -216,6 +207,7 @@ ul {
 }
 
 .ctas-container {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -224,11 +216,11 @@ ul {
 
 .ctas-container .modal-actions {
     display: flex;
-    gap: 24px;
-    margin-right: 16px;
 }
 
 .ctas-container .icon-button {
+    margin: 0;
+    padding: 38px 28px;
     width: 32px;
     height: 32px;
     background: transparent;
@@ -236,16 +228,84 @@ ul {
 }
 
 .ctas-container .contact-button {
-    background-image: url('/icons/phone-ringing.svg');
+    background-image: url("/icons/phone-ringing.svg");
     background-repeat: no-repeat;
     background-position: center;
 }
 .ctas-container .search-button {
-    background-image: url('/icons/magnifying-glass.svg');
+    background-image: url("/icons/magnifying-glass.svg");
     background-repeat: no-repeat;
     background-position: center;
 }
 
+/* Modals */
+.submenu.is-open {
+    display: block;
+}
+
+.modal {
+    position: absolute;
+    left: -25%;
+    padding: 32px 40px;
+    width: auto;
+    max-width: 480px;
+}
+
+.modal-title {
+    margin-bottom: 8px;
+    color: var(--color-text-secondary);
+}
+
+.modal-subtitle {
+    margin-bottom: 16px;
+}
+
+.icon-button {
+    cursor: pointer;
+}
+
+.contact-modal .contact-info > * {
+    padding: 0;
+}
+
+.contact-modal .contact {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+}
+
+.contact-modal .modal-content {
+    padding: 32px;
+    padding-top: 0;
+}
+
+.contact-modal .contact p {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 160%;
+}
+
+.contact-modal .contact a {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 160%;
+    color: var(--color-text-secondary);
+}
+
+.contact-modal .primary {
+    margin-top: 32px;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.contact-modal .contact-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.contact-modal .contact-info > * {
+    padding: 0;
+}
 
 /* Mobile Nav */
 .hamburger {
