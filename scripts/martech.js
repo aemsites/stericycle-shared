@@ -23,7 +23,7 @@ function initDataLayer() {
         language: getLocaleAsBCP47(),
         pageURL: window.location.href,
         currentPagePath: window.location.pathname,
-        pageType: getMetadata('template') || '', // TODO: This is not a 1:1 match to the old pageTypes
+        pageType: getMetadata('page-type') || '',
         pageDescription: getMetadata('og:description'),
         country: 'US', // TODO: fetch country dynamically?
       },
@@ -78,6 +78,18 @@ async function initAdobeDataLayer() {
   await loadScript('/scripts/adobe-client-data-layer.min.js', { async: '', defer: '' });
 }
 
+/**
+ * Initialize GTM dataLayer
+ */
+function initGTM() {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    pageCategory: getMetadata('page-category') || '',
+    pageService: getMetadata('page-service') || '',
+    pageType: getMetadata('page-type') || '',
+  });
+}
+
 async function initLaunch(env) {
   const launchUrls = {
     dev: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js',
@@ -99,6 +111,7 @@ function cmpLoaded() {
 
 export async function initMartech(env) {
   initDataLayer();
+  initGTM();
   await initAdobeDataLayer();
   await initLaunch(env);
   await cmpLoaded();
