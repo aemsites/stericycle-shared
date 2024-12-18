@@ -11,7 +11,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { addJsonLd, formatPhone, getLocale, getNearByLocations } from '../../scripts/scripts.js';
 import { decorateSidebarTemplate } from '../templates.js';
-import { createFormFromMetadata } from '../../blocks/form/form.js';
+import { createFormFromMetadata } from '../../blocks/form/utils.js';
 
 const createLocDiv = async () => {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
