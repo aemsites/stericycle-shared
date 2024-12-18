@@ -14,10 +14,12 @@ import {
   loadCSS,
   fetchPlaceholders,
   getMetadata,
+  readBlockConfig,
 } from '../../scripts/aem.js';
 import ffetch from '../../scripts/ffetch.js';
 import usStates from './us-states.js';
 import { decorateAnchors, getLocale, haversineDistance } from '../../scripts/scripts.js';
+import { sendDigitalDataEvent } from '../../scripts/martech.js';
 
 let map = null;
 
@@ -367,7 +369,7 @@ const setMapError = (block, text) => {
   mapSearchError.classList.add('unhide');
 };
 
-const mapInputSearchOnCLick = async (block, locations, ph) => {
+const mapInputSearchOnCLick = async (block, locations, ph, type) => {
   const inputText = document.querySelector('.map-input').value;
   if (inputText) {
     const mapSearchError = block.querySelector('.map-search-error');
@@ -385,6 +387,14 @@ const mapInputSearchOnCLick = async (block, locations, ph) => {
     }
 
     const data = await response.json();
+
+    // trigger analytics
+    sendDigitalDataEvent({
+      event: 'search',
+      searchType: type,
+      searchTerm: inputText,
+      searchResultRange: data?.features?.length || 0,
+    });
 
     if (data?.features?.length === 0) {
       setMapError(block, ph.nolocationfoundtext);
@@ -483,10 +493,10 @@ const mapInputLocationOnClick = (block, locations, ph) => {
  * @param {*} isDropoff
  * @returns
  */
-const mapSearch = (ph, block, locations) => {
+const mapSearch = (ph, block, locations, type) => {
   const mapInputSearch = button({ class: 'map-input-search disabled' }, ph.searchtext);
   mapInputSearch.addEventListener('click', async () => {
-    await mapInputSearchOnCLick(block, locations, ph);
+    await mapInputSearchOnCLick(block, locations, ph, type);
   });
 
   const mapInputLocation = button({ class: 'map-input-location disabled' }, ph.uselocationtext);
@@ -507,15 +517,17 @@ const mapSearch = (ph, block, locations) => {
 };
 
 export default async function decorate(block) {
-  const defaultImage = block.querySelector('img'); // Default Image which we need to show initially
-  const defaultImageSrc = defaultImage?.src;
+  const config = readBlockConfig(block);
+  console.log(config);
+  const searchType = config.type.textContent || config.type || 'undefined';
+  const defaultImageSrc = config.placeholder; // Default Image which we need to show initially
   block.replaceChildren();
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const isDropoff = Boolean(getMetadata('is-drop-off'));
   const locations = await fetchLocations(isDropoff, ph);
 
   block.append(
-    mapSearch(ph, block, locations),
+    mapSearch(ph, block, locations, searchType),
     div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
   );
 
@@ -534,7 +546,7 @@ export default async function decorate(block) {
       map.on('load', () => {
         window.setTimeout(() => {
           block.querySelector('.map-input').value = window.location.hash.substring(1);
-          mapInputSearchOnCLick(block, locations, ph);
+          mapInputSearchOnCLick(block, locations, ph, searchType);
         }, 1000);
       });
     }
