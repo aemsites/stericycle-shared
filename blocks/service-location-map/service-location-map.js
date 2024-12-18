@@ -518,7 +518,6 @@ const mapSearch = (ph, block, locations, type) => {
 
 export default async function decorate(block) {
   const config = readBlockConfig(block);
-  console.log(config);
   const searchType = config.type.textContent || config.type || 'undefined';
   const defaultImageSrc = config.placeholder; // Default Image which we need to show initially
   block.replaceChildren();
