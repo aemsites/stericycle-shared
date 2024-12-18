@@ -149,8 +149,9 @@ main .form select {
     margin-bottom: .25rem;
 }
 
-main .form textarea {
+main .form .field-wrapper textarea {
     resize: none;
+    min-height: 100px;
 }
 
 main .form select {
@@ -174,10 +175,6 @@ main .form input[type='radio'] {
     position: static;
     z-index: 1;
     accent-color: #000;
-}
-
-main .form textarea {
-    min-height: 100px;
 }
 
 main .form fieldset legend {
