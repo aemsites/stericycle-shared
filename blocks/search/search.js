@@ -1,5 +1,5 @@
 import {
-  fetchPlaceholders, readBlockConfig,
+  fetchPlaceholders,
 } from '../../scripts/aem.js';
 
 import ffetch from '../../scripts/ffetch.js';
