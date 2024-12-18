@@ -145,11 +145,13 @@ export function generateMenuFromSection(sectionElement) {
 export function addMenuFunctionality(block) {
     document.querySelectorAll(".nav-item").forEach((item) => {
         item.addEventListener("focusin", () => {
+            item.classList.add("hover");
             item.setAttribute("aria-expanded", "true");
         });
 
         item.addEventListener("focusout", (e) => {
             if (!item.contains(e.relatedTarget)) {
+                item.classList.remove("hover");
                 item.setAttribute("aria-expanded", "false");
             }
         });
@@ -411,9 +413,14 @@ export function buildCtasSection(
                     type: "text",
                     placeholder: placeHolders.searchtext,
                     class: "search-input",
+                    name: "searchQuery",
                 }),
                 button(
-                    { class: "close-button", "arial-label": "Close search" },
+                    {
+                        class: "close-button",
+                        "arial-label": "Close search",
+                        type: "button",
+                    },
                     img({
                         class: "contact-icon",
                         src: "/icons/close.svg",
@@ -461,6 +468,8 @@ export function buildCtasSection(
  * @param {HTMLElement} modalElement - The modal element to show/hide.
  */
 function setupModal(triggerElement, modalElement) {
+    const closeButton = modalElement.querySelector(".close-button");
+
     function openModal() {
         document.querySelectorAll(".submenu").forEach((submenu) => {
             if (submenu !== modalElement) {
@@ -493,22 +502,16 @@ function setupModal(triggerElement, modalElement) {
         }
     });
 
+    if (closeButton) {
+        closeButton.addEventListener("click", closeModal);
+    }
+
+    // close modal if clicked outside but not inside the modal or trigger
     document.addEventListener("click", (e) => {
         if (
             modalElement.classList.contains("is-open") &&
             !modalElement.contains(e.target) &&
             e.target !== triggerElement
-        ) {
-            closeModal();
-        }
-    });
-
-    // close modal on focusout
-    document.addEventListener("focusout", (e) => {
-        if (
-            modalElement.classList.contains("is-open") &&
-            !modalElement.contains(e.relatedTarget) &&
-            e.relatedTarget !== triggerElement
         ) {
             closeModal();
         }

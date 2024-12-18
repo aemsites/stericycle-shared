@@ -567,6 +567,14 @@ a.button.secondary:focus-visible, button.secondary:focus-visible {
   outline-offset: 3px;
 }
 
+a.button.secondary.dark:focus-visible, button.secondary.dark:focus-visible {
+  background-color: var(--color-white);
+  color: var(--color-primary-1);
+  outline: 3px solid var(--color-primary-1);
+  outline-offset: 3px;
+}
+
+
 @media screen and (min-width: 768px /* breakpoint-m */) {
   a.button:any-link, button {
     font-size: 14px;

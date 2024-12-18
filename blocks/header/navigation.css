@@ -221,11 +221,27 @@ ul {
 
 .ctas-container .icon-button {
     margin: 0;
-    padding: 38px 28px;
+    padding: 39px 28px;
     width: 32px;
     height: 32px;
     background: transparent;
     border: none;
+}
+
+.ctas-container .icon-button {
+    position: relative;
+    cursor: pointer;
+}
+
+.ctas-container .icon-button:hover:after,
+.ctas-container .icon-button:focus:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 4px;
+    background-color: var(--color-accent-2);
 }
 
 .ctas-container .contact-button {
@@ -259,10 +275,6 @@ ul {
 
 .modal-subtitle {
     margin-bottom: 16px;
-}
-
-.icon-button {
-    cursor: pointer;
 }
 
 .contact-modal .contact-info > * {
@@ -330,7 +342,6 @@ ul {
     align-items: center;
     gap: 64px;
 }
-
 
 .search-modal .close-button {
     padding: 8px;
