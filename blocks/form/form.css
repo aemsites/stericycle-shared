@@ -149,6 +149,10 @@ main .form select {
     margin-bottom: .25rem;
 }
 
+main .form textarea {
+    resize: none;
+}
+
 main .form select {
   padding-top: 0;
   padding-bottom: 0;
