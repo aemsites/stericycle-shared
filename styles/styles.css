@@ -392,6 +392,12 @@ main .section.yellow-button-no-border  a.button {
   line-height: 2pc;
 }
 
+main .section.round-border {
+  border-radius: 1rem;
+  max-width: 96%;
+  margin: auto;
+}
+
 /* remove bullets for list items in columns -  might be too aggressive */
 main div.column-with-list li::before {
   content: none;
