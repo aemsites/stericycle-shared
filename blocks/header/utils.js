@@ -12,6 +12,9 @@ import {
 } from "../../scripts/dom-helpers.js";
 import { formatPhone } from "../../scripts/scripts.js";
 
+const FOCUSABLE_ELEMENTS =
+    'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])';
+
 /**
  * Converts a section with hierarchical structure into a navigation menu.
  * @param {HTMLElement} sectionElement - The section containing the hierarchical structure.
@@ -157,6 +160,13 @@ export function addMenuFunctionality(block) {
         });
 
         item.addEventListener("mouseenter", () => {
+            // remove focus from previous item tabbing except the current item
+            const itemLink = item.querySelector(".nav-link");
+
+            if (document.activeElement !== itemLink) {
+                document.activeElement.blur();
+            }
+
             item.classList.add("hover");
             item.setAttribute("aria-expanded", "true");
         });
@@ -184,10 +194,6 @@ export function addMenuFunctionality(block) {
             const submenuLinks = item.querySelectorAll(
                 ".submenu a, .submenu button, .submenu [tabindex]:not([tabindex='-1'])"
             );
-            const navItemFocusTarget =
-                item.querySelector(
-                    "a, button, [tabindex]:not([tabindex='-1'])"
-                ) || item;
 
             switch (e.key) {
                 case "Tab":
@@ -195,44 +201,40 @@ export function addMenuFunctionality(block) {
                     const nextNavItem = item.nextElementSibling;
                     const prevNavItem = item.previousElementSibling;
 
-                    if (
-                        !shiftKey &&
-                        submenuLinks.length > 0 &&
-                        document.activeElement === navItemFocusTarget
-                    ) {
-                        e.preventDefault();
-                        submenuLinks[0]?.focus();
-                    } else if (!shiftKey && nextNavItem) {
+                    if (!shiftKey && nextNavItem) {
                         e.preventDefault();
                         (
-                            nextNavItem.querySelector(
-                                "a, button, [tabindex]:not([tabindex='-1'])"
-                            ) || nextNavItem
+                            nextNavItem.querySelector(FOCUSABLE_ELEMENTS) ||
+                            nextNavItem
                         )?.focus();
                     } else if (!shiftKey && !nextNavItem) {
                         e.preventDefault();
-                        const allFocusable = Array.from(
-                            document.querySelectorAll(
-                                "a, button, input, [tabindex]:not([tabindex='-1'])"
-                            )
-                        ).filter((el) => el.offsetParent !== null);
-                        const currentIndex = allFocusable.indexOf(
-                            document.activeElement
-                        );
-                        allFocusable[currentIndex + 1]?.focus();
+
+                        const navbar = document.querySelector("#nav");
+                        const nextSibling = navbar.nextElementSibling;
+                        let nextFocusableElement = null;
+
+                        if (nextSibling) {
+                            nextFocusableElement =
+                                nextSibling.querySelector(FOCUSABLE_ELEMENTS);
+                        } else {
+                            // get next focusable element in the document and ignore the nav
+                            nextFocusableElement = document
+                                .querySelector("main")
+                                .querySelector(FOCUSABLE_ELEMENTS);
+                        }
+
+                        nextFocusableElement?.focus();
                     } else if (shiftKey && prevNavItem) {
                         e.preventDefault();
                         (
-                            prevNavItem.querySelector(
-                                "a, button, [tabindex]:not([tabindex='-1'])"
-                            ) || prevNavItem
+                            prevNavItem.querySelector(FOCUSABLE_ELEMENTS) ||
+                            prevNavItem
                         )?.focus();
                     } else if (shiftKey && !prevNavItem) {
                         e.preventDefault();
                         const allFocusable = Array.from(
-                            document.querySelectorAll(
-                                "a, button, input, [tabindex]:not([tabindex='-1'])"
-                            )
+                            document.querySelectorAll(FOCUSABLE_ELEMENTS)
                         ).filter((el) => el.offsetParent !== null);
                         const currentIndex = allFocusable.indexOf(
                             document.activeElement

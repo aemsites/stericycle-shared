@@ -234,7 +234,7 @@ ul {
 }
 
 .ctas-container .icon-button:hover:after,
-.ctas-container .icon-button:focus:after {
+.ctas-container .icon-button:focus-within:after {
     content: "";
     position: absolute;
     bottom: 0;
