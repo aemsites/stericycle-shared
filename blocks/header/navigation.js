@@ -27,6 +27,7 @@ const TEXT_ELEMENTS = [
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
+    // Fetching
     const placeHolders = await fetchPlaceholders(`/${getLocale()}`);
 
     block.textContent = "";
@@ -80,7 +81,13 @@ export default async function decorate(block) {
 
     // Parsing
     const sectionElement = fragment.querySelector('[data-section="Sections"]');
-    const navigationMenu = generateMenuFromSection(sectionElement);
+    const instructions = fragment.querySelector(
+        '[data-section="Instructions"]'
+    );
+    const navigationMenu = generateMenuFromSection(
+        sectionElement,
+        instructions
+    );
 
     if (navigationMenu) {
         block.append(navigationMenu);

@@ -74,6 +74,8 @@ ul {
     display: flex;
     gap: 46px;
     width: 100%;
+    padding: 32px 40px;
+    padding-bottom: 0;
 }
 
 .list-item {
@@ -186,10 +188,10 @@ ul {
     top: 78px;
     left: 0;
     display: none;
+    flex-direction: column;
     justify-content: flex-start;
     gap: 32px;
     background-color: var(--color-bg-primary);
-    padding: 32px 40px;
     width: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.3s ease-in-out;
@@ -206,6 +208,28 @@ ul {
 .submenu a:focus {
     background-color: var(--color-bg-secondary);
 }
+
+.submenu .instructions {
+    padding: 4px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: var(--color-bg-secondary);
+}
+
+.submenu .instructions a {
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: underline;
+    color: var(--color-text-primary);
+}
+
+.submenu .instructions .icon {
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-text-primary);
+}
+
 
 .ctas-container {
     position: relative;

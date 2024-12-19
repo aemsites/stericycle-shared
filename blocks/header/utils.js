@@ -18,9 +18,10 @@ const FOCUSABLE_ELEMENTS =
 /**
  * Converts a section with hierarchical structure into a navigation menu.
  * @param {HTMLElement} sectionElement - The section containing the hierarchical structure.
+ * @param {HTMLElement} instructions - The instructions to be added to the submenus.
  * @returns {HTMLElement} - The generated navigation menu element.
  */
-export function generateMenuFromSection(sectionElement) {
+export function generateMenuFromSection(sectionElement, instructions) {
     if (!sectionElement) {
         console.error("Section element not found.");
         return null;
@@ -135,6 +136,17 @@ export function generateMenuFromSection(sectionElement) {
     const topLevelList = sectionElement.querySelector("ul");
     if (topLevelList) {
         processTopLevelItems(topLevelList.children);
+    }
+
+    if (instructions) {
+        instructions.classList.add("instructions");
+
+        // add instruction to every sub menu
+        const subMenus = nav.querySelectorAll(".submenu");
+        subMenus.forEach((subMenu) => {
+            const instruction = instructions.cloneNode(true);
+            subMenu.append(instruction);
+        });
     }
 
     return nav;
@@ -326,8 +338,9 @@ export function buildCtasSection(
     locale
 ) {
     const navModalPath = getMetadata("nav-modal-path") || "/forms/modals/modal";
-    const contactModalButtonTitle = placeHolders.contactustext || "Contact Us";
-    const searchModalButtonTitle = placeHolders.searchtext || "Search";
+    const contactModalButtonTitle =
+        placeHolders.contactustext || "Open Contact Us Information";
+    const searchModalButtonTitle = placeHolders.searchtext || "Open Search box";
 
     const contactModalButton = button({
         class: "icon-button button contact-button",
@@ -525,42 +538,42 @@ function setupModal(triggerElement, modalElement) {
             closeModal();
         }
     });
+}
 
-    /**
-     * Function to trap focus inside a modal.
-     * @param {HTMLElement} modal - The modal element.
-     */
-    function trapFocus(modal) {
-        const focusableElements = modal.querySelectorAll(
-            'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
-        );
-        const firstFocusable = focusableElements[0];
-        const lastFocusable = focusableElements[focusableElements.length - 1];
+/**
+ * Function to trap focus inside a modal.
+ * @param {HTMLElement} modal - The modal element.
+ */
+function trapFocus(modal) {
+    const focusableElements = modal.querySelectorAll(
+        'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstFocusable = focusableElements[0];
+    const lastFocusable = focusableElements[focusableElements.length - 1];
 
-        // Move focus to the first focusable element
-        firstFocusable?.focus();
+    // Move focus to the first focusable element
+    firstFocusable?.focus();
 
-        modal.addEventListener("keydown", (e) => {
-            if (e.key === "Tab") {
-                if (e.shiftKey) {
-                    // Shift + Tab: Move focus to the last element if on the first
-                    if (document.activeElement === firstFocusable) {
-                        e.preventDefault();
-                        lastFocusable.focus();
-                    }
-                } else {
-                    // Tab: Move focus to the first element if on the last
-                    if (document.activeElement === lastFocusable) {
-                        e.preventDefault();
-                        firstFocusable.focus();
-                    }
+    modal.addEventListener("keydown", (e) => {
+        if (e.key === "Tab") {
+            if (e.shiftKey) {
+                // Shift + Tab: Move focus to the last element if on the first
+                if (document.activeElement === firstFocusable) {
+                    e.preventDefault();
+                    lastFocusable.focus();
+                }
+            } else {
+                // Tab: Move focus to the first element if on the last
+                if (document.activeElement === lastFocusable) {
+                    e.preventDefault();
+                    firstFocusable.focus();
                 }
             }
+        }
 
-            // Escape key to close the modal
-            if (e.key === "Escape") {
-                closeModal();
-            }
-        });
-    }
+        // Escape key to close the modal
+        if (e.key === "Escape") {
+            closeModal();
+        }
+    });
 }
