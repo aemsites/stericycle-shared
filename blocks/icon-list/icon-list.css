@@ -3,7 +3,13 @@ div.icon-list > div > div > p:has(> span) {
     width: 100%;
 }
 
-div.icon-list-container:not(.blue-headings) h2, div.icon-list-container:not(.blue-headings) p {
+div.icon-list-container > .form-wrapper p,
+div.icon-list-container > .form-wrapper h2 {
+    color: var(--color-text-primary);
+}
+
+div.icon-list-container:not(.blue-headings):not(:has(> .form-wrapper)) h2,
+div.icon-list-container:not(.blue-headings):not(:has(> .form-wrapper)) p {
     color: var(--color-white);
 }
 
@@ -88,6 +94,10 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
     height: 70%;
 }
 
+.section.flex-row div.icon-list.vertical > div > div:nth-of-type(2) {
+    border-left-color: var(--color-accent-2);
+}
+
 .section.flex-row {
     max-width: var(--section-width);
     margin: 2rem auto;
@@ -116,11 +126,20 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
         align-content: start;
     }
 
+    div.icon-list.split-firstthird > div {
+        flex: 0 0 33%;
+    }
+
+    div.icon-list.block.vertical > div {
+        width: 100%;
+        flex-direction: row;
+    }
+
     .section.icon-list-container.flex-row {
         display: flex;
-        flex-direction: row; 
+        flex-direction: row;
     }
-     
+
      .section.icon-list-container.flex-row > .default-content-wrapper {
          align-self: center;
      }
@@ -128,6 +147,53 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
      .section.flex-row .icon-list:not(.plain) > div {
         flex: 0 0 45%;
     }
+
+    div.icon-list.block.vertical > div > div:first-of-type {
+        width: fit-content;
+        margin: 0;
+    }
+
+    div.icon-list.block.vertical > div > div:nth-of-type(2) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        height: fit-content;
+        padding-left: 24px;
+        width: 100%;
+        margin: 0;
+        min-height: 6rem;
+    }
+
+    div.icon-list.block.vertical > div > div:nth-of-type(2) > * {
+        padding: 0;
+    }
+
+    div.icon-list.vertical p:has(> span.icon) {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 24px;
+    }
+
+    div.icon-list.vertical p span.icon {
+        width: 103px;
+        height: 41.963px;
+    }
+
+    main .section.two-column.form-container.icon-list-container > div.form-wrapper {
+        grid-row: 1 / span 4;
+    }
+
+    main .two-column.form-container.icon-list-container:has(.vertical) {
+        padding: 40px;
+        grid-template-columns: minmax(0, 700px) minmax(0, 561px);
+        justify-content: space-between;
+    }
+
+    main .two-column.form-container.icon-list-container:has(.vertical) > div:first-child {
+        margin-bottom: 80px;
+    }
+
 }
 
 @media (min-width: 1500px) {
