@@ -95,6 +95,10 @@ main .form {
     background-color: var(--form-background-color);
 }
 
+main .form a:any-link {
+    color: var(--color-blue);
+}
+
 main .footer-subscription-form > div {
     max-width: var(--section-width);
     width: 100%;
@@ -146,6 +150,11 @@ main .form select {
     margin-bottom: .25rem;
 }
 
+main .form .field-wrapper textarea {
+    resize: none;
+    min-height: 100px;
+}
+
 main .form select {
   padding-top: 0;
   padding-bottom: 0;
@@ -167,10 +176,6 @@ main .form input[type='radio'] {
     position: static;
     z-index: 1;
     accent-color: #000;
-}
-
-main .form textarea {
-    min-height: 100px;
 }
 
 main .form fieldset legend {
@@ -805,6 +810,7 @@ main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='policy']  p{
     padding-top: 0.5rem;
     padding-bottom: 1rem;
     margin-bottom:0;
+    color: var(--color-black);
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {
@@ -834,6 +840,7 @@ main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='
 
 main .get-a-quote-form-alternate.center-header form .fragment-wrapper[data-id^='header'] > div > p > strong {
     font-size: 1.4rem;
+    color: var(--color-black);
 }
 
 main .footer-subscription-form form .fragment-wrapper > div p:nth-of-type(2) {
@@ -842,6 +849,7 @@ main .footer-subscription-form form .fragment-wrapper > div p:nth-of-type(2) {
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] > div > p {
     font-size: 1rem;
+    color: var(--color-black);
 }
 
 main .section.contact-us .fragment-wrapper[data-id="contact"] > div > p{
@@ -965,6 +973,10 @@ main .two-column.full-width.form-container .form-wrapper {
     max-width: 612px;
 }
 
+main .two-column.form-container.narrow-top-margin .form-wrapper {
+    margin-top: 1rem;
+}
+
 main .navy-background.cyan-border.two-column.form-container > .form-wrapper {
     padding: 0 2rem;
 }
@@ -991,12 +1003,16 @@ main .two-column.form-container > div:first-child {
     margin-bottom: 0;
 }
 
+
 /* Place the last child in the second column */
 main .two-column.form-container > div:nth-last-child(1) {
     grid-column: 2;
     grid-row: 1 / span 4;
 }
 
+main .two-column.narrow-top-margin > div:nth-child(1) {
+    margin-top: 0;
+}
 
 main .contact-us{
     column-gap: 0;
@@ -1193,6 +1209,7 @@ main form .fragment-wrapper[data-id^='policy']  p{
     font-size: 0.75rem;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
+    color: var(--color-black);
 }
 
 main .campaign-form.form form .fragment-wrapper div > p {
