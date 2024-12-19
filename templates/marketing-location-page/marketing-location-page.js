@@ -7,7 +7,7 @@ import {
 import { div, h3, p } from '../../scripts/dom-helpers.js';
 import { decorateSidebarTemplate } from '../templates.js';
 import { addJsonLd } from '../../scripts/scripts.js';
-import { createFormFromMetadata } from '../../blocks/form/form.js';
+import { createFormFromMetadata } from '../../blocks/form/utils.js';
 
 function buildMarketingPage(main) {
   const pageSidebar = main.querySelector('div.body-wrapper > div.page-sidebar');

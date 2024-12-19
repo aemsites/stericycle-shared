@@ -60,6 +60,9 @@ function initDataLayer() {
       formType: ev?.formType !== undefined ? ev.formType : null,
       formName: ev?.formName !== undefined ? ev.formName : null,
       formStep: ev?.formStep !== undefined ? ev.formStep : null,
+      modalName: ev?.modalName !== undefined ? ev.modalName : null,
+      triggerType: ev?.triggerType !== undefined ? ev.triggerType : null,
+      formElement: ev?.formElement !== undefined ? ev.formElement : null,
       searchType: ev?.searchType !== undefined ? ev.searchType : null,
       searchTerm: ev?.searchTerm !== undefined ? ev.searchTerm : null,
       searchResultRange: ev?.searchResultRange !== undefined ? ev.searchResultRange : null,
@@ -110,4 +113,27 @@ export async function addCookieBanner() {
     return; // no token -> no cookie banner
   }
   await loadScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js', { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': token });
+}
+
+/**
+ * Push event to custom 3rd party dataLayer
+ * @param ev event payload
+ */
+export function sendDigitalDataEvent(ev) {
+  if (!window.digitalData) {
+    return; // digitalData not initialized
+  }
+  window.digitalData.event = window.digitalData.event || [];
+  window.digitalData.newEvent(ev);
+}
+
+/**
+ * Push to GTM dataLayer
+ * @param data payload
+ */
+export function pushToDataLayer(data) {
+  if (!window.dataLayer) {
+    window.dataLayer = [];
+  }
+  window.dataLayer.push(data);
 }
