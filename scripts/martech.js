@@ -23,7 +23,7 @@ function initDataLayer() {
         language: getLocaleAsBCP47(),
         pageURL: window.location.href,
         currentPagePath: window.location.pathname,
-        pageType: getMetadata('page-type') || '',
+        pageType: getMetadata('template') || '',
         pageDescription: getMetadata('og:description'),
         country: 'US', // TODO: fetch country dynamically?
       },
