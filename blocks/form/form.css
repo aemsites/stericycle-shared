@@ -972,6 +972,10 @@ main .two-column.full-width.form-container .form-wrapper {
     max-width: 612px;
 }
 
+main .two-column.form-container.narrow-top-margin .form-wrapper {
+    margin-top: 1rem;
+}
+
 main .navy-background.cyan-border.two-column.form-container > .form-wrapper {
     padding: 0 2rem;
 }
@@ -998,12 +1002,16 @@ main .two-column.form-container > div:first-child {
     margin-bottom: 0;
 }
 
+
 /* Place the last child in the second column */
 main .two-column.form-container > div:nth-last-child(1) {
     grid-column: 2;
     grid-row: 1 / span 4;
 }
 
+main .two-column.narrow-top-margin > div:nth-child(1) {
+    margin-top: 0;
+}
 
 main .contact-us{
     column-gap: 0;
