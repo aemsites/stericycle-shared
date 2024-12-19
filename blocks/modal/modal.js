@@ -2,6 +2,8 @@ import { loadFragment } from '../fragment/fragment.js';
 import {
   buildBlock, decorateBlock, loadBlock, loadCSS,
 } from '../../scripts/aem.js';
+import { sendDigitalDataEvent } from '../../scripts/martech.js';
+import { getFormName, getTriggerTypeForAnalytics } from '../form/utils.js';
 
 /*
   This is not a traditional block, so there is no decorate function.
@@ -45,6 +47,11 @@ export async function createModal(contentNodes, config) {
     document.body.classList.remove('modal-open');
     block.remove();
     document.dispatchEvent(new CustomEvent('modal-closed', { bubbles: true, detail: config }));
+    sendDigitalDataEvent({
+      event: 'modalClosed',
+      modalName: getFormName(dialog.querySelector('form')),
+      triggerType: getTriggerTypeForAnalytics(config?.type),
+    });
   });
 
   block.innerHTML = '';
@@ -58,6 +65,12 @@ export async function createModal(contentNodes, config) {
       setTimeout(() => { dialogContent.scrollTop = 0; }, 0);
       document.body.classList.add('modal-open');
       document.dispatchEvent(new CustomEvent('modal-open', { bubbles: true }));
+      dialog.querySelector('form')?.focus();
+      sendDigitalDataEvent({
+        event: 'modalDisplayed',
+        modalName: getFormName(dialog.querySelector('form')),
+        triggerType: getTriggerTypeForAnalytics(config?.type),
+      });
     },
   };
 }

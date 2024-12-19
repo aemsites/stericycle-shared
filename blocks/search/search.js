@@ -3,6 +3,7 @@ import {
 } from '../../scripts/aem.js';
 
 import ffetch from '../../scripts/ffetch.js';
+import { sendDigitalDataEvent } from '../../scripts/martech.js';
 
 const searchParams = new URLSearchParams(window.location.search);
 
@@ -268,12 +269,28 @@ async function handleSearch(e, block, config) {
     await buildPagination(filteredData, prList, pagination, currentPage);
     block.append(prList);
     prList.insertAdjacentElement('afterend', pagination);
+
+    // send analytics event
+    sendDigitalDataEvent({
+      event: 'siteSearch',
+      searchType: config.type, // search bar location, "site search", "header"
+      searchTerm: searchValue,
+      searchResultRange: filteredData.length,
+    });
   } else {
     clearSearch(block);
     const noRes = block.querySelector('.no-results');
     if (!noRes) {
       block.append(noResults);
     }
+
+    // send analytics event
+    sendDigitalDataEvent({
+      event: 'siteSearch',
+      searchType: config.type, // search bar location, "site search", "header"
+      searchTerm: searchValue,
+      searchResultRange: 0,
+    });
   }
 }
 
@@ -327,12 +344,12 @@ export default async function decorate(block) {
   const source = block.querySelector('a[href]') ? block.querySelector('a[href]').href : '/query-index.json';
   block.innerHTML = '';
   block.append(
-    searchBox(block, { source, placeholders }),
+    searchBox(block, { source, type: 'site search', placeholders }),
   );
 
   if (searchParams.get('searchQuery')) {
     const input = block.querySelector('input');
     input.value = searchParams.get('searchQuery');
-    handleSearch({}, block, { source, placeholders });
+    handleSearch({}, block, { source, type: 'header', placeholders });
   }
 }

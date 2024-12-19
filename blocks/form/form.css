@@ -113,6 +113,7 @@ main .form form {
     display: grid;
     grid-template-columns: repeat(var(--form-columns), minmax(0, 1fr));
     gap: var(--form-field-vert-gap) var(--form-field-horz-gap);
+    outline: none;
 }
 
 main .form form fieldset {
