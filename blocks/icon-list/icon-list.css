@@ -1,3 +1,7 @@
+main .section.two-column.form-container.icon-list-container > div.form-wrapper {
+    grid-row: 3;
+}
+
 div.icon-list > div > div > p:has(> span) {
     height: 100%;
     width: 100%;
@@ -53,6 +57,10 @@ div.icon-list > div > div:nth-of-type(2) {
     align-items: center;
 }
 
+div.icon-list.vertical > div > div:nth-of-type(2) {
+    border-left-color: var(--color-accent-2);
+}
+
 div.icon-list.plain > div > div:first-of-type {
     width: 33%;
     height: 5rem;
@@ -88,6 +96,14 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
     height: 70%;
 }
 
+.section.flex-row div.icon-list.vertical > div > div:nth-of-type(2) {
+    border-left-color: var(--color-accent-2);
+}
+
+.section.flex-row div.icon-list.vertical > div > div:nth-of-type(2) {
+    border-left-color: var(--color-accent-2);
+}
+
 .section.flex-row {
     max-width: var(--section-width);
     margin: 2rem auto;
@@ -95,9 +111,28 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
 }
 
 @media (min-width: 992px) {
+    main .section.two-column.form-container.icon-list-container > div.form-wrapper {
+        grid-row: 1 / span 4;
+    }
+
+    main .two-column.form-container.icon-list-container:has(.vertical) {
+        padding: 40px;
+        grid-template-columns: minmax(0, 700px) minmax(0, 561px);
+        justify-content: space-between;
+    }
+
+    main .two-column.form-container.icon-list-container:has(.vertical) > div:first-child {
+        margin-bottom: 80px;
+    }
+
     div.icon-list.plain.block {
         display: grid;
         grid-template-columns: 1fr 1fr;
+    }
+
+    div.icon-list.block.vertical {
+        flex-direction: column;
+        gap: 32px;
     }
 
     div.icon-list > div {
@@ -107,8 +142,44 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
         flex: 0 0 50%;
     }
 
+    div.icon-list.block.vertical > div {
+        width: 100%;
+        flex-direction: row;
+    }
+
     div.icon-list.split-firstthird > div {
         flex: 0 0 33%;
+    }
+
+    div.icon-list.block.vertical > div > div:first-of-type {
+        width: fit-content;
+        margin: 0;
+    }
+
+    div.icon-list.block.vertical > div > div:nth-of-type(2) {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: fit-content;
+        padding-left: 24px;
+        width: 100%;
+        margin: 0;
+    }
+
+    div.icon-list.block.vertical > div > div:nth-of-type(2) > * {
+        padding: 0;
+    }
+
+    div.icon-list.vertical p:has(> span.icon) {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 24px;
+    }
+
+    div.icon-list.vertical p span.icon {
+        width: 103px;
+        height: 41.963px;
     }
 
     div.icon-list.plain > div {
@@ -118,9 +189,9 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
 
     .section.icon-list-container.flex-row {
         display: flex;
-        flex-direction: row; 
+        flex-direction: row;
     }
-     
+
      .section.icon-list-container.flex-row > .default-content-wrapper {
          align-self: center;
      }
