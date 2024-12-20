@@ -27,5 +27,6 @@ export function setSubmitBaseUrl(url) {
 }
 
 export function getSubmitBaseUrl() {
-  return submitBaseUrl;
+  if (window.location.origin.includes('localhost') || window.location.origin.includes('aem.live') || window.location.origin.includes('aem.page')) { return submitBaseUrl; }
+  return '';
 }

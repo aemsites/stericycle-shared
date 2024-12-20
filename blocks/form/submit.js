@@ -1,9 +1,49 @@
 import { getSubmitBaseUrl } from './constant.js';
 import { appendFragment } from './lib/util.js';
 import { getMetadata } from '../../scripts/aem.js';
+import { sendDigitalDataEvent } from '../../scripts/martech.js';
+import { getFormName } from './utils.js';
+
+function sendDataToAnalytics(form) {
+  const quoteTypeField = form.querySelectorAll("input[name='quote_type'], input[name='Quote_Type'], input[name='QuoteType']");
+  let quoteType = '';
+  if (quoteTypeField) {
+    quoteTypeField.forEach((option) => {
+      const value = option?.value;
+      if (option.type === 'hidden' || option.checked || option.selected) {
+        if (value) {
+          // eslint-disable-next-line no-unsafe-optional-chaining
+          quoteType = value?.charAt(0)?.toUpperCase() + value?.slice(1);
+        }
+      }
+    });
+  }
+
+  const serviceTypeField = form.querySelectorAll("input[name='serviceType1']");
+  let serviceType;
+  if (serviceTypeField) {
+    serviceTypeField.forEach((option) => {
+      const value = option?.value;
+      if (option.type === 'hidden' || option.checked || option.selected) {
+        if (value) {
+          // eslint-disable-next-line no-unsafe-optional-chaining
+          serviceType = value?.charAt(0)?.toUpperCase() + value?.slice(1);
+        }
+      }
+    });
+  }
+  sendDigitalDataEvent({
+    event: 'formSubmit',
+    formName: getFormName(form),
+    formElement: form,
+    quoteType,
+    serviceType,
+  });
+}
 
 // eslint-disable-next-line no-unused-vars
 export async function submitSuccess(e, form) {
+  sendDataToAnalytics(form);
   // remove error message if exists
   const errorMessage = form.querySelector('.form-message.error-message');
   if (errorMessage) {
