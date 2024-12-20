@@ -9,6 +9,7 @@ import {
     h3,
     input,
     form,
+    h2,
 } from "../../scripts/dom-helpers.js";
 import { formatPhone } from "../../scripts/scripts.js";
 
@@ -19,9 +20,10 @@ const FOCUSABLE_ELEMENTS =
  * Converts a section with hierarchical structure into a navigation menu.
  * @param {HTMLElement} sectionElement - The section containing the hierarchical structure.
  * @param {HTMLElement} instructions - The instructions to be added to the submenus.
+ * @param {string} locale - The locale of the page.
  * @returns {HTMLElement} - The generated navigation menu element.
  */
-export function generateMenuFromSection(sectionElement, instructions) {
+export function generateMenuFromSection(sectionElement, instructions, locale) {
     if (!sectionElement) {
         console.error("Section element not found.");
         return null;
@@ -43,12 +45,19 @@ export function generateMenuFromSection(sectionElement, instructions) {
 
             // Handle links, text, or other content for the nav item
             const link = li.querySelector("a");
+            let isLocationLink = false;
 
             if (link) {
                 const anchor = document.createElement("a");
                 anchor.href = link.href;
                 anchor.textContent = link.textContent.trim();
                 anchor.className = "nav-link";
+
+                if (li.textContent.includes("#location-search")) {
+                    isLocationLink = true;
+                    anchor.classList.add("location-link");
+                }
+
                 navItem.appendChild(anchor);
             } else {
                 // If no <a>, use the text content or first child element
@@ -72,6 +81,7 @@ export function generateMenuFromSection(sectionElement, instructions) {
             }
 
             const submenu = document.createElement("div");
+
             submenu.className = "submenu";
             submenu.setAttribute(
                 "aria-label",
@@ -124,6 +134,70 @@ export function generateMenuFromSection(sectionElement, instructions) {
 
                 submenu.appendChild(listWrapper);
             });
+
+            if (isLocationLink) {
+                const navLocate = div(
+                    { class: "form locate-form" },
+                    h2({ class: "form-header" }, "Search Nearby Locations"),
+                    p(
+                        { class: "form-description" },
+                        "Lorem ipsum dolor sit amet consectetur. Porttitor quis duis diam pellentesque."
+                    ),
+                    form(
+                        {
+                            action: `/${locale}/service-locations`,
+                            method: "get",
+                            autocomplete: "off",
+                        },
+
+                        div(
+                            { class: "input-group" },
+                            input({
+                                ariaLabel: "Search for Location",
+                                id: "searchLocationInput",
+                                type: "text",
+                                name: "searchQuery",
+                                placeholder:
+                                    "Search by zip code, street, or city",
+                                required: true,
+                                pattern: "^.{4,}$",
+                            }),
+                            button({
+                                class: "button location-search-button",
+                                type: "submit",
+                                "aria-label": "Search for Location",
+                            })
+                        )
+                    ),
+                    a(
+                        {
+                            class: "locate-link",
+                            href: `/${locale}/service-locations`,
+                            "aria-label": "Find a location nearest me",
+                        },
+                        "Find a location nearest me"
+                    )
+                );
+
+                const locateForm = navLocate.querySelector("form");
+
+                locateForm.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const { value } =
+                        locateForm.querySelector('input[type="text"]');
+                    window.location.href = `${locateForm.action}#${value}`;
+                    if (
+                        window.location.pathname ===
+                        new URL(locateForm.action).pathname
+                    )
+                        window.location.reload();
+                    return false;
+                });
+
+                submenu.appendChild(navLocate);
+                submenu.classList.add("location-search-menu");
+            }
 
             if (submenu.childElementCount > 0) {
                 navItem.appendChild(submenu);
@@ -179,6 +253,13 @@ export function addMenuFunctionality(block) {
                 document.activeElement.blur();
             }
 
+            // close any other open modals
+            document.querySelectorAll(".submenu").forEach((submenu) => {
+                if (submenu !== item.querySelector(".submenu")) {
+                    submenu.classList.remove("is-open");
+                }
+            });
+
             item.classList.add("hover");
             item.setAttribute("aria-expanded", "true");
         });
@@ -203,9 +284,7 @@ export function addMenuFunctionality(block) {
         }
 
         item.addEventListener("keydown", (e) => {
-            const submenuLinks = item.querySelectorAll(
-                ".submenu a, .submenu button, .submenu [tabindex]:not([tabindex='-1'])"
-            );
+            const submenuLinks = item.querySelectorAll(FOCUSABLE_ELEMENTS);
 
             switch (e.key) {
                 case "Tab":
@@ -419,12 +498,13 @@ export function buildCtasSection(
 
             form(
                 {
-                    class: "search-form",
+                    class: "form search-form",
                     action: `/${locale}/search`,
                     method: "get",
                     autocomplete: "off",
                 },
                 input({
+                    ariaLabel: "Search for content",
                     type: "text",
                     placeholder: placeHolders.searchtext,
                     class: "search-input",

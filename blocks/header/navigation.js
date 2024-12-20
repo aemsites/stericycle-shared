@@ -86,7 +86,8 @@ export default async function decorate(block) {
     );
     const navigationMenu = generateMenuFromSection(
         sectionElement,
-        instructions
+        instructions,
+        locale
     );
 
     if (navigationMenu) {
