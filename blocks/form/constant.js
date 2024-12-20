@@ -27,6 +27,6 @@ export function setSubmitBaseUrl(url) {
 }
 
 export function getSubmitBaseUrl() {
-  if (window.location.origin === 'https://www.shredit.com' || window.location.origin === 'https://stage-us.shredit.com') { return ''; }
-  return submitBaseUrl;
+  if (window.location.origin.includes('localhost') || window.location.origin.includes('aem.live') || window.location.origin.includes('aem.page')) { return submitBaseUrl; }
+  return '';
 }
