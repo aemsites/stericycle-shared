@@ -1,4 +1,4 @@
-import { getMetadata } from "../../scripts/aem.js";
+import { getMetadata, isDesktop } from "../../scripts/aem.js";
 import {
     a,
     div,
@@ -361,23 +361,17 @@ export function addMenuFunctionality(block) {
         });
     });
 
-    const hamburger = document.querySelector(".hamburger");
-    const mobileNav = document.querySelector(".mobile-nav");
+    const hamburger = document.querySelector(".hamburger-menu");
 
     if (hamburger) {
         hamburger.addEventListener("click", () => {
-            mobileNav.style.display =
-                mobileNav.style.display === "flex" ? "none" : "flex";
+            const isOpen = hamburger.classList.toggle("open");
+            const nav = document.querySelector("#nav");
+
+            hamburger.setAttribute("aria-expanded", isOpen);            
+            nav.classList.toggle("open");
         });
     }
-
-    document.querySelectorAll(".mobile-nav-toggle").forEach((toggle) => {
-        toggle.addEventListener("click", (e) => {
-            e.preventDefault();
-            const submenu = toggle.nextElementSibling;
-            submenu.classList.toggle("open");
-        });
-    });
 }
 
 /**

@@ -1,4 +1,5 @@
 import { fetchPlaceholders, getMetadata } from "../../scripts/aem.js";
+import { div, span } from "../../scripts/dom-helpers.js";
 import { getLocale } from "../../scripts/scripts.js";
 import { loadFragment } from "../fragment/fragment.js";
 import {
@@ -105,6 +106,23 @@ export default async function decorate(block) {
     if (ctasSection) {
         block.append(ctasSection);
     }
+
+    // Hamburguer
+    const hamburger = div(
+        {
+            class: "hamburger-menu",
+            "aria-label": "Toggle navigation",
+            "aria-expanded": "false",
+            tabindex: "0",
+            role: "button",
+            "aria-controls": "nav",
+        },
+        span(),
+        span(),
+        span()
+    );
+
+    block.appendChild(hamburger);
 
     // Menu functionality
     addMenuFunctionality(block);
