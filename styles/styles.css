@@ -119,6 +119,7 @@
   --icon-size-l: 32px;
   --icon-size-xl: 60px;
   --icon-size-xxl: 100px;
+  --icon-size-xxxl: 3.75rem;
 
   /* misc */
   --nav-height: 78px;
@@ -1099,6 +1100,16 @@ main .xl-icons .icon {
 main .xxl-icons .icon {
   width: var(--icon-size-xxl);
   height: var(--icon-size-xxl);
+}
+
+main .xxxl-icons .icon {
+  width: var(--icon-size-xxxl);
+  height: var(--icon-size-xxxl);
+}
+
+main .block.columns.xxxl-icons .icon img {
+  width: var(--icon-size-xxxl);
+  height: var(--icon-size-xxxl);
 }
 
 main .list-style-more-space li {
