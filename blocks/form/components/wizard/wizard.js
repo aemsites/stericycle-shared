@@ -1,4 +1,6 @@
 import { createButton } from '../../lib/util.js';
+import { sendDigitalDataEvent } from '../../../../scripts/martech.js';
+import { getFormName } from '../../utils.js';
 
 export class WizardLayout {
   inputFields = 'input,textarea,select';
@@ -184,6 +186,15 @@ const layout = new WizardLayout();
 
 export default function wizardLayout(panel) {
   layout.applyLayout(panel);
+  panel.addEventListener('wizard:navigate', (event) => {
+    const { prevStep, currStep } = event.detail;
+    const formName = getFormName(panel.closest('form'));
+    sendDigitalDataEvent({
+      event: currStep?.index > prevStep?.index ? 'nextStep' : 'previousStep',
+      formName,
+      formStep: currStep?.index,
+    });
+  });
   return panel;
 }
 
