@@ -48,4 +48,11 @@ export default async function decorate(block) {
   block.append(contentWrapper);
 
   decorateCloseButton(block);
+  
+  if (block.classList.contains('fixed-to-top')){
+    const body = block.closest('body');
+    const copyBlock = block.cloneNode(true);
+    body.prepend(copyBlock);
+    block.remove();
+  }
 }

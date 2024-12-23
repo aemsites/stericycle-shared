@@ -605,8 +605,8 @@ main .section.shredded-paper-background > div:first-of-type > p > span.icon > im
   width: 33%;
 }
 
-main .section.blue-background,
-main .block.blue-background {
+.section.blue-background,
+.block.blue-background {
   background-color: var(--color-blue);
 }
 
@@ -634,9 +634,9 @@ main .section.orange-background {
 
 main .invert-colors,
 main .section.navy-background,
-main .block.navy-background,
+.block.navy-background,
 main .section.blue-background,
-main .block.blue-background {
+.block.blue-background {
   --color-text: var(--color-white);
   --color-heading: var(--color-white);
   --color-link: var(--color-white);
