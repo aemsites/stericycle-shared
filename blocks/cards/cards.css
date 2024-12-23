@@ -25,6 +25,7 @@
   padding: 0;
   display: flex;
   flex-direction: column;
+  gap: 16px;
 }
 
 .cards > ul > li {
@@ -34,7 +35,12 @@
   flex: 1;
   padding: 32px;
   box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
-  background-color: var(--color-background)
+  background-color: var(--color-background);
+}
+
+.cards.primary > ul > li {
+  border-radius: 16px;
+  box-shadow: unset;
 }
 
 .cards.full-width > ul > li {
@@ -80,6 +86,10 @@
   flex: 1;
 }
 
+.cards.primary > ul > li > .card-body {
+  margin-top: 10px;
+}
+
 .cards > ul > li > .card-body > .card-section {
   display: flex;
   flex-direction: column;
@@ -89,21 +99,26 @@
   margin-bottom: 8px;
 }
 
-.cards > ul > li > .card-body > .card-section:has(p) {
-  flex: 1;
-}
-
 .cards > ul > li > .card-body > .card-section > p {
-  flex: 1;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .cards > ul > li > .card-body > .card-section > p:last-child {
   margin: 0;
+  text-align: center;
 }
 
 .cards > ul > li > .card-body > .card-section > p.button-container:last-child {
   flex: 0;
+}
+
+.cards > ul > li > .card-body > .card-section > p.button-container:last-child > * {
+  display: flex;
+  justify-content: center;
+}
+
+.cards > ul > li > .card-body > .card-section > p.button-container:last-child a.button {
+  max-width: 134px;
 }
 
 .cards.full-width > ul > li > .card-body > .card-section:not(.button-container) > p {
@@ -113,6 +128,45 @@
 
 .cards.full-width.light > ul > li > .card-body > .card-section:not(.button-container) > p {
   color: var(--color-text-primary);
+}
+
+.cards.primary > ul > li > .card-body > .card-section > p {
+  text-align: center;
+}
+
+.cards.primary > ul > li > .card-body > .card-section:last-of-type > p {
+  letter-spacing: 0.16px;
+}
+
+.cards.primary > ul > li > .card-body > .card-section:first-of-type > p {
+  margin: 0;
+}
+
+.cards.primary > ul > li > .card-body > .card-section:first-of-type > p {
+  color: var(--color-grey500);
+  font-size: var(--body-font-size-default);
+  font-weight: var(--font-weight-regular);
+  line-height: 160%;
+  letter-spacing: 0.16px;
+}
+
+.cards.primary > ul > li > .card-body > .card-section:first-of-type > h2 {
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: 0.32px;
+  margin-bottom: 8px;
+}
+
+.cards.primary:not(.navy-headings) > ul > li > .card-body > .card-section:first-of-type > h2 {
+  --color-heading: var(--color-text-primary);
+}
+
+.cards.primary > ul > li > .card-body > .card-section:first-of-type > p:first-of-type {
+  font-size: var(--body-font-size-s);
+  font-weight: 900;
+  line-height: 120%;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
 }
 
 .cards > ul > li > .card-body > .card-section > p.button-container:last-child a.button {
@@ -138,10 +192,11 @@
 }
 
 .cards > ul > li > .card-body > hr {
-  margin: 1rem 0;
+  margin: 1rem auto;
   border: 0.5px solid #b2b1b1;
   opacity: .25;
   color: inherit;
+  width: 124px;
 }
 
 .section.cards-container.list-styles ul {
@@ -171,11 +226,6 @@
   width: 10%;
 }
 
-.block.cards.divider.centered-headings.navy-headings .icon img {
-  height: 10em;
-  width: 10em;
-}
-
 .cards.full-width > ul > li > .card-head .icon > img {
   width: 20.16px;
   height: 20.16px;
@@ -187,15 +237,29 @@
   filter: brightness(0) saturate(100%) invert(15%) sepia(83%) saturate(814%) hue-rotate(175deg) brightness(97%) contrast(92%);  /* Change image color to: #1A242B */
 }
 
-.block.cards.divider.centered-headings.navy-headings .icon {
+.block.cards.primary .icon {
   text-align: center;
 }
 
+.block.cards.primary .icon img {
+  width: 157.091px;
+  height: 64px;
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
+  main .section.narrow.cards-container {
+    max-width: 1400px;
+  }
+
+  main .section.narrow.cards-container > .cards-wrapper {
+    padding: 0;
+    margin: 80px;
+  }
+
   .cards > ul {
     display: flex;
     flex-direction: row;
-    gap: 24px;
+    flex-wrap: wrap;
   }
 
   /* full width style */
@@ -208,6 +272,11 @@
     flex-direction: row;
     gap: 24px;
     padding: 64px 80px;
+  }
+
+  .cards > ul > li {
+    min-width: 200px;
+    padding: 24px;
   }
 
   .cards.full-width > ul > li::before {
