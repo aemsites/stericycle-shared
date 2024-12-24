@@ -15,6 +15,7 @@ header {
 nav {
     display: none;
     position: fixed;
+    overflow: auto;
     background: var(--color-white);
     width: 100%;
     left: 0;
@@ -25,6 +26,11 @@ nav {
 nav.open {
     display: flex;
     flex-direction: column;
+    overflow: auto;
+    opacity: 1;
+    padding: 18px 0;
+    height: 100vh;
+    max-height: calc(100vh - 60px);
 }
 
 ul {
@@ -59,17 +65,32 @@ ul {
 }
 
 .nav-item {
-    position: relative;
+    width: 100%;
     font-size: 16px;
 }
 
 .nav-item .nav-link {
-    padding: 26px 20px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 34px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.28px;
     color: var(--color-text-primary);
     transition: opacity 0.3s ease-in-out;
+}
+
+.nav-item .nav-link::after {
+    content: "";
+    display: block;
+    background-image: url("/icons/chevron-right.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
 }
 
 .nav-item.hover .submenu,
@@ -83,6 +104,7 @@ ul {
 
 .list {
     display: flex;
+    flex-direction: column;
     gap: 46px;
     width: 100%;
     padding: 32px 40px;
@@ -94,9 +116,8 @@ ul {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-    padding: 0 32px;
-    width: 25%;
-    border-left: 1px solid var(--color-grey200);
+    width: 100%;
+    padding: 0;
 }
 
 .list-item:first-child {
@@ -195,15 +216,22 @@ ul {
 }
 
 .submenu {
-    position: fixed;
-    top: 78px;
-    left: 0;
     display: none;
+
+    position: absolute;
+    top: 80px;
+    z-index: 99;
+
+    overflow: auto;
     flex-direction: column;
     justify-content: flex-start;
     gap: 32px;
+
     background-color: var(--color-bg-primary);
+    margin-top: -80px;
+
     width: 100%;
+    height: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.3s ease-in-out;
 }
@@ -221,7 +249,7 @@ ul {
 }
 
 .submenu .instructions {
-    padding: 4px;
+    padding: 0 32px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -233,6 +261,8 @@ ul {
     font-weight: 700;
     text-decoration: underline;
     color: var(--color-text-primary);
+    white-space: pre-wrap;
+    width: 100;
 }
 
 .submenu .instructions .icon {
@@ -247,6 +277,20 @@ ul {
     align-items: center;
     gap: 8px;
     margin-left: auto;
+}
+
+.submenu .back-button {
+    position: absolute;
+    top: 10px;
+    left: 32px;
+    border: none;
+    padding: 0;
+}
+
+.submenu .locate-form,
+.submenu .list {
+    padding-top: 68px;
+    height: 100%;
 }
 
 .ctas-container .modal-actions {
@@ -360,8 +404,9 @@ ul {
 }
 
 /* Modals */
-.submenu.is-open {
+.submenu.open {
     display: block;
+    gap: 0;
 }
 
 .modal {
@@ -427,14 +472,19 @@ ul {
 }
 
 .search-modal {
-    padding: 18px 80px;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: auto;
+    top: 140px;
+    padding: 0 24px;
     background-color: var(--color-bg-secondary);
 }
 
 .search-modal .search-form {
     display: flex;
     align-items: center;
-    gap: 64px;
+    gap: 32px;
 }
 
 .search-modal .close-button {
@@ -506,8 +556,48 @@ ul {
         display: none;
     }
 
+    .nav-item {
+        width: auto;
+        position: relative;
+    }
+
     .nav-item .nav-link {
+        padding: 28px 20px;
+        font-weight: 400;
+        font-size: 16px;
         color: var(--color-white);
+    }
+
+    .nav-item .nav-link::after {
+        display: none;
+    }
+
+    .submenu {
+        position: fixed;
+        top: 82px;
+        left: 0;
+        margin-top: 0;
+        padding-bottom: 0;
+        height: auto;
+    }
+
+    .submenu .instructions {
+        padding: 4px;
+    }
+
+    .submenu .list,
+    .submenu .form {
+        padding-top: 32px;
+    }
+
+    .list {
+        flex-direction: row;
+    }
+
+    .list-item {
+        padding: 0 32px;
+        width: 25%;
+        border-left: 1px solid var(--color-grey200);
     }
 
     .ctas-container .quote-button {
@@ -515,9 +605,22 @@ ul {
     }
 
     .ctas-container .icon-button {
-        padding: 39px 28px;
+        padding: 41px 28px;
         width: 32px;
         height: 32px;
+    }
+
+    .contact-modal {
+        left: 50% !important;
+    }
+
+    .search-modal {
+        padding: 0 80px;
+    }
+
+    .search-modal .search-form {
+        padding-top: 0;
+        gap: 64px;
     }
 }
 

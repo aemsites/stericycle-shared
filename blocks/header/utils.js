@@ -16,6 +16,9 @@ import { formatPhone } from "../../scripts/scripts.js";
 const FOCUSABLE_ELEMENTS =
     'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])';
 
+const MOBILE_MENU_OPEN_CLASSNAME = "open";
+const DESKTOP_MENU_OPEN_CLASSNAME = "hover";
+
 /**
  * Converts a section with hierarchical structure into a navigation menu.
  * @param {HTMLElement} sectionElement - The section containing the hierarchical structure.
@@ -228,24 +231,31 @@ export function generateMenuFromSection(sectionElement, instructions, locale) {
 
 /**
  * Adds functionality to the navigation menu.
- * @param {HTMLElement} block - The navigation menu element.
  * @returns {void}
  */
-export function addMenuFunctionality(block) {
+export function addMenuFunctionality() {
+    const isDesktopLayout = isDesktop();
+
     document.querySelectorAll(".nav-item").forEach((item) => {
         item.addEventListener("focusin", () => {
-            item.classList.add("hover");
-            item.setAttribute("aria-expanded", "true");
+            if (isDesktopLayout) {
+                item.classList.add(DESKTOP_MENU_OPEN_CLASSNAME);
+                item.setAttribute("aria-expanded", "true");
+            }
         });
 
         item.addEventListener("focusout", (e) => {
-            if (!item.contains(e.relatedTarget)) {
-                item.classList.remove("hover");
+            if (!item.contains(e.relatedTarget) && isDesktopLayout) {
+                item.classList.remove(DESKTOP_MENU_OPEN_CLASSNAME);
                 item.setAttribute("aria-expanded", "false");
             }
         });
 
         item.addEventListener("mouseenter", () => {
+            if (!isDesktopLayout) {
+                return;
+            }
+
             // remove focus from previous item tabbing except the current item
             const itemLink = item.querySelector(".nav-link");
 
@@ -256,30 +266,34 @@ export function addMenuFunctionality(block) {
             // close any other open modals
             document.querySelectorAll(".submenu").forEach((submenu) => {
                 if (submenu !== item.querySelector(".submenu")) {
-                    submenu.classList.remove("is-open");
+                    submenu.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
                 }
             });
 
-            item.classList.add("hover");
+            item.classList.add(DESKTOP_MENU_OPEN_CLASSNAME);
             item.setAttribute("aria-expanded", "true");
         });
 
         item.addEventListener("mouseleave", () => {
-            item.classList.remove("hover");
+            if (!isDesktopLayout) {
+                return;
+            }
+
+            item.classList.remove(DESKTOP_MENU_OPEN_CLASSNAME);
             item.setAttribute("aria-expanded", "false");
         });
 
         const submenu = item.querySelector(".submenu");
 
-        if (submenu) {
+        if (submenu && isDesktopLayout) {
             submenu.addEventListener("mouseenter", () => {
                 item.setAttribute("aria-expanded", "true");
-                item.classList.add("hover");
+                item.classList.add(DESKTOP_MENU_OPEN_CLASSNAME);
             });
 
             submenu.addEventListener("mouseleave", () => {
                 item.setAttribute("aria-expanded", "false");
-                item.classList.remove("hover");
+                item.classList.remove(DESKTOP_MENU_OPEN_CLASSNAME);
             });
         }
 
@@ -359,6 +373,28 @@ export function addMenuFunctionality(block) {
                     break;
             }
         });
+
+        if (!isDesktopLayout) {
+            // Add click functionality for mobile
+            if (submenu) {
+                const navLink = item.querySelector(".nav-link");
+
+                const backButton = document.createElement("button");
+                backButton.textContent = "Back";
+                backButton.className = "button back-button";
+                backButton.addEventListener("click", () => {
+                    submenu.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
+                    item.classList.remove(DESKTOP_MENU_OPEN_CLASSNAME);
+                });
+                submenu.prepend(backButton);
+
+                navLink.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    submenu.classList.add(MOBILE_MENU_OPEN_CLASSNAME);
+                    item.classList.add(DESKTOP_MENU_OPEN_CLASSNAME);
+                });
+            }
+        }
     });
 
     const hamburger = document.querySelector(".hamburger-menu");
@@ -368,8 +404,16 @@ export function addMenuFunctionality(block) {
             const isOpen = hamburger.classList.toggle("open");
             const nav = document.querySelector("#nav");
 
-            hamburger.setAttribute("aria-expanded", isOpen);            
+            hamburger.setAttribute("aria-expanded", isOpen);
             nav.classList.toggle("open");
+
+            if (isOpen) {
+                document.body.style.overflow = "hidden";
+            } else {
+                document.body.style.overflow = "";
+                // reset menu focus
+                hamburger.focus();
+            }
         });
     }
 }
@@ -562,18 +606,18 @@ function setupModal(triggerElement, modalElement) {
     function openModal() {
         document.querySelectorAll(".submenu").forEach((submenu) => {
             if (submenu !== modalElement) {
-                submenu.classList.remove("is-open");
-                submenu.classList.remove("hover");
+                submenu.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
+                submenu.classList.remove(DESKTOP_MENU_OPEN_CLASSNAME);
             }
         });
 
-        modalElement.classList.add("is-open");
+        modalElement.classList.add(MOBILE_MENU_OPEN_CLASSNAME);
 
         trapFocus(modalElement);
     }
 
     function closeModal() {
-        modalElement.classList.remove("is-open");
+        modalElement.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
         triggerElement.focus();
     }
 
@@ -583,7 +627,7 @@ function setupModal(triggerElement, modalElement) {
     triggerElement.addEventListener("click", (e) => {
         e.stopPropagation();
 
-        if (modalElement.classList.contains("is-open")) {
+        if (modalElement.classList.contains(MOBILE_MENU_OPEN_CLASSNAME)) {
             closeModal();
             return;
         } else {
@@ -598,7 +642,7 @@ function setupModal(triggerElement, modalElement) {
     // close modal if clicked outside but not inside the modal or trigger
     document.addEventListener("click", (e) => {
         if (
-            modalElement.classList.contains("is-open") &&
+            modalElement.classList.contains(MOBILE_MENU_OPEN_CLASSNAME) &&
             !modalElement.contains(e.target) &&
             e.target !== triggerElement
         ) {
@@ -608,7 +652,10 @@ function setupModal(triggerElement, modalElement) {
 
     // close modal on escape key
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modalElement.classList.contains("is-open")) {
+        if (
+            e.key === "Escape" &&
+            modalElement.classList.contains(MOBILE_MENU_OPEN_CLASSNAME)
+        ) {
             closeModal();
         }
     });
