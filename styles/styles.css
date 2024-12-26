@@ -633,6 +633,9 @@ main .section p:not(.button-container) a {
   text-decoration: underline;
 }
 
+main .section div.button-container a {
+  text-decoration: none;
+}
 
 /* section styles */
 
