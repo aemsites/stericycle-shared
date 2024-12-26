@@ -108,7 +108,6 @@ ul {
     gap: 46px;
     width: 100%;
     padding: 32px 40px;
-    padding-bottom: 0;
 }
 
 .list-item {
@@ -219,19 +218,18 @@ ul {
     display: none;
 
     position: absolute;
-    top: 80px;
+    top: 0;
     z-index: 99;
 
-    overflow: auto;
     flex-direction: column;
     justify-content: flex-start;
     gap: 32px;
 
     background-color: var(--color-bg-primary);
-    margin-top: -80px;
 
     width: 100%;
-    height: 100%;
+    min-height: 100%;
+    height: fit-content;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.3s ease-in-out;
 }
@@ -291,6 +289,10 @@ ul {
 .submenu .list {
     padding-top: 68px;
     height: 100%;
+}
+
+.submenu .locate-form {
+    height: 100vh;
 }
 
 .ctas-container .modal-actions {
@@ -432,6 +434,15 @@ ul {
     padding: 16px 0;
 }
 
+.contact-modal {
+    left: 0;
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    height: 60%;
+    min-height: 60%;
+}
+
 .contact-modal .modal-content {
     padding: 32px;
     padding-top: 0;
@@ -453,9 +464,9 @@ ul {
     color: var(--color-text-secondary);
 }
 
-.contact-modal .primary {
+.contact-modal .modal-content .primary {
+    display: block !important;
     margin-top: 32px;
-    margin-bottom: 0;
     width: 100%;
 }
 
@@ -469,7 +480,8 @@ ul {
     left: 0;
     width: 100%;
     height: auto;
-    top: 140px;
+    top: 60px;
+    min-height: fit-content;
     padding: 0 24px;
     background-color: var(--color-bg-secondary);
 }
@@ -597,6 +609,7 @@ ul {
         margin-top: 0;
         padding-bottom: 0;
         height: auto;
+        min-height: auto;
     }
 
     .submenu .instructions {
@@ -610,6 +623,7 @@ ul {
 
     .list {
         flex-direction: row;
+        padding-bottom: 0;
     }
 
     .list-item {
@@ -629,7 +643,7 @@ ul {
     }
 
     .contact-modal {
-        left: 50% !important;
+        left: 50%;
     }
 
     .search-modal {
@@ -643,7 +657,7 @@ ul {
 
     .ctas-container-mobile {
         display: none;
-        visibility: hidden;        
+        visibility: hidden;
     }
 }
 

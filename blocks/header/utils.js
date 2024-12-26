@@ -187,7 +187,8 @@ export function generateMenuFromSection(
                         {
                             class: "locate-link",
                             href: `/${locale}/service-locations`,
-                            "aria-label": locationSearchInfo?.servicelabel?.text,
+                            "aria-label":
+                                locationSearchInfo?.servicelabel?.text,
                         },
                         locationSearchInfo?.servicelabel?.text
                     )
@@ -534,9 +535,9 @@ export function buildCtasSection(
             h3({ class: "modal-title eyebrow-small" }, contact?.title?.text),
             p({ class: "modal-subtitle" }, contact?.description?.text),
             contactLinks,
-            button(
+            a(
                 {
-                    href: navModalPath,
+                    href: contact?.requestacallback?.href,
                     class: "quote-button button primary",
                     "aria-label": contact?.cta?.text,
                 },
@@ -640,6 +641,7 @@ function setupModal(triggerElement, modalElement) {
         });
 
         modalElement.classList.add(MOBILE_MENU_OPEN_CLASSNAME);
+        nav.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
 
         trapFocus(modalElement);
     }

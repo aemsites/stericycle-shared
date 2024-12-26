@@ -1,4 +1,4 @@
-import { fetchPlaceholders, getMetadata } from "../../scripts/aem.js";
+import { fetchPlaceholders, getMetadata, isDesktop } from "../../scripts/aem.js";
 import { div, span } from "../../scripts/dom-helpers.js";
 import { getLocale } from "../../scripts/scripts.js";
 import { loadFragment } from "../fragment/fragment.js";
@@ -127,7 +127,7 @@ export default async function decorate(block) {
     }
 
     // Mobile Ctas
-    if (ctasMobile) {
+    if (ctasMobile && !isDesktop()) {
         const nav = block.querySelector("nav");
 
         nav.append(ctasMobile);
