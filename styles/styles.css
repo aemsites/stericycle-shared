@@ -1163,12 +1163,33 @@ main .section.with-image > div.section-image-wrapper:first-child {
   font-size: 16px;
 }
 
+main .section.standard-margin-bottom {
+  margin-bottom: 80px !important;
+}
+
 main .section.extra-margin-bottom {
-  margin-bottom: 160px;
+  margin-bottom: 160px !important;
 }
 
 main .section.rounded-corners {
   border-radius: 16px;
+}
+
+main div.section.background-primary-image {
+  background-size: contain;
+  background-origin: content-box;
+  background-position: right bottom;
+  background-image: url("/images/media_1dc871139c98397c8c15a9cf976ee13f69be2ab57.png");
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+main div.section.background-secondary-image {
+  background-size: auto;
+  background-position: right bottom;
+  background-image: url("/images/media_1dc871139c98397c8c15a9cf976ee13f69be2ab57.png");
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
