@@ -22,11 +22,17 @@ const DESKTOP_MENU_OPEN_CLASSNAME = "hover";
 /**
  * Converts a section with hierarchical structure into a navigation menu.
  * @param {HTMLElement} sectionElement - The section containing the hierarchical structure.
+ * @param {Object} locationSearchInfo - The location search information.
  * @param {HTMLElement} instructions - The instructions to be added to the submenus.
  * @param {string} locale - The locale of the page.
  * @returns {HTMLElement} - The generated navigation menu element.
  */
-export function generateMenuFromSection(sectionElement, instructions, locale) {
+export function generateMenuFromSection(
+    sectionElement,
+    locationSearchInfo,
+    instructions,
+    locale
+) {
     if (!sectionElement) {
         console.error("Section element not found.");
         return null;
@@ -141,10 +147,13 @@ export function generateMenuFromSection(sectionElement, instructions, locale) {
             if (isLocationLink) {
                 const navLocate = div(
                     { class: "form locate-form" },
-                    h2({ class: "form-header" }, "Search Nearby Locations"),
+                    h2(
+                        { class: "form-header" },
+                        locationSearchInfo?.title?.text
+                    ),
                     p(
                         { class: "form-description" },
-                        "Lorem ipsum dolor sit amet consectetur. Porttitor quis duis diam pellentesque."
+                        locationSearchInfo?.description?.text
                     ),
                     form(
                         {
@@ -156,19 +165,21 @@ export function generateMenuFromSection(sectionElement, instructions, locale) {
                         div(
                             { class: "input-group" },
                             input({
-                                ariaLabel: "Search for Location",
+                                ariaLabel:
+                                    locationSearchInfo?.searchlabel?.text,
                                 id: "searchLocationInput",
                                 type: "text",
                                 name: "searchQuery",
                                 placeholder:
-                                    "Search by zip code, street, or city",
+                                    locationSearchInfo?.searchlabel?.text,
                                 required: true,
                                 pattern: "^.{4,}$",
                             }),
                             button({
                                 class: "button location-search-button",
                                 type: "submit",
-                                "aria-label": "Search for Location",
+                                "aria-label":
+                                    locationSearchInfo?.searchlabel?.text,
                             })
                         )
                     ),
@@ -176,9 +187,9 @@ export function generateMenuFromSection(sectionElement, instructions, locale) {
                         {
                             class: "locate-link",
                             href: `/${locale}/service-locations`,
-                            "aria-label": "Find a location nearest me",
+                            "aria-label": locationSearchInfo?.servicelabel?.text,
                         },
-                        "Find a location nearest me"
+                        locationSearchInfo?.servicelabel?.text
                     )
                 );
 
@@ -471,53 +482,58 @@ export function buildCtasSection(
         id: "search-btn",
     });
 
+    const contactLinks = div(
+        div(
+            { class: "contact" },
+            img({
+                class: "contact-icon",
+                src: "/icons/phone-ringing-black.svg",
+            }),
+            div(
+                { class: "contact-info" },
+                p(
+                    { class: "modal-title" },
+                    contact?.customerservicelabel?.text
+                ),
+                a(
+                    {
+                        href: `tel:+1${contact?.customerserviceno?.text.trim()}`,
+                        title: `${contact?.customerservicelabel?.text} number`,
+                        "aria-label": `${contact?.customerservicelabel?.text} number`,
+                    },
+                    `${formatPhone(contact?.customerserviceno?.text, true)}`
+                )
+            )
+        ),
+        div(
+            { class: "contact" },
+            img({
+                class: "contact-icon",
+                src: "/icons/phone-ringing-black.svg",
+            }),
+            div(
+                { class: "contact-info" },
+                p({ class: "modal-title" }, contact?.saleslabel?.text),
+                a(
+                    {
+                        href: `tel:+1${contact?.salesno?.text.trim()}`,
+                        title: `${contact?.saleslabel?.text} number`,
+                        "aria-label": `${contact?.saleslabel?.text} number`,
+                    },
+                    `${formatPhone(contact?.salesno?.text, true)}`
+                )
+            )
+        )
+    );
+    const contactLinksMobile = contactLinks.cloneNode(true);
+
     const contactModal = div(
         { class: "submenu modal contact-modal", id: "contact-modal" },
         div(
             { class: "modal-content" },
             h3({ class: "modal-title eyebrow-small" }, contact?.title?.text),
             p({ class: "modal-subtitle" }, contact?.description?.text),
-            div(
-                { class: "contact" },
-                img({
-                    class: "contact-icon",
-                    src: "/icons/phone-ringing-black.svg",
-                }),
-                div(
-                    { class: "contact-info" },
-                    p(
-                        { class: "modal-title" },
-                        contact?.customerservicelabel?.text
-                    ),
-                    a(
-                        {
-                            href: `tel:+1${contact?.customerserviceno?.text.trim()}`,
-                            title: `${contact?.customerservicelabel?.text} number`,
-                            "aria-label": `${contact?.customerservicelabel?.text} number`,
-                        },
-                        `${formatPhone(contact?.customerserviceno?.text, true)}`
-                    )
-                )
-            ),
-            div(
-                { class: "contact" },
-                img({
-                    class: "contact-icon",
-                    src: "/icons/phone-ringing-black.svg",
-                }),
-                div(
-                    { class: "contact-info" },
-                    p({ class: "modal-title" }, contact?.saleslabel?.text),
-                    a(
-                        {
-                            href: `tel:+1${contact?.salesno?.text.trim()}`,
-                            title: `${contact?.saleslabel?.text} number`,
-                            "aria-label": `${contact?.saleslabel?.text} number`,
-                        },
-                        `${formatPhone(contact?.salesno?.text, true)}`
-                    )
-                )
-            ),
+            contactLinks,
             button(
                 {
                     href: navModalPath,
@@ -580,6 +596,13 @@ export function buildCtasSection(
         );
     });
 
+    const toolsCtaMobile = toolsCta.map((cta) => {
+        const clonedCta = cta.cloneNode(true);
+        clonedCta.classList.remove("dark");
+
+        return clonedCta;
+    });
+
     const ctasContainer = domEl(
         "div",
         { class: "ctas-container" },
@@ -592,7 +615,12 @@ export function buildCtasSection(
     setupModal(contactModalButton, contactModal);
     setupModal(searchModalButton, searchModal);
 
-    return ctasContainer;
+    const ctasMobile = div(
+        { class: "ctas-container-mobile" },
+        div({ class: "content" }, contactLinksMobile, ...toolsCtaMobile)
+    );
+
+    return { ctas: ctasContainer, ctasMobile: ctasMobile };
 }
 
 /**

@@ -80,13 +80,32 @@ export default async function decorate(block) {
         };
     });
 
+    // location data
+    const locations = fragment.querySelector(
+        '.section[data-section="Location" i]'
+    );
+
+    const locationDataMap = {};
+
+    locations.querySelectorAll(TEXT_ELEMENTS).forEach((link) => {
+        const [key, text] = link?.textContent?.split("#");
+        const field = key?.toLowerCase()?.split(" ")?.join("");
+
+        locationDataMap[field] = {
+            href: link?.getAttribute("href"),
+            text: text,
+        };
+    });
+
     // Parsing
     const sectionElement = fragment.querySelector('[data-section="Sections"]');
     const instructions = fragment.querySelector(
         '[data-section="Instructions"]'
     );
+
     const navigationMenu = generateMenuFromSection(
         sectionElement,
+        locationDataMap,
         instructions,
         locale
     );
@@ -96,15 +115,22 @@ export default async function decorate(block) {
     }
 
     // Ctas
-    const ctasSection = buildCtasSection(
+    const { ctas, ctasMobile } = buildCtasSection(
         placeHolders,
         toolsMap,
         contactMap,
         locale
     );
 
-    if (ctasSection) {
-        block.append(ctasSection);
+    if (ctas) {
+        block.append(ctas);
+    }
+
+    // Mobile Ctas
+    if (ctasMobile) {
+        const nav = block.querySelector("nav");
+
+        nav.append(ctasMobile);
     }
 
     // Hamburguer

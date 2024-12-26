@@ -426,11 +426,7 @@ ul {
     margin-bottom: 16px;
 }
 
-.contact-modal .contact-info > * {
-    padding: 0;
-}
-
-.contact-modal .contact {
+.contact {
     display: flex;
     gap: 16px;
     padding: 16px 0;
@@ -441,7 +437,7 @@ ul {
     padding-top: 0;
 }
 
-.contact-modal .contact p {
+.contact p {
     margin-bottom: 0;
     font-size: 14px;
     font-weight: 700;
@@ -449,7 +445,8 @@ ul {
     color: var(--color-text-primary);
 }
 
-.contact-modal .contact a {
+.contact a {
+    padding: 0;
     font-size: 14px;
     font-weight: 400;
     line-height: 160%;
@@ -462,13 +459,9 @@ ul {
     width: 100%;
 }
 
-.contact-modal .contact-icon {
+.contact-icon {
     width: 30px;
     height: 30px;
-}
-
-.contact-modal .contact-info > * {
-    padding: 0;
 }
 
 .search-modal {
@@ -529,6 +522,31 @@ ul {
 
 .hamburger-menu.open span:nth-child(3) {
     transform: translateY(-10px) rotate(-45deg);
+}
+
+.ctas-container-mobile {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 32px;
+}
+
+.ctas-container-mobile .content {
+    width: 100%;
+}
+
+.ctas-container-mobile .content .contact {
+    padding-bottom: 0;
+}
+
+.ctas-container-mobile .content .contact a {
+    font-size: 12px;
+}
+
+.ctas-container-mobile .content .button {
+    width: 100%;
+    margin-bottom: 0;
 }
 
 @media (min-width: 992px) {
@@ -621,6 +639,11 @@ ul {
     .search-modal .search-form {
         padding-top: 0;
         gap: 64px;
+    }
+
+    .ctas-container-mobile {
+        display: none;
+        visibility: hidden;        
     }
 }
 
