@@ -643,7 +643,7 @@ main .section.light,
 main .section.highlight,
 main .section.gray-background,
 main .block.gray-background {
-  background-color: var(--color-gray);
+  background-color: var(--color-bg-secondary);
 }
 
 main > div.section.gray-background > div.default-content-wrapper h1,
@@ -661,7 +661,7 @@ main > div.section.gray-background > div.default-content-wrapper p {
 
 main .section.navy-background,
 main .block.navy-background {
-  background-image: linear-gradient(180deg, var(--color-primary-2) 0, var(--color-primary-2));
+  background-color: var(--color-bg-tertiary);
 }
 
 @media screen and (min-width: 576px /* breakpoint-s */) {
@@ -699,7 +699,7 @@ main .section.shredded-paper-background > div:first-of-type > p > span.icon > im
 
 main .section.blue-background,
 main .block.blue-background {
-  background-color: var(--color-primary-1);
+  background-color: var(--color-accent-1);
 }
 
 main .block.center-align * {
@@ -1167,8 +1167,33 @@ main .section.with-image > div.section-image-wrapper:first-child {
   font-size: 16px;
 }
 
+main .section.standard-margin-bottom {
+  margin-bottom: 80px !important;
+}
+
 main .section.extra-margin-bottom {
-  margin-bottom: 2rem;
+  margin-bottom: 160px !important;
+}
+
+main .section.rounded-corners {
+  border-radius: 16px;
+}
+
+main div.section.background-primary-image {
+  background-size: contain;
+  background-origin: content-box;
+  background-position: right bottom;
+  background-image: url("/images/media_1dc871139c98397c8c15a9cf976ee13f69be2ab57.png");
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+main div.section.background-secondary-image {
+  background-size: auto;
+  background-position: right bottom;
+  background-image: url("/images/media_1dc871139c98397c8c15a9cf976ee13f69be2ab57.png");
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
