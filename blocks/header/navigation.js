@@ -1,5 +1,5 @@
 import { fetchPlaceholders, getMetadata, isDesktop } from "../../scripts/aem.js";
-import { div, span } from "../../scripts/dom-helpers.js";
+import { button, div, span } from "../../scripts/dom-helpers.js";
 import { getLocale } from "../../scripts/scripts.js";
 import { loadFragment } from "../fragment/fragment.js";
 import {
@@ -134,7 +134,7 @@ export default async function decorate(block) {
     }
 
     // Hamburguer
-    const hamburger = div(
+    const hamburger = button(
         {
             class: "hamburger-menu",
             "aria-label": "Toggle navigation",
