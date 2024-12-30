@@ -249,145 +249,141 @@ export function addMenuFunctionality() {
     const isDesktopLayout = isDesktop();
 
     document.querySelectorAll(".nav-item").forEach((item) => {
-        item.addEventListener("focusin", () => {
-            if (isDesktopLayout) {
+        const submenu = item.querySelector(".submenu");
+
+        if (isDesktopLayout) {
+            item.addEventListener("focusin", () => {
                 item.classList.add(DESKTOP_MENU_OPEN_CLASSNAME);
                 item.setAttribute("aria-expanded", "true");
-            }
-        });
+            });
 
-        item.addEventListener("focusout", (e) => {
-            if (!item.contains(e.relatedTarget) && isDesktopLayout) {
-                item.classList.remove(DESKTOP_MENU_OPEN_CLASSNAME);
-                item.setAttribute("aria-expanded", "false");
-            }
-        });
-
-        item.addEventListener("mouseenter", () => {
-            if (!isDesktopLayout) {
-                return;
-            }
-
-            // remove focus from previous item tabbing except the current item
-            const itemLink = item.querySelector(".nav-link");
-
-            if (document.activeElement !== itemLink) {
-                document.activeElement.blur();
-            }
-
-            // close any other open modals
-            document.querySelectorAll(".submenu").forEach((submenu) => {
-                if (submenu !== item.querySelector(".submenu")) {
-                    submenu.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
+            item.addEventListener("focusout", (e) => {
+                if (!item.contains(e.relatedTarget)) {
+                    item.classList.remove(DESKTOP_MENU_OPEN_CLASSNAME);
+                    item.setAttribute("aria-expanded", "false");
                 }
             });
 
-            item.classList.add(DESKTOP_MENU_OPEN_CLASSNAME);
-            item.setAttribute("aria-expanded", "true");
-        });
+            item.addEventListener("mouseenter", () => {
+                // remove focus from previous item tabbing except the current item
+                const itemLink = item.querySelector(".nav-link");
 
-        item.addEventListener("mouseleave", () => {
-            if (!isDesktopLayout) {
-                return;
-            }
+                if (document.activeElement !== itemLink) {
+                    document.activeElement.blur();
+                }
 
-            item.classList.remove(DESKTOP_MENU_OPEN_CLASSNAME);
-            item.setAttribute("aria-expanded", "false");
-        });
+                // close any other open modals
+                document.querySelectorAll(".submenu").forEach((submenu) => {
+                    if (submenu !== item.querySelector(".submenu")) {
+                        submenu.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
+                    }
+                });
 
-        const submenu = item.querySelector(".submenu");
-
-        if (submenu && isDesktopLayout) {
-            submenu.addEventListener("mouseenter", () => {
-                item.setAttribute("aria-expanded", "true");
                 item.classList.add(DESKTOP_MENU_OPEN_CLASSNAME);
+                item.setAttribute("aria-expanded", "true");
             });
 
-            submenu.addEventListener("mouseleave", () => {
-                item.setAttribute("aria-expanded", "false");
+            item.addEventListener("mouseleave", () => {
                 item.classList.remove(DESKTOP_MENU_OPEN_CLASSNAME);
+                item.setAttribute("aria-expanded", "false");
             });
+
+            if (submenu) {
+                submenu.addEventListener("mouseenter", () => {
+                    item.setAttribute("aria-expanded", "true");
+                    item.classList.add(DESKTOP_MENU_OPEN_CLASSNAME);
+                });
+
+                submenu.addEventListener("mouseleave", () => {
+                    item.setAttribute("aria-expanded", "false");
+                    item.classList.remove(DESKTOP_MENU_OPEN_CLASSNAME);
+                });
+
+                item.addEventListener("keydown", (e) => {
+                    const submenuLinks =
+                        item.querySelectorAll(FOCUSABLE_ELEMENTS);
+
+                    switch (e.key) {
+                        case "Tab":
+                            const shiftKey = e.shiftKey;
+                            const nextNavItem = item.nextElementSibling;
+                            const prevNavItem = item.previousElementSibling;
+
+                            if (!shiftKey && nextNavItem) {
+                                e.preventDefault();
+                                (
+                                    nextNavItem.querySelector(
+                                        FOCUSABLE_ELEMENTS
+                                    ) || nextNavItem
+                                )?.focus();
+                            } else if (!shiftKey && !nextNavItem) {
+                                e.preventDefault();
+
+                                const navbar = document.querySelector("#nav");
+                                const nextSibling = navbar.nextElementSibling;
+                                let nextFocusableElement = null;
+
+                                if (nextSibling) {
+                                    nextFocusableElement =
+                                        nextSibling.querySelector(
+                                            FOCUSABLE_ELEMENTS
+                                        );
+                                } else {
+                                    nextFocusableElement = document
+                                        .querySelector("main")
+                                        .querySelector(FOCUSABLE_ELEMENTS);
+                                }
+
+                                nextFocusableElement?.focus();
+                            } else if (shiftKey && prevNavItem) {
+                                e.preventDefault();
+                                (
+                                    prevNavItem.querySelector(
+                                        FOCUSABLE_ELEMENTS
+                                    ) || prevNavItem
+                                )?.focus();
+                            } else if (shiftKey && !prevNavItem) {
+                                e.preventDefault();
+                                const allFocusable = Array.from(
+                                    document.querySelectorAll(
+                                        FOCUSABLE_ELEMENTS
+                                    )
+                                ).filter((el) => el.offsetParent !== null);
+                                const currentIndex = allFocusable.indexOf(
+                                    document.activeElement
+                                );
+                                allFocusable[currentIndex - 1]?.focus();
+                            } else {
+                                item.setAttribute("aria-expanded", "false");
+                            }
+                            break;
+
+                        case "ArrowRight":
+                            e.preventDefault();
+                            const currentIndexRight = Array.from(
+                                submenuLinks
+                            ).indexOf(document.activeElement);
+                            const nextIndexRight =
+                                (currentIndexRight + 1) % submenuLinks.length;
+                            submenuLinks[nextIndexRight]?.focus();
+                            break;
+
+                        case "ArrowLeft":
+                            e.preventDefault();
+                            const currentIndexLeft = Array.from(
+                                submenuLinks
+                            ).indexOf(document.activeElement);
+                            const prevIndexLeft =
+                                (currentIndexLeft - 1 + submenuLinks.length) %
+                                submenuLinks.length;
+                            submenuLinks[prevIndexLeft]?.focus();
+                            break;
+                    }
+                });
+            }
         }
 
-        item.addEventListener("keydown", (e) => {
-            const submenuLinks = item.querySelectorAll(FOCUSABLE_ELEMENTS);
-
-            switch (e.key) {
-                case "Tab":
-                    const shiftKey = e.shiftKey;
-                    const nextNavItem = item.nextElementSibling;
-                    const prevNavItem = item.previousElementSibling;
-
-                    if (!shiftKey && nextNavItem) {
-                        e.preventDefault();
-                        (
-                            nextNavItem.querySelector(FOCUSABLE_ELEMENTS) ||
-                            nextNavItem
-                        )?.focus();
-                    } else if (!shiftKey && !nextNavItem) {
-                        e.preventDefault();
-
-                        const navbar = document.querySelector("#nav");
-                        const nextSibling = navbar.nextElementSibling;
-                        let nextFocusableElement = null;
-
-                        if (nextSibling) {
-                            nextFocusableElement =
-                                nextSibling.querySelector(FOCUSABLE_ELEMENTS);
-                        } else {
-                            // get next focusable element in the document and ignore the nav
-                            nextFocusableElement = document
-                                .querySelector("main")
-                                .querySelector(FOCUSABLE_ELEMENTS);
-                        }
-
-                        nextFocusableElement?.focus();
-                    } else if (shiftKey && prevNavItem) {
-                        e.preventDefault();
-                        (
-                            prevNavItem.querySelector(FOCUSABLE_ELEMENTS) ||
-                            prevNavItem
-                        )?.focus();
-                    } else if (shiftKey && !prevNavItem) {
-                        e.preventDefault();
-                        const allFocusable = Array.from(
-                            document.querySelectorAll(FOCUSABLE_ELEMENTS)
-                        ).filter((el) => el.offsetParent !== null);
-                        const currentIndex = allFocusable.indexOf(
-                            document.activeElement
-                        );
-                        allFocusable[currentIndex - 1]?.focus();
-                    } else {
-                        // Allow natural tab behavior to continue
-                        item.setAttribute("aria-expanded", "false");
-                    }
-                    break;
-
-                case "ArrowRight":
-                    e.preventDefault();
-                    const currentIndexRight = Array.from(submenuLinks).indexOf(
-                        document.activeElement
-                    );
-                    const nextIndexRight =
-                        (currentIndexRight + 1) % submenuLinks.length;
-                    submenuLinks[nextIndexRight]?.focus();
-                    break;
-
-                case "ArrowLeft":
-                    e.preventDefault();
-                    const currentIndexLeft = Array.from(submenuLinks).indexOf(
-                        document.activeElement
-                    );
-                    const prevIndexLeft =
-                        (currentIndexLeft - 1 + submenuLinks.length) %
-                        submenuLinks.length;
-                    submenuLinks[prevIndexLeft]?.focus();
-                    break;
-            }
-        });
-
         if (!isDesktopLayout) {
-            // Add click functionality for mobile
             if (submenu) {
                 const navLink = item.querySelector(".nav-link");
 
@@ -404,6 +400,8 @@ export function addMenuFunctionality() {
                     e.preventDefault();
                     submenu.classList.add(MOBILE_MENU_OPEN_CLASSNAME);
                     item.classList.add(DESKTOP_MENU_OPEN_CLASSNAME);
+
+                    trapFocus(submenu, closeNavigationMenu);
                 });
             }
         }
@@ -421,10 +419,10 @@ export function addMenuFunctionality() {
 
             if (isOpen) {
                 document.body.style.overflow = "hidden";
+
+                trapFocus(nav, closeNavigationMenu);
             } else {
-                document.body.style.overflow = "";
-                // reset menu focus
-                hamburger.focus();
+                closeNavigationMenu();
             }
         });
     }
@@ -625,12 +623,48 @@ export function buildCtasSection(
 }
 
 /**
+ * Function to close a modal.
+ * @param {HTMLElement} modalElement - The modal element to close.
+ * @param {HTMLElement} triggerElement - The element that triggered the modal.
+ */
+function closeModal(modalElement, triggerElement) {
+    modalElement?.classList?.remove(MOBILE_MENU_OPEN_CLASSNAME);
+    triggerElement?.focus();
+}
+
+/**
+ * Function to close the navigation menu.
+ * @returns {void}
+ */
+function closeNavigationMenu() {
+    const nav = document.querySelector("#nav");
+    const hamburger = document.querySelector(".hamburger-menu");
+
+    nav.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
+    hamburger.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+    hamburger.focus();
+
+    document.querySelectorAll(".nav-item").forEach((item) => {
+        item.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
+        item.classList.remove(DESKTOP_MENU_OPEN_CLASSNAME);
+
+        const submenu = item.querySelector(".submenu");
+        if (submenu) {
+            submenu.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
+        }
+    });
+}
+
+/**
  * Reusable function to handle modal open/close logic.
  * @param {HTMLElement} triggerElement - The element that triggers the modal.
  * @param {HTMLElement} modalElement - The modal element to show/hide.
  */
 function setupModal(triggerElement, modalElement) {
     const closeButton = modalElement.querySelector(".close-button");
+    const closeModalFn = () => closeModal(modalElement, triggerElement);
 
     function openModal() {
         document.querySelectorAll(".submenu").forEach((submenu) => {
@@ -643,22 +677,17 @@ function setupModal(triggerElement, modalElement) {
         modalElement.classList.add(MOBILE_MENU_OPEN_CLASSNAME);
         nav.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
 
-        trapFocus(modalElement);
-    }
-
-    function closeModal() {
-        modalElement.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
-        triggerElement.focus();
+        trapFocus(modalElement, closeModalFn);
     }
 
     modalElement.addEventListener("mouseenter", openModal);
-    modalElement.addEventListener("mouseleave", closeModal);
+    modalElement.addEventListener("mouseleave", closeModalFn);
 
     triggerElement.addEventListener("click", (e) => {
         e.stopPropagation();
 
         if (modalElement.classList.contains(MOBILE_MENU_OPEN_CLASSNAME)) {
-            closeModal();
+            closeModalFn();
             return;
         } else {
             openModal();
@@ -666,7 +695,7 @@ function setupModal(triggerElement, modalElement) {
     });
 
     if (closeButton) {
-        closeButton.addEventListener("click", closeModal);
+        closeButton.addEventListener("click", closeModalFn);
     }
 
     // close modal if clicked outside but not inside the modal or trigger
@@ -676,7 +705,7 @@ function setupModal(triggerElement, modalElement) {
             !modalElement.contains(e.target) &&
             e.target !== triggerElement
         ) {
-            closeModal();
+            closeModalFn();
         }
     });
 
@@ -686,35 +715,41 @@ function setupModal(triggerElement, modalElement) {
             e.key === "Escape" &&
             modalElement.classList.contains(MOBILE_MENU_OPEN_CLASSNAME)
         ) {
-            closeModal();
+            closeModalFn();
         }
     });
 }
 
 /**
- * Function to trap focus inside a modal.
- * @param {HTMLElement} modal - The modal element.
+ * Function to trap focus inside a container element.
+ * @param {HTMLElement} element - The element container.
+ * @param {Function} [closeModal] - Optional function to handle modal close.
  */
-function trapFocus(modal) {
-    const focusableElements = modal.querySelectorAll(
-        'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+function trapFocus(element, closeModal) {
+    const focusableElements = Array.from(
+        element.querySelectorAll(
+            'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+        )
     );
+
+    if (focusableElements.length === 0) return;
+
     const firstFocusable = focusableElements[0];
     const lastFocusable = focusableElements[focusableElements.length - 1];
 
-    // Move focus to the first focusable element
+    // Automatically focus the first element
     firstFocusable?.focus();
 
-    modal.addEventListener("keydown", (e) => {
+    element.addEventListener("keydown", (e) => {
         if (e.key === "Tab") {
             if (e.shiftKey) {
-                // Shift + Tab: Move focus to the last element if on the first
+                // Shift + Tab: Move to the last element if on the first
                 if (document.activeElement === firstFocusable) {
                     e.preventDefault();
                     lastFocusable.focus();
                 }
             } else {
-                // Tab: Move focus to the first element if on the last
+                // Tab: Move to the first element if on the last
                 if (document.activeElement === lastFocusable) {
                     e.preventDefault();
                     firstFocusable.focus();
@@ -723,7 +758,7 @@ function trapFocus(modal) {
         }
 
         // Escape key to close the modal
-        if (e.key === "Escape") {
+        if (e.key === "Escape" && typeof closeModal === "function") {
             closeModal();
         }
     });

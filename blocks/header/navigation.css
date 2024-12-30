@@ -82,6 +82,11 @@ ul {
     transition: opacity 0.3s ease-in-out;
 }
 
+.nav-item .nav-link:focus-visible,
+.nav-item .nav-link:focus {
+    outline: 2px solid var(--color-accent-1);
+}
+
 .nav-item .nav-link::after {
     content: "";
     display: block;
