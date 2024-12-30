@@ -15,7 +15,7 @@ main .form form .wizard .wizard-menu-items .wizard-menu-item {
   border-radius: 4px;
   height: 7px;
   width: 100%;
-  max-width: 127px;
+  /* max-width: 127px; */
   background-color: var(--color-grey500);
 }
 
