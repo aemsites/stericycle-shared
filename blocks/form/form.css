@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 :root {
     --form-styles-background-color-primary: var(--color-white);
     --form-styles-label-color: var(--color-text-secondary);
@@ -426,6 +427,24 @@ main .form .field-wrapper.field-valid textarea:focus,
 main .form .field-wrapper.field-valid select:focus {
     outline: 3px solid var(--color-primary-1);
     outline-offset: 3px;
+}
+
+main .form input[type="radio"]:focus,
+main .form .field-wrapper.field-valid input[type="radio"]:focus,
+main .form .field-wrapper.field-invalid input[type="radio"]:focus {
+    outline: none;
+    border-radius: 36px;
+    border: 0.5px solid var(--color-primary-1);
+    box-shadow: 0 0 0 2px var(--color-primary-1);
+}
+
+main .form input[type="radio"]:checked,
+main .form .field-wrapper.field-valid input[type="radio"],
+main .form .field-wrapper.field-invalid input[type="radio"] {
+    outline: none;
+    border-radius: 36px;
+    border: 1.5px solid var(--color-primary-1);
+    box-shadow: 0 0 0 0.5px var(--color-primary-1);
 }
 
 main .file-wrapper.decorated input[type="file"] {
