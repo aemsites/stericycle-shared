@@ -819,7 +819,9 @@
               line-height: 2rem;
 
               &::before {
+                display: inline-block;
                 font-family: var(--font-family-fa-free);
+                text-decoration: none;
                 content: '\f3c5';
                 margin-right: 8px;
               }

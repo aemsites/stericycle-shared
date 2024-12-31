@@ -392,6 +392,12 @@ main .section.yellow-button-no-border  a.button {
   line-height: 2pc;
 }
 
+main .section.round-border {
+  border-radius: 1rem;
+  max-width: 96%;
+  margin: auto;
+}
+
 /* remove bullets for list items in columns -  might be too aggressive */
 main div.column-with-list li::before {
   content: none;
@@ -521,7 +527,6 @@ a.button.primary:hover, button.primary:hover{
 a.button.primary:focus-visible , button.primary:focus-visible {
   outline: 3px solid var(--color-primary-1);
   outline-offset: 3px;
-  border: 3px solid var(--color-bg-secondary);
 }
 
 a.button.secondary, button.secondary {
@@ -650,6 +655,9 @@ main .section p:not(.button-container) a {
   text-decoration: underline;
 }
 
+main .section div.button-container a {
+  text-decoration: none;
+}
 
 /* section styles */
 
@@ -657,7 +665,7 @@ main .section.light,
 main .section.highlight,
 main .section.gray-background,
 main .block.gray-background {
-  background-color: var(--color-gray);
+  background-color: var(--color-bg-secondary);
 }
 
 main > div.section.gray-background > div.default-content-wrapper h1,
@@ -675,7 +683,7 @@ main > div.section.gray-background > div.default-content-wrapper p {
 
 main .section.navy-background,
 main .block.navy-background {
-  background-image: linear-gradient(180deg, var(--color-primary-2) 0, var(--color-primary-2));
+  background-color: var(--color-bg-tertiary);
 }
 
 @media screen and (min-width: 576px /* breakpoint-s */) {
@@ -713,7 +721,7 @@ main .section.shredded-paper-background > div:first-of-type > p > span.icon > im
 
 main .section.blue-background,
 main .block.blue-background {
-  background-color: var(--color-primary-1);
+  background-color: var(--color-accent-1);
 }
 
 main .block.center-align * {
@@ -1181,8 +1189,33 @@ main .section.with-image > div.section-image-wrapper:first-child {
   font-size: 16px;
 }
 
+main .section.standard-margin-bottom {
+  margin-bottom: 80px !important;
+}
+
 main .section.extra-margin-bottom {
-  margin-bottom: 2rem;
+  margin-bottom: 160px !important;
+}
+
+main .section.rounded-corners {
+  border-radius: 16px;
+}
+
+main div.section.background-primary-image {
+  background-size: contain;
+  background-origin: content-box;
+  background-position: right bottom;
+  background-image: url("/images/media_1dc871139c98397c8c15a9cf976ee13f69be2ab57.png");
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+main div.section.background-secondary-image {
+  background-size: auto;
+  background-position: right bottom;
+  background-image: url("/images/media_1dc871139c98397c8c15a9cf976ee13f69be2ab57.png");
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
