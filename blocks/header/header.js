@@ -11,16 +11,20 @@ export default async function decorate(block) {
   }
 
   try {
-    const cssLoaded = loadCSS(`${window.hlx.codeBasePath}/blocks/header/${navMeta}.css`);
+    const cssLoaded = loadCSS(
+      `${window.hlx.codeBasePath}/blocks/header/${navMeta}.css`,
+    );
     const jsLoaded = new Promise((resolve) => {
       (async () => {
         try {
-          const mod = await import(`${window.hlx.codeBasePath}/blocks/header/${navMeta}.js`);
+          const mod = await import(
+            `${window.hlx.codeBasePath}/blocks/header/${navMeta}.js`
+          );
 
           if (mod.default) {
             await mod.default(block);
           }
-        } catch (error) {          
+        } catch (error) {
           // eslint-disable-next-line no-console
           console.log(`failed to load sub-module for ${navMeta}`, error);
         }
