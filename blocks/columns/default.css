@@ -57,14 +57,9 @@
   display: block;
 }
 
-main .columns span.icon > img {
+main .columns:not(.xxxl-icons) span.icon > img {
   width:2.5rem;
   height:2.5rem;
-}
-
-main .block.columns.xxxl-icons .icon img {
-  width: var(--icon-size-xxxl);
-  height: var(--icon-size-xxxl);
 }
 
 main .columns.numeric-list span.icon {
