@@ -1107,11 +1107,6 @@ main .xxxl-icons .icon {
   height: var(--icon-size-xxxl);
 }
 
-main .block.columns.xxxl-icons .icon img {
-  width: var(--icon-size-xxxl);
-  height: var(--icon-size-xxxl);
-}
-
 main .list-style-more-space li {
   padding-bottom: 1rem;
 }
