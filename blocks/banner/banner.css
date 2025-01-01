@@ -85,3 +85,7 @@
   font-size: 20px;
   margin: auto;
 }
+
+.block.banner .banner-content p:has(strong+a) a:any-link {
+  color: var(--color-yellow);
+}
