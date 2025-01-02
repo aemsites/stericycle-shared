@@ -178,12 +178,21 @@ main .section.featuretable-container > div {
 .section.featuretable-container.cyan-border.flex-row .default-content-wrapper p:first-of-type a {
   background-color: var(--color-white);
   color: var(--color-black);
-  border-color: var(--color-black);
+  border: 2px solid var(--color-dark-gunmetal);
 }
 
 .section.featuretable-container.cyan-border.flex-row .default-content-wrapper p:last-of-type a {
   background-color: var(--color-yellow);
   color: var(--color-black);
+}
+
+.section.featuretable-container.cyan-border.flex-row .default-content-wrapper p:first-of-type a:hover {
+  color: var(--color-white);
+  background-color: var(--color-black);
+}
+
+.section.featuretable-container.cyan-border.flex-row .default-content-wrapper p:last-of-type a:hover {
+  border: 2px solid var(--color-dark-gunmetal);
 }
 
 .section.featuretable-container.cyan-border.flex-row .text-wrapper {
