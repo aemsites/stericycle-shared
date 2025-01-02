@@ -667,6 +667,8 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
+  loadHeader(doc.querySelector('header'));
+  loadFooter(doc.querySelector('footer'));
   document.documentElement.lang = getLocaleAsBCP47();
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -695,9 +697,6 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
-
-  loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
 }
 
 /**
