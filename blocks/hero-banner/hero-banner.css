@@ -93,14 +93,35 @@
 }
 
 @media screen and (min-width: 768px) {
+    .hero-banner-content-text {
+        padding: 0 0 64px;
+        max-width: 78%;
+    }
+
+    .hero-banner-full .hero-banner-content {
+        align-items: center;
+    }
+
+    .hero-banner-full .hero-banner-content-text {
+        text-align: center;
+        align-items: center;
+        padding: 80px 0 0;
+        z-index: 1;
+    }
+
+    .hero-banner-full .hero-banner-promo-badge {
+        margin-bottom: 32px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
     .hero-banner-content {
         flex-direction: row;
         align-items: flex-start;
     }
 
     .hero-banner-content-text {
-        padding: 80px 0;
-        padding-left: 40px;
+        padding: 80px 0 0 80px;
         max-width: 700px;
     }
 
@@ -120,12 +141,13 @@
     .hero-banner-asset {
         margin-bottom: 0;
         max-width: 838px;
-        height: 70%;
+        height: 545px;
     }
 
     .hero-banner-asset img {
-        object-fit: cover;
-        height: 70%;
+        object-fit: contain;
+        object-position: top;
+        height: 545px;
     }
 
     /* Variants */
@@ -143,20 +165,6 @@
         align-items: flex-start;
     }
 
-    .hero-banner-full .hero-banner-content {
-        padding: 0 40px;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hero-banner-full .hero-banner-content-text {
-        text-align: center;
-        align-items: center;
-        padding-left: 0;
-        max-width: 700px;
-        z-index: 1;
-    }
-
     .hero-banner-full .hero-banner-asset {
         position: absolute;
         max-width: 100%;
@@ -168,21 +176,5 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
-    }
-}
-
-@media screen and (min-width: 1200px) {
-    .hero-banner-content-text {
-        padding-left: 80px;
-    }
-
-    .hero-banner-asset {
-        height: 545px;
-    }
-
-    .hero-banner-asset img {
-        object-fit: contain;
-        object-position: top;
-        height: 545px;
     }
 }
