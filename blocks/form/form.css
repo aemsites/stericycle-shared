@@ -190,10 +190,6 @@ main .form input[type="checkbox"]:checked::after {
     border-right: 1px solid var(--color-primary-1);
 }
 
-main .form input[type="checkbox"]:hover {
-    background-color:  var(--color-primary-1);
-}
-
 main .form input[type="checkbox"]:focus {
   outline: none;
 }
@@ -225,11 +221,6 @@ main .form input[type="checkbox"]:focus-visible:hover {
 }
 
 main .form input[type="checkbox"]:hover:focus-visible::after {
-    border-bottom: 1px solid var(--color-white);
-    border-right: 1px solid var(--color-white);
-}
-
-main .form input[type="checkbox"]:hover:not(:focus-visible)::after {
     border-bottom: 1px solid var(--color-white);
     border-right: 1px solid var(--color-white);
 }
@@ -687,6 +678,15 @@ main .form form .wizard.left .panel-wrapper{
 }
 
 @media (min-width: 1200px) {
+    main .form input[type="checkbox"]:hover {
+        background-color:  var(--color-primary-1);
+    }
+
+    main .form input[type="checkbox"]:hover:not(:focus-visible)::after {
+        border-bottom: 1px solid var(--color-white);
+        border-right: 1px solid var(--color-white);
+    }
+
     main .form form .checkbox-wrapper,
     main .form form .form-textarea-wrapper,
     main .form form .file-wrapper,
@@ -1089,6 +1089,7 @@ main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-
 }
 
 @media (max-width: 1000px) {
+
     main .footer-subscription-form form .panel-wrapper {
         grid-template-columns: 1fr;
     }
