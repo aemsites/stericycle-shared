@@ -1089,7 +1089,6 @@ main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-
 }
 
 @media (max-width: 1000px) {
-
     main .footer-subscription-form form .panel-wrapper {
         grid-template-columns: 1fr;
     }
