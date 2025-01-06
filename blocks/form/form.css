@@ -700,10 +700,6 @@ main .form form .wizard.left .panel-wrapper{
         flex: 1 0 100%;
     }
 
-    main .form form .panel-wrapper{
-        gap: var(--form-field-vert-gap) var(--form-field-horz-gap);
-    }
-
     main .form form .panel-wrapper {
         flex-flow: row wrap;
         gap: 10px 15px;
