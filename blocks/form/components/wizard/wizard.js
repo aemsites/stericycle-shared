@@ -1,4 +1,6 @@
 import { createButton } from '../../lib/util.js';
+import { sendDigitalDataEvent } from '../../../../scripts/martech.js';
+import { getFormName } from '../../utils.js';
 
 export class WizardLayout {
   inputFields = 'input,textarea,select';
@@ -118,9 +120,12 @@ export class WizardLayout {
   static createMenu(children) {
     const ul = document.createElement('ul');
     ul.className = 'wizard-menu-items';
+
     children.forEach((child, index) => {
       const li = document.createElement('li');
-      li.innerHTML = child.querySelector(':scope > legend')?.innerHTML || '';
+      const span = document.createElement('span');
+      span.innerHTML = `Step ${index + 1}`;
+      li.append(span);
       li.className = 'wizard-menu-item';
       li.dataset.index = index;
       if (child.hasAttribute('data-visible')) {
@@ -184,6 +189,15 @@ const layout = new WizardLayout();
 
 export default function wizardLayout(panel) {
   layout.applyLayout(panel);
+  panel.addEventListener('wizard:navigate', (event) => {
+    const { prevStep, currStep } = event.detail;
+    const formName = getFormName(panel.closest('form'));
+    sendDigitalDataEvent({
+      event: currStep?.index > prevStep?.index ? 'nextStep' : 'previousStep',
+      formName,
+      formStep: currStep?.index,
+    });
+  });
   return panel;
 }
 

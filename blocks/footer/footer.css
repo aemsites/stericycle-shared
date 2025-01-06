@@ -790,6 +790,7 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
   footer .default-content-wrapper .columns.quote p:nth-child(3),
   footer .default-content-wrapper .columns.quote p:nth-child(4) {
     gap: 0 1.5rem;
+    grid-template-columns: 4.62% 1fr;
   } 
 }
 
@@ -797,6 +798,7 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
   footer .default-content-wrapper .columns.quote p:nth-child(3),
   footer .default-content-wrapper .columns.quote p:nth-child(4) {
     gap: 0 1.2rem;
+    grid-template-columns: 6.62% 1fr;
   }
 }
 
