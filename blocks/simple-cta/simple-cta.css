@@ -80,7 +80,7 @@
 
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
-  .simple-cta.alt a.button {
+  .simple-cta.alt .button-container a.button {
     width: 33%;
   }
 
