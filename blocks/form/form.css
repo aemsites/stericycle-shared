@@ -677,7 +677,8 @@ main .form form .wizard.left .panel-wrapper{
   flex: 1;
 }
 
-@media (min-width: 1200px) {
+/* Styles for devices that support hover (e.g., desktop) */
+@media (hover: hover) and (pointer: fine) {
     main .form input[type="checkbox"]:hover {
         background-color:  var(--color-primary-1);
     }
@@ -686,7 +687,9 @@ main .form form .wizard.left .panel-wrapper{
         border-bottom: 1px solid var(--color-white);
         border-right: 1px solid var(--color-white);
     }
+}
 
+@media (min-width: 1200px) {
     main .form form .checkbox-wrapper,
     main .form form .form-textarea-wrapper,
     main .form form .file-wrapper,
