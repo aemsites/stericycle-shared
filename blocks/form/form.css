@@ -200,10 +200,6 @@ main .form input[type="checkbox"]:checked::after {
     border-right: 1px solid var(--color-primary-1);
 }
 
-main .form input[type="checkbox"]:hover {
-    background-color:  var(--color-primary-1);
-}
-
 main .form input[type="checkbox"]:focus {
   outline: none;
 }
@@ -235,11 +231,6 @@ main .form input[type="checkbox"]:focus-visible:hover {
 }
 
 main .form input[type="checkbox"]:hover:focus-visible::after {
-    border-bottom: 1px solid var(--color-white);
-    border-right: 1px solid var(--color-white);
-}
-
-main .form input[type="checkbox"]:hover:not(:focus-visible)::after {
     border-bottom: 1px solid var(--color-white);
     border-right: 1px solid var(--color-white);
 }
@@ -690,6 +681,18 @@ main .get-a-quote-form-alternate.grey-background form .panel-wrapper{
 
 main .form form .wizard.left .panel-wrapper{
   flex: 1;
+}
+
+/* Styles for devices that support hover (e.g., desktop) */
+@media (hover: hover) and (pointer: fine) {
+    main .form input[type="checkbox"]:hover {
+        background-color:  var(--color-primary-1);
+    }
+
+    main .form input[type="checkbox"]:hover:not(:focus-visible)::after {
+        border-bottom: 1px solid var(--color-white);
+        border-right: 1px solid var(--color-white);
+    }
 }
 
 @media (min-width: 1200px) {
