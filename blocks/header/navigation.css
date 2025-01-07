@@ -528,7 +528,7 @@ ul {
 }
 
 .hamburger-menu.open span:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
+  transform: translateY(11px) rotate(45deg);
 }
 
 .hamburger-menu.open span:nth-child(2) {
@@ -536,7 +536,7 @@ ul {
 }
 
 .hamburger-menu.open span:nth-child(3) {
-  transform: translateY(-10px) rotate(-45deg);
+  transform: translateY(-11px) rotate(-45deg);
 }
 
 .ctas-container-mobile {
