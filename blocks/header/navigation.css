@@ -454,6 +454,7 @@ ul {
   position: fixed;
   top: 60px;
   width: 100%;
+  max-width: 100%;
   height: 60%;
   min-height: 60%;
 }
@@ -646,6 +647,7 @@ ul {
 
   .contact-modal {
     left: 50%;
+    max-width: 480px;
   }
 
   .search-modal {
