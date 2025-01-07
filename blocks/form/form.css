@@ -656,7 +656,7 @@ main form .panel-wrapper {
 main .form form .panel-wrapper{
   display: grid;
   grid-template-columns: repeat(var(--form-columns), minmax(0, 1fr));
-  gap: var(--form-field-vert-gap) var(--form-field-horz-gap);
+  gap: var(--form-field-vert-gap) 0;
 }
 
 main .form form .repeat-wrapper{
