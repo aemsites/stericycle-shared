@@ -33,7 +33,7 @@ nav.open {
   max-height: calc(100vh - 60px);
 }
 
-ul {
+nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
