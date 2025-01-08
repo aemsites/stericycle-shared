@@ -23,7 +23,7 @@ function initDataLayer() {
         language: getLocaleAsBCP47(),
         pageURL: window.location.href,
         currentPagePath: window.location.pathname,
-        pageType: getMetadata('template') || '', // TODO: This is not a 1:1 match to the old pageTypes
+        pageType: getMetadata('template') || '',
         pageDescription: getMetadata('og:description'),
         country: 'US', // TODO: fetch country dynamically?
       },
@@ -60,6 +60,9 @@ function initDataLayer() {
       formType: ev?.formType !== undefined ? ev.formType : null,
       formName: ev?.formName !== undefined ? ev.formName : null,
       formStep: ev?.formStep !== undefined ? ev.formStep : null,
+      modalName: ev?.modalName !== undefined ? ev.modalName : null,
+      triggerType: ev?.triggerType !== undefined ? ev.triggerType : null,
+      formElement: ev?.formElement !== undefined ? ev.formElement : null,
       searchType: ev?.searchType !== undefined ? ev.searchType : null,
       searchTerm: ev?.searchTerm !== undefined ? ev.searchTerm : null,
       searchResultRange: ev?.searchResultRange !== undefined ? ev.searchResultRange : null,
@@ -74,6 +77,22 @@ function initDataLayer() {
   };
 }
 
+async function initAdobeDataLayer() {
+  await loadScript('/scripts/adobe-client-data-layer.min.js', { async: '', defer: '' });
+}
+
+/**
+ * Initialize GTM dataLayer
+ */
+function initGTM() {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    pageCategory: getMetadata('page-category') || '',
+    pageService: getMetadata('page-service') || '',
+    pageType: getMetadata('page-type') || '',
+  });
+}
+
 async function initLaunch(env) {
   const launchUrls = {
     dev: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js',
@@ -86,8 +105,48 @@ async function initLaunch(env) {
   await loadScript(launchUrls[env], { async: '' });
 }
 
-// eslint-disable-next-line import/prefer-default-export
+function cmpLoaded() {
+  window.adobeDataLayer = window.adobeDataLayer || [];
+  window.adobeDataLayer.push({
+    event: 'cmp:loaded',
+  });
+}
+
 export async function initMartech(env) {
   initDataLayer();
+  initGTM();
+  await initAdobeDataLayer();
   await initLaunch(env);
+  await cmpLoaded();
+}
+
+export async function addCookieBanner() {
+  const token = getMetadata('cookie-banner-token');
+  if (!token || token.trim() === '') {
+    return; // no token -> no cookie banner
+  }
+  await loadScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js', { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': token });
+}
+
+/**
+ * Push event to custom 3rd party dataLayer
+ * @param ev event payload
+ */
+export function sendDigitalDataEvent(ev) {
+  if (!window.digitalData) {
+    return; // digitalData not initialized
+  }
+  window.digitalData.event = window.digitalData.event || [];
+  window.digitalData.newEvent(ev);
+}
+
+/**
+ * Push to GTM dataLayer
+ * @param data payload
+ */
+export function pushToDataLayer(data) {
+  if (!window.dataLayer) {
+    window.dataLayer = [];
+  }
+  window.dataLayer.push(data);
 }

@@ -1,24 +1,75 @@
-import { DEFAULT_THANK_YOU_MESSAGE, getSubmitBaseUrl } from './constant.js';
+import { getSubmitBaseUrl } from './constant.js';
+import { appendFragment } from './lib/util.js';
 import { getMetadata } from '../../scripts/aem.js';
+import { sendDigitalDataEvent } from '../../scripts/martech.js';
+import { getFormName } from './utils.js';
+
+function sendDataToAnalytics(form) {
+  const quoteTypeField = form.querySelectorAll("input[name='quote_type'], input[name='Quote_Type'], input[name='QuoteType']");
+  let quoteType = '';
+  if (quoteTypeField) {
+    quoteTypeField.forEach((option) => {
+      const value = option?.value;
+      if (option.type === 'hidden' || option.checked || option.selected) {
+        if (value) {
+          // eslint-disable-next-line no-unsafe-optional-chaining
+          quoteType = value?.charAt(0)?.toUpperCase() + value?.slice(1);
+        }
+      }
+    });
+  }
+
+  const serviceTypeField = form.querySelectorAll("input[name='serviceType1']");
+  let serviceType;
+  if (serviceTypeField) {
+    serviceTypeField.forEach((option) => {
+      const value = option?.value;
+      if (option.type === 'hidden' || option.checked || option.selected) {
+        if (value) {
+          // eslint-disable-next-line no-unsafe-optional-chaining
+          serviceType = value?.charAt(0)?.toUpperCase() + value?.slice(1);
+        }
+      }
+    });
+  }
+  sendDigitalDataEvent({
+    event: 'formSubmit',
+    formName: getFormName(form),
+    formElement: form,
+    quoteType,
+    serviceType,
+  });
+}
 
 // eslint-disable-next-line no-unused-vars
-export function submitSuccess(e, form) {
+export async function submitSuccess(e, form) {
+  sendDataToAnalytics(form);
+  // remove error message if exists
+  const errorMessage = form.querySelector('.form-message.error-message');
+  if (errorMessage) {
+    errorMessage.remove();
+  }
   sessionStorage.setItem('formSubmitted', 'true');
   const { payload } = e;
-  const redirectUrl = payload?.body?.redirectUrl;
-  const thankYouMessage = payload?.body?.thankYouMessage;
-  if (redirectUrl) {
-    window.location.assign(encodeURI(redirectUrl));
-  } else {
+  const thankYouMessageURL = payload?.body?.thankYouMessage;
+  if (thankYouMessageURL) {
     let thankYouMsgEl = form.parentNode.querySelector('.form-message.success-message');
     if (!thankYouMsgEl) {
       thankYouMsgEl = document.createElement('div');
       thankYouMsgEl.className = 'form-message success-message';
     }
-    thankYouMsgEl.innerHTML = thankYouMessage || DEFAULT_THANK_YOU_MESSAGE;
-    form.parentNode.insertBefore(thankYouMsgEl, form);
-    if (thankYouMsgEl.scrollIntoView) {
-      thankYouMsgEl.scrollIntoView({ behavior: 'smooth' });
+    const currentWizardPanel = form.querySelector('.current-wizard-step');
+    if (currentWizardPanel) {
+      currentWizardPanel.querySelectorAll('.field-wrapper').forEach((node) => { node.dataset.visible = 'false'; });
+      await appendFragment(thankYouMsgEl, thankYouMessageURL);
+      currentWizardPanel.append(thankYouMsgEl);
+      form.querySelector('.wizard-button-prev').dataset.visible = 'false';
+      form.querySelector('.wizard-button-next').dataset.visible = 'false';
+      form.querySelector('.submit-wrapper').dataset.visible = 'false';
+    } else {
+      form.querySelectorAll('.field-wrapper:not(.field-header)').forEach((node) => { node.dataset.visible = 'false'; });
+      await appendFragment(thankYouMsgEl, payload?.body?.thankYouMessage);
+      form.append(thankYouMsgEl);
     }
     form.reset();
   }
@@ -27,15 +78,16 @@ export function submitSuccess(e, form) {
 }
 
 // eslint-disable-next-line no-unused-vars
-export function submitFailure(e, form) {
+export async function submitFailure(e, form) {
+  form.classList.add('submit-failure');
+  const { payload } = e;
   let errorMessage = form.querySelector('.form-message.error-message');
   if (!errorMessage) {
     errorMessage = document.createElement('div');
     errorMessage.className = 'form-message error-message';
   }
-  errorMessage.innerHTML = 'Some error occured while submitting the form'; // TODO: translation
+  await appendFragment(errorMessage, payload?.submitErrorMessage);
   form.prepend(errorMessage);
-  errorMessage.scrollIntoView({ behavior: 'smooth' });
   form.setAttribute('data-submitting', 'false');
   form.querySelector('button[type="submit"]').disabled = false;
 }
@@ -134,12 +186,16 @@ export async function submitForm(form, captcha) {
       );
     } else {
       submitFailure({
-        payload: response,
+        payload: {
+          submitErrorMessage: form.dataset.submitErrorMessage,
+        },
       }, form);
     }
   } catch (error) {
     submitFailure({
-      payload: error,
+      payload: {
+        submitErrorMessage: form.dataset.submitErrorMessage,
+      },
     }, form);
   }
 }

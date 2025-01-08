@@ -29,8 +29,8 @@ div.icon-list > div > div {
 }
 
 div.icon-list > div > div span {
-    height: 100%;
-    width: 100%;
+    height: 3.75rem;
+    width: 3.75rem;
 }
 
 main div.icon-list.plain > div > div span {
@@ -77,6 +77,23 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
     margin-bottom: unset;
 }
 
+.section.flex-row div.icon-list > div > div:first-of-type {
+    width: 25%;
+}
+
+.section.flex-row div.icon-list > div > div:nth-of-type(2) {
+    border-left: 4px solid #ff5633;
+    display: flex;
+    align-items: center;
+    height: 70%;
+}
+
+.section.flex-row {
+    max-width: var(--section-width);
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
 @media (min-width: 992px) {
     div.icon-list.plain.block {
         display: grid;
@@ -97,5 +114,24 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
     div.icon-list.plain > div {
         width: 100%;
         align-content: start;
+    }
+
+    .section.icon-list-container.flex-row {
+        display: flex;
+        flex-direction: row; 
+    }
+     
+     .section.icon-list-container.flex-row > .default-content-wrapper {
+         align-self: center;
+     }
+
+     .section.flex-row .icon-list:not(.plain) > div {
+        flex: 0 0 45%;
+    }
+}
+
+@media (min-width: 1500px) {
+    .section.flex-row .icon-list:not(.plain) > div {
+        flex: 0 0 35%;
     }
 }
