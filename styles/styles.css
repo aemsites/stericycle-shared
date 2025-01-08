@@ -495,8 +495,51 @@ main .section.underline-links a {
   text-decoration: underline;
 }
 
+/* viewport based visibility */
 
-/* section styles */
+@media screen and (max-width: 575px /* breakpoint-s */) {
+  main .hide-on-mobile {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 576px /* breakpoint-s */) and (max-width: 1199px /* breakpoint-xl */) {
+  main .hide-on-tablet {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
+  main .hide-on-desktop {
+    display: none;
+  }
+}
+
+main .show-on-mobile,
+main .show-on-tablet,
+main .show-on-desktop {
+  display: none;
+}
+
+@media screen and (max-width: 575px /* breakpoint-s */) {
+  main .show-on-mobile {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 576px /* breakpoint-m */) and (max-width: 1199px /* breakpoint-xl */) {
+  main .show-on-tablet {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
+  main .show-on-desktop {
+    display: block;
+  }
+}
+
+/* background colors */
 
 main .section.light,
 main .section.highlight,
@@ -645,9 +688,9 @@ main .list-style-checkmarks ul {
   list-style: none;
 }
 
-main .list-style-checkmarks li::marker, 
+main .list-style-checkmarks li::marker,
 main .list-style-orange-triangles li::marker,
-main .list-style-big-numbers li::marker, 
+main .list-style-big-numbers li::marker,
 main .list-style-more-space li::marker {
   content: "";
 }
