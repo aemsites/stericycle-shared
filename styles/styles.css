@@ -520,8 +520,10 @@ a.button.primary, button.primary {
   --icon-color: var(--color-primary-1);
 }
 
-a.button.primary:hover, button.primary:hover{
-  outline: 3px solid var(--color-black);
+@media (hover: hover) and (pointer: fine) {
+  a.button.primary:hover, button.primary:hover{
+    outline: 3px solid var(--color-black);
+  }
 }
 
 a.button.primary:focus-visible , button.primary:focus-visible {
