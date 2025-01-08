@@ -537,11 +537,26 @@ a.button.secondary, button.secondary {
   border-radius: 100px;
 }
 
+a.button.secondary.dark, button.secondary.dark {
+  padding: 6px 2rem;
+  background-color: transparent;
+  border: 2px solid var(--color-white);
+  color: var(--color-white);
+  border-radius: 100px;
+}
+
 a.button.secondary:hover, button.secondary:hover {
   background-color: var(--color-primary-1);
   color: var(--color-white);
   border-color: currentcolor;
 }
+
+a.button.secondary.dark:hover, button.secondary.dark:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary-1);
+  border-color: currentcolor;
+}
+
 
 .button-container a.button.secondary:hover .icon,
 .button-container a.button.secondary:focus-visible .icon,
@@ -556,6 +571,14 @@ a.button.secondary:focus-visible, button.secondary:focus-visible {
   outline: 3px solid var(--color-primary-1);
   outline-offset: 3px;
 }
+
+a.button.secondary.dark:focus-visible, button.secondary.dark:focus-visible {
+  background-color: var(--color-white);
+  color: var(--color-primary-1);
+  outline: 3px solid var(--color-primary-1);
+  outline-offset: 3px;
+}
+
 
 @media screen and (min-width: 768px /* breakpoint-m */) {
   a.button:any-link, button {
