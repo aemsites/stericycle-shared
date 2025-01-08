@@ -526,6 +526,13 @@ a.button.primary, button.primary {
   }
 }
 
+/* Prevent :hover styles on touch devices */
+@media (hover: none) {
+  a.button.primary:hover, button.primary:hover {
+    outline: none;
+  }
+}
+
 a.button.primary:focus-visible , button.primary:focus-visible {
   outline: 3px solid var(--color-primary-1);
   outline-offset: 3px;
