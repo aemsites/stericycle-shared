@@ -517,19 +517,19 @@ main .show-on-desktop {
 
 @media screen and (max-width: 575px /* breakpoint-s */) {
   main .show-on-mobile {
-    display: unset;
+    display: block;
   }
 }
 
 @media screen and (min-width: 576px /* breakpoint-m */) and (max-width: 1199px /* breakpoint-xl */) {
   main .show-on-tablet {
-    display: unset;
+    display: block;
   }
 }
 
 @media screen and (min-width: 1200px /* breakpoint-xl */) {
   main .show-on-desktop {
-    display: unset;
+    display: block;
   }
 }
 
