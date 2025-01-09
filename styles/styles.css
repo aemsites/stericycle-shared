@@ -1444,11 +1444,11 @@ main .columns.get-a-quote-popup.block > div:nth-child(1) a {
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(2) {
-  padding: 1rem;
+  padding: 2rem 2rem 0;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) {
-  padding: 2rem;
+  padding: 0 2rem 2rem;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3)  > div {
@@ -1477,6 +1477,7 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div a {
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child {
     font-size: 1.5rem;
     font-weight: 600;
+    line-height: normal;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child > a {
@@ -1489,6 +1490,7 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child > 
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child {
   font-size: 0.875rem;
+  max-width: 88%;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div::after{
