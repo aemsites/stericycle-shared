@@ -1170,8 +1170,6 @@ main .list-style-orange-triangles ul > li {
 
 main .list-style-checkmarks div.card-body ul > li::before {
   content: '✓';
-  position: absolute;
-  left: -1.5rem;
 }
 
 main .list-style-big-numbers h2 {
