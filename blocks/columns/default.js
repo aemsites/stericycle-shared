@@ -104,10 +104,10 @@ export default async function decorate(block) {
   [...block.children].forEach((row) => {
     [...row.children].forEach((col) => {
       const pic = col.querySelector('picture');
-      const link = col.querySelector('a');
+      const link = col.querySelector('picture + a');
 
       if (pic && link && link.href
-        && new URL(link.href).pathname === new URL(link.innerText).pathname) {
+        && new URL(link.href).pathname) {
         link.innerHTML = '';
         link.appendChild(pic);
         isImageLink = true;
