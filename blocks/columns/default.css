@@ -267,6 +267,10 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
   justify-content: center;
 }
 
+main .block.columns.left-align {
+  text-align: left;
+}
+
 .columns.orange-accent-border > div > div::after,
 .columns.orange-accent-border.columns-has-image > div > div > p:not(:has(img))::after {
   background: var(--color-orange);
