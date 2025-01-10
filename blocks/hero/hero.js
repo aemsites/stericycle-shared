@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { createOptimizedPicture, getMetadata } from '../../scripts/aem.js';
 
 export default function decorate(block) {
   const wrapper = block.querySelector('div');
@@ -14,6 +14,22 @@ export default function decorate(block) {
   pictures.forEach((picture, index) => {
     picture.parentElement.remove();
     picture.classList.add('hero-background');
+    const img = picture.querySelector('img');
+
+    if (img) {
+      /* eslint-disable no-param-reassign */
+      picture = createOptimizedPicture(
+        img?.src,
+        img?.alt || 'hero image',
+        true,
+        [
+          { media: '(min-width: 1600px)', width: 3000 },
+          { media: '(min-width: 600px)', width: 2500 },
+          { width: 750 },
+        ],
+      );
+      picture.classList.add('hero-background');
+    }
 
     if (pictures.length === 2) {
       if (index === 0) {

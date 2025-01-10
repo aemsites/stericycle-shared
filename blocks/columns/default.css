@@ -57,7 +57,7 @@
   display: block;
 }
 
-main .columns span.icon > img {
+main .columns:not(.xxxl-icons) span.icon > img {
   width:2.5rem;
   height:2.5rem;
 }
@@ -265,6 +265,10 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 
 .columns.vertical-center-align > div > div {
   justify-content: center;
+}
+
+main .block.columns.left-align {
+  text-align: left;
 }
 
 .columns.orange-accent-border > div > div::after,
