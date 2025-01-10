@@ -141,7 +141,7 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
   align-items: flex-start;
 }
 
-.columns.narrow-icons > div {
+.columns.block.narrow-icons > div {
   align-items: flex-start;
   gap: unset;
   flex-flow: row wrap;
@@ -213,6 +213,9 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 .columns.narrow-icons p.button-container > a {
   border: unset;
   background-color: unset;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-bottom: 0;
 }
 
 .columns.steps h3 {
