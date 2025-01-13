@@ -1700,6 +1700,11 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover::after {
   color: var(--color-black);
 }
 
+/* Reusable Header Styles */
+.quote-title {
+  margin-bottom: 32px;
+}
+
 /* Eyebrow */
 .eyebrow-small {
   font-size: var(--body-font-size-xs);
@@ -1712,6 +1717,10 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover::after {
 @media (min-width: 768px /* breakpoint-m */) {
   .eyebrow-small {
     font-size: var(--body-font-size-s);
+  }
+
+  .quote-title {
+    margin-bottom: 46px;
   }
 }
 
