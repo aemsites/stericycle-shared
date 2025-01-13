@@ -45,9 +45,9 @@ export function convertExcelDate(excelDate) {
  * @param {Boolean} parens whether to wrap the area code in parens
  */
 export function formatPhone(num, parens = false) {
-  const match = num.match(/(\d{3})(\d{3})(\d{4})/);
+  const match = num?.match(/(\d{3})(\d{3})(\d{4})/);
   if (!match) {
-    return num;
+    return num || '';
   }
   const [area, prefix, line] = match.slice(1);
   return parens ? `(${area}) ${prefix}-${line}` : `${area}-${prefix}-${line}`;
