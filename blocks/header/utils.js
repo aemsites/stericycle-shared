@@ -603,7 +603,7 @@ export function addMenuFunctionality(ctasMobile) {
       hamburger.addEventListener('click', listener);
     }
 
-    if(!mobileCtasContainer && isMobile) {
+    if (!mobileCtasContainer && isMobile) {
       const nav = document.querySelector('nav');
 
       nav.append(ctasMobile);
