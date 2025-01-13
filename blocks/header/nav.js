@@ -1,8 +1,4 @@
-import {
-  fetchPlaceholders,
-  getMetadata,
-  isDesktop,
-} from '../../scripts/aem.js';
+import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { button, span } from '../../scripts/dom-helpers.js';
 import { getLocale } from '../../scripts/scripts.js';
 import { loadFragment } from '../fragment/fragment.js';
@@ -129,7 +125,7 @@ export default async function decorate(block) {
   }
 
   // Mobile Ctas
-  if (ctasMobile && !isDesktop()) {
+  if (ctasMobile) {
     const nav = block.querySelector('nav');
 
     nav.append(ctasMobile);
@@ -153,5 +149,5 @@ export default async function decorate(block) {
   block.appendChild(hamburger);
 
   // Menu functionality
-  addMenuFunctionality(block);
+  addMenuFunctionality(ctasMobile);
 }
