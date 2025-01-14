@@ -1,102 +1,6 @@
-import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
+import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { a, p } from '../../scripts/dom-helpers.js';
-import { getLocale } from '../../scripts/scripts.js';
-import { buildBreadcrumb } from './utils.js';
-
-// media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 992px)');
-
-/**
- * loads and decorates the footer
- * @param {Element} footer The footer element
- */
-function createMenuAccordion(footer) {
-  footer.forEach((menu) => {
-    const menuListItems = menu.querySelectorAll(':scope > li');
-    // iterate the nodelist of li elements
-    menuListItems.forEach((item) => {
-      item.classList.add('footer-accordion');
-      // wrap the first link in a wrapper span
-      const itemTitle = item.childNodes[0];
-      // remove the first text inside the li
-      item.childNodes[0].remove();
-      const footerAccordionLinkWrapper = document.createElement('span');
-      footerAccordionLinkWrapper.classList.add('footer-accordion-link-wrapper');
-      footerAccordionLinkWrapper.append(itemTitle);
-      item.prepend(footerAccordionLinkWrapper);
-      const footerAccordionContentWrapper = document.createElement('div');
-      footerAccordionContentWrapper.classList.add('footer-accordion-content-wrapper');
-      const footerAccordionContentInnerWrapper = document.createElement('div');
-      footerAccordionContentInnerWrapper.classList.add('footer-accordion-content-inner-wrapper');
-      footerAccordionContentWrapper.append(footerAccordionContentInnerWrapper);
-
-      // if there is accordion content, create a button to exand/collapse
-      const accordionContent = item.querySelector(':scope > ul');
-      if (accordionContent) {
-        accordionContent.classList.add('footer-accordion-content');
-        const accordionButton = document.createElement('button');
-        accordionButton.classList.add('footer-accordion-button');
-        accordionButton.innerHTML = '<span class="footer-accordion-button-icon">+</span>';
-        footerAccordionLinkWrapper.append(accordionButton);
-
-        // attach the event handler for the new button
-        footerAccordionLinkWrapper.addEventListener('click', () => {
-          if (!isDesktop.matches) {
-            if (footerAccordionContentWrapper.style.height) {
-              footerAccordionContentWrapper.style.height = null;
-              footerAccordionContentWrapper.setAttribute('aria-hidden', true);
-              footerAccordionContentWrapper.classList.remove('active');
-              footerAccordionLinkWrapper.classList.remove('active');
-              footerAccordionLinkWrapper.querySelector('.footer-accordion-button-icon').textContent = '+';
-            } else {
-              footerAccordionContentWrapper.setAttribute('aria-hidden', false);
-              footerAccordionContentWrapper.classList.add('active');
-              footerAccordionLinkWrapper.classList.add('active');
-              footerAccordionContentWrapper.style.height = `${accordionContent.scrollHeight + 40}px`;
-              footerAccordionLinkWrapper.querySelector('.footer-accordion-button-icon').textContent = '-';
-            }
-          }
-        });
-
-        // wrap the accordion content in footerAccordionContentWrapper
-        item.insertBefore(footerAccordionContentWrapper, accordionContent);
-        footerAccordionContentInnerWrapper.append(accordionContent);
-      }
-    });
-  });
-}
-
-/**
- * @param fragment
- * @param footerPath
- * @param locale
- * Creates the modal trigger button in footer
- */
-async function createModalButton(fragment, footerPath, locale) {
-  const ph = await fetchPlaceholders(`/${getLocale()}`);
-  const footerModalPath = getMetadata('footer-modal-path') || '/forms/modals/modal';
-  const modalButtonTitle = ph.requestafreequote || 'Request a Free Quote';
-  const btn = p(
-    { class: 'button-container quote-wrapper' },
-    a({
-      href: footerModalPath,
-      class: 'quote-button button primary',
-      'aria-label': modalButtonTitle,
-    }, modalButtonTitle),
-  );
-  if (footerPath.includes('alt-0-footer')) {
-    const parentWrapper = fragment.querySelector('.default-content-wrapper');
-    // parentWrapper.children[2]?.insertAdjacentElement('beforebegin', btn);
-    // Insert at the end of the parentWrapper
-    parentWrapper.append(btn);
-  } else if (footerPath === `/${locale}/footer-refresh`) {
-    btn.querySelector('a').textContent = ph.getaquote || 'Get a Quote';
-    const parentWrapper = fragment.querySelector('.columns.quote > div > div');
-    // parentWrapper.children[0]?.insertAdjacentElement('beforebegin', btn);
-    parentWrapper.append(btn);
-  }
-}
+import { buildBreadcrumb, buildCompanyLogo, createCountrySelector, createMenuAccordion, createModalButton } from './utils.js';
 
 /**
  * loads and decorates the footer
@@ -112,12 +16,23 @@ export default async function decorate(block) {
   await createModalButton(fragment, footerPath, locale);
   // get url for current page
   const url = window.location.href;
-  // create breadcrumb
+  // build breadcrumb
   const breadcrumb = buildBreadcrumb(url);
-  // find breadcrumb element in footer
-  const breadcrumbElement = fragment.querySelector('.section.footer-breadcrumb .default-content-wrapper p');
+  const breadcrumbElement = fragment.querySelector('.section.footer-breadcrumb');
   if (breadcrumbElement) {
     breadcrumbElement.innerHTML = breadcrumb;
+  }
+  // build company logo
+  const companyLogo = fragment.querySelector('.section.footer-socials .default-content-wrapper');
+  if (companyLogo) {
+    const logo = buildCompanyLogo();
+    companyLogo.prepend(logo);
+  }
+  // build country selector
+  const countrySelector = fragment.querySelector('.section.footer-countries');
+  if (countrySelector) {
+    const countries = createCountrySelector();
+    countrySelector.append(countries);
   }
   // decorate footer DOM
   block.textContent = '';
