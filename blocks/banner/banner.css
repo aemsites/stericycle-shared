@@ -1,5 +1,18 @@
+.section.banner-container:has(.fixed-to-top.block.banner) {
+  background-color: var(--color-blue);
+}
+
+.banner-wrapper {
+  max-width: var(--section-width);
+  margin: auto;
+}
+
 .block.banner {
+  display: flex;
   position: relative;
+  height: 3.875rem;
+  align-items: center;
+  padding: 16px 12px;
 }
 
 .block.banner .button {
@@ -45,47 +58,81 @@
   }
 }
 
-.block.banner > .banner-content > * {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.block.banner > .banner-content > .banner-content-page {
+  display: none;
+}
+
+.block.banner > span {
+  width: 50px;
+  gap: 50px;
+  color: var(--color-yellow);
+  margin-left: 10px;
+}
+
+.block.banner > .banner-content > .banner-content-page.active {
+  display: block;
 }
 
 .block.banner > .banner-actions {
-  position: absolute;
-  top: 0;
-  right: 20px;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-right: 10px;
 }
 
 .block.banner > .banner-actions > .close-button {
-  margin: 0;
-  width: 20px;
-  height: 20px;
-  background-color: rgba(255 255 255 / 50%);
+  width: 10px;
+  height: 10px;
   border: unset;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 0 0 2px 1px;
+  color: unset;
+  background-color: unset;
 }
 
-.block.banner > .banner-actions > .close-button:hover {
-  background-color: var(--color-white);
-  transform: scale(1.2);
-  padding: 0 0 1.5px 0.5px;
-}
-
-.block.banner > .banner-actions > .close-button::before {
-  content: "×";
-  color: #525151;
-  font-size: 20px;
+.fixed-to-top.block.banner > .banner-actions > .close-button::before {
+  content: "X";
+  color: var(--color-yellow);
   margin: auto;
 }
 
-.block.banner .banner-content p:has(strong+a) a:any-link {
+.block.banner .banner-content-page p:has(strong+a) a:any-link,
+.block.banner .banner-content-page p:has(strong > a) a:any-link {
   color: var(--color-yellow);
+}
+
+.fa-chevron-left::before {
+  content: "";
+  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+  margin-left: 8px;
+}
+
+.fa-chevron-right::after {
+  content: "";
+  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+  margin-right: 8px;
+}
+
+button.fa-chevron-left, 
+button.fa-chevron-right {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 22px;
+  text-decoration: unset;
+  border: unset;
+  padding: unset;
+  line-height: unset;
+  text-align: unset;
+  font-style: unset;
+  font-weight: unset;
+  cursor: pointer;
+  color: unset;
+  background-color: unset;
+  white-space: nowrap;
+  overflow: unset;
+  text-overflow: unset;
+  border-radius: unset;
 }

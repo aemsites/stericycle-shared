@@ -466,8 +466,15 @@ async function decorateBanners(main) {
         ),
       );
     } else if (bannerText) {
-      bannerBlock.className = bannerType;
-      bannerBlock.append(p(strong(bannerText)));
+      bannerBlock.className = `banner block ${bannerType} ${bannerColor}`;
+      bannerBlock.append(
+        div(
+          div(
+            { 'data-valign': 'middle' },
+            p(strong(bannerText)),
+          ),
+        ),
+      );
     } else {
       return;
     }
