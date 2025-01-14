@@ -53,15 +53,9 @@ export default async function decorate(block) {
     // Create a unique class name
     const numOfLis = ul.querySelectorAll('li').length;
     const accordionContainer = numOfLis > 10 ? 'footer-accordion-container' : `footer-ul-${index + 1}`;
-    // const uniqueClassName = `footer-ul-${index + 1}`;
     // Add the unique class to the <ul> element
     ul.classList.add(accordionContainer);
   });
   const accordionsContainer = block.querySelectorAll('.footer-accordion-container');
   createMenuAccordion(accordionsContainer);
-  // // Insert the columns-wrapper div inside the default-content-wrapper
-  // const columnsWrapper = block.querySelector('.columns-wrapper');
-  // if (block.querySelector('.default-content-wrapper > .footer-accordion-container')) {
-  //   block.querySelector('.default-content-wrapper > .footer-accordion-container').insertAdjacentElement('afterend', columnsWrapper);
-  // }
 }

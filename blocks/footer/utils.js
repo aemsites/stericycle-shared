@@ -112,14 +112,19 @@ export function buildBreadcrumb(url) {
   breadcrumbLabels.forEach((label, index) => {
     currentPath += `/${pathSegments[index + (languageSegment ? 1 : 0)]}`;
     if (index === breadcrumbLabels.length - 1) {
-      breadcrumb.push(label); // Last segment without URL
+      // Wrap in a span if it's the last segment
+      const lastSegment = document.createElement('span');
+      lastSegment.textContent = label;
+      breadcrumb.push(lastSegment.outerHTML); // Last segment without URL
     } else {
       breadcrumb.push(`<a href="${currentPath}">${label}</a>`);
     }
   });
 
   if (breadcrumbLabels.length === 0) {
-    breadcrumb.push('Home');
+    const lastSegment = document.createElement('span');
+    lastSegment.textContent = 'Home';
+    breadcrumb.push(lastSegment.outerHTML);
   }
 
   const separator = ' <img class="icon icon-chevron-right-white" src="/icons/chevron-right-white.svg" alt=">" loading="lazy"> ';
@@ -167,6 +172,7 @@ export function createCountrySelector() {
 
   const select = document.createElement('select');
   select.id = 'country-selector';
+  select.className = 'custom-icon';
 
   countryData.forEach((country) => {
     const option = document.createElement('option');
