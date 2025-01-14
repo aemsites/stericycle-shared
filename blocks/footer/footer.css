@@ -1,6 +1,14 @@
 /* stylelint-disable media-feature-range-notation */
 /* stylelint-disable no-descending-specificity */
 
+.footer-wrapper {
+  padding: 0;
+}
+
+.footer-wrapper .footer.block {
+  padding: 0;
+}
+
 footer {
   /* padding: 32px 32px 48px; */
   background-color: var(--color-primary-2);
@@ -14,7 +22,7 @@ footer .icon.icon-shredit-logo {
 }
 
 footer .footer-container > .section {
-  padding: 32px;
+  padding: 32px 32px 35px;
   background-color: var(--color-bg-tertiary);
 }
 
@@ -80,6 +88,56 @@ footer .section.columns-container.footer-icon-list .columns.quote p:last-child >
   width: 100%;
   margin: 0;
 }
+
+footer .section.footer-icon-links .faq-wrapper summary {
+  padding-left: 0;
+}
+
+footer .section.footer-icon-links .faq-wrapper .faq.block {
+  gap: 0;
+  margin-bottom: 0;
+}
+
+footer .section.footer-icon-links .faq-wrapper details.faq-item > .faq-item-body {
+  gap: 0;
+  padding: 0;
+  margin-bottom: 35px;
+}
+
+footer .section.footer-icon-links .faq-wrapper details.faq-item > .faq-item-body > p {
+  margin: 0;
+}
+
+footer .section.footer-icon-links .faq-wrapper details.faq-item > .faq-item-body > p.button-container > a {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+footer .section.footer-icon-links .faq-wrapper details.faq-item > .faq-item-body > p.button-container > a:hover {
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+footer .section.footer-icon-links .faq-wrapper summary > h3 {
+  margin: 0;
+  padding: 0;
+  color: var(--color-white);
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  line-height: 140%;
+  letter-spacing: 0.24px;
+}
+
+footer .section.footer-icon-links .faq-wrapper summary > span {
+  top: 30%;
+  filter: brightness(0) saturate(100%) invert(100%) sepia(1%) saturate(7451%) hue-rotate(154deg) brightness(107%) contrast(103%);
+}
+
+
+
+
 
 footer ul li .icon {
   height: 25px;
@@ -711,9 +769,9 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
 }
 
 /* Footer Short Version */
-footer:not(:has(.footer-accordion-content-wrapper)) {
+/* footer:not(:has(.footer-accordion-content-wrapper)) {
   padding: 32px;
-}
+} */
 
 .footer:not(:has(.footer-accordion-content-wrapper)) {
   max-width: 1920px;
