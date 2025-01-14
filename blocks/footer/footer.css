@@ -147,6 +147,12 @@ footer .section.footer-breadcrumb .default-content-wrapper > p {
   margin: 0;
   display: flex;
   align-items: center;
+  gap: 8px;
+}
+
+footer .section.footer-breadcrumb .default-content-wrapper > p > img.icon.icon-chevron-right-white {
+  width: 16px;
+  height: 16px;
 }
 
 footer .section.footer-breadcrumb .default-content-wrapper > p > a > span.icon {

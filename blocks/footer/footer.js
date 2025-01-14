@@ -2,6 +2,7 @@ import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { a, p } from '../../scripts/dom-helpers.js';
 import { getLocale } from '../../scripts/scripts.js';
+import { buildBreadcrumb } from './utils.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 992px)');
@@ -109,6 +110,15 @@ export default async function decorate(block) {
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : `/${locale}/footer-refresh`;
   const fragment = await loadFragment(footerPath);
   await createModalButton(fragment, footerPath, locale);
+  // get url for current page
+  const url = window.location.href;
+  // create breadcrumb
+  const breadcrumb = buildBreadcrumb(url);
+  // find breadcrumb element in footer
+  const breadcrumbElement = fragment.querySelector('.section.footer-breadcrumb .default-content-wrapper p');
+  if (breadcrumbElement) {
+    breadcrumbElement.innerHTML = breadcrumb;
+  }
   // decorate footer DOM
   block.textContent = '';
   const footer = document.createElement('div');
