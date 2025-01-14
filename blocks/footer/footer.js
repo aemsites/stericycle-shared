@@ -135,4 +135,9 @@ export default async function decorate(block) {
   if (block.querySelector('.default-content-wrapper > .footer-accordion-container')) {
     block.querySelector('.default-content-wrapper > .footer-accordion-container').insertAdjacentElement('afterend', columnsWrapper);
   }
+
+  // Prevent logo from turning into button
+  block.querySelectorAll('a:has(.icon-shredit-logo)').forEach((logo) => {
+    logo.classList.remove('button', 'cmp-linkcalltoaction');
+  });
 }
