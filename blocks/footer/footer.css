@@ -769,10 +769,6 @@ footer .default-content-wrapper:nth-child(1):not(:has(.footer-accordion-content-
 }
 
 /* Footer Short Version */
-/* footer:not(:has(.footer-accordion-content-wrapper)) {
-  padding: 32px;
-} */
-
 .footer:not(:has(.footer-accordion-content-wrapper)) {
   max-width: 1920px;
   padding: 2rem 0;
