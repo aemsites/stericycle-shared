@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from '../../scripts/aem.js';
-import { embedWistia } from '../../scripts/scripts.js';
+import { embedWistia } from '../../scripts/wistia.js';
 
 function hasWrapper(el) {
   return !!el.firstElementChild && window.getComputedStyle(el.firstElementChild).display === 'block';

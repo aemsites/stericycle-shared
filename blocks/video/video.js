@@ -4,7 +4,7 @@
  * https://www.hlx.live/developer/block-collection/video
  */
 
-import { embedWistia } from '../../scripts/scripts.js';
+import { embedWistia } from '../../scripts/wistia.js';
 
 function embedYoutube(url, replacePlaceholder, autoplay) {
   const usp = new URLSearchParams(url.search);
