@@ -61,12 +61,12 @@ function openOnPageTime(config, trigger) {
  * @param trigger - The callback to be invoked when user action is triggered.
  */
 function openOnExitIntent(config, trigger) {
-  document.addEventListener('mouseleave', () => {
-    triggerHandler(config, trigger);
-  });
-  document.addEventListener('mouseenter', () => {
-    if (timer) clearTimeout(timer);
-  });
+  // document.addEventListener('mouseleave', () => {
+  //   triggerHandler(config, trigger);
+  // });
+  // document.addEventListener('mouseenter', () => {
+  //   if (timer) clearTimeout(timer);
+  // });
 }
 
 function registerEventListeners() {
