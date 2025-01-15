@@ -47,6 +47,7 @@
   padding: 1rem;
   width: 100%;
   white-space: nowrap;
+  align-items: center;
 }
 
 @media screen and (min-width: 576px /* breakpoint-s */) {
@@ -101,10 +102,16 @@
   margin: auto;
 }
 
-.block.banner .banner-content-page p:has(a) a:any-link,
-.block.banner .banner-content-page p:has(strong+a) a:any-link,
-.block.banner .banner-content-page p:has(strong > a) a:any-link {
+.block.banner p:has(a) a:any-link,
+.block.banner p:has(strong+a) a:any-link,
+.block.banner p:has(strong > a) a:any-link {
   color: var(--color-yellow);
+}
+
+.block.banner p.button-container a:any-link {
+  background-color: var(--color-button-primary);
+  border-color: var(--color-button-primary);
+  color: var(--color-black);
 }
 
 .fa-chevron-left::before {
