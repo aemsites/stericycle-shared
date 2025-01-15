@@ -33,7 +33,7 @@ export function createMenuAccordion(footer) {
         accordionContent.classList.add('footer-accordion-content');
         const accordionButton = document.createElement('button');
         accordionButton.classList.add('footer-accordion-button');
-        accordionButton.innerHTML = '<span class="footer-accordion-button-icon">+</span>';
+        accordionButton.innerHTML = '<span class="footer-accordion-button-icon"><img data-icon-name="home-white" src="/icons/plus-sign.svg" alt="" loading="lazy"></span>';
         footerAccordionLinkWrapper.append(accordionButton);
 
         // attach the event handler for the new button
@@ -44,13 +44,15 @@ export function createMenuAccordion(footer) {
               footerAccordionContentWrapper.setAttribute('aria-hidden', true);
               footerAccordionContentWrapper.classList.remove('active');
               footerAccordionLinkWrapper.classList.remove('active');
-              footerAccordionLinkWrapper.querySelector('.footer-accordion-button-icon').textContent = '+';
+              const plusSign = '<img data-icon-name="home-white" src="/icons/plus-sign.svg" alt="" loading="lazy">';
+              footerAccordionLinkWrapper.querySelector('.footer-accordion-button-icon').innerHTML = plusSign;
             } else {
               footerAccordionContentWrapper.setAttribute('aria-hidden', false);
               footerAccordionContentWrapper.classList.add('active');
               footerAccordionLinkWrapper.classList.add('active');
               footerAccordionContentWrapper.style.height = `${accordionContent.scrollHeight + 40}px`;
-              footerAccordionLinkWrapper.querySelector('.footer-accordion-button-icon').textContent = '-';
+              const minusSign = '<img data-icon-name="home-white" src="/icons/minus-sign.svg" alt="" loading="lazy">';
+              footerAccordionLinkWrapper.querySelector('.footer-accordion-button-icon').innerHTML = minusSign;
             }
           }
         });
