@@ -105,7 +105,8 @@
 }
 
 .block.banner .banner-content-page p:has(strong+a) a:any-link,
-.block.banner .banner-content-page p:has(strong > a) a:any-link {
+.block.banner .banner-content-page p:has(strong > a) a:any-link,
+.block.banner .banner-content-page p:has(a) a:any-link {
   color: var(--color-yellow);
 }
 
