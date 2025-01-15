@@ -1532,6 +1532,13 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover::after {
   color: var(--color-black);
 }
 
+/* Full width will unset the default width of divs under section */
+main .section.full-width > div {
+  max-width: 100%;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
 @media screen and (max-width: 992px) {
   main .page-sidebar .section.get-a-quote-form-wrapper {
     display: none;
