@@ -1,4 +1,4 @@
-.section.banner-container:has(.fixed-to-top.block.banner) {
+.section.banner-container {
   background-color: var(--color-blue);
 }
 
@@ -10,25 +10,31 @@
 .block.banner {
   display: flex;
   position: relative;
-  height: 3.875rem;
   align-items: center;
-  padding: 16px 12px;
+  height: fit-content;
+}
+
+.block.banner > span {
+  display: none;
 }
 
 .block.banner .button {
   margin: 0;
 }
 
-.block.banner.fixed-to-top,
 .block.banner.fixed-to-bottom {
-  position: relative;
+  position: fixed;
   left: 0;
   z-index: 100;
   width: 100%;
 }
 
-.block.banner.fixed-to-top {
+.banner-container:has(.fixed-to-top) {
+  position: sticky;
   top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
 }
 
 .block.banner.fixed-to-bottom {
@@ -36,7 +42,7 @@
 }
 
 .block.banner > .banner-content {
-  position: relative;
+  position: sticky;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -56,17 +62,18 @@
   .block.banner > .banner-content {
     gap: 10rem;
   }
+
+  .block.banner > span {
+    display: block;
+    width: 50px;
+    gap: 50px;
+    color: var(--color-white);
+    margin-left: 10px;
+  }
 }
 
 .block.banner > .banner-content > .banner-content-page {
   display: none;
-}
-
-.block.banner > span {
-  width: 50px;
-  gap: 50px;
-  color: var(--color-yellow);
-  margin-left: 10px;
 }
 
 .block.banner > .banner-content > .banner-content-page.active {
@@ -91,9 +98,9 @@
   background-color: unset;
 }
 
-.fixed-to-top.block.banner > .banner-actions > .close-button::before {
+.block.banner > .banner-actions > .close-button::before {
   content: "X";
-  color: var(--color-yellow);
+  color: var(--color-white);
   margin: auto;
 }
 
@@ -106,12 +113,14 @@
   content: "";
   font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
   margin-left: 8px;
+  color: var(--color-white);
 }
 
 .fa-chevron-right::after {
   content: "";
   font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
   margin-right: 8px;
+  color: var(--color-white);
 }
 
 button.fa-chevron-left, 
