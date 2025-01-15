@@ -39,6 +39,7 @@ export default async function decorate(block) {
   let colLength;
   let symmetricalRow;
   const rowSpanMat = {};
+
   [...block.children].forEach((child, i, tableArr) => {
     const row = document.createElement('tr');
     if (header && headerInfo && i <= (headerInfo - 1)) {
