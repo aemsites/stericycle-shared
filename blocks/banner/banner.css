@@ -27,6 +27,7 @@
   left: 0;
   z-index: 100;
   width: 100%;
+  bottom: 0;
 }
 
 .banner-container:has(.fixed-to-top) {
@@ -35,10 +36,6 @@
   left: 0;
   width: 100%;
   z-index: 100;
-}
-
-.block.banner.fixed-to-bottom {
-  bottom: 0;
 }
 
 .block.banner > .banner-content {
@@ -104,9 +101,9 @@
   margin: auto;
 }
 
+.block.banner .banner-content-page p:has(a) a:any-link,
 .block.banner .banner-content-page p:has(strong+a) a:any-link,
-.block.banner .banner-content-page p:has(strong > a) a:any-link,
-.block.banner .banner-content-page p:has(a) a:any-link {
+.block.banner .banner-content-page p:has(strong > a) a:any-link {
   color: var(--color-yellow);
 }
 
