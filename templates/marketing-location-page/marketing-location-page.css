@@ -29,11 +29,11 @@ main .section > div.hero-wrapper {
   order: 1;
 }
 
-.with-sidebar main > .body-wrapper .page-sidebar {
+.with-sidebar main > .body-wrapper:has(h1.fullScreen) .page-sidebar {
   order: 2;
 }
 
-.with-sidebar main > .body-wrapper .page-content {
+.with-sidebar main > .body-wrapper:has(h1.fullScreen) .page-content {
   order: 3;
 }
 
