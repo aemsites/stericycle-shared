@@ -419,7 +419,6 @@ main .section.columns-container .block.columns.columns-2-cols.icon-list > div > 
 }
 
 main .section.columns-container.close-vertical {
-
   & > .columns-wrapper {
     margin-top: unset;
     margin-bottom: .5rem;
@@ -433,7 +432,7 @@ main .section.columns-container.close-vertical {
     margin-top: unset;
   }
 
-  & > div:not(div:first-of-type):not(div:last-of-type).default-content-wrapper {
+  & > div:not(div:first-of-type, div:last-of-type).default-content-wrapper {
     margin-bottom: 1.5rem;
   }
 }
