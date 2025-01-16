@@ -27,7 +27,7 @@ export default async function decorate(block) {
 
   const lookupTable = {};
   const pages = block.querySelectorAll('a');
-  const queryIdx = (await getQueryIdx('https://main--shredit--stericycle.aem.live/query-index.json')).data;
+  const queryIdx = (await getQueryIdx('/query-index.json')).data;
 
   queryIdx.forEach((item) => {
     if (Object.hasOwn(item, 'path') && Object.hasOwn(item, 'title') && Object.hasOwn(item, 'description') && Object.hasOwn(item, 'teaser')) {
