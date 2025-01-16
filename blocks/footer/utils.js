@@ -90,9 +90,11 @@ export async function createModalButton(fragment, footerPath, locale) {
     parentWrapper.append(btn);
   } else if (footerPath === `/${locale}/footer-refresh`) {
     btn.querySelector('a').textContent = ph.getaquote || 'Get a Quote';
-    const parentWrapper = fragment.querySelector('.columns.quote > div > div');
-    // parentWrapper.children[0]?.insertAdjacentElement('beforebegin', btn);
-    parentWrapper.append(btn);
+    const parentWrappers = fragment.querySelectorAll('.columns.quote > div > div');
+    const parentWrapper = parentWrappers[parentWrappers.length - 1];
+    if (parentWrapper) {
+      parentWrapper.append(btn);
+    }
   }
 }
 
@@ -105,7 +107,7 @@ export function buildBreadcrumb(url) {
   const pathSegments = urlObj.pathname.split('/').filter((segment) => segment);
   const languageSegment = pathSegments[0]?.match(/^[a-z]{2}-[a-z]{2}$/) ? pathSegments[0] : '';
   const homeHref = languageSegment ? `/${languageSegment}` : '/';
-  const homeIcon = `<a href="${homeHref}"><span class="icon icon-home-white"><img data-icon-name="home-white" src="/icons/home-white.svg" alt="" loading="lazy"></span></a>`;
+  const homeIcon = `<a href="${homeHref}"><span class="icon icon-home"></span></a>`;
   const breadcrumbLabels = pathSegments.filter((segment) => segment !== languageSegment)
     .map((segment) => segment.replace(/-/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase()));
   const breadcrumb = [homeIcon];
@@ -129,7 +131,7 @@ export function buildBreadcrumb(url) {
     breadcrumb.push(lastSegment.outerHTML);
   }
 
-  const separator = ' <img class="icon icon-chevron-right-white" src="/icons/chevron-right-white.svg" alt=">" loading="lazy"> ';
+  const separator = '<span class="icon icon-chevron-right"></span>';
   // wrap the breadcrumb in a div with the breadcrumb class
   const breadcrumbDiv = document.createElement('div');
   breadcrumbDiv.className = 'default-content-wrapper';

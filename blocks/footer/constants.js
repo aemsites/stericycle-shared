@@ -14,4 +14,4 @@ export const countryData = [
 ];
 
 // media query match that indicates mobile/tablet width
-export const isDesktop = window.matchMedia('(min-width: 992px)');
+export const isDesktop = window.matchMedia('(min-width: 1200px)');
