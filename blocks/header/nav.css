@@ -1022,6 +1022,14 @@
   }
 }
 
+body:has(.section.banner-container .block.banner.fixed-to-bottom) .floating-contact {
+  bottom: 3.25rem;
+}
+
+body:has(.section.banner-container .block.banner.fixed-to-bottom p.button-container) .floating-contact {
+  bottom: 4.25rem;
+}
+
 @media (min-width: 1400px) {
   .block.header {
     nav {

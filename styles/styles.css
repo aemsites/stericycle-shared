@@ -202,11 +202,15 @@ body.appear {
   display: block;
 }
 
-header {
+body header {
   position: sticky;
   top: 0;
   height: var(--nav-height);
   z-index: 100;
+}
+
+body:has(.section.banner-container .block.banner.fixed-to-top) header {
+  top: 3.25rem;
 }
 
 h1, h2, h3,
@@ -605,8 +609,8 @@ main .section.shredded-paper-background > div:first-of-type > p > span.icon > im
   width: 33%;
 }
 
-main .section.blue-background,
-main .block.blue-background {
+.section.blue-background,
+.block.blue-background {
   background-color: var(--color-blue);
 }
 
@@ -634,9 +638,9 @@ main .section.orange-background {
 
 main .invert-colors,
 main .section.navy-background,
-main .block.navy-background,
+.block.navy-background,
 main .section.blue-background,
-main .block.blue-background {
+.block.blue-background {
   --color-text: var(--color-white);
   --color-heading: var(--color-white);
   --color-link: var(--color-white);
@@ -832,6 +836,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
   main .section.shredded-paper-background-column.two-column.form-container > div,
   main .section.hard-drive-background.two-column.form-container > div {
       padding: 0 2.2rem;
+      margin-left: 0;
   }
 }
 
