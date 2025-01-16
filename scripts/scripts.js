@@ -20,7 +20,7 @@ import {
 import { div } from './dom-helpers.js';
 import ffetch from './ffetch.js';
 // eslint-disable-next-line import/no-cycle
-import { initMartech } from './martech.js';
+import { decorateCtaButtons, initMartech } from './martech.js';
 
 export const BREAKPOINTS = {
   mobile: window.matchMedia('(max-width: 767px)'),
@@ -656,6 +656,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateCtaButtons(main);
   modifyBigNumberList(main);
   decorateSectionTemplates(main);
   consolidateOfferBoxes(main);
