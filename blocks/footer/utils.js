@@ -10,12 +10,9 @@ import { countryData, isDesktop } from './constants.js';
 export function createMenuAccordion(footer) {
   footer.forEach((menu) => {
     const menuListItems = menu.querySelectorAll(':scope > li');
-    // iterate the nodelist of li elements
     menuListItems.forEach((item) => {
       item.classList.add('footer-accordion');
-      // wrap the first link in a wrapper span
       const itemTitle = item.childNodes[0];
-      // remove the first text inside the li
       item.childNodes[0].remove();
       const footerAccordionLinkWrapper = document.createElement('span');
       footerAccordionLinkWrapper.classList.add('footer-accordion-link-wrapper');
@@ -35,8 +32,6 @@ export function createMenuAccordion(footer) {
         accordionButton.classList.add('footer-accordion-button');
         accordionButton.innerHTML = '<span class="footer-accordion-button-icon"><img data-icon-name="home-white" src="/icons/plus-sign.svg" alt="" loading="lazy"></span>';
         footerAccordionLinkWrapper.append(accordionButton);
-
-        // attach the event handler for the new button
         footerAccordionLinkWrapper.addEventListener('click', () => {
           if (!isDesktop.matches) {
             if (footerAccordionContentWrapper.style.height) {
@@ -56,8 +51,6 @@ export function createMenuAccordion(footer) {
             }
           }
         });
-
-        // wrap the accordion content in footerAccordionContentWrapper
         item.insertBefore(footerAccordionContentWrapper, accordionContent);
         footerAccordionContentInnerWrapper.append(accordionContent);
       }
@@ -85,8 +78,6 @@ export async function createModalButton(fragment, footerPath, locale) {
   );
   if (footerPath.includes('alt-0-footer')) {
     const parentWrapper = fragment.querySelector('.default-content-wrapper');
-    // parentWrapper.children[2]?.insertAdjacentElement('beforebegin', btn);
-    // Insert at the end of the parentWrapper
     parentWrapper.append(btn);
   } else if (footerPath === `/${locale}/footer-refresh`) {
     btn.querySelector('a').textContent = ph.getaquote || 'Get a Quote';
@@ -116,10 +107,9 @@ export function buildBreadcrumb(url) {
   breadcrumbLabels.forEach((label, index) => {
     currentPath += `/${pathSegments[index + (languageSegment ? 1 : 0)]}`;
     if (index === breadcrumbLabels.length - 1) {
-      // Wrap in a span if it's the last segment
       const lastSegment = document.createElement('span');
       lastSegment.textContent = label;
-      breadcrumb.push(lastSegment.outerHTML); // Last segment without URL
+      breadcrumb.push(lastSegment.outerHTML);
     } else {
       breadcrumb.push(`<a href="${currentPath}">${label}</a>`);
     }
@@ -132,7 +122,6 @@ export function buildBreadcrumb(url) {
   }
 
   const separator = '<span class="icon icon-chevron-right"></span>';
-  // wrap the breadcrumb in a div with the breadcrumb class
   const breadcrumbDiv = document.createElement('div');
   breadcrumbDiv.className = 'default-content-wrapper';
   breadcrumbDiv.innerHTML = breadcrumb.join(separator);
