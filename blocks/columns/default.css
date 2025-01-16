@@ -431,6 +431,12 @@ main .section.columns-container.close-vertical {
     & > .block.columns {
       margin: 0;
     }
+
+    & > div > div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
   }
 
   & > div:not(div:first-of-type).default-content-wrapper {
