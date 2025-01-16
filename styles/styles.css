@@ -802,7 +802,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
 }
 
 .blog-page main .default-content-wrapper {
-  padding: 30px 0 0;
+  padding: .9375rem 1.5rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -831,6 +831,11 @@ main .section.with-image > div.section-image-wrapper:first-child {
 
   .blog-page main .breadcrumb-wrapper {
     max-width: 960px;
+  }
+
+  main .section.shredded-paper-background-column.two-column.form-container > div,
+  main .section.hard-drive-background.two-column.form-container > div {
+      padding: 0 2.2rem;
   }
 }
 

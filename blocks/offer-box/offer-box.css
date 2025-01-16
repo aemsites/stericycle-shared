@@ -292,9 +292,16 @@
     width: 100%;
 }
 
+.section.two-column-offer .offer-box-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
 @media screen and (min-width: 992px) {
     .section.two-column-offer .offer-box-wrapper {
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
         gap: 2rem;
     }
