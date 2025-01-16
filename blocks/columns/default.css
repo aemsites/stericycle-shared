@@ -423,6 +423,31 @@ main .section.columns-container .block.columns.columns-2-cols.icon-list > div > 
   vertical-align: -0.1em;
 }
 
+main .section.columns-container.close-vertical {
+  & > .columns-wrapper {
+    margin-top: unset;
+    margin-bottom: .5rem;
+
+    & > .block.columns {
+      margin: 0;
+    }
+
+    & > div > div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  & > div:not(div:first-of-type).default-content-wrapper {
+    margin-top: unset;
+  }
+
+  & > div:not(div:first-of-type, div:last-of-type).default-content-wrapper {
+    margin-bottom: 1.5rem;
+  }
+}
+
 
 @media (min-width: 992px /* breakpoint-l */) {
   .columns.block:not(.wrap-mobile) > div {
