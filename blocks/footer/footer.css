@@ -212,6 +212,12 @@ footer .section.columns-container.footer-icon-list .columns.quote > div:last-chi
 
 @media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.columns-container.footer-icon-list .columns.quote > div > div {
+    gap: 24px;
+  }
+}
+
+@media screen and (min-width: 1400px /* breakpoint-xl */) {
+  footer .section.columns-container.footer-icon-list .columns.quote > div > div {
     gap: 32px;
   }
 }
@@ -502,6 +508,13 @@ footer .section.footer-policies ul {
 }
 
 @media screen and (min-width: 1200px /* breakpoint-xl */) {
+  footer .section.footer-policies ul {
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+@media screen and (min-width: 1400px /* breakpoint-xl */) {
   footer .section.footer-policies ul {
     flex-direction: row;
     gap: 48px;
