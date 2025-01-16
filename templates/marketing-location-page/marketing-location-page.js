@@ -96,7 +96,7 @@ export default async function decorate(main) {
     const titleCopy = titleElement.cloneNode(true);
     titleElement.classList.add('fullScreen');
     titleCopy.classList.add('mobile');
-    const titleDefaultContentWrapper = div({class: 'default-content-wrapper'}, titleCopy);
+    const titleDefaultContentWrapper = div({ class: 'default-content-wrapper' }, titleCopy);
     bodyWrapper.prepend(titleDefaultContentWrapper);
 
     await loadBlocks(main.querySelector('div.page-content'));
