@@ -833,11 +833,3 @@ footer .section.footer-menu .footer-accordion-content-wrapper > .footer-accordio
     padding-right: 0;
   }
 }
-
-
-/* Footer Short Version */
-
-/* .footer:not(:has(.footer-accordion-content-wrapper)) {
-  max-width: 1920px;
-  padding: 2rem 0;
-} */
