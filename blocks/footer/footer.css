@@ -38,8 +38,7 @@ footer .footer-container > .section {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
     gap: 0;
-    align-items: stretch;
-    justify-items: stretch;
+    place-items: stretch;
     max-width: 1600px;
     margin: 0 auto;
     width: 100%;
