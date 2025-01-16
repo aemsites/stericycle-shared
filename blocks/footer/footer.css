@@ -9,7 +9,7 @@
   padding: 0;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   .footer-wrapper .footer.block {
     position: relative;
     overflow: hidden;
@@ -32,7 +32,7 @@ footer .footer-container > .section {
   background-color: var(--color-bg-tertiary);
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .footer-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -46,7 +46,7 @@ footer .footer-container > .section {
   }
 }
 
-@media screen and (min-width: 1400px /* breakpoint-xxl */) {
+@media screen and (min-width: 1400px /* breakpoint-xl */) {
   footer .footer-container {
     position: unset;
   }
@@ -58,7 +58,7 @@ footer .section.columns-container.footer-icon-list {
   padding-bottom: 40px;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.columns-container.footer-icon-list {
     grid-area: 1 / 1 / 2 / 5;
     background-color: transparent;
@@ -87,7 +87,7 @@ footer .section.columns-container.footer-icon-list .columns.quote {
   margin: 0;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.columns-container.footer-icon-list .columns.quote {
     display: flex;
     justify-content: space-between;
@@ -108,7 +108,7 @@ footer .section.columns-container.footer-icon-list .columns.quote > div:last-chi
   margin-top: 16px;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.columns-container.footer-icon-list .columns.quote > div:first-child p:last-child {
     margin-bottom: 0;
   }
@@ -128,7 +128,7 @@ footer .section.columns-container.footer-icon-list .columns.quote > div:last-chi
   margin-top: 16px;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.columns-container.footer-icon-list .columns.quote > div:last-child {
     border: none;
     margin: 0;
@@ -154,7 +154,7 @@ footer .section.columns-container.footer-icon-list .columns.quote > div:last-chi
   gap: 0 16px;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.columns-container.footer-icon-list .columns.quote > div:last-child p:not(:last-child) {
     padding: 16px 8px;
   }
@@ -181,7 +181,7 @@ footer .section.columns-container.footer-icon-list .columns.quote > div:last-chi
   margin: 8px 0 0;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.columns-container.footer-icon-list .columns.quote > div:last-child p:last-child {
     margin: 0;
   }
@@ -210,9 +210,9 @@ footer .section.columns-container.footer-icon-list .columns.quote > div:last-chi
   }
 }
 
-@media screen and (min-width: 1400px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.columns-container.footer-icon-list .columns.quote > div > div {
-    gap: 48px;
+    gap: 32px;
   }
 }
 
@@ -221,7 +221,7 @@ footer .section.columns-container.footer-icon-list .columns.quote p:last-child >
   margin: 0;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.columns-container.footer-icon-list .columns.quote p.button-container.quote-wrapper > a {
     padding: 8px 16px;
   }
@@ -232,7 +232,7 @@ footer .section.footer-breadcrumb {
   padding: 16px 24px 0;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-breadcrumb {
     grid-area: 2 / 1 / 3 / 5;
   }
@@ -247,7 +247,7 @@ footer .section.footer-breadcrumb .default-content-wrapper {
   padding: 0;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-breadcrumb .default-content-wrapper {
     max-width: 1600px;
     margin-left: auto;
@@ -316,7 +316,7 @@ footer .section.footer-socials {
   padding-top: 48px;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-socials {
     grid-area: 3 / 1 / 4 / 2;
     padding-right: 24px;
@@ -358,7 +358,7 @@ footer .section.footer-countries {
   padding-top: 24px;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-countries {
     grid-area: 4 / 1 / 5 / 2;
     padding-right: 24px;
@@ -412,7 +412,7 @@ footer .section.footer-compliance {
   padding-top: 16px;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-compliance {
     grid-area: 5 / 1 / 6 / 5;
     padding-top: 38px;
@@ -486,7 +486,7 @@ footer .section.footer-policies {
   padding: 16px 32px 48px;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-policies {
     grid-area: 6 / 1 / 7 / 5;
   }
@@ -501,9 +501,10 @@ footer .section.footer-policies ul {
   padding: 0;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-policies ul {
     flex-direction: row;
+    gap: 48px;
   }
 }
 
@@ -521,9 +522,10 @@ footer .section.footer-policies ul > li > a {
   text-underline-position: from-font;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-policies ul > li > a {
     text-decoration: none;
+    font-weight: var(--font-weight-regular);
   }
 }
 
@@ -533,7 +535,7 @@ footer .section.footer-menu .default-content-wrapper ul.footer-accordion-contain
   padding-left: 0;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-menu {
     grid-area: 3 / 2 / 5 / 5;
     padding: 48px 80px 0 24px;
@@ -545,7 +547,7 @@ footer .section.footer-menu .default-content-wrapper ul.footer-accordion-contain
   }
 }
 
-@media screen and (min-width: 1400px /* breakpoint-xxl */) {
+@media screen and (min-width: 1400px /* breakpoint-xl */) {
   footer .section.footer-menu .default-content-wrapper ul.footer-accordion-container {
     gap: 48px;
   }
@@ -560,7 +562,7 @@ footer .section.footer-menu .default-content-wrapper ul.footer-accordion-contain
   border-bottom: 1px solid var(--color-grey200);
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-menu .default-content-wrapper ul.footer-accordion-container > li {
     overflow: hidden;
     border: none;
@@ -621,7 +623,7 @@ footer .section.footer-menu .default-content-wrapper .footer-accordion-container
   display: none;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-menu .footer-accordion-content-wrapper img {
     display: inline;
     max-width: 100%;
@@ -634,7 +636,7 @@ footer .section.footer-menu .default-content-wrapper .footer-accordion-container
   }
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-menu .footer-accordion-content-wrapper,
   footer .section.footer-menu .footer-accordion-content-wrapper.active {
     position: absolute;
@@ -689,7 +691,7 @@ footer .section.footer-menu .default-content-wrapper .footer-accordion-container
   font-weight: var(--font-weight-bold);
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-menu .default-content-wrapper .footer-accordion-container .footer-accordion-link-wrapper {
     display: inline;
     text-decoration: unset;
@@ -730,7 +732,7 @@ footer .section.footer-menu .default-content-wrapper .footer-accordion-container
   font-size: 1.2rem;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-menu .default-content-wrapper .footer-accordion-container .footer-accordion-link-wrapper button.footer-accordion-button {
     display: none;
   }
@@ -756,7 +758,7 @@ footer .section.footer-menu .footer-accordion-content-wrapper > .footer-accordio
   gap: 4px;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-menu .footer-accordion-content-wrapper > .footer-accordion-content-inner-wrapper > ul {
     padding: 0;
     display: flex;
@@ -769,7 +771,7 @@ footer .section.footer-menu .footer-accordion-content-wrapper > .footer-accordio
   margin: 0;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-menu .footer-accordion-content-wrapper > .footer-accordion-content-inner-wrapper > ul > li {
     margin: 0;
   }
@@ -785,7 +787,7 @@ footer .section.footer-menu .footer-accordion-content-wrapper > .footer-accordio
   letter-spacing: 0.16px;
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-menu .footer-accordion-content-wrapper > .footer-accordion-content-inner-wrapper > ul > li a {
     margin: 0;
     padding: 0;
@@ -802,7 +804,7 @@ footer .section.footer-menu .footer-accordion-content-wrapper > .footer-accordio
   }
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xxl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-breadcrumb,
   footer .section.footer-socials,
   footer .section.footer-countries,
