@@ -2,7 +2,7 @@
   display: grid;
   gap: 43px;
   margin: 4px 0;
-  font-size: var(--body-font-size-s);
+  font-size: var(--body-font-size-default-m);
 }
 
 .flip-cards .wrapper {

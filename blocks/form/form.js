@@ -19,7 +19,7 @@ export default async function decorate(block) {
           wrapper.insertAdjacentElement('afterbegin', input);
           wrapper.classList.add('floating-field');
           if (!input.placeholder) {
-            input.placeholder = '';
+            input.placeholder = ' ';
           }
         }
       });
