@@ -68,14 +68,13 @@ main .section > div.hero-wrapper {
     order: unset;
   }
 
-  .with-sidebar main > .body-wrapper .page-sidebar {
+  .with-sidebar main > .body-wrapper:has(h1.fullScreen) .page-sidebar {
     order: unset;
   }
   
-  .with-sidebar main > .body-wrapper .page-content {
+  .with-sidebar main > .body-wrapper:has(h1.fullScreen) .page-content {
     order: unset;
   }
-  
   .with-sidebar main > .body-wrapper h1.fullScreen {
     display: block;
   }
