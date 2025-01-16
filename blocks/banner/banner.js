@@ -70,6 +70,8 @@ export default async function decorate(block) {
   decorateCloseButton(block);
 
   if (block.classList.contains('fixed-to-top')) {
+    block.classList.add('cmp-notification-bar'); // analytics trigger
+    contentWrapper.classList.add('cmp-carousel__item__content'); // analytics trigger
     const body = block.closest('body');
     const copySection = block.closest('.section').cloneNode(true);
     const copyBlock = copySection.querySelector('.block.banner');
@@ -86,7 +88,9 @@ export default async function decorate(block) {
       copyBlock.prepend(leftChevron);
       copyBlock.append(rightChevron);
     }
-    copyBlock.querySelector('button.close-button').addEventListener('click', () => copyBlock.remove());
+    const closeButton = copyBlock.querySelector('button.close-button');
+    closeButton.classList.add('cmp-carousel__action--close'); // analytics trigger
+    closeButton.addEventListener('click', () => copyBlock.remove());
     body.prepend(copySection);
     block.closest('.section').remove();
   }
