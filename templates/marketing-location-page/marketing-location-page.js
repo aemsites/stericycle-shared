@@ -93,11 +93,13 @@ export default async function decorate(main) {
   if (document.querySelector('body.with-sidebar')) {
     const bodyWrapper = document.querySelector('.body-wrapper');
     const titleElement = document.querySelector('div.page-content > .section.sidebar-left > .default-content-wrapper > h1');
-    const titleCopy = titleElement.cloneNode(true);
-    titleElement.classList.add('fullScreen');
-    titleCopy.classList.add('mobile');
-    const titleDefaultContentWrapper = div({ class: 'default-content-wrapper' }, titleCopy);
-    bodyWrapper.prepend(titleDefaultContentWrapper);
+    if(titleElement){
+      const titleCopy = titleElement.cloneNode(true);
+      titleElement.classList.add('fullScreen');
+      titleCopy.classList.add('mobile');
+      const titleDefaultContentWrapper = div({ class: 'default-content-wrapper' }, titleCopy);
+      bodyWrapper.prepend(titleDefaultContentWrapper);
+    }
 
     await loadBlocks(main.querySelector('div.page-content'));
     await loadBlocks(main.querySelector('div.page-sidebar'));
