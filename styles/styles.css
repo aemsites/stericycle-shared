@@ -499,6 +499,35 @@ main .section.underline-links a {
   text-decoration: underline;
 }
 
+main .section.no-buttons {
+  & > .default-content-wrapper {
+
+    & > p.button-container a {
+      font-family: var(--font-family-body);
+      display: inline-block;
+      text-decoration: underline;
+      border: unset;
+      padding: unset;
+      line-height: unset;
+      text-align: center;
+      font-style: normal;
+      font-weight: unset;
+      cursor: pointer;
+      color: var(--color-blue);
+      background-color: unset;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border-radius: 100px;
+    }
+
+    & > ul li {
+      text-decoration: underline;
+    }
+  }
+}
+
 /* cookie banner / button */
 
 #ot-sdk-btn-floating {
