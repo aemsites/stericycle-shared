@@ -501,7 +501,6 @@ main .section.underline-links a {
 
 main .section.no-buttons {
   & > .default-content-wrapper {
-
     & > p.button-container a {
       font-family: var(--font-family-body);
       display: inline-block;
