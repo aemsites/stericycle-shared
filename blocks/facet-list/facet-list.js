@@ -1,7 +1,7 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createPostLink, formatDate, getDateFromExcel, getLocale } from '../../scripts/scripts.js';
 import {
-  createOptimizedPicture, decorateButtons, fetchPlaceholders, readBlockConfig,
+  createOptimizedPicture, decorateButtons, decorateIcon, fetchPlaceholders, readBlockConfig,
 } from '../../scripts/aem.js';
 import { div } from '../../scripts/dom-helpers.js';
 
@@ -56,15 +56,18 @@ function decorateResults(posts, list) {
 
 
     // cta
-
     const ctaWrapper = document.createElement('div');
+    const icon = document.createElement('span');
 
     const button = createPostLink(post);
 
+    icon.classList.add('icon', 'icon-right-arrow-bolder');
     button.textContent = 'Read More';
+    button.append(icon);
     ctaWrapper.append(button);
 
     decorateButtons(ctaWrapper);
+    decorateIcon(icon);
 
     itemRight.append(ctaWrapper);
 

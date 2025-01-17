@@ -8,6 +8,7 @@ import {
 import {
   createOptimizedPicture,
   decorateButtons,
+  decorateIcon,
   readBlockConfig,
 } from '../../scripts/aem.js';
 
@@ -92,11 +93,16 @@ function addPost(list, post, isLoading) {
   content.append(ctaWrapper);
 
   const button = createPostLink(post);
+  const icon = document.createElement('span');
 
+  icon.classList.add('icon', 'icon-right-arrow-bolder');
   button.textContent = 'Read More';
+
+  button.append(icon);
   ctaWrapper.append(button);
 
   decorateButtons(ctaWrapper);
+  decorateIcon(icon);
 }
 
 export default function decorate(block) {
