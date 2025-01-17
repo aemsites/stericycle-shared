@@ -47,7 +47,11 @@
 
 .post-teaser-list > .teaser-list > .teaser > .teaser-content a.button {
   margin: 0;
-  padding: 0;
+}
+
+.post-teaser-list > .teaser-list > .teaser > .teaser-content a.button .icon {
+  width: 16px;
+  height: 16px;
 }
 
 .post-teaser-list > .teaser-list > .teaser > .teaser-content > .teaser-title {

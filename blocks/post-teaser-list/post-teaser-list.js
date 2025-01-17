@@ -13,7 +13,16 @@ import {
 } from '../../scripts/aem.js';
 
 
-function addPost(list, post, isLoading) {
+/**
+ * Add a post to the list
+ * @param {HTMLElement} list
+ * @param {string} ctaType
+ * @param {object} post
+ * @param {boolean} isLoading
+ * @returns {void}
+ *
+*/
+function addPost(list, ctaType, post, isLoading) {
   // create teaser
   const teaser = document.createElement('li');
   teaser.classList.add('teaser');
@@ -88,25 +97,38 @@ function addPost(list, post, isLoading) {
 
 
   // ctas
-  const ctaWrapper = document.createElement('div');
-
-  content.append(ctaWrapper);
-
   const button = createPostLink(post);
   const icon = document.createElement('span');
 
-  icon.classList.add('icon', 'icon-right-arrow-bolder');
+  icon.classList.add('icon', 'icon-right-arrow');
   button.textContent = 'Read More';
 
-  button.append(icon);
-  ctaWrapper.append(button);
 
-  decorateButtons(ctaWrapper);
+  const ctasWrapper = document.createElement('p');
+  let buttonWrapper = document.createElement('div');
+  buttonWrapper.append(button);
+
+
+  if(ctaType === 'primary') {
+    buttonWrapper = document.createElement('strong');
+  }
+
+  if(ctaType === 'secondary') {
+    buttonWrapper = document.createElement('em');
+  }
+
+  button.appendChild(icon);
+  buttonWrapper.appendChild(button);
+  ctasWrapper.appendChild(buttonWrapper);
+  content.appendChild(ctasWrapper);
+
+  decorateButtons(buttonWrapper);
   decorateIcon(icon);
 }
 
 export default function decorate(block) {
-  const { type, columns } = readBlockConfig(block);
+  const { type, columns, cta } = readBlockConfig(block);
+
   let columnCount = parseInt(columns, 10);
   if (Number.isNaN(columnCount)) {
     columnCount = 4;
@@ -120,13 +142,13 @@ export default function decorate(block) {
 
   // populate with dummies while loading
   for (let i = 0; i < columnCount; i += 1) {
-    addPost(list, null, true);
+    addPost(list, cta, null, true);
   }
 
   getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then(
     (posts) => {
       list.innerHTML = ''; // Clear dummies
-      posts.forEach((post) => addPost(list, post, false));
+      posts.forEach((post) => addPost(list, cta, post, false));
     },
   );
 }
