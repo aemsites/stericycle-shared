@@ -1,7 +1,7 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { a, p } from '../../scripts/dom-helpers.js';
 import { getLocale } from '../../scripts/scripts.js';
-import { countryData, isDesktop } from './constants.js';
+import { isDesktop } from './constants.js';
 
 /**
  * loads and decorates the footer
@@ -155,10 +155,15 @@ export function buildCompanyLogo() {
  */
 export function createCountrySelector(countryListItems, countryListTitle) {
   const currentUrl = window.location.href;
-
-  const currentCountry = countryData.find((country) => currentUrl.includes(new URL(country.url, window.location.origin).pathname))
-    || countryData.find((country) => country.name === 'United States');
-
+  const countryListArray = Array.from(countryListItems, (item) => {
+    const anchor = item.querySelector('a');
+    return {
+      name: anchor.textContent,
+      url: anchor.href,
+    };
+  });
+  const currentCountry = countryListArray.find((country) => currentUrl.includes(new URL(country.url, window.location.origin).pathname))
+    || countryListArray.find((country) => country.name === 'United States');
   const title = countryListTitle?.firstChild?.nodeValue.trim() || 'Country:';
   const label = document.createElement('label');
   label.setAttribute('for', 'country-selector');
@@ -170,7 +175,7 @@ export function createCountrySelector(countryListItems, countryListTitle) {
 
   countryListItems.forEach((item) => {
     const countryName = item.textContent.trim();
-    const countryDataMatch = countryData.find((country) => country.name === countryName);
+    const countryDataMatch = countryListArray.find((country) => country.name === countryName);
     const option = document.createElement('option');
     option.value = countryDataMatch ? countryDataMatch.url : '';
     option.textContent = countryName;
