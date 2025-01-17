@@ -49,7 +49,7 @@ export default async function decorate(block) {
       titleh3.textContent = cardDetails.title;
       titleh4.textContent = cardDetails.title;
       const desc = document.createElement('p');
-      desc.textContent = cardDetails.teaser ? cardDetails.teaser : cardDetails.description;
+      desc.textContent = cardDetails.teaser !== '0' ? cardDetails.teaser : cardDetails.description;
       if (icon) {
         cardFront.appendChild(icon);
       }
