@@ -153,28 +153,30 @@ export function buildCompanyLogo() {
  * Function to build the country selector element.
  * @returns {HTMLElement} - The country selector element.
  */
-export function createCountrySelector() {
+export function createCountrySelector(countryListItems, countryListTitle) {
   const currentUrl = window.location.href;
 
   const currentCountry = countryData.find((country) => currentUrl.includes(new URL(country.url, window.location.origin).pathname))
     || countryData.find((country) => country.name === 'United States');
 
+  const title = countryListTitle?.firstChild?.nodeValue.trim() || 'Country:';
   const label = document.createElement('label');
   label.setAttribute('for', 'country-selector');
-  label.textContent = 'Country:';
+  label.textContent = title;
 
   const select = document.createElement('select');
   select.id = 'country-selector';
   select.className = 'custom-icon';
 
-  countryData.forEach((country) => {
+  countryListItems.forEach((item) => {
+    const countryName = item.textContent.trim();
+    const countryDataMatch = countryData.find((country) => country.name === countryName);
     const option = document.createElement('option');
-    option.value = country.url;
-    option.textContent = country.name;
-    if (country === currentCountry) {
+    option.value = countryDataMatch ? countryDataMatch.url : '';
+    option.textContent = countryName;
+    if (countryDataMatch === currentCountry) {
       option.selected = true;
     }
-
     select.appendChild(option);
   });
 

@@ -28,10 +28,14 @@ export default async function decorate(block) {
     const logo = buildCompanyLogo();
     companyLogo.prepend(logo);
   }
-  // build country selector
+  // Build country selector
   const countrySelector = fragment.querySelector('.section.footer-countries');
-  if (countrySelector) {
-    const countries = createCountrySelector();
+  const countryListItems = fragment.querySelectorAll('.section.footer-countries ul li ul li');
+  const countryListTitle = fragment.querySelector('.section.footer-countries > .default-content-wrapper > ul > li');
+
+  if (countryListItems.length > 0) {
+    countrySelector.textContent = '';
+    const countries = createCountrySelector(countryListItems, countryListTitle);
     countrySelector.append(countries);
   }
   // decorate footer DOM
@@ -46,7 +50,7 @@ export default async function decorate(block) {
   block.append(footer);
 
   // Select all <ul> elements within the .default-content-wrapper
-  const ulElements = block.querySelectorAll('.default-content-wrapper > ul');
+  const ulElements = block.querySelectorAll('.section.footer-menu .default-content-wrapper > ul');
 
   // Loop through each <ul> element and add a unique class
   ulElements.forEach((ul, index) => {
@@ -56,6 +60,6 @@ export default async function decorate(block) {
     // Add the unique class to the <ul> element
     ul.classList.add(accordionContainer);
   });
-  const accordionsContainer = block.querySelectorAll('.footer-accordion-container');
+  const accordionsContainer = block.querySelectorAll('.section.footer-menu .footer-accordion-container');
   createMenuAccordion(accordionsContainer);
 }
