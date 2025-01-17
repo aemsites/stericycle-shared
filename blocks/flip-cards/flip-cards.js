@@ -30,9 +30,9 @@ export default async function decorate(block) {
   const queryIdx = (await getQueryIdx('/query-index.json')).data;
 
   queryIdx.forEach((item) => {
-    if (Object.hasOwn(item, 'path') && Object.hasOwn(item, 'title') && Object.hasOwn(item, 'description')) {
-      const { path, title, description } = item;
-      lookupTable[path] = { title, description };
+    if (Object.hasOwn(item, 'path') && Object.hasOwn(item, 'title') && Object.hasOwn(item, 'description') && Object.hasOwn(item, 'teaser')) {
+      const { path, title, description, teaser } = item;
+      lookupTable[path] = { title, description, teaser };
     }
   });
 
@@ -49,7 +49,7 @@ export default async function decorate(block) {
       titleh3.textContent = cardDetails.title;
       titleh4.textContent = cardDetails.title;
       const desc = document.createElement('p');
-      desc.textContent = cardDetails.description;
+      desc.textContent = cardDetails.teaser !== '0' ? cardDetails.teaser : cardDetails.description;
       if (icon) {
         cardFront.appendChild(icon);
       }
