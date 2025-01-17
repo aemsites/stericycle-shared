@@ -160,59 +160,7 @@ div.facet .facet-list-container.unhide {
     display: flex;
 }
 
-@media screen and (min-width: 992px) {
-    div.facet-list-container h3 {
-        font-size: 1.625rem;
-    }
 
-    div.section.facet-list-container {
-        display: flex;
-        flex-flow: row;
-        flex-direction: column;
-    }
-
-    div.facet-list-container > div.facet-list-wrapper > div.facet-list-container {
-        display: flex;
-        flex-flow: row;
-    }
-
-    div.facet-list-container > div.default-content-wrapper {
-        width: 100%;
-    }
-
-    div.facet-list-container > div.facet-list-wrapper {
-        width: 100%;
-    }
-
-    div.facet-list-container > div.facet {
-        width: 25%;
-        margin-right: 2rem;
-    }
-
-    div.facet-list-container > div.facet > i.filter-icon {
-        display: none;
-    }
-
-    div.facet-list-container > div.facet > ul {
-        display: unset;
-    }
-
-    div.facet-list-container > div.results {
-        width: 75%;
-        max-width: 75%;
-    }
-
-    div.facet-list-container > div.facet .head > i {
-        display: inline-block;
-        font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
-        text-transform: uppercase;
-        font-style: normal;
-    }
-
-    div.facet .facet-list-container {
-        display: flex;
-    }
-}
 
 div.facet-list-container > div.facet div.facet-group {
     margin: 1.5rem 0;
@@ -284,7 +232,7 @@ div.facet-list-container > div.results div.item-category {
 
 
 div.facet-list-container > div.results .button-container a {
-    padding: 4px 16px;
+    padding: 0;
     margin-top: 8px;
     margin-bottom: 0;
     font-size: var(--body-font-size-s);
@@ -295,8 +243,9 @@ div.facet-list-container > div.results .button-container .icon {
    height: 12px;
 }
 
-div.facet-list-container > div.results .button-container a:not(.primary):not(.secondary) {
-    padding: 0;
+div.facet-list-container > div.results .button-container a.primary,
+div.facet-list-container > div.results .button-container a.secondary {
+    padding: 4px 16px;
 }
 
 div.facet-list-container > div.facet li {
@@ -327,7 +276,7 @@ div.facet-list-container > div.results ul > li {
 div.facet-list-container > div.results ul > li div.item-left {
     border-radius: var(--border-radius-l);
     width: 192px;
-    height: 124px;
+    height: 102px;
     display: flex;
     overflow: hidden;
 }
@@ -343,4 +292,63 @@ div.facet-list-container > div.results img {
     height: 100%;
     object-fit: cover;
     overflow: hidden;
+}
+
+
+@media screen and (min-width: 992px) {
+    div.facet-list-container h3 {
+        font-size: 1.625rem;
+    }
+
+    div.section.facet-list-container {
+        display: flex;
+        flex-flow: row;
+        flex-direction: column;
+    }
+
+    div.facet-list-container > div.facet-list-wrapper > div.facet-list-container {
+        display: flex;
+        flex-flow: row;
+    }
+
+    div.facet-list-container > div.default-content-wrapper {
+        width: 100%;
+    }
+
+    div.facet-list-container > div.facet-list-wrapper {
+        width: 100%;
+    }
+
+    div.facet-list-container > div.facet {
+        width: 25%;
+        margin-right: 2rem;
+    }
+
+    div.facet-list-container > div.facet > i.filter-icon {
+        display: none;
+    }
+
+    div.facet-list-container > div.facet > ul {
+        display: unset;
+    }
+
+    div.facet-list-container > div.results {
+        width: 75%;
+        max-width: 75%;
+    }
+
+    div.facet-list-container > div.facet .head > i {
+        display: inline-block;
+        font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+        text-transform: uppercase;
+        font-style: normal;
+    }
+
+    div.facet .facet-list-container {
+        display: flex;
+    }
+
+    div.facet-list-container > div.results ul > li div.item-left {
+        height: 124px;
+    }
 }

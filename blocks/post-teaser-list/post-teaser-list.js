@@ -12,7 +12,6 @@ import {
   readBlockConfig,
 } from '../../scripts/aem.js';
 
-
 /**
  * Add a post to the list
  * @param {HTMLElement} list
@@ -95,7 +94,6 @@ function addPost(list, ctaType, post, isLoading) {
   // title
   content.append(title);
 
-
   // ctas
   const button = createPostLink(post);
   const icon = document.createElement('span');
@@ -106,11 +104,11 @@ function addPost(list, ctaType, post, isLoading) {
   const ctasWrapper = document.createElement('p');
   let buttonWrapper = document.createElement('div');
 
-  if(ctaType === 'primary') {
+  if (ctaType === 'primary') {
     buttonWrapper = document.createElement('strong');
   }
 
-  if(ctaType === 'secondary') {
+  if (ctaType === 'secondary') {
     buttonWrapper = document.createElement('em');
   }
 

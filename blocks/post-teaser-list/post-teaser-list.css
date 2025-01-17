@@ -47,11 +47,12 @@
 
 .post-teaser-list > .teaser-list > .teaser > .teaser-content a.button {
   margin: 0;
+  padding: 0;
 }
 
-
-.post-teaser-list > .teaser-list > .teaser > .teaser-content a.button:not(.primary):not(.secondary) {
-  padding: 0;
+.post-teaser-list > .teaser-list > .teaser > .teaser-content a.button.primary,
+.post-teaser-list > .teaser-list > .teaser > .teaser-content a.button.secondary {
+  padding: .5rem 2rem;
 }
 
 .post-teaser-list > .teaser-list > .teaser > .teaser-content a.button .icon {

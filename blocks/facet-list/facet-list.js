@@ -34,7 +34,6 @@ function decorateResults(posts, list) {
       categoryDiv.append(categoryLink);
     }
 
-
     // heading
     heading.classList.add('item-title');
     const headingLink = document.createElement('a');
@@ -55,7 +54,6 @@ function decorateResults(posts, list) {
     itemRight.append(categoryDiv, dateDiv, heading);
     item.append(itemRight);
 
-
     // cta
     const ctasWrapper = document.createElement('p');
     let buttonWrapper = document.createElement('div');
@@ -65,11 +63,11 @@ function decorateResults(posts, list) {
     icon.classList.add('icon', 'icon-right-arrow');
     button.textContent = 'Read More';
 
-    if(CTA_TYPE === 'primary') {
+    if (CTA_TYPE === 'primary') {
       buttonWrapper = document.createElement('strong');
     }
 
-    if(CTA_TYPE === 'secondary') {
+    if (CTA_TYPE === 'secondary') {
       buttonWrapper = document.createElement('em');
     }
 
