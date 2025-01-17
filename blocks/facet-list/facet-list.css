@@ -284,9 +284,19 @@ div.facet-list-container > div.results div.item-category {
 
 
 div.facet-list-container > div.results .button-container a {
-    padding: 0;
+    padding: 4px 16px;
     margin-top: 8px;
     margin-bottom: 0;
+    font-size: var(--body-font-size-s);
+}
+
+div.facet-list-container > div.results .button-container .icon {
+   width: 12px;
+   height: 12px;
+}
+
+div.facet-list-container > div.results .button-container a:not(.primary):not(.secondary) {
+    padding: 0;
 }
 
 div.facet-list-container > div.facet li {

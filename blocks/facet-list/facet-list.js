@@ -7,6 +7,7 @@ import { div } from '../../scripts/dom-helpers.js';
 
 const ITEMS_PER_PAGE = 10;
 let CURRENT_PAGE = 1;
+let CTA_TYPE = 'default';
 
 /*
     * This function decorates the results from the query-index.json file
@@ -56,20 +57,29 @@ function decorateResults(posts, list) {
 
 
     // cta
-    const ctaWrapper = document.createElement('div');
+    const ctasWrapper = document.createElement('p');
+    let buttonWrapper = document.createElement('div');
     const icon = document.createElement('span');
-
     const button = createPostLink(post);
 
-    icon.classList.add('icon', 'icon-right-arrow-bolder');
+    icon.classList.add('icon', 'icon-right-arrow');
     button.textContent = 'Read More';
-    button.append(icon);
-    ctaWrapper.append(button);
 
-    decorateButtons(ctaWrapper);
+    if(CTA_TYPE === 'primary') {
+      buttonWrapper = document.createElement('strong');
+    }
+
+    if(CTA_TYPE === 'secondary') {
+      buttonWrapper = document.createElement('em');
+    }
+
+    button.appendChild(icon);
+    buttonWrapper.appendChild(button);
+    ctasWrapper.appendChild(buttonWrapper);
+    itemRight.append(ctasWrapper);
+
+    decorateButtons(buttonWrapper);
     decorateIcon(icon);
-
-    itemRight.append(ctaWrapper);
 
     list.append(item);
   });
@@ -372,6 +382,7 @@ const createFacet = (facets, topDiv, sheets) => {
 
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
+  const cta = cfg.cta || 'default';
   const facets = await getFacets(cfg.sheet.split(','));
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const { blogtopic } = ph;
@@ -383,6 +394,7 @@ export default async function decorate(block) {
   });
   facetDiv.append(mobileFilter);
   facetDiv.classList.add('facet');
+  CTA_TYPE = cta;
 
   const topDiv1 = createFacetList('Media Type');
   const topDiv2 = createFacetList(blogtopic);

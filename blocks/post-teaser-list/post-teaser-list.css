@@ -49,6 +49,11 @@
   margin: 0;
 }
 
+
+.post-teaser-list > .teaser-list > .teaser > .teaser-content a.button:not(.primary):not(.secondary) {
+  padding: 0;
+}
+
 .post-teaser-list > .teaser-list > .teaser > .teaser-content a.button .icon {
   width: 16px;
   height: 16px;

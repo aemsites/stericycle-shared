@@ -103,11 +103,8 @@ function addPost(list, ctaType, post, isLoading) {
   icon.classList.add('icon', 'icon-right-arrow');
   button.textContent = 'Read More';
 
-
   const ctasWrapper = document.createElement('p');
   let buttonWrapper = document.createElement('div');
-  buttonWrapper.append(button);
-
 
   if(ctaType === 'primary') {
     buttonWrapper = document.createElement('strong');
