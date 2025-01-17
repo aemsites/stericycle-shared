@@ -49,7 +49,9 @@ div.facet-list-container > div.facet .head > i {
 }
 
 div.facet-list-container div.results div.item-date {
-    font-size: .75rem;
+    margin-bottom: 8px;
+    font-size: var(--body-font-size-s);
+    color: var(--color-text-secondary);
 }
 
 .slideout {
@@ -169,10 +171,6 @@ div.facet .facet-list-container.unhide {
         flex-direction: column;
     }
 
-    div.facet-list-container div.results div.item-date {
-        font-size: unset;
-    }
-
     div.facet-list-container > div.facet-list-wrapper > div.facet-list-container {
         display: flex;
         flex-flow: row;
@@ -270,9 +268,25 @@ div.facet-list-container > div.results h4 {
     margin-bottom: .4rem;
 }
 
-div.facet-list-container > div.results div.item-category {
+
+div.facet-list-container .results .item-title a {
     margin-bottom: .4rem;
     margin-top: .4rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+}
+
+div.facet-list-container > div.results div.item-category {
+    margin-bottom: .4rem;
+    line-height: 16px;
+    text-decoration: underline;
+}
+
+
+div.facet-list-container > div.results .button-container a {
+    padding: 0;
+    margin-top: 8px;
+    margin-bottom: 0;
 }
 
 div.facet-list-container > div.facet li {
@@ -301,7 +315,9 @@ div.facet-list-container > div.results ul > li {
 }
 
 div.facet-list-container > div.results ul > li div.item-left {
-    width: 10rem;
+    border-radius: var(--border-radius-l);
+    width: 192px;
+    height: 124px;
     display: flex;
     overflow: hidden;
 }
@@ -313,8 +329,8 @@ div.facet-list-container > div.results ul > li div.item-right {
 }
 
 div.facet-list-container > div.results img {
-    width: 160px;
-    height: auto;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     overflow: hidden;
 }

@@ -1,15 +1,16 @@
 // eslint-disable-next-line import/no-cycle
-import { formatDate, getDateFromExcel, getRelatedPosts } from '../../scripts/scripts.js';
-import { createOptimizedPicture, decorateButtons, readBlockConfig } from '../../scripts/aem.js';
+import {
+  createPostLink,
+  formatDate,
+  getDateFromExcel,
+  getRelatedPosts,
+} from '../../scripts/scripts.js';
+import {
+  createOptimizedPicture,
+  decorateButtons,
+  readBlockConfig,
+} from '../../scripts/aem.js';
 
-function createPostLink(post) {
-  const anchor = document.createElement('a');
-  if (post) {
-    anchor.setAttribute('aria-label', post.title);
-    anchor.href = post.path;
-  }
-  return anchor;
-}
 
 function addPost(list, post, isLoading) {
   // create teaser
@@ -42,33 +43,60 @@ function addPost(list, post, isLoading) {
   const title = createPostLink(post);
   title.classList.add('teaser-title');
   title.textContent = post?.title;
-  content.append(title);
+
+  const eyebrowWrapper = document.createElement('div');
+
+  eyebrowWrapper.classList.add('teaser-eyebrow-wrapper');
+
+  // category
   const category = document.createElement('a');
-  category.classList.add('teaser-category');
   const mediaType = post['media-type'];
+
+  category.classList.add('teaser-category');
+  category.classList.add('eyebrow-small');
   category.setAttribute('aria-label', mediaType);
 
   // Fix type to be non-plural and lowercase
   const type = mediaType.toLowerCase().replaceAll(' ', '-').slice(0, -1);
-  category.href = post.path.substring(0, post.path.indexOf('/', (post.path.indexOf(type) + type.length)));
+  category.href = post.path.substring(
+    0,
+    post.path.indexOf('/', post.path.indexOf(type) + type.length),
+  );
 
   category.textContent = mediaType;
-  content.append(category);
-  const buttonWrapper = document.createElement('p');
-  content.append(buttonWrapper);
-  const emWrapper = document.createElement('em');
-  buttonWrapper.append(emWrapper);
-  const button = createPostLink(post);
-  button.textContent = 'Read More';
-  emWrapper.append(button);
+
+  eyebrowWrapper.append(category);
+
+  // date
   const dateAnchor = document.createElement('a');
+
   dateAnchor.href = post.path;
+
   const dateSpan = document.createElement('span');
+
   dateSpan.classList.add('teaser-date');
   dateSpan.textContent = formatDate(getDateFromExcel(post.date));
+
   dateAnchor.append(dateSpan);
-  content.append(dateAnchor);
-  decorateButtons(buttonWrapper);
+  eyebrowWrapper.append(dateAnchor);
+
+  content.append(eyebrowWrapper);
+
+  // title
+  content.append(title);
+
+
+  // ctas
+  const ctaWrapper = document.createElement('div');
+
+  content.append(ctaWrapper);
+
+  const button = createPostLink(post);
+
+  button.textContent = 'Read More';
+  ctaWrapper.append(button);
+
+  decorateButtons(ctaWrapper);
 }
 
 export default function decorate(block) {
@@ -89,8 +117,10 @@ export default function decorate(block) {
     addPost(list, null, true);
   }
 
-  getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then((posts) => {
-    list.innerHTML = ''; // Clear dummies
-    posts.forEach((post) => addPost(list, post, false));
-  });
+  getRelatedPosts((type || '').split(/,\s*]/), type, columnCount).then(
+    (posts) => {
+      list.innerHTML = ''; // Clear dummies
+      posts.forEach((post) => addPost(list, post, false));
+    },
+  );
 }

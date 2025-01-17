@@ -14,9 +14,9 @@
 }
 
 .post-teaser-list > .teaser-list > .teaser .teaser-thumbnail {
+  border-radius: var(--border-radius-l);
   width: 100%;
-  height: 0;
-  padding-top: 56%;
+  height: 200px;
   position: relative;
   overflow: hidden;
   display: block;
@@ -26,8 +26,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: auto;
+  height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 .post-teaser-list > .teaser-list > .teaser > .teaser-content {
@@ -37,48 +38,37 @@
   margin: 16px 0 24px;
 }
 
+.post-teaser-list > .teaser-list > .teaser > .teaser-content > .teaser-eyebrow-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
 .post-teaser-list > .teaser-list > .teaser > .teaser-content a.button {
   margin: 0;
+  padding: 0;
 }
 
 .post-teaser-list > .teaser-list > .teaser > .teaser-content > .teaser-title {
   flex: 1;
-  margin-bottom: 16px;
-  color: var(--color-text);
-  font-weight: 700;
-  line-height: 1.5rem;
-  letter-spacing: .0006rem;
+  margin-bottom: 10px;
+  color: var(--color-text-primary);
+  line-height: 25px;
+  font-weight: 400;
 }
 
-.post-teaser-list > .teaser-list > .teaser > .teaser-content > .teaser-category {
-  color: var(--color-dark-gray);
-  font-size: var(--body-font-size-xs);
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-}
-
-@media (min-width: 992px /* breakpoint-l */) {
-  .post-teaser-list > .teaser-list {
-    flex-direction: row;
-  }
+.post-teaser-list > .teaser-list > .teaser > .teaser-content .teaser-category {
+  text-decoration: underline;
+  color: var(--color-accent-1);
 }
 
 /* CARDS STYLE */
 
-.post-teaser-list.cards > .teaser-list > .teaser {
-  box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
-  background-color: var(--color-background)
-}
-
-.post-teaser-list.cards > .teaser-list > .teaser > .teaser-content {
-  padding: 0 16px;
-}
-
-.post-teaser-list > .teaser-list > .teaser > .teaser-content > a > span.teaser-date {
-  /* default is to not show date */
-  display: none;
-  font-size: 0.8rem;
+.post-teaser-list > .teaser-list > .teaser > .teaser-content .teaser-date {
+  display: block;
+  font-size: var(--body-font-size-s);
+  color: var(--color-text-secondary);
 }
 
 /* LOADING */
@@ -97,6 +87,12 @@
 .post-teaser-list > .teaser-list > .teaser.loading .teaser-content {
   flex: unset;
   height: 200px;
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  .post-teaser-list > .teaser-list {
+    flex-direction: row;
+  }
 }
 
 @keyframes shimmer {

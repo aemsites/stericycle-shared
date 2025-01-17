@@ -54,6 +54,20 @@ export function formatPhone(num, parens = false) {
 }
 
 /**
+ * Creates a link to a post.
+ * @param {Object} post post object
+ * @returns {Element} anchor element
+ */
+export function createPostLink(post) {
+  const anchor = document.createElement('a');
+  if (post) {
+    anchor.setAttribute('aria-label', post.title);
+    anchor.href = post.path;
+  }
+  return anchor;
+}
+
+/**
  * Converts excel datetime strings to a Date object
  * @returns {Date} Date object
  */
