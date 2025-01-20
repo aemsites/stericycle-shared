@@ -1,44 +1,40 @@
-import { decorateAnchors } from '../../scripts/scripts.js';
-import { decorateButtons } from '../../scripts/aem.js';
-
 export default function decorate(block) {
-  if (!block.classList.contains('alt') && !(/-background/.test(block.className))) {
-    block.classList.add('blue-background');
-  }
+  const wrapper = block.querySelector('div');
 
-  const cols = [...block.firstElementChild.children];
-  block.classList.add(`simple-cta-${cols.length}-cols`);
-  let isImageLink = false;
-  if (block.querySelector('img')) {
-    block.classList.add('simple-cta-has-image');
-  }
+  wrapper?.classList?.add('simple-cta-content');
 
-  // setup image simple-cta
-  [...block.children].forEach((row) => {
-    [...row.children].forEach((col) => {
-      const pic = col.querySelector('picture');
-      const link = col.querySelector('a');
+  const heroText = wrapper.querySelector('div');
+  const heroImage = heroText?.nextElementSibling;
+  const heroDesktopImage = wrapper?.nextElementSibling;
 
-      if (pic && link?.href
-        && new URL(link.href).pathname === new URL(link.innerText).pathname) {
-        link.innerHTML = '';
-        link.appendChild(pic);
-        isImageLink = true;
-      }
+  heroDesktopImage?.classList?.add('simple-cta-asset-desktop');
 
-      if (pic) {
-        const picWrapper = pic.closest('div');
-        if (picWrapper && picWrapper.children.length === 1) {
-          // picture is only content in column
-          picWrapper.classList.add('simple-cta-img-col');
-        }
-      }
-      if (isImageLink) {
-        block.classList.add('centered-text');
-      }
-    });
+  heroText?.classList?.add('simple-cta-content-text');
+  heroImage?.classList?.add('simple-cta-asset');
+
+  const buttons = heroText.querySelectorAll('.button-container');
+
+  const parentDiv = document.createElement('div');
+
+  parentDiv?.classList?.add('simple-cta-content-ctas');
+  buttons?.forEach((button) => {
+    parentDiv?.appendChild(button);
   });
+  heroText.appendChild(parentDiv);
 
-  decorateButtons(block);
-  decorateAnchors(block);
+  const isImageVariant = block.classList?.contains('simple-cta-image');
+  const isFullWidthVariant = block.classList?.contains('simple-cta-full');
+
+  // Decorate variant hero image
+  if (heroImage && isImageVariant) {
+    const img = heroImage.querySelector('img');
+    const picture = heroImage.querySelector('picture');
+    const imgWrapper = document.createElement('div');
+
+    imgWrapper.classList?.add('masked-image-wrapper');
+
+    imgWrapper.appendChild(img);
+
+    picture.appendChild(imgWrapper);
+  }
 }
