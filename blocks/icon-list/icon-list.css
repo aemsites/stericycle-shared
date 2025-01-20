@@ -251,6 +251,10 @@ main .two-column.form-container.icon-list-container:has(.vertical-icons) > div:f
         min-height: 6rem;
     }
 
+    div.icon-list.block.vertical-icons.vertical-line-white > div > div:nth-of-type(2) {
+        border-left: 4px solid var(--color-white);
+    }
+
     div.icon-list.vertical-icons p:has(> span.icon) {
         display: flex;
         align-items: center;
