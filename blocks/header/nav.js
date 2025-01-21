@@ -410,8 +410,8 @@ export default async function decorate(block) {
       form({ class: 'search-form', action: `/${locale}/search`, method: 'get', autocomplete: 'off' },
         label({ for: 'siteSearch' }, 'Search Query'),
         input({ id: 'siteSearch', type: 'text', placeholder: 'Search', name: 'searchQuery', tabindex: '-1' }),
-        a({ class: 'search-button', type: 'submit', 'aria-label': 'Search' }),
-        a({ class: 'close', type: 'button', 'aria-label': 'Close' }),
+        a({ class: 'search-button', 'aria-label': 'Search', role: 'button', href: '#' }),
+        a({ class: 'close', href: '#', role: 'button', 'aria-label': 'Close' }),
       ),
     ),
   );
@@ -421,7 +421,7 @@ export default async function decorate(block) {
   navSearch.querySelector('a').setAttribute('aria-controls', 'nav-search-popup');
   navSearch.querySelector('div').setAttribute('id', 'nav-search-popup');
 
-  const navLocate = div({ class: 'nav-locate', id: 'nav-locate', 'aria-expanded': false },
+  const navLocate = div({ class: 'nav-locate', id: 'nav-locate', 'aria-expanded': false, role: 'button' },
     a({ href: '#', title: 'Find Your Service Center', 'aria-controls': 'nav-locate' }, 'Find Your Service Center'),
     div({ class: 'locate-popup' },
       span('Find Yours:'),
