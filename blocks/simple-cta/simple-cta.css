@@ -35,17 +35,6 @@ main .section > div.simple-cta-wrapper {
   padding-top: 16px;
 }
 
-.simple-cta-promo-badge {
-  display: flex;
-  margin-bottom: 20px;
-  padding: 8px 16px;
-  align-items: center;
-  gap: 16px;
-  border-radius: 4px;
-  background-color: var(--color-accent-3);
-  color: var(--color-text-tertiary);
-}
-
 .simple-cta-asset {
   width: 100%;
   height: 100%;
@@ -93,20 +82,36 @@ main .section > div.simple-cta-wrapper {
   mask-size: 100%;
 }
 
-.simple-cta-contained  {
+.simple-cta-contained,
+.simple-cta-contained-dark {
   display: flex;
   justify-content: center;
 }
 
-.simple-cta-contained .simple-cta-content {
+.simple-cta-contained .simple-cta-content,
+.simple-cta-contained-dark .simple-cta-content {
   margin: 24px 16px;
   background-color: var(--color-white);
   border-radius: 16px;
   overflow: hidden;
 }
 
+.simple-cta-contained-dark .simple-cta-content {
+  background-color: var(--color-bg-tertiary);
+}
+
 .simple-cta-contained .simple-cta-content-text > * {
   color: var(--color-text-primary);
+}
+
+.simple-cta-contained-dark .simple-cta-content-text > * {
+  color: var(--color-white);
+}
+
+.simple-cta-contained-dark .simple-cta-content-text .button:not(.primary) {
+  background: transparent;
+  color: var(--color-white);
+  border-color: var(--color-white);
 }
 
 .simple-cta-asset-left .simple-cta-content .simple-cta-asset {
@@ -119,12 +124,9 @@ main .section > div.simple-cta-wrapper {
       max-width: 78%;
   }
 
-  .simple-cta-contained .simple-cta-content {
+  .simple-cta-contained .simple-cta-content,
+  .simple-cta-contained-dark .simple-cta-content {
       margin: 64px 80px;
-  }
-
-  .simple-cta-contained .simple-cta-promo-badge {
-      margin-bottom: 32px;
   }
 }
 
@@ -148,10 +150,6 @@ main .section > div.simple-cta-wrapper {
       margin: 16px 0;
   }
 
-  .simple-cta-promo-badge {
-      margin-bottom: 28px;
-  }
-
   .simple-cta-content-ctas {
       column-gap: 24px;
       padding-top: 8px;
@@ -170,6 +168,26 @@ main .section > div.simple-cta-wrapper {
   }
 
   /* Variants */
+  .simple-cta-full .simple-cta-asset {
+    margin-bottom: 0;
+    max-width: 838px;
+    height: 540px;
+  }
+
+  .simple-cta-full .simple-cta-asset img {
+    object-fit: cover;
+    object-position: top;
+    height: 540px;
+  }
+
+  .simple-cta-full .simple-cta-content {
+    align-items: center;
+  }
+
+  .simple-cta-full .simple-cta-content .simple-cta-content-text {
+    padding-top: 0;
+  }
+
   .simple-cta-graphic .simple-cta-asset {
       max-height: 330px;
       width: 50%;
