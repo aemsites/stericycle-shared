@@ -23,7 +23,7 @@ export default function decorate(block) {
   heroText.appendChild(parentDiv);
 
   const isImageVariant = block.classList?.contains('simple-cta-image');
-  const isFullWidthVariant = block.classList?.contains('simple-cta-full');
+  const isGraphicVariant = block.classList?.contains('simple-cta-graphic');
 
   // Decorate variant hero image
   if (heroImage && isImageVariant) {
@@ -36,5 +36,14 @@ export default function decorate(block) {
     imgWrapper.appendChild(img);
 
     picture.appendChild(imgWrapper);
+  }
+
+  // Decorate variant hero graphic
+  if (heroImage && isGraphicVariant) {
+    const shapeContainer = document.createElement('div');
+
+    shapeContainer.classList?.add('simple-cta-shape');
+
+    heroImage.prepend(shapeContainer);
   }
 }

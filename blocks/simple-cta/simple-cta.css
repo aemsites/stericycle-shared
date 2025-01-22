@@ -4,6 +4,12 @@ main .section > div.simple-cta-wrapper {
   margin-top: 0;
 }
 
+.masked-image-wrapper {
+  mask-image: url('/icons/hero-mask.svg');
+  mask-repeat: no-repeat;
+  mask-size: 100%;
+}
+
 .simple-cta-content {
   position: relative;
   display: flex;
@@ -14,12 +20,12 @@ main .section > div.simple-cta-wrapper {
 
 .simple-cta-content-text {
   padding: 24px 16px;
-  padding-top: 12px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  z-index: 2;
 }
 
 .simple-cta-content-text h1 {
@@ -70,16 +76,23 @@ main .section > div.simple-cta-wrapper {
   color: var(--color-white);
 }
 
-.simple-cta-graphic .simple-cta-asset img {
-  max-height: 76px;
-  object-fit: contain;
-  object-position: right;
+.simple-cta-graphic .simple-cta-asset {
+  position: relative;
 }
 
-.masked-image-wrapper {
-  mask-image: url("/icons/hero-mask.svg");
-  mask-repeat: no-repeat;
-  mask-size: 100%;
+.simple-cta-graphic .simple-cta-asset img {
+  clip-path: polygon(0% 0, 100% 0, 100% 100%, 60% 100%);
+}
+
+.simple-cta-graphic .simple-cta-shape {
+  position: absolute;
+  left: -40%;
+  z-index: 1;
+  background-image: url('/icons/simple-cta-mark-right.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 110%;
+  height: 100%;
 }
 
 .simple-cta-contained,
@@ -118,56 +131,86 @@ main .section > div.simple-cta-wrapper {
   transform: scaleX(-1);
 }
 
+.simple-cta-graphic.simple-cta-full .simple-cta-asset {
+  width: 60%;
+}
+
+.simple-cta-graphic.simple-cta-full .simple-cta-asset img {
+  clip-path: polygon(68% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.simple-cta-graphic.simple-cta-full .simple-cta-content {
+  align-items: flex-end;
+}
+
 @media screen and (min-width: 768px) {
   .simple-cta-content-text {
-      padding: 0 0 64px;
-      max-width: 78%;
+    padding: 24px;
   }
 
+  /* Variants */
   .simple-cta-contained .simple-cta-content,
   .simple-cta-contained-dark .simple-cta-content {
-      margin: 64px 80px;
+    margin: 64px 80px;
   }
 }
 
 @media screen and (min-width: 1200px) {
   main .section > div.simple-cta-wrapper {
-      margin: 2rem auto;
-      padding: 0 1.5rem;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
   }
 
   .simple-cta-content {
-      flex-direction: row;
-      align-items: flex-start;
+    flex-direction: row;
+    align-items: flex-start;
   }
 
   .simple-cta-content-text {
-      padding: 80px 0 0 80px;
-      max-width: 700px;
+    padding: 80px 0 0 80px;
+    max-width: 700px;
   }
 
   .simple-cta-content-text h1 {
-      margin: 16px 0;
+    margin: 16px 0;
   }
 
   .simple-cta-content-ctas {
-      column-gap: 24px;
-      padding-top: 8px;
+    column-gap: 24px;
+    padding-top: 8px;
   }
 
   .simple-cta-asset {
-      margin-bottom: 0;
-      max-width: 671px;
-      height: 361px;
+    margin-bottom: 0;
+    max-width: 671px;
+    height: 361px;
   }
 
   .simple-cta-asset img {
-      object-fit: cover;
-      object-position: top;
-      height: 361px;
+    object-fit: cover;
+    object-position: top;
+    height: 361px;
   }
 
   /* Variants */
+  .simple-cta-asset-left .simple-cta-content {
+    flex-direction: row-reverse;
+  }
+
+  .simple-cta-asset-left .simple-cta-content-text {
+    padding: 80px 80px 0 0;
+  }
+
+  .simple-cta-graphic .simple-cta-content-text {
+    width: 50%;
+  }
+
+  .simple-cta-graphic .simple-cta-asset {
+    min-width: 500px;
+    max-height: 330px;
+    width: 45%;
+  }
+
   .simple-cta-full .simple-cta-asset {
     margin-bottom: 0;
     max-width: 838px;
@@ -188,25 +231,33 @@ main .section > div.simple-cta-wrapper {
     padding-top: 0;
   }
 
-  .simple-cta-graphic .simple-cta-asset {
-      max-height: 330px;
-      width: 50%;
+  .simple-cta-graphic.simple-cta-full .simple-cta-content {
+    align-items: center;
   }
 
   .simple-cta-graphic .simple-cta-asset img {
-      object-position: top;
-      max-height: 330px;
+    object-position: top;
+    max-height: 330px;
   }
 
-  .simple-cta-graphic .simple-cta-content {
-      align-items: flex-start;
+  .simple-cta-graphic.simple-cta-full .simple-cta-asset {
+    width: 45%;
+    min-width: 800px;
+    max-height: 540px;
   }
 
-  .simple-cta-asset-left .simple-cta-content {
-    flex-direction: row-reverse;
+  .simple-cta-graphic.simple-cta-full .simple-cta-asset img {
+    max-height: 540px;
+    clip-path: polygon(68% 0, 100% 0, 100% 100%, 0% 100%);
   }
 
-  .simple-cta-asset-left .simple-cta-content-text {
-    padding: 80px 80px 0 0;
+  .simple-cta-graphic.simple-cta-full .simple-cta-shape {
+    width: 120%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .simple-cta-graphic .simple-cta-asset img {
+    clip-path: polygon(0% 0, 100% 0, 100% 100%, 50% 100%);
   }
 }
