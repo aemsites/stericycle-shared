@@ -764,8 +764,14 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
+  Promise.all([
+    loadHeader(doc.querySelector('header')),
+    loadFooter(doc.querySelector('footer')),
+  ]).then(() => {
+    // noinspection JSUnresolvedReference
+    window.Invoca?.PNAPI?.run(); // refresh Invoca
+  });
+
   await appendSubscriptionForm(main);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
