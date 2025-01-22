@@ -410,8 +410,8 @@ export default async function decorate(block) {
       form({ class: 'search-form', action: `/${locale}/search`, method: 'get', autocomplete: 'off' },
         label({ for: 'siteSearch' }, 'Search Query'),
         input({ id: 'siteSearch', type: 'text', placeholder: 'Search', name: 'searchQuery', tabindex: '-1' }),
-        a({ class: 'search-button', 'aria-label': 'Search', role: 'button', href: '#' }),
-        a({ class: 'close', href: '#', role: 'button', 'aria-label': 'Close' }),
+        a({ class: 'search-button', role: 'button', 'aria-label': 'Search' }),
+        a({ class: 'close', role: 'button', 'aria-label': 'Close' }),
       ),
     ),
   );
