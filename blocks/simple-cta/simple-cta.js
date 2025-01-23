@@ -24,6 +24,10 @@ export default function decorate(block) {
 
   const isImageVariant = block.classList?.contains('simple-cta-image');
   const isGraphicVariant = block.classList?.contains('simple-cta-graphic');
+  const isFullWidthVariant = block.classList?.contains('simple-cta-full');
+  const isLeftAlignedVariant = block.classList?.contains(
+    'simple-cta-asset-left',
+  );
 
   // Decorate variant hero image
   if (heroImage && isImageVariant) {
@@ -43,6 +47,18 @@ export default function decorate(block) {
     const shapeContainer = document.createElement('div');
 
     shapeContainer.classList?.add('simple-cta-shape');
+
+    if (isFullWidthVariant) {
+      shapeContainer.classList?.add('simple-cta-shape-full');
+
+      if (isLeftAlignedVariant) {
+        shapeContainer.classList?.add('simple-cta-shape-full-left');
+      }
+    }
+
+    if (!isFullWidthVariant) {
+      shapeContainer.classList?.add('simple-cta-shape-contained');
+    }
 
     heroImage.prepend(shapeContainer);
   }

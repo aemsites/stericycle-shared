@@ -88,11 +88,37 @@ main .section > div.simple-cta-wrapper {
   position: absolute;
   left: -40%;
   z-index: 1;
-  background-image: url('/icons/simple-cta-mark-right.svg');
   background-repeat: no-repeat;
   background-size: cover;
   width: 110%;
   height: 100%;
+}
+
+.simple-cta-graphic .simple-cta-shape-contained {
+  background-image: url('/icons/simple-cta-right-alignment.svg');
+}
+
+.simple-cta-graphic .simple-cta-shape-full,
+.simple-cta-graphic .simple-cta-shape-full-left {
+  background-image: url('/icons/simple-cta-bottom-alignment.svg');
+  top: -6px;
+  left: -24px;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+}
+
+.simple-cta-graphic.simple-cta-full .simple-cta-shape-full-left {
+  background-image: url('/icons/simple-cta-top-alignment.svg');
+  transform: scaleX(-1);
+  top: -16px;
+  left: -32%;
+}
+
+.simple-cta-graphic.simple-cta-full.simple-cta-asset-left
+  .simple-cta-asset
+  img {
+  clip-path: polygon(0% 0, 100% 0, 100% 100%, 65% 100%);
 }
 
 .simple-cta-contained,
@@ -136,11 +162,16 @@ main .section > div.simple-cta-wrapper {
 }
 
 .simple-cta-graphic.simple-cta-full .simple-cta-asset img {
-  clip-path: polygon(68% 0, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(60% 0, 100% 0, 100% 100%, 0% 100%);
 }
 
 .simple-cta-graphic.simple-cta-full .simple-cta-content {
   align-items: flex-end;
+}
+
+.simple-cta-graphic.simple-cta-full.simple-cta-asset-left .simple-cta-content {
+  align-items: flex-start;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 768px) {
@@ -225,10 +256,32 @@ main .section > div.simple-cta-wrapper {
 
   .simple-cta-full .simple-cta-content {
     align-items: center;
+    overflow: hidden;
   }
 
   .simple-cta-full .simple-cta-content .simple-cta-content-text {
     padding-top: 0;
+  }
+
+  .simple-cta-graphic .simple-cta-shape-full,
+  .simple-cta-graphic .simple-cta-shape-full-left {
+    top: 84px;
+    left: -10%;
+    width: 100%;
+    height: 85%;
+  }
+
+  .simple-cta-graphic.simple-cta-full .simple-cta-shape-full-left {
+    background-image: url('/icons/simple-cta-top-alignment.svg');
+    transform: scaleX(-1);
+    top: 0;
+    left: -60%;
+  }
+
+  .simple-cta-graphic.simple-cta-full.simple-cta-asset-left
+    .simple-cta-content {
+    align-items: center;
+    overflow: hidden;
   }
 
   .simple-cta-graphic.simple-cta-full .simple-cta-content {
