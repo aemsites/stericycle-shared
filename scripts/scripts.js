@@ -737,6 +737,10 @@ async function loadEager(doc) {
     await decorateBanners(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForLCP);
+    if (document?.querySelector('body.with-sidebar')) {
+      await loadBlocks(main.querySelector('div.page-content'));
+      await loadBlocks(main.querySelector('div.page-sidebar'));
+    }
   }
   setWebPageJsonLd(doc);
   fetchAndSetCustomJsonLd(doc);
