@@ -159,6 +159,7 @@
   --icon-size-l: 32px;
   --icon-size-xl: 60px;
   --icon-size-xxl: 100px;
+  --icon-size-xxxl: 3.75rem;
 
   /* misc */
   --nav-height: 78px;
@@ -243,11 +244,15 @@ body.appear {
   display: block;
 }
 
-header {
+body header {
   position: sticky;
   top: 0;
   height: var(--nav-height);
   z-index: 100;
+}
+
+body:has(.section.banner-container .block.banner.fixed-to-top) header {
+  top: 3.25rem;
 }
 
 h1, h2, h3,
@@ -659,8 +664,85 @@ main .section p:not(.button-container) a {
 main .section div.button-container a {
   text-decoration: none;
 }
+main .section.no-buttons {
+  & > .default-content-wrapper {
+    & > p.button-container a {
+      font-family: var(--font-family-body);
+      display: inline-block;
+      text-decoration: underline;
+      border: unset;
+      padding: unset;
+      line-height: unset;
+      text-align: center;
+      font-style: normal;
+      font-weight: unset;
+      cursor: pointer;
+      color: var(--color-blue);
+      background-color: unset;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border-radius: 100px;
+    }
 
-/* section styles */
+    & > ul li {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* cookie banner / button */
+
+#ot-sdk-btn-floating {
+  bottom: 70px !important;
+}
+
+/* viewport based visibility */
+
+@media screen and (max-width: 575px /* breakpoint-s */) {
+  main .hide-on-mobile {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 576px /* breakpoint-s */) and (max-width: 1199px /* breakpoint-xl */) {
+  main .hide-on-tablet {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
+  main .hide-on-desktop {
+    display: none;
+  }
+}
+
+main .show-on-mobile,
+main .show-on-tablet,
+main .show-on-desktop {
+  display: none;
+}
+
+@media screen and (max-width: 575px /* breakpoint-s */) {
+  main .show-on-mobile {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 576px /* breakpoint-m */) and (max-width: 1199px /* breakpoint-xl */) {
+  main .show-on-tablet {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
+  main .show-on-desktop {
+    display: block;
+  }
+}
+
+/* background colors */
 
 main .section.light,
 main .section.highlight,
@@ -720,8 +802,8 @@ main .section.shredded-paper-background > div:first-of-type > p > span.icon > im
   width: 33%;
 }
 
-main .section.blue-background,
-main .block.blue-background {
+.section.blue-background,
+.block.blue-background {
   background-color: var(--color-accent-1);
 }
 
@@ -749,9 +831,9 @@ main .section.orange-background {
 
 main .invert-colors,
 main .section.navy-background,
-main .block.navy-background,
+.block.navy-background,
 main .section.blue-background,
-main .block.blue-background {
+.block.blue-background {
   --color-text: var(--color-white);
   --color-heading: var(--color-white);
   --color-link: var(--color-white);
@@ -924,7 +1006,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
 }
 
 .blog-page main .default-content-wrapper {
-  padding: 30px 0 0;
+  padding: .9375rem 1.5rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -953,6 +1035,12 @@ main .section.with-image > div.section-image-wrapper:first-child {
 
   .blog-page main .breadcrumb-wrapper {
     max-width: 960px;
+  }
+
+  main .section.shredded-paper-background-column.two-column.form-container > div,
+  main .section.hard-drive-background.two-column.form-container > div {
+      padding: 0 2.2rem;
+      margin-left: 0;
   }
 }
 
@@ -1302,6 +1390,11 @@ main .xxl-icons .icon {
   height: var(--icon-size-xxl);
 }
 
+main .xxxl-icons .icon {
+  width: var(--icon-size-xxxl);
+  height: var(--icon-size-xxxl);
+}
+
 main .list-style-more-space li {
   padding-bottom: 1rem;
 }
@@ -1346,8 +1439,6 @@ main .list-style-blue-checkmark ul > li sup {
 
 main .list-style-checkmarks div.card-body ul > li::before {
   content: '✓';
-  position: absolute;
-  left: -1.5rem;
 }
 
 main .list-style-big-numbers h2 {
@@ -1627,11 +1718,11 @@ main .columns.get-a-quote-popup.block > div:nth-child(1) a {
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(2) {
-  padding: 1rem;
+  padding: 2rem 2rem 0;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) {
-  padding: 2rem;
+  padding: 0 2rem 2rem;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3)  > div {
@@ -1660,6 +1751,7 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div a {
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child {
     font-size: 1.5rem;
     font-weight: 600;
+    line-height: normal;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child > a {
@@ -1672,6 +1764,7 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child > 
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child {
   font-size: 0.875rem;
+  max-width: 88%;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div::after{
@@ -1721,6 +1814,13 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover::after {
   .quote-title {
     margin-bottom: 46px;
   }
+}
+
+/* Full width will unset the default width of divs under section */
+main .section.full-width > div {
+  max-width: 100%;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 @media screen and (max-width: 992px) {

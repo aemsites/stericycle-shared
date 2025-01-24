@@ -9,7 +9,7 @@ header {
   align-items: center;
   background-color: var(--color-bg-tertiary);
   padding: 0 1rem;
-  height: auto;
+  height: auto !important;
   min-height: 60px;
   color: var(--color-white);
 }
@@ -678,18 +678,16 @@ header {
   }
 }
 
-@media (min-width: 1600px) {
-  .header {
-    padding: 0 80px;
-  }
+/* body:has(.section.banner-container .block.banner.fixed-to-bottom) .floating-contact {
+  bottom: 3.25rem;
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
+body:has(.section.banner-container .block.banner.fixed-to-bottom p.button-container) .floating-contact {
+  bottom: 4.25rem;
+} */
 
-  to {
-    opacity: 1;
+@media (min-width: 1400px) {
+  .block.header {
+    padding: 0 80px;
   }
 }

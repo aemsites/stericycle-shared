@@ -17,10 +17,10 @@ import {
   loadBlock,
   loadSection,
 } from './aem.js';
-import { div } from './dom-helpers.js';
+import * as domHelper from './dom-helpers.js';
 import ffetch from './ffetch.js';
 // eslint-disable-next-line import/no-cycle
-import { initMartech } from './martech.js';
+import { decorateCtaButtons, initMartech } from './martech.js';
 
 export const BREAKPOINTS = {
   mobile: window.matchMedia('(max-width: 767px)'),
@@ -301,6 +301,7 @@ function buildHeroBlock(main) {
 }
 
 function buildBreadcrumb(main) {
+  const { div } = domHelper;
   const breadcrumb = getMetadata('breadcrumb');
   if (breadcrumb.toLowerCase() === 'true') {
     main.prepend(div(buildBlock('breadcrumb', { elems: [] })));
@@ -427,6 +428,57 @@ async function decorateTemplates(main) {
         await mod.default(main);
       }
     }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Auto Blocking failed', error);
+  }
+}
+
+/**
+ * decorates banners that are included via metadata
+ */
+async function decorateBanners(main) {
+  const { div, strong, p, a } = domHelper;
+  try {
+    const bannerType = toClassName(getMetadata('banner-type'));
+    const bannerFragment = getMetadata('banner-fragment');
+    const bannerText = getMetadata('banner-text');
+    const bannerColor = getMetadata('banner-color') || 'blue-background';
+
+    const bannerBlock = div({ class: 'banner block', 'data-block-name': 'banner', 'data-section-status': 'loading' });
+
+    const section = div(
+      { 'data-section-status': 'loading', class: 'section banner-container' },
+      div(
+        { class: 'banner-wrapper', 'data-section-status': 'loading' },
+        bannerBlock,
+      ),
+    );
+
+    if (bannerFragment) {
+      bannerBlock.className = `banner block from-fragment ${bannerType} ${bannerColor}`;
+      bannerBlock.append(
+        div(
+          div(
+            { class: 'button-container', 'data-valign': 'middle' },
+            p(a({ href: bannerFragment, title: bannerFragment })),
+          ),
+        ),
+      );
+    } else if (bannerText) {
+      bannerBlock.className = `banner block ${bannerType} ${bannerColor}`;
+      bannerBlock.append(
+        div(
+          div(
+            { 'data-valign': 'middle' },
+            p(strong(bannerText)),
+          ),
+        ),
+      );
+    } else {
+      return;
+    }
+    main.appendChild(section);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -656,6 +708,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateCtaButtons(main);
   modifyBigNumberList(main);
   decorateSectionTemplates(main);
   consolidateOfferBoxes(main);
@@ -681,6 +734,7 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     await decorateTemplates(main);
+    await decorateBanners(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForLCP);
   }
@@ -710,8 +764,14 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
+  Promise.all([
+    loadHeader(doc.querySelector('header')),
+    loadFooter(doc.querySelector('footer')),
+  ]).then(() => {
+    // noinspection JSUnresolvedReference
+    window.Invoca?.PNAPI?.run(); // refresh Invoca
+  });
+
   await appendSubscriptionForm(main);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);

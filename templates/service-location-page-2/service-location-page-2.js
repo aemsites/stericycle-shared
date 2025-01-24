@@ -273,6 +273,8 @@ async function addLocalBusinessJsonLd() {
 async function decorate(main) {
   const autoSection = document.createElement('div');
   autoSection.classList.add('section', 'gray-background');
+  autoSection.setAttribute('data-section-status', 'loading');
+  autoSection.style.display = 'none';
   addServiceCards(autoSection);
   addCtaCard(autoSection);
   addInfoColumns(autoSection);
