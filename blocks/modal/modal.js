@@ -24,7 +24,7 @@ export async function createModal(contentNodes, config) {
   closeButton.setAttribute('aria-label', 'Close');
   closeButton.type = 'button';
   closeButton.innerHTML = '<span class="icon icon-close"></span>';
-  closeButton.addEventListener('click', () => dialog.close());
+  closeButton.addEventListener('click', () => dialog.close('default'));
   dialog.prepend(closeButton);
 
   const block = buildBlock('modal', '');
@@ -40,6 +40,12 @@ export async function createModal(contentNodes, config) {
     const { clientX, clientY } = e;
     if (clientX < left || clientX > right || clientY < top || clientY > bottom) {
       dialog.close();
+    }
+  });
+
+  dialog.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && event.target.tagName !== 'TEXTAREA') {
+      event.preventDefault();
     }
   });
 
