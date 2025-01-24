@@ -820,7 +820,6 @@ main .list-style-checkmarks ul {
   list-style: none;
 }
 
-main .list-style-bullets li::marker,
 main .list-style-checkmarks li::marker,
 main .list-style-orange-triangles li::marker,
 main .list-style-big-numbers li::marker,
