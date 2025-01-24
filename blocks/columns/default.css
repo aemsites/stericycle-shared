@@ -447,15 +447,11 @@ main .section.columns-container:has(.columns.style-one-default.block) > div {
 }
 
 main .section.columns-container > div > div.columns.style-one-default.block {
-  padding: 0;
-  margin: 0;
-}
-
-main .section.columns-container > div > div.columns.style-one-default.block {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 40px;
+  padding: 0;
+  margin: 0 0 40px;
 }
 
 main .section.columns-container > div > div.columns.style-one-default.block > div > div > * {
@@ -505,6 +501,9 @@ main .section.columns-container:has(.columns.style-one-with-logos.block) > div {
 }
 
 main .section.columns-container > div > div.columns.style-one-with-logos.block {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   padding: 0;
   margin: 0;
 }
@@ -522,12 +521,6 @@ main .section.columns-container > div > div.columns.style-one-with-logos.block {
 .columns.style-one-with-logos > div > div {
   max-width: 800px;
   text-align: center;
-}
-
-main .section.columns-container > div > div.columns.style-one-with-logos.block {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
 }
 
 main .section.columns-container > div > div.columns.style-one-with-logos.block > div > div > p {
@@ -562,7 +555,8 @@ main .section.columns-container:has(.columns.style-three-default.block) > div {
 
 main .section.columns-container > div > div.columns.style-three-default.block {
   padding: 0;
-  margin: 0;
+  margin: 0 0 80px;
+  gap: 16px;
 }
 
 main .section.columns-container > div > div.columns.cyan-accent-border {
@@ -571,11 +565,6 @@ main .section.columns-container > div > div.columns.cyan-accent-border {
 
 main .section.columns-container:has(.columns.style-three-default.block) > div > div.columns.cyan-accent-border > div {
   gap: 32px;
-}
-
-main .section.columns-container > div > div.columns.style-three-default.block {
-  gap: 16px;
-  margin-bottom: 80px;
 }
 
 main .section.columns-container > div > div.columns.style-three-default > div > div > * {
@@ -612,17 +601,13 @@ main .section.columns-container:has(.columns.style-three-left-aligned) > div {
 }
 
 main .section.columns-container > div > div.columns.style-three-left-aligned {
+  max-width: 687px;
   padding: 0;
-  margin: 0;
+  margin: 0 0 64px;
 }
 
 main .section.columns-container:has(.columns.style-three-left-aligned) > div > div.columns.cyan-accent-border > div {
   gap: 40px;
-}
-
-main .section.columns-container > div > div.columns.style-three-left-aligned {
-  max-width: 687px;
-  margin-bottom: 64px;
 }
 
 main .section.columns-container > div > div.columns.style-three-left-aligned > div > div > h1 {
@@ -738,6 +723,8 @@ main .section.columns-container > div > div.columns.cyan-line-divider.block > di
 }
 
 main .section.columns-container > div > div.columns.cyan-line-divider.block > div:first-of-type > div > p:first-of-type {
+  position: relative;
+  padding-bottom: 21px;
   font-size: var(--body-font-size-s);
   font-weight: var(--font-weight-extra-bold);
   line-height: 120%;
@@ -765,6 +752,7 @@ main .section.columns-container > div > div.columns.cyan-line-divider.block > di
 }
 
 main .section.columns-container > div > div.columns.cyan-line-divider.block > div:first-of-type > div > p:first-of-type::after {
+  background: var(--color-secondary-3);
   position: absolute;
   width: 103px;
   height: 3px;
@@ -773,15 +761,6 @@ main .section.columns-container > div > div.columns.cyan-line-divider.block > di
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-}
-
-main .section.columns-container > div > div.columns.cyan-line-divider.block > div:first-of-type > div > p:first-of-type::after {
-  background: var(--color-secondary-3);
-}
-
-main .section.columns-container > div > div.columns.cyan-line-divider.block > div:first-of-type > div > p:first-of-type {
-    position: relative;
-    padding-bottom: 21px;
 }
 
 /* Section Top Separator */
