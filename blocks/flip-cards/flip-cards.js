@@ -40,12 +40,20 @@ export default async function decorate(block) {
     if (Object.hasOwn(lookupTable, pagePath)) {
       const cardDetails = lookupTable[pagePath];
       const icon = rows[0].children.item(0);
+      const eyebrow = rows[1]?.children?.item(0);
+
       if (icon) {
         cardBack.appendChild(icon);
       }
+
       const titleh3 = document.createElement('h3');
       titleh3.textContent = cardDetails.title;
       titleh3.classList.add('clamp-title');
+
+      if (eyebrow) {
+        eyebrow.classList.add('eyebrow');
+        titleh3.prepend(eyebrow);
+      }
 
       const desc = document.createElement('p');
       desc.textContent = cardDetails.description;
