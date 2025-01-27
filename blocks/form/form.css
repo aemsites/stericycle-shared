@@ -1110,12 +1110,6 @@ main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-
     main .footer-subscription-form form .panel-wrapper {
         grid-template-columns: 1fr;
     }
-
-    main .footer-subscription-form {
-        max-width: var(--section-width);
-        margin: auto;
-        padding: 2rem 1.5rem;
-    }
 }
 
 main .campaign-form.form {

@@ -39,10 +39,8 @@ footer .footer-container > .section {
     grid-template-rows: auto;
     gap: 0;
     place-items: stretch;
-    max-width: 1600px;
-    margin: 0 auto;
     width: 100%;
-    padding: 0 80px;
+    padding: 0 var(--content-container-padding-large);
   }
 }
 
