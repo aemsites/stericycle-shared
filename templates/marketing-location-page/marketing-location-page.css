@@ -11,6 +11,8 @@ main .section > div.hero-wrapper {
 }
 
 .with-sidebar main > .body-wrapper {
+  display: flex;
+  flex-direction: column;
   max-width: var(--section-width);
   margin: 0 auto;
 }
@@ -18,6 +20,30 @@ main .section > div.hero-wrapper {
 .with-sidebar main > .body-wrapper > .page-sidebar > .section > div {
   padding: 0;
   margin-bottom: 30px;
+}
+
+.with-sidebar main > .body-wrapper .default-content-wrapper:has(h1.mobile) {
+  max-width: var(--section-width);
+  margin-top: 2rem;
+  padding: 0 1.5rem;
+  order: 1;
+}
+
+.with-sidebar main > .body-wrapper:has(h1.fullScreen) .page-sidebar {
+  order: 2;
+}
+
+.with-sidebar main > .body-wrapper:has(h1.fullScreen) .page-content {
+  order: 3;
+}
+
+.with-sidebar main > .body-wrapper h1.mobile {
+  display: block;
+  margin-bottom: unset;
+}
+
+.with-sidebar main > .body-wrapper h1.fullScreen {
+  display: none;
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
@@ -35,5 +61,21 @@ main .section > div.hero-wrapper {
   .with-sidebar main > .body-wrapper > .page-sidebar {
     width: 31%;
     z-index: 1;
+  }
+
+  .with-sidebar main > .body-wrapper h1.mobile {
+    display: none;
+    order: unset;
+  }
+
+  .with-sidebar main > .body-wrapper:has(h1.fullScreen) .page-sidebar {
+    order: unset;
+  }
+  
+  .with-sidebar main > .body-wrapper:has(h1.fullScreen) .page-content {
+    order: unset;
+  }
+  .with-sidebar main > .body-wrapper h1.fullScreen {
+    display: block;
   }
 }

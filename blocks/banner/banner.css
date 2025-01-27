@@ -1,29 +1,45 @@
-main .block.banner {
-  position: relative;
+.section.banner-container {
+  background-color: var(--color-blue);
 }
 
-main .block.banner .button {
+.banner-wrapper {
+  max-width: var(--section-width);
+  margin: auto;
+}
+
+.block.banner {
+  display: flex;
+  position: relative;
+  align-items: center;
+  height: fit-content;
+}
+
+.block.banner > span {
+  display: none;
+}
+
+.block.banner .button {
   margin: 0;
 }
 
-main .block.banner.fixed-to-top,
-main .block.banner.fixed-to-bottom {
+.block.banner.fixed-to-bottom {
   position: fixed;
   left: 0;
   z-index: 100;
   width: 100%;
-}
-
-main .block.banner.fixed-to-top {
-  top: var(--nav-height);
-}
-
-main .block.banner.fixed-to-bottom {
   bottom: 0;
 }
 
-main .block.banner > .banner-content {
-  position: relative;
+.banner-container:has(.fixed-to-top) {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.block.banner > .banner-content {
+  position: sticky;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -31,57 +47,106 @@ main .block.banner > .banner-content {
   padding: 1rem;
   width: 100%;
   white-space: nowrap;
+  align-items: center;
 }
 
 @media screen and (min-width: 576px /* breakpoint-s */) {
-  main .block.banner > .banner-content {
+  .block.banner > .banner-content {
     gap: 4rem;
   }
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
-  main .block.banner > .banner-content {
+  .block.banner > .banner-content {
     gap: 10rem;
+  }
+
+  .block.banner > span {
+    display: block;
+    width: 50px;
+    gap: 50px;
+    color: var(--color-white);
+    margin-left: 10px;
   }
 }
 
-main .block.banner > .banner-content > * {
+.block.banner > .banner-content > .banner-content-page {
+  display: none;
+}
+
+.block.banner > .banner-content > .banner-content-page.active {
+  display: block;
+}
+
+.block.banner > .banner-actions {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-right: 10px;
 }
 
-main .block.banner > .banner-actions {
-  position: absolute;
-  top: 0;
-  right: 20px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-main .block.banner > .banner-actions > .close-button {
-  margin: 0;
-  width: 20px;
-  height: 20px;
-  background-color: rgba(255 255 255 / 50%);
+.block.banner > .banner-actions > .close-button {
+  width: 10px;
+  height: 10px;
   border: unset;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 0 0 2px 1px;
+  color: unset;
+  background-color: unset;
 }
 
-main .block.banner > .banner-actions > .close-button:hover {
-  background-color: var(--color-white);
-  transform: scale(1.2);
-  padding: 0 0 1.5px 0.5px;
-}
-
-main .block.banner > .banner-actions > .close-button::before {
-  content: "×";
-  color: #525151;
-  font-size: 20px;
+.block.banner > .banner-actions > .close-button::before {
+  content: "X";
+  color: var(--color-white);
   margin: auto;
+}
+
+.block.banner p:has(a) a:any-link,
+.block.banner p:has(strong+a) a:any-link,
+.block.banner p:has(strong > a) a:any-link {
+  color: var(--color-yellow);
+}
+
+.block.banner p.button-container a:any-link {
+  background-color: var(--color-button-primary);
+  border-color: var(--color-button-primary);
+  color: var(--color-black);
+}
+
+.fa-chevron-left::before {
+  content: "";
+  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+  margin-left: 8px;
+  color: var(--color-white);
+}
+
+.fa-chevron-right::after {
+  content: "";
+  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+  margin-right: 8px;
+  color: var(--color-white);
+}
+
+button.fa-chevron-left, 
+button.fa-chevron-right {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 22px;
+  text-decoration: unset;
+  border: unset;
+  padding: unset;
+  line-height: unset;
+  text-align: unset;
+  font-style: unset;
+  font-weight: unset;
+  cursor: pointer;
+  color: unset;
+  background-color: unset;
+  white-space: nowrap;
+  overflow: unset;
+  text-overflow: unset;
+  border-radius: unset;
 }

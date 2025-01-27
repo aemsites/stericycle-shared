@@ -9,7 +9,7 @@ header {
   align-items: center;
   background-color: var(--color-bg-tertiary);
   padding: 0 1rem;
-  height: auto;
+  height: auto !important;
   min-height: 60px;
   color: var(--color-white);
 }
@@ -159,9 +159,12 @@ header {
 .header .locate-form {
   display: flex;
   flex-direction: column;
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-white);
   color: var(--color-text-primary);
+  margin: auto;
   padding: 32px;
+  width: 100%;
+  max-width: var(--content-width-xl);
 }
 
 .header .list-item li a {
@@ -248,13 +251,23 @@ header {
   gap: 16px;
 }
 
+.header .list-item li a:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+.header .list-item.managed li a {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.header .list-item li ul li:last-child a {
+  margin-top: 16px;
+}
+
 .header .list-item > ul > li {
   padding: 12px 0;
   align-items: flex-start;
-}
-
-.header .list-item li a:hover {
-  background-color: var(--color-bg-secondary);
 }
 
 .header .list-item li > * {
@@ -263,8 +276,33 @@ header {
   color: var(--color-text-secondary);
 }
 
-.header .list-item.managed li a {
-  padding: 0;
+.header .list-item li a[aria-label="Primary button"] {
+  padding: .5rem 2rem;
+  background-color: var(--color-button-primary);
+  border: none;
+  color: var(--color-text-primary);
+  outline: 1px solid var(--color-grey200);
+  border-radius: 100px;
+  font-style: normal;
+}
+
+.header .list-item li a[aria-label="Primary button"]:hover{
+  outline: 3px solid var(--color-black);
+}
+
+.header .list-item li a[aria-label="Secondary button"] {
+  padding: 6px 2rem;
+  background-color: var(--color-white);
+  border: 2px solid var(--color-primary-1);
+  color: var(--color-primary-1);
+  border-radius: 100px;
+  font-style: normal;
+}
+
+.header .list-item li a[aria-label="Secondary button"]:hover {
+  background-color: var(--color-primary-1);
+  color: var(--color-white);
+  border-color: currentcolor;
 }
 
 .header .list-item.managed > ul > li {
@@ -678,18 +716,16 @@ header {
   }
 }
 
-@media (min-width: 1600px) {
-  .header {
-    padding: 0 80px;
-  }
+/* body:has(.section.banner-container .block.banner.fixed-to-bottom) .floating-contact {
+  bottom: 3.25rem;
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
+body:has(.section.banner-container .block.banner.fixed-to-bottom p.button-container) .floating-contact {
+  bottom: 4.25rem;
+} */
 
-  to {
-    opacity: 1;
+@media (min-width: 1400px) {
+  .block.header {
+    padding: 0 80px;
   }
 }

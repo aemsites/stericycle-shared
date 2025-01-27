@@ -57,7 +57,7 @@
   display: block;
 }
 
-main .columns span.icon > img {
+main .columns:not(.xxxl-icons) span.icon > img {
   width:2.5rem;
   height:2.5rem;
 }
@@ -70,7 +70,12 @@ main .columns.numeric-list span.icon {
 main .columns.block.numeric-list {
   max-width: var(--section-width);
   margin: 2rem auto;
-  padding: 0 1.5rem;
+  padding: 0;
+}
+
+main .section.shredded-paper-background-column.two-column.form-container .columns.block.numeric-list
+main .section.hard-drive-background.two-column.form-container .columns.block.numeric-list {
+    padding: 0;
 }
 
 .columns.columns-has-image.steps img {
@@ -141,7 +146,7 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
   align-items: flex-start;
 }
 
-.columns.narrow-icons > div {
+.columns.block.narrow-icons > div {
   align-items: flex-start;
   gap: unset;
   flex-flow: row wrap;
@@ -213,6 +218,9 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 .columns.narrow-icons p.button-container > a {
   border: unset;
   background-color: unset;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-bottom: 0;
 }
 
 .columns.steps h3 {
@@ -271,6 +279,10 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 
 .columns.vertical-center-align > div > div {
   justify-content: center;
+}
+
+main .block.columns.left-align {
+  text-align: left;
 }
 
 .columns.orange-accent-border > div > div::after,
@@ -766,6 +778,32 @@ main .section.columns-container > div > div.columns.separator.block {
   border-top: 1px solid var(--color-grey200);
   margin-top: 40px;
 }
+
+main .section.columns-container.close-vertical {
+  & > .columns-wrapper {
+    margin-top: unset;
+    margin-bottom: .5rem;
+
+    & > .block.columns {
+      margin: 0;
+    }
+
+    & > div > div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  & > div:not(div:first-of-type).default-content-wrapper {
+    margin-top: unset;
+  }
+
+  & > div:not(div:first-of-type, div:last-of-type).default-content-wrapper {
+    margin-bottom: 1.5rem;
+  }
+}
+
 
 @media (min-width: 992px /* breakpoint-l */) {
   .columns.block:not(.wrap-mobile) > div {
