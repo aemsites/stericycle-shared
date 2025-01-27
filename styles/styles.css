@@ -137,6 +137,7 @@
   --content-width-l: 960px;
   --content-width-xl: 1140px;
   --content-width-xxl: 1320px;
+  --content-width-xxxl: 1920px;
   --section-width: var(--content-width-s);
 
   /* Split Columns */
@@ -1576,6 +1577,18 @@ main .section.full-width > div {
 @media screen and (max-width: 992px) {
   main .page-sidebar .section.get-a-quote-form-wrapper {
     display: none;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  main .section.column-with-list.blue-background.columns-container,
+  main .section.faq-container:not(.form-container):not(.plain)  {
+    max-width: var(--content-width-xxxl);
+    margin: auto;
+
+    & > div {
+      max-width: 100%;
+    }
   }
 }
 
