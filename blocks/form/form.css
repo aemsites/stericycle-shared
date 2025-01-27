@@ -100,7 +100,13 @@ main .form a:any-link {
 main .footer-subscription-form > div {
     max-width: var(--section-width);
     width: 100%;
-    padding: 2rem 1.5rem;
+    padding: 2rem var(--content-container-padding);
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  main .footer-subscription-form > div {
+    padding: 2rem var(--content-container-padding-large);
+  }
 }
 
 main .form > div:not(:first-child) {

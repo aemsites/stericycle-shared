@@ -42,7 +42,7 @@ main .section.hero-container {
     max-width: var(--section-width);
     margin: auto;
     position: relative;
-    padding: 0 1.5rem;
+    padding: 0 var(--content-container-padding);
     width: 100%;
 
     & .hero-content {
@@ -77,7 +77,6 @@ main .section.hero-container {
 @media (min-width: 576px) {
   .block.hero {
     & div.hero-content-container {
-      padding: 0 12px;
       margin: 1rem auto;
       max-width: var(--section-width);
     }
@@ -100,6 +99,8 @@ main .section.hero-container {
     }
 
     & .hero-content-container {
+      padding: 0 var(--content-container-padding-large);
+
       & .hero-content {
         width: 58.3333%;
 
