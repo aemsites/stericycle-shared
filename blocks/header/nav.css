@@ -251,6 +251,16 @@ header {
   gap: 16px;
 }
 
+.header .list-item li a:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+.header .list-item.managed li a {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
 .header .list-item li ul li:last-child a {
   margin-top: 16px;
 }
@@ -260,20 +270,10 @@ header {
   align-items: flex-start;
 }
 
-.header .list-item li a:hover {
-  background-color: var(--color-bg-secondary);
-}
-
 .header .list-item li > * {
   font-size: 14px;
   line-height: 160%;
   color: var(--color-text-secondary);
-}
-
-.header .list-item.managed li a {
-  display: flex;
-  align-items: center;
-  padding: 0;
 }
 
 .header .list-item li a[aria-label="Primary button"] {
