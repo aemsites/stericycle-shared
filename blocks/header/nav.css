@@ -11,13 +11,6 @@ header {
   height: auto !important;
   min-height: 60px;
   color: var(--color-white);
-  padding: 0 var(--content-container-padding);
-}
-
-@media (min-width: 992px /* breakpoint-l */) {
-  header {
-    padding: 0 var(--content-container-padding-large);
-  }
 }
 
 .header nav {
@@ -53,6 +46,15 @@ header {
   flex-wrap: wrap;
   gap: 14px;
   width: 100%;
+  max-width: var(--content-width-xxl);
+  margin: 0 auto;
+  padding: 0 var(--content-container-padding);
+}
+
+@media screen and (min-width: 992px) {
+  .header {
+    padding: 0 var(--content-container-padding-large);
+  }
 }
 
 .header .logo {
@@ -168,7 +170,6 @@ header {
   margin: auto;
   padding: 32px;
   width: 100%;
-  max-width: var(--content-width-xl);
 }
 
 .header .list-item li a {

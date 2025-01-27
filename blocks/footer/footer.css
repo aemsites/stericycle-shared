@@ -41,6 +41,8 @@ footer .footer-container > .section {
     place-items: stretch;
     width: 100%;
     padding: 0 var(--content-container-padding-large);
+    max-width: var(--content-width-xxl);
+    margin: 0 auto;
   }
 }
 
