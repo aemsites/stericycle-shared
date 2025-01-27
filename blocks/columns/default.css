@@ -433,17 +433,11 @@ main .section.centered-text.columns-container p {
 /* Style One Default */
 
 main .section.columns-container:has(.columns.style-one-default.block) {
-  padding: 80px;
+  padding: 37px;
 }
 
-main .section.columns-container.narrow:has(.columns.style-one-default.block) {
-  max-width: 1160px;
-}
-
-main .section.columns-container:has(.columns.style-one-default.block) > div {
-  max-width: 1160px;
-  margin: auto;
-  padding: 0;
+main .section.columns-container:has(.columns.style-one-default.block) > div.column-wrapper:last-of-type {
+  margin: 0 20px;
 }
 
 main .section.columns-container > div > div.columns.style-one-default.block {
@@ -465,10 +459,12 @@ main .section.columns-container > div > div.columns.native-image-sizes.block {
 
 main .section.columns-container > div > div.columns.native-image-sizes.block > div {
   gap: 80px;
+  justify-content: center;
 }
 
 main .section.columns-container > div > div.columns.native-image-sizes.block > div > div {
   gap: 16px;
+  max-width: 426px;
 }
 
 main .section.columns-container > div > div.columns.native-image-sizes.block > div > div > p {
@@ -484,21 +480,17 @@ main .section.columns-container > div > div.columns.native-image-sizes.block > d
   text-transform: uppercase;
 }
 
+@media (min-width: 992px /* breakpoint-l */) {
+  main .section.columns-container:has(.columns.style-one-default.block) {
+    padding: 80px;
+  }
+
+  main .section.columns-container:has(.columns.style-one-default.block) > div.column-wrapper:last-of-type {
+    margin: 0;
+  }
+}
+
 /* Style One with Logos */
-
-main .section.columns-container:has(.columns.style-one-with-logos.block) {
-  padding: 80px;
-}
-
-main .section.columns-container.narrow:has(.columns.style-one-with-logos.block) {
-  max-width: 1160px;
-}
-
-main .section.columns-container:has(.columns.style-one-with-logos.block) > div {
-  max-width: 1160px;
-  margin: auto;
-  padding: 0;
-}
 
 main .section.columns-container > div > div.columns.style-one-with-logos.block {
   display: flex;
@@ -530,32 +522,32 @@ main .section.columns-container > div > div.columns.style-one-with-logos.block >
   margin: 0;
 }
 
+@media (min-width: 992px /* breakpoint-l */) {
+  main .section.columns-container:has(.columns.style-one-with-logos.block) {
+    padding: 80px;
+  }
+}
+
 /* Style Two Default */
 
 main .section.columns-container > div > div.columns.style-two-default.block > div {
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 0;
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  main .section.columns-container > div > div.columns.style-two-default.block > div {
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 /* Style Three Default */
 
-main .section.columns-container:has(.columns.style-three-default.block) {
-  padding: 80px 120px;
-}
-
-main .section.columns-container.narrow:has(.columns.style-three-default.block) {
-  max-width: 1360px;
-}
-
-main .section.columns-container:has(.columns.style-three-default.block) > div {
-  max-width: 1360px;
-  margin: auto;
-  padding: 0;
-}
-
 main .section.columns-container > div > div.columns.style-three-default.block {
   padding: 0;
-  margin: 0 0 80px;
+  margin: 0;
   gap: 16px;
 }
 
@@ -584,21 +576,22 @@ main .section.columns-container > div > div.columns.style-three-default > div > 
   max-width: 853px;
 }
 
+@media (min-width: 992px /* breakpoint-l */) {
+  main .section.columns-container:has(.columns.style-three-default.block) {
+    padding: 80px 120px;
+  }
+
+  main .section.columns-container > div > div.columns.style-three-default.block {
+    margin: 0 0 80px;
+  }
+
+  main .section.columns-container:has(.columns.style-three-default.block) > .columns-wrapper {
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+}
+
 /* Style Three Left Alignment */
-
-main .section.columns-container:has(.columns.style-three-left-aligned) {
-  padding: 64px;
-}
-
-main .section.columns-container.narrow:has(.columns.style-three-left-aligned) {
-  max-width: 1440px;
-}
-
-main .section.columns-container:has(.columns.style-three-left-aligned) > div {
-  max-width: 1440px;
-  margin: auto;
-  padding: 0;
-}
 
 main .section.columns-container > div > div.columns.style-three-left-aligned {
   max-width: 687px;
@@ -643,19 +636,20 @@ main .section .columns.right-aligned > div > div > * {
   text-align: right;
 }
 
+@media (min-width: 992px /* breakpoint-l */) {
+  main .section.columns-container:has(.columns.style-three-left-aligned) {
+    padding: 64px;
+  }
+}
+
+/* Style 1: Column with Left Border (Titled Style 4) */
+main .section.columns-container:has(.columns.style-one-default.block):has(.cyan-accent-border) > .columns-wrapper {
+  padding: 0;
+}
+
 /* Style Four Default */
 
 main .section.columns-container:has(.columns.style-four-default.block) {
-  padding: 80px;
-}
-
-main .section.columns-container.narrow:has(.columns.style-four-default.block) {
-  max-width: 1160px;
-}
-
-main .section.columns-container:has(.columns.style-four-default.block) > div {
-  max-width: 1160px;
-  margin: auto;
   padding: 0;
 }
 
@@ -686,19 +680,15 @@ main .section.columns-container > div > div.columns.style-four-default.block > d
   margin: 0;
 }
 
+@media (min-width: 992px /* breakpoint-l */) {
+  main .section.columns-container:has(.columns.style-four-default.block) {
+    padding: 80px;
+  }
+}
+
 /* Style Five Default */
 
-main .section.columns-container:has(.columns.cyan-line-divider.block) {
-  padding: 80px;
-}
-
-main .section.columns-container.narrow:has(.columns.cyan-line-divider.block) {
-  max-width: 1160px;
-}
-
-main .section.columns-container:has(.columns.cyan-line-divider.block) > div {
-  max-width: 1160px;
-  margin: auto;
+main .section.columns-container:has(.columns.style-one-default.block):has(.cyan-line-divider) {
   padding: 0;
 }
 
@@ -761,6 +751,12 @@ main .section.columns-container > div > div.columns.cyan-line-divider.block > di
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+}
+
+@media (min-width: 992px /* breakpoint-l */) {
+  main .section.columns-container:has(.columns.style-one-default.block):has(.cyan-line-divider) {
+    padding: 80px;
+  }
 }
 
 /* Section Top Separator */
