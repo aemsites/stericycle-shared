@@ -1582,7 +1582,7 @@ main .section.full-width > div {
 
 @media screen and (min-width: 1920px) {
   main .section.column-with-list.blue-background.columns-container,
-  main .section.faq-container:not(.form-container):not(.plain)  {
+  main .section.faq-container:not(.form-container, .plain)  {
     max-width: var(--content-width-xxxl);
     margin: auto;
 
