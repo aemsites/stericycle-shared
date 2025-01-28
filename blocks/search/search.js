@@ -1,8 +1,6 @@
 import {
   fetchPlaceholders,
 } from '../../scripts/aem.js';
-
-import ffetch from '../../scripts/ffetch.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
 import { fetchQueryIndex } from '../../scripts/scripts.js';
 
@@ -245,11 +243,10 @@ async function handleSearch(e, block, config) {
     const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
     const filteredData = filterData(searchTerms, data);
     const placeholders = await fetchPlaceholders();
-    const source = block.querySelector('a[href]')?.href;
     block.innerHTML = '';
     block.append(
       // eslint-disable-next-line no-use-before-define
-      searchBox(block, { source, placeholders }),
+      searchBox(block, { placeholders }),
     );
 
     if (filteredData.length === 0) {
@@ -336,15 +333,14 @@ function searchBox(block, config) {
 
 export default async function decorate(block) {
   const placeholders = await fetchPlaceholders();
-  const source = block.querySelector('a[href]')?.href;
   block.innerHTML = '';
   block.append(
-    searchBox(block, { source, type: 'site search', placeholders }),
+    searchBox(block, { type: 'site search', placeholders }),
   );
 
   if (searchParams.get('searchQuery')) {
     const input = block.querySelector('input');
     input.value = searchParams.get('searchQuery');
-    handleSearch({}, block, { source, type: 'header', placeholders });
+    handleSearch({}, block, { type: 'header', placeholders });
   }
 }
