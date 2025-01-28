@@ -1,5 +1,5 @@
-import ffetch from '../../scripts/ffetch.js';
 import { a, li, ol, span } from '../../scripts/dom-helpers.js';
+import { fetchQueryIndex } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
   let { pathname } = new URL(window.location.href);
@@ -11,7 +11,7 @@ export default async function decorate(block) {
   }
 
   let keys = Object.keys(paths).sort((l, r) => l.length - r.length);
-  await ffetch('/query-index.json').filter((x) => {
+  await fetchQueryIndex().filter((x) => {
     if (keys.includes(x.path)) {
       paths[x.path] = x;
       return true;
