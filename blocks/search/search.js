@@ -240,7 +240,7 @@ async function handleSearch(e, block, config) {
   }
 
   if (searchValue.length >= 3) {
-    const data = config.source ? await ffetch(config.source).sheet('search').all() : await fetchQueryIndex().sheet('search').all();
+    const data = await fetchQueryIndex().sheet('search').all();
 
     const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
     const filteredData = filterData(searchTerms, data);
