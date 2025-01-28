@@ -92,6 +92,7 @@ export default async function decorate(block) {
     closeButton.classList.add('cmp-carousel__action--close'); // analytics trigger
     closeButton.addEventListener('click', () => copyBlock.remove());
     body.prepend(copySection);
+    copySection.style = "{display: block;}";
     block.closest('.section').remove();
   }
 }
