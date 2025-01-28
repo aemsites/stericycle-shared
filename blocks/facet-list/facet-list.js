@@ -1,17 +1,12 @@
-import { fetchQueryIndex, getDateFromExcel, getLocale } from '../../scripts/scripts.js';
+import { createPostLink, formatDate, getDateFromExcel, getLocale, fetchQueryIndex } from '../../scripts/scripts.js';
 import {
-  createOptimizedPicture, fetchPlaceholders, readBlockConfig,
+  createOptimizedPicture, decorateButtons, decorateIcon, fetchPlaceholders, readBlockConfig,
 } from '../../scripts/aem.js';
 import { div } from '../../scripts/dom-helpers.js';
 
 const ITEMS_PER_PAGE = 10;
 let CURRENT_PAGE = 1;
-
-const formatDate = (date) => date.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: '2-digit',
-});
+let CTA_TYPE = 'default';
 
 /*
     * This function decorates the results from the query-index.json file
@@ -24,7 +19,7 @@ function decorateResults(posts, list) {
     itemLeft.classList.add('item-left');
     const itemRight = document.createElement('div');
     itemRight.classList.add('item-right');
-    const heading = document.createElement('h4');
+    const heading = document.createElement('p');
     const categoryDiv = document.createElement('div');
     categoryDiv.classList.add('item-category');
 
@@ -32,25 +27,57 @@ function decorateResults(posts, list) {
       const categoryLink = document.createElement('a');
       categoryLink.href = window.location.pathname;
       categoryLink.innerText = post.type;
-      categoryLink.classList.add('initial-caps');
+      categoryLink.classList.add('eyebrow-small');
       categoryLink.setAttribute('aria-label', post.type);
+
       categoryDiv.append(categoryLink);
     }
 
-    const dateDiv = document.createElement('div');
+    // heading
     heading.classList.add('item-title');
     const headingLink = document.createElement('a');
     headingLink.href = post.path;
     headingLink.setAttribute('aria-label', post.title);
     headingLink.innerText = post.title;
     heading.append(headingLink);
+
+    // date
+    const dateDiv = document.createElement('div');
+
     dateDiv.classList.add('item-date');
     dateDiv.innerText = formatDate(getDateFromExcel(post.date));
+
     const img = createOptimizedPicture(post.image, post.title);
     itemLeft.append(img);
     item.append(itemLeft);
-    itemRight.append(heading, categoryDiv, dateDiv);
+    itemRight.append(categoryDiv, dateDiv, heading);
     item.append(itemRight);
+
+    // cta
+    const ctasWrapper = document.createElement('p');
+    let buttonWrapper = document.createElement('div');
+    const icon = document.createElement('span');
+    const button = createPostLink(post);
+
+    icon.classList.add('icon', 'icon-right-arrow');
+    button.textContent = 'Read More';
+
+    if (CTA_TYPE === 'primary') {
+      buttonWrapper = document.createElement('strong');
+    }
+
+    if (CTA_TYPE === 'secondary') {
+      buttonWrapper = document.createElement('em');
+    }
+
+    button.appendChild(icon);
+    buttonWrapper.appendChild(button);
+    ctasWrapper.appendChild(buttonWrapper);
+    itemRight.append(ctasWrapper);
+
+    decorateButtons(buttonWrapper);
+    decorateIcon(icon);
+
     list.append(item);
   });
 }
@@ -352,6 +379,7 @@ const createFacet = (facets, topDiv, sheets) => {
 
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
+  const cta = cfg.cta || 'default';
   const facets = await getFacets(cfg.sheet.split(','));
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const { blogtopic } = ph;
@@ -363,6 +391,7 @@ export default async function decorate(block) {
   });
   facetDiv.append(mobileFilter);
   facetDiv.classList.add('facet');
+  CTA_TYPE = cta;
 
   const topDiv1 = createFacetList('Media Type');
   const topDiv2 = createFacetList(blogtopic);
