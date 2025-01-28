@@ -664,6 +664,7 @@ main .section p:not(.button-container) a {
 main .section div.button-container a {
   text-decoration: none;
 }
+
 main .section.no-buttons {
   & > .default-content-wrapper {
     & > p.button-container a {
