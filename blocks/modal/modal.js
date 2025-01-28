@@ -43,6 +43,12 @@ export async function createModal(contentNodes, config) {
     }
   });
 
+  dialog.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && event.target.tagName !== 'TEXTAREA') {
+      event.preventDefault();
+    }
+  });
+
   dialog.addEventListener('close', () => {
     document.body.classList.remove('modal-open');
     block.remove();

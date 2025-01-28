@@ -78,6 +78,7 @@ export default function decorate(block) {
     columnCount = 4;
   }
   block.innerHTML = '';
+  block.classList.add('exclude-from-cta-events');
 
   // create wrapper
   const list = document.createElement('ul');

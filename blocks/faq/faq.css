@@ -346,3 +346,14 @@ main:has(.section.two-column.hard-drive-background) .faq-container:has(.plain) .
     padding: unset;
   }
 }
+
+@media screen and (min-width: 1920px) {
+  main .section.faq-container:not(.form-container, .plain)  {
+    max-width: var(--content-width-xxxl);
+    margin: auto;
+
+    & > div {
+      max-width: 100%;
+    }
+  }
+}
