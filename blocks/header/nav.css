@@ -526,6 +526,8 @@ header {
   display: flex;
   align-items: center;
   gap: 32px;
+  margin: auto;
+  max-width: var(--content-width-xl);
 }
 
 .header .search-modal .close-button {
