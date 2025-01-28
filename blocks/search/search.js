@@ -4,6 +4,7 @@ import {
 
 import ffetch from '../../scripts/ffetch.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
+import { fetchQueryIndex } from '../../scripts/scripts.js';
 
 const searchParams = new URLSearchParams(window.location.search);
 
@@ -238,19 +239,13 @@ async function handleSearch(e, block, config) {
     window.history.replaceState({}, '', url.toString());
   }
 
-  if (!Object.hasOwn(window.localStorage, 'searchIndex')) {
-    if (config.source.endsWith('.json')) {
-      window.localStorage.setItem('searchIndex', config.source);
-    }
-  }
-
   if (searchValue.length >= 3) {
-    const data = await ffetch(window.localStorage.getItem('searchIndex')).sheet('search').all();
+    const data = config.source ? await ffetch(config.source).sheet('search').all() : await fetchQueryIndex().sheet('search').all();
 
     const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
     const filteredData = filterData(searchTerms, data);
     const placeholders = await fetchPlaceholders();
-    const source = block.querySelector('a[href]') ? block.querySelector('a[href]').href : '/query-index.json';
+    const source = block.querySelector('a[href]')?.href;
     block.innerHTML = '';
     block.append(
       // eslint-disable-next-line no-use-before-define
@@ -341,7 +336,7 @@ function searchBox(block, config) {
 
 export default async function decorate(block) {
   const placeholders = await fetchPlaceholders();
-  const source = block.querySelector('a[href]') ? block.querySelector('a[href]').href : '/query-index.json';
+  const source = block.querySelector('a[href]')?.href;
   block.innerHTML = '';
   block.append(
     searchBox(block, { source, type: 'site search', placeholders }),
