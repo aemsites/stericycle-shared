@@ -1,15 +1,5 @@
 import { h3, h4, p } from '../../scripts/dom-helpers.js';
-
-async function getQueryIdx(url) {
-  let json;
-  const page = await fetch(url);
-  if (page.ok) {
-    json = await page.json();
-  } else {
-    json = { data: [] };
-  }
-  return json;
-}
+import { fetchQueryIndex } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
   const cols = [...block.firstElementChild.children];
@@ -27,7 +17,7 @@ export default async function decorate(block) {
 
   const lookupTable = {};
   const pages = block.querySelectorAll('a');
-  const queryIdx = (await getQueryIdx('/query-index.json')).data;
+  const queryIdx = (await fetchQueryIndex().all());
 
   queryIdx.forEach((item) => {
     if (Object.hasOwn(item, 'path') && Object.hasOwn(item, 'title') && Object.hasOwn(item, 'description') && Object.hasOwn(item, 'teaser')) {
