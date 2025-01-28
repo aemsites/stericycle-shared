@@ -187,7 +187,7 @@ header {
   bottom: 0;
   padding: 16px;
   width: 100%;
-  display: flex;
+  display: none;
   justify-content: center;
   background: var(--color-bg-secondary);
 }
@@ -623,6 +623,7 @@ header {
 .header #nav > .instructions {
   position: fixed;
   bottom: 0;
+  z-index: 1;
   background: var(--color-bg-secondary);
   padding: 16px;
   width: 100%;
