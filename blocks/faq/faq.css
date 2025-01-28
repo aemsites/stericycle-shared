@@ -54,6 +54,14 @@ main:has(.section.two-column.full-width) div.faq-container div {
   transition: background-color 0.2s;
 }
 
+main .section.faq-container:has(.plain):not(.form-container) {
+  margin: auto;
+
+  & > div {
+    max-width: 100%;
+  }
+}
+
 @media screen and (min-width: 992px) {
   .faq details summary {
     padding-right: 48px;
@@ -284,7 +292,7 @@ main:has(.section.two-column.hard-drive-background) .faq-container:has(.plain) .
 }
 
 @media screen and (min-width: 1920px) {
-  main .section.faq-container:not(.form-container, .plain)  {
+  main .section.faq-container:has(.plain):not(.form-container) {
     max-width: var(--content-width-xxxl);
     margin: auto;
 
