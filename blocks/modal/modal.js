@@ -24,7 +24,7 @@ export async function createModal(contentNodes, config) {
   closeButton.setAttribute('aria-label', 'Close');
   closeButton.type = 'button';
   closeButton.innerHTML = '<span class="icon icon-close"></span>';
-  closeButton.addEventListener('click', () => dialog.close('default'));
+  closeButton.addEventListener('click', () => dialog.close());
   dialog.prepend(closeButton);
 
   const block = buildBlock('modal', '');
