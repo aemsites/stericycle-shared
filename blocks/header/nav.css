@@ -205,30 +205,6 @@ header {
   display: flex;
 }
 
-.header #nav > .instructions {
-  position: fixed;
-  bottom: 0;
-  background: var(--color-bg-secondary);
-  padding: 16px;
-  width: 100%;
-}
-
-.header #nav > .instructions .default-content-wrapper {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.header #nav > .instructions .default-content-wrapper a {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 160%;
-  text-decoration: underline;
-  color: var(--color-text-primary);
-  white-space: pre-wrap;
-}
-
 .header .submenu .back-button {
   position: absolute;
   top: 10px;
@@ -642,6 +618,30 @@ header {
 .header .ctas-container-mobile .content .button {
   width: 100%;
   margin-bottom: 0;
+}
+
+.header #nav > .instructions {
+  position: fixed;
+  bottom: 0;
+  background: var(--color-bg-secondary);
+  padding: 16px;
+  width: 100%;
+}
+
+.header #nav > .instructions .default-content-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.header #nav > .instructions .default-content-wrapper a {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 160%;
+  text-decoration: underline;
+  color: var(--color-text-primary);
+  white-space: pre-wrap;
 }
 
 @media (min-width: 992px) {
