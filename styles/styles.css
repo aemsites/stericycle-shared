@@ -264,6 +264,7 @@ main .section.column-with-list.blue-background.columns-container li {
   padding: .75rem 0;
   border-bottom: .0625rem solid #dad6d6;
   gap: 1rem;
+  align-items: center;
 }
 
 main .section.column-with-list.blue-background.columns-container .columns-wrapper,
@@ -273,14 +274,15 @@ main .section.column-with-list.navy-background.columns-container .columns-wrappe
 
 main .section.column-with-list.navy-background.columns-container img,
 main .section.column-with-list.blue-background.columns-container img {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 100%;
+  height: 100%;
   max-width: unset;
 }
 
 main .section.column-with-list.navy-background.columns-container .icon,
 main .section.column-with-list.blue-background.columns-container .icon {
-  width: fit-content;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 main .section.column-with-list.blue-background.columns-container .columns-wrapper div:nth-of-type(2),
