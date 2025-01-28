@@ -77,7 +77,6 @@ header {
   background-color: var(--color-bg-primary);
   width: 100%;
   min-height: 100%;
-  height: fit-content;
   box-shadow: 0 4px 6px color-mix(in srgb, black 10%, transparent);
   animation: fade-in 0.3s ease-in-out;
 }
@@ -623,7 +622,7 @@ header {
 .header #nav > .instructions {
   position: fixed;
   bottom: 0;
-  z-index: 1;
+  z-index: 99;
   background: var(--color-bg-secondary);
   padding: 16px;
   width: 100%;
@@ -699,6 +698,10 @@ header {
     padding-bottom: 0;
     height: auto;
     min-height: auto;
+  }
+
+  .header .submenu .instructions {
+    display: flex;
   }
 
   .header .submenu .instructions a {
