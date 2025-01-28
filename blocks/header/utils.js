@@ -373,11 +373,14 @@ export function generateMenuFromSection(
 
     // add instruction to every sub menu
     const subMenus = nav.querySelectorAll('.submenu');
+
     subMenus.forEach((subMenu) => {
       const instruction = instructions.cloneNode(true);
       subMenu.append(instruction);
     });
   }
+
+  nav.appendChild(instructions);
 
   return nav;
 }

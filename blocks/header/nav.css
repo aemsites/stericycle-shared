@@ -183,7 +183,9 @@ header {
 }
 
 .header .submenu .instructions {
-  padding: 0 32px;
+  position: absolute;
+  bottom: 0;
+  padding: 16px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -191,12 +193,40 @@ header {
 }
 
 .header .submenu .instructions a {
-  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
   font-weight: 700;
+  line-height: 160%;
   text-decoration: underline;
   color: var(--color-text-primary);
   white-space: pre-wrap;
-  width: 100;
+  align-items: center;
+  display: flex;
+}
+
+.header #nav > .instructions {
+  position: fixed;
+  bottom: 0;
+  background: var(--color-bg-secondary);
+  padding: 16px;
+  width: 100%;
+}
+
+.header #nav > .instructions .default-content-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.header #nav > .instructions .default-content-wrapper a {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 160%;
+  text-decoration: underline;
+  color: var(--color-text-primary);
+  white-space: pre-wrap;
 }
 
 .header .submenu .back-button {
@@ -207,9 +237,19 @@ header {
   padding: 0;
 }
 
+.header .submenu .back-button::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('/icons/arrow-left.svg');
+}
+
 .header .submenu .locate-form,
 .header .submenu .list {
   padding-top: 68px;
+  padding-bottom: 68px;
   height: 100%;
 }
 
@@ -660,8 +700,12 @@ header {
     min-height: auto;
   }
 
-  .header .submenu .instructions {
-    padding: 4px;
+  .header .submenu .instructions a {
+    font-size: 20px;
+  }
+
+  .header #nav > .instructions {
+    display: none;
   }
 
   .header .submenu .list,
