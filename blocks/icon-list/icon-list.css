@@ -298,6 +298,13 @@ main .two-column.form-container.icon-list-container > div:first-child.default-co
 
 }
 
+@media (min-width: 1400px) {
+    main .two-column.form-container.icon-list-container:has(.vertical-icons) {
+        justify-content: center;
+        column-gap: 50px;
+    }
+}
+
 /* Vertical Numbers Styles */
 main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div {
     flex-direction: column;
