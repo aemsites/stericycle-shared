@@ -27,6 +27,24 @@
   height: auto;
 }
 
+/* eyebrow styling */
+.flip-cards > .wrapper .button-container.eyebrow {
+  display: none;
+}
+
+.flip-cards > .wrapper .eyebrow p {
+  background-color: var(--color-accent-3);
+  border-radius: 4px;
+  margin-bottom: 8px;
+  padding: 8px 16px;
+  width: fit-content;
+  font-size: var(--body-font-size-xs);
+  font-weight: var(--font-weight-extra-bold);
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: var(--color-white);
+}
+
 
 .flip-cards > .wrapper > div {
   background: var(--color-bg-tertiary);

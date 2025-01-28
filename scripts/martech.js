@@ -150,3 +150,15 @@ export function pushToDataLayer(data) {
   }
   window.dataLayer.push(data);
 }
+
+/**
+ * Decorate all CTA buttons with the analytics trigger classname.
+ * @param {Element} element container element
+ */
+export async function decorateCtaButtons(element) {
+  setTimeout(() => {
+    element.querySelectorAll('.button:not(form):not(.exclude-from-cta-events):not(.quote-button)').forEach((a) => {
+      a.classList.add('cmp-linkcalltoaction');
+    });
+  }, 100);
+}

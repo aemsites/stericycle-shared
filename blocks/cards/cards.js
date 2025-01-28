@@ -18,13 +18,6 @@ export default function decorate(block) {
           rowsWithContentLeft = true;
         }
 
-        const link = cardSection.querySelector('a.button'); // Find <a> with class 'button'
-
-        if (link && !link.classList.contains('primary')) {
-          // Add the 'primary' class to the <a> element
-          link.classList.add('primary');
-        }
-
         // populate card
         cardSection.classList.add('card-section');
         cardBody.append(cardSection);

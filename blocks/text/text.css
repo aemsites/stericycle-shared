@@ -3,3 +3,9 @@
 .block.text.extra-small {
   font-size: 0.75rem;
 }
+
+@media screen and (min-width: 1920px) {
+  main .section.full-width.text-container .text-wrapper {
+    max-width: var(--content-width-xxxl);
+  }
+}
