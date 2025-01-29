@@ -17,7 +17,9 @@ export default function decorate(block) {
       // add button class to links in card sections
       document.querySelectorAll('.card-section p').forEach((p) => {
         const link = p.querySelector('a');
-        if (link) {
+        // Validate whether the element is a link or inline text
+        const hasOnlyLink = link && p.childNodes.length === 1;
+        if (hasOnlyLink) {
           if (!p.classList.contains('button-container')) {
             p.classList.add('button-container');
           }
