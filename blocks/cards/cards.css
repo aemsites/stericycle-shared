@@ -140,11 +140,8 @@
   font-weight: var(--font-weight-regular);
   line-height: 160%;
   letter-spacing: 0.16px;
-  margin: 0;
-}
-
-.cards.primary > ul > li > .card-body > .card-section:first-of-type > p {
   padding-top: 12px;
+  margin: 0;
 }
 
 .cards.primary > ul > li > .card-body > .card-section:first-of-type > h2 {
