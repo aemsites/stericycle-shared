@@ -112,7 +112,7 @@
   flex: 0;
 }
 
-.cards > ul > li > .card-body > .card-section > p.button-container:last-child > * {
+.cards > ul > li > .card-body > .card-section > p.button-container > * {
   display: flex;
   justify-content: center;
 }
@@ -143,6 +143,10 @@
   margin: 0;
 }
 
+.cards.primary > ul > li > .card-body > .card-section:first-of-type > p {
+  padding-top: 12px;
+}
+
 .cards.primary > ul > li > .card-body > .card-section:first-of-type > h2 {
   font-weight: 600;
   line-height: 120%;
@@ -160,6 +164,14 @@
   line-height: 120%;
   letter-spacing: 1.4px;
   text-transform: uppercase;
+}
+
+.cards > ul > li > .card-body > .card-section > p.button-container {
+  margin: 0;
+}
+
+.cards > ul > li > .card-body > .card-section > p.button-container a {
+  margin-top: 0;
 }
 
 .cards > ul > li > .card-body > .card-section > p.button-container:last-child a.button {
