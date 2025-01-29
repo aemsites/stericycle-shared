@@ -5,13 +5,21 @@ main .section.faq-container > div {
 main .section.faq-container:has(.plain):not(.form-container) {
   margin: auto;
 
-  & > div {
+  & > div.default-content-wrapper,
+  & > div.faq-wrapper {
     max-width: 100%;
+    margin: 2rem auto;
+    padding: 0 2.5rem;
   }
 }
 
 main:has(.section.two-column.full-width) div.faq-container div {
   max-width: 100%;
+}
+
+main .faq-container.cyan-border.form-container.navy-background .default-content-wrapper {
+  margin: 2rem 2rem;
+  width: 100%;
 }
 
 .faq {
@@ -188,12 +196,6 @@ main:has(.section.shredded-paper-background) div.faq-container div.faq-wrapper{
   margin: 0 2rem;
 }
 
-main:has(.section.shredded-paper-background) .faq-container .default-content-wrapper,
-main:has(.section.two-column.shredded-paper-background-column) .faq-container:has(.plain) .default-content-wrapper,
-main:has(.section.two-column.hard-drive-background) .faq-container:has(.plain) .default-content-wrapper {
-  margin: 2rem;
-}
-
 @media screen and (min-width: 992px) {
   .faq-container .default-content-wrapper {
     margin-bottom: 1.5rem;
@@ -292,7 +294,7 @@ main:has(.section.two-column.hard-drive-background) .faq-container:has(.plain) .
 }
 
 @media screen and (min-width: 1920px) {
-  main .section.faq-container.gray-background:has(.plain):not(.form-container) {
+  main .section.faq-container:has(.plain):not(.form-container) {
     max-width: 100%;
 
     & > div.default-content-wrapper,
