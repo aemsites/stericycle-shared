@@ -358,6 +358,38 @@ async function autolinkModals(element) {
   openOnTrigger(fetchTriggerConfig(), openModal);
 }
 
+function generateRandomEmail() {
+  // Helper function to generate a random hexadecimal string of a given length
+  function getRandomHex(length) {
+    const chars = '0123456789ABCDEF';
+    let result = '';
+    for (let i = 0; i < length; i += 1) {
+      result += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return result;
+  }
+
+  // Generate parts of the email
+  const part1 = getRandomHex(8);
+  const part2 = getRandomHex(4);
+  const part3 = getRandomHex(4);
+
+  // Combine parts into the desired email format
+  return `${part1}.${part2}.${part3}@invalid.shredit.com`;
+}
+
+function setupRandomEmailGeneration(doc) {
+  doc?.addEventListener('click', (e) => {
+    if (e.target.innerHTML === 'Create Random Email') {
+      e.preventDefault();
+      const email = doc.querySelector('form input[type="email"]');
+      if (email) {
+        email.value = generateRandomEmail();
+      }
+    }
+  });
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -768,6 +800,7 @@ async function loadEager(doc) {
  */
 async function loadLazy(doc) {
   autolinkModals(doc);
+  setupRandomEmailGeneration(doc);
   const main = doc.querySelector('main');
   await loadBlocks(main);
 
