@@ -37,8 +37,10 @@ export async function createModal(contentNodes, config) {
     const {
       left, right, top, bottom,
     } = dialog.getBoundingClientRect();
+    const bufferY = (bottom - top) * 0.05;
+    const bufferX = (right - left) * 0.2;
     const { clientX, clientY } = e;
-    if (clientX < left || clientX > right || clientY < top || clientY > bottom) {
+    if (clientX < left - bufferX || clientX > right + bufferX || clientY < top - bufferY || clientY > bottom + bufferY) {
       dialog.close();
     }
   });
