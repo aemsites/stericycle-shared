@@ -46,7 +46,8 @@ export async function createModal(contentNodes, config) {
   });
 
   dialog.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' && event.target.tagName !== 'TEXTAREA') {
+    if ((event.key === 'Enter' && event.target.tagName !== 'TEXTAREA')
+      || ((event.key === 'ArrowUp' || event.key === 'ArrowDown') && event.target?.type === 'radio')) {
       event.preventDefault();
     }
   });
