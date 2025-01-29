@@ -398,7 +398,10 @@ function enableValidation(form) {
 
 async function handleSubmit(e, form, captcha, submitHandler) {
   e.preventDefault();
+  const hiddenFields = form.querySelectorAll('[data-visible="false"]');
+  hiddenFields.forEach(((field) => { field.disabled = true; })); // disabled fields are skipped for validation
   const valid = form.checkValidity();
+  hiddenFields.forEach(((field) => { field.disabled = false; })); // re-enable them post validation check
   if (valid) {
     e.submitter?.setAttribute('disabled', '');
     if (form.getAttribute('data-submitting') !== 'true') {
