@@ -2,6 +2,12 @@ main .section.faq-container > div {
   padding: 0 12px;
 }
 
+main:has(.section.two-column.shredded-paper-background-column) div.faq-wrapper,
+main:has(.section.two-column.hard-drive-background) div.faq-wrapper,
+main:has(.section.shredded-paper-background) div.faq-container div.faq-wrapper{
+  margin: 0 2rem;
+}
+
 main .section.faq-container:has(.plain):not(.form-container) {
   margin: auto;
 
@@ -15,11 +21,6 @@ main .section.faq-container:has(.plain):not(.form-container) {
 
 main:has(.section.two-column.full-width) div.faq-container div {
   max-width: 100%;
-}
-
-main .faq-container.cyan-border.form-container.navy-background .default-content-wrapper {
-  margin: 2rem 2rem;
-  width: 100%;
 }
 
 .faq {
@@ -190,10 +191,9 @@ main .faq-container.cyan-border.form-container.navy-background .default-content-
   margin-bottom: 1rem;
 }
 
-main:has(.section.two-column.shredded-paper-background-column) div.faq-wrapper,
-main:has(.section.two-column.hard-drive-background) div.faq-wrapper,
-main:has(.section.shredded-paper-background) div.faq-container div.faq-wrapper{
-  margin: 0 2rem;
+main .faq-container.cyan-border.form-container.navy-background .default-content-wrapper {
+  margin: 2rem;
+  width: 100%;
 }
 
 @media screen and (min-width: 992px) {
