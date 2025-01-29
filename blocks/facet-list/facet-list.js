@@ -1,5 +1,4 @@
-import ffetch from '../../scripts/ffetch.js';
-import { getDateFromExcel, getLocale } from '../../scripts/scripts.js';
+import { fetchQueryIndex, getDateFromExcel, getLocale } from '../../scripts/scripts.js';
 import {
   createOptimizedPicture, fetchPlaceholders, readBlockConfig,
 } from '../../scripts/aem.js';
@@ -117,7 +116,7 @@ async function getResults(sheets = []) {
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
   const postArray = [];
-  const posts = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json')
+  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex()
     .sheet(sheet).all())).then((results) => results.flat());
   posts.forEach((post) => {
     postArray.push(post);
@@ -133,7 +132,7 @@ async function getFacets(sheets = []) {
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
   const facetArray = [];
-  const facets = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json')
+  const facets = await Promise.all(sheetList.map((sheet) => fetchQueryIndex()
     .sheet(sheet).all()))
     .then((results) => results.flat());
 
@@ -282,7 +281,7 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
   let sheetList = Array.isArray(sheets) ? sheets : sheets.split(',');
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
-  const posts = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json').sheet(sheet)
+  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex().sheet(sheet)
     .map((post) => ({
       tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
       title: post.title,

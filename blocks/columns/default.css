@@ -6,7 +6,7 @@
   & > div {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   & > div > div {
@@ -58,8 +58,8 @@
 }
 
 main .columns:not(.xxxl-icons) span.icon > img {
-  width:2.5rem;
-  height:2.5rem;
+  width: 100%;
+  height: 100%;
 }
 
 main .columns.numeric-list span.icon {
@@ -452,7 +452,7 @@ main .section.columns-container.close-vertical {
 @media (min-width: 992px /* breakpoint-l */) {
   .columns.block:not(.wrap-mobile) > div {
     flex-direction: unset;
-    gap: 24px;
+    gap: 1rem;
   }
 
   .columns.block:not(.wrap-mobile, .cta.columns-2-cols) > div > div {
@@ -508,17 +508,18 @@ main .section.columns-container.close-vertical {
 
   main .columns.numeric-list ul {
     flex-direction: row;
+    width: var(--section-width);
   }
 
   main .columns.numeric-list span.icon > img {
-    width:3.75rem;
-    height:3.75rem;
+    width: 100%;
+    height: 100%;
     max-width: unset;
   }
 
   main .columns.logos.columns-4-cols span.icon > img {
-    height: 72px;
-    width: 100%;
+    width: 3.75rem;
+    height: 3.75rem;
   }
 }
 
@@ -616,5 +617,16 @@ main .section.columns-container.close-vertical {
   main .section.columns-container .columns-wrapper:has(.cta.split-lastquarter) {
     padding-right: 12px;
     padding-left: 1.5rem;    
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  main .section.column-with-list.blue-background.columns-container {
+    max-width: var(--content-width-xxxl);
+    margin: auto;
+
+    & > div {
+      max-width: 100%;
+    }
   }
 }
