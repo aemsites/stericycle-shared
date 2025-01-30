@@ -49,7 +49,9 @@ div.facet-list-container > div.facet .head > i {
 }
 
 div.facet-list-container div.results div.item-date {
-    font-size: .75rem;
+    margin-bottom: 8px;
+    font-size: var(--body-font-size-s);
+    color: var(--color-text-secondary);
 }
 
 .slideout {
@@ -158,63 +160,7 @@ div.facet .facet-list-container.unhide {
     display: flex;
 }
 
-@media screen and (min-width: 992px) {
-    div.facet-list-container h3 {
-        font-size: 1.625rem;
-    }
 
-    div.section.facet-list-container {
-        display: flex;
-        flex-flow: row;
-        flex-direction: column;
-    }
-
-    div.facet-list-container div.results div.item-date {
-        font-size: unset;
-    }
-
-    div.facet-list-container > div.facet-list-wrapper > div.facet-list-container {
-        display: flex;
-        flex-flow: row;
-    }
-
-    div.facet-list-container > div.default-content-wrapper {
-        width: 100%;
-    }
-
-    div.facet-list-container > div.facet-list-wrapper {
-        width: 100%;
-    }
-
-    div.facet-list-container > div.facet {
-        width: 25%;
-        margin-right: 2rem;
-    }
-
-    div.facet-list-container > div.facet > i.filter-icon {
-        display: none;
-    }
-
-    div.facet-list-container > div.facet > ul {
-        display: unset;
-    }
-
-    div.facet-list-container > div.results {
-        width: 75%;
-        max-width: 75%;
-    }
-
-    div.facet-list-container > div.facet .head > i {
-        display: inline-block;
-        font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
-        text-transform: uppercase;
-        font-style: normal;
-    }
-
-    div.facet .facet-list-container {
-        display: flex;
-    }
-}
 
 div.facet-list-container > div.facet div.facet-group {
     margin: 1.5rem 0;
@@ -270,9 +216,36 @@ div.facet-list-container > div.results h4 {
     margin-bottom: .4rem;
 }
 
-div.facet-list-container > div.results div.item-category {
+
+div.facet-list-container .results .item-title a {
     margin-bottom: .4rem;
     margin-top: .4rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+}
+
+div.facet-list-container > div.results div.item-category {
+    margin-bottom: .4rem;
+    line-height: 16px;
+    text-decoration: underline;
+}
+
+
+div.facet-list-container > div.results .button-container a {
+    padding: 0;
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-size: var(--body-font-size-s);
+}
+
+div.facet-list-container > div.results .button-container .icon {
+   width: 12px;
+   height: 12px;
+}
+
+div.facet-list-container > div.results .button-container a.primary,
+div.facet-list-container > div.results .button-container a.secondary {
+    padding: 4px 16px;
 }
 
 div.facet-list-container > div.facet li {
@@ -301,7 +274,9 @@ div.facet-list-container > div.results ul > li {
 }
 
 div.facet-list-container > div.results ul > li div.item-left {
-    width: 10rem;
+    border-radius: var(--border-radius-l);
+    width: 192px;
+    height: 102px;
     display: flex;
     overflow: hidden;
 }
@@ -313,8 +288,67 @@ div.facet-list-container > div.results ul > li div.item-right {
 }
 
 div.facet-list-container > div.results img {
-    width: 160px;
-    height: auto;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     overflow: hidden;
+}
+
+
+@media screen and (min-width: 992px) {
+    div.facet-list-container h3 {
+        font-size: 1.625rem;
+    }
+
+    div.section.facet-list-container {
+        display: flex;
+        flex-flow: row;
+        flex-direction: column;
+    }
+
+    div.facet-list-container > div.facet-list-wrapper > div.facet-list-container {
+        display: flex;
+        flex-flow: row;
+    }
+
+    div.facet-list-container > div.default-content-wrapper {
+        width: 100%;
+    }
+
+    div.facet-list-container > div.facet-list-wrapper {
+        width: 100%;
+    }
+
+    div.facet-list-container > div.facet {
+        width: 25%;
+        margin-right: 2rem;
+    }
+
+    div.facet-list-container > div.facet > i.filter-icon {
+        display: none;
+    }
+
+    div.facet-list-container > div.facet > ul {
+        display: unset;
+    }
+
+    div.facet-list-container > div.results {
+        width: 75%;
+        max-width: 75%;
+    }
+
+    div.facet-list-container > div.facet .head > i {
+        display: inline-block;
+        font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+        text-transform: uppercase;
+        font-style: normal;
+    }
+
+    div.facet .facet-list-container {
+        display: flex;
+    }
+
+    div.facet-list-container > div.results ul > li div.item-left {
+        height: 124px;
+    }
 }

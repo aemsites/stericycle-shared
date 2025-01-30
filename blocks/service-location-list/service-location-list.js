@@ -1,9 +1,9 @@
 import { decorateIcons, getMetadata } from '../../scripts/aem.js';
-import ffetch from '../../scripts/ffetch.js';
+import { fetchQueryIndex } from '../../scripts/scripts.js';
 
 async function fetchLocations() {
   const isDropoff = Boolean(getMetadata('is-drop-off'));
-  const rawData = await ffetch('/query-index.json')
+  const rawData = await fetchQueryIndex()
     .sheet('locations')
     .filter((x) => (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true))
     .all();

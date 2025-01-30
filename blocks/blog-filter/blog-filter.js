@@ -1,10 +1,9 @@
-import ffetch from '../../scripts/ffetch.js';
-import { getDateFromExcel } from '../../scripts/scripts.js';
+import { fetchQueryIndex, getDateFromExcel } from '../../scripts/scripts.js';
 import { createOptimizedPicture, fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 
 async function getResults() {
   const postArray = [];
-  const posts = await ffetch('/query-index.json').sheet('blog')
+  const posts = await fetchQueryIndex().sheet('blogs')
     .limit(10).all();
   posts.forEach((post) => {
     postArray.push(post);
@@ -14,8 +13,8 @@ async function getResults() {
 
 async function getFacets() {
   const facetArray = [];
-  const facets = await ffetch('/query-index.json')
-    .sheet('blog')
+  const facets = await fetchQueryIndex()
+    .sheet('blogs')
     .all();
   const tagJson = {};
   facets.forEach((facet) => {
@@ -105,7 +104,7 @@ function filterTags(cbox, includes) {
 
 async function updateResults(checkboxChange) {
   const postArray = [];
-  const posts = await ffetch('/query-index.json').sheet('blog')
+  const posts = await fetchQueryIndex().sheet('blogs')
     .map((post) => ({
       tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
       title: post.title, // Include the title

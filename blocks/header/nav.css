@@ -47,7 +47,7 @@ header {
   flex-wrap: wrap;
   gap: 14px;
   margin: auto;
-  max-width: 1600px;
+  max-width: 1660px;
   width: 100%;
 }
 
@@ -128,14 +128,6 @@ header {
   display: block;
   padding: 0.5rem;
   text-decoration: none;
-  color: var(--color-text-primary);
-}
-
-.header .contact p {
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 160%;
   color: var(--color-text-primary);
 }
 
@@ -495,6 +487,7 @@ header {
 }
 
 .header .modal-subtitle {
+  font-size: 16px;
   margin-bottom: 16px;
 }
 
@@ -510,13 +503,16 @@ header {
   top: 60px;
   width: 100%;
   max-width: 100%;
-  height: 60%;
-  min-height: 60%;
+  height: fit-content;
+  min-height: fit-content;
+}
+
+.header .contact-modal .modal-title {
+  font-size: 14px;
 }
 
 .header .contact-modal .modal-content {
-  padding: 32px;
-  padding-top: 0;
+  padding: 0 32px;
 }
 
 .header .contact-modal .modal-content .primary {
@@ -545,6 +541,8 @@ header {
   display: flex;
   align-items: center;
   gap: 32px;
+  margin: auto;
+  max-width: var(--content-width-xl);
 }
 
 .header .search-modal .close-button {
@@ -555,6 +553,14 @@ header {
 .header .search-modal .close-button img {
   width: 24px;
   height: 24px;
+}
+
+.header .contact .modal-title {
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 160%;
+  color: var(--color-text-primary);
 }
 
 /* Mobile Nav */
@@ -740,6 +746,11 @@ header {
 
   .header .search-modal {
     padding: 0 80px;
+  }
+
+  .header .contact-modal .modal-content {
+    padding: 32px;
+    padding-top: 0;
   }
 
   .header .search-modal .search-form {

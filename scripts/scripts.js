@@ -54,6 +54,20 @@ export function formatPhone(num, parens = false) {
 }
 
 /**
+ * Creates a link to a post.
+ * @param {Object} post post object
+ * @returns {Element} anchor element
+ */
+export function createPostLink(post) {
+  const anchor = document.createElement('a');
+  if (post) {
+    anchor.setAttribute('aria-label', post.title);
+    anchor.href = post.path;
+  }
+  return anchor;
+}
+
+/**
  * Converts excel datetime strings to a Date object
  * @returns {Date} Date object
  */
@@ -143,11 +157,21 @@ export const haversineDistance = (lat1, lon1, lat2, lon2) => {
   return Math.round(R * c); // Distance in kilometers
 };
 
+/**
+ * Fetch the query index sheet.
+ * @param {string} [locale] sheet locale (uses current page locale none is supplied)
+ * @returns {*} fetched query index
+ */
+export function fetchQueryIndex(locale) {
+  const sheetLocale = locale || getLocale();
+  return ffetch(`/${sheetLocale}/query-index.json`);
+}
+
 // Remove dedup based on name, specific to the locations
 // eslint-disable-next-line max-len
 export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.4672, limit = 5) => {
   const isDropoff = getMetadata('sub-type')?.trim().toLowerCase();
-  const locations = await ffetch('/query-index.json').sheet('locations')
+  const locations = await fetchQueryIndex().sheet('locations')
     .filter((x) => {
       const latitude = parseFloat(x.latitude);
       const longitude = parseFloat(x.longitude);
@@ -191,19 +215,16 @@ export async function getRelatedPosts(types, tags, limit) {
   }
   nTypes.forEach((type) => {
     // add sheet
-    let sheet = type.toLowerCase().replace(' ', '-');
-    if (sheet === 'blogs') {
-      sheet = 'blog'; // TODO: remove this after renaming sheet
-    }
+    const sheet = type.toLowerCase().replace(' ', '-');
     sheets.push(sheet);
   });
   if (sheets.length === 0) {
-    sheets.push('blog'); // default
+    sheets.push('blogs'); // default
   }
 
   // fetch all posts by type
   let posts = [];
-  const fetchResults = await Promise.all(sheets.map(async (sheet) => ffetch('/query-index.json').sheet(sheet).all()));
+  const fetchResults = await Promise.all(sheets.map(async (sheet) => fetchQueryIndex().sheet(sheet).all()));
   fetchResults.forEach((fetchResult) => posts.push(...fetchResult));
   if (nTypes.length > 1) {
     // this could become a performance problem with a huge volume of posts
@@ -584,7 +605,7 @@ async function setWebPageJsonLd(doc = document) {
     name: getMetadata('og:title', doc),
   };
 
-  const pageMetadata = await ffetch('/query-index.json')
+  const pageMetadata = await fetchQueryIndex()
     .filter((e) => e.path?.trim().toLowerCase() === new URL(doc.documentURI).pathname.toLowerCase())
     .first();
   if (pageMetadata) {

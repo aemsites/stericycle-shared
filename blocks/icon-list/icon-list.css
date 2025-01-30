@@ -298,6 +298,13 @@ main .two-column.form-container.icon-list-container > div:first-child.default-co
 
 }
 
+@media (min-width: 1400px) {
+    main .two-column.form-container.icon-list-container:has(.vertical-icons) {
+        justify-content: center;
+        column-gap: 50px;
+    }
+}
+
 /* Vertical Numbers Styles */
 main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div {
     flex-direction: column;
@@ -311,7 +318,6 @@ main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-lis
 main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-of-type {
     height: fit-content;
     width: 100%;
-    text-align: center;
 }
 
 main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:nth-of-type(2) {
@@ -354,7 +360,7 @@ main .section.two-column.icon-list-container:has(.vertical-numbers) > div:first-
 
 main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-child p:not(:has(> span.icon)) {
     color: var(--color-icon-accent);
-    font-size: var(--heading-font-size-xxl);
+    font-size: 48px;
     font-weight: var(--font-weight-bold);
     line-height: 120%;
     letter-spacing: 0.48px;
