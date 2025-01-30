@@ -13,6 +13,27 @@ export default function decorate(block) {
     const rows = [...block.children];
     for (let i = 0; i < rows.length; i += 1) {
       const cardSection = rows[i].firstElementChild;
+
+      // add button class to links in card sections
+      document.querySelectorAll('.card-section p').forEach((p) => {
+        const link = p.querySelector('a');
+        // Validate whether the element is a link or inline text
+        const hasOnlyLink = link && p.childNodes.length === 1;
+        if (hasOnlyLink) {
+          if (!p.classList.contains('button-container')) {
+            p.classList.add('button-container');
+          }
+          if (!link.classList.contains('button')) {
+            link.classList.add('button');
+          }
+          if (link.closest('strong')) {
+            link.classList.add('primary');
+          } else if (link.closest('em')) {
+            link.classList.add('secondary');
+          }
+        }
+      });
+
       if (cardSection) {
         if (cardSection.nextElementSibling) {
           rowsWithContentLeft = true;
