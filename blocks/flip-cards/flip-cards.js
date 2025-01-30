@@ -31,8 +31,6 @@ export default async function decorate(block) {
       const cardDetails = lookupTable[pagePath];
       const icon = rows[0].children.item(0);
       const eyebrow = rows[1]?.children?.item(0);
-
-      // check if eyebrow is a not link or any of it eyebrow is not a link
       const eyebrowIsNotLink = eyebrow?.querySelector('a') === null || eyebrow?.querySelector('a') === undefined;
 
       if (icon) {
