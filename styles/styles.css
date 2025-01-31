@@ -518,7 +518,6 @@ a.button.primary, button.primary {
   background-color: var(--color-button-primary);
   border: none;
   color: var(--color-text-primary);
-  outline: 1px solid var(--color-grey200);
   border-radius: 100px;
 }
 

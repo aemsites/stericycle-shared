@@ -1,5 +1,4 @@
 /* stylelint-disable no-descending-specificity */
-
 .section.cards-container.cards-grid {
   display: flex;
   flex-wrap: wrap;
@@ -112,7 +111,7 @@
   flex: 0;
 }
 
-.cards > ul > li > .card-body > .card-section > p.button-container:last-child > * {
+.cards > ul > li > .card-body > .card-section > p.button-container > * {
   display: flex;
   justify-content: center;
 }
@@ -140,6 +139,7 @@
   font-weight: var(--font-weight-regular);
   line-height: 160%;
   letter-spacing: 0.16px;
+  padding-top: 12px;
   margin: 0;
 }
 
@@ -160,6 +160,14 @@
   line-height: 120%;
   letter-spacing: 1.4px;
   text-transform: uppercase;
+}
+
+.cards > ul > li > .card-body > .card-section > p.button-container {
+  margin: 0;
+}
+
+.cards > ul > li > .card-body > .card-section > p.button-container a {
+  margin-top: 0;
 }
 
 .cards > ul > li > .card-body > .card-section > p.button-container:last-child a.button {
@@ -239,6 +247,16 @@
 
 .section.cards-container.heading-image-row .card-head .card-section p:has(picture) {
   width: 10%;
+}
+
+.section:not(.gray-background) .cards.primary > ul > li {
+  border: 1px solid #E4ECED;
+  box-shadow: 0 8px 8px 0 color(rgba 33 33 33 / 2%),
+    0 5px 5px 0 color(rgba 33 33 33 / 4%),
+    0 3px 3px 0 color(rgba 33 33 33 / 6%),
+    0 1px 1px 0 color(rgba 33 33 33 / 8%),
+    0 0 0 0 color(rgba 33 33 33 / 10%);
+
 }
 
 .cards.full-width > ul > li > .card-head .icon > img {

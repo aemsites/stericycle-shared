@@ -31,6 +31,7 @@ export default async function decorate(block) {
       const cardDetails = lookupTable[pagePath];
       const icon = rows[0].children.item(0);
       const eyebrow = rows[1]?.children?.item(0);
+      const eyebrowIsNotLink = eyebrow?.querySelector('a') === null || eyebrow?.querySelector('a') === undefined;
 
       if (icon) {
         cardBack.appendChild(icon);
@@ -40,7 +41,7 @@ export default async function decorate(block) {
       titleh3.textContent = cardDetails.title;
       titleh3.classList.add('clamp-title');
 
-      if (eyebrow) {
+      if (eyebrow && eyebrowIsNotLink) {
         eyebrow.classList.add('eyebrow');
         titleh3.prepend(eyebrow);
       }
