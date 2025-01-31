@@ -31,6 +31,7 @@ header {
   overflow: auto;
   opacity: 1;
   padding: 18px 0;
+  padding-bottom: 80px;
   height: 100vh;
   max-height: calc(100vh - 60px);
 }
@@ -471,7 +472,7 @@ header {
 .header .submenu.open {
   display: block;
   gap: 0;
-  padding-bottom: 42px;
+  padding-bottom: 80px;
 }
 
 .header .modal {
