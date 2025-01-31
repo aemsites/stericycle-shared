@@ -185,6 +185,7 @@ main .section > div.hero-banner-wrapper {
 
     /* Variants */
     .hero-banner-graphic .hero-banner-asset {
+        max-height: 330px;
         width: 50%;
     }
 
