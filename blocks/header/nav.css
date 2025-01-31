@@ -651,7 +651,7 @@ header {
   white-space: pre-wrap;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .header header {
     min-height: 70px;
   }
@@ -769,13 +769,6 @@ header {
   }
 }
 
-@media (min-width: 1200px) {
-  .header {
-    padding: 0 40px;
-    gap: 40px;
-  }
-}
-
 /* body:has(.section.banner-container .block.banner.fixed-to-bottom) .floating-contact {
   bottom: 3.25rem;
 }
@@ -785,6 +778,11 @@ body:has(.section.banner-container .block.banner.fixed-to-bottom p.button-contai
 } */
 
 @media (min-width: 1400px) {
+  .header {
+    padding: 0 40px;
+    gap: 40px;
+  }
+
   .block.header {
     padding: 0 80px;
   }
