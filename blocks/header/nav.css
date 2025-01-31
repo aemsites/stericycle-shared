@@ -31,7 +31,6 @@ header {
   overflow: auto;
   opacity: 1;
   padding: 18px 0;
-  padding-bottom: 42px;
   height: 100vh;
   max-height: calc(100vh - 60px);
 }
@@ -217,7 +216,7 @@ header {
 .header .submenu .locate-form,
 .header .submenu .list {
   padding-top: 68px;
-  padding-bottom: 120px;
+  padding-bottom: 68px;
   height: 100%;
 }
 
@@ -472,6 +471,7 @@ header {
 .header .submenu.open {
   display: block;
   gap: 0;
+  padding-bottom: 42px;
 }
 
 .header .modal {
@@ -606,7 +606,7 @@ header {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 64px 32px;
+  padding: 64px 32px 82px;
 }
 
 .header .ctas-container-mobile .content {
