@@ -137,7 +137,7 @@ main section .tabs-container > div {
     box-shadow: 0 4px 0 0 var(--color-primary-1);
 }
 
-.block.tabs .tabs-panel div {
+.block.tabs .tabs-panel div:not(:has(img)) {
     flex: 1 1 100%;
 }
 
@@ -345,6 +345,10 @@ main section .tabs-container > div {
     .block.tabs.vertical.video .tabs-panel > div > p {
         height: 100%;
         width: 100%;
+    }
+
+    .block.tabs .tabs-panel > div picture > img {
+        max-width: 500px;
     }
 
     .block.tabs.vertical.video .tabs-panel iframe {
