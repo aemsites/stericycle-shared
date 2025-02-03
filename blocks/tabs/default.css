@@ -347,7 +347,7 @@ main section .tabs-container > div {
         width: 100%;
     }
 
-    .block.tabs .tabs-panel > div picture > img {
+    .block.tabs:not(.vertical) .tabs-panel > div picture > img {
         max-width: 500px;
     }
 
