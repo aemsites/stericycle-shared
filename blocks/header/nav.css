@@ -708,6 +708,10 @@ header {
     min-height: auto;
   }
 
+  .header .submenu.open {
+    padding-bottom: 0;
+  }
+
   .header .submenu .instructions {
     display: flex;
   }
