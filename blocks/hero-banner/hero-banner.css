@@ -96,7 +96,7 @@ main .section > div.hero-banner-wrapper {
 }
 
 .hero-banner-form.hero-banner-container {
-    background-image: url('/icons/hero-form-graphic.png');
+    /* background-image: url('/icons/hero-form-graphic.png'); */
     background-repeat: no-repeat;
     background-position: right bottom;
     background-size: contain;
