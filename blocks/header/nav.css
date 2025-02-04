@@ -722,7 +722,7 @@ header {
 
 @media (min-width: 1200px) {
   .header {
-    padding: 0 40px;
+    padding: 0;
     gap: 40px;
   }
 }
@@ -734,9 +734,3 @@ header {
 body:has(.section.banner-container .block.banner.fixed-to-bottom p.button-container) .floating-contact {
   bottom: 4.25rem;
 } */
-
-@media (min-width: 1400px) {
-  .block.header {
-    padding: 0 80px;
-  }
-}
