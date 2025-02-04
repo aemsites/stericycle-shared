@@ -774,6 +774,13 @@ header {
   }
 }
 
+@media (min-width: 1200px) {
+  .header {
+    padding: 0;
+    gap: 40px;
+  }
+}
+
 /* body:has(.section.banner-container .block.banner.fixed-to-bottom) .floating-contact {
   bottom: 3.25rem;
 }
@@ -781,14 +788,3 @@ header {
 body:has(.section.banner-container .block.banner.fixed-to-bottom p.button-container) .floating-contact {
   bottom: 4.25rem;
 } */
-
-@media (min-width: 1400px) {
-  .header {
-    padding: 0 40px;
-    gap: 40px;
-  }
-
-  .block.header {
-    padding: 0 80px;
-  }
-}
