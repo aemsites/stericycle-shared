@@ -78,11 +78,12 @@ main .section > div.hero-banner-wrapper {
     background-color: var(--color-bg-tertiary);
 }
 
-.hero-banner-tertiary .hero-banner-content-text h1,
-.hero-banner-tertiary .hero-banner-content-text p {
+.hero-banner-form-dark .hero-banner-content-text > *,
+.hero-banner-tertiary .hero-banner-content-text > * {
     color: var(--color-white);
 }
 
+.hero-banner-form-dark .hero-banner-content-ctas a:not(.primary),
 .hero-banner-tertiary .hero-banner-content-ctas a:not(.primary) {
     border-color: var(--color-white);
     background: transparent;
@@ -104,6 +105,30 @@ main .section > div.hero-banner-wrapper {
     mask-image: url("/icons/hero-mask.svg");
     mask-repeat: no-repeat;
     mask-size: 100%;
+}
+
+.hero-banner-form.hero-banner-container {
+    background-image: url('/icons/hero-form-graphic.png');
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: contain;
+}
+
+.hero-banner-form.hero-banner-form-secondary.hero-banner-container {
+    background-color: var(--color-bg-secondary);
+}
+
+.hero-banner-form.hero-banner-form-dark.hero-banner-container {
+    background-color: var(--color-bg-tertiary);
+}
+
+.hero-banner-form.hero-banner-container .form-wrapper {
+    width: 100%;
+    max-width: 660px;
+}
+
+.hero-banner-form .hero-banner-asset {
+    display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -190,5 +215,13 @@ main .section > div.hero-banner-wrapper {
         height: 100%;
         object-fit: fill;
         object-position: center;
+    }
+
+    .hero-banner-form.hero-banner-container {
+        grid-template-columns: minmax(0, 884px) minmax(0, 712px) !important;
+    }
+
+    .hero-banner-form.hero-banner-container.form-container {
+        gap: 120px !important;
     }
 }
