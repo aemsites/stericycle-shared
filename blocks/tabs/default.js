@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import { toClassName } from '../../scripts/aem.js';
+import { decorateIcons, toClassName } from '../../scripts/aem.js';
 import { embedWistia } from '../../scripts/scripts.js';
 
 function hasWrapper(el) {
@@ -113,6 +113,14 @@ export default async function decorate(block) {
     button.setAttribute('aria-selected', !i);
     button.setAttribute('role', 'tab');
     button.setAttribute('type', 'button');
+    // Check if the p element exists inside the button and add the class .custom-icon
+    const pElement = button.querySelector('p');
+    if (pElement && !pElement.classList.contains('custom-icon')) {
+      pElement.classList.add('custom-icon');
+      // remove the content inside the span element that is child of the pElement
+      pElement.querySelector('span').innerHTML = '';
+      decorateIcons(pElement);
+    }
     button.addEventListener('click', () => {
       window.history.pushState(null, null, `#${button.id}`);
       block.querySelectorAll('[role=tabpanel]').forEach((panel) => {

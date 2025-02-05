@@ -470,7 +470,7 @@ export function decorateIcon(span, prefix = '', alt = '') {
   const iconName = Array.from(span.classList)
     .find((c) => c.startsWith('icon-'))
     .substring(5);
-  if (span.closest('.button-container')) {
+  if (span.closest('.button-container') || span.closest('.custom-icon')) {
     span.setAttribute('data-icon-src', `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`);
     if (alt) {
       span.setAttribute('data-icon-alt', alt);
@@ -495,6 +495,7 @@ export function decorateIcon(span, prefix = '', alt = '') {
  */
 function decorateIcons(element, prefix = '') {
   const icons = [...element.querySelectorAll('span.icon')];
+
   icons.forEach((span) => {
     decorateIcon(span, prefix);
   });
