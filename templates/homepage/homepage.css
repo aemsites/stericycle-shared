@@ -1,0 +1,20 @@
+body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block {
+  padding: 80px 80px 224px;
+}
+
+body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block > div.hero-content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block > div.hero-content-container > div.hero-content > h1 {
+  color: var(--color-black);
+  letter-spacing: 0.48px;
+}
+
+body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block > div.hero-content-container > div.hero-content > p {
+  color: var(--color-black);
+  letter-spacing: 0.16px;
+}
