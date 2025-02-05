@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 main section .tabs-container {
     padding: 32px;
 }
@@ -160,6 +161,7 @@ main section .tabs-container > div {
 
 .block.tabs .tabs-list button p.custom-icon span.icon {
     --icon-color: var(--color-text);
+
     background-color: var(--icon-color);
     mask-repeat: no-repeat;
     mask-position: center center;
