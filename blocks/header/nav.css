@@ -269,8 +269,21 @@ header {
   padding: 0;
 }
 
+.header .list-item.image .icon {
+  width: 92px;
+  height: 92px;
+}
+
 .header .list-item li ul li:last-child a {
-  margin-top: 16px;
+  gap: 4px;
+  margin-top: 24px;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.header .list-item li ul li:last-child .icon {
+  width: 16px;
+  height: 16px;
 }
 
 .header .list-item > ul > li {
@@ -321,11 +334,6 @@ header {
   align-items: center;
   text-align: center;
   max-width: 600px;
-}
-
-.header .list-item.image .icon {
-  width: 92px;
-  height: 92px;
 }
 
 .header .list-item.image ul {
