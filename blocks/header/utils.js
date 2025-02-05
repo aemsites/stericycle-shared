@@ -1,6 +1,6 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable no-case-declarations */
-import { getMetadata, isDesktop } from '../../scripts/aem.js';
+import { getMetadata, isLargeDesktop } from '../../scripts/aem.js';
 import {
   a,
   div,
@@ -373,11 +373,14 @@ export function generateMenuFromSection(
 
     // add instruction to every sub menu
     const subMenus = nav.querySelectorAll('.submenu');
+
     subMenus.forEach((subMenu) => {
       const instruction = instructions.cloneNode(true);
       subMenu.append(instruction);
     });
   }
+
+  nav.appendChild(instructions);
 
   return nav;
 }
@@ -521,11 +524,11 @@ function mobileNavClick(e, submenu, item) {
  * @returns {void}
  */
 export function addMenuFunctionality(ctasMobile) {
-  let isDesktopLayout = isDesktop();
+  let isDesktopLayout = isLargeDesktop();
   const eventListenersMap = new WeakMap();
 
   const applyMenuLogic = () => {
-    const isDesktopDevice = isDesktop();
+    const isDesktopDevice = isLargeDesktop();
     const isMobile = !isDesktopDevice;
 
     document.querySelectorAll('.nav-item').forEach((item) => {
@@ -651,7 +654,7 @@ export function addMenuFunctionality(ctasMobile) {
 
   // Add a resize event listener to update menu logic on resolution change
   window.addEventListener('resize', () => {
-    const newIsDesktopLayout = isDesktop();
+    const newIsDesktopLayout = isLargeDesktop();
 
     if (newIsDesktopLayout !== isDesktopLayout) {
       isDesktopLayout = newIsDesktopLayout;
