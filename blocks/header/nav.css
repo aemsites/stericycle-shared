@@ -779,6 +779,7 @@ header {
 
   .header .submenu .locate-form {
     height: auto;
+    padding-bottom: 86px;
   }
 }
 
