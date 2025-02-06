@@ -35,7 +35,8 @@
   font-size: 16px;
 }
 
-.offer-box .offer-box-header strong {
+.offer-box .offer-box-header strong,
+.offer-box .offer-box-header .text-with-badge {
   display: block;
   margin: auto;
   margin-bottom: 16px;
@@ -49,6 +50,36 @@
   letter-spacing: 1.4px;
   text-transform: uppercase;
   color: var(--color-white);
+}
+
+.offer-box .offer-box-header .promotion-with-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-grey200);
+}
+
+
+.offer-box .offer-box-header .promotion-with-text > :last-child {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.offer-box .offer-box-header .text-with-badge {
+  width: 25%;
+  margin-bottom: 0;
+}
+
+.offer-box .offer-box-header .text-with-badge p {
+  font-size: 14px;
+  color: var(--color-white);
+  white-space: nowrap;
+}
+
+.offer-box .offer-box-header .text-with-badge > :last-child {
+  margin-bottom: 0;
 }
 
 .offer-box .offer-box-header .icon {
@@ -106,7 +137,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 0.0625rem solid var(--color-light-silver);
+  border-bottom: 1px solid var(--color-grey200);
 }
 
 .offer-box.alternate-2 div.offer-box-row:last-child {
@@ -114,7 +145,7 @@
 }
 
 .offer-box.alternate-2 div.offer-box-row > :first-child {
-  min-width: 40%;
+  min-width: 35%;
 }
 
 .offer-box.alternate-3 .offer-box-header {
