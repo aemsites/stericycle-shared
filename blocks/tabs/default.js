@@ -151,7 +151,7 @@ export default async function decorate(block) {
         contentWrappers.forEach((element) => {
           const childElements = Array.from(element.children);
           const firstIconParagraph = childElements.find((el) => el.tagName === 'P' && el.querySelector('span.icon'));
-          const lastIconParagraph = [...childElements].reverse().find((el) => el.tagName === 'P' && el.querySelector('span.icon'));
+          const lastIconParagraph = [...childElements].reverse().find((el) => el.tagName === 'P' && el.querySelector('a > span.icon'));
           const remainingContent = childElements.filter((el) => el !== firstIconParagraph && el !== lastIconParagraph);
 
           if (remainingContent.length > 0) {
