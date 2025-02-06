@@ -272,6 +272,47 @@ main section .tabs-container > div {
     gap: 16px;
 }
 
+.block.tabs.cta-list .tabs-panel {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.block.tabs.cta-list .tabs-panel > div {
+    border-radius: 4px;
+    border: 1px solid var(--border-border-primary-light, var(--color-grey200));
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    background-color: var(--color-grey200);
+    padding: 16px;
+    max-width: 50%;
+}
+
+.block.tabs.cta-list .tabs-panel > div > p:has(.icon) {
+    display: flex;
+    height: fit-content;
+}
+
+.block.tabs.cta-list .tabs-panel > div > p:has(.icon) > a {
+    margin: 0;
+    padding: 0;
+}
+
+.block.tabs.cta-list .tabs-panel > div > p:has(.icon) > a:hover {
+    background-color: unset;
+}
+
+.block.tabs.cta-list .tabs-panel > div > p.first-icon-paragraph span.icon {
+    width: 48px;
+    height: 48px;
+}
+
+.block.tabs.cta-list .tabs-panel > div > p.last-icon-paragraph span.icon {
+    width: 24px;
+    height: 24px;
+}
+
 @media (min-width: 992px) {
     .block.tabs.vertical .tabs-panel details {
         display: none;
