@@ -143,5 +143,38 @@ export default async function decorate(block) {
     }
   }
 
+  if (block.classList.contains('cta-list')) {
+    const tabpanelSelected = document.querySelectorAll('.tabs-panel');
+    tabpanelSelected.forEach((panel) => {
+      const contentWrappers = panel && panel.querySelectorAll('div');
+      if (contentWrappers) {
+        contentWrappers.forEach((element) => {
+          const childElements = Array.from(element.children);
+          const firstIconParagraph = childElements.find((el) => el.tagName === 'P' && el.querySelector('span.icon'));
+          const lastIconParagraph = [...childElements].reverse().find((el) => el.tagName === 'P' && el.querySelector('span.icon'));
+          const remainingContent = childElements.filter((el) => el !== firstIconParagraph && el !== lastIconParagraph);
+
+          if (remainingContent.length > 0) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'tab-item-body';
+            wrapper.append(...remainingContent);
+
+            if (firstIconParagraph && firstIconParagraph !== lastIconParagraph) {
+              firstIconParagraph.classList.add('first-icon-paragraph');
+              element.append(firstIconParagraph);
+            }
+
+            element.append(wrapper);
+
+            if (lastIconParagraph) {
+              lastIconParagraph.classList.add('last-icon-paragraph');
+              element.append(lastIconParagraph);
+            }
+          }
+        });
+      }
+    });
+  }
+
   block.prepend(tablist);
 }
