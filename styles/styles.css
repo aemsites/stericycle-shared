@@ -1426,6 +1426,7 @@ main .list-style-orange-triangles ul > li::before {
   content: "";
   color: var(--color-secondary-1);
   font-size: 1.5rem;
+  line-height: 28px;
 }
 
 main .list-style-blue-checkmark ul > li::before {
