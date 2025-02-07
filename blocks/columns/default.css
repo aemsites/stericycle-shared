@@ -31,7 +31,7 @@
 }
 
 .columns.block:not(.wrap-mobile) p {
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 .columns.cyan-accent-border > div {
