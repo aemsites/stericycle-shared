@@ -58,11 +58,6 @@ main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
     justify-content: center;
 }
 
-.block.tabs.cta-list .tabs-panel {
-    gap: 24px;
-    justify-content: space-between;
-}
-
 .block.tabs.vertical {
     display: flex;
     flex-direction: column;
@@ -299,6 +294,8 @@ main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
 }
 
 .block.tabs.cta-list .tabs-panel {
+    gap: 24px;
+    justify-content: space-between;
     margin-bottom: 0;
     padding-bottom: 0;
 }
