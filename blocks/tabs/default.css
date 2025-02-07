@@ -7,6 +7,23 @@ main section .tabs-container > div {
     padding: 0 12px;
 }
 
+main .section.tabs-container > .tabs-wrapper:has(.cta-list) {
+    margin: 16px 0 0;
+}
+
+main .section.tabs-container:has(.cta-list) > .default-content-wrapper {
+    margin: 24px 0;
+}
+
+main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p {
+    margin: 0;
+}
+
+main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
+    margin: 0;
+    padding: 0;
+}
+
 .block.tabs .tabs-list {
     display: flex;
     flex-direction: row;
@@ -17,6 +34,10 @@ main section .tabs-container > div {
     overflow-x: auto;
     border-bottom: 1px solid var(--color-grey200);
     scrollbar-width: none;
+}
+
+.block.tabs.cta-list > .tabs-list {
+    margin-bottom: 24px;
 }
 
 .block.tabs .tabs-panel {
@@ -35,6 +56,11 @@ main section .tabs-container > div {
     padding: 0 0 2rem;
     overflow: auto;
     justify-content: center;
+}
+
+.block.tabs.cta-list .tabs-panel {
+    gap: 24px;
+    justify-content: space-between;
 }
 
 .block.tabs.vertical {
@@ -286,7 +312,7 @@ main section .tabs-container > div {
     gap: 16px;
     background-color: var(--color-grey200);
     padding: 16px;
-    max-width: 50%;
+    max-width: 100%;
 }
 
 .block.tabs.cta-list .tabs-panel > div > p:has(.icon) {
@@ -314,6 +340,10 @@ main section .tabs-container > div {
 }
 
 @media (min-width: 992px) {
+    .block.tabs.cta-list .tabs-panel > div {
+        max-width: 50%;
+    }
+
     .block.tabs.vertical .tabs-panel details {
         display: none;
     }

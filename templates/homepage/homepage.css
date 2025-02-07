@@ -1,5 +1,5 @@
 body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block {
-  padding: 80px 80px 224px;
+  padding: 0;
 }
 
 body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block > div.hero-content-container {
@@ -7,6 +7,7 @@ body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.bl
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 24px;
 }
 
 body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block > div.hero-content-container > div.hero-content > h1 {
@@ -26,4 +27,33 @@ body.homepage.appear div.section.narrow.rounded-corners.tabs-container {
   position: relative;
   box-shadow: 0px 8px 8px 0px rgba(33, 33, 33, 0.02), 0px 5px 5px 0px rgba(33, 33, 33, 0.04), 0px 3px 3px 0px rgba(33, 33, 33, 0.06), 0px 1px 1px 0px rgba(33, 33, 33, 0.08), 0px 0px 0px 0px rgba(33, 33, 33, 0.10);
   border: 1px solid var(--color-grey200);
+  margin: 24px 16px;
+}
+
+body.homepage.appear .hero.block .hero-background.mobile-only {
+  position: relative;
+}
+
+body.homepage.appear .hero.block .hero-background.mobile-only > img {
+  height: 216px;
+}
+
+@media screen and (min-width: 576px /* breakpoint-s */) {
+  body.homepage.appear div.section.narrow.rounded-corners.tabs-container {
+    margin: 0 auto 24px;
+  }
+}
+
+@media (min-width: 992px) {
+  body.homepage.appear div.section.narrow.rounded-corners.tabs-container {
+    margin: -143px auto 0;
+  }
+
+  body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block {
+    padding: 80px 80px 224px;
+  }
+
+  body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block > div.hero-content-container {
+    margin-top: 0;
+  }
 }
