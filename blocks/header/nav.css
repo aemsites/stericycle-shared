@@ -279,6 +279,8 @@ header {
   margin-top: 24px;
   font-size: 14px;
   line-height: 16px;
+  letter-spacing: 1.4px;
+  text-decoration: none;
 }
 
 .header .list-item li ul li:last-child .icon {
@@ -660,7 +662,7 @@ header {
   white-space: pre-wrap;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   .header header {
     min-height: 70px;
   }
