@@ -112,11 +112,10 @@ export default async function decorate(block) {
 
     cards?.forEach((card) => {
       const link = card.querySelector('a');
-      if (!link) return;
 
       const cardWrapper = document.createElement('div');
       const linkWrapper = document.createElement('a');
-      linkWrapper.href = link.href;
+      linkWrapper.href = link?.href || '#';
       linkWrapper.classList.add('link-wrapper');
 
       linkWrapper.appendChild(card.cloneNode(true));
