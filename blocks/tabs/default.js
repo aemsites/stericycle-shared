@@ -6,6 +6,14 @@ function hasWrapper(el) {
   return !!el.firstElementChild && window.getComputedStyle(el.firstElementChild).display === 'block';
 }
 
+function modifyIcon(icon) {
+  if (icon && !icon.classList.contains('custom-icon')) {
+    icon.classList.add('custom-icon');
+    icon.querySelector('span').innerHTML = '';
+    decorateIcons(icon);
+  }
+}
+
 function addAccordionAnimation(details) {
   const summary = details.querySelector('summary');
 
@@ -113,14 +121,12 @@ export default async function decorate(block) {
     button.setAttribute('aria-selected', !i);
     button.setAttribute('role', 'tab');
     button.setAttribute('type', 'button');
-    // Check if the p element exists inside the button and add the class .custom-icon
     const pElement = button.querySelector('p');
-    if (pElement && !pElement.classList.contains('custom-icon')) {
-      pElement.classList.add('custom-icon');
-      // remove the content inside the span element that is child of the pElement
-      pElement.querySelector('span').innerHTML = '';
-      decorateIcons(pElement);
+
+    if (pElement) {
+      modifyIcon(pElement);
     }
+
     button.addEventListener('click', () => {
       window.history.pushState(null, null, `#${button.id}`);
       block.querySelectorAll('[role=tabpanel]').forEach((panel) => {
@@ -168,6 +174,7 @@ export default async function decorate(block) {
 
               if (firstIconParagraph) {
                 firstIconParagraph.classList.add('first-icon-paragraph');
+                modifyIcon(firstIconParagraph);
                 wrapper.append(firstIconParagraph);
               }
 
@@ -175,6 +182,7 @@ export default async function decorate(block) {
 
               if (lastIconParagraph && lastIconParagraph !== firstIconParagraph) {
                 lastIconParagraph.classList.add('last-icon-paragraph');
+                modifyIcon(lastIconParagraph);
                 wrapper.append(lastIconParagraph);
               }
 

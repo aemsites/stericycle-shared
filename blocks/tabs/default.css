@@ -361,6 +361,16 @@ main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
     background-color: unset;
 }
 
+.block.tabs.cta-list .tabs-panel > div > a > p span.icon {
+    --icon-color: var(--color-primary-1);
+
+    background-color: var(--icon-color);
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    mask-size: contain;
+    mask-image: var(--mask-image);
+}
+
 .block.tabs.cta-list .tabs-panel > div > a > p.first-icon-paragraph span.icon {
     width: 48px;
     height: 48px;
