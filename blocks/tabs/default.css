@@ -395,10 +395,24 @@ main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
         max-width: 50%;
     }
 
+    .block.tabs.cta-list .tabs-panel > div:hover {
+        background-color: var(--color-bg-tertiary);
+    }
+
+    .block.tabs.cta-list .tabs-panel > div:hover .tab-item-body > * {
+        color: white;
+    }
 
     .block.tabs.cta-list .tabs-panel > div > a {
         gap: 16px;
         padding: 16px;
+        width: 100%;
+    }
+
+    .block.tabs.cta-list .tabs-panel > div:hover > a > p span.icon {
+        --icon-color: var(--color-white);
+
+        background-color: var(--color-white);
     }
 
     .block.tabs.vertical .tabs-panel details {
