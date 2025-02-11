@@ -24,7 +24,7 @@ export function createMenuAccordion(footer) {
       footerAccordionContentInnerWrapper.classList.add('footer-accordion-content-inner-wrapper');
       footerAccordionContentWrapper.append(footerAccordionContentInnerWrapper);
 
-      // if there is accordion content, create a button to exand/collapse
+      // if there is accordion content, create a button to expand/collapse
       const accordionContent = item.querySelector(':scope > ul');
       if (accordionContent) {
         accordionContent.classList.add('footer-accordion-content');
