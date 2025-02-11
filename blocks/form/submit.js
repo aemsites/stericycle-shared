@@ -106,7 +106,8 @@ function getFieldValue(fe, payload) {
       }
       return fe.value;
     }
-  } else if (fe.type !== 'file') {
+    return 'false';
+  } if (fe.type !== 'file') {
     return fe.value;
   }
   return null;
