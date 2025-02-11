@@ -1756,7 +1756,11 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) {
   padding: 0 2rem 2rem;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3)  > div {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a:hover {
+  text-decoration: none;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a > div {
   cursor: pointer;
   border-radius:0.5rem;
   background-color: var(--color-bg-secondary);
@@ -1765,36 +1769,36 @@ main .columns.get-a-quote-popup.block > div:nth-child(3)  > div {
   transition: background-color 0.3s;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div a {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div a {
   all: unset;
   position: relative;
   display: flex;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:first-child {
     font-size: 1.5rem;
     font-weight: 600;
     line-height: normal;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child > a {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:first-child > a {
   width: 75%;
   font-size: 20px;
   color: var(--color-text-primary);
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child > a {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:last-child > a {
   width: 75%;
   font-size: 14px;
   color: var(--color-text-primary);
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:last-child {
   font-size: 0.875rem;
   max-width: 88%;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div::after {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -1816,11 +1820,11 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div::after {
 }
 
 @media (min-width: 992px) {
-  main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child > a {
+  main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:first-child > a {
     font-size: 24px;
   }
 
-  main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child > a {
+  main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:last-child > a {
     width: 75%;
     font-size: 16px;
   }

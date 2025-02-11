@@ -106,6 +106,25 @@ export default async function decorate(block) {
     block.insertBefore(hr(), block.firstChild);
   }
 
+  if (block.classList.contains('get-a-quote-popup')) {
+    const linkCards = block.children[2];
+    const cards = Array.from(linkCards.children);
+
+    cards?.forEach((card) => {
+      const link = card.querySelector('a');
+      if (!link) return;
+
+      const cardWrapper = document.createElement('div');
+      const linkWrapper = document.createElement('a');
+      linkWrapper.href = link.href;
+      linkWrapper.classList.add('link-wrapper');
+
+      linkWrapper.appendChild(card.cloneNode(true));
+      cardWrapper.appendChild(linkWrapper.cloneNode(true));
+      linkCards.replaceChild(cardWrapper, card);
+    });
+  }
+
   // setup image columns
   [...block.children].forEach((row) => {
     [...row.children].forEach((col) => {
