@@ -1,3 +1,5 @@
+import { updateGradient } from './utils.js';
+
 export default function decorate(block) {
   const wrapper = block.querySelector('div');
 
@@ -76,4 +78,6 @@ export default function decorate(block) {
 
     picture.appendChild(imgWrapper);
   }
+
+  updateGradient(block);
 }
