@@ -150,25 +150,36 @@ export default async function decorate(block) {
       if (contentWrappers) {
         contentWrappers.forEach((element) => {
           const childElements = Array.from(element.children);
-          const firstIconParagraph = childElements.find((el) => el.tagName === 'P' && el.querySelector('span.icon'));
-          const lastIconParagraph = [...childElements].reverse().find((el) => el.tagName === 'P' && el.querySelector('a > span.icon'));
-          const remainingContent = childElements.filter((el) => el !== firstIconParagraph && el !== lastIconParagraph);
+          const linkElement = childElements.find((el) => el.tagName === 'P' && el.classList.contains('button-container') && el.querySelector('a[href]'));
+          if (linkElement) {
+            const href = linkElement.querySelector('a').getAttribute('href');
+            const wrapper = document.createElement('a');
+            wrapper.setAttribute('href', href);
+            wrapper.className = 'wrapped-content';
 
-          if (remainingContent.length > 0) {
-            const wrapper = document.createElement('div');
-            wrapper.className = 'tab-item-body';
-            wrapper.append(...remainingContent);
+            const firstIconParagraph = childElements.find((el) => el.tagName === 'P' && el.querySelector('span.icon'));
+            const lastIconParagraph = [...childElements].reverse().find((el) => el.tagName === 'P' && el.querySelector('span.icon'));
+            const remainingContent = childElements.filter((el) => el !== firstIconParagraph && el !== lastIconParagraph && el !== linkElement);
 
-            if (firstIconParagraph && firstIconParagraph !== lastIconParagraph) {
-              firstIconParagraph.classList.add('first-icon-paragraph');
-              element.append(firstIconParagraph);
-            }
+            if (remainingContent.length > 0) {
+              const wrapperContent = document.createElement('div');
+              wrapperContent.className = 'tab-item-body';
+              wrapperContent.append(...remainingContent);
 
-            element.append(wrapper);
+              if (firstIconParagraph) {
+                firstIconParagraph.classList.add('first-icon-paragraph');
+                wrapper.append(firstIconParagraph);
+              }
 
-            if (lastIconParagraph) {
-              lastIconParagraph.classList.add('last-icon-paragraph');
-              element.append(lastIconParagraph);
+              wrapper.append(wrapperContent);
+
+              if (lastIconParagraph && lastIconParagraph !== firstIconParagraph) {
+                lastIconParagraph.classList.add('last-icon-paragraph');
+                wrapper.append(lastIconParagraph);
+              }
+
+              element.innerHTML = '';
+              element.append(wrapper);
             }
           }
         });
