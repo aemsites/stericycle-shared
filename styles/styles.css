@@ -1760,6 +1760,16 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper {
   height: 100%;
 }
 
+main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper p:first-child {
+  font-size: 20px;
+  max-width: 85%;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper p:last-child {
+  font-size: 14px;
+  max-width: 85%;
+}
+
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a:hover {
   text-decoration: none;
 }
@@ -1832,6 +1842,16 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div::after {
   main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:last-child > a {
     width: 75%;
     font-size: 16px;
+  }
+
+  main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper p:first-child {
+    font-size: 24px;
+    max-width: 75%;
+  }
+
+  main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper p:last-child {
+    font-size: 16px;
+    max-width: 75%;
   }
 }
 
