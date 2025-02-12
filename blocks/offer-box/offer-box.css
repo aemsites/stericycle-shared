@@ -1,5 +1,5 @@
 .offer-box {
-  border-radius: 16px;
+  border-radius: var(--border-radius-xl);
   border: 1px solid var(--color-grey200);
   background: var(--color-bg-primary);
   box-shadow: 0 8px 8px 0 rgb(33 33 33 / 2%), 0 5px 5px 0 rgb(33 33 33 / 4%),

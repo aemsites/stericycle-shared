@@ -165,6 +165,7 @@
   --nav-height: 78px;
   --border-radius-s: 4px;
   --border-radius-l: 8px;
+  --border-radius-xl: 16px;
 
   /* break points */
   --breakpoint-s: 576px; /* <= mobile */
@@ -1722,14 +1723,24 @@ main .list-with-background-image > div > ul > li:last-child {
 }
 
 main .columns.get-a-quote-popup.block {
-  box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
   background-color: var(--color-white);
+  border-radius: var(--border-radius-l);
+  border: 1px solid var(--color-grey200);
+  overflow: hidden;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(1){
   padding: 1rem;
   background-color: var(--color-secondary-4);
   text-align: center;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(1) * {
+  margin-bottom: 0;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(1) p {
+  color: var(--color-primary-2);
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(1) a {
@@ -1745,72 +1756,105 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) {
   padding: 0 2rem 2rem;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3)  > div {
+main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper {
+  height: 100%;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper p:first-child {
+  font-size: 20px;
+  max-width: 85%;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper p:last-child {
+  font-size: 14px;
+  max-width: 85%;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a:hover {
+  text-decoration: none;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a > div {
   cursor: pointer;
-  box-shadow: 2px 1px 4px rgb(0 0 0 / 20%);
   border-radius:0.5rem;
-  background-color: var(--color-gray);
+  background-color: var(--color-bg-secondary);
   position: relative;
-  padding: 0;
+  padding: 16px;
+  height: 100%;
+  transition: background-color 0.3s;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3)  > div:hover {
-  background-color: var(--color-primary-2);
-}
-
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover > p {
-  color:var(--color-white);
-}
-
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div a {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div a {
   all: unset;
   position: relative;
   display: flex;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:first-child {
     font-size: 1.5rem;
     font-weight: 600;
     line-height: normal;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child > a {
-  padding: 1.5rem 0 0.8rem 1.5rem;
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:first-child > a {
+  width: 75%;
+  font-size: 20px;
+  color: var(--color-text-primary);
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child > a {
-  padding: 0 0 1.5rem 1.5rem;
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:last-child > a {
+  width: 75%;
+  font-size: 14px;
+  color: var(--color-text-primary);
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:last-child {
   font-size: 0.875rem;
   max-width: 88%;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div::after{
-  background-color: var(--color-black);
-  border-radius: 50%;
-  color: var(--color-white);
-  content: ">";
-  display: inline-block;
-  height: 2rem;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  padding-left: .55rem;
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div::after {
+  content: "";
   position: absolute;
   top: 50%;
   right: 1rem;
-  text-rendering: auto;
   transform: translateY(-50%);
-  width: 2rem;
-  margin-left: 8px;
+  background-color: var(--color-primary-2);
+  border-radius: 50%;
+  background-image: url('/icons/arrow-right.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-white);
   pointer-events: none;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover::after {
-  background-color: var(--color-white);
-  color: var(--color-black);
+@media (min-width: 992px) {
+  main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:first-child > a {
+    font-size: 24px;
+  }
+
+  main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:last-child > a {
+    width: 75%;
+    font-size: 16px;
+  }
+
+  main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper p:first-child {
+    font-size: 24px;
+    max-width: 75%;
+  }
+
+  main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper p:last-child {
+    font-size: 16px;
+    max-width: 75%;
+  }
 }
+
 
 /* Reusable Header Styles */
 .quote-title {
