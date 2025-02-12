@@ -321,7 +321,7 @@ main .section.column-with-list.blue-background.columns-container li {
   padding: 12px 0;
   padding-top: 0;
   margin-bottom: 0;
-  border-bottom: 1px solid var(--color-border-secondary);
+  border-bottom: 1px solid var(--color-white);
   gap: 1rem;
   align-items: center;
   flex-direction: row-reverse;
@@ -345,6 +345,7 @@ main .section.column-with-list.gray-background.columns-container .icon,
 main .section.column-with-list.blue-background.columns-container .icon,
 main .section.column-with-list.navy-background.columns-container .icon {
   width: fit-content;
+  margin-left: auto;
 }
 
 main .section.column-with-list .columns.columns-2-cols > div > div {
@@ -356,8 +357,8 @@ main .section.column-with-list.small-footnote .columns.columns-2-cols > div > di
 }
 
 main .section.column-with-list .columns > div > div h2 {
-  font-size: 4rem;
-  line-height: 5.25rem;
+  font-size: 32px;
+  line-height: 38px;
 }
 
 main .section.faq-container:not(.cyan-border) > div.default-content-wrapper h2,
@@ -604,6 +605,19 @@ a.button.secondary.dark:focus-visible, button.secondary.dark:focus-visible {
   }
 }
 
+@media screen and (min-width: 992px) {
+  main .section.column-with-list .columns > div > div h2 {
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  main .section.column-with-list.gray-background.columns-container .icon,
+  main .section.column-with-list.blue-background.columns-container .icon,
+  main .section.column-with-list.navy-background.columns-container .icon {
+    margin-left: initial;
+  }
+}
+
 main img {
   max-width: 100%;
   width: auto;
@@ -778,7 +792,7 @@ main .section.column-with-list.gray-background.columns-container li {
   padding: 12px 0;
   padding-top: 0;
   margin-bottom: 0;
-  border-bottom: 1px solid var(--color-white);
+  border-bottom: 1px solid var(--color-primary-2);
   gap: 1rem;
   align-items: center;
   flex-direction: row-reverse;
