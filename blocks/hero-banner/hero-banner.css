@@ -29,8 +29,11 @@ main .section > div.hero-banner-wrapper {
     align-items: flex-start;
 }
 
-.hero-banner-content-text h1 {
+.hero-banner-content-text .hero-banner-heading {
+    display: block;
     margin-bottom: 8px;
+    font-size: 32px;
+    line-height: 38px;
 }
 
 .hero-banner-content-ctas {
@@ -50,6 +53,11 @@ main .section > div.hero-banner-wrapper {
     gap: 16px;
     border-radius: 4px;
     background-color: var(--color-accent-3);
+    color: var(--color-text-tertiary);
+}
+
+.hero-banner-promo-badge * {
+    margin: 0;
     color: var(--color-text-tertiary);
 }
 
@@ -78,9 +86,17 @@ main .section > div.hero-banner-wrapper {
     background-color: var(--color-bg-tertiary);
 }
 
-.hero-banner-form-dark .hero-banner-content-text > *,
-.hero-banner-tertiary .hero-banner-content-text > * {
+.hero-banner-form-dark .hero-banner-content-text *,
+.hero-banner-tertiary .hero-banner-content-text * {
     color: var(--color-white);
+}
+
+.hero-banner .hero-banner-content .eyebrow-small * {
+    margin: 0;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 16.8px;
 }
 
 .hero-banner-form-dark .hero-banner-content-ctas a:not(.primary),
@@ -165,8 +181,14 @@ main .section > div.hero-banner-wrapper {
         max-width: 700px;
     }
 
-    .hero-banner-content-text h1 {
+    .hero-banner-content-text .hero-banner-heading {
         margin: 16px 0;
+        font-size: 48px;
+        line-height: 3.25rem;
+    }
+
+    .hero-banner .hero-banner-content .eyebrow-small * {
+        margin-bottom: 0;
     }
 
     .hero-banner-promo-badge {
