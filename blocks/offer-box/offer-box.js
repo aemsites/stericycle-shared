@@ -57,6 +57,16 @@ export default async function decorate(block) {
     const primaryDivs = block.querySelectorAll('div.block.offer-box.alternate-2 > div:not(div:first-of-type) > div');
 
     primaryDivs.forEach((div) => {
+      const isLink = div.querySelector('a');
+
+      if (isLink) {
+        isLink.classList.add('button', 'primary');
+
+        offerBox.append(div);
+
+        return;
+      }
+
       const rowItems = document.createElement('div');
       rowItems.className = 'offer-box-row';
       const isList = div.querySelectorAll('li');
@@ -101,13 +111,25 @@ export default async function decorate(block) {
       a.classList.add('button', 'primary');
     });
 
+    const firstDiv = block.children[0];
     const secondDiv = block.children[1];
-    if (secondDiv?.querySelector('a') && block.classList.contains('hr')) {
-      secondDiv.classList.add('min-height');
+
+    if (block.classList.contains('hr')) {
       const hrDiv = document.createElement('div');
       const hr = document.createElement('hr');
+      const hrDiv2 = document.createElement('div');
+      const hr2 = document.createElement('hr');
+
       hrDiv.appendChild(hr);
-      block.insertBefore(hrDiv, secondDiv.nextSibling);
+      hrDiv2.appendChild(hr2);
+
+      block.insertBefore(hrDiv, firstDiv.nextSibling);
+
+      const isSecondDivLink = secondDiv.querySelector('a');
+
+      if (!isSecondDivLink) {
+        block.insertBefore(hrDiv2, secondDiv.nextSibling);
+      }
     }
   } else {
     headers.classList.add('offer-box-header');

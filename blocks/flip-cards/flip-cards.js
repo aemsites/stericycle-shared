@@ -1,16 +1,6 @@
 import { decorateButtons } from '../../scripts/aem.js';
 import { a, h3, p, span } from '../../scripts/dom-helpers.js';
-
-async function getQueryIdx(url) {
-  let json;
-  const page = await fetch(url);
-  if (page.ok) {
-    json = await page.json();
-  } else {
-    json = { data: [] };
-  }
-  return json;
-}
+import { fetchQueryIndex } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
   const rows = [...block.children];
@@ -25,12 +15,12 @@ export default async function decorate(block) {
 
   const lookupTable = {};
   const pages = block.querySelectorAll('a');
-  const queryIdx = (await getQueryIdx('/query-index.json')).data;
+  const queryIdx = (await fetchQueryIndex().all());
 
   queryIdx.forEach((item) => {
-    if (Object.hasOwn(item, 'path') && Object.hasOwn(item, 'title') && Object.hasOwn(item, 'description')) {
-      const { path, title, description } = item;
-      lookupTable[path] = { title, description };
+    if (Object.hasOwn(item, 'path') && Object.hasOwn(item, 'title') && Object.hasOwn(item, 'description') && Object.hasOwn(item, 'teaser')) {
+      const { path, title, description, teaser } = item;
+      lookupTable[path] = { title, description, teaser };
     }
   });
 
@@ -40,12 +30,21 @@ export default async function decorate(block) {
     if (Object.hasOwn(lookupTable, pagePath)) {
       const cardDetails = lookupTable[pagePath];
       const icon = rows[0].children.item(0);
+      const eyebrow = rows[1]?.children?.item(0);
+      const eyebrowIsNotLink = eyebrow?.querySelector('a') === null || eyebrow?.querySelector('a') === undefined;
+
       if (icon) {
         cardBack.appendChild(icon);
       }
+
       const titleh3 = document.createElement('h3');
       titleh3.textContent = cardDetails.title;
       titleh3.classList.add('clamp-title');
+
+      if (eyebrow && eyebrowIsNotLink) {
+        eyebrow.classList.add('eyebrow');
+        titleh3.prepend(eyebrow);
+      }
 
       const desc = document.createElement('p');
       desc.textContent = cardDetails.description;

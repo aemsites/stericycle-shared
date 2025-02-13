@@ -159,9 +159,13 @@
   --icon-size-l: 32px;
   --icon-size-xl: 60px;
   --icon-size-xxl: 100px;
+  --icon-size-xxxl: 3.75rem;
 
   /* misc */
   --nav-height: 78px;
+  --border-radius-s: 4px;
+  --border-radius-l: 8px;
+  --border-radius-xl: 16px;
 
   /* break points */
   --breakpoint-s: 576px; /* <= mobile */
@@ -243,11 +247,15 @@ body.appear {
   display: block;
 }
 
-header {
+body header {
   position: sticky;
   top: 0;
   height: var(--nav-height);
   z-index: 100;
+}
+
+body:has(.section.banner-container .block.banner.fixed-to-top) header {
+  top: 3.25rem;
 }
 
 h1, h2, h3,
@@ -301,35 +309,41 @@ main .section.column-with-list.blue-background.columns-container {
 
 main .section.column-with-list.navy-background.columns-container li {
   display: flex;
-  padding: .75rem 0;
-  border-bottom: .0625rem solid var(--color-light-silver);
+  padding: 4px 0 ;
   gap: 1rem;
+  align-items: center;
+  flex-direction: row-reverse;
 }
 
+main .section.column-with-list.navy-background.columns-container li,
 main .section.column-with-list.blue-background.columns-container li {
   display: flex;
-  padding: .75rem 0;
-  border-bottom: .0625rem solid var(--color-light-silver);
+  padding: 12px 0;
+  padding-top: 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--color-border-secondary);
   gap: 1rem;
+  align-items: center;
+  flex-direction: row-reverse;
 }
 
+main .section.column-with-list.gray-background.columns-container ul,
+main .section.column-with-list.blue-background.columns-container ul,
+main .section.column-with-list.navy-background.columns-container ul {
+  margin-left: 0;
+}
+
+main .section.column-with-list.gray-background.columns-container img,
+main .section.column-with-list.blue-background.columns-container img,
 main .section.column-with-list.navy-background.columns-container img {
   width: 24px;
   height: 24px;
   max-width: unset;
 }
 
-main .section.column-with-list.blue-background.columns-container img {
-  width: 24px;
-  height: 24px;
-  max-width: unset;
-}
-
+main .section.column-with-list.gray-background.columns-container .icon,
+main .section.column-with-list.blue-background.columns-container .icon,
 main .section.column-with-list.navy-background.columns-container .icon {
-  width: fit-content;
-}
-
-main .section.column-with-list.blue-background.columns-container .icon {
   width: fit-content;
 }
 
@@ -505,7 +519,6 @@ a.button.primary, button.primary {
   background-color: var(--color-button-primary);
   border: none;
   color: var(--color-text-primary);
-  outline: 1px solid var(--color-grey200);
   border-radius: 100px;
 }
 
@@ -660,7 +673,85 @@ main .section div.button-container a {
   text-decoration: none;
 }
 
-/* section styles */
+main .section.no-buttons {
+  & > .default-content-wrapper {
+    & > p.button-container a {
+      font-family: var(--font-family-body);
+      display: inline-block;
+      text-decoration: underline;
+      border: unset;
+      padding: unset;
+      line-height: unset;
+      text-align: center;
+      font-style: normal;
+      font-weight: unset;
+      cursor: pointer;
+      color: var(--color-blue);
+      background-color: unset;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border-radius: 100px;
+    }
+
+    & > ul li {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* cookie banner / button */
+
+#ot-sdk-btn-floating {
+  bottom: 70px !important;
+}
+
+/* viewport based visibility */
+
+@media screen and (max-width: 575px /* breakpoint-s */) {
+  main .hide-on-mobile {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 576px /* breakpoint-s */) and (max-width: 1199px /* breakpoint-xl */) {
+  main .hide-on-tablet {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
+  main .hide-on-desktop {
+    display: none;
+  }
+}
+
+main .show-on-mobile,
+main .show-on-tablet,
+main .show-on-desktop {
+  display: none;
+}
+
+@media screen and (max-width: 575px /* breakpoint-s */) {
+  main .show-on-mobile {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 576px /* breakpoint-m */) and (max-width: 1199px /* breakpoint-xl */) {
+  main .show-on-tablet {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
+  main .show-on-desktop {
+    display: block;
+  }
+}
+
+/* background colors */
 
 main .section.light,
 main .section.highlight,
@@ -680,6 +771,17 @@ main > div.section.gray-background.post-teaser-list-container > div.default-cont
 
 main > div.section.gray-background > div.default-content-wrapper p {
   color: var(--color-black);
+}
+
+main .section.column-with-list.gray-background.columns-container li {
+  display: flex;
+  padding: 12px 0;
+  padding-top: 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--color-white);
+  gap: 1rem;
+  align-items: center;
+  flex-direction: row-reverse;
 }
 
 main .section.navy-background,
@@ -720,8 +822,8 @@ main .section.shredded-paper-background > div:first-of-type > p > span.icon > im
   width: 33%;
 }
 
-main .section.blue-background,
-main .block.blue-background {
+.section.blue-background,
+.block.blue-background {
   background-color: var(--color-accent-1);
 }
 
@@ -749,9 +851,9 @@ main .section.orange-background {
 
 main .invert-colors,
 main .section.navy-background,
-main .block.navy-background,
+.block.navy-background,
 main .section.blue-background,
-main .block.blue-background {
+.block.blue-background {
   --color-text: var(--color-white);
   --color-heading: var(--color-white);
   --color-link: var(--color-white);
@@ -820,7 +922,6 @@ main .list-style-checkmarks ul {
   list-style: none;
 }
 
-main .list-style-bullets li::marker,
 main .list-style-checkmarks li::marker,
 main .list-style-orange-triangles li::marker,
 main .list-style-big-numbers li::marker,
@@ -925,7 +1026,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
 }
 
 .blog-page main .default-content-wrapper {
-  padding: 30px 0 0;
+  padding: .9375rem 1.5rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -954,6 +1055,12 @@ main .section.with-image > div.section-image-wrapper:first-child {
 
   .blog-page main .breadcrumb-wrapper {
     max-width: 960px;
+  }
+
+  main .section.column-with-list.gray-background.columns-container li,
+  main .section.column-with-list.blue-background.columns-container li,
+  main .section.column-with-list.navy-background.columns-container li {
+    flex-direction: row;
   }
 }
 
@@ -1303,6 +1410,11 @@ main .xxl-icons .icon {
   height: var(--icon-size-xxl);
 }
 
+main .xxxl-icons .icon {
+  width: var(--icon-size-xxxl);
+  height: var(--icon-size-xxxl);
+}
+
 main .list-style-more-space li {
   padding-bottom: 1rem;
 }
@@ -1315,6 +1427,7 @@ main .list-style-orange-triangles ul > li::before {
   content: "";
   color: var(--color-secondary-1);
   font-size: 1.5rem;
+  line-height: 28px;
 }
 
 main .list-style-blue-checkmark ul > li::before {
@@ -1347,8 +1460,6 @@ main .list-style-blue-checkmark ul > li sup {
 
 main .list-style-checkmarks div.card-body ul > li::before {
   content: '✓';
-  position: absolute;
-  left: -1.5rem;
 }
 
 main .list-style-big-numbers h2 {
@@ -1612,8 +1723,10 @@ main .list-with-background-image > div > ul > li:last-child {
 }
 
 main .columns.get-a-quote-popup.block {
-  box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
   background-color: var(--color-white);
+  border-radius: var(--border-radius-l);
+  border: 1px solid var(--color-grey200);
+  overflow: hidden;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(1){
@@ -1622,83 +1735,126 @@ main .columns.get-a-quote-popup.block > div:nth-child(1){
   text-align: center;
 }
 
+main .columns.get-a-quote-popup.block > div:nth-child(1) * {
+  margin-bottom: 0;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(1) p {
+  color: var(--color-primary-2);
+}
+
 main .columns.get-a-quote-popup.block > div:nth-child(1) a {
   text-decoration: underline;
   color: var(--color-text);
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(2) {
-  padding: 1rem;
+  padding: 2rem 2rem 0;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) {
-  padding: 2rem;
+  padding: 0 2rem 2rem;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3)  > div {
+main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper {
+  height: 100%;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper p:first-child {
+  font-size: 20px;
+  max-width: 85%;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper p:last-child {
+  font-size: 14px;
+  max-width: 85%;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a:hover {
+  text-decoration: none;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a > div {
   cursor: pointer;
-  box-shadow: 2px 1px 4px rgb(0 0 0 / 20%);
   border-radius:0.5rem;
-  background-color: var(--color-gray);
+  background-color: var(--color-bg-secondary);
   position: relative;
-  padding: 0;
+  padding: 16px;
+  height: 100%;
+  transition: background-color 0.3s;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3)  > div:hover {
-  background-color: var(--color-primary-2);
-}
-
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover > p {
-  color:var(--color-white);
-}
-
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div a {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div a {
   all: unset;
   position: relative;
   display: flex;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:first-child {
     font-size: 1.5rem;
     font-weight: 600;
+    line-height: normal;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:first-child > a {
-  padding: 1.5rem 0 0.8rem 1.5rem;
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:first-child > a {
+  width: 75%;
+  font-size: 20px;
+  color: var(--color-text-primary);
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child > a {
-  padding: 0 0 1.5rem 1.5rem;
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:last-child > a {
+  width: 75%;
+  font-size: 14px;
+  color: var(--color-text-primary);
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div > p:last-child {
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:last-child {
   font-size: 0.875rem;
+  max-width: 88%;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div::after{
-  background-color: var(--color-black);
-  border-radius: 50%;
-  color: var(--color-white);
-  content: ">";
-  display: inline-block;
-  height: 2rem;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  padding-left: .55rem;
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div::after {
+  content: "";
   position: absolute;
   top: 50%;
   right: 1rem;
-  text-rendering: auto;
   transform: translateY(-50%);
-  width: 2rem;
-  margin-left: 8px;
+  background-color: var(--color-primary-2);
+  border-radius: 50%;
+  background-image: url('/icons/arrow-right.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-white);
   pointer-events: none;
 }
 
-main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover::after {
-  background-color: var(--color-white);
-  color: var(--color-black);
+@media (min-width: 992px) {
+  main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:first-child > a {
+    font-size: 24px;
+  }
+
+  main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div > p:last-child > a {
+    width: 75%;
+    font-size: 16px;
+  }
+
+  main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper p:first-child {
+    font-size: 24px;
+    max-width: 75%;
+  }
+
+  main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper p:last-child {
+    font-size: 16px;
+    max-width: 75%;
+  }
 }
+
 
 /* Reusable Header Styles */
 .quote-title {
@@ -1722,6 +1878,13 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div:hover::after {
   .quote-title {
     margin-bottom: 46px;
   }
+}
+
+/* Full width will unset the default width of divs under section */
+main .section.full-width > div {
+  max-width: 100%;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 @media screen and (max-width: 992px) {

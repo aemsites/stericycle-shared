@@ -949,7 +949,7 @@ main .form form.submit-success .fragment-wrapper:not([data-id^="header"]) {
 main .get-a-quote-form-alternate {
     box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
     background-color: var(--color-white);
-    border-radius: 4px;
+    border-radius: var(--border-radius-l);
     padding-top: 0;
 }
 
@@ -1280,7 +1280,7 @@ main .section.contact-us-title > .default-content-wrapper {
     }
 
     main .body-wrapper .page-sidebar > div.form-container {
-        padding-left: 1rem;
+        padding-left: 1.5rem;
     }
 
     main .shredded-paper-background-column.two-column.form-container,
@@ -1362,6 +1362,7 @@ main .section.contact-us-title > .default-content-wrapper {
 main .form-wrapper .form.contact-us-form{
     padding: 2.5rem;
     box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+    border-radius: var(--border-radius-l);
 }
 
 main .form-wrapper .form.contact-us-form form {

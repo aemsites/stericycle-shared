@@ -440,7 +440,7 @@ function decorateButtons(element) {
         if (
           up.childNodes.length === 1
           && up.tagName === 'STRONG'
-          && twoup.childNodes.length === 1
+          && twoup?.childNodes?.length === 1
           && twoup.tagName === 'P'
         ) {
           a.className = 'button primary';
@@ -466,7 +466,7 @@ function decorateButtons(element) {
  * @param {string} [prefix] prefix to be added to icon src
  * @param {string} [alt] alt text to be added to icon
  */
-function decorateIcon(span, prefix = '', alt = '') {
+export function decorateIcon(span, prefix = '', alt = '') {
   const iconName = Array.from(span.classList)
     .find((c) => c.startsWith('icon-'))
     .substring(5);
@@ -770,6 +770,7 @@ async function waitForLCP(section) {
 }
 
 const isDesktop = () => window.matchMedia('(min-width: 992px)')?.matches;
+const isLargeDesktop = () => window.matchMedia('(min-width: 1200px)')?.matches;
 
 init();
 
@@ -799,5 +800,6 @@ export {
   waitForLCP,
   wrapTextNodes,
   isDesktop,
+  isLargeDesktop,
   loadSection,
 };

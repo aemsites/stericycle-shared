@@ -16,9 +16,8 @@ import {
   getMetadata,
   readBlockConfig,
 } from '../../scripts/aem.js';
-import ffetch from '../../scripts/ffetch.js';
 import usStates from './us-states.js';
-import { decorateAnchors, getLocale, haversineDistance } from '../../scripts/scripts.js';
+import { decorateAnchors, fetchQueryIndex, getLocale, haversineDistance } from '../../scripts/scripts.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
 
 let map = null;
@@ -122,7 +121,7 @@ const calculateLocationListDistance = (locations, centerPoint) => {
 };
 
 async function fetchLocations(isDropoff, ph) {
-  return (await ffetch('/query-index.json').sheet('locations')
+  return (await fetchQueryIndex().sheet('locations')
     .filter((x) => (x.latitude !== '0' && x.longitude !== '0')
       && (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true)
       && (x.locale?.trim().toLowerCase() === getLocale()))
