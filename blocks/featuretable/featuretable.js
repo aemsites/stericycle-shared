@@ -10,12 +10,17 @@ function buildCell(rowIndex) {
   return cell;
 }
 
+function hasRowspan(table) {
+  return [...table.querySelectorAll('td, th')].some((cell) => cell.rowSpan > 1);
+}
+
 export default async function decorate(block) {
   const table = document.createElement('table');
   const thead = document.createElement('thead');
   const tbody = document.createElement('tbody');
 
   const header = !block.classList.contains('no-header');
+
   if (header) {
     table.append(thead);
   }
@@ -78,4 +83,10 @@ export default async function decorate(block) {
 
   block.innerHTML = '';
   block.append(table);
+
+  const tableHasRowspan = hasRowspan(table);
+
+  if (!tableHasRowspan) {
+    block.classList.add('sticky-column');
+  }
 }
