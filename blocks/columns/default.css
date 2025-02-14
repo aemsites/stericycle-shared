@@ -448,6 +448,10 @@ main .section.columns-container:has(.columns.style-one-default.block) {
   padding: 37px;
 }
 
+main .section.columns-container:has(.columns.style-one-default.block) > div {
+  padding: 0;
+}
+
 main .section.columns-container:has(.columns.style-one-default.block) > div.column-wrapper:last-of-type {
   margin: 0 20px;
 }
@@ -661,10 +665,6 @@ main .section.columns-container:has(.columns.style-one-default.block):has(.cyan-
 
 /* Style Four Default */
 
-main .section.columns-container:has(.columns.style-four-default.block) {
-  padding: 0;
-}
-
 main .section.columns-container > div > div.columns.style-four-default.block {
   padding: 0;
   margin: 0;
@@ -699,10 +699,6 @@ main .section.columns-container > div > div.columns.style-four-default.block > d
 }
 
 /* Style Five Default */
-
-main .section.columns-container:has(.columns.style-one-default.block):has(.cyan-line-divider) {
-  padding: 0;
-}
 
 main .section.columns-container > div > div.cyan-line-divider.block {
   padding: 0;
