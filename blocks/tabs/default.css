@@ -1,9 +1,29 @@
+/* stylelint-disable no-descending-specificity */
 main section .tabs-container {
     padding: 32px;
 }
 
 main section .tabs-container > div {
     padding: 0 12px;
+}
+
+main .section.tabs-container > .tabs-wrapper:has(.cta-list) {
+    margin: 16px 0 0;
+    padding: 0 16px;
+}
+
+main .section.tabs-container:has(.cta-list) > .default-content-wrapper {
+    margin: 24px 0;
+    padding: 0 16px;
+}
+
+main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p {
+    margin: 0;
+}
+
+main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
+    margin: 0;
+    padding: 0;
 }
 
 .block.tabs .tabs-list {
@@ -16,6 +36,10 @@ main section .tabs-container > div {
     overflow-x: auto;
     border-bottom: 1px solid var(--color-grey200);
     scrollbar-width: none;
+}
+
+.block.tabs.cta-list > .tabs-list {
+    margin-bottom: 24px;
 }
 
 .block.tabs .tabs-panel {
@@ -158,6 +182,23 @@ main section .tabs-container > div {
     }
 }
 
+.block.tabs .tabs-list button p.custom-icon span.icon {
+    --icon-color: var(--color-text);
+
+    background-color: var(--icon-color);
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    mask-size: contain;
+    mask-image: var(--mask-image);
+    height: 32px;
+    width: 32px;
+}
+
+.block.tabs .tabs-list button[aria-selected="true"] p.custom-icon span.icon {
+    --icon-color: var(--color-primary-1);
+}
+
+
 .block.tabs .tabs-panel[aria-hidden="true"] {
     display: none;
 }
@@ -250,7 +291,130 @@ main section .tabs-container > div {
     margin: calc(var(--bs-gutter-y) * 0.5) calc(var(--bs-gutter-x)* 0.5);
 }
 
+.block.tabs .tabs-list p:has(.icon) {
+    display: flex;
+    gap: 16px;
+}
+
+/* Block Tabs with CTA list */
+.block.tabs.cta-list .tabs-panel {
+    gap: 24px;
+    justify-content: space-between;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.block.tabs.cta-list .tabs-panel > div {
+    border-radius: 8px;
+    border: 1px solid var(--border-border-primary-light, var(--color-grey200));
+    background-color: var(--color-grey200);
+    max-width: 100%;
+}
+
+.block.tabs.cta-list .tabs-panel > div > a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    gap: 12px;
+    padding: 12px 8px;
+    max-width: 100%;
+}
+
+.block.tabs.cta-list .tabs-panel > div > a > p:has(.icon) {
+    display: flex;
+    height: fit-content;
+}
+
+.block.tabs.cta-list .tabs-panel > div > a > div.tab-item-body > p {
+    line-height: 160%;
+    letter-spacing: 0.14px;
+}
+
+.block.tabs.cta-list .tabs-panel > div > a > div.tab-item-body > h4 {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.block.tabs.cta-list .tabs-panel > div > a > div.tab-item-body > h4 > strong {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    height: 25px;
+    padding: 0 8px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    background: var(--color-secondary-1);
+    color: var(--color-white);
+    line-height: 160%;
+    letter-spacing: 0.16px;
+    width: fit-content;
+}
+
+.block.tabs.cta-list .tabs-panel > div > a > p:has(.icon) > a {
+    margin: 0;
+    padding: 0;
+}
+
+.block.tabs.cta-list .tabs-panel > div > a > p:has(.icon) > a:hover {
+    background-color: unset;
+}
+
+.block.tabs.cta-list .tabs-panel > div > a > p span.icon {
+    --icon-color: var(--color-primary-1);
+
+    background-color: var(--icon-color);
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    mask-size: contain;
+    mask-image: var(--mask-image);
+}
+
+.block.tabs.cta-list .tabs-panel > div > a > p.first-icon-paragraph span.icon {
+    width: 48px;
+    height: 48px;
+}
+
+.block.tabs.cta-list .tabs-panel > div > a > p.last-icon-paragraph span.icon {
+    width: 24px;
+    height: 24px;
+}
+
 @media (min-width: 992px) {
+    main .section.tabs-container > .tabs-wrapper:has(.cta-list) {
+        margin: 16px 0 0;
+    }
+
+    main .section.tabs-container:has(.cta-list) > .default-content-wrapper {
+        margin: 24px 0;
+    }
+
+    .block.tabs.cta-list .tabs-panel > div {
+        display: flex;
+        max-width: 50%;
+    }
+
+    .block.tabs.cta-list .tabs-panel > div:hover {
+        background-color: var(--color-bg-tertiary);
+    }
+
+    .block.tabs.cta-list .tabs-panel > div:hover .tab-item-body > * {
+        color: white;
+    }
+
+    .block.tabs.cta-list .tabs-panel > div > a {
+        gap: 16px;
+        padding: 16px;
+        width: 100%;
+    }
+
+    .block.tabs.cta-list .tabs-panel > div:hover > a > p span.icon {
+        --icon-color: var(--color-white);
+
+        background-color: var(--color-white);
+    }
+
     .block.tabs.vertical .tabs-panel details {
         display: none;
     }
@@ -318,11 +482,11 @@ main section .tabs-container > div {
         width: 30%;
     }
 
-    .block.tabs.vertical .tabs-panel>div:last-of-type {
+    .block.tabs.vertical .tabs-panel > div:last-of-type {
         flex-basis: 40%
     }
 
-    .block.tabs.vertical .tabs-panel>div:first-of-type {
+    .block.tabs.vertical .tabs-panel > div:first-of-type {
         flex-basis: 60%;
     }
 
@@ -335,7 +499,7 @@ main section .tabs-container > div {
         width: 100%;
     }
 
-    .block.tabs.vertical.video .tabs-panel>div:first-of-type {
+    .block.tabs.vertical.video .tabs-panel > div:first-of-type {
         flex-basis: unset;
         height: 100%;
         width: 100%;
@@ -356,4 +520,13 @@ main section .tabs-container > div {
         width: 100%;
     }
 
+    .block.tabs.cta-list .tabs-panel > div > a > div.tab-item-body > h4 {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .block.tabs.cta-list .tabs-panel > div > a > div.tab-item-body > h4 > strong {
+        margin-left: 8px;
+        margin-bottom: 0;
+    }
 }
