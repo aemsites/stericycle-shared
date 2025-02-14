@@ -76,10 +76,8 @@ export async function createModalButton(fragment, footerPath, locale) {
       'aria-label': modalButtonTitle,
     }, modalButtonTitle),
   );
-  if (footerPath.includes('alt-0-footer')) {
-    const parentWrapper = fragment.querySelector('.default-content-wrapper');
-    parentWrapper.append(btn);
-  } else if (footerPath === `/${locale}/footer-refresh`) {
+
+  if (footerPath.includes('alt-0-footer') || footerPath === `/${locale}/footer-refresh`) {
     btn.querySelector('a').textContent = ph.getaquote || 'Get a Quote';
     const parentWrappers = fragment.querySelectorAll('.columns.quote > div > div');
     const parentWrapper = parentWrappers[parentWrappers.length - 1];
