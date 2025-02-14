@@ -7,7 +7,7 @@ import { buildBreadcrumb, buildCompanyLogo, createCountrySelector, createMenuAcc
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  const locale = window.location.pathname.split('/')[1] || 'en-us'; // default to us-en if no locale in path
+  const locale = getMetadata('locale') || 'en-us';
   // load footer as fragment
   const footerMeta = getMetadata('footer-refresh');
   const navMeta = getMetadata('nav');

@@ -587,7 +587,8 @@ footer .section.footer-menu .default-content-wrapper ul.footer-accordion-contain
   }
 }
 
-footer .section.footer-menu .default-content-wrapper .footer-accordion-link-wrapper {
+footer .section.footer-menu .default-content-wrapper .footer-accordion-link-wrapper,
+footer .section.footer-menu .default-content-wrapper .footer-accordion-link-wrapper > a {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -688,17 +689,6 @@ footer .section.footer-menu .default-content-wrapper .footer-accordion-container
 
 }
 
-footer .section.footer-menu .default-content-wrapper .footer-accordion-container .footer-accordion-link-wrapper a {
-  padding: 16px 0 12px;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 1.3rem;
-  color: var(--color-white);
-  letter-spacing: .7px;
-  text-transform: uppercase;
-  width: 100%;
-}
-
 footer .section.footer-menu .default-content-wrapper .footer-accordion-container .footer-accordion-link-wrapper:first-child a {
   width: fit-content;
   font-weight: var(--font-weight-bold);
@@ -718,7 +708,7 @@ footer .section.footer-menu .default-content-wrapper .footer-accordion-container
   }
 
   footer .section.footer-menu .default-content-wrapper .footer-accordion-container .footer-accordion-link-wrapper a {
-    padding: 16px 0 2px;
+    padding: 0;
     display: block;
     font-size: .875rem;
     margin-bottom: 0;
@@ -809,6 +799,10 @@ footer .section.footer-menu .footer-accordion-content-wrapper > .footer-accordio
     font-size: var(--body-font-size-s);
     line-height: 160%;
     letter-spacing: 0.14px;
+  }
+
+  footer .section.footer-menu .footer-accordion-content-wrapper > .footer-accordion-content-inner-wrapper > ul > li a:hover {
+    text-decoration: underline;
   }
 
   footer .section.footer-menu .footer-accordion .footer-accordion-content-wrapper {

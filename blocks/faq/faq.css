@@ -4,13 +4,18 @@ main .section.faq-container > div {
 
 @media screen and (min-width: 992px) {
   main .section.faq-container > div {
-    max-width: 1440px;
-    padding: 0 150px;
+    padding: 0 24px;
   }
 }
 
 main .section.faq-container > .faq-wrapper {
   margin-top: 0;
+}
+
+@media screen and (min-width: 992px) {
+  main .section.faq-container > .faq-wrapper  {
+    padding: 0 8px;
+  }
 }
 
 main:has(.section.two-column.shredded-paper-background-column) div.faq-wrapper,
@@ -95,7 +100,7 @@ main:has(.section.two-column.full-width) div.faq-container div {
 .faq details summary {
   -webkit-tap-highlight-color: transparent;
   position: relative;
-  padding: 20px 56px 24px 16px;
+  padding: 20px 56px 24px 0;
   cursor: pointer;
   list-style: none;
   overflow: auto;
@@ -109,11 +114,18 @@ main:has(.section.two-column.full-width) div.faq-container div {
 @media screen and (min-width: 992px) {
   .faq details summary {
     padding-right: 48px;
+    padding-left: 16px;
   }
 }
 
 .faq details[open] summary {
-  padding: 24px 56px 24px 16px;
+  padding: 24px 56px 24px 0;
+}
+
+@media screen and (min-width: 992px) {
+  .faq details[open] summary {
+    padding-left: 16px;
+  }
 }
 
 .faq details:not([open]) summary:focus-visible {
@@ -222,15 +234,27 @@ main:has(.section.two-column.full-width) div.faq-container div {
 .faq-item.open .faq-item-body {
   display: flex;
   flex-direction: column;
-  padding: 2px 16px 16px;
+  padding: 2px 16px 16px 0;
   gap: 24px;
   animation: open-animation .3s ease-in-out forwards;
 }
 
+@media screen and (min-width: 992px) {
+  .faq-item.open .faq-item-body {
+    padding-left: 16px;
+  }
+}
+
 /* Applying keyframes when the details element is closed */
 .faq-item.close .faq-item-body {
-  padding: 2px 16px 16px;
+  padding: 2px 16px 16px 0;
   animation: close-animation .3s ease-in-out forwards;
+}
+
+@media screen and (min-width: 992px) {
+  .faq-item.close .faq-item-body {
+    padding-left: 16px;
+  }
 }
 
 .faq details[open] .faq-item-body p {

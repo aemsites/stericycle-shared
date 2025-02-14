@@ -1,3 +1,15 @@
+:root {
+/* Colors */
+--color-angle-1: var(--color-white);
+--color-angle-2: var(--color-white);
+--color-angle-3: var(--color-white);
+
+/* Angles */
+--angle1: 120deg;
+--angle2: 240deg;
+--angle3: 360deg;
+}
+
 main .section > div.hero-banner-wrapper {
     max-width: 100%;
     padding: 0;
@@ -29,8 +41,11 @@ main .section > div.hero-banner-wrapper {
     align-items: flex-start;
 }
 
-.hero-banner-content-text h1 {
+.hero-banner-content-text .hero-banner-heading {
+    display: block;
     margin-bottom: 8px;
+    font-size: 32px;
+    line-height: 38px;
 }
 
 .hero-banner-content-ctas {
@@ -53,6 +68,11 @@ main .section > div.hero-banner-wrapper {
     color: var(--color-text-tertiary);
 }
 
+.hero-banner-promo-badge * {
+    margin: 0;
+    color: var(--color-text-tertiary);
+}
+
 .hero-banner-asset {
     width: 100%;
     height: 100%;
@@ -70,17 +90,38 @@ main .section > div.hero-banner-wrapper {
 }
 
 /* Variants */
+.hero-banner-container {
+    background: conic-gradient(
+        from 180deg at 50% 100%,
+        var(--color-angle-1) 0deg var(--angle1),
+        var(--color-angle-2) var(--angle1) var(--angle2),
+        var(--color-angle-3) var(--angle2) var(--angle3)
+    );
+}
+
 .hero-banner-secondary {
-    background-color: var(--color-bg-secondary);
+    --color-angle-1: #D5E1E3;
+    --color-angle-2: #D9E4E5;
+    --color-angle-3: #DDE7E9;
 }
 
 .hero-banner-tertiary {
-    background-color: var(--color-bg-tertiary);
+    --color-angle-1: #153b5e;
+    --color-angle-2: #1a405f;
+    --color-angle-3: #204465;
 }
 
-.hero-banner-form-dark .hero-banner-content-text > *,
-.hero-banner-tertiary .hero-banner-content-text > * {
+.hero-banner-form-dark .hero-banner-content-text *,
+.hero-banner-tertiary .hero-banner-content-text * {
     color: var(--color-white);
+}
+
+.hero-banner .hero-banner-content .eyebrow-small * {
+    margin: 0;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 16.8px;
 }
 
 .hero-banner-form-dark .hero-banner-content-ctas a:not(.primary),
@@ -165,8 +206,14 @@ main .section > div.hero-banner-wrapper {
         max-width: 700px;
     }
 
-    .hero-banner-content-text h1 {
+    .hero-banner-content-text .hero-banner-heading {
         margin: 16px 0;
+        font-size: 48px;
+        line-height: 3.25rem;
+    }
+
+    .hero-banner .hero-banner-content .eyebrow-small * {
+        margin-bottom: 0;
     }
 
     .hero-banner-promo-badge {

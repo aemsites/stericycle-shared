@@ -1,9 +1,17 @@
 // eslint-disable-next-line import/no-unresolved
-import { toClassName } from '../../scripts/aem.js';
+import { decorateIcons, toClassName } from '../../scripts/aem.js';
 import { embedWistia } from '../../scripts/scripts.js';
 
 function hasWrapper(el) {
   return !!el.firstElementChild && window.getComputedStyle(el.firstElementChild).display === 'block';
+}
+
+function modifyIcon(icon) {
+  if (icon && !icon.classList.contains('custom-icon')) {
+    icon.classList.add('custom-icon');
+    icon.querySelector('span').innerHTML = '';
+    decorateIcons(icon);
+  }
 }
 
 function addAccordionAnimation(details) {
@@ -113,6 +121,12 @@ export default async function decorate(block) {
     button.setAttribute('aria-selected', !i);
     button.setAttribute('role', 'tab');
     button.setAttribute('type', 'button');
+    const pElement = button.querySelector('p');
+
+    if (pElement) {
+      modifyIcon(pElement);
+    }
+
     button.addEventListener('click', () => {
       window.history.pushState(null, null, `#${button.id}`);
       block.querySelectorAll('[role=tabpanel]').forEach((panel) => {
@@ -133,6 +147,52 @@ export default async function decorate(block) {
     if (tab) {
       tab.click();
     }
+  }
+
+  if (block.classList.contains('cta-list')) {
+    const tabpanelSelected = document.querySelectorAll('.tabs-panel');
+    tabpanelSelected.forEach((panel) => {
+      const contentWrappers = panel && panel.querySelectorAll('div');
+      if (contentWrappers) {
+        contentWrappers.forEach((element) => {
+          const childElements = Array.from(element.children);
+          const linkElement = childElements.find((el) => el.tagName === 'P' && el.classList.contains('button-container') && el.querySelector('a[href]'));
+          if (linkElement) {
+            const href = linkElement.querySelector('a').getAttribute('href');
+            const wrapper = document.createElement('a');
+            wrapper.setAttribute('href', href);
+            wrapper.className = 'wrapped-content';
+
+            const firstIconParagraph = childElements.find((el) => el.tagName === 'P' && el.querySelector('span.icon'));
+            const lastIconParagraph = [...childElements].reverse().find((el) => el.tagName === 'P' && el.querySelector('span.icon'));
+            const remainingContent = childElements.filter((el) => el !== firstIconParagraph && el !== lastIconParagraph && el !== linkElement);
+
+            if (remainingContent.length > 0) {
+              const wrapperContent = document.createElement('div');
+              wrapperContent.className = 'tab-item-body';
+              wrapperContent.append(...remainingContent);
+
+              if (firstIconParagraph) {
+                firstIconParagraph.classList.add('first-icon-paragraph');
+                modifyIcon(firstIconParagraph);
+                wrapper.append(firstIconParagraph);
+              }
+
+              wrapper.append(wrapperContent);
+
+              if (lastIconParagraph && lastIconParagraph !== firstIconParagraph) {
+                lastIconParagraph.classList.add('last-icon-paragraph');
+                modifyIcon(lastIconParagraph);
+                wrapper.append(lastIconParagraph);
+              }
+
+              element.innerHTML = '';
+              element.append(wrapper);
+            }
+          }
+        });
+      }
+    });
   }
 
   block.prepend(tablist);

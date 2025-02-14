@@ -1,0 +1,66 @@
+body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block {
+  padding: 0;
+}
+
+body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block > div.hero-content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  padding: 0 16px;
+}
+
+body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block > div.hero-content-container > div.hero-content > h1 {
+  color: var(--color-black);
+  letter-spacing: 0.48px;
+  margin: 0;
+}
+
+body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block > div.hero-content-container > div.hero-content > p {
+  color: var(--color-black);
+  letter-spacing: 0.16px;
+}
+
+body.homepage.appear div.section.narrow.rounded-corners.tabs-container {
+  background-color: var(--color-bg-primary);
+  margin-top: -143px;
+  z-index: 1;
+  position: relative;
+  box-shadow: 0px 0px 6px 4px rgba(33, 33, 33, 0.05);
+  border: 1px solid var(--color-grey200);
+  margin: 24px 16px;
+}
+
+body.homepage.appear .hero.block .hero-background.mobile-only {
+  position: relative;
+}
+
+body.homepage.appear .hero.block .hero-background.mobile-only > img {
+  height: 216px;
+}
+
+@media screen and (min-width: 576px /* breakpoint-s */) {
+  body.homepage.appear div.section.narrow.rounded-corners.tabs-container {
+    margin: 0 auto 24px;
+  }
+}
+
+@media (min-width: 992px) {
+  body.homepage.appear .hero.block .hero-background.desktop-only img {
+    object-fit: fill;
+  }
+
+  body.homepage.appear div.section.narrow.rounded-corners.tabs-container {
+    margin: -143px auto 0;
+  }
+
+  body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block {
+    padding: 80px 80px 224px;
+  }
+
+  body.homepage.appear div.section.hero-container > div.hero-wrapper > div.hero.block > div.hero-content-container {
+    margin: 0 auto;
+    text-align: center;
+    padding: 0;
+  }
+}
