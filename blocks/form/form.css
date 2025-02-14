@@ -585,8 +585,8 @@ main .form form .wizard .wizard-button-wrapper{
 }
 
 main .get-a-quote-form-alternate form > .field-wrapper {
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
+    padding-right: 24px;
+    padding-left: 24px;
 }
 
 main .form form .wizard .wizard-button-wrapper .field-wrapper{
@@ -634,6 +634,11 @@ main .form form .wizard .wizard-menu-active-item::before{
 @media (min-width: 600px) {
     main .form button {
         width: unset;
+    }
+
+    main .get-a-quote-form-alternate form > .field-wrapper {
+        padding-right: 32px;
+        padding-left: 32px;
     }
 }
 
@@ -951,6 +956,8 @@ main .get-a-quote-form-alternate {
     background-color: var(--color-white);
     border-radius: var(--border-radius-l);
     padding-top: 0;
+    padding-bottom: 16px;
+    overflow: hidden;
 }
 
 main .get-a-quote-form-alternate form {
@@ -960,7 +967,7 @@ main .get-a-quote-form-alternate form {
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='privacy-policy']  p,
-main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='policy']  p{
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='policy'] p {
     font-size: 0.75rem;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
@@ -971,13 +978,15 @@ main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='policy']  p{
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {
     background-color: var(--color-secondary-4);
     font-size: var(--heading-font-size-m);
-    padding: 1rem 2rem;
+    padding: 24px 32px;
     margin-bottom: 1rem;
     font-weight: normal;
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h3,
-main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h2{
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h2 {
+    margin-bottom: 0;
+    font-size: 32px;
     color: var(--color-black);
 }
 
@@ -1003,6 +1012,7 @@ main .footer-subscription-form form .fragment-wrapper > div p:nth-of-type(2) {
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] > div > p {
+    margin-bottom: 0;
     font-size: 1rem;
     color: var(--color-black);
 }
@@ -1110,6 +1120,17 @@ main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-
         margin: auto;
         padding: 2rem 1.5rem;
     }
+
+    main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {
+        padding: 16px 24px;
+    }
+
+    main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h3,
+    main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h2{
+        margin-bottom: 0;
+        font-size: 24px;
+    }
+
 }
 
 main .campaign-form.form {
