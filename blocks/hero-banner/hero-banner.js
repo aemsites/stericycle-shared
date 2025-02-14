@@ -1,9 +1,45 @@
 export default function decorate(block) {
-  const wrapper = block.querySelector('div');
+  const isImageVariant = block.classList?.contains('hero-banner-image');
+  const isFullWidthVariant = block.classList?.contains('hero-banner-full');
+  let wrapper = block.children[0];
+  let heroText = wrapper.querySelector('div');
+  let promoBadge;
+  let eyebrow;
+
+  const blockHasMultipleChildren = block.children.length > 1;
+  const blockHasPromoBadgeAndContent = block.children.length === 2;
+  const blockHasFullContent = block.children.length > 2;
+
+  if (blockHasMultipleChildren) {
+    if (blockHasPromoBadgeAndContent) {
+      [promoBadge, wrapper] = block.children;
+
+      heroText = wrapper.querySelector('div');
+      heroText.prepend(promoBadge);
+    }
+
+    if (blockHasFullContent) {
+      [promoBadge, eyebrow, wrapper] = block.children;
+
+      heroText = wrapper.querySelector('div');
+      heroText.prepend(eyebrow);
+      heroText.prepend(promoBadge);
+    }
+  }
+
+  // get first child of heroText except for promoBadge and eyebrow
+  const validChildren = [...heroText.children].filter(
+    (child) => child !== promoBadge && child !== eyebrow,
+  );
+
+  const heading = validChildren[0];
+
+  if (heading) {
+    heading.classList.add('hero-banner-heading');
+  }
 
   wrapper?.classList?.add('hero-banner-content');
 
-  const heroText = wrapper.querySelector('div');
   const heroImage = heroText?.nextElementSibling;
   const heroDesktopImage = wrapper?.nextElementSibling;
 
@@ -23,14 +59,8 @@ export default function decorate(block) {
   heroText.appendChild(parentDiv);
 
   // Decorate content
-  const promoBadge = heroText.querySelector('h4');
-  const eyebrow = heroText.querySelector('p');
-
   eyebrow?.classList?.add('eyebrow-small');
   promoBadge?.classList?.add('hero-banner-promo-badge');
-
-  const isImageVariant = block.classList?.contains('hero-banner-image');
-  const isFullWidthVariant = block.classList?.contains('hero-banner-full');
 
   if (isFullWidthVariant && heroDesktopImage) {
     const mobileImg = heroImage.querySelector('img');
