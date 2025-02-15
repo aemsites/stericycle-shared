@@ -576,12 +576,17 @@ main .form form .wizard > fieldset:not(.current-wizard-step){
     display: none;
 }
 
-main .form form .wizard .wizard-button-wrapper{
+main .form form .wizard .wizard-button-wrapper {
     display: flex;
     justify-content: end;
     gap: 50px;
     width: 100%;
     grid-column: span 12;
+    margin: 16px 0;
+}
+
+main .form form .wizard .wizard-button-wrapper button {
+    margin: 0;
 }
 
 main .get-a-quote-form-alternate form > .field-wrapper {
@@ -589,8 +594,16 @@ main .get-a-quote-form-alternate form > .field-wrapper {
     padding-left: 24px;
 }
 
-main .form form .wizard .wizard-button-wrapper .field-wrapper{
+main .form form .wizard .wizard-button-wrapper .field-wrapper {
     flex: unset;
+    width: fit-content;
+    height: fit-content;
+    margin-left: auto;
+}
+
+main .form form .wizard .wizard-button-wrapper .field-wrapper.wizard-button-prev {
+    margin-right: auto;
+    margin-left: 0;
 }
 
 .wizard-menu-items{
@@ -828,6 +841,8 @@ main form .wizard > .current-wizard-step.panel-wrapper:last-of-type ~ .wizard-bu
 main form .wizard > .wizard-button-wrapper > .submit-wrapper {
     display: none;
     width: unset;
+    margin-left: auto;
+    margin-right: 0 !important;
 }
 
 main form .wizard >
