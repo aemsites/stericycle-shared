@@ -439,6 +439,7 @@ header {
   border-radius: 4px;
   border: 1px solid var(--color-grey200);
   background: var(--color-white);
+  font-size: 16px;
 }
 
 .header .form .form-header {
@@ -521,6 +522,10 @@ header {
   min-height: fit-content;
 }
 
+.header .contact-modal.open {
+  padding-bottom: 32px;
+}
+
 .header .contact-modal .modal-title {
   font-size: 14px;
 }
@@ -549,6 +554,10 @@ header {
   min-height: fit-content;
   padding: 0 24px;
   background-color: var(--color-bg-secondary);
+}
+
+.header .search-modal.open {
+  padding-bottom: 0;
 }
 
 .header .search-modal .search-form {
