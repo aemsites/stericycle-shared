@@ -70,6 +70,8 @@ main .section > div.hero-banner-wrapper {
 
 .hero-banner-promo-badge * {
     margin: 0;
+    font-size: 16px;
+    line-height: 22px;
     color: var(--color-text-tertiary);
 }
 
@@ -173,6 +175,11 @@ main .section > div.hero-banner-wrapper {
 }
 
 @media screen and (min-width: 768px) {
+    .hero-banner-promo-badge * {
+        font-size: 18px;
+        line-height: 25px;
+    }
+
     .hero-banner-content-text {
         padding: 0 0 64px;
         max-width: 78%;
