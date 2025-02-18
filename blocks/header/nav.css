@@ -164,6 +164,7 @@ header {
   padding: 0 8px;
   font-size: 16px;
   font-weight: 700;
+  font-style: normal;
   line-height: 160%;
   color: var(--color-text-primary);
   transition: background-color 0.3s ease-in-out;
@@ -281,6 +282,7 @@ header {
   line-height: 16px;
   letter-spacing: 1.4px;
   text-decoration: none;
+  padding: 4px;
 }
 
 .header .list-item li ul li:last-child .icon {
