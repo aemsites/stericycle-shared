@@ -67,12 +67,12 @@
   --color-light-silver: #dad6d6;
 
   /* Design system tokens */
-  --color-primary-1: #006CB4; /* Blue */
-  --color-primary-2: #133B5C; /* Dark Blue */
+  --color-primary-1: rgb(28, 130, 0); /* Blue */
+  --color-primary-2: #024731; /* Dark Blue */
   --color-secondary-1: #FF5733; /* Orange */
   --color-secondary-2: #00AB9C; /* Teal */
-  --color-secondary-3: #40BBD5; /* Light Blue */
-  --color-secondary-4: #FFC62B; /* Yellow */
+  --color-secondary-3: rgb(28, 130, 0); /* Light Blue */
+  --color-secondary-4: #ebab00; /* Yellow */
   --color-secondary-5: #010101; /* Gunmetal */
   --color-tertiary-1: #007FAA;
 
@@ -93,11 +93,11 @@
   /* Backgrounds */
   --color-bg-primary: #FFF;
   --color-bg-secondary: #E4ECED;
-  --color-bg-tertiary: #133B5C;
-  --color-accent-1: #006CB4;
-  --color-accent-2: #40BBD5;
+  --color-bg-tertiary: #024731;
+  --color-accent-1: rgb(28, 130, 0);
+  --color-accent-2: rgb(28, 130, 0);
   --color-accent-3: #FF5733;
-  --color-accent-link: #FFC62B;
+  --color-accent-link: #ebab00;
 
   /* Interactive */
   --color-border-primary: #006CB4;
