@@ -1,7 +1,7 @@
 main .section > div.simple-cta-wrapper {
   max-width: var(--content-width-xxxl) !important;
   padding: 0;
-  margin-top: 0;
+  margin: 0;
 }
 
 .masked-image-wrapper {
@@ -185,6 +185,30 @@ main .section > div.simple-cta-wrapper {
   align-items: flex-end;
 }
 
+.simple-cta.slim {
+  padding: 32px;
+}
+
+.simple-cta.slim .simple-cta-content {
+  align-items: center;
+}
+
+.simple-cta.slim .simple-cta-content * {
+  margin: 0;
+}
+
+.simple-cta.slim .simple-cta-content-text {
+  padding: 0;
+}
+
+.simple-cta.slim .simple-cta-content-ctas {
+  padding: 0;
+}
+
+.simple-cta.slim .simple-cta-asset {
+  height: auto;
+}
+
 .simple-cta-graphic.simple-cta-full.simple-cta-asset-left .simple-cta-content {
   align-items: flex-start;
   overflow: hidden;
@@ -204,8 +228,14 @@ main .section > div.simple-cta-wrapper {
 
 @media screen and (min-width: 1200px) {
   main .section > div.simple-cta-wrapper {
-    margin: 2rem auto;
-    padding: 0 1.5rem;
+    max-width: 100% !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  main .section > div.simple-cta-wrapper .slim {
+    max-width: var(--section-width);
+    margin: auto;
   }
 
   .simple-cta-content {
@@ -290,6 +320,7 @@ main .section > div.simple-cta-wrapper {
 
   .simple-cta-full .simple-cta-content {
     align-items: center;
+    justify-content: center;
     overflow: hidden;
   }
 

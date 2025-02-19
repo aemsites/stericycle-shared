@@ -1,3 +1,4 @@
+import { decorateButtons } from '../../scripts/aem.js';
 import renderVideo from '../video/video.js';
 
 async function findVideos(block) {
@@ -46,9 +47,14 @@ export default async function decorate(block) {
   const isGraphicVariant = block.classList?.contains('simple-cta-graphic');
   const isVideoVariant = block.classList?.contains('simple-cta-video');
   const isFullWidthVariant = block.classList?.contains('simple-cta-full');
+  const isSlimVariant = block.classList?.contains('slim');
   const isLeftAlignedVariant = block.classList?.contains(
     'simple-cta-asset-left',
   );
+
+  if (isSlimVariant) {
+    decorateButtons(block);
+  }
 
   if (heroImage) {
     // Decorate variant hero image
