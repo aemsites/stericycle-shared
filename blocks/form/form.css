@@ -1444,7 +1444,9 @@ main .form form fieldset.splitbuttons {
     main .form form fieldset.splitbuttons {
         flex-flow: row;
         align-items: start;
-        gap: 8px;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
     }
 }
 
@@ -1494,6 +1496,8 @@ main .form form .panel-wrapper.splitbuttons .radio-wrapper {
     text-align: center;
     gap: 0;
     background: var(--color-bg-secondary);
+    min-width: 115px;
+    height: 42px;
 }
 
 main .form form .panel-wrapper.splitbuttons .radio-wrapper input {
@@ -1559,6 +1563,7 @@ main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
 
 main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) {
     position: relative;
+    min-width: 139px;
 }
 
 main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label {
