@@ -1,17 +1,16 @@
 .section.banner-container {
-  background-color: var(--color-blue);
-}
-
-.banner-wrapper {
-  max-width: var(--section-width);
-  margin: auto;
+  background-color: var(--color-bg-tertiary);
 }
 
 .block.banner {
   display: flex;
   position: relative;
   align-items: center;
+  padding: 16px 32px;
+  margin: auto;
+  max-width: 1660px;
   height: fit-content;
+  background-color: var(--color-bg-tertiary);
 }
 
 .block.banner > span {
@@ -44,7 +43,6 @@
   flex-direction: row;
   justify-content: center;
   gap: 2rem;
-  padding: 1rem;
   width: 100%;
   white-space: nowrap;
   align-items: center;
@@ -70,6 +68,14 @@
   }
 }
 
+.block.banner > .banner-content > .banner-content-page * {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+  text-decoration: underline;
+}
+
 .block.banner > .banner-content > .banner-content-page {
   display: none;
 }
@@ -82,18 +88,21 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-right: 10px;
 }
 
 .block.banner > .banner-actions > .close-button {
-  width: 10px;
-  height: 10px;
-  border: unset;
+  margin: 0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   color: unset;
   background-color: unset;
+  border: 1px solid var(--color-white);
+  border-radius: var(--border-radius-l);
+  font-size: 12px;
 }
 
 .block.banner > .banner-actions > .close-button::before {
@@ -128,7 +137,7 @@
   color: var(--color-white);
 }
 
-button.fa-chevron-left, 
+button.fa-chevron-left,
 button.fa-chevron-right {
   box-sizing: border-box;
   position: relative;

@@ -190,6 +190,7 @@ export function generateMenuFromSection(
   }
 
   const nav = document.createElement('nav');
+  const hasAlertBanner = document.querySelector('.cmp-notification-bar');
 
   nav.role = 'menu';
   nav.id = 'nav';
@@ -247,6 +248,15 @@ export function generateMenuFromSection(
         'aria-label',
         `Submenu for ${link ? link.textContent.trim() : 'non-link item'}`,
       );
+
+      if (hasAlertBanner) {
+        const alertCloseButton = hasAlertBanner.querySelector('.close-button');
+
+        submenu.classList.add('submenu-alert');
+        alertCloseButton.addEventListener('click', () => {
+          submenu.classList.remove('submenu-alert');
+        });
+      }
 
       // Process nested lists only if they are direct children of the current `li`
       const nestedLists = li.querySelectorAll(':scope > ul');

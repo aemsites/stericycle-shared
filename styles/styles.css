@@ -255,7 +255,7 @@ body header {
 }
 
 body:has(.section.banner-container .block.banner.fixed-to-top) header {
-  top: 3.25rem;
+  top: 64px;
 }
 
 h1, h2, h3,

@@ -729,6 +729,10 @@ header {
     min-height: auto;
   }
 
+  .header .submenu-alert.submenu {
+    top: 146px;
+  }
+
   .header .submenu.open {
     padding-bottom: 0;
   }
