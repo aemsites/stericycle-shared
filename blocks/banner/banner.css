@@ -46,13 +46,14 @@
   gap: 2rem;
   padding: 1rem;
   width: 100%;
-  white-space: nowrap;
+  white-space: wrap;
   align-items: center;
 }
 
 @media screen and (min-width: 576px /* breakpoint-s */) {
   .block.banner > .banner-content {
     gap: 4rem;
+    white-space: nowrap;
   }
 }
 
