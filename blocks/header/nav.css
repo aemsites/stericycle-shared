@@ -25,6 +25,10 @@ header {
   height: 100vh;
 }
 
+.header nav.nav-alert {
+  top: 124px;
+}
+
 .header nav.open {
   display: flex;
   flex-direction: column;
@@ -34,6 +38,7 @@ header {
   padding-bottom: 98px;
   height: 100vh;
   max-height: calc(100vh - 60px);
+  z-index: 99;
 }
 
 .header nav ul {
@@ -80,6 +85,10 @@ header {
   min-height: 100%;
   box-shadow: 0 4px 6px color-mix(in srgb, black 10%, transparent);
   animation: fade-in 0.3s ease-in-out;
+}
+
+.header .submenu-alert.submenu {
+  top: 124px;
 }
 
 .header .nav-item {
@@ -687,6 +696,10 @@ header {
     left: initial;
     top: initial;
     height: auto;
+  }
+
+  .header nav.nav-alert {
+    top: 0;
   }
 
   .header .logo {

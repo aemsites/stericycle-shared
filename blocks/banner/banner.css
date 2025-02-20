@@ -6,6 +6,7 @@
   display: flex;
   position: relative;
   align-items: center;
+  gap: 24px;
   padding: 16px 32px;
   margin: auto;
   max-width: 1660px;
@@ -44,7 +45,6 @@
   justify-content: center;
   gap: 2rem;
   width: 100%;
-  white-space: nowrap;
   align-items: center;
 }
 
