@@ -190,9 +190,14 @@ export function generateMenuFromSection(
   }
 
   const nav = document.createElement('nav');
+  const hasAlertBanner = document.querySelector('.cmp-notification-bar');
 
   nav.role = 'menu';
   nav.id = 'nav';
+
+  if (hasAlertBanner) {
+    nav.classList.add('nav-alert');
+  }
 
   // Helper function to process top-level list items
   const processTopLevelItems = (listItems) => {
@@ -247,6 +252,17 @@ export function generateMenuFromSection(
         'aria-label',
         `Submenu for ${link ? link.textContent.trim() : 'non-link item'}`,
       );
+
+      if (hasAlertBanner) {
+        const alertCloseButton = hasAlertBanner.querySelector('.close-button');
+
+        submenu.classList.add('submenu-alert');
+
+        alertCloseButton.addEventListener('click', () => {
+          submenu.classList.remove('submenu-alert');
+          nav.classList.remove('nav-alert');
+        });
+      }
 
       // Process nested lists only if they are direct children of the current `li`
       const nestedLists = li.querySelectorAll(':scope > ul');
@@ -708,6 +724,7 @@ export function buildCtasSection(
   const contactModalButtonTitle =
     placeHolders.contactustext || 'Open Contact Us Information';
   const searchModalButtonTitle = placeHolders.searchtext || 'Open Search box';
+  const hasAlertBanner = document.querySelector('.cmp-notification-bar');
 
   const contactModalButton = button({
     class: 'icon-button button contact-button',
@@ -764,7 +781,12 @@ export function buildCtasSection(
   const contactLinksMobile = contactLinks.cloneNode(true);
 
   const contactModal = div(
-    { class: 'submenu modal contact-modal', id: 'contact-modal' },
+    {
+      class: `submenu modal contact-modal ${
+        hasAlertBanner ? 'submenu-alert' : ''
+      }`,
+      id: 'contact-modal',
+    },
     div(
       { class: 'modal-content' },
       h3({ class: 'modal-title eyebrow-small' }, contact?.title?.text),
@@ -782,7 +804,10 @@ export function buildCtasSection(
   );
 
   const searchModal = div(
-    { class: 'submenu search-modal', id: 'search-modal' },
+    {
+      class: `submenu search-modal ${hasAlertBanner ? 'submenu-alert' : ''}`,
+      id: 'search-modal',
+    },
     div(
       { class: 'modal-content' },
 
@@ -814,6 +839,15 @@ export function buildCtasSection(
       ),
     ),
   );
+
+  if (hasAlertBanner) {
+    const alertCloseButton = hasAlertBanner.querySelector('.close-button');
+
+    alertCloseButton.addEventListener('click', () => {
+      searchModal.classList.remove('submenu-alert');
+      contactModal.classList.remove('submenu-alert');
+    });
+  }
 
   const toolsCta = Object.keys(tools).map((tool) => {
     const { href, text } = tools[tool];
