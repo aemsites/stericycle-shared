@@ -808,7 +808,7 @@ export function buildCtasSection(
       contactLinks,
       a(
         {
-          href: contact?.requestacallback?.href,
+          href: navModalPath || contact?.requestacallback?.href,
           class: 'quote-button button primary',
           'aria-label': contact?.cta?.text,
         },
