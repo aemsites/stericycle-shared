@@ -101,25 +101,8 @@
   color: var(--color-text);
 }
 
-.flip-cards > .wrapper > div a.button.primary {
+.flip-cards > .wrapper > div a.button {
   margin: 8px 0 0;
-  padding: 8px 24px;
-  line-height: 160%;
-  letter-spacing: 0.32px;
-}
-
-.flip-cards > .wrapper > div a.button.primary .icon {
-  --icon-color: var(--color-black);
-
-  display: inline-block;
-  margin: 0 auto;
-  height: 24px;
-  width: 24px;
-  background-color: var(--icon-color);
-  mask-repeat: no-repeat;
-  mask-position: center center;
-  mask-size: contain;
-  mask-image: var(--mask-image);
 }
 
 @media (min-width: 992px /* breakpoint-l */) {
