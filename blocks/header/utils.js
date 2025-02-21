@@ -747,7 +747,14 @@ export function buildCtasSection(
       }),
       div(
         { class: 'contact-info' },
-        p({ class: 'modal-title' }, contact?.customerservicelabel?.text),
+        a(
+          {
+            href: `tel:+1${contact?.customerserviceno?.text.trim()}`,
+            title: `${contact?.customerservicelabel?.text} number`,
+            'aria-label': `${contact?.customerservicelabel?.text} number`,
+          },
+          p({ class: 'modal-title' }, contact?.customerservicelabel?.text),
+        ),
         a(
           {
             href: `tel:+1${contact?.customerserviceno?.text.trim()}`,
@@ -766,7 +773,14 @@ export function buildCtasSection(
       }),
       div(
         { class: 'contact-info' },
-        p({ class: 'modal-title' }, contact?.saleslabel?.text),
+        a(
+          {
+            href: `tel:+1${contact?.salesno?.text.trim()}`,
+            title: `${contact?.saleslabel?.text} number`,
+            'aria-label': `${contact?.saleslabel?.text} number`,
+          },
+          p({ class: 'modal-title' }, contact?.saleslabel?.text),
+        ),
         a(
           {
             href: `tel:+1${contact?.salesno?.text.trim()}`,

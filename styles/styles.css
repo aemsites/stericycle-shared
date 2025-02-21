@@ -182,6 +182,7 @@
   --content-width-xxl: 1320px;
   --content-width-xxxl: 1920px;
   --section-width: var(--content-width-s);
+  --section-width-xl: 1660px;
 
   /* Split Columns */
   --split-firstquarter: 25%:75%;
