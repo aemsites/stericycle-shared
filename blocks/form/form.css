@@ -585,6 +585,23 @@ main .form form .wizard .wizard-button-wrapper {
     margin: 16px 0;
 }
 
+main .form form .wizard .field-wrapper input[type="radio"] {
+    width: 0;
+    height: 0;
+    box-shadow: none;
+    border-radius: 0;
+    margin: 0;
+    border: none;
+    opacity: 0;
+}
+
+main form .wizard .current-wizard-step input[type="radio"]:checked,
+main form .wizard .current-wizard-step .field-wrapper.field-valid input[type="radio"] {
+    border: none;
+    border-radius: 0;
+    margin: 0;
+}
+
 main .form form .wizard .wizard-button-wrapper button {
     margin: 0;
 }
