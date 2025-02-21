@@ -345,7 +345,7 @@ export function generateMenuFromSection(
           a(
             {
               class: 'locate-link',
-              href: `/${locale}/service-locations`,
+              href: `/${locale}/service-locations?useMyLocation=true`,
               'aria-label': locationSearchInfo?.servicelabel?.text,
             },
             locationSearchInfo?.servicelabel?.text,
