@@ -15,6 +15,15 @@ export default async function decorate(block) {
 
   const lookupTable = {};
   const pages = block.querySelectorAll('a');
+  const addButtonClasses = (selector, buttonClass) => {
+    const buttons = block.querySelectorAll(selector);
+    buttons.forEach((button) => {
+      button.classList.add('button', buttonClass);
+    });
+  };
+
+  addButtonClasses('p > strong > a', 'primary');
+  addButtonClasses('p > em > a', 'secondary');
   const queryIdx = (await fetchQueryIndex().all());
 
   queryIdx.forEach((item) => {
@@ -23,7 +32,6 @@ export default async function decorate(block) {
       lookupTable[path] = { title, description, teaser };
     }
   });
-
   pages.forEach((page, idx) => {
     const pagePath = new URL(page.href).pathname;
     const cardBack = document.createElement('div');
@@ -52,16 +60,19 @@ export default async function decorate(block) {
 
       const url = page.href;
       const readMoreButton = a(
-        { class: 'button primary', href: url, target: '_self' },
+        { class: page.classList.value || 'button primary', href: url, target: '_self' },
         page.title || 'Read More',
         span({ class: 'icon icon-right-arrow', 'data-icon-src': '/icons/right-arrow.svg', style: '--mask-image: url(/icons/right-arrow.svg);' }),
       );
       decorateButtons(readMoreButton);
+      const pButton = document.createElement('p');
+      pButton.classList.add('button-container');
+      pButton.appendChild(readMoreButton);
 
       const contentDiv = document.createElement('div');
       contentDiv.appendChild(titleh3);
       contentDiv.appendChild(desc);
-      contentDiv.appendChild(readMoreButton);
+      contentDiv.appendChild(pButton);
 
       cardBack.appendChild(contentDiv);
 
@@ -87,16 +98,19 @@ export default async function decorate(block) {
 
         const url = page.href;
         const readMoreButton = a(
-          { class: 'button primary', href: url, target: '_self' },
+          { class: page.classList.value || 'button primary', href: url, target: '_self' },
           page.title || 'Read More',
           span({ class: 'icon icon-right-arrow', 'data-icon-src': '/icons/right-arrow.svg', style: '--mask-image: url(/icons/right-arrow.svg);' }),
         );
         decorateButtons(readMoreButton);
+        const pButton = document.createElement('p');
+        pButton.classList.add('button-container');
+        pButton.appendChild(readMoreButton);
 
         const contentDiv = document.createElement('div');
         contentDiv.appendChild(titleh3);
         contentDiv.appendChild(desc);
-        contentDiv.appendChild(readMoreButton);
+        contentDiv.appendChild(pButton);
 
         cardBack.appendChild(contentDiv);
 

@@ -9,7 +9,7 @@
   gap: 24px;
   padding: 16px 32px;
   margin: auto;
-  max-width: 1660px;
+  max-width: var(--section-width-xl);
   height: fit-content;
   background-color: var(--color-bg-tertiary);
 }

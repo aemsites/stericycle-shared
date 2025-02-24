@@ -53,7 +53,7 @@ header {
   flex-wrap: wrap;
   gap: 14px;
   margin: auto;
-  max-width: 1660px;
+  max-width: var(--section-width-xl);
   width: 100%;
 }
 
@@ -177,11 +177,6 @@ header {
   line-height: 160%;
   color: var(--color-text-primary);
   transition: background-color 0.3s ease-in-out;
-}
-
-.header .submenu a:hover,
-.header .submenu a:focus-visible {
-  background-color: var(--color-bg-secondary);
 }
 
 .header .submenu .instructions {
@@ -468,11 +463,26 @@ header {
 }
 
 .header .locate-form .locate-link {
+  display: flex;
+  align-items: center;
   padding: 0;
+  padding-bottom: 24px;
+  width: fit-content;
   font-size: 16px;
   font-weight: 700;
   line-height: 160%;
   text-decoration: underline;
+}
+
+.header .locate-form .locate-link::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url('/icons/distance.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 8px;
 }
 
 .header .locate-form .location-search-button {
