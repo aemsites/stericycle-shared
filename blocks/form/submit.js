@@ -43,7 +43,6 @@ function sendDataToAnalytics(form) {
 
 // eslint-disable-next-line no-unused-vars
 export async function submitSuccess(e, form) {
-  sendDataToAnalytics(form);
   // remove error message if exists
   const errorMessage = form.querySelector('.form-message.error-message');
   if (errorMessage) {
@@ -81,6 +80,7 @@ export async function submitSuccess(e, form) {
   }
   form.setAttribute('data-submitting', 'false');
   form.querySelector('button[type="submit"]').disabled = false;
+  sendDataToAnalytics(form);
 }
 
 // eslint-disable-next-line no-unused-vars
