@@ -109,8 +109,7 @@ header {
   transition: opacity 0.3s ease-in-out;
 }
 
-.header .nav-item .nav-link:focus-visible,
-.header .nav-item .nav-link:focus {
+.header .nav-item .nav-link:focus-visible {
   outline: 2px solid var(--color-accent-1);
 }
 
@@ -279,7 +278,8 @@ header {
   height: 92px;
 }
 
-.header .list-item li ul li:last-child a {
+.header .list-item li ul li:last-child em a,
+.header .list-item li ul li:last-child p a {
   gap: 4px;
   margin-top: 24px;
   font-size: 14px;
@@ -584,7 +584,7 @@ header {
   align-items: center;
   gap: 32px;
   margin: auto;
-  max-width: var(--content-width-xl);
+  max-width: var(--section-width);
 }
 
 .header .search-modal .close-button {
@@ -808,7 +808,7 @@ header {
   }
 
   .header .search-modal .search-form {
-    padding-top: 0;
+    padding: 0 1.5rem;
     gap: 64px;
   }
 
