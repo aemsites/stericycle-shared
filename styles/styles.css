@@ -1768,7 +1768,7 @@ main .columns.get-a-quote-popup.block > div:nth-child(2) {
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) {
-  padding: 0 2rem 2rem;
+  padding: 0 2rem;
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) .link-wrapper {
@@ -1797,6 +1797,15 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a > div {
   padding: 16px;
   height: 100%;
   transition: background-color 0.3s;
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a > div:hover {
+  background-color: var(--color-bg-tertiary);
+}
+
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a > div:hover *,
+main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a > div:hover .button-container a {
+  color: var(--color-white);
 }
 
 main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div a {
@@ -1847,6 +1856,22 @@ main .columns.get-a-quote-popup.block > div:nth-child(3) > div > a> div::after {
   height: 40px;
   color: var(--color-white);
   pointer-events: none;
+}
+
+main .columns.get-a-quote-popup.block .cta {
+  padding: 24px 32px;
+  padding-top: 16px;
+}
+
+main .columns.get-a-quote-popup.block .cta a {
+  padding: 0;
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 25.6px;
+  letter-spacing: 0.16px;
+  text-decoration: underline;
 }
 
 @media (min-width: 992px) {
