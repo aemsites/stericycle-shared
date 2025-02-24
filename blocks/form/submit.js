@@ -43,7 +43,6 @@ function sendDataToAnalytics(form) {
 
 // eslint-disable-next-line no-unused-vars
 export async function submitSuccess(e, form) {
-  sendDataToAnalytics(form);
   // remove error message if exists
   const errorMessage = form.querySelector('.form-message.error-message');
   if (errorMessage) {
@@ -66,6 +65,12 @@ export async function submitSuccess(e, form) {
       form.querySelector('.wizard-button-prev').dataset.visible = 'false';
       form.querySelector('.wizard-button-next').dataset.visible = 'false';
       form.querySelector('.submit-wrapper').dataset.visible = 'false';
+      const formName = getFormName(form);
+      sendDigitalDataEvent({
+        event: 'nextStep',
+        formName,
+        formStep: (parseInt(currentWizardPanel.dataset?.index, 10) + 1).toString(), // thank you message is displayed in the last step of the wizard
+      });
     } else {
       form.querySelectorAll('.field-wrapper:not(.field-header)').forEach((node) => { node.dataset.visible = 'false'; });
       await appendFragment(thankYouMsgEl, payload?.body?.thankYouMessage);
@@ -75,6 +80,7 @@ export async function submitSuccess(e, form) {
   }
   form.setAttribute('data-submitting', 'false');
   form.querySelector('button[type="submit"]').disabled = false;
+  sendDataToAnalytics(form);
 }
 
 // eslint-disable-next-line no-unused-vars
