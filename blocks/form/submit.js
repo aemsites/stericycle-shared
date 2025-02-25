@@ -124,6 +124,11 @@ function getCountryAndLanguage() {
   return locale?.split('-') || ['en', 'us'];
 }
 
+function getGoogleAdWordsClickID() {
+  const cookies = document.cookie.split(';');
+  return cookies?.find((row) => row.includes('gclid='))?.split('=')[1];
+}
+
 async function constructPayload(form, captcha) {
   const [language, country] = getCountryAndLanguage();
   const payload = {
@@ -133,6 +138,7 @@ async function constructPayload(form, captcha) {
     formURL: form.dataset?.action,
     webCountry: country,
     webLanguage: language,
+    googleAdwordsClickID1: getGoogleAdWordsClickID(),
   };
   [...form.elements].forEach((fe) => {
     if (fe.name && !fe.matches('button') && !fe.disabled && fe.tagName !== 'FIELDSET') {
