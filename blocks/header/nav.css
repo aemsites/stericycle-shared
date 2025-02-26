@@ -109,8 +109,7 @@ header {
   transition: opacity 0.3s ease-in-out;
 }
 
-.header .nav-item .nav-link:focus-visible,
-.header .nav-item .nav-link:focus {
+.header .nav-item .nav-link:focus-visible {
   outline: 2px solid var(--color-accent-1);
 }
 
@@ -275,23 +274,8 @@ header {
 }
 
 .header .list-item.image .icon {
-  width: 92px;
-  height: 92px;
-}
-
-.header .list-item li ul li:last-child a {
-  gap: 4px;
-  margin-top: 24px;
-  font-size: 14px;
-  line-height: 16px;
-  letter-spacing: 1.4px;
-  text-decoration: none;
-  padding: 4px;
-}
-
-.header .list-item li ul li:last-child .icon {
-  width: 16px;
-  height: 16px;
+  width: 158px;
+  height: 110px;
 }
 
 .header .list-item > ul > li {
@@ -305,7 +289,9 @@ header {
   color: var(--color-text-secondary);
 }
 
-.header .list-item li a[aria-label="Primary button"] {
+
+/* primary button styles for header */
+.header .list-item.image li strong a {
   padding: .5rem 2rem;
   background-color: var(--color-button-primary);
   border: none;
@@ -315,11 +301,8 @@ header {
   font-style: normal;
 }
 
-.header .list-item li a[aria-label="Primary button"]:hover{
-  outline: 3px solid var(--color-black);
-}
-
-.header .list-item li a[aria-label="Secondary button"] {
+/* secondary button styles for header */
+.header .list-item.image li em a {
   padding: 6px 2rem;
   background-color: var(--color-white);
   border: 2px solid var(--color-primary-1);
@@ -328,7 +311,27 @@ header {
   font-style: normal;
 }
 
-.header .list-item li a[aria-label="Secondary button"]:hover {
+/* view more cta styles for header */
+.header .list-item li ul li:last-child em a,
+.header .list-item li ul li:last-child p a {
+  gap: 4px;
+  margin-top: 24px;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.4px;
+  text-decoration: none;
+  padding: 4px;
+}
+
+.header .ctas-container-mobile .content .contact a {
+  font-size: 12px;
+}
+
+.header .list-item.image li strong a:hover {
+  outline: 3px solid var(--color-black);
+}
+
+.header .list-item.image li em a:hover {
   background-color: var(--color-primary-1);
   color: var(--color-white);
   border-color: currentcolor;
@@ -370,10 +373,16 @@ header {
   background-color: var(--color-accent-2);
 }
 
+.header .list-item li ul li:last-child .icon {
+  width: 16px;
+  height: 16px;
+}
+
 .header .list-item.image picture,
 .header .list-item.image img {
   width: 100%;
   height: 100%;
+  object-fit: fill;
 }
 
 .header .ctas-container {
@@ -584,7 +593,7 @@ header {
   align-items: center;
   gap: 32px;
   margin: auto;
-  max-width: var(--content-width-xl);
+  max-width: var(--section-width);
 }
 
 .header .search-modal .close-button {
@@ -656,10 +665,6 @@ header {
 
 .header .ctas-container-mobile .content .contact {
   padding-bottom: 0;
-}
-
-.header .ctas-container-mobile .content .contact a {
-  font-size: 12px;
 }
 
 .header .ctas-container-mobile .content .button {
@@ -808,7 +813,7 @@ header {
   }
 
   .header .search-modal .search-form {
-    padding-top: 0;
+    padding: 0 1.5rem;
     gap: 64px;
   }
 
