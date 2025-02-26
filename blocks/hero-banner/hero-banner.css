@@ -18,13 +18,12 @@ main .section > div.hero-banner-wrapper {
 }
 
 .hero-banner {
-    max-width: var(--content-width-xxxl);
+    max-width: var(--content-width-xxl);
     margin: auto;
     overflow: hidden;
 }
 
 .hero-banner-content {
-    position: relative;
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-between;
@@ -143,6 +142,9 @@ main .section > div.hero-banner-wrapper {
     max-width: 100%;
 }
 
+.hero-banner-full .hero-banner-content {
+    position: relative;
+}
 
 .masked-image-wrapper {
     mask-image: url("/icons/hero-mask.svg");
@@ -209,7 +211,7 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-content-text {
-        padding: 80px 0 0 80px;
+        padding: 80px 0;
         max-width: 700px;
     }
 
@@ -233,6 +235,8 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-asset {
+        position: absolute;
+        right: 0;
         margin-bottom: 0;
         max-width: 838px;
         height: 545px;
@@ -272,7 +276,7 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-form.hero-banner-container {
-        grid-template-columns: minmax(0, 884px) minmax(0, 712px) !important;
+        grid-template-columns: minmax(0, 684px) minmax(0, 516px) !important;
     }
 
     .hero-banner-form.hero-banner-container.form-container {
