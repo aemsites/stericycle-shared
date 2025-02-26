@@ -20,7 +20,6 @@ main .section > div.hero-banner-wrapper {
 .hero-banner {
     max-width: var(--content-width-xxl);
     margin: auto;
-    overflow: hidden;
 }
 
 .hero-banner-content {
@@ -183,7 +182,7 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-content-text {
-        padding: 0 0 64px;
+        padding: 64px 0;
         max-width: 78%;
     }
 
@@ -211,8 +210,8 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-content-text {
-        padding: 80px 0;
-        max-width: 700px;
+        padding: 80px 24px;
+        max-width: 500px;
     }
 
     .hero-banner-content-text .hero-banner-heading {
@@ -281,5 +280,12 @@ main .section > div.hero-banner-wrapper {
 
     .hero-banner-form.hero-banner-container.form-container {
         gap: 120px !important;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .hero-banner-content-text {
+        padding: 80px 0;
+        max-width: 700px;
     }
 }
