@@ -114,14 +114,6 @@
   .flip-cards > .wrapper {
     flex: 1;
   }
-
-  .flip-cards > .wrapper > div {
-    height: 420px;
-  }
-
-  .flip-cards.flip-cards-4-cols > .wrapper > div {
-    height: 472px;
-  }
 }
 
 /* stylelint-disable-next-line no-descending-specificity */

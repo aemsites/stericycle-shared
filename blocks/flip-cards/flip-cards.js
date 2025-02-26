@@ -1,6 +1,7 @@
 import { decorateButtons } from '../../scripts/aem.js';
 import { a, h3, p, span } from '../../scripts/dom-helpers.js';
 import { fetchQueryIndex } from '../../scripts/scripts.js';
+import { adjustHeightsOnResize } from './utils.js';
 
 export default async function decorate(block) {
   const rows = [...block.children];
@@ -49,11 +50,6 @@ export default async function decorate(block) {
       titleh3.textContent = cardDetails.title;
       titleh3.classList.add('clamp-title');
 
-      if (eyebrow && eyebrowIsNotLink) {
-        eyebrow.classList.add('eyebrow');
-        titleh3.prepend(eyebrow);
-      }
-
       const desc = document.createElement('p');
       desc.textContent = cardDetails.teaser ?? cardDetails.description;
       desc.classList.add('clamp-description');
@@ -70,6 +66,10 @@ export default async function decorate(block) {
       pButton.appendChild(readMoreButton);
 
       const contentDiv = document.createElement('div');
+      if (eyebrow && eyebrowIsNotLink) {
+        eyebrow.classList.add('eyebrow');
+        contentDiv.appendChild(eyebrow);
+      }
       contentDiv.appendChild(titleh3);
       contentDiv.appendChild(desc);
       contentDiv.appendChild(pButton);
@@ -118,6 +118,8 @@ export default async function decorate(block) {
       }
     }
   });
+
+  adjustHeightsOnResize();
 
   if (backs.length === 0) {
     backs = rows[1] ? [...rows[1].children] : [];
