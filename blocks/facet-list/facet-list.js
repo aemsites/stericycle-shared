@@ -1,5 +1,4 @@
-import ffetch from '../../scripts/ffetch.js';
-import { getDateFromExcel, getLocale } from '../../scripts/scripts.js';
+import { fetchQueryIndex, getDateFromExcel, getLocale } from '../../scripts/scripts.js';
 import {
   createOptimizedPicture, fetchPlaceholders, readBlockConfig,
 } from '../../scripts/aem.js';
@@ -12,6 +11,7 @@ const formatDate = (date) => date.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: '2-digit',
+  timeZone: 'UTC',
 });
 
 /*
@@ -102,12 +102,7 @@ function createPaginationControls(totalPages, currentPage, ul, controls, sheet) 
     * @param {Object} cbox - the checkbox that was clicked
     * @param {Boolean} includes - if the tag is included in the post
  */
-function filterTags(cbox, includes) {
-  if (cbox.checked === false) {
-    return true;
-  }
-  return includes;
-}
+const filterTags = (checkedBoxes, tags) => checkedBoxes.every((cbox) => tags.includes(cbox.value));
 
 /*
     * This function gets the results from the query-index.json file based on sheet name
@@ -117,7 +112,7 @@ async function getResults(sheets = []) {
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
   const postArray = [];
-  const posts = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json')
+  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex()
     .sheet(sheet).all())).then((results) => results.flat());
   posts.forEach((post) => {
     postArray.push(post);
@@ -133,7 +128,7 @@ async function getFacets(sheets = []) {
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
   const facetArray = [];
-  const facets = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json')
+  const facets = await Promise.all(sheetList.map((sheet) => fetchQueryIndex()
     .sheet(sheet).all()))
     .then((results) => results.flat());
 
@@ -212,8 +207,9 @@ const createFacetList = (name) => {
     }
   });
   head.append(chevron);
+  const formattedName = name?.toLowerCase().replace(/\s+/g, '-');
   const facetUL = document.createElement('ul');
-  facetUL.classList.add('facet-list');
+  facetUL.classList.add('facet-list', formattedName);
   topDiv.append(head, facetUL);
   return topDiv;
 };
@@ -281,8 +277,21 @@ const updateFacets = (posts, sheetList) => {
 async function updateResults(checkboxChange, sheets = [], page = 1, updateFacetsOrNot = false) {
   let sheetList = Array.isArray(sheets) ? sheets : sheets.split(',');
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
+  const allCheckedBoxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]:checked');
 
-  const posts = await Promise.all(sheetList.map((sheet) => ffetch('/query-index.json').sheet(sheet)
+  const checkboxChangeParentUl = checkboxChange?.closest('ul');
+  const checkboxChangeParentClassList = checkboxChangeParentUl ? [...checkboxChangeParentUl.classList] : [];
+
+  const tempCheckedBoxes = [...allCheckedBoxes].filter((cbox) => {
+    const allClassesMatch = checkboxChangeParentUl ? [...cbox.closest('ul').classList]
+      .every((cls) => checkboxChangeParentClassList.includes(cls)) : false;
+    return !allClassesMatch;
+  });
+  if (checkboxChange && checkboxChange.checked) {
+    tempCheckedBoxes.push(checkboxChange);
+  }
+
+  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex().sheet(sheet)
     .map((post) => ({
       tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
       title: post.title,
@@ -291,9 +300,9 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
       path: post.path,
       type: post['media-type'],
     }))
-    .filter((post) => !checkboxChange || filterTags(
-      checkboxChange,
-      post.tags.includes(checkboxChange.value),
+    .filter((post) => allCheckedBoxes.length === 0 || filterTags(
+      tempCheckedBoxes,
+      post.tags,
     ))
     .all())).then((results) => results.flat());
 
@@ -318,10 +327,19 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
   if (checkboxChange) {
     const checkboxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]');
     checkboxes.forEach((checkbox) => {
-      if (checkbox.value !== checkboxChange.value || checkboxChange?.checked === false) {
-        checkbox.checked = false;
-      } else if (checkboxChange?.checked === true) {
-        checkbox.checked = true;
+      const allClassesMatch = checkboxChangeParentUl ? [...checkbox.closest('ul').classList]
+        .every((cls) => checkboxChangeParentClassList.includes(cls)) : true;
+      if (allClassesMatch) {
+        if (checkbox.value !== checkboxChange.value || checkboxChange?.checked === false) {
+          checkbox.checked = false;
+        } else if (checkboxChange?.checked === true) {
+          checkbox.checked = true;
+        }
+      } else {
+        const isChecked = [...allCheckedBoxes].some((cbox) => cbox.value === checkbox.value);
+        if (isChecked) {
+          checkbox.checked = true;
+        }
       }
     });
   }

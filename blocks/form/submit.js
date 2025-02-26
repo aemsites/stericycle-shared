@@ -43,7 +43,6 @@ function sendDataToAnalytics(form) {
 
 // eslint-disable-next-line no-unused-vars
 export async function submitSuccess(e, form) {
-  sendDataToAnalytics(form);
   // remove error message if exists
   const errorMessage = form.querySelector('.form-message.error-message');
   if (errorMessage) {
@@ -66,6 +65,12 @@ export async function submitSuccess(e, form) {
       form.querySelector('.wizard-button-prev').dataset.visible = 'false';
       form.querySelector('.wizard-button-next').dataset.visible = 'false';
       form.querySelector('.submit-wrapper').dataset.visible = 'false';
+      const formName = getFormName(form);
+      sendDigitalDataEvent({
+        event: 'nextStep',
+        formName,
+        formStep: (parseInt(currentWizardPanel.dataset?.index, 10) + 1).toString(), // thank you message is displayed in the last step of the wizard
+      });
     } else {
       form.querySelectorAll('.field-wrapper:not(.field-header)').forEach((node) => { node.dataset.visible = 'false'; });
       await appendFragment(thankYouMsgEl, payload?.body?.thankYouMessage);
@@ -75,6 +80,7 @@ export async function submitSuccess(e, form) {
   }
   form.setAttribute('data-submitting', 'false');
   form.querySelector('button[type="submit"]').disabled = false;
+  sendDataToAnalytics(form);
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -106,7 +112,8 @@ function getFieldValue(fe, payload) {
       }
       return fe.value;
     }
-  } else if (fe.type !== 'file') {
+    return 'false';
+  } if (fe.type !== 'file') {
     return fe.value;
   }
   return null;
@@ -117,15 +124,22 @@ function getCountryAndLanguage() {
   return locale?.split('-') || ['en', 'us'];
 }
 
+function getGoogleAdWordsClickID() {
+  const cookies = document.cookie.split(';');
+  return cookies?.find((row) => row.includes('gclid='))?.split('=')[1];
+}
+
 async function constructPayload(form, captcha) {
   const [language, country] = getCountryAndLanguage();
   const payload = {
     __id__: generateUnique(),
     ':currentPagePath': '/content/shred-it/us/en',
+    currentPagePath: window.location.pathname,
     jobPropertiesUrl: `https://main--shredit--stericycle.aem.page${form.dataset.action}.json`,
     formURL: form.dataset?.action,
     webCountry: country,
     webLanguage: language,
+    googleAdwordsClickID1: getGoogleAdWordsClickID(),
   };
   [...form.elements].forEach((fe) => {
     if (fe.name && !fe.matches('button') && !fe.disabled && fe.tagName !== 'FIELDSET') {

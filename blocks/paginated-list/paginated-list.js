@@ -1,6 +1,5 @@
 import { readBlockConfig } from '../../scripts/aem.js';
-import ffetch from '../../scripts/ffetch.js';
-import { getDateFromExcel } from '../../scripts/scripts.js';
+import { fetchQueryIndex, getDateFromExcel } from '../../scripts/scripts.js';
 
 let sessionKey = 'press-releases';
 
@@ -17,7 +16,7 @@ async function buildPagination(ul, controls, sheet, page) {
   const storedPosts = sessionStorage.getItem(sheet);
   let releases = [];
   if (!storedPosts || storedPosts === '[]') {
-    const posts = await ffetch('/query-index.json').sheet(sheet).all();
+    const posts = await fetchQueryIndex().sheet(sheet).all();
     sessionStorage.setItem(sessionKey, JSON.stringify(posts));
     releases = posts;
   } else {

@@ -75,6 +75,12 @@ function applyVerticalCellAlignment(block) {
     if (!block.parentElement.parentElement.classList.contains('large-icon')) {
       d.style.alignItems = 'stretch';
     }
+    if ((block.parentElement.parentElement.classList.contains('centered-text')
+    || block.parentElement.parentElement.classList.contains('centered-headings'))
+    && block.classList.contains('columns-8-cols')
+    && block.classList.contains('columns-has-image')) {
+      d.style.alignItems = 'center';
+    }
     if (d.querySelector('p > strong')) {
       d.querySelector('p').classList.add('button-container');
       if (d.querySelector('p > strong > a')) {
@@ -104,10 +110,10 @@ export default async function decorate(block) {
   [...block.children].forEach((row) => {
     [...row.children].forEach((col) => {
       const pic = col.querySelector('picture');
-      const link = col.querySelector('a');
+      const link = col.querySelector('picture + a');
 
       if (pic && link && link.href
-        && new URL(link.href).pathname === new URL(link.innerText).pathname) {
+        && new URL(link.href).pathname) {
         link.innerHTML = '';
         link.appendChild(pic);
         isImageLink = true;
@@ -116,7 +122,7 @@ export default async function decorate(block) {
       if (pic) {
         const picWrapper = pic.closest('div');
         if (picWrapper && picWrapper.children.length === 1) {
-          // picture is only content in column
+          // picture is a content in column
           picWrapper.classList.add('columns-img-col');
         }
       }

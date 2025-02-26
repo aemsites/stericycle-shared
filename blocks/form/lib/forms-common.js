@@ -304,7 +304,7 @@ function inputDecorator(field, element) {
     } else if (input.type !== 'file') {
       input.value = field.value ?? '';
       if (input.type === 'radio' || input.type === 'checkbox') {
-        input.value = field?.enum?.[0] ?? 'on';
+        input.value = field?.enum?.[0] ?? 'true';
         input.checked = field.checked;
       }
     } else {
@@ -398,7 +398,10 @@ function enableValidation(form) {
 
 async function handleSubmit(e, form, captcha, submitHandler) {
   e.preventDefault();
+  const hiddenFields = form.querySelectorAll('[data-visible="false"]');
+  hiddenFields.forEach(((field) => { field.disabled = true; })); // disabled fields are skipped for validation
   const valid = form.checkValidity();
+  hiddenFields.forEach(((field) => { field.disabled = false; })); // re-enable them post validation check
   if (valid) {
     e.submitter?.setAttribute('disabled', '');
     if (form.getAttribute('data-submitting') !== 'true') {

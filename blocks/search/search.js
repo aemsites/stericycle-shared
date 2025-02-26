@@ -1,9 +1,8 @@
 import {
   fetchPlaceholders,
 } from '../../scripts/aem.js';
-
-import ffetch from '../../scripts/ffetch.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
+import { fetchQueryIndex } from '../../scripts/scripts.js';
 
 const searchParams = new URLSearchParams(window.location.search);
 
@@ -238,23 +237,16 @@ async function handleSearch(e, block, config) {
     window.history.replaceState({}, '', url.toString());
   }
 
-  if (!Object.hasOwn(window.localStorage, 'searchIndex')) {
-    if (config.source.endsWith('.json')) {
-      window.localStorage.setItem('searchIndex', config.source);
-    }
-  }
-
   if (searchValue.length >= 3) {
-    const data = await ffetch(window.localStorage.getItem('searchIndex')).sheet('search').all();
+    const data = await fetchQueryIndex().sheet('search').all();
 
     const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
     const filteredData = filterData(searchTerms, data);
     const placeholders = await fetchPlaceholders();
-    const source = block.querySelector('a[href]') ? block.querySelector('a[href]').href : '/query-index.json';
     block.innerHTML = '';
     block.append(
       // eslint-disable-next-line no-use-before-define
-      searchBox(block, { source, placeholders }),
+      searchBox(block, { placeholders }),
     );
 
     if (filteredData.length === 0) {
@@ -341,15 +333,14 @@ function searchBox(block, config) {
 
 export default async function decorate(block) {
   const placeholders = await fetchPlaceholders();
-  const source = block.querySelector('a[href]') ? block.querySelector('a[href]').href : '/query-index.json';
   block.innerHTML = '';
   block.append(
-    searchBox(block, { source, type: 'site search', placeholders }),
+    searchBox(block, { type: 'site search', placeholders }),
   );
 
   if (searchParams.get('searchQuery')) {
     const input = block.querySelector('input');
     input.value = searchParams.get('searchQuery');
-    handleSearch({}, block, { source, type: 'header', placeholders });
+    handleSearch({}, block, { type: 'header', placeholders });
   }
 }

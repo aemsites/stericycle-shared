@@ -37,7 +37,7 @@ html {
       height: 76px;
       max-width: 720px;
       margin: 0 auto;
-      padding: 1rem 2.2rem;
+      padding: 1rem 1.5rem;
       background-color: var(--color-background-header);
 
       & a {

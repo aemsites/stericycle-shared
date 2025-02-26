@@ -17,7 +17,7 @@ export const defaultErrorMessages = {
 };
 
 // eslint-disable-next-line no-useless-escape
-export const emailPattern = '([A-Za-z0-9][._]?)+[A-Za-z0-9]@[A-Za-z0-9]+(\.?[A-Za-z0-9]){2}\.([A-Za-z0-9]{2,4})?';
+export const emailPattern = '([A-Za-z0-9][_.\\-]?)+[A-Za-z0-9]@[A-Za-z0-9\.]+(\.?[A-Za-z0-9]){2}\.([A-Za-z0-9]{2,4})?';
 let submitBaseUrl = 'https://stage-us.shredit.com';
 
 export const googleReCaptchaKey = '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2';
