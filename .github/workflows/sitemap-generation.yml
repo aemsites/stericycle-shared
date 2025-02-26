@@ -1,0 +1,40 @@
+name: Generate sitemap
+
+on:
+  schedule:
+    - cron: '0 0,12 * * *'  # This cron expression runs at 00:00 and 12:00 UTC every day
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./tools/sitemap-generation
+
+    - name: Generate sitemaps
+      run: node index.js
+      working-directory: ./tools/sitemap-generation
+
+    - name: Configure Git
+      run: |
+        git config --global user.name 'sitemap-generation[bot]'
+        git config --global user.email 'sitemap-generation[bot]@users.noreply.github.com'
+
+    - name: Commit and push changes
+      run: |
+        git add .
+        git commit -m "Update sitemaps"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

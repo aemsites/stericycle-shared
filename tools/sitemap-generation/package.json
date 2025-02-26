@@ -1,0 +1,14 @@
+{
+  "name": "sitemap-generation",
+  "version": "1.0.0",
+  "description": "Generate the sitemap from scratch including hreflangs to external sitemaps.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "generate": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^1.8.1",
+    "fast-xml-parser": "^5.0.7"
+  }
+}
