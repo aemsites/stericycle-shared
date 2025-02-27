@@ -845,7 +845,6 @@ header {
 
 @media (min-width: 1200px) {
   .header {
-    padding: 0;
     gap: 40px;
   }
 }
