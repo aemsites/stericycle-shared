@@ -39,9 +39,9 @@ footer .footer-container > .section > div {
 
 @media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .footer-container > .section > div {
-    max-width: unset;
-    margin: unset;
-    padding: unset;
+    max-width: initial;
+    margin: initial;
+    padding: initial;
   }
 }
 
