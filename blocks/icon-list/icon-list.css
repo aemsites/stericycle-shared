@@ -164,7 +164,7 @@ main .two-column.form-container.icon-list-container > div:first-child.default-co
 
 @media (min-width: 992px) {
     main .section.narrow.icon-list-container  {
-        max-width: 1440px;
+        max-width: var(--content-width-xxl);
     }
 
     main .section.two-column.form-container.icon-list-container > div.form-wrapper {
