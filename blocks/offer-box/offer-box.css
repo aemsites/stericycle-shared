@@ -151,12 +151,18 @@
 .offer-box.alternate-3 .offer-box-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 @media (min-width: 992px) {
   .offer-box {
     margin-bottom: 0;
+  }
+
+  .offer-box.alternate-3 .offer-box-header {
+    justify-content: space-between;
+    flex-wrap: nowrap;
   }
 
   .section.two-column-offer .offer-box-wrapper {

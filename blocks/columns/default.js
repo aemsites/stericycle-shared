@@ -108,7 +108,12 @@ export default async function decorate(block) {
 
   if (block.classList.contains('get-a-quote-popup')) {
     const linkCards = block.children[2];
+    const cta = block.children[3];
     const cards = Array.from(linkCards.children);
+
+    if (cta) {
+      cta.classList.add('cta');
+    }
 
     cards?.forEach((card) => {
       const link = card.querySelector('a');

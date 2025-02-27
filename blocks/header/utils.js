@@ -306,6 +306,14 @@ export function generateMenuFromSection(
           listWrapper.appendChild(listItem);
         });
 
+        const childIsCta =
+          listWrapper.querySelector('em a') ||
+          listWrapper.querySelector('strong a');
+
+        if (childIsCta) {
+          listWrapper.classList.add('header-cta');
+        }
+
         submenu.appendChild(listWrapper);
       });
 
@@ -384,7 +392,9 @@ export function generateMenuFromSection(
     processTopLevelItems(topLevelList.children);
   }
 
-  if (instructions) {
+  const instructionsHasContent = instructions?.textContent.trim();
+
+  if (instructions && instructionsHasContent) {
     instructions.classList.add('instructions');
 
     // add instruction to every sub menu
