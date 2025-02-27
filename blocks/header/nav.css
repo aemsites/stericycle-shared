@@ -8,7 +8,7 @@ header {
   justify-content: space-between;
   align-items: center;
   background-color: var(--color-bg-tertiary);
-  padding: 0 1rem;
+  padding: 0;
   height: auto !important;
   min-height: 60px;
   color: var(--color-white);
@@ -52,8 +52,9 @@ header {
   align-items: center;
   flex-wrap: wrap;
   gap: 14px;
-  margin: auto;
-  max-width: var(--section-width-xl);
+  max-width: var(--section-width);
+  margin: 0 auto;
+  padding:0 1.5rem;
   width: 100%;
 }
 
@@ -91,7 +92,11 @@ header {
   top: 124px;
 }
 
-.header .nav-item {
+.header .nav-item:not(.hover) {
+  max-width: var(--section-width);
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   width: 100%;
   font-size: 16px;
 }
@@ -100,7 +105,7 @@ header {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 34px;
+  padding: 12px 0;
   text-decoration: none;
   font-size: 14px;
   font-weight: 700;
@@ -202,11 +207,14 @@ header {
 }
 
 .header .submenu .back-button {
-  position: absolute;
-  top: 10px;
-  left: 32px;
+  position: relative;
+  max-width: var(--section-width);
+  margin: 0 auto;
+  padding: 16px 1.5rem;
+  width: 100%;
+  justify-content: flex-start;
+  padding-top: 10px;
   border: none;
-  padding: 0;
 }
 
 .header .submenu .back-button::before {
@@ -220,8 +228,9 @@ header {
 
 .header .submenu .locate-form,
 .header .submenu .list {
-  padding-top: 68px;
-  padding-bottom: 68px;
+  max-width: var(--section-width);
+  margin: 0 auto;
+  padding: 0 1.5rem 68px;
   height: 100%;
 }
 
@@ -250,6 +259,7 @@ header {
 }
 
 .header .list-item:first-child {
+  padding-left: 0;
   border-left: none;
 }
 
@@ -552,6 +562,8 @@ header {
 
 .header .contact-modal.open {
   padding-bottom: 32px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .header .contact-modal .modal-title {
@@ -559,7 +571,10 @@ header {
 }
 
 .header .contact-modal .modal-content {
-  padding: 0 32px;
+  max-width: var(--section-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
 }
 
 .header .contact-modal .modal-content .primary {
@@ -580,7 +595,7 @@ header {
   height: auto;
   top: 60px;
   min-height: fit-content;
-  padding: 0 24px;
+  padding: 0;
   background-color: var(--color-bg-secondary);
 }
 
@@ -594,6 +609,7 @@ header {
   gap: 32px;
   margin: auto;
   max-width: var(--section-width);
+  padding: 0 24px;
 }
 
 .header .search-modal .close-button {
@@ -656,7 +672,10 @@ header {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 64px 32px 82px;
+  max-width: var(--section-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: 64px 1.5rem 82px;
 }
 
 .header .ctas-container-mobile .content {
@@ -726,9 +745,11 @@ header {
     display: none;
   }
 
-  .header .nav-item {
+  .header .nav-item,
+  .header .nav-item:not(.hover) {
     width: auto;
     position: relative;
+    padding: 0;
   }
 
   .header .nav-item .nav-link {
@@ -829,7 +850,6 @@ header {
 
 @media (min-width: 1200px) {
   .header {
-    padding: 0;
     gap: 40px;
   }
 }

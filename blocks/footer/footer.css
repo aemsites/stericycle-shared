@@ -28,8 +28,21 @@ footer .icon.icon-shredit-logo {
 }
 
 footer .footer-container > .section {
-  padding: 32px 32px 0;
   background-color: var(--color-bg-tertiary);
+}
+
+footer .footer-container > .section > div {
+  max-width: var(--section-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
+  footer .footer-container > .section > div {
+    max-width: initial;
+    margin: initial;
+    padding: initial;
+  }
 }
 
 @media screen and (min-width: 1200px /* breakpoint-xl */) {
@@ -39,10 +52,11 @@ footer .footer-container > .section {
     grid-template-rows: auto;
     gap: 0;
     place-items: stretch;
-    max-width: 1600px;
-    margin: 0 auto;
     width: 100%;
-    padding: 0 80px;
+    max-width: var(--section-width);
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 
@@ -55,6 +69,7 @@ footer .footer-container > .section {
 /* Footer Icon List */
 footer .section.columns-container.footer-icon-list {
   background-color: #0C2941;
+  padding-top: 32px;
   padding-bottom: 40px;
 }
 
@@ -212,7 +227,7 @@ footer .section.columns-container.footer-icon-list .columns.quote > div:last-chi
 
 @media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.columns-container.footer-icon-list .columns.quote > div > div {
-    gap: 24px;
+    gap: 12px;
   }
 }
 
@@ -235,7 +250,7 @@ footer .section.columns-container.footer-icon-list .columns.quote p:last-child >
 
 /* Footer Breadcrumb */
 footer .section.footer-breadcrumb {
-  padding: 16px 24px 0;
+  padding: 16px 0;
 }
 
 @media screen and (min-width: 1200px /* breakpoint-xl */) {
@@ -245,12 +260,10 @@ footer .section.footer-breadcrumb {
 }
 
 footer .section.footer-breadcrumb .default-content-wrapper {
-  margin: 0;
   display: flex;
   align-items: center;
   gap: 8px;
   line-height: 0;
-  padding: 0;
 }
 
 @media screen and (min-width: 1200px /* breakpoint-xl */) {
@@ -402,7 +415,7 @@ footer .section.footer-countries .default-content-wrapper::after {
   content: '';
   position: absolute;
   bottom: 10px;
-  right: 12px;
+  right: 36px;
   width: 12px;
   height: 12px;
   background-image: url('/icons/arrow-drop-down-white.svg');
@@ -411,6 +424,12 @@ footer .section.footer-countries .default-content-wrapper::after {
   background-position: center;
   transform: translateY(-50%);
   pointer-events: none;
+}
+
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
+  footer .section.footer-countries .default-content-wrapper::after {
+    right: 12px;
+  }
 }
 
 /* Footer Compliance */
@@ -438,7 +457,6 @@ footer .section.footer-compliance .default-content-wrapper p > a {
 }
 
 footer .section.footer-compliance .columns-wrapper {
-  padding: 0;
   border: none;
 }
 
