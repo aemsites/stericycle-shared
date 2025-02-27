@@ -85,13 +85,10 @@ function arraysHaveMatchingItem(array1, array2) {
 
 export function getEnvironment() {
   const { hostname } = window.location;
-  if (hostname === 'localhost') {
+  if (hostname === 'localhost' || hostname.endsWith('.aem.page') || hostname.endsWith('.aem.live') || (hostname.startsWith('stage') && hostname.endsWith('.shredit.com'))) {
     return 'dev';
   }
-  if (hostname.endsWith('.aem.page') || (hostname.startsWith('stage') && hostname.endsWith('.shredit.com'))) {
-    return 'stage';
-  }
-  if (hostname.endsWith('.aem.live') || hostname === 'www.shredit.com') {
+  if (hostname === 'www.shredit.com') {
     return 'prod';
   }
   return 'unknown';
@@ -762,9 +759,11 @@ async function loadEager(doc) {
   document.documentElement.lang = getLocaleAsBCP47();
 
   const urlParams = new URLSearchParams(window.location.search);
-  if (window.location.hostname === 'stage-us.shredit.com') {
-    await initMartech('dev'); // special case for testing
-  } else if (urlParams.get('load-martech')?.toLowerCase() === 'eager') {
+  if ((window.location.hostname.endsWith('.aem.page') || window.location.hostname.endsWith('.aem.live'))) {
+    if (urlParams.get('load-martech')?.toLowerCase() === 'eager') {
+      await initMartech(getEnvironment());
+    }
+  } else {
     await initMartech(getEnvironment());
   }
 
