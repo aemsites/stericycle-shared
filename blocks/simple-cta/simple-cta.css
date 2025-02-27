@@ -296,13 +296,32 @@ main .section > div.simple-cta-wrapper {
     width: 45%;
   }
 
-  .simple-cta-video .simple-cta-asset {
+  .simple-cta-video {
     background-image: url('/icons/simple-cta-video-bg.svg');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
+    background-position: right;
+  }
+
+  .simple-cta-full .simple-cta-asset {
+    position: absolute;
+    right: 0;
+    margin-bottom: 0;
+    max-width: 838px;
+    height: 540px;
+  }
+
+  .simple-cta-video.simple-cta-asset-left {
+    background-image: url('/icons/simple-cta-video-bg-left.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+  }
+
+  .simple-cta-video .simple-cta-content .simple-cta-asset {
     max-width: 1038px;
     justify-content: flex-end;
-    padding-right: 80px;
+    position: relative;
   }
 
   .simple-cta-video .simple-cta-content-text {
@@ -312,14 +331,6 @@ main .section > div.simple-cta-wrapper {
   .simple-cta-video .simple-cta-asset iframe {
     width: 508px;
     height: 308px;
-  }
-
-  .simple-cta-full .simple-cta-asset {
-    position: absolute;
-    right: 0;
-    margin-bottom: 0;
-    max-width: 838px;
-    height: 540px;
   }
 
   .simple-cta-full .simple-cta-asset img {
