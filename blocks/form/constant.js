@@ -20,7 +20,7 @@ export const defaultErrorMessages = {
 export const emailPattern = '([A-Za-z0-9][_.\\-]?)+[A-Za-z0-9]@[A-Za-z0-9\.]+(\.?[A-Za-z0-9]){2}\.([A-Za-z0-9]{2,4})?';
 let submitBaseUrl = 'https://stage-us.shredit.com';
 
-export const googleReCaptchaKey = '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2';
+export const googleReCaptchaKey = '6LfrVLIaAAAAAAXITOp0kZDmKaUjciDyodYVm3id';
 
 export function setSubmitBaseUrl(url) {
   submitBaseUrl = url;
