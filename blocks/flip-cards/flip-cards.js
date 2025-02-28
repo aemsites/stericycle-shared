@@ -51,7 +51,11 @@ export default async function decorate(block) {
       titleh3.classList.add('clamp-title');
 
       const desc = document.createElement('p');
-      desc.textContent = cardDetails.teaser ?? cardDetails.description;
+      if (cardDetails.teaser && cardDetails.teaser !== '0') {
+        desc.textContent = cardDetails.teaser;
+      } else if (cardDetails.description && cardDetails.description !== '0') {
+        desc.textContent = cardDetails.description;
+      }
       desc.classList.add('clamp-description');
 
       const url = page.href;
