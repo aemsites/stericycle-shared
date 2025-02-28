@@ -285,7 +285,7 @@ header {
 
 .header .list-item.image .icon {
   width: 158px;
-  height: 110px;
+  height: 64px;
 }
 
 .header .list-item > ul > li {
@@ -299,6 +299,14 @@ header {
   color: var(--color-text-secondary);
 }
 
+
+/* default button styles for header */
+.header .list-item.image li a {
+  padding: .5rem 2rem;
+  background-color: transparent;
+  color: var(--color-primary-1);
+  border-radius: 4px;
+}
 
 /* primary button styles for header */
 .header .list-item.image li strong a {
@@ -335,6 +343,10 @@ header {
 
 .header .ctas-container-mobile .content .contact a {
   font-size: 12px;
+}
+
+.header .list-item.image li a:hover {
+  background-color: var(--color-white);
 }
 
 .header .list-item.image li strong a:hover {
