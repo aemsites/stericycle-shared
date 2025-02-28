@@ -25,6 +25,7 @@ const fetchExternalSitemaps = async () => {
       xml = parser.parse(response.data);
     } catch (error) {
       console.error(`  Error fetching or parsing the sitemap (${site.sitemap}):`, error.message);
+      return;
     }
 
     sitemaps.push({
@@ -112,7 +113,7 @@ const persistHreflangMap = async () => {
   try {
     const dir = path.dirname(filePath);
     await fs.mkdir(dir, { recursive: true });
-    await fs.writeFile(filePath, JSON.stringify(hreflangMap));
+    await fs.writeFile(filePath, JSON.stringify(hreflangMap, null, 2));
   } catch (error) {
     console.error('Could not save file:', error);
   }
