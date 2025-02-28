@@ -875,17 +875,16 @@ main .section.blue-background,
   --color-link-hover: var(--color-white);
 }
 
-main .section.centered-text .default-content-wrapper ,
-main .block.centered-text {
+main .section.centered-text .default-content-wrapper {
   text-align: center;
 }
 
-main .centered-headings h1,
-main .centered-headings h2,
-main .centered-headings h3,
-main .centered-headings h4,
-main .centered-headings h5,
-main .centered-headings h6 {
+main .centered-headings .default-content-wrapper > h1,
+main .centered-headings .default-content-wrapper > h2,
+main .centered-headings .default-content-wrapper > h3,
+main .centered-headings .default-content-wrapper > h4,
+main .centered-headings .default-content-wrapper > h5,
+main .centered-headings .default-content-wrapper > h6 {
   text-align: center;
 }
 
