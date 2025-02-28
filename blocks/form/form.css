@@ -1184,10 +1184,6 @@ main .section.contact-us .form-wrapper {
     padding-left: 0;
 }
 
-main .two-column.form-container {
-    max-width: var(--content-width-xxl);
-}
-
 main .two-column.form-container .form-wrapper {
     justify-self: flex-end;
 }
