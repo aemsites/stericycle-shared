@@ -139,6 +139,7 @@ main .section > div.hero-banner-wrapper {
 
 .hero-banner.hero-banner-full {
     max-width: 100%;
+    overflow: hidden;
 }
 
 .hero-banner-full .hero-banner-content {
