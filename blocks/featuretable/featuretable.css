@@ -10,6 +10,9 @@
 }
 
 .featuretable {
+  border-radius: 8px;
+  outline: 1px solid var(--color-grey200);
+  outline-offset: -1px;
   width: 100%;
   overflow-x: auto;
   box-shadow:
@@ -75,7 +78,7 @@
 }
 
 .featuretable table > tbody > tr > td {
-  border: 1px solid var(--color-white);
+  border: 1px solid var(--color-grey200);
   background-color: var(--color-bg-primary);
   padding: 24px 16px;
 }
