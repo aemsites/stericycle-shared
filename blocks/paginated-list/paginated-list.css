@@ -1,5 +1,4 @@
 div.paginated-list-wrapper > ul {
-    display: flex;
     list-style: none;
     margin-left: 0;
     margin-bottom: 1rem;
