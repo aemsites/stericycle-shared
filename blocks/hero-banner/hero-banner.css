@@ -131,6 +131,12 @@ main .section > div.hero-banner-wrapper {
     color: var(--color-white);
 }
 
+.hero-banner-form-dark .hero-banner-content-ctas a:not(.primary) .icon,
+.hero-banner-tertiary .hero-banner-content-ctas a:not(.primary) .icon {
+    --icon-color: var(--color-white);
+}
+
+
 .hero-banner-graphic .hero-banner-asset img {
     max-height: 76px;
     object-fit: contain;
