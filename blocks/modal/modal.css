@@ -11,7 +11,7 @@ body.modal-open {
   overflow-y: hidden;
   position: fixed;
   width: calc(100vw - 48px);
-  max-width: 900px;
+  max-width: 540px;
   max-height: calc(100dvh - (2 * var(--header-height)));
   padding: 0;
   border: 1px solid var(--dark-color);
@@ -98,6 +98,7 @@ body.modal-open {
 
     > picture > img {
       display: block;
+      width: 100%;
     }
   }
 }
