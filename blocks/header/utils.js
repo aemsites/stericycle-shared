@@ -21,6 +21,14 @@ const FOCUSABLE_ELEMENTS =
 const MOBILE_MENU_OPEN_CLASSNAME = 'open';
 const DESKTOP_MENU_OPEN_CLASSNAME = 'hover';
 
+const handleScroll = (submenu) => {
+  if (window.scrollY > 50) {
+    submenu.classList.add('submenu-scrolled');
+  } else {
+    submenu.classList.remove('submenu-scrolled');
+  }
+};
+
 /**
  * Function to close a modal.
  * @param {HTMLElement} modalElement - The modal element to close.
@@ -262,6 +270,8 @@ export function generateMenuFromSection(
           submenu.classList.remove('submenu-alert');
           nav.classList.remove('nav-alert');
         });
+
+        window.addEventListener('scroll', handleScroll.bind(null, submenu));
       }
 
       // Process nested lists only if they are direct children of the current `li`
