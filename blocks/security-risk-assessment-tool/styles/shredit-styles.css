@@ -27109,6 +27109,7 @@ ol,ul {
 }
 
 .grecaptcha-badge {
+    display: none;
     visibility: hidden
 }
 
