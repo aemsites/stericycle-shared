@@ -59,11 +59,22 @@ export default async function decorate(block) {
       desc.classList.add('clamp-description');
 
       const url = page.href;
+
+      const existingSpan = page.querySelector('.icon');
+      const spanElement = existingSpan
+        ? span({
+          class: existingSpan.classList.value,
+          'data-icon-src': existingSpan.querySelector('img')?.getAttribute('src') || '/icons/right-arrow.svg',
+          style: `--mask-image: url(${existingSpan.querySelector('img')?.getAttribute('src') || '/icons/right-arrow.svg'});`,
+        })
+        : '';
+
       const readMoreButton = a(
         { class: page.classList.value || 'button primary', href: url, target: '_self' },
         page.title || 'Read More',
-        span({ class: 'icon icon-right-arrow', 'data-icon-src': '/icons/right-arrow.svg', style: '--mask-image: url(/icons/right-arrow.svg);' }),
+        spanElement,
       );
+
       decorateButtons(readMoreButton);
       const pButton = document.createElement('p');
       pButton.classList.add('button-container');
