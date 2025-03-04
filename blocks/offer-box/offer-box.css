@@ -177,7 +177,9 @@
     flex-wrap: nowrap;
   }
 
-  .section.two-column-offer .offer-box-wrapper {
+  .section.two-column-offer .offer-box-wrapper,
+  .section.three-column-offer .offer-box-wrapper,
+  .section.four-column-offer .offer-box-wrapper {
     display: flex;
     justify-content: space-between;
     gap: 24px;
@@ -185,6 +187,10 @@
 
   .section.two-column-offer .offer-box {
     width: 50%;
+  }
+
+  .section.three-column-offer .offer-box {
+    width: 33.33%;
   }
 
   .section.four-column-offer .offer-box {
