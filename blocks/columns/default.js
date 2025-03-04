@@ -75,12 +75,21 @@ function applyVerticalCellAlignment(block) {
     if (!block.parentElement.parentElement.classList.contains('large-icon')) {
       d.style.alignItems = 'stretch';
     }
+
     if ((block.parentElement.parentElement.classList.contains('centered-text')
     || block.parentElement.parentElement.classList.contains('centered-headings'))
     && block.classList.contains('columns-8-cols')
     && block.classList.contains('columns-has-image')) {
       d.style.alignItems = 'center';
     }
+
+    if ((block.parentElement.parentElement.classList.contains('centered-text')
+    || block.parentElement.parentElement.classList.contains('centered-headings'))
+    && block.classList.contains('columns-8-cols')
+    && block.classList.contains('narrow-icons')) {
+      d.style.alignItems = 'center';
+    }
+
     if (d.querySelector('p > strong')) {
       d.querySelector('p').classList.add('button-container');
       if (d.querySelector('p > strong > a')) {
