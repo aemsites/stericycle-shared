@@ -791,7 +791,11 @@ header {
   }
 
   .header .submenu-alert.submenu {
-    top: 170px;
+    top: 168px;
+  }
+
+  .header .submenu-alert.submenu-scrolled {
+    top: 146px;
   }
 
   .header .submenu.open {
