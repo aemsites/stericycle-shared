@@ -172,7 +172,6 @@
 }
 
 .cards > ul > li > .card-body > .card-section > p.button-container:last-child a.button {
-  width: 100%;
   margin: 0;
 }
 
@@ -192,6 +191,11 @@
 .cards.full-width.light > ul > li > .card-body > .card-section.button-container a.button.primary:hover {
   outline: 3px solid var(--color-black);
 }
+
+.cards > ul > li > .card-body > .card-section > .button-container a.button .icon {
+  margin: 0;
+}
+
 
 .cards > ul > li > .card-body > hr {
   margin: 1rem auto;
