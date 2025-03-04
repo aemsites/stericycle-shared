@@ -92,7 +92,8 @@ export default async function decorate(main) {
   buildMarketingPage(main);
   if (document.querySelector('body.with-sidebar')) {
     const bodyWrapper = document.querySelector('.body-wrapper');
-    const titleElement = document.querySelector('div.page-content > .section.sidebar-left > .default-content-wrapper > h1, div.page-content > .section.form-under-title .default-content-wrapper > h1');
+    const titleElement = document.querySelector(`div.page-content > .section.sidebar-left > .default-content-wrapper > h1,
+       div.page-content > .section.form-under-title .default-content-wrapper > h1`);
     if (titleElement) {
       const titleCopy = titleElement.cloneNode(true);
       titleElement.classList.add('fullScreen');
