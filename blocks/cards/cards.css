@@ -92,6 +92,7 @@
 .cards > ul > li > .card-body > .card-section {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .cards.full-width > ul > li > .card-body > .card-section :is(h1, h2, h3, h4, h5, h6) {
@@ -172,7 +173,6 @@
 
 .cards > ul > li > .card-body > .card-section > p.button-container:last-child a.button {
   width: 100%;
-  max-width: 134px;
   margin: 0;
 }
 
