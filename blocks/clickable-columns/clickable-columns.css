@@ -16,6 +16,11 @@
 }
 
 .clickable-columns > div > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
   padding: 24px;
   order: 1;
 }
@@ -35,10 +40,6 @@
   }
 
   .clickable-columns > div > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     flex: 1;
     order: unset;
     cursor: pointer;
