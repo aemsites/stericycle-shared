@@ -131,6 +131,12 @@ main .section > div.hero-banner-wrapper {
     color: var(--color-white);
 }
 
+.hero-banner-form-dark .hero-banner-content-ctas a:not(.primary) .icon,
+.hero-banner-tertiary .hero-banner-content-ctas a:not(.primary) .icon {
+    --icon-color: var(--color-white);
+}
+
+
 .hero-banner-graphic .hero-banner-asset img {
     max-height: 76px;
     object-fit: contain;
@@ -169,6 +175,7 @@ main .section > div.hero-banner-wrapper {
 
 .hero-banner-form.hero-banner-container .form-wrapper {
     width: 100%;
+    margin-top: 0;
     max-width: 660px;
 }
 
@@ -279,6 +286,10 @@ main .section > div.hero-banner-wrapper {
         grid-template-columns: minmax(0, 684px) minmax(0, 516px) !important;
     }
 
+    .hero-banner-form.hero-banner-container .form-wrapper {
+        margin-top: 32px;
+    }
+
     .hero-banner-form.hero-banner-container.form-container {
         gap: 120px !important;
     }
@@ -286,7 +297,7 @@ main .section > div.hero-banner-wrapper {
 
 @media screen and (min-width: 1400px) {
     .hero-banner-content-text {
-        padding: 80px 0;
+        padding: 80px 1.5rem;
         max-width: 700px;
     }
 }

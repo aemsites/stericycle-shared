@@ -8,7 +8,7 @@ function handleCheckboxAndRadio(field) {
     if (field.value) {
       field.enum = [field.value];
     } else if (field?.fieldType === 'checkbox') {
-      field.enum = ['on']; // default html value
+      field.enum = ['true']; // default html value
     }
     delete field.value;
     field.checked = field.Checked?.toLowerCase() === 'true';

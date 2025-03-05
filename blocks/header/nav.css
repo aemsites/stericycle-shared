@@ -285,7 +285,7 @@ header {
 
 .header .list-item.image .icon {
   width: 158px;
-  height: 64px;
+  height: auto;
 }
 
 .header .list-item > ul > li {
@@ -367,6 +367,7 @@ header {
   align-items: center;
   text-align: center;
   max-width: 600px;
+  gap: 0;
 }
 
 .header .list-item.image ul {
@@ -791,7 +792,7 @@ header {
   }
 
   .header .submenu-alert.submenu {
-    top: 146px;
+    top: 170px;
   }
 
   .header .submenu.open {

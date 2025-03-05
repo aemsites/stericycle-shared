@@ -430,7 +430,7 @@ main .section.columns-container .block.columns.columns-2-cols.icon-list > div > 
 }
 
 /* Center Content */
-main .section.centered-text.columns-container p.button-container {
+main .section.centered-text.columns-container .default-content-wrapper p.button-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -438,7 +438,7 @@ main .section.centered-text.columns-container p.button-container {
   margin: 0;
 }
 
-main .section.centered-text.columns-container p {
+main .section.centered-text.columns-container .default-content-wrapper p {
   text-align: center;
 }
 
