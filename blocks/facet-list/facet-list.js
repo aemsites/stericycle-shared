@@ -230,7 +230,7 @@ const createFacetList = (name) => {
   const topDiv = div({ class: 'facet-list-container' });
   const head = div({ class: 'head' }, name);
   const chevron = document.createElement('i');
-  chevron.classList.add('fa-chevron-down');
+  chevron.classList.add('fa-plus');
   chevron.addEventListener('click', () => {
     const facetList = chevron.parentElement.nextElementSibling;
     if (facetList && facetList.classList.contains('facet-list')) {
