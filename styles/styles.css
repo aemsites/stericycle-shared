@@ -1588,4 +1588,8 @@ main .section.full-width > div {
   }
 }
 
+.grecaptcha-badge {
+  display: none!important;
+}
+
 
