@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
-import ReactDOM from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
-import axios from 'https://cdn.jsdelivr.net/npm/axios@0.21.4/+esm';
+import React, { useState, useEffect, useRef } from 'https://cdn.jsdelivr.net/npm/react@18.3.1/+esm';
+import ReactDOM from 'https://cdn.jsdelivr.net/npm/react-dom@18.3.1/+esm';
+import axios from 'https://cdn.jsdelivr.net/npm/axios@1.8.1/+esm';
 import htm from 'https://cdn.jsdelivr.net/npm/htm@3.1.1/+esm';
 
 import PDFLink from './PDFLink.js';

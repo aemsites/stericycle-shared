@@ -45,12 +45,14 @@
   justify-content: center;
   gap: 2rem;
   width: 100%;
+  white-space: wrap;
   align-items: center;
 }
 
 @media screen and (min-width: 576px /* breakpoint-s */) {
   .block.banner > .banner-content {
     gap: 4rem;
+    white-space: nowrap;
   }
 }
 
