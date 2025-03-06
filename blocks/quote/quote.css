@@ -1,4 +1,4 @@
-.block.quote blockquote {
+.quote blockquote {
   position: relative;
   display: flex;
   gap: 24px;
@@ -6,13 +6,13 @@
   padding-left: 24px;
 }
 
-.block.quote.testimonial {
+.quote.testimonial {
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
-.block.quote blockquote::before {
+.quote blockquote::before {
   content: '';
   position: absolute;
   top: 0;
@@ -22,30 +22,35 @@
   background-color: var(--color-accent-2);
 }
 
-.quote blockquote .quote-quotation {
+.quote .quote-quotation {
   font-size: var(--heading-font-size-m);
   font-weight: 400;
   font-style: italic;
   color: var(--color-text-primary);
 }
 
-.quote blockquote .quote-quotation > :first-child::before,
-.quote blockquote .quote-quotation > :last-child::after {
+.quote .quote-quotation > :first-child::before,
+.quote .quote-quotation > :last-child::after {
   line-height: 0;
 }
 
-.block.quote blockquote .quote-attribution p {
+.quote .quote-quotation p {
+  margin: 0;
+}
+
+.quote .quote-attribution p {
   color: var(--color-text-primary);
   font-style: normal;
   font-weight: 900;
+  margin: 0;
 }
 
 @media (min-width: 992px /* breakpoint-m */) {
-  .quote blockquote .quote-quotation {
+  .quote .quote-quotation {
     font-size: var(--body-font-size-l);
   }
 
-  .block.quote.testimonial {
+  .quote.testimonial {
     flex-direction: row;
     gap: 64px;
   }
