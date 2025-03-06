@@ -231,7 +231,7 @@ main .section > div.simple-cta-wrapper {
 }
 
 .simple-cta-wrapper.section {
-  margin-bottom: 48px !important;
+  margin: 2rem 1.5rem !important;
 }
 
 @media screen and (min-width: 768px) {

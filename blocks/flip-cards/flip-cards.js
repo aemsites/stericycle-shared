@@ -102,7 +102,7 @@ export default async function decorate(block) {
           cardBack.appendChild(icon);
         }
         const titleh3 = h3();
-        const defaultH3 = defaultCardDetails.querySelector('h3');
+        const defaultH3 = defaultCardDetails.querySelector('h1, h2, h3, h4, h5, h6');
         titleh3.textContent = defaultH3?.textContent;
         titleh3.classList.add('clamp-title');
         const desc = p();
