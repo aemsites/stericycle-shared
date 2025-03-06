@@ -1931,3 +1931,7 @@ main .section.full-width > div {
     display: none;
   }
 }
+
+.grecaptcha-badge {
+  display: none!important;
+}
