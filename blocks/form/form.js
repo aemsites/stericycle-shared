@@ -23,7 +23,7 @@ export default async function decorate(block) {
           }
         }
       });
-      const fieldsets = document.querySelectorAll('fieldset[class*="field-requesttype"]');
+      const fieldsets = form.querySelectorAll('fieldset[class*="field-requesttype"]');
       fieldsets.forEach((fieldset) => {
         fieldset.classList.add('splitbuttons');
       });
