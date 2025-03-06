@@ -199,7 +199,6 @@ async function buildServiceLocationAutoBlocks(main) {
     { icon: 'service-one-time-shredding-icon-w', href: '/en-us/secure-shredding-services/one-off-shredding-service' },
     { icon: 'service-regularly-schedule-shredding-icon-w', href: '/en-us/secure-shredding-services/paper-shredding-services' },
     { icon: 'service-hard-drive-icon-w', href: '/en-us/secure-shredding-services/hard-drive-destruction' },
-    { icon: 'service-residential-icon-w', href: '/en-us/secure-shredding-services/residential-shredding-services' },
   ];
   const flipCardsWrapper = document.createElement('div');
   const flipCardsIconRow = [];
