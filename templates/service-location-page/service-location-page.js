@@ -149,8 +149,27 @@ async function buildServiceLocationAutoBlocks(main) {
   ];
   const quoteWrapper = document.createElement('div');
   const quote = buildBlock('quote', quoteContent);
+
+  quote.classList.add('testimonial');
   quoteWrapper.append(quote);
   lastContentSection.append(quoteWrapper);
+
+  const firstChild = quote.firstElementChild;
+  const quoteChild = quote.lastElementChild;
+
+  if (quoteChild) {
+    quote.removeChild(quoteChild);
+  }
+
+  const authorWrapper = document.createElement('div');
+  const author = document.createElement('p');
+
+  authorWrapper.classList.add('quote-attribution', 'eyebrow-small');
+  author.textContent = quoteChild.textContent;
+
+  authorWrapper?.append(author);
+  firstChild?.append(authorWrapper);
+
   decorateBlock(quote);
 
   // CTA
@@ -158,6 +177,10 @@ async function buildServiceLocationAutoBlocks(main) {
   const ctaText = document.createElement('H4');
   ctaText.textContent = 'Buy your one-time shredding services online now';
   const cta = buildBlock('simple-cta', { elems: [ctaText] });
+
+  cta.classList.add('slim');
+  ctaWrapper.classList.add('blue-background', 'section');
+
   const ctaButtonWrapper = document.createElement('div');
   const ctaButtonModifier = document.createElement('strong');
   const ctaButton = document.createElement('a');
@@ -176,7 +199,6 @@ async function buildServiceLocationAutoBlocks(main) {
     { icon: 'service-one-time-shredding-icon-w', href: '/en-us/secure-shredding-services/one-off-shredding-service' },
     { icon: 'service-regularly-schedule-shredding-icon-w', href: '/en-us/secure-shredding-services/paper-shredding-services' },
     { icon: 'service-hard-drive-icon-w', href: '/en-us/secure-shredding-services/hard-drive-destruction' },
-    { icon: 'service-residential-icon-w', href: '/en-us/secure-shredding-services/residential-shredding-services' },
   ];
   const flipCardsWrapper = document.createElement('div');
   const flipCardsIconRow = [];

@@ -1,4 +1,4 @@
-import React from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
+import React from 'https://cdn.jsdelivr.net/npm/react@18.3.1/+esm';
 import htm from 'https://cdn.jsdelivr.net/npm/htm@3.1.1/+esm';
 const html = htm.bind(React.createElement);
 

@@ -11,9 +11,8 @@ import { addCookieBanner, initMartech } from './martech.js';
 sampleRUM('cwv');
 // Full Martech stack
 const urlParams = new URLSearchParams(window.location.search);
-if (window.location.hostname === 'stage-us.shredit.com') {
-  // do nothing; special case for testing
-} if (urlParams.get('load-martech')?.toLowerCase() === 'delayed') {
+if ((window.location.hostname.endsWith('.aem.page') || window.location.hostname.endsWith('.aem.live'))
+  && urlParams.get('load-martech')?.toLowerCase() === 'delayed') {
   // noinspection JSIgnoredPromiseFromCall
   initMartech(getEnvironment());
 }

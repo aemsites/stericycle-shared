@@ -198,6 +198,8 @@ main .section > div.simple-cta-wrapper {
 }
 
 .simple-cta.slim .simple-cta-content {
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -205,7 +207,12 @@ main .section > div.simple-cta-wrapper {
   margin: 0;
 }
 
+.simple-cta.slim .simple-cta-content .button-container a {
+  margin: 16px auto;
+}
+
 .simple-cta.slim .simple-cta-content-text {
+  align-items: center;
   padding: 0;
 }
 
@@ -215,11 +222,16 @@ main .section > div.simple-cta-wrapper {
 
 .simple-cta.slim .simple-cta-asset {
   height: auto;
+  text-align: center;
 }
 
 .simple-cta-graphic.simple-cta-full.simple-cta-asset-left .simple-cta-content {
   align-items: flex-start;
   overflow: hidden;
+}
+
+.simple-cta-wrapper.section {
+  margin: 2rem 1.5rem !important;
 }
 
 @media screen and (min-width: 768px) {
@@ -231,6 +243,23 @@ main .section > div.simple-cta-wrapper {
   .simple-cta-contained .simple-cta-content,
   .simple-cta-contained-dark .simple-cta-content {
     margin: 64px 80px;
+  }
+
+  .simple-cta.slim .simple-cta-content {
+    flex-direction: row;
+  }
+
+  .simple-cta.slim .simple-cta-content .button-container a {
+    margin: 0;
+    margin-left: auto;
+  }
+
+  .simple-cta.slim .simple-cta-asset {
+    text-align: left;
+  }
+
+  .simple-cta.slim .simple-cta-content-text {
+    align-items: flex-start;
   }
 }
 

@@ -256,7 +256,7 @@ body header {
 }
 
 body:has(.section.banner-container .block.banner.fixed-to-top) header {
-  top: 64px;
+  top: 86px;
 }
 
 h1, h2, h3,
@@ -877,6 +877,12 @@ main .section.blue-background,
 
 main .section.centered-text .default-content-wrapper {
   text-align: center;
+}
+
+main .section.centered-text .default-content-wrapper p.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 main .centered-headings .default-content-wrapper > h1,
@@ -1930,4 +1936,8 @@ main .section.full-width > div {
   main .page-sidebar .section.get-a-quote-form-wrapper {
     display: none;
   }
+}
+
+.grecaptcha-badge {
+  display: none!important;
 }
