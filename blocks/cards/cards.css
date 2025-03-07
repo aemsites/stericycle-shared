@@ -92,6 +92,9 @@
 .cards > ul > li > .card-body > .card-section {
   display: flex;
   flex-direction: column;
+}
+
+.cards:not(.full-width) > ul > li > .card-body > .card-section {
   text-align: center;
 }
 
