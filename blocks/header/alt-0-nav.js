@@ -1,4 +1,5 @@
 import { domEl, a, div, img } from '../../scripts/dom-helpers.js';
+import { getFloatingContact } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
   block.content = '';
@@ -16,6 +17,7 @@ export default async function decorate(block) {
         }),
       ),
     ),
+    await getFloatingContact(),
   );
   /* eslint-enable function-paren-newline,function-call-argument-newline */
   // @formatter:on
