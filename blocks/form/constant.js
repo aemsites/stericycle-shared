@@ -20,7 +20,20 @@ export const defaultErrorMessages = {
 export const emailPattern = '([A-Za-z0-9][_.\\-]?)+[A-Za-z0-9]@[A-Za-z0-9\.]+(\.?[A-Za-z0-9]){2}\.([A-Za-z0-9]{2,4})?';
 let submitBaseUrl = 'https://shredit.com/en-us';
 
-export const googleReCaptchaKey = '6LfrVLIaAAAAAAXITOp0kZDmKaUjciDyodYVm3id';
+const RECAPTCHA_KEYS = {
+  'www.shredit.com': '6LfrVLIaAAAAAAXITOp0kZDmKaUjciDyodYVm3id',
+  'stage-us.shredit.com': '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2',
+  'dev-us.shredit.com': '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2'
+  // Add more domains as needed
+};
+
+export function getGoogleReCaptchaKey() {
+  const hostname = window.location.hostname;
+  return RECAPTCHA_KEYS[hostname] || RECAPTCHA_KEYS['www.shredit.com']; // fallback to default key
+}
+
+// Replace the constant export with a getter
+export const googleReCaptchaKey = getGoogleReCaptchaKey();
 
 export function setSubmitBaseUrl(url) {
   submitBaseUrl = url;
