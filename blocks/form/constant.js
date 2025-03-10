@@ -23,12 +23,12 @@ let submitBaseUrl = 'https://shredit.com/en-us';
 const RECAPTCHA_KEYS = {
   'www.shredit.com': '6LfrVLIaAAAAAAXITOp0kZDmKaUjciDyodYVm3id',
   'stage-us.shredit.com': '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2',
-  'dev-us.shredit.com': '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2'
+  'dev-us.shredit.com': '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2',
   // Add more domains as needed
 };
 
 export function getGoogleReCaptchaKey() {
-  const hostname = window.location.hostname;
+  const { hostname } = window.location;
   return RECAPTCHA_KEYS[hostname] || RECAPTCHA_KEYS['www.shredit.com']; // fallback to default key
 }
 
