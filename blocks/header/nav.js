@@ -1,7 +1,7 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { a, button, div, domEl, form, img, input, label, p, span, ul, li } from '../../scripts/dom-helpers.js';
-import { BREAKPOINTS, formatPhone, getLocale } from '../../scripts/scripts.js';
+import { BREAKPOINTS, formatPhone, getFloatingContact, getLocale } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 1200px)');
@@ -471,10 +471,7 @@ export default async function decorate(block) {
         ),
       ),
     ),
-    div({ class: 'floating-contact' },
-      div({ class: 'sales-contact' }, a({ href: `tel:+1${placeHolders.salesno}`, title: 'Sales', 'aria-label': 'Sales' }, `${formatPhone(placeHolders.salesno, true)}`)),
-      div({ class: 'quote-container' }, a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle }, modalButtonTitle)),
-    ),
+    await getFloatingContact(),
   );
   /* eslint-enable function-paren-newline,function-call-argument-newline */
   // @formatter:on

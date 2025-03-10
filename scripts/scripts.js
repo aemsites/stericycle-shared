@@ -16,6 +16,7 @@ import {
   decorateBlock,
   loadBlock,
   loadSection,
+  fetchPlaceholders,
 } from './aem.js';
 import * as domHelper from './dom-helpers.js';
 import ffetch from './ffetch.js';
@@ -180,6 +181,23 @@ export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.
     }, [])
     .sort((x, y) => x.distance - y.distance);
 };
+
+/**
+ * Function returns an element for the floating-contact modal that appears at bottom of page
+ * @returns {Promise<Element>}
+ */
+export async function getFloatingContact() {
+  const { div, a } = domHelper;
+  const placeHolders = await fetchPlaceholders(`/${getLocale()}`);
+  const navModalPath = getMetadata('nav-modal-path') || '/forms/modals/modal';
+  const modalButtonTitle = placeHolders.requestafreequote || 'Request a Free Quote';
+
+  return div(
+    { class: 'floating-contact' },
+    div({ class: 'sales-contact' }, a({ href: `tel:+1${placeHolders.salesno}`, title: 'Sales', 'aria-label': 'Sales' }, `${formatPhone(placeHolders.salesno, true)}`)),
+    div({ class: 'quote-container' }, a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle }, modalButtonTitle)),
+  );
+}
 
 /**
  * Get related posts based on page tags. Currently doesn't filter out the existing page or
