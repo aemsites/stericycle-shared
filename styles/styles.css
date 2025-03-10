@@ -879,6 +879,14 @@ main .section.centered-text .default-content-wrapper {
   text-align: center;
 }
 
+main .section.centered-text .default-content-wrapper > p.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+}
+
 main .centered-headings .default-content-wrapper > :is(h1, h2, h3, h4, h5, h6),
 main .cards.centered-headings :is(h1, h2, h3, h4, h5, h6) {
   text-align: center;
