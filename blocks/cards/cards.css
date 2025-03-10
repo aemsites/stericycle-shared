@@ -75,14 +75,29 @@
 
 .cards > ul > li > .card-head .icon {
   width: 100%;
+  height: 164px;
+}
+
+.cards.cards.full-width > ul > li > .card-head .icon {
   height: auto;
+}
+
+
+.cards > ul > li > .card-head .icon img {
+  object-fit: contain;
 }
 
 .cards > ul > li > .card-body {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   flex: 1;
+}
+
+.cards.cards.full-width > ul > li > .card-body {
+  align-items: flex-start;
 }
 
 .cards.primary > ul > li > .card-body {
@@ -94,7 +109,12 @@
   flex-direction: column;
 }
 
+.cards > ul > li > .card-body > .card-section:last-child {
+  height: 100%;
+}
+
 .cards.full-width > ul > li > .card-body > .card-section :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--color-white);
   margin-bottom: 8px;
 }
 
@@ -109,6 +129,7 @@
 
 .cards > ul > li > .card-body > .card-section > p.button-container:last-child {
   flex: 0;
+  margin-top: auto;
 }
 
 .cards:not(.full-width) > ul > li > .card-body > .card-section > p.button-container > * {
@@ -170,8 +191,20 @@
   margin-top: 0;
 }
 
-.cards > ul > li > .card-body > .card-section > p.button-container:last-child a.button {
+.cards.cards.full-width > ul > li > .card-body > .card-section > p.button-container a {
   margin: 0;
+}
+
+.cards > ul > li > .card-body > .card-section > p.button-container:last-child a.button {
+  padding: .5rem 2rem;
+  background-color: var(--color-button-primary);
+  border: none;
+  color: var(--color-text-primary);
+  border-radius: 100px;
+}
+
+.cards > ul > li > .card-body > .card-section > p.button-container:last-child a.button:hover {
+  outline: 3px solid var(--color-black);
 }
 
 .cards.full-width > ul > li > .card-body > .card-section.button-container a.button.primary {
@@ -180,7 +213,7 @@
 }
 
 .cards.full-width > ul > li > .card-body > .card-section.button-container a.button.primary:hover {
-  outline: 3px solid var(--color-grey200);
+  outline: 3px solid var(--color-black);
 }
 
 .cards.full-width.light > ul > li > .card-body > .card-section.button-container a.button.primary {
@@ -273,10 +306,6 @@
   text-align: left;
 }
 
-.cards.full-width > ul > li > .card-body > .card-section > p.button-container {
-  padding-top: 32px;
-}
-
 .cards.full-width.light > ul > li > .card-head .icon > img {
   filter: brightness(0) saturate(100%) invert(15%) sepia(83%) saturate(814%) hue-rotate(175deg) brightness(97%) contrast(92%);  /* Change image color to: #1A242B */
 }
@@ -314,7 +343,8 @@
 
   .cards.full-width > ul > li {
     flex-direction: row;
-    gap: 24px;
+    align-items: center;
+    gap: 32px;
     padding: 64px 80px;
   }
 
@@ -338,8 +368,10 @@
   }
 
   .cards.full-width > ul > li > .card-body {
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
-    flex-direction: row;
     flex: unset;
   }
 
@@ -349,12 +381,19 @@
   }
 
   .cards.full-width > ul > li > .card-body > .card-section:not(.button-container) {
-    margin-right: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    max-width: 100%;
+    margin: 0;
   }
 
   .cards.full-width > ul > li > .card-body > .card-section > p {
     display: flex;
     align-items: center;
+    max-width: 715px;
+    margin: 0;
   }
 
   .cards.full-width > ul > li > .card-body > .card-section.button-container {
@@ -369,6 +408,12 @@
 
   .cards.full-width > ul > li > .card-body > .card-section > p.button-container:last-child {
     flex: 1;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .cards.full-width > ul > li > .card-body > .card-section.button-container a.button.primary {
