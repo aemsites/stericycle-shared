@@ -195,7 +195,7 @@ function addCtaCard(main) {
   const cards = [[icon], [heading], [{ elems: [description, buttonWrapper] }]];
   const cardsWrapper = document.createElement('div');
   const cardsBlock = buildBlock('cards', cards);
-  cardsBlock.classList.add('full-width', 'navy-headings', 'location-banner-card');
+  cardsBlock.classList.add('full-width', 'navy-headings', 'light');
   decorateIcons(cardsBlock);
   decorateButtons(cardsBlock);
   cardsWrapper.append(cardsBlock);
