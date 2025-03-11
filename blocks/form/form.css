@@ -296,9 +296,12 @@ main .form fieldset legend {
 }
 
 main .form label {
-    font-weight: var(--form-label-font-weight);
-    font-size: var(--form-label-font-size);
-    color: var(--color-disabled);
+    color: var(--color-dark-gray);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+    letter-spacing: 0.14px;
 }
 
 main .form label.required::after {
@@ -659,11 +662,6 @@ main .form form .wizard .wizard-menu-active-item::before{
     main .form button {
         width: unset;
     }
-
-    main .get-a-quote-form-alternate form > .field-wrapper {
-        padding-right: 32px;
-        padding-left: 32px;
-    }
 }
 
 /* wizard title on left */
@@ -1012,7 +1010,11 @@ main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h3,
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] h2 {
     margin-bottom: 0;
-    font-size: 32px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: 0.24px;
     color: var(--color-black);
 }
 
@@ -1039,8 +1041,13 @@ main .footer-subscription-form form .fragment-wrapper > div p:nth-of-type(2) {
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] > div > p {
     margin-bottom: 0;
-    font-size: 1rem;
     color: var(--color-black);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+    letter-spacing: 0.14px;
+    padding-top: 8px;
 }
 
 main .section.contact-us .fragment-wrapper[data-id="contact"] > div > p{
@@ -1208,7 +1215,7 @@ main .navy-background.cyan-border.two-column.form-container > .form-wrapper {
 
 main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background) {
     display: grid;
-    grid-template-columns: minmax(0, 884px) minmax(0, 436px); /* Set max-width for each column */
+    grid-template-columns: minmax(0, 879px) minmax(0, 441px);
     grid-auto-rows: auto;
     margin: auto;
     gap: 0;
@@ -1503,8 +1510,10 @@ main .form form fieldset.splitbuttons legend {
 
 @media (min-width: 1000px) {
     main .form form fieldset.splitbuttons legend {
-        font-size: var(--form-font-size-xs);
-        line-height: 25.6px;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 160%;
     }
 }
 
@@ -1516,7 +1525,7 @@ main .form form .panel-wrapper.splitbuttons .radio-wrapper {
     text-align: center;
     gap: 0;
     background: var(--color-bg-secondary);
-    min-width: 115px;
+    min-width: 103px;
     height: 42px;
 }
 
