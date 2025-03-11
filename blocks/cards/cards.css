@@ -253,7 +253,7 @@
 }
 
 .section:not(.gray-background) .cards.primary > ul > li {
-  border: 1px solid #E4ECED;
+  border: 1px solid var(--color-grey200);
   box-shadow: 0 8px 8px 0 color(rgba 33 33 33 / 2%),
     0 5px 5px 0 color(rgba 33 33 33 / 4%),
     0 3px 3px 0 color(rgba 33 33 33 / 6%),

@@ -92,7 +92,7 @@
 
   /* Backgrounds */
   --color-bg-primary: #FFF;
-  --color-bg-secondary: #E4ECED;
+  --color-bg-secondary: var(--color-grey200);
   --color-bg-tertiary: #133B5C;
   --color-accent-1: #006CB4;
   --color-accent-2: #40BBD5;
