@@ -196,9 +196,9 @@ async function buildServiceLocationAutoBlocks(main) {
 
   // SERVICES FLIP CARDS
   const flipCardPages = [
-    { icon: 'service-one-time-shredding-icon-w', href: '/en-us/secure-shredding-services/one-off-shredding-service' },
-    { icon: 'service-regularly-schedule-shredding-icon-w', href: '/en-us/secure-shredding-services/paper-shredding-services' },
-    { icon: 'service-hard-drive-icon-w', href: '/en-us/secure-shredding-services/hard-drive-destruction' },
+    { title: 'Learn More', icon: 'service-one-time-shredding-icon-w', href: '/en-us/secure-shredding-services/one-off-shredding-service' },
+    { title: 'Learn More', icon: 'service-regularly-schedule-shredding-icon-w', href: '/en-us/secure-shredding-services/paper-shredding-services' },
+    { title: 'Learn More', icon: 'service-hard-drive-icon-w', href: '/en-us/secure-shredding-services/hard-drive-destruction' },
   ];
   const flipCardsWrapper = document.createElement('div');
   const flipCardsIconRow = [];
@@ -208,8 +208,10 @@ async function buildServiceLocationAutoBlocks(main) {
     icon.classList.add('icon', `icon-${page.icon}`);
     flipCardsIconRow.push(icon);
     const link = document.createElement('a');
-    link.textContent = 'Read More';
     link.href = page.href;
+    link.classList.add('button', 'secondary');
+    link.title = 'Learn More';
+
     flipCardsLinkRow.push(link);
   });
   const flipCards = buildBlock('flip-cards', [flipCardsIconRow, flipCardsLinkRow]);
