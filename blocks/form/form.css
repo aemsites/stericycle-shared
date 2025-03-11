@@ -94,7 +94,7 @@ main .form {
 }
 
 main .form a:any-link {
-    color: var(--color-blue);
+    color: var(--color-link);
 }
 
 main .footer-subscription-form > div {
@@ -620,6 +620,15 @@ main .form form .wizard .wizard-button-wrapper .field-wrapper.wizard-button-prev
     margin-left: 0;
 }
 
+main .get-a-quote-form-alternate form .field-privacy-policy p > a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+main .get-a-quote-form-alternate form .field-privacy-policy p > a:hover {
+    text-decoration: underline;
+}
+
 .wizard-menu-items{
     display: flex;
     gap: 50px;
@@ -873,11 +882,6 @@ main .form .field-wrapper.floating-field > label {
     top: 10px;
 }
 
-main .form form .panel-wrapper.field-frequncy .radio-wrapper label{
-    color: var(--color-white);
-    cursor: pointer;
-}
-
 /* Style for labels when input is focused */
 main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox'], :placeholder-shown) + label,
 main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkbox']):focus + label{
@@ -897,59 +901,6 @@ main .form .field-wrapper.floating-field input:not([type='radio'], [type='checkb
  main .form input:not(:placeholder-shown)::placeholder,
  main .form input:placeholder-shown:not(:focus)::placeholder {
     color: transparent;
-}
-
-main .form form .panel-wrapper.field-frequncy{
-    grid-template-columns: 12fr 1fr 1fr;
-    gap: 0;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-main .form form .panel-wrapper.field-frequncy legend{
-  grid-column: 1;
-}
-
-main .form form .panel-wrapper.field-requesttype .radio-wrapper input,
-main .form form .panel-wrapper.field-frequncy .radio-wrapper input{
-  opacity: 0;
-}
-
-main .form form .panel-wrapper.field-frequncy .radio-wrapper{
-    position: relative;
-    grid-column: 2;
-    display: flex;
-    align-items: center;
-    width: 120px;
-    text-align: center;
-    background: var(--form-styles-border-color);
-}
-
-main .form form .panel-wrapper.field-frequncy .radio-wrapper:nth-child(2){
-  border-bottom-left-radius: 6.25rem;
-  border-top-left-radius: 6.25rem;
-}
-
-main .form form .panel-wrapper.field-frequncy .radio-wrapper:nth-child(3){
-  grid-column: 3;
-  border-bottom-right-radius: 6.25rem;
-  border-top-right-radius: 6.25rem;
-}
-
-main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked){
-  background: var(--form-styles-button-primary-color);
-}
-
-main .form form .panel-wrapper.field-frequncy .radio-wrapper:has(input:checked) label::before{
-  content: '';
-  display: block;
-  width: 8px;
-  height: 13px;
-  border: solid var(--color-white);
-  border-width: 0 2px 2px 0;
-  position: absolute;
-  top: 45%;
-  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 main .modal.block dialog{
@@ -1320,19 +1271,6 @@ main .section.contact-us-title > .default-content-wrapper {
         width:90%;
     }
 
-    main .form form .panel-wrapper.field-requesttype, main .form form .panel-wrapper.field-frequncy {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    main .form form .panel-wrapper.field-requesttype .radio-wrapper.field-quote-type,
-    main .form form .panel-wrapper.field-frequncy .radio-wrapper.field-servicetype1
-    {
-        grid-column: span 1;
-        width: 100%;
-        padding: 13px 0;
-        margin-top: 0;
-    }
-
     main .body-wrapper .page-sidebar > div.form-container {
         padding-left: 1.5rem;
     }
@@ -1471,7 +1409,7 @@ main .form form fieldset.splitbuttons {
     main .form form fieldset.splitbuttons {
         flex-flow: row;
         align-items: start;
-        gap: 16px;
+        gap: 4px;
         flex-wrap: wrap;
         margin-bottom: 16px;
     }
@@ -1578,8 +1516,9 @@ main .two-column.form-container .form form .panel-wrapper.splitbuttons .radio-wr
 main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
     cursor: pointer;
     color: var(--color-text-primary);
-    font-size: var(--body-font-size-default);
-    font-weight: var(--font-weight-bold);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
     line-height: 160%;
     letter-spacing: 0.28px;
 }
@@ -1601,6 +1540,10 @@ main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) la
     color: var(--color-white);
     cursor: pointer;
     padding-left: 46px;
+}
+
+main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
+    white-space: nowrap;
 }
 
 @media (min-width: 410px) {
