@@ -1,5 +1,5 @@
 import { decorateButtons } from '../../scripts/aem.js';
-import { a, h3, p, span } from '../../scripts/dom-helpers.js';
+import { a, h3, p } from '../../scripts/dom-helpers.js';
 import { fetchQueryIndex } from '../../scripts/scripts.js';
 import { adjustHeightsOnResize } from './utils.js';
 
@@ -60,19 +60,12 @@ export default async function decorate(block) {
 
       const url = page.href;
 
-      const existingSpan = page.querySelector('.icon');
-      const spanElement = existingSpan
-        ? span({
-          class: existingSpan.classList.value,
-          'data-icon-src': existingSpan.querySelector('img')?.getAttribute('src') || '/icons/right-arrow.svg',
-          style: `--mask-image: url(${existingSpan.querySelector('img')?.getAttribute('src') || '/icons/right-arrow.svg'});`,
-        })
-        : '';
+      const existingSpan = page.querySelector('.icon') || '';
 
       const readMoreButton = a(
         { class: page.classList.value || 'button primary', href: url, target: '_self' },
         page.title || 'Read More',
-        spanElement,
+        existingSpan,
       );
 
       decorateButtons(readMoreButton);
