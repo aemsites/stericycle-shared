@@ -620,12 +620,14 @@ main .form form .wizard .wizard-button-wrapper .field-wrapper.wizard-button-prev
     margin-left: 0;
 }
 
-main .get-a-quote-form-alternate form .field-privacy-policy p > a {
+main .form form .field-privacy-policy p > a,
+main .form form .field-policy p > a {
     text-decoration: none;
     cursor: pointer;
 }
 
-main .get-a-quote-form-alternate form .field-privacy-policy p > a:hover {
+main .form form .field-privacy-policy p > a:hover,
+main .form form .field-policy p > a:hover  {
     text-decoration: underline;
 }
 
