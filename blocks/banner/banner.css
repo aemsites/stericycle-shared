@@ -62,7 +62,7 @@
   }
 
   .block.banner > span {
-    display: block;
+    display: none; /* Hide the span element */
     width: 50px;
     gap: 50px;
     color: var(--color-white);
@@ -141,6 +141,8 @@
 
 button.fa-chevron-left,
 button.fa-chevron-right {
+  opacity: 0; /* Hide the button */
+  visibility: hidden;
   box-sizing: border-box;
   position: relative;
   display: block;
