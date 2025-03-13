@@ -17,7 +17,7 @@
   margin-bottom: 24px;
 }
 
-.offer-box .offer-box-header {
+.offer-box:not(.plain-simple) .offer-box-header {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -31,10 +31,16 @@
 .offer-box .offer-box-header h5,
 .offer-box .offer-box-header h6 {
   font-size: 32px;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: 0.32px;
 }
 
 .offer-box .offer-box-header p {
   font-size: 16px;
+  font-weight: 400;
+  line-height: 160%;
+  letter-spacing: 0.16px;
 }
 
 .offer-box .offer-box-header strong,
@@ -182,6 +188,7 @@
   .section.four-column-offer .offer-box-wrapper {
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
     gap: 24px;
   }
 
@@ -196,4 +203,23 @@
   .section.four-column-offer .offer-box {
     width: 25%;
   }
+}
+
+/* Plain Simple */
+.offer-box.plain-simple .offer-box-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.offer-box.plain-simple .offer-box-header > div > span.icon {
+  height: 40px;
+  width: 40px;
+  min-height: 40px;
+  min-width: 40px;
+}
+
+.offer-box.plain-simple .offer-box-header * {
+  margin-bottom: 0;
 }

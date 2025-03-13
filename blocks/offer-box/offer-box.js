@@ -1,3 +1,5 @@
+import { adjustHeightsOnResize, createHrDiv, createListDiv } from './utils.js';
+
 export default async function decorate(block) {
   const offerBox = document.createElement('div'); // creates the div we will append or replacewith
   const headers = document.createElement('div');
@@ -95,9 +97,7 @@ export default async function decorate(block) {
     });
 
     if (contentDiv?.querySelector('a') && block.classList.contains('hr')) {
-      const hrDiv = document.createElement('div');
-      const hr = document.createElement('hr');
-      hrDiv.appendChild(hr);
+      const hrDiv = createHrDiv();
       contentDiv.prepend(hrDiv);
     }
     offerBox.append(headers, contentDiv);
@@ -145,12 +145,7 @@ export default async function decorate(block) {
     hrDiv.appendChild(hr);
     const btnA = btnDiv.querySelector('a');
     btnA.classList.add('button', 'primary');
-    const listDiv = document.createElement('div');
-    listDiv.classList.add('offer-box-list-container');
-
-    if (block.querySelector('div:nth-of-type(4) > div')) {
-      listDiv.innerHTML = block.querySelector('div:nth-of-type(4) > div')?.innerHTML;
-    }
+    const listDiv = createListDiv(block);
 
     offerBox.append(headCopy);
     if (block.classList.contains('big-icon')) {
@@ -169,4 +164,5 @@ export default async function decorate(block) {
 
     block.replaceWith(offerBox);
   }
+  adjustHeightsOnResize();
 }
