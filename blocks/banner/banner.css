@@ -7,7 +7,7 @@
   position: relative;
   align-items: center;
   gap: 24px;
-  padding: 16px 32px;
+  padding: 27px 32px;
   margin: auto;
   max-width: var(--section-width-xl);
   height: fit-content;
@@ -83,7 +83,16 @@
 }
 
 .block.banner > .banner-content > .banner-content-page.active {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.block.banner > .banner-content > .banner-content-page .icon {
+  --icon-color: var(--color-white);
+
+  width: 12px;
+  height: 12px;
 }
 
 .block.banner > .banner-actions {
@@ -141,11 +150,9 @@
 
 button.fa-chevron-left,
 button.fa-chevron-right {
-  opacity: 0; /* Hide the button */
-  visibility: hidden;
   box-sizing: border-box;
   position: relative;
-  display: block;
+  display: none; /* Hide the button element */
   transform: scale(var(--ggs, 1));
   width: 22px;
   text-decoration: unset;
