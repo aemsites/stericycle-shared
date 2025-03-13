@@ -144,7 +144,7 @@ async function buildServiceLocationAutoBlocks(main) {
 
   // QUOTE
   const quoteContent = [
-    ['"I like the set schedule of pick up dates the most. Drivers are always courteous and helpful."'],
+    ['&ldquo;I like the set schedule of pick up dates the most. Drivers are always courteous and helpful.”'],
     ['Riggs & Associates, CPAs, P.C.'],
   ];
   const quoteWrapper = document.createElement('div');
