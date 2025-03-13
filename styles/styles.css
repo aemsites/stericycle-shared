@@ -78,7 +78,7 @@
 
   /* Greyscale */
   --color-black: #1F1F20; /* Black */
-  --color-grey200: #E4ECED; /* Grey-200 */
+  --color-grey200: #F3F6F7; /* Grey-200 */
   --color-grey500: #53585B; /* Grey-500 */
   --color-white: #FFF; /* White */
 
@@ -92,7 +92,7 @@
 
   /* Backgrounds */
   --color-bg-primary: #FFF;
-  --color-bg-secondary: #E4ECED;
+  --color-bg-secondary: var(--color-grey200);
   --color-bg-tertiary: #133B5C;
   --color-accent-1: #006CB4;
   --color-accent-2: #40BBD5;
@@ -256,7 +256,7 @@ body header {
 }
 
 body:has(.section.banner-container .block.banner.fixed-to-top) header {
-  top: 64px;
+  top: 86px;
 }
 
 h1, h2, h3,
@@ -879,12 +879,16 @@ main .section.centered-text .default-content-wrapper {
   text-align: center;
 }
 
-main .centered-headings .default-content-wrapper > h1,
-main .centered-headings .default-content-wrapper > h2,
-main .centered-headings .default-content-wrapper > h3,
-main .centered-headings .default-content-wrapper > h4,
-main .centered-headings .default-content-wrapper > h5,
-main .centered-headings .default-content-wrapper > h6 {
+main .section.centered-text .default-content-wrapper > p.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+}
+
+main .centered-headings .default-content-wrapper > :is(h1, h2, h3, h4, h5, h6),
+main .cards.centered-headings :is(h1, h2, h3, h4, h5, h6) {
   text-align: center;
 }
 
@@ -1930,4 +1934,8 @@ main .section.full-width > div {
   main .page-sidebar .section.get-a-quote-form-wrapper {
     display: none;
   }
+}
+
+.grecaptcha-badge {
+  display: none!important;
 }

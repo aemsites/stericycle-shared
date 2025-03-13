@@ -193,6 +193,7 @@ html {
             &.quote-link a {
               font-size: var(--body-font-size-default);
               font-weight: var(--font-weight-bold);
+              height: 42px;
             }
           }
         }

@@ -89,6 +89,40 @@ main .section > div.hero-banner-wrapper {
     object-position: center;
 }
 
+.hero-banner ul {
+    list-style: none;
+    padding: 0;
+}
+
+.hero-banner  .hero-banner-content-text > ul {
+    margin: 54px 0;
+    margin-bottom: 0;
+}
+
+.hero-banner ul li {
+    display: flex;
+    gap: 16px;
+}
+
+.hero-banner  .hero-banner-content-text > ul > li {
+    margin-bottom: 16px;
+}
+
+.hero-banner  .hero-banner-content-text > ul > li:last-child {
+    margin-bottom: 0;
+}
+
+.hero-banner ul li a {
+    border-radius: 8px;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 160%;
+    color: var(--color-text-primary);
+    transition: background-color 0.3s ease-in-out;
+  }
+
 /* Variants */
 .hero-banner-container {
     background: conic-gradient(
@@ -284,6 +318,7 @@ main .section > div.hero-banner-wrapper {
 
     .hero-banner-form.hero-banner-container {
         grid-template-columns: minmax(0, 684px) minmax(0, 516px) !important;
+        background-size: auto;
     }
 
     .hero-banner-form.hero-banner-container .form-wrapper {

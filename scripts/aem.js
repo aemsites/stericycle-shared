@@ -478,6 +478,8 @@ export function decorateIcon(span, prefix = '', alt = '') {
     if (iconName) {
       span.style.setProperty('--mask-image', `url(${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg)`);
     }
+    const img = span.querySelector('img');
+    if (img) img.remove();
   } else {
     const img = document.createElement('img');
     img.dataset.iconName = iconName;
