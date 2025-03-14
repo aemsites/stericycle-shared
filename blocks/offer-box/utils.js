@@ -24,6 +24,7 @@ const adjustElements = (wrapper) => {
     '.offer-box.big-icon .head-copy',
     '.offer-box.big-icon > p:not(.button-container)',
     '.offer-box.alternate-1 > div > div:has(.button)',
+    '.offer-box.alternate-1 > div:nth-child(4) > div > p',
   ];
 
   selectors.forEach((selector) => {

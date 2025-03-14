@@ -26,12 +26,7 @@
   text-align: center;
 }
 
-.offer-box .offer-box-header h1,
-.offer-box .offer-box-header h2,
-.offer-box .offer-box-header h3,
-.offer-box .offer-box-header h4,
-.offer-box .offer-box-header h5,
-.offer-box .offer-box-header h6 {
+.offer-box .offer-box-header :is(h1, h2, h3, h4, h5, h6) {
   font-size: 32px;
   font-weight: 600;
   line-height: 120%;
@@ -185,15 +180,15 @@
   }
 
   .offer-box.alternate-3 .offer-box-header {
-    justify-content: space-between;
-    flex-wrap: nowrap;
+    flex-flow: row;
+    justify-content: flex-start;
+    gap: 1rem;
   }
 
   .section.two-column-offer .offer-box-wrapper,
   .section.three-column-offer .offer-box-wrapper,
   .section.four-column-offer .offer-box-wrapper {
     display: flex;
-    justify-content: space-between;
     flex-direction: row;
     gap: 24px;
   }
@@ -304,8 +299,29 @@
 }
 
 /* Alternate 1 */
+.offer-box-wrapper:has(.offer-box.alternate-1) {
+  gap: 16px;
+}
+
+.offer-box.alternate-1 {
+  padding: 32px;
+}
+
+.offer-box.alternate-1 .offer-box-header :is(h1, h2, h3, h4, h5, h6) {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
 .offer-box.alternate-1 p:has(a) {
   margin: 0;
+}
+
+.offer-box.alternate-1 .offer-box-header > div > span.icon {
+  height: 150px;
+  width: 150px;
+  min-height: 150px;
+  min-width: 150px;
 }
 
 .offer-box.alternate-1 p > * {
@@ -322,4 +338,36 @@
 
 .offer-box.alternate-1 div:has(a):nth-of-type(1) p a {
   margin-top: 0;
+}
+
+/* Alternate 2 */
+.offer-box.alternate-2 .offer-box-header .text-with-badge {
+  width: fit-content;
+}
+
+@media screen and (min-width: 992px) {
+  .offer-box.alternate-2 .offer-box-header .text-with-badge {
+    width: 25%;
+  }
+}
+
+/* Alternate 3 */
+
+.offer-box.alternate-3 .offer-box-header * {
+  margin-bottom: 0;
+}
+
+.offer-box.alternate-3 p > * {
+  width: 100%;
+}
+
+.offer-box.alternate-3 p.button-container a {
+  width: 100%;
+  text-wrap: pretty;
+}
+
+@media screen and (min-width: 992px) {
+  .offer-box.alternate-3 .offer-box-header :is(h1, h2, h3, h4, h5, h6) {
+    text-align: left;
+  }
 }
