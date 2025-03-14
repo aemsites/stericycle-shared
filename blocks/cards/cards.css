@@ -75,7 +75,7 @@
 
 .cards > ul > li > .card-head .icon {
   width: 100%;
-  height: 164px;
+  height: auto;
 }
 
 .cards.cards.full-width > ul > li > .card-head .icon {
@@ -193,6 +193,7 @@
 
 .cards.cards.full-width > ul > li > .card-body > .card-section > p.button-container a {
   margin: 0;
+  margin-top: 16px;
 }
 
 .cards > ul > li > .card-body > .card-section > p.button-container:last-child a.button {
@@ -381,11 +382,6 @@
   }
 
   .cards.full-width > ul > li > .card-body > .card-section:not(.button-container) {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 24px;
-    max-width: 100%;
     margin: 0;
   }
 
@@ -406,6 +402,12 @@
     object-fit: cover;
   }
 
+  .cards.full-width > ul > li > .card-body > .card-section.button-container a.button.primary {
+    margin: 0;
+  }
+}
+
+@media (min-width: 1400px) /* breakpoint-xl */ {
   .cards.full-width > ul > li > .card-body > .card-section > p.button-container:last-child {
     flex: 1;
     margin: 0;
@@ -414,9 +416,5 @@
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-  }
-
-  .cards.full-width > ul > li > .card-body > .card-section.button-container a.button.primary {
-    margin: 0;
   }
 }
