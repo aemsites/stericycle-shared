@@ -11,15 +11,19 @@ const adjustElementHeights = (elements) => {
 
 const adjustElements = (wrapper) => {
   const selectors = [
-    '.offer-box-header > div:nth-child(1)',
-    '.offer-box-header > div:nth-child(2)',
-    '.offer-box-header:not(.plain-simple) .button-container',
+    '.offer-box:not(.big-icon) .offer-box-header > div:nth-child(1)',
+    '.offer-box:not(.big-icon) .offer-box-header > div:nth-child(2)',
+    '.offer-box-header .button-container',
     '.offer-box-header .head-copy',
     '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(1)',
     '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(2)',
     '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(3)',
     '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(4)',
     '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(5)',
+    '.offer-box.big-icon .offer-box-header',
+    '.offer-box.big-icon .head-copy',
+    '.offer-box.big-icon > p:not(.button-container)',
+    '.offer-box.alternate-1 > div > div:has(.button)',
   ];
 
   selectors.forEach((selector) => {
