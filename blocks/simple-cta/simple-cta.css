@@ -209,6 +209,7 @@ main .section > div.simple-cta-wrapper {
 
 .simple-cta.slim .simple-cta-content .button-container a {
   margin: 16px auto;
+  margin-bottom: 0;
 }
 
 .simple-cta.slim .simple-cta-content-text {

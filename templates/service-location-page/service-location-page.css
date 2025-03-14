@@ -59,6 +59,10 @@ main .section > div.hero-wrapper {
   margin-bottom: 30px;
 }
 
+.service-location-page .simple-cta.slim .simple-cta-asset {
+  width: fit-content;
+}
+
 .with-sidebar .section.flip-cards-container .flip-cards-wrapper {
   padding: 0 24px;
 }
