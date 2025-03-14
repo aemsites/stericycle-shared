@@ -402,6 +402,12 @@
     object-fit: cover;
   }
 
+  .cards.full-width > ul > li > .card-body > .card-section.button-container a.button.primary {
+    margin: 0;
+  }
+}
+
+@media (min-width: 1400px) /* breakpoint-xl */ {
   .cards.full-width > ul > li > .card-body > .card-section > p.button-container:last-child {
     flex: 1;
     margin: 0;
@@ -410,9 +416,5 @@
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-  }
-
-  .cards.full-width > ul > li > .card-body > .card-section.button-container a.button.primary {
-    margin: 0;
   }
 }
