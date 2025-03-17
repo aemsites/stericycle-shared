@@ -12,7 +12,7 @@ export default async function decorate(block) {
   const footerMeta = getMetadata('footer');
   const navMeta = getMetadata('nav');
 
-  const footerPath = footerMeta && footerMeta === '/en-us/alt-0-footer-refresh' ? new URL(footerMeta, window.location).pathname : `/${locale}/footer-refresh`;
+  const footerPath = footerMeta && footerMeta === '/en-us/alt-0-footer' ? '/en-us/alt-0-footer-refresh' : `/${locale}/footer-refresh`;
   const fragment = await loadFragment(footerPath);
   await createModalButton(fragment, footerPath, locale);
   // get url for current page
