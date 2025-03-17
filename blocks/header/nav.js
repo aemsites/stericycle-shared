@@ -62,8 +62,6 @@ export default async function decorate(block) {
     };
   });
 
-  await getFloatingContact();
-
   // contact data
   const contactData = fragment.querySelector(
     '.section[data-section="Contact" i]',
@@ -112,6 +110,7 @@ export default async function decorate(block) {
 
   if (navigationMenu) {
     block.append(navigationMenu);
+    block.append(await getFloatingContact());
   }
 
   // Ctas
