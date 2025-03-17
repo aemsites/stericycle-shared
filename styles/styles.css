@@ -256,7 +256,7 @@ body header {
 }
 
 .block.header {
-  & > .floating-contact {
+  & .floating-contact {
     position: fixed;
     bottom: 0;
     left: 0;
