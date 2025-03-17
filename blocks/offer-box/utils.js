@@ -1,3 +1,5 @@
+import { isDesktop } from '../../scripts/aem.js';
+
 const adjustElementHeights = (elements) => {
   let maxHeight = 0;
   elements.forEach((element) => {
@@ -49,24 +51,33 @@ const adjustElements = (wrapper) => {
 };
 
 export const adjustHeightsOnResize = () => {
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach(() => {
-      requestAnimationFrame(() => {
-        const wrappers = document.querySelectorAll('.offer-box-wrapper');
-        wrappers.forEach(adjustElements);
+  if (isDesktop()) {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach(() => {
+        requestAnimationFrame(() => {
+          const wrappers = document.querySelectorAll('.offer-box-wrapper');
+          wrappers.forEach(adjustElements);
+        });
       });
     });
-  });
 
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-  });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
 
-  requestAnimationFrame(() => {
-    const wrappers = document.querySelectorAll('.offer-box-wrapper');
-    wrappers.forEach(adjustElements);
-  });
+    requestAnimationFrame(() => {
+      const wrappers = document.querySelectorAll('.offer-box-wrapper');
+      wrappers.forEach(adjustElements);
+    });
+  } else {
+    window.removeEventListener('resize', adjustHeightsOnResize);
+    // Reset heights when leaving desktop view
+    const elements = document.querySelectorAll('.offer-box-wrapper *[style*="height"]');
+    elements.forEach((el) => {
+      el.style.height = 'auto';
+    });
+  }
 };
 
 export const createListDiv = (block) => {

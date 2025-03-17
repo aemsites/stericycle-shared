@@ -1,3 +1,4 @@
+import { isDesktop } from '../../scripts/aem.js';
 import { adjustHeightsOnResize, createHrDiv, createListDiv } from './utils.js';
 
 export default async function decorate(block) {

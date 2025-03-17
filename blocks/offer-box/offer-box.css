@@ -287,12 +287,6 @@
   align-items: center;
 }
 
-.offer-box.big-icon .offer-box-header > div:has(.icon) {
-  margin: 0;
-  height: 113px;
-  width: 109px;
-}
-
 .offer-box.big-icon .offer-box-header * {
     margin-bottom: 0;
 }
@@ -309,14 +303,18 @@
     margin: 16px auto;
 }
 
+.offer-box.big-icon span.icon {
+    height: 100%;
+    width: 328px;
+    margin: unset;
+}
+
 @media screen and (min-width: 992px) {
   .offer-box.big-icon span.icon {
       height: 100%;
       width: 109px;
   }
-}
 
-@media screen and (min-width: 992px) {
   .section.offer-with-text.offer-box-container.two-columns > div.default-content-wrapper {
       display: flex;
       flex-direction: column;
