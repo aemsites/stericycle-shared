@@ -36,6 +36,8 @@ const adjustElements = (wrapper) => {
     '.offer-box.alternate-2 > .offer-box-row:nth-child(3)',
     '.offer-box.alternate-2 > .offer-box-row:nth-child(4)',
     '.offer-box.alternate-2 > .offer-box-row:nth-child(5)',
+    '.offer-box.alternate-3 > .head-copy',
+    '.offer-box.alternate-3 > .offer-box-header',
   ];
 
   selectors.forEach((selector) => {

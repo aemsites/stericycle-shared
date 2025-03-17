@@ -40,7 +40,6 @@
   letter-spacing: 0.16px;
 }
 
-.offer-box .offer-box-header strong,
 .offer-box .offer-box-header .text-with-badge {
   display: block;
   margin: auto;
@@ -238,6 +237,10 @@
   margin-bottom: 0;
 }
 
+.offer-box.plain-simple > div.offer-box-header .icon-with-heading {
+  margin-bottom: 12px;
+}
+
 .offer-box.plain-simple > div:not(.offer-box-header) :is(h1, h2, h3, h4, h5, h6) {
   font-size: 20px;
   font-weight: 600;
@@ -404,6 +407,7 @@
   font-size: 12px;
   font-weight: 600;
   line-height: 20px;
+  margin-bottom: 0;
 }
 
 .offer-box.alternate-2 .offer-box-header .text-with-badge p:last-child {
@@ -459,12 +463,22 @@
 
 /* Alternate 3 */
 
+.offer-box.alternate-3 {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
 .offer-box.alternate-3 .offer-box-header * {
   margin-bottom: 0;
 }
 
 .offer-box.alternate-3 p > * {
   width: 100%;
+}
+
+.offer-box.alternate-3 p.button-container {
+  margin-bottom: 0;
 }
 
 .offer-box.alternate-3 p.button-container a {
