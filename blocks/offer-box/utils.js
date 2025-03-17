@@ -15,9 +15,13 @@ const adjustElements = (wrapper) => {
     '.offer-box:not(.big-icon) .offer-box-header > div:nth-child(2)',
     '.offer-box-header .button-container',
     '.offer-box-header .head-copy',
-    '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(1)',
+    '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(1):not(:has(hr))',
     '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(2)',
     '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(3)',
+    '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(3) > p:nth-child(1)',
+    '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(3) > p:nth-child(2)',
+    '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(3) > ul',
+    '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(3) :is(h1, h2, h3, h4, h5, h6)',
     '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(4)',
     '.offer-box.plain-simple > div:nth-child(2) > div:nth-child(5)',
     '.offer-box.big-icon .offer-box-header',
@@ -25,6 +29,13 @@ const adjustElements = (wrapper) => {
     '.offer-box.big-icon > p:not(.button-container)',
     '.offer-box.alternate-1 > div > div:has(.button)',
     '.offer-box.alternate-1 > div:nth-child(4) > div > p',
+    '.offer-box.alternate-2 > .offer-box-header > .icon-with-heading',
+    '.offer-box.alternate-2 > .offer-box-header > .promotion-with-text',
+    '.offer-box.alternate-2 > .offer-box-row:nth-child(1)',
+    '.offer-box.alternate-2 > .offer-box-row:nth-child(2)',
+    '.offer-box.alternate-2 > .offer-box-row:nth-child(3)',
+    '.offer-box.alternate-2 > .offer-box-row:nth-child(4)',
+    '.offer-box.alternate-2 > .offer-box-row:nth-child(5)',
   ];
 
   selectors.forEach((selector) => {
