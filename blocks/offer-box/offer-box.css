@@ -43,9 +43,9 @@
 .offer-box .offer-box-header .text-with-badge {
   display: block;
   margin: auto;
-  margin-bottom: 16px;
+  width: 25%;
+  margin-bottom: 0;
   padding: 8px 16px;
-  width: fit-content;
   background: var(--color-primary-1);
   border-radius: 8px;
   font-size: 14px;
@@ -68,11 +68,6 @@
 
 .offer-box .offer-box-header .promotion-with-text > :last-child {
   text-align: left;
-  margin-bottom: 0;
-}
-
-.offer-box .offer-box-header .text-with-badge {
-  width: 25%;
   margin-bottom: 0;
 }
 
