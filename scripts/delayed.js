@@ -5,7 +5,7 @@ import {
 // eslint-disable-next-line import/no-cycle
 import { getDateFromExcel, getEnvironment, getLocale, getRelatedPosts } from './scripts.js';
 import decorate from '../blocks/post-teaser-list/post-teaser-list.js';
-import { addCookieBanner, initMartech } from './martech.js';
+import { addCookieBanner, embedClarityTracking, initMartech } from './martech.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -18,6 +18,7 @@ if ((window.location.hostname.endsWith('.aem.page') || window.location.hostname.
 }
 // noinspection JSIgnoredPromiseFromCall
 addCookieBanner();
+embedClarityTracking();
 
 const RELATED_LIMIT = 4;
 
