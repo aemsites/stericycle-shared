@@ -208,7 +208,7 @@ export async function getFloatingContact() {
 
   return div(
     { class: 'floating-contact' },
-    div({ class: 'sales-contact' }, a({ href: `tel:+1${placeHolders.salesno}`, title: 'Sales', 'aria-label': 'Sales' }, `${formatPhone(placeHolders.salesno, true)}`)),
+    div({ class: 'sales-contact' }, a({ href: `tel:+1${placeHolders.salesno}`, class: 'button primary', title: 'Sales', 'aria-label': 'Sales' }, `${formatPhone(placeHolders.salesno, true)}`)),
     div({ class: 'quote-container' }, a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle }, modalButtonTitle)),
   );
 }

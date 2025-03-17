@@ -262,7 +262,7 @@ body header {
     left: 0;
     right: 0;
     display: flex;
-    gap: 1px;
+    gap: 3px;
     background-color: var(--color-white);
     z-index: 100;
 
