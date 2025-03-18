@@ -1,4 +1,4 @@
-import { adjustHeightsOnResize, createHrDiv, createListDiv } from './utils.js';
+import { createHrDiv, createListDiv } from './utils.js';
 
 export default async function decorate(block) {
   const offerBox = document.createElement('div'); // creates the div we will append or replacewith
@@ -176,5 +176,4 @@ export default async function decorate(block) {
 
     block.replaceWith(offerBox);
   }
-  adjustHeightsOnResize();
 }
