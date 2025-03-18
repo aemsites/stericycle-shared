@@ -40,6 +40,7 @@
   letter-spacing: 0.16px;
 }
 
+.offer-box .offer-box-header strong,
 .offer-box .offer-box-header .text-with-badge {
   display: block;
   margin: auto;
@@ -54,6 +55,10 @@
   letter-spacing: 1.4px;
   text-transform: uppercase;
   color: var(--color-white);
+}
+
+.offer-box .offer-box-header strong {
+  width: fit-content;
 }
 
 .offer-box .offer-box-header .promotion-with-text {
@@ -255,7 +260,6 @@
 
 .offer-box.plain-simple > div:not(.offer-box-header) > div:nth-child(n+1) > p a.button {
   width: 100%;
-  padding: 6px;
 }
 
 .offer-box.plain-simple > div:not(.offer-box-header) > div:nth-child(n+1) > p:has(a.button) {
@@ -272,7 +276,7 @@
 
 /* Big Icon */
 .offer-box.big-icon {
-  height: fit-content;
+  height: 100%;
   padding: 12px;
 }
 
@@ -364,16 +368,15 @@
 }
 
 .offer-box.alternate-1 p.button-container a {
-  width: 100%;
+  width: fit-content;
 }
 
 .offer-box.alternate-1 div:has(a):nth-of-type(1) {
-  padding-top: 16px;
+  padding-top: 0;
 }
 
 .offer-box.alternate-1 div:has(a):nth-of-type(1) p a {
   margin-top: 0;
-  width: 100%;
   white-space: normal;
 }
 
@@ -469,7 +472,6 @@
 }
 
 .offer-box.alternate-3 p.button-container a {
-  width: 100%;
   text-wrap: pretty;
 }
 
