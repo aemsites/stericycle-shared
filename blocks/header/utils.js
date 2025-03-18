@@ -129,6 +129,7 @@ function setupModal(triggerElement, modalElement) {
 
       // remove open class to hamburger menu
       const hamburger = document.querySelector('.hamburger-menu');
+
       if (hamburger) {
         hamburger.classList.remove('open');
       }
@@ -137,6 +138,7 @@ function setupModal(triggerElement, modalElement) {
     modalElement.classList.add(MOBILE_MENU_OPEN_CLASSNAME);
     nav.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
 
+    closeNavigationMenu();
     trapFocus(modalElement, closeModalFn);
   }
 

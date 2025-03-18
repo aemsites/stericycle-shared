@@ -78,7 +78,7 @@
 
   /* Greyscale */
   --color-black: #1F1F20; /* Black */
-  --color-grey200: #E4ECED; /* Grey-200 */
+  --color-grey200: #F3F6F7; /* Grey-200 */
   --color-grey500: #53585B; /* Grey-500 */
   --color-white: #FFF; /* White */
 
@@ -92,7 +92,7 @@
 
   /* Backgrounds */
   --color-bg-primary: #FFF;
-  --color-bg-secondary: #E4ECED;
+  --color-bg-secondary: var(--color-grey200);
   --color-bg-tertiary: #133B5C;
   --color-accent-1: #006CB4;
   --color-accent-2: #40BBD5;
@@ -253,6 +253,69 @@ body header {
   top: 0;
   height: var(--nav-height);
   z-index: 100;
+}
+
+.block.header {
+  & .floating-contact {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: 3px;
+    background-color: var(--color-white);
+    z-index: 100;
+
+    & > div {
+      flex: 1;
+
+      & > a {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 8px;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-button-primary);
+        border: none;
+        border-radius: 0;
+        font-size: var(--body-font-size-s);
+        color: var(--color-black);
+        font-weight: var(--lato-bold);
+      }
+
+      &.sales-contact a::before {
+        content: '\f095';
+        color: var(--color-black);
+        font-family: var(--font-family-fa-free);
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: 900;
+        text-align: center;
+        transform: rotate(-10deg);
+      }
+
+      &.quote-container a::before {
+        content: '\f15c';
+        color: var(--color-black);
+        font-family: var(--font-family-fa-free);
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: 900;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media (min-width: 1400px) /* breakpoint-xl */ {
+  .block.header {
+    & > .floating-contact { 
+      display: none;
+    }
+  }
 }
 
 body:has(.section.banner-container .block.banner.fixed-to-top) header {
@@ -740,6 +803,22 @@ main .section.no-buttons {
   main .hide-on-desktop {
     display: none;
   }
+
+  .block.header {
+    & nav {
+      & > .floating-contact {
+        display: none;
+      }
+    }
+  }
+}
+
+body:has(.section.banner-container .block.banner.fixed-to-bottom) .floating-contact {
+  bottom: 3.25rem;
+}
+
+body:has(.section.banner-container .block.banner.fixed-to-bottom p.button-container) .floating-contact {
+  bottom: 4.25rem;
 }
 
 main .show-on-mobile,

@@ -1,6 +1,5 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { button, span } from '../../scripts/dom-helpers.js';
-import { getLocale } from '../../scripts/scripts.js';
 import { loadFragment } from '../fragment/fragment.js';
 import {
   addMenuFunctionality,
@@ -8,6 +7,7 @@ import {
   buildCtasSection,
   generateMenuFromSection,
 } from './utils.js';
+import { getFloatingContact, getLocale } from '../../scripts/scripts.js';
 
 const TEXT_ELEMENTS = [
   'a',
@@ -110,6 +110,7 @@ export default async function decorate(block) {
 
   if (navigationMenu) {
     block.append(navigationMenu);
+    block.append(await getFloatingContact());
   }
 
   // Ctas
