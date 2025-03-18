@@ -67,7 +67,7 @@
   justify-content: center;
   gap: 24px;
   padding-bottom: 24px;
-  border-bottom: 1px solid var(--color-grey200);
+  border-bottom: 1px solid var(--color-light-silver);
 }
 
 
@@ -120,7 +120,7 @@
   width: 100%;
   max-width: 238px;
   height: 1px;
-  background: var(--color-grey200);
+  background: var(--color-light-silver);
   font-size: 0;
   border: 0;
 }
@@ -154,7 +154,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 1px solid var(--color-grey200);
+  border-bottom: 1px solid var(--color-light-silver);
 }
 
 .offer-box.alternate-2 div.offer-box-row:last-child {
