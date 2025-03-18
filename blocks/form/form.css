@@ -24,7 +24,7 @@
     --form-input-font-size: 1rem;
     --form-input-disabled-color: var(--color-bg-secondary);
     --form-input-border-size: 1px;
-    --form-input-border-color: #C1C6C6; /* value taken from Figma 3-18-25*/
+    --form-input-border-color: #C1C6C6; /* value taken from Figma 3-18-25 */
     --form-input-background-color: var(--form-styles-background-color-primary);
     --form-paragraph-color: var(--form-styles-label-color);
     --form-paragraph-margin: 0 0 0.9rem;
