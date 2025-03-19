@@ -457,8 +457,9 @@
   flex-direction: column;
 }
 
-.offer-box.alternate-3 .offer-box-header * {
-  margin-bottom: 0;
+.offer-box.alternate-3 img {
+  max-width: none;
+  height: 80px;
 }
 
 .offer-box.alternate-3 p > * {
@@ -476,5 +477,9 @@
 @media screen and (min-width: 992px) {
   .offer-box.alternate-3 .offer-box-header :is(h1, h2, h3, h4, h5, h6) {
     text-align: left;
+  }
+
+  .offer-box.alternate-3 .head-copy {
+    min-height: 7%;
   }
 }
