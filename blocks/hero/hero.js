@@ -56,5 +56,7 @@ export default function decorate(block) {
 
   // Add everything to the block
   block.append(contentContainer);
-  block.parentElement.parentElement.classList.add('blue-background');
+  if (getMetadata('template') !== 'homepage') {
+    block.parentElement.parentElement.classList.add('blue-background');
+  }
 }

@@ -1,3 +1,5 @@
+import { createHrDiv, createListDiv } from './utils.js';
+
 export default async function decorate(block) {
   const offerBox = document.createElement('div'); // creates the div we will append or replacewith
   const headers = document.createElement('div');
@@ -57,6 +59,16 @@ export default async function decorate(block) {
     const primaryDivs = block.querySelectorAll('div.block.offer-box.alternate-2 > div:not(div:first-of-type) > div');
 
     primaryDivs.forEach((div) => {
+      const isLink = div.querySelector('a');
+
+      if (isLink) {
+        isLink.classList.add('button', 'primary');
+
+        offerBox.append(div);
+
+        return;
+      }
+
       const rowItems = document.createElement('div');
       rowItems.className = 'offer-box-row';
       const isList = div.querySelectorAll('li');
@@ -85,9 +97,7 @@ export default async function decorate(block) {
     });
 
     if (contentDiv?.querySelector('a') && block.classList.contains('hr')) {
-      const hrDiv = document.createElement('div');
-      const hr = document.createElement('hr');
-      hrDiv.appendChild(hr);
+      const hrDiv = createHrDiv();
       contentDiv.prepend(hrDiv);
     }
     offerBox.append(headers, contentDiv);
@@ -101,13 +111,25 @@ export default async function decorate(block) {
       a.classList.add('button', 'primary');
     });
 
+    const firstDiv = block.children[0];
     const secondDiv = block.children[1];
-    if (secondDiv?.querySelector('a') && block.classList.contains('hr')) {
-      secondDiv.classList.add('min-height');
+
+    if (block.classList.contains('hr')) {
       const hrDiv = document.createElement('div');
       const hr = document.createElement('hr');
+      const hrDiv2 = document.createElement('div');
+      const hr2 = document.createElement('hr');
+
       hrDiv.appendChild(hr);
-      block.insertBefore(hrDiv, secondDiv.nextSibling);
+      hrDiv2.appendChild(hr2);
+
+      block.insertBefore(hrDiv, firstDiv.nextSibling);
+
+      const isSecondDivLink = secondDiv.querySelector('a');
+
+      if (!isSecondDivLink) {
+        block.insertBefore(hrDiv2, secondDiv.nextSibling);
+      }
     }
   } else {
     headers.classList.add('offer-box-header');
@@ -115,26 +137,33 @@ export default async function decorate(block) {
 
     const headCopy = document.createElement('div');
     headCopy.classList.add('head-copy'); // why do we copy head
-    headCopy.innerHTML = block.querySelector('div:nth-of-type(2) > div > p').innerHTML;
+    const contentElement = block.querySelector('div:nth-of-type(2) > div > p');
+    headCopy.innerHTML = contentElement ? contentElement.innerHTML : '<p></p>';
+
     const btnDiv = block.querySelector('div:nth-of-type(3) > div > p');
-    btnDiv.classList.add('button-container');
+    if (btnDiv) {
+      btnDiv.classList.add('button-container');
+      const btnA = btnDiv.querySelector('a');
+      btnA.classList.add('button', 'primary');
+    } else {
+      const btnContainer = block.querySelector('div:nth-of-type(3) > div');
+      const emptyP = document.createElement('p');
+      btnContainer.appendChild(emptyP);
+    }
     const hrDiv = document.createElement('div');
     const hr = document.createElement('hr');
     hrDiv.appendChild(hr);
-    const btnA = btnDiv.querySelector('a');
-    btnA.classList.add('button', 'primary');
-    const listDiv = document.createElement('div');
-    listDiv.classList.add('offer-box-list-container');
-
-    if (block.querySelector('div:nth-of-type(4) > div')) {
-      listDiv.innerHTML = block.querySelector('div:nth-of-type(4) > div')?.innerHTML;
-    }
+    const listDiv = createListDiv(block);
 
     offerBox.append(headCopy);
     if (block.classList.contains('big-icon')) {
+      const descriptionDiv = block.querySelector('div:nth-of-type(4) > div > p');
       offerBox.append(hrDiv);
       if (listDiv.innerHTML !== '') {
         offerBox.append(listDiv);
+      }
+      if (descriptionDiv) {
+        offerBox.append(descriptionDiv);
       }
       offerBox.append(btnDiv);
     } else {

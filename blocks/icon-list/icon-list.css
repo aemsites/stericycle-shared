@@ -1,14 +1,30 @@
+/* stylelint-disable no-descending-specificity */
+main .section.two-column.form-container.icon-list-container > div.form-wrapper {
+    grid-row: 3;
+    margin-top: 0;
+}
+
 div.icon-list > div > div > p:has(> span) {
     height: 100%;
     width: 100%;
 }
 
-div.icon-list-container:not(.blue-headings) h2, div.icon-list-container:not(.blue-headings) p {
+div.icon-list-container:not(.blue-headings) h2,
+div.icon-list-container:not(.blue-headings) p {
     color: var(--color-white);
 }
 
+div.icon-list-container > .form-wrapper p,
+div.icon-list-container > .form-wrapper h2 {
+    color: var(--color-text-primary);
+}
+
 div.icon-list.plain h2, div.icon-list.plain p {
-    color: var(--color-black);
+    color: var(--color-text-primary);
+}
+
+main > div.section.gray-background.icon-list-container p {
+    color: var(--color-text-primary);
 }
 
 div.icon-list.block {
@@ -28,9 +44,18 @@ div.icon-list > div > div {
     margin-bottom: 1rem;
 }
 
+div.icon-list.vertical-icons > div {
+    flex-direction: column;
+}
+
 div.icon-list > div > div span {
     height: 3.75rem;
     width: 3.75rem;
+}
+
+div.icon-list.vertical-icons p span.icon {
+    width: 103px;
+    height: 41.963px;
 }
 
 main div.icon-list.plain > div > div span {
@@ -47,10 +72,25 @@ div.icon-list > div > div:last-of-type {
     color: var(--color-white);
 }
 
+
 div.icon-list > div > div:nth-of-type(2) {
     border-left: 4px solid #ff5633;
     display: flex;
     align-items: center;
+}
+
+div.icon-list.vertical-icons > div > div:first-of-type {
+    height: fit-content;
+    width: 100%;
+}
+
+div.icon-list.vertical-icons > div > div:nth-of-type(2) {
+    border: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 40px;
+    height: fit-content;
 }
 
 div.icon-list.plain > div > div:first-of-type {
@@ -72,6 +112,14 @@ div.icon-list:not(.plain) > div > div:nth-of-type(2) p {
     padding-left: 1rem;
 }
 
+div.icon-list.vertical-icons > div > div:nth-of-type(2) p {
+    padding-left: 0;
+}
+
+div.icon-list.block.vertical-icons > div > div:nth-of-type(2) > h4 {
+    margin-bottom: 0;
+}
+
 div.section.fragment-container.icon-list-container > div.fragment-wrapper {
     margin-top: unset;
     margin-bottom: unset;
@@ -88,16 +136,64 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
     height: 70%;
 }
 
+.section.flex-row div.icon-list.vertical-icons > div > div:nth-of-type(2) {
+    border-left-color: var(--color-accent-2);
+}
+
 .section.flex-row {
     max-width: var(--section-width);
     margin: 2rem auto;
     padding: 0 1.5rem;
 }
 
+main .two-column.form-container.icon-list-container > div:first-child.default-content-wrapper {
+    margin: 24px 24px 40px;
+}
+
+main .two-column.form-container.icon-list-container > div:first-child.default-content-wrapper > h1 {
+    font-size: 40px;
+    font-weight: var(--font-weight-bold);
+    line-height: 120%;
+    letter-spacing: 0.4px;
+    margin-bottom: 16px;
+}
+
+main .two-column.form-container.icon-list-container > div:first-child.default-content-wrapper > p {
+    margin: 0;
+}
+
 @media (min-width: 992px) {
+    main .section.narrow.icon-list-container  {
+        max-width: var(--content-width-xxl);
+    }
+
+    main .section.two-column.form-container.icon-list-container > div.form-wrapper {
+        margin-top: 24px;
+        grid-row: 1 / span 4;
+        max-width: 497px;
+        margin-left: 51px;
+        padding: 0;
+    }
+
+    main .two-column.form-container.icon-list-container:has(.vertical-icons) {
+        padding: 64px;
+        grid-template-columns: minmax(0, 700px) minmax(0, 561px);
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+
+    main .two-column.form-container.icon-list-container > div:first-child.default-content-wrapper {
+        margin: 24px 0 80px;
+    }
+
     div.icon-list.plain.block {
         display: grid;
         grid-template-columns: 1fr 1fr;
+    }
+
+    div.icon-list.block.vertical-icons {
+        flex-direction: column;
+        gap: 32px;
     }
 
     div.icon-list > div {
@@ -107,26 +203,279 @@ div.section.fragment-container.icon-list-container > div.fragment-wrapper {
         flex: 0 0 50%;
     }
 
-    div.icon-list.split-firstthird > div {
-        flex: 0 0 33%;
-    }
-
     div.icon-list.plain > div {
         width: 100%;
         align-content: start;
     }
 
+    div.icon-list.split-firstthird > div {
+        flex: 0 0 33%;
+    }
+
+    div.icon-list.block.vertical-icons > div {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+    }
+
     .section.icon-list-container.flex-row {
         display: flex;
-        flex-direction: row; 
+        flex-direction: row;
     }
-     
-     .section.icon-list-container.flex-row > .default-content-wrapper {
-         align-self: center;
-     }
 
-     .section.flex-row .icon-list:not(.plain) > div {
+    .section.icon-list-container.flex-row > .default-content-wrapper {
+        align-self: center;
+    }
+
+    .section.flex-row .icon-list:not(.plain) > div {
         flex: 0 0 45%;
+    }
+
+    main .section.two-column.form-container.icon-list-container > div {
+        padding: 0;
+    }
+
+    div.icon-list.block.vertical-icons > div > div:first-of-type {
+        width: fit-content;
+        margin: 0;
+    }
+
+    div.icon-list.block.vertical-icons > div > div:nth-of-type(2) {
+        border-left: 4px solid var(--color-accent-2);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: fit-content;
+        padding-left: 24px;
+        width: 100%;
+        margin: 0;
+        min-height: 6rem;
+    }
+
+    div.icon-list.block.vertical-icons.vertical-line-white > div > div:nth-of-type(2) {
+        border-left: 4px solid var(--color-white);
+    }
+
+    div.icon-list.vertical-icons p:has(> span.icon) {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 24px;
+    }
+
+    div.icon-list.vertical-icons > div > div:first-child p:not(:has(> span.icon)) {
+        color: var(--color-icon-accent);
+        font-size: var(--heading-font-size-xxl);
+        font-weight: var(--font-weight-bold);
+        line-height: 120%;
+        letter-spacing: 0.48px;
+        padding-right: 32px;
+    }
+
+    div.icon-list.block.vertical-icons > div > div:nth-of-type(2) > h4 {
+        letter-spacing: 0.18px;
+        margin-bottom: 4px;
+    }
+
+    div.icon-list.block.vertical-icons > div > div:nth-of-type(2) > * {
+        padding: 0;
+    }
+
+    div.icon-list.vertical-icons p span.icon {
+        width: 103px;
+        height: 41.963px;
+    }
+
+    main .two-column.form-container.icon-list-container > div:first-child.default-content-wrapper > h1 {
+        font-size: 64px;
+        letter-spacing: 0.64px;
+    }
+
+    main .two-column.form-container.icon-list-container > div:first-child.default-content-wrapper > p {
+        margin: 0;
+        letter-spacing: 0.16px;
+    }
+
+}
+
+@media (min-width: 1400px) {
+    main .two-column.form-container.icon-list-container:has(.vertical-icons) {
+        justify-content: center;
+        column-gap: 50px;
+    }
+}
+
+/* Vertical Numbers Styles */
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div {
+    flex-direction: column;
+}
+
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list p span.icon {
+    width: 103px;
+    height: 41.963px;
+}
+
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-of-type {
+    height: fit-content;
+    width: 100%;
+}
+
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:nth-of-type(2) {
+    border: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 32px;
+    height: fit-content;
+}
+
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:nth-of-type(2) p {
+    padding-left: 0;
+}
+
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:nth-of-type(2) > h4 {
+    margin-bottom: 0;
+}
+
+main .section.flex-row:has(.vertical-numbers) div.icon-list > div > div:nth-of-type(2) {
+    border-left-color: var(--color-accent-2);
+}
+
+main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper {
+    margin: 24px 24px 40px;
+    padding: 0;
+}
+
+main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper > h1 {
+    font-size: 40px;
+    font-weight: var(--font-weight-bold);
+    line-height: 120%;
+    letter-spacing: 0.4px;
+    margin: 0;
+}
+
+main .section.two-column.icon-list-container:has(.vertical-numbers) > div:first-child.default-content-wrapper > p {
+    margin: 0;
+}
+
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-child p:not(:has(> span.icon)) {
+    color: var(--color-icon-accent);
+    font-size: 48px;
+    font-weight: var(--font-weight-bold);
+    line-height: 120%;
+    letter-spacing: 0.48px;
+}
+
+@media (min-width: 992px) {
+    main .section.two-column.icon-list-container:has(.vertical-numbers) {
+        padding: 64px;
+        grid-template-columns: minmax(0, 700px) minmax(0, 561px);
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers)  div.icon-list.block {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:first-of-type {
+        width: fit-content;
+        margin: 0;
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:nth-of-type(2) {
+        border-left: 4px solid var(--color-accent-2);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: fit-content;
+        padding-left: 24px;
+        width: 100%;
+        margin: 0;
+        min-height: 6rem;
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block.vertical-line-white > div > div:nth-of-type(2) {
+        border-left: 4px solid var(--color-white);
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list p:has(> span.icon) {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 24px;
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-child p:not(:has(> span.icon)) {
+        padding-right: 32px;
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:nth-of-type(2) > h4 {
+        letter-spacing: 0.18px;
+        margin-bottom: 4px;
+    }
+
+    main .section.two-column.icon-list-container:not(.form-container):has(.vertical-numbers):not(.form-container) div.icon-list.block > div > div:nth-of-type(2) > * {
+        padding: 0;
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list p span.icon {
+        width: 103px;
+        height: 41.963px;
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) {
+        display: flex;
+        flex-direction: column;
+        padding: 80px;
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 40px;
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper > h1 {
+        padding: 0;
+        margin: 0;
+        font-size: var(--heading-font-size-xl);
+        font-weight: var(--font-weight-bold);
+        line-height: 120%;
+        letter-spacing: 0.32px;
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > .icon-list-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    main .two-column.icon-list-container:not(.form-container) > .icon-list-wrapper > .icon-list.vertical-numbers {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px 80px;
+        width: 100%;
+        max-width: 1400px;
+    }
+
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > .icon-list-wrapper > .icon-list > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+     main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list.block > div > div:nth-of-type(2) {
+        padding-left: 32px;
     }
 }
 

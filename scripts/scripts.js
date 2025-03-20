@@ -46,12 +46,26 @@ export function convertExcelDate(excelDate) {
  * @param {Boolean} parens whether to wrap the area code in parens
  */
 export function formatPhone(num, parens = false) {
-  const match = num.match(/(\d{3})(\d{3})(\d{4})/);
+  const match = num?.match(/(\d{3})(\d{3})(\d{4})/);
   if (!match) {
-    return num;
+    return num || '';
   }
   const [area, prefix, line] = match.slice(1);
   return parens ? `(${area}) ${prefix}-${line}` : `${area}-${prefix}-${line}`;
+}
+
+/**
+ * Creates a link to a post.
+ * @param {Object} post post object
+ * @returns {Element} anchor element
+ */
+export function createPostLink(post) {
+  const anchor = document.createElement('a');
+  if (post) {
+    anchor.setAttribute('aria-label', post.title);
+    anchor.href = post.path;
+  }
+  return anchor;
 }
 
 /**
@@ -194,8 +208,14 @@ export async function getFloatingContact() {
 
   return div(
     { class: 'floating-contact' },
-    div({ class: 'sales-contact' }, a({ href: `tel:+1${placeHolders.salesno}`, title: 'Sales', 'aria-label': 'Sales' }, `${formatPhone(placeHolders.salesno, true)}`)),
-    div({ class: 'quote-container' }, a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle }, modalButtonTitle)),
+    div(
+      { class: 'sales-contact' },
+      a({ href: `tel:+1${placeHolders.salesno}`, class: 'button primary', title: 'Sales', 'aria-label': 'Sales' }, `${formatPhone(placeHolders.salesno, true)}`),
+    ),
+    div(
+      { class: 'quote-container' },
+      a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle }, modalButtonTitle),
+    ),
   );
 }
 
@@ -472,7 +492,7 @@ async function decorateTemplates(main) {
   try {
     const template = toClassName(getMetadata('template'));
     const templates = ['pr-page', 'services', 'blog-page',
-      'service-location-page', 'service-location-page-2', 'marketing-location-page', 'resource-center'];
+      'service-location-page', 'service-location-page-2', 'marketing-location-page', 'resource-center', 'homepage'];
 
     if (templates.includes(template)) {
       const mod = await import(`../templates/${template}/${template}.js`);

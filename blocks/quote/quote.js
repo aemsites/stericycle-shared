@@ -1,10 +1,7 @@
-function hasWrapper(el) {
-  return !!el.firstElementChild;
-}
-
 export default async function decorate(block) {
   // merge quote into surrounding default content
   const quoteWrapper = block.parentElement;
+
   if (quoteWrapper.previousElementSibling?.className === 'default-content-wrapper') {
     block.classList.remove('block');
     quoteWrapper.previousElementSibling.append(block);
@@ -20,28 +17,44 @@ export default async function decorate(block) {
     quoteWrapper.remove();
   }
 
-  const [quotation, attribution] = [...block.children].map((c) => c.firstElementChild);
-  const blockquote = document.createElement('blockquote');
-  // decorate quotation
-  quotation.className = 'quote-quotation';
-  if (!hasWrapper(quotation)) {
-    quotation.innerHTML = `<p>${quotation.innerHTML}</p>`;
-  }
-  blockquote.append(quotation);
-  // decoration attribution
-  if (attribution) {
-    attribution.className = 'quote-attribution';
-    if (!hasWrapper(attribution)) {
-      attribution.innerHTML = `<p>${attribution.innerHTML}</p>`;
+  [...block.children].forEach((child) => {
+    if (child.textContent.includes('#title')) {
+      const title = document.createElement('h3');
+
+      title.className = 'heading-2';
+      title.innerHTML = child.textContent.replace('#title', '');
+      child.className = 'quote-title';
+      child.innerHTML = '';
+      child.append(title);
+
+      quoteWrapper.prepend(child);
+
+      return;
     }
-    blockquote.append(attribution);
-    const ems = attribution.querySelectorAll('em');
-    ems.forEach((em) => {
-      const cite = document.createElement('cite');
-      cite.innerHTML = em.innerHTML;
-      em.replaceWith(cite);
-    });
-  }
-  block.innerHTML = '';
-  block.append(blockquote);
+
+    const [quotation, attribution] = [...child.children].map((c) => c);
+    const blockquote = document.createElement('blockquote');
+
+    if (quotation) {
+      quotation.className = 'quote-quotation';
+
+      blockquote.append(quotation);
+    }
+
+    if (attribution) {
+      attribution.className = 'quote-attribution eyebrow-small';
+
+      blockquote.append(attribution);
+
+      const ems = attribution.querySelectorAll('em');
+      ems.forEach((em) => {
+        const cite = document.createElement('cite');
+        cite.innerHTML = em.innerHTML;
+        em.replaceWith(cite);
+      });
+    }
+
+    child.innerHTML = '';
+    child.append(blockquote);
+  });
 }

@@ -440,7 +440,7 @@ function decorateButtons(element) {
         if (
           up.childNodes.length === 1
           && up.tagName === 'STRONG'
-          && twoup.childNodes.length === 1
+          && twoup?.childNodes?.length === 1
           && twoup.tagName === 'P'
         ) {
           a.className = 'button primary';
@@ -466,16 +466,28 @@ function decorateButtons(element) {
  * @param {string} [prefix] prefix to be added to icon src
  * @param {string} [alt] alt text to be added to icon
  */
-function decorateIcon(span, prefix = '', alt = '') {
+export function decorateIcon(span, prefix = '', alt = '') {
   const iconName = Array.from(span.classList)
     .find((c) => c.startsWith('icon-'))
     .substring(5);
-  const img = document.createElement('img');
-  img.dataset.iconName = iconName;
-  img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
-  img.alt = alt;
-  img.loading = 'lazy';
-  span.append(img);
+  if (span.closest('.button-container') || span.closest('.custom-icon')) {
+    span.setAttribute('data-icon-src', `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`);
+    if (alt) {
+      span.setAttribute('data-icon-alt', alt);
+    }
+    if (iconName) {
+      span.style.setProperty('--mask-image', `url(${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg)`);
+    }
+    const img = span.querySelector('img');
+    if (img) img.remove();
+  } else {
+    const img = document.createElement('img');
+    img.dataset.iconName = iconName;
+    img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
+    img.alt = alt;
+    img.loading = 'lazy';
+    span.append(img);
+  }
 }
 
 /**
@@ -485,6 +497,7 @@ function decorateIcon(span, prefix = '', alt = '') {
  */
 function decorateIcons(element, prefix = '') {
   const icons = [...element.querySelectorAll('span.icon')];
+
   icons.forEach((span) => {
     decorateIcon(span, prefix);
   });
@@ -760,6 +773,7 @@ async function waitForLCP(section) {
 }
 
 const isDesktop = () => window.matchMedia('(min-width: 992px)')?.matches;
+const isLargeDesktop = () => window.matchMedia('(min-width: 1400px)')?.matches;
 
 init();
 
@@ -789,5 +803,6 @@ export {
   waitForLCP,
   wrapTextNodes,
   isDesktop,
+  isLargeDesktop,
   loadSection,
 };

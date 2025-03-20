@@ -1,6 +1,6 @@
 import { decorateButtons } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { span, button } from '../../scripts/dom-helpers.js';
+import { span, button, p } from '../../scripts/dom-helpers.js';
 
 function decorateCloseButton(block) {
   const buttonWrapper = document.createElement('div');
@@ -52,6 +52,14 @@ export default async function decorate(block) {
       child.classList.remove('section');
       block.append(child);
       child.classList.add('banner-content-page');
+
+      const arrowRightEl = p(
+        { class: 'button-container' },
+        span({ class: 'icon icon-right-arrow-bolder', 'data-icon-src': '/icons/right-arrow-bolder.svg', style: '--mask-image: url(/icons/right-arrow-bolder.svg);' }),
+      );
+
+      child.append(arrowRightEl);
+
       if (idx === 0) {
         child.classList.add('active');
       }

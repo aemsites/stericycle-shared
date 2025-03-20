@@ -75,12 +75,21 @@ function applyVerticalCellAlignment(block) {
     if (!block.parentElement.parentElement.classList.contains('large-icon')) {
       d.style.alignItems = 'stretch';
     }
+
     if ((block.parentElement.parentElement.classList.contains('centered-text')
     || block.parentElement.parentElement.classList.contains('centered-headings'))
     && block.classList.contains('columns-8-cols')
     && block.classList.contains('columns-has-image')) {
       d.style.alignItems = 'center';
     }
+
+    if ((block.parentElement.parentElement.classList.contains('centered-text')
+    || block.parentElement.parentElement.classList.contains('centered-headings'))
+    && block.classList.contains('columns-8-cols')
+    && block.classList.contains('narrow-icons')) {
+      d.style.alignItems = 'center';
+    }
+
     if (d.querySelector('p > strong')) {
       d.querySelector('p').classList.add('button-container');
       if (d.querySelector('p > strong > a')) {
@@ -104,6 +113,29 @@ export default async function decorate(block) {
 
   if (block.classList.contains('divider')) {
     block.insertBefore(hr(), block.firstChild);
+  }
+
+  if (block.classList.contains('get-a-quote-popup')) {
+    const linkCards = block.children[2];
+    const cta = block.children[3];
+    const cards = Array.from(linkCards.children);
+
+    if (cta) {
+      cta.classList.add('cta');
+    }
+
+    cards?.forEach((card) => {
+      const link = card.querySelector('a');
+
+      const cardWrapper = document.createElement('div');
+      const linkWrapper = document.createElement('a');
+      linkWrapper.href = link?.href || '#';
+      linkWrapper.classList.add('link-wrapper');
+
+      linkWrapper.appendChild(card.cloneNode(true));
+      cardWrapper.appendChild(linkWrapper.cloneNode(true));
+      linkCards.replaceChild(cardWrapper, card);
+    });
   }
 
   // setup image columns

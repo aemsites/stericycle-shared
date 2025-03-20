@@ -71,7 +71,7 @@ div.blog-card-section div.latest-posts ul > li > div.blog-teaser-card .blog-link
 }
 
 div.blog-card-section a.button.secondary, button.secondary {
-    background-color: var(--color-blue);
+    background-color: var(--color-primary-1);
     border-color: currentcolor;
     color: var(--color-white);
 }
