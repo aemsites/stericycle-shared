@@ -461,8 +461,9 @@ main .section.yellow-button  a.button {
   border-color: var(--color-black);
   color: var(--color-black);
   font-size: 1rem;
-  line-height: 2pc;
   border-width: 2px;
+  border-radius: 100px;
+  padding: 4px 0px;
 }
 
 main .section.yellow-button-no-border  a.button {
