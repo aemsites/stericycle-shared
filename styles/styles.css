@@ -312,7 +312,7 @@ body header {
 
 @media (min-width: 1400px) /* breakpoint-xl */ {
   .block.header {
-    & > .floating-contact { 
+    & > .floating-contact {
       display: none;
     }
   }
@@ -1420,6 +1420,16 @@ main div.section.background-secondary-image {
   background-position: right bottom;
   background-image: url("/images/media_1dc871139c98397c8c15a9cf976ee13f69be2ab57.png");
   background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+main div.section.background-third-image {
+  background: linear-gradient(97deg, var(--color-primary-2) 27.36%, rgb(30 58 89 / 0%) 85.47%), url("/images/media_11178bf368459d6e462a468f683909f7b3f84253a.png");
+  background-size: 125.723% 158.248%;
+  background-repeat: no-repeat;
+  background-blend-mode: normal;
+  background-position: 340.2px -109px;
+  background-color: var(--color-primary-2);
   overflow: hidden;
 }
 
