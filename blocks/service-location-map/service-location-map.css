@@ -13,7 +13,7 @@
 
 .block.service-location-map .map-search .map-search-error {
   visibility: hidden;
-  background-color: var(--color-yellow);
+  background-color: var(--color-secondary-4);
   color: var(--color-black);
 }
 
@@ -83,24 +83,24 @@
   width: 60%;
   margin-top: 0.5rem;
   margin-bottom: 0.75rem;
-  background-color: var(--color-yellow);
+  background-color: var(--color-secondary-4);
   padding: 0.6rem;
   text-align: center;
   text-decoration: none;
   color: var(--color-black);
   font-weight: 700;
-  border: var(--color-yellow) 2px solid;
+  border: var(--color-secondary-4) 2px solid;
   border-radius: 1.5rem;
 }
 
 .block.service-location-map .map-list .location-item.highlight p {
-  color: var(--color-blue);
+  color: var(--color-primary-1);
 }
 
 .block.service-location-map .map-list .location-item .buy-now:hover {
-  border: var(--color-dark-gunmetal) 2px solid;
-  background: var(--color-yellow);
-  color: var(--color-dark-gunmetal);
+  border: var(--color-secondary-5) 2px solid;
+  background: var(--color-secondary-4);
+  color: var(--color-secondary-5);
 }
 
 .block.service-location-map .map-search .map-input-details {

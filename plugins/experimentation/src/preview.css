@@ -44,7 +44,7 @@
   border-radius: 2em;
   background-color: var(--color);
   border-style: solid;
-  border-color: #fff;
+  border-color: var(--color-white);
   color: #eee;
   padding: 1em 1.5em;
   cursor: pointer;
@@ -99,7 +99,7 @@
 
 .hlx-badge.hlx-testing {
   background-color: #fa0f00;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .hlx-popup {

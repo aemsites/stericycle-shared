@@ -133,8 +133,8 @@ function addServiceCards(main) {
   const services = [
     { icon: 'sid-local-service-one-time-shredding-icon-b', title: '2- or 5-day One-Time Shredding ', description: 'With our Express and Priority services, we are committed to providing you the same high level of customer service and security – just faster, so we’re there when you need us.' },
     { icon: 'sid-local-service-mobile-onsite-icon-b', title: 'Mobile Shredding Service', description: 'Mobile shredding offers customers the same safe, end-to-end secure Chain of Custody as our off-site services while still at your location.' },
-    { icon: 'sid-local-service-regularly-schedule-shredding-icon-b', title: 'Regularly Scheduled Paper Shredding', description: 'Protect your information end-toend using our secure containers paired with scheduled service.' },
-    { icon: 'sid-local-service-hard-drive-icon-b', title: 'Hard Drive Destruction', description: 'Confidential information can be found on more than paper; Shred-it has solutions for harddrive and media destruction.' },
+    { icon: 'sid-local-service-regularly-schedule-shredding-icon-b', title: 'Regularly Scheduled Paper Shredding', description: 'Protect your information end-to-end using our secure containers paired with scheduled service.' },
+    { icon: 'sid-local-service-hard-drive-icon-b', title: 'Hard Drive Destruction', description: 'Confidential information can be found on more than paper; Shred-it has solutions for hard drive and media destruction.' },
   ];
   /* eslint-enable max-len */
 
@@ -195,7 +195,7 @@ function addCtaCard(main) {
   const cards = [[icon], [heading], [{ elems: [description, buttonWrapper] }]];
   const cardsWrapper = document.createElement('div');
   const cardsBlock = buildBlock('cards', cards);
-  cardsBlock.classList.add('full-width', 'navy-headings');
+  cardsBlock.classList.add('full-width', 'navy-headings', 'light');
   decorateIcons(cardsBlock);
   decorateButtons(cardsBlock);
   cardsWrapper.append(cardsBlock);

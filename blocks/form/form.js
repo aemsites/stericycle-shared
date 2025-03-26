@@ -19,8 +19,29 @@ export default async function decorate(block) {
           wrapper.insertAdjacentElement('afterbegin', input);
           wrapper.classList.add('floating-field');
           if (!input.placeholder) {
-            input.placeholder = '';
+            input.placeholder = ' ';
           }
+        }
+      });
+      const fieldsets = form.querySelectorAll('fieldset[class*="field-requesttype"], fieldset[class*="field-frequncy"]');
+      fieldsets.forEach((fieldset) => {
+        fieldset.classList.add('splitbuttons');
+      });
+
+      // Move radio-wrapper elements into a radio-wrapper-container div
+      form.querySelectorAll('fieldset.splitbuttons').forEach((fieldset) => {
+        const radioWrappers = fieldset.querySelectorAll('.radio-wrapper');
+        const radioWrapperContainer = fieldset.querySelector('.radio-wrapper-container');
+        if (radioWrappers.length > 0 && !radioWrapperContainer) {
+          const wrapperDiv = document.createElement('div');
+          wrapperDiv.classList.add('radio-wrapper-container');
+          const legend = fieldset.querySelector('legend');
+          radioWrappers.forEach((radioWrapper) => {
+            wrapperDiv.appendChild(radioWrapper);
+          });
+          fieldset.innerHTML = '';
+          fieldset.appendChild(legend);
+          fieldset.appendChild(wrapperDiv);
         }
       });
 

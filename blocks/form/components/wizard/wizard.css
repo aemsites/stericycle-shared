@@ -3,42 +3,48 @@ main .form form .wizard .wizard-button-wrapper {
 }
 
 main .form form .wizard .wizard-menu-items {
-  justify-content: space-between;
-  background: linear-gradient(transparent, transparent 40%, #dad6d6 0, #dad6d6 60%, transparent 0);
-  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(40%, transparent), color-stop(40%, #dad6d6), color-stop(60%, #dad6d6), color-stop(60%, transparent));
-  padding-bottom: 0;
+  position: relative;
+  background: none;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
 }
 
 main .form form .wizard .wizard-menu-items .wizard-menu-item {
-  border: 4px solid #dad6d6;
-  border-radius: 15px;
-  width: 30px;
-  height: 30px;
-  background-color: #fff;
+  border-radius: 4px;
+  height: 7px;
+  width: 100%;
+  /* max-width: 127px; */
+  background-color: var(--color-grey500);
+}
+
+main .form form .wizard .wizard-menu-items .wizard-menu-item > span {
+  display: none;
 }
 
 main .form form .wizard .wizard-menu-items .wizard-menu-item.wizard-menu-active-item {
-  background-color: #006cb4;
+  background-color: var(--color-primary-1);
+}
+
+main .form form .wizard .wizard-menu-items .wizard-menu-item.wizard-menu-active-item  > span {
+  display: block;
+  position: absolute;
+  top: 16px;
+  left: 0;
+  font-size: var(--heading-font-size-m);
+  font-weight: var(--font-weight-bold);
+  line-height: 140%;
+  letter-spacing: 0.18px;
+  color: var(--color-text-primary);
 }
 
 main .form form .wizard .wizard-menu-items .wizard-menu-item:has(~ .wizard-menu-active-item) {
-  background-color: #006cb4;
+  background-color: var(--color-primary-1);
   display: inline-block;
   position: relative;
 }
-main .form form .wizard .wizard-menu-items .wizard-menu-item:has(~ .wizard-menu-active-item)::after,
-main .form form.submit-success .wizard .wizard-menu-items .wizard-menu-item::after {
-  content: '';
-  display: block;
-  width: 8px;
-  height: 13px;
-  border: solid #fff;
-  border-width: 0 2px 2px 0;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
-}
+
 main .form form .wizard .wizard-menu-item::before {
   content: unset;
 }

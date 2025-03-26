@@ -53,10 +53,23 @@ main .section > div.hero-wrapper {
   max-width: var(--section-width);
   margin: 0 auto;
 }
- 
+
 .with-sidebar main > .body-wrapper > .page-sidebar > .section > div {
   padding: 0;
   margin-bottom: 30px;
+}
+
+.service-location-page .simple-cta.slim .simple-cta-asset {
+  width: fit-content;
+}
+
+.with-sidebar .section.flip-cards-container .flip-cards-wrapper {
+  padding: 0 24px;
+}
+
+.with-sidebar .section.flip-cards-container .flip-cards-wrapper .clamp-title,
+.with-sidebar .section.flip-cards-container .flip-cards-wrapper .clamp-description{
+  height: auto !important;
 }
 
 /* This is intentionally kept this way */
@@ -65,7 +78,7 @@ main .section > div.hero-wrapper {
     padding: initial;
   }
 }
-  
+
 @media (min-width: 992px /* breakpoint-l */) {
   .with-sidebar main > .body-wrapper {
     display: flex;

@@ -523,6 +523,8 @@ export default async function decorate(block) {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const isDropoff = Boolean(getMetadata('is-drop-off'));
   const locations = await fetchLocations(isDropoff, ph);
+  const urlParams = new URLSearchParams(window.location.search);
+  const useMyLocation = urlParams.get('useMyLocation');
 
   block.append(
     mapSearch(ph, block, locations, searchType),
@@ -540,6 +542,15 @@ export default async function decorate(block) {
 
   window.setTimeout(async () => {
     await mapInitialization(locations, block, ph);
+
+    if (useMyLocation) {
+      map.on('load', () => {
+        window.setTimeout(() => {
+          mapInputLocationOnClick(block, locations, ph);
+        }, 1000);
+      });
+    }
+
     if (window.location.hash) {
       map.on('load', () => {
         window.setTimeout(() => {

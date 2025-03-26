@@ -162,3 +162,18 @@ export async function decorateCtaButtons(element) {
     });
   }, 100);
 }
+
+/**
+ * Runs clarity tracking script.
+ * See: https://learn.microsoft.com/en-us/clarity/setup-and-installation/clarity-setup
+ * @returns {Promise<void>}
+ */
+export async function embedClarityTracking() {
+  /* eslint-disable */
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "kv1gc51u0y");
+  /* eslint-enable */
+}

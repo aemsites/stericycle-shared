@@ -1,3 +1,5 @@
+import { applyCardLinkStyles } from './utils.js';
+
 export default function decorate(block) {
   const cardList = document.createElement('ul');
 
@@ -13,6 +15,7 @@ export default function decorate(block) {
     const rows = [...block.children];
     for (let i = 0; i < rows.length; i += 1) {
       const cardSection = rows[i].firstElementChild;
+
       if (cardSection) {
         if (cardSection.nextElementSibling) {
           rowsWithContentLeft = true;
@@ -46,7 +49,7 @@ export default function decorate(block) {
     card.append(cardBody);
     cardList.append(card);
   }
-
+  applyCardLinkStyles();
   block.textContent = '';
   block.append(cardList);
 }

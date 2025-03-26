@@ -1,14 +1,13 @@
-import { h3, h4, p } from '../../scripts/dom-helpers.js';
+import { decorateButtons } from '../../scripts/aem.js';
+import { a, h3, p } from '../../scripts/dom-helpers.js';
 import { fetchQueryIndex } from '../../scripts/scripts.js';
+import { adjustHeightsOnResize } from './utils.js';
 
 export default async function decorate(block) {
-  const cols = [...block.firstElementChild.children];
   const rows = [...block.children];
-  let fronts = [];
   let backs = [];
-  let links = [];
 
-  block.classList.add(`.flip-cards-${cols.length}-cols`);
+  block.classList.add(`flip-cards-${rows[0].children.length}-cols`);
 
   if (block.children.length === 0) {
     block.innerHTML = 'Malformed block structure. No content.';
@@ -17,6 +16,15 @@ export default async function decorate(block) {
 
   const lookupTable = {};
   const pages = block.querySelectorAll('a');
+  const addButtonClasses = (selector, buttonClass) => {
+    const buttons = block.querySelectorAll(selector);
+    buttons.forEach((button) => {
+      button.classList.add('button', buttonClass);
+    });
+  };
+
+  addButtonClasses('p > strong > a', 'primary');
+  addButtonClasses('p > em > a', 'secondary');
   const queryIdx = (await fetchQueryIndex().all());
 
   queryIdx.forEach((item) => {
@@ -25,107 +33,113 @@ export default async function decorate(block) {
       lookupTable[path] = { title, description, teaser };
     }
   });
-
   pages.forEach((page, idx) => {
     const pagePath = new URL(page.href).pathname;
-    const cardFront = document.createElement('div');
     const cardBack = document.createElement('div');
-    const link = pages[idx];
     if (Object.hasOwn(lookupTable, pagePath)) {
       const cardDetails = lookupTable[pagePath];
       const icon = rows[0].children.item(0);
-      const titleh3 = document.createElement('h3');
-      const titleh4 = document.createElement('h4');
-      titleh3.textContent = cardDetails.title;
-      titleh4.textContent = cardDetails.title;
-      const desc = document.createElement('p');
-      desc.textContent = cardDetails.teaser !== '0' ? cardDetails.teaser : cardDetails.description;
+      const eyebrow = rows[1]?.children?.item(0);
+      const eyebrowIsNotLink = eyebrow?.querySelector('a') === null || eyebrow?.querySelector('a') === undefined;
+
       if (icon) {
-        cardFront.appendChild(icon);
+        cardBack.appendChild(icon);
       }
-      if (titleh3) {
-        cardFront.appendChild(titleh3);
+
+      const titleh3 = document.createElement('h3');
+      titleh3.textContent = cardDetails.title;
+      titleh3.classList.add('clamp-title');
+
+      const desc = document.createElement('p');
+      if (cardDetails.teaser && cardDetails.teaser !== '0') {
+        desc.textContent = cardDetails.teaser;
+      } else if (cardDetails.description && cardDetails.description !== '0') {
+        desc.textContent = cardDetails.description;
       }
-      if (titleh4) {
-        cardBack.appendChild(titleh4);
+      desc.classList.add('clamp-description');
+
+      const url = page.href;
+
+      const existingSpan = page.querySelector('.icon') || '';
+
+      const readMoreButton = a(
+        { class: page.classList.value || 'button primary', href: url, target: '_self' },
+        page.title || 'Read More',
+        existingSpan,
+      );
+
+      decorateButtons(readMoreButton);
+      const pButton = document.createElement('p');
+      pButton.classList.add('button-container');
+      pButton.appendChild(readMoreButton);
+
+      const contentDiv = document.createElement('div');
+      if (eyebrow && eyebrowIsNotLink) {
+        eyebrow.classList.add('eyebrow');
+        contentDiv.appendChild(eyebrow);
       }
-      if (desc) {
-        cardBack.appendChild(desc);
-      }
+      contentDiv.appendChild(titleh3);
+      contentDiv.appendChild(desc);
+      contentDiv.appendChild(pButton);
+
+      cardBack.appendChild(contentDiv);
+
+      backs.push(cardBack);
     } else {
-      // Whenever Flipcard refers to an external link, we get the details directly from the doc/author
+      // Whenever flip-cards refers to an external link, we get the details directly from the doc/author
       const rowChildren = block.children[1] ? [...block.children[1].children] : [];
       if (rowChildren && rowChildren[idx]) {
         const defaultCardDetails = rowChildren[idx];
-        const icon = rows[0]?.children?.item(0);
+        const icon = rows[0].children.item(0);
+        if (icon) {
+          cardBack.appendChild(icon);
+        }
         const titleh3 = h3();
-        const titleh4 = h4();
-        const defaultH4 = defaultCardDetails.querySelector('h4');
-        titleh3.textContent = defaultH4?.textContent;
-        titleh4.textContent = defaultH4?.textContent;
+        const defaultH3 = defaultCardDetails.querySelector('h1, h2, h3, h4, h5, h6');
+        titleh3.textContent = defaultH3?.textContent;
+        titleh3.classList.add('clamp-title');
         const desc = p();
         defaultCardDetails.querySelectorAll('p:not(.button-container):not(:last-of-type)')?.forEach((para) => {
           desc.appendChild(document.createTextNode(para.textContent));
         });
+        desc.classList.add('clamp-description');
+        const existingSpan = page.querySelector('.icon') || '';
 
-        if (icon) {
-          cardFront.appendChild(icon);
-        }
-        if (titleh3) {
-          cardFront.appendChild(titleh3);
-        }
-        if (titleh4) {
-          cardBack.appendChild(titleh4);
-        }
-        if (desc) {
-          cardBack.appendChild(desc);
-        }
+        const url = page.href;
+        const readMoreButton = a(
+          { class: page.classList.value || 'button primary', href: url, target: '_self' },
+          page.title || 'Read More',
+          existingSpan,
+        );
+        decorateButtons(readMoreButton);
+        const pButton = document.createElement('p');
+        pButton.classList.add('button-container');
+        pButton.appendChild(readMoreButton);
+
+        const contentDiv = document.createElement('div');
+        contentDiv.appendChild(titleh3);
+        contentDiv.appendChild(desc);
+        contentDiv.appendChild(pButton);
+
+        cardBack.appendChild(contentDiv);
+
+        backs.push(cardBack);
       }
     }
-    fronts.push(cardFront);
-    backs.push(cardBack);
-    links.push(link);
   });
 
-  if (fronts.length === 0 && backs.length === 0 && links.length === 0) {
-    fronts = [...rows[0].children];
+  adjustHeightsOnResize();
+
+  if (backs.length === 0) {
     backs = rows[1] ? [...rows[1].children] : [];
-    links = rows[2] ? [...rows[2].children] : [];
   }
 
-  const linkBacks = [...links];
-  // decorate backs
-  backs.forEach((card, i) => {
-    const paragraph = document.createElement('p');
-    const readMore = document.createElement('span');
-    links[i].classList.remove('button');
-    readMore.append(linkBacks[i]);
-    paragraph.appendChild(readMore);
-    card.appendChild(paragraph);
-  });
-
-  // create combined card
-  fronts.forEach((front, i) => {
-    // create link wrapper
-    const anchor = document.createElement('a');
-    block.appendChild(anchor);
+  // Append backs directly to the block
+  backs.forEach((back, index) => {
+    if (index >= 4) return; // Limit to 4 cards
     const wrapper = document.createElement('div');
-    anchor.appendChild(wrapper);
-    front.classList.add('flip-card-front');
-    wrapper.appendChild(front);
-
-    // add href
-    if (links.length > i) {
-      anchor.href = links[i].href;
-      anchor.title = links[i].title;
-    }
-
-    // add backs
-    if (backs.length <= i) {
-      return;
-    }
-    const back = backs[i];
-    back.classList.add('flip-card-back');
+    wrapper.classList.add('wrapper');
+    block.appendChild(wrapper);
     wrapper.appendChild(back);
   });
 
