@@ -10,7 +10,6 @@ import {
   loadCSS,
   loadFooter,
   loadHeader,
-  sampleRUM,
   waitForLCP,
   toClassName,
   decorateBlock,
@@ -857,10 +856,6 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
-
-  sampleRUM('lazy');
-  sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
-  sampleRUM.observe(main.querySelectorAll('picture > img'));
 }
 
 /**
