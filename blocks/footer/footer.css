@@ -217,7 +217,7 @@ footer .section.columns-container.footer-icon-list .columns.quote > div:last-chi
   footer .section.columns-container.footer-icon-list .columns.quote > div:last-child > div {
     border-left: 1px solid var(--color-grey200);
     padding-left: 19px;
-    justify-content: flex-start;
+    justify-content: space-between;
   }
 
   footer .section.columns-container.footer-icon-list .columns.quote > div > div > p {
