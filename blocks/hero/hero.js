@@ -59,4 +59,20 @@ export default function decorate(block) {
   if (getMetadata('template') !== 'homepage') {
     block.parentElement.parentElement.classList.add('blue-background');
   }
+
+  if (getMetadata('hero-bg-color') !== 'blue' && getMetadata('hero-bg-color')) {
+    block.parentElement.parentElement.classList.remove('blue-background');
+  }
+
+  if (getMetadata('hero-bg-color') === 'gray') {
+    block.parentElement.parentElement.classList.add('gray-background');
+  }
+
+  if (getMetadata('hero-bg-color') === 'blue') {
+    block.parentElement.parentElement.classList.add('blue-background');
+  }
+
+  if (getMetadata('hero-bg-color') === 'navy') {
+    block.parentElement.parentElement.classList.add('navy-background');
+  }
 }
