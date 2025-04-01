@@ -312,7 +312,7 @@ body header {
 
 @media (min-width: 1400px) /* breakpoint-xl */ {
   .block.header {
-    & > .floating-contact { 
+    & > .floating-contact {
       display: none;
     }
   }
@@ -563,7 +563,7 @@ a.button:any-link, button {
 }
 
 a.button:hover, button:hover {
-  background-color: var(--color-white);
+  background-color: transparent;
   color: var(--color-button-default);
 }
 
