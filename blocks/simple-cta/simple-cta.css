@@ -81,6 +81,10 @@ main .section > div.simple-cta-wrapper {
   color: var(--color-white);
 }
 
+.simple-cta-light.simple-cta-full .simple-cta-content-ctas a:not(:is(.primary, .secondary)) {
+  background: transparent;
+}
+
 .simple-cta-video .simple-cta-asset {
   display: flex;
   align-items: center;
@@ -297,7 +301,7 @@ main .section > div.simple-cta-wrapper {
 
   .simple-cta-asset {
     margin-bottom: 0;
-    max-width: 671px;
+    max-width: 638px;
     height: 361px;
   }
 
