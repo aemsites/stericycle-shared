@@ -312,7 +312,7 @@ body header {
 
 @media (min-width: 1400px) /* breakpoint-xl */ {
   .block.header {
-    & > .floating-contact { 
+    & > .floating-contact {
       display: none;
     }
   }
@@ -564,7 +564,7 @@ a.button:any-link, button {
 }
 
 a.button:hover, button:hover {
-  background-color: var(--color-white);
+  background-color: transparent;
   color: var(--color-button-default);
 }
 
@@ -600,13 +600,15 @@ a.button.primary, button.primary {
   --icon-color: var(--color-primary-1);
 }
 
-a.button.primary:hover, button.primary:hover{
-  outline: 3px solid var(--color-black);
-}
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  a.button.primary:hover, button.primary:hover{
+    outline: 3px solid var(--color-black);
+  }
 
-a.button.primary:focus-visible , button.primary:focus-visible {
-  outline: 3px solid var(--color-primary-1);
-  outline-offset: 3px;
+  a.button.primary:focus-visible , button.primary:focus-visible {
+    outline: 3px solid var(--color-primary-1);
+    outline-offset: 3px;
+  }
 }
 
 a.button.secondary, button.secondary {
@@ -625,40 +627,40 @@ a.button.secondary.dark, button.secondary.dark {
   border-radius: 100px;
 }
 
-a.button.secondary:hover, button.secondary:hover {
-  background-color: var(--color-primary-1);
-  color: var(--color-white);
-  border-color: currentcolor;
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  a.button.secondary:hover, button.secondary:hover {
+    background-color: var(--color-primary-1);
+    color: var(--color-white);
+    border-color: currentcolor;
+  }
+
+  a.button.secondary.dark:hover, button.secondary.dark:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary-1);
+    border-color: currentcolor;
+  }
+
+  .button-container a.button.secondary:hover .icon,
+  .button-container a.button.secondary:focus-visible .icon,
+  .button-container button.secondary:hover .icon,
+  .button-container button.secondary:focus-visible .icon {
+    --icon-color: var(--color-white);
+  }
+
+  a.button.secondary:focus-visible, button.secondary:focus-visible {
+    background-color: var(--color-primary-1);
+    color: var(--color-white);
+    outline: 3px solid var(--color-primary-1);
+    outline-offset: 3px;
+  }
+
+  a.button.secondary.dark:focus-visible, button.secondary.dark:focus-visible {
+    background-color: var(--color-white);
+    color: var(--color-primary-1);
+    outline: 3px solid var(--color-primary-1);
+    outline-offset: 3px;
+  }
 }
-
-a.button.secondary.dark:hover, button.secondary.dark:hover {
-  background-color: var(--color-white);
-  color: var(--color-primary-1);
-  border-color: currentcolor;
-}
-
-
-.button-container a.button.secondary:hover .icon,
-.button-container a.button.secondary:focus-visible .icon,
-.button-container button.secondary:hover .icon,
-.button-container button.secondary:focus-visible .icon {
-  --icon-color: var(--color-white);
-}
-
-a.button.secondary:focus-visible, button.secondary:focus-visible {
-  background-color: var(--color-primary-1);
-  color: var(--color-white);
-  outline: 3px solid var(--color-primary-1);
-  outline-offset: 3px;
-}
-
-a.button.secondary.dark:focus-visible, button.secondary.dark:focus-visible {
-  background-color: var(--color-white);
-  color: var(--color-primary-1);
-  outline: 3px solid var(--color-primary-1);
-  outline-offset: 3px;
-}
-
 
 @media screen and (min-width: 768px /* breakpoint-m */) {
   a.button:any-link, button {

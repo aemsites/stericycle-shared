@@ -1192,7 +1192,13 @@ main .two-column.form-container > div:first-child {
 /* Place the last child in the second column */
 main .two-column.form-container > div:nth-last-child(1) {
     grid-column: 2;
-    grid-row: 1 / span 4;
+    grid-row: 1 / span 2;
+}
+
+@media (min-width: 1000px) {
+    main .two-column.form-container > div:nth-last-child(1) {
+        margin: 64px 0;
+    }
 }
 
 main .two-column.narrow-top-margin > div:nth-child(1) {
@@ -1274,7 +1280,7 @@ main .section.contact-us-title > .default-content-wrapper {
     }
 
     main .body-wrapper .page-sidebar > div.form-container {
-        padding-left: 1.5rem;
+        padding: 0 1.5rem;
     }
 
     main .shredded-paper-background-column.two-column.form-container,
