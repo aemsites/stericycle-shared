@@ -103,6 +103,13 @@ main .footer-subscription-form > div {
     padding: 2rem 1.5rem;
 }
 
+@media (min-width: 600px) {
+    main .footer-subscription-form > div {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+}
+
 main .form > div:not(:first-child) {
     display: none;
 }
@@ -1104,7 +1111,7 @@ main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-
     main .footer-subscription-form {
         max-width: var(--section-width);
         margin: auto;
-        padding: 2rem 1.5rem;
+        padding: 2rem 0;
     }
 
     main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {

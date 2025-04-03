@@ -54,8 +54,14 @@ header {
   gap: 14px;
   max-width: var(--section-width);
   margin: 0 auto;
-  padding:0 1.5rem;
+  padding:0 24px;
   width: 100%;
+}
+
+@media screen and (min-width: 768px /* breakpoint-xl */) {
+  .header {
+    padding: 0 32px;
+  }
 }
 
 @media screen and (min-width: 1200px /* breakpoint-xl */) {
