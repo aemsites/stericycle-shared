@@ -58,6 +58,12 @@ header {
   width: 100%;
 }
 
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
+  .header {
+    padding: 0 80px;
+  }
+}
+
 .header .logo {
   width: 92px;
   height: 32px;

@@ -55,8 +55,8 @@ footer .footer-container > .section > div {
     width: 100%;
     max-width: var(--section-width);
     margin: 0 auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 80px;
+    padding-right: 80px;
   }
 }
 

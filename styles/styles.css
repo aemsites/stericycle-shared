@@ -175,14 +175,14 @@
   --breakpoint-xxl: 1400px;
 
   /* content width */
-  --content-width-s: 540px;
-  --content-width-m: 720px;
-  --content-width-l: 960px;
-  --content-width-xl: 1140px;
-  --content-width-xxl: 1320px;
-  --content-width-xxxl: 1920px;
+  --content-width-s: 100%;
+  --content-width-m: 100%;
+  --content-width-l: 100%;
+  --content-width-xl: 100%;
+  --content-width-xxl: 1760px;
+  --content-width-xxxl: 100%;
   --section-width: var(--content-width-s);
-  --section-width-xl: 1660px;
+  --section-width-xl: 1760px;
 
   /* Split Columns */
   --split-firstquarter: 25%:75%;
@@ -312,7 +312,7 @@ body header {
 
 @media (min-width: 1400px) /* breakpoint-xl */ {
   .block.header {
-    & > .floating-contact { 
+    & > .floating-contact {
       display: none;
     }
   }
@@ -736,7 +736,13 @@ main .section {
 main .section > div {
   max-width: var(--section-width);
   margin: 2rem auto;
-  padding: 0 1.5rem;
+  padding: 0 24px;
+}
+
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
+  main .section > div {
+    padding: 0 80px;
+  }
 }
 
 main .section.no-spacing > div {
