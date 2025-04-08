@@ -540,7 +540,7 @@ main .section.columns-container > div > div.columns.style-one-with-logos.block >
 
 @media (min-width: 992px /* breakpoint-l */) {
   main .section.columns-container:has(.columns.style-one-with-logos.block) {
-    padding: 80px;
+    padding: 0 80px;
   }
 }
 
@@ -694,7 +694,7 @@ main .section.columns-container > div > div.columns.style-four-default.block > d
 
 @media (min-width: 992px /* breakpoint-l */) {
   main .section.columns-container:has(.columns.style-four-default.block) {
-    padding: 80px;
+    padding: 0 80px;
   }
 }
 
