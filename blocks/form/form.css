@@ -1173,7 +1173,7 @@ main .navy-background.cyan-border.two-column.form-container > .form-wrapper {
     padding: 0 2rem;
 }
 
-main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background) {
+main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background, .hero-banner-form) {
     display: grid;
     grid-template-columns: minmax(0, 879px) minmax(0, 441px);
     grid-auto-rows: auto;
@@ -1193,6 +1193,7 @@ main .two-column.form-container > div:not(:first-child, .form-wrapper) {
 
 main .two-column.form-container > div:first-child {
     margin-bottom: 0;
+    padding-left: 0;
 }
 
 
