@@ -47,7 +47,7 @@ export default async function decorate(block) {
   if (navMeta === '/en-us/alt-0-nav' || navMeta === '/en-us/alt-1-nav') {
     block.classList.add('narrow');
   }
-  if(footerWidth === 'wide') {
+  if (footerWidth === 'wide') {
     footer.classList.add('wide');
   }
   while (fragment?.firstElementChild) footer.append(fragment.firstElementChild);
