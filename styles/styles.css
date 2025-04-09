@@ -1983,6 +1983,7 @@ main .columns.get-a-quote-popup.block .cta a {
 
 /* Reusable Header Styles */
 .quote-title {
+  text-align: center;
   margin-bottom: 32px;
 }
 
