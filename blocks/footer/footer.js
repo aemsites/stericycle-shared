@@ -9,8 +9,9 @@ import { buildBreadcrumb, buildCompanyLogo, createCountrySelector, createMenuAcc
 export default async function decorate(block) {
   const locale = getMetadata('locale') || 'en-us';
   // load footer as fragment
-  const footerMeta = getMetadata('footer');
+  const footerMeta = getMetadata('footer')?.toLowerCase();
   const navMeta = getMetadata('nav');
+  const footerWidth = getMetadata('footer-width')
 
   const footerPath = footerMeta && footerMeta === '/en-us/alt-0-footer' ? '/en-us/alt-0-footer-refresh' : `/${locale}/footer-refresh`;
   const fragment = await loadFragment(footerPath);
@@ -45,6 +46,9 @@ export default async function decorate(block) {
   footer.classList.add('footer-container');
   if (navMeta === '/en-us/alt-0-nav' || navMeta === '/en-us/alt-1-nav') {
     block.classList.add('narrow');
+  }
+  if(footerWidth === 'wide') {
+    footer.classList.add('wide');
   }
   while (fragment?.firstElementChild) footer.append(fragment.firstElementChild);
 
