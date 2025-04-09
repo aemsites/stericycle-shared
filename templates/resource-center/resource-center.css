@@ -1,9 +1,6 @@
 /* Going to try to fix the margin/padding at least on the resource pages, to be a bit more manageable */
 .resource-center main {
   .section {
-    & > div {
-      padding: 0 2rem;
-    }
 
     & .default-content-wrapper a {
       text-decoration: underline;

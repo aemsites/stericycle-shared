@@ -51,11 +51,15 @@ main .section > div.hero-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0;
+    padding: 0 80px;
   }
 
   .with-sidebar main > .body-wrapper > .page-content {
     width: 66.6667%;
+  }
+
+  .with-sidebar main > .body-wrapper > .page-content .default-content-wrapper:first-of-type {
+    padding: 0 48px 0 0;
   }
 
   .with-sidebar main > .body-wrapper > .page-sidebar {
@@ -71,7 +75,7 @@ main .section > div.hero-wrapper {
   .with-sidebar main > .body-wrapper:has(h1.fullScreen) .page-sidebar {
     order: unset;
   }
-  
+
   .with-sidebar main > .body-wrapper:has(h1.fullScreen) .page-content {
     order: unset;
   }

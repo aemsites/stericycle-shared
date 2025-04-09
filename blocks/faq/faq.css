@@ -1,27 +1,5 @@
-main .section.faq-container > div {
-  padding: 0 24px;
-}
-
-@media (min-width: 768px) {
-  main .section.faq-container > div {
-    padding: 0 32px;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  main .section.faq-container > div {
-    padding: 0 24px;
-  }
-}
-
 main .section.faq-container > .faq-wrapper {
   margin-top: 0;
-}
-
-@media screen and (min-width: 992px) {
-  main .section.faq-container > .faq-wrapper  {
-    padding: 0 8px;
-  }
 }
 
 main:has(.section.two-column.shredded-paper-background-column) div.faq-wrapper,
@@ -119,19 +97,13 @@ main:has(.section.two-column.full-width) div.faq-container div {
 
 @media screen and (min-width: 992px) {
   .faq details summary {
-    padding-right: 48px;
-    padding-left: 16px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
 .faq details[open] summary {
   padding: 24px 56px 24px 0;
-}
-
-@media screen and (min-width: 992px) {
-  .faq details[open] summary {
-    padding-left: 16px;
-  }
 }
 
 .faq details:not([open]) summary:focus-visible {
@@ -243,12 +215,6 @@ main:has(.section.two-column.full-width) div.faq-container div {
   padding: 2px 16px 16px 0;
   gap: 24px;
   animation: open-animation .3s ease-in-out forwards;
-}
-
-@media screen and (min-width: 992px) {
-  .faq-item.open .faq-item-body {
-    padding-left: 16px;
-  }
 }
 
 /* Applying keyframes when the details element is closed */

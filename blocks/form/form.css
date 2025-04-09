@@ -100,13 +100,21 @@ main .form a:any-link {
 main .footer-subscription-form > div {
     max-width: var(--section-width);
     width: 100%;
-    padding: 2rem 1.5rem;
+    margin: auto;
+    padding: 2rem 24px;
 }
 
-@media (min-width: 600px) {
+@media screen and (min-width: 768px) {
     main .footer-subscription-form > div {
         padding-left: 32px;
         padding-right: 32px;
+    }
+}
+
+@media (min-width: 1200px) {
+    main .footer-subscription-form > div {
+        padding-left: 80px;
+        padding-right: 80px;
     }
 }
 
@@ -1149,16 +1157,18 @@ main .two-column.form-container .form-wrapper {
     justify-self: flex-end;
 }
 
-main .shredded-paper-background-column.two-column.form-container,
-main .navy-background.cyan-border.two-column.form-container,
-main .hard-drive-background.two-column.form-container {
-    display: grid;
-    grid-template-columns: minmax(0, 1284px) minmax(0, 636px); /* Set max-width for each column */
-    grid-auto-rows: auto;
-    margin: auto;
-    gap: 0;
-    justify-content: center;
-    width:100%;
+@media (min-width: 1200px) {
+    main .shredded-paper-background-column.two-column.form-container,
+    main .navy-background.cyan-border.two-column.form-container,
+    main .hard-drive-background.two-column.form-container {
+        display: grid;
+        grid-template-columns: minmax(0, 1284px) minmax(0, 636px); /* Set max-width for each column */
+        grid-auto-rows: auto;
+        margin: auto;
+        gap: 0;
+        justify-content: center;
+        width:100%;
+    }
 }
 
 main .two-column.full-width.form-container .form-wrapper {
@@ -1169,42 +1179,59 @@ main .two-column.form-container.narrow-top-margin .form-wrapper {
     margin-top: 1rem;
 }
 
-main .navy-background.cyan-border.two-column.form-container > .form-wrapper {
+main .navy-background.cyan-border.two-column.form-container .form-wrapper {
     padding: 0 2rem;
 }
 
-main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background, .hero-banner-form) {
-    display: grid;
-    grid-template-columns: minmax(0, 879px) minmax(0, 441px);
-    grid-auto-rows: auto;
-    margin: auto;
-    gap: 0;
-    justify-content: center;
-    width:100%;
+@media (min-width: 1200px) {
+    main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background, .hero-banner-form) > div {
+        display: grid;
+        grid-auto-rows: auto;
+        margin: auto;
+        gap: 0;
+        justify-content: center;
+        width:100%;
+        padding: 32px 80px 80px;
+        grid-template-columns: minmax(0, 880px) minmax(0, 600px) !important;
+    }
 }
 
 main .two-column.form-container > div {
     grid-column: 1;
+    margin: 0;
+    padding: 24px;
+}
+
+@media (min-width: 768px) {
+    main .two-column.form-container > div {
+        padding: 32px;
+    }
+}
+
+@media (min-width: 1200px) {
+    main .two-column.form-container > div {
+        padding: 0;
+    }
 }
 
 main .two-column.form-container > div:not(:first-child, .form-wrapper) {
     margin: 0;
 }
 
-main .two-column.form-container > div:first-child {
+main .two-column.form-container > div > div:first-child {
     margin-bottom: 0;
     padding-left: 0;
 }
 
 
 /* Place the last child in the second column */
-main .two-column.form-container > div:nth-last-child(1) {
+main .two-column.form-container > div > div:nth-last-child(1) {
     grid-column: 2;
     grid-row: 1 / span 2;
 }
 
 @media (min-width: 1000px) {
-    main .two-column.form-container > div:nth-last-child(1) {
+    main .two-column.form-container > div > div:nth-last-child(1) {
         margin: 64px 0;
     }
 }
@@ -1278,13 +1305,13 @@ main .section.contact-us-title > .default-content-wrapper {
     margin-bottom: 0;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
     main .two-column.form-container .default-content-wrapper {
-        width: 90%;
+        width: 100%;
     }
 
     main .two-column.form-container .form-wrapper {
-        width:90%;
+        width:100%;
     }
 
     main .body-wrapper .page-sidebar > div.form-container {
@@ -1312,11 +1339,11 @@ main .section.contact-us-title > .default-content-wrapper {
         }
     }
 
-    main .section.two-column.form-container > div,
-    main .section.two-column.form-container.full-width > div,
-    main .shredded-paper-background-column.two-column.form-container > div,
-    main .navy-background.cyan-border.two-column.form-container > div,
-    main .hard-drive-background.two-column.form-container > div {
+    main .section.two-column.form-container > div > div,
+    main .section.two-column.form-container.full-width  > div > div,
+    main .shredded-paper-background-column.two-column.form-container  > div > div,
+    main .navy-background.cyan-border.two-column.form-container  > div > div,
+    main .hard-drive-background.two-column.form-container  > div > div {
         grid-column: span 1;
         grid-row: unset;
     }

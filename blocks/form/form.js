@@ -4,6 +4,18 @@ import { sendDigitalDataEvent } from '../../scripts/martech.js';
 import { getFormName } from './utils.js';
 
 export default async function decorate(block) {
+  const sectionContainer = block.closest('.section.two-column.form-container:not(.hero-banner-form)');
+
+  if (sectionContainer) {
+    const formContainer = document.createElement('div');
+    formContainer.className = 'form-content-container';
+    const sectionChildren = [...sectionContainer.children];
+    sectionChildren.forEach((child) => {
+      formContainer.appendChild(child);
+    });
+    sectionContainer.appendChild(formContainer);
+  }
+
   const { container, formDef } = await extractSheetDefinition(block);
   if (formDef && formDef.properties?.source === 'sheet') {
     const form = await renderDocForm(formDef);
