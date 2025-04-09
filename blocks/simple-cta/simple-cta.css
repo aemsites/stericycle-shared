@@ -144,13 +144,13 @@ main .section > div.simple-cta-wrapper {
   transform: scaleX(-1);
 }
 
+.simple-cta-graphic.simple-cta-full .simple-cta-asset img {
+  clip-path: polygon(60% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
 .simple-cta-graphic.simple-cta-asset-left .simple-cta-content .simple-cta-asset img {
   transform: scaleX(-1);
   clip-path: polygon(0% 0, 100% 0, 50% 100%, 0% 100%);
-}
-
-.simple-cta-graphic.simple-cta-full .simple-cta-asset img {
-  clip-path: polygon(60% 0, 100% 0, 100% 100%, 0% 100%);
 }
 
 .simple-cta-graphic.simple-cta-full.simple-cta-asset-left
