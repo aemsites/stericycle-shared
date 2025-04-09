@@ -60,6 +60,7 @@ footer .footer-container > .section > div {
   }
   footer .footer-container.wide {
     max-width: var(--content-width-xxxl);
+  }
 }
 
 @media screen and (min-width: 1400px /* breakpoint-xl */) {
