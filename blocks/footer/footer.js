@@ -11,7 +11,7 @@ export default async function decorate(block) {
   // load footer as fragment
   const footerMeta = getMetadata('footer')?.toLowerCase();
   const navMeta = getMetadata('nav');
-  const footerWidth = getMetadata('footer-width')
+  const footerWidth = getMetadata('footer-width');
 
   const footerPath = footerMeta && footerMeta === '/en-us/alt-0-footer' ? '/en-us/alt-0-footer-refresh' : `/${locale}/footer-refresh`;
   const fragment = await loadFragment(footerPath);
