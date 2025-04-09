@@ -350,5 +350,6 @@ div.facet-list-container > div.results img {
 
     div.facet-list-container > div.results ul > li div.item-left {
         height: 124px;
+        min-width: 192px;
     }
 }
