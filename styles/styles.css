@@ -1426,6 +1426,16 @@ main div.section.background-secondary-image {
   overflow: hidden;
 }
 
+main div.section.background-third-image {
+  background: linear-gradient(97deg, var(--color-primary-2) 27.36%, rgb(30 58 89 / 0%) 85.47%), url("/images/media_11178bf368459d6e462a468f683909f7b3f84253a.png");
+  background-size: 125.723% 158.248%;
+  background-repeat: no-repeat;
+  background-blend-mode: normal;
+  background-position: 340.2px -109px;
+  background-color: var(--color-primary-2);
+  overflow: hidden;
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
   h1 {
     line-height: 3.25rem;
