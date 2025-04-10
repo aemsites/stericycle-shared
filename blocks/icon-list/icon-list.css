@@ -55,7 +55,7 @@ div.icon-list > div > div span {
 
 div.icon-list.vertical-icons p span.icon {
     width: 103px;
-    height: 41.963px;
+    height: auto;
 }
 
 main div.icon-list.plain > div > div span {
@@ -283,7 +283,7 @@ main .two-column.form-container.icon-list-container > div:first-child.default-co
 
     div.icon-list.vertical-icons p span.icon {
         width: 103px;
-        height: 41.963px;
+        height: auto;
     }
 
     main .two-column.form-container.icon-list-container > div:first-child.default-content-wrapper > h1 {
