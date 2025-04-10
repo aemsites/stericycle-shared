@@ -1,4 +1,8 @@
-import { readBlockConfig, fetchPlaceholders } from '../../scripts/aem.js';
+import {
+  readBlockConfig,
+  fetchPlaceholders,
+  decorateButtons,
+} from '../../scripts/aem.js';
 import { getLocale } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
@@ -17,6 +21,7 @@ export default async function decorate(block) {
     headDiv.appendChild(h4);
     children.push(headDiv);
   }
+
   const imageDiv = document.createElement('div');
   imageDiv.classList.add('download-image');
   const picture = block.children[imgIdx].children[1].querySelector('picture');
@@ -26,20 +31,27 @@ export default async function decorate(block) {
   imageDiv.append(picture);
   children.push(imageDiv);
 
-  const ctaDiv = document.createElement('div');
-  ctaDiv.classList.add('download-cta');
-  const ctaP = document.createElement('p');
-  ctaP.classList.add('button-container');
-  const ctaStrong = document.createElement('strong');
-  const ctaA = document.createElement('a');
-  ctaA.classList.add('button');
-  ctaA.target = '_blank';
-  ctaA.href = cfg.download;
-  ctaA.textContent = downloadnow;
-  ctaStrong.appendChild(ctaA);
-  ctaP.appendChild(ctaStrong);
-  ctaDiv.appendChild(ctaP);
-  children.push(ctaDiv);
+  // ✅ Reuse CTA div (3rd child)
+  const originalCtaDiv = block.children[2]?.cloneNode(true);
+  if (originalCtaDiv) {
+    originalCtaDiv.classList.add('download-cta');
+
+    // remove the first child text element
+    originalCtaDiv.children[0].remove();
+
+    // replace a tag content with downloadnow
+    const aTag = originalCtaDiv.querySelector('a');
+    if (aTag) {
+      const aTagText = aTag.textContent;
+      if (aTagText && aTagText !== downloadnow) {
+        aTag.textContent = downloadnow;
+      }
+    }
+
+    children.push(originalCtaDiv);
+  }
 
   block.replaceChildren(...children);
+
+  decorateButtons(block);
 }

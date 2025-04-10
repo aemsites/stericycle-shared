@@ -43,6 +43,16 @@
       margin: 0;
       width: 100%;
     }
+
+    & a.secondary {
+      background-color: var(--color-accent-1);
+      color: var(--color-white);
+    }
+
+    & a.secondary:hover {
+      background-color: var(--color-white);
+      color: var(--color-primary-1);
+    }
   }
 }
 
