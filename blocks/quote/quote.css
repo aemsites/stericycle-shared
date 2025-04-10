@@ -54,4 +54,8 @@
     flex-direction: row;
     gap: 64px;
   }
+
+  .quote.testimonial > div {
+    flex: 1 1 100%;
+  }
 }
