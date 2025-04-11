@@ -477,6 +477,10 @@ main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-lis
      main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list.block > div > div:nth-of-type(2) {
         padding-left: 32px;
     }
+
+    main .section.sidebar-left.icon-list-container > .icon-list-wrapper {
+        padding: 0;
+    }
 }
 
 @media (min-width: 1500px) {

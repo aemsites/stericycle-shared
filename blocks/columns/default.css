@@ -480,7 +480,7 @@ main .section.columns-container > div > div.columns.native-image-sizes.block > d
 
 main .section.columns-container > div > div.columns.native-image-sizes.block > div > div {
   gap: 16px;
-  max-width: 426px;
+  max-width: 100%;
 }
 
 main .section.columns-container > div > div.columns.native-image-sizes.block > div > div > p {

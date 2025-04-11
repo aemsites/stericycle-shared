@@ -242,7 +242,7 @@ header {
 .header .submenu .list {
   max-width: var(--section-width);
   margin: 0 auto;
-  padding: 0 1.5rem 68px;
+  padding: 0 80px 68px;
   height: 100%;
 }
 

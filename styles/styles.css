@@ -947,8 +947,29 @@ main .block.divider hr {
 }
 
 main .section.narrow {
-  max-width: var(--section-width);
-  margin: auto;
+  max-width: 100%;
+  margin: 0 24px;
+}
+
+@media (min-width: 768px /* breakpoint-s */) {
+  main .section.narrow {
+    max-width: 100%;
+    margin: 0 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main .section.narrow {
+    max-width: 100%;
+    margin: 0 80px;
+  }
+}
+
+@media (min-width: 1760px) {
+  main .section.narrow {
+    max-width: 1600px;
+    margin: auto;
+  }
 }
 
 main .section.orange-background {
