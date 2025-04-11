@@ -37,7 +37,7 @@ header {
   padding: 18px 0;
   padding-bottom: 98px;
   height: 100vh;
-  max-height: calc(100vh - 60px);
+  max-height: calc(100vh - 32px);
   z-index: 99;
 }
 
