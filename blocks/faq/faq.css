@@ -8,19 +8,9 @@ main:has(.section.shredded-paper-background) div.faq-container div.faq-wrapper{
   margin: 0 2rem;
 }
 
-main .section.faq-container:has(.plain):not(.form-container) {
-  margin: auto;
-
-  & > div.default-content-wrapper,
-  & > div.faq-wrapper {
-    max-width: 100%;
-    margin: 2rem auto;
-    padding: 0 2.5rem;
-  }
-}
-
 main:has(.section.two-column.full-width) div.faq-container div {
   max-width: 100%;
+  margin: 0;
 }
 
 .faq {
@@ -353,15 +343,39 @@ main .faq-container.cyan-border.form-container.navy-background .default-content-
   }
 }
 
-@media screen and (min-width: 1920px) {
-  main .section.faq-container:has(.plain):not(.form-container) {
-    max-width: 100%;
+main .section.faq-container:has(.plain):not(.form-container) {
+  max-width: 100%;
+  margin: auto;
 
+  /* & > div.default-content-wrapper,
+  & > div.faq-wrapper {
+    max-width: var(--content-width-xxxl);
+    margin: 2rem auto;
+    padding: 0 2.5rem;
+  } */
+  & > div.default-content-wrapper,
+  & > div.faq-wrapper {
+    max-width: var(--section-width);
+    margin: 2rem auto;
+    padding: 0 24px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main .section.faq-container:has(.plain):not(.form-container) {
     & > div.default-content-wrapper,
     & > div.faq-wrapper {
-      max-width: var(--content-width-xxxl);
-      margin: 2rem auto;
-      padding: 0 2.5rem;
+      padding: 0 32px;
     }
   }
 }
+
+@media screen and (min-width: 1200px) {
+  main .section.faq-container:has(.plain):not(.form-container) {
+    & > div.default-content-wrapper,
+    & > div.faq-wrapper {
+      padding: 0 80px;
+    }
+  }
+}
+

@@ -1158,11 +1158,11 @@ main .two-column.form-container .form-wrapper {
 }
 
 @media (min-width: 1200px) {
-    main .shredded-paper-background-column.two-column.form-container,
-    main .navy-background.cyan-border.two-column.form-container,
-    main .hard-drive-background.two-column.form-container {
+    main .shredded-paper-background-column.two-column.form-container > div,
+    main .navy-background.cyan-border.two-column.form-container > div,
+    main .hard-drive-background.two-column.form-container > div {
         display: grid;
-        grid-template-columns: minmax(0, 1284px) minmax(0, 636px); /* Set max-width for each column */
+        grid-template-columns: minmax(0, 1000px) minmax(0, 600px); /* Set max-width for each column */
         grid-auto-rows: auto;
         margin: auto;
         gap: 0;
@@ -1172,7 +1172,7 @@ main .two-column.form-container .form-wrapper {
 }
 
 main .two-column.full-width.form-container .form-wrapper {
-    max-width: 612px;
+    max-width: 100%;
 }
 
 main .two-column.form-container.narrow-top-margin .form-wrapper {
@@ -1196,29 +1196,34 @@ main .navy-background.cyan-border.two-column.form-container .form-wrapper {
     }
 }
 
-main .two-column.form-container > div {
+main .two-column.form-container > div > div {
     grid-column: 1;
     margin: 0;
     padding: 24px;
 }
 
 @media (min-width: 768px) {
-    main .two-column.form-container > div {
+    main .two-column.form-container > div > div {
         padding: 32px;
     }
-}
 
-@media (min-width: 1200px) {
-    main .two-column.form-container > div {
+    main .two-column.form-container.icon-list-container > div > div {
         padding: 0;
     }
 }
 
-main .two-column.form-container > div:not(:first-child, .form-wrapper) {
+@media (min-width: 1200px) {
+    main .two-column.form-container > div > div {
+        padding: 0;
+        margin-top: 32px;
+    }
+}
+
+main .two-column.form-container > div > div:not(:first-child, .form-wrapper) {
     margin: 0;
 }
 
-main .two-column.form-container > div > div:first-child {
+main .two-column.form-container > div > div > div:first-child {
     margin-bottom: 0;
     padding-left: 0;
 }
@@ -1323,19 +1328,31 @@ main .section.contact-us-title > .default-content-wrapper {
         background-image: none;
     }
 
-    main .section.two-column.form-container,
-    main .section.two-column.form-container.full-width,
-    main .shredded-paper-background-column.two-column.form-container,
-    main .navy-background.cyan-border.two-column.form-container,
-    main .hard-drive-background.two-column.form-container
+    main .section.two-column.form-container > div,
+    main .section.two-column.form-container.full-width > div,
+    main .shredded-paper-background-column.two-column.form-container > div,
+    main .navy-background.cyan-border.two-column.form-container > div,
+    main .hard-drive-background.two-column.form-container > div
     {
         display: grid;
         grid-template-columns: 1fr;
-        padding: 0;
+        padding: 0 24px 32px;
+        overflow: hidden;
+
         /* stylelint-disable */
         > .form-wrapper {
             grid-row:   2;
             padding: 0;
+            margin-bottom: 32px;
+        }
+
+        > .faq-wrapper {
+            padding: 0;
+        }
+
+        > .default-content-wrapper {
+            padding: 0;
+            margin-left: 0;
         }
     }
 
@@ -1448,6 +1465,7 @@ main .form form fieldset.splitbuttons {
     margin: 24px 0 0;
     gap: 8px;
 }
+
 @media (min-width: 370px) {
     main .form form fieldset.splitbuttons {
         flex-flow: row;

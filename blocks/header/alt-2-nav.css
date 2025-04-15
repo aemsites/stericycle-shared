@@ -31,14 +31,15 @@ html {
 
   & nav {
     height: var(--nav-height);
+    padding: 0;
 
     & .logo {
       display: flex;
       height: 76px;
       max-width: 720px;
-      margin: 0 auto;
-      padding: 1rem 1.5rem;
       background-color: var(--color-background-header);
+      padding: 0 0 0 24px;
+      margin: 0;
 
       & a {
         display: block;
@@ -130,15 +131,6 @@ html {
   :root {
     --nav-height: 130px;
   }
-}
-
-.block.header nav {
-  padding: 0;
-}
-
-.block.header nav .logo {
-  padding: 0 0 0 24px;
-  margin: 0;
 }
 
 .block.header nav ul {

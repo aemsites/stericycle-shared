@@ -355,8 +355,25 @@ p, dl, ol, ul, pre, blockquote {
 main:has(.section.two-column.shredded-paper-background-column) .section.column-with-list .columns-wrapper,
 main:has(.section.two-column.hard-drive-background) .section.column-with-list .columns-wrapper,
 main:has(.section.shredded-paper-background) .section.column-with-list .columns-wrapper {
-  margin: 0 2rem;
-  max-width: 100%;
+  max-width: var(--section-width);
+  padding: 0 24px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px /* breakpoint-m */) {
+  main:has(.section.two-column.shredded-paper-background-column) .section.column-with-list .columns-wrapper,
+  main:has(.section.two-column.hard-drive-background) .section.column-with-list .columns-wrapper,
+  main:has(.section.shredded-paper-background) .section.column-with-list .columns-wrapper {
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
+  main:has(.section.two-column.shredded-paper-background-column) .section.column-with-list .columns-wrapper,
+  main:has(.section.two-column.hard-drive-background) .section.column-with-list .columns-wrapper,
+  main:has(.section.shredded-paper-background) .section.column-with-list .columns-wrapper {
+    padding: 0 80px;
+  }
 }
 
 main .section.column-with-list.navy-background.columns-container {
@@ -474,7 +491,6 @@ main .section.yellow-button-no-border  a.button {
 
 main .section.round-border {
   border-radius: 1rem;
-  max-width: 96%;
   margin: auto;
 }
 
@@ -2045,10 +2061,29 @@ main .columns.get-a-quote-popup.block .cta a {
 }
 
 /* Full width will unset the default width of divs under section */
-main .section.full-width > div {
+
+/* main .section.full-width > div {
   max-width: 100%;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+} */
+
+main .section.full-width > div {
+  max-width: var(--section-width) !important;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media screen and (min-width: 768px) {
+  main .section.full-width > div {
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  main .section.full-width > div {
+    padding: 0 80px;
+  }
 }
 
 @media screen and (max-width: 992px) {

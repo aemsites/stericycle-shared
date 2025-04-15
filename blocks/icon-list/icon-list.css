@@ -177,6 +177,12 @@ main .section.narrow.icon-list-container  {
     max-width: 100%;
 }
 
+main .two-column.form-container.narrow.icon-list-container:has(.vertical-icons) {
+    margin: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
 @media (min-width: 768px) {
     main .two-column.form-container.icon-list-container:not(.narrow) {
         margin: auto;
@@ -186,21 +192,19 @@ main .section.narrow.icon-list-container  {
     main .two-column.form-container.icon-list-container:not(.narrow) > div {
         padding: 0;
     }
+
+    main .two-column.form-container.narrow.icon-list-container:has(.vertical-icons) {
+        padding: 64px 32px;
+    }
 }
 
 @media (min-width: 992px) {
-
     main .section.two-column.form-container.icon-list-container div.form-wrapper {
         margin-top: 24px;
         grid-row: 1 / span 4;
         max-width: 100%;
         margin-left: 51px;
         padding: 0;
-    }
-
-    main .two-column.form-container.narrow.icon-list-container:has(.vertical-icons) {
-        margin: auto;
-        padding: 64px 80px;
     }
 
     main .two-column.form-container.icon-list-container:has(.vertical-icons.narrow) {
@@ -218,7 +222,7 @@ main .section.narrow.icon-list-container  {
     }
 
     main .two-column.form-container.icon-list-container > div > div:first-child.default-content-wrapper {
-        margin: 24px 0 80px;
+        margin: 24px 0 0;
     }
 
     div.icon-list.plain.block {
@@ -268,6 +272,7 @@ main .section.narrow.icon-list-container  {
 
     main .section.two-column.form-container.icon-list-container > div {
         padding: 0;
+        gap: 32px;
     }
 
     div.icon-list.block.vertical-icons > div > div:first-of-type {
@@ -334,6 +339,11 @@ main .section.narrow.icon-list-container  {
 }
 
 @media (min-width: 1200px) {
+    main .two-column.form-container.narrow.icon-list-container:has(.vertical-icons) {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+
     main .two-column.form-container.icon-list-container:not(.narrow) {
         margin: auto;
         padding: 64px 80px;
@@ -412,6 +422,17 @@ main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-lis
     letter-spacing: 0.48px;
 }
 
+main .section.two-column.narrow.icon-list-container:has(.vertical-numbers) {
+    max-width: var(--section-width);
+    padding: 24px;
+}
+
+@media (min-width: 768px) {
+    main .section.two-column.narrow.icon-list-container:has(.vertical-numbers) {
+        padding: 32px;
+    }
+}
+
 @media (min-width: 992px) {
     main .section.two-column.icon-list-container:has(.vertical-numbers) {
         padding: 64px;
@@ -419,9 +440,6 @@ main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-lis
         margin: auto;
     }
 
-    main .section.two-column.narrow.icon-list-container:has(.vertical-numbers) {
-        max-width: calc(var(--section-width) - 160px);
-    }
 
     main .section.two-column.icon-list-container:has(.vertical-numbers) > div  {
         grid-template-columns: minmax(0, 700px) minmax(0, 561px);
@@ -535,6 +553,13 @@ main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-lis
 
     main .section.sidebar-left.icon-list-container .icon-list-wrapper {
         padding: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    main .section.two-column.narrow.icon-list-container:has(.vertical-numbers) {
+        max-width: calc(var(--section-width) - 160px);
+        padding: 64px 80px;
     }
 }
 
