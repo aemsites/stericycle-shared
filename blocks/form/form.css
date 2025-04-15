@@ -1319,10 +1319,6 @@ main .section.contact-us-title > .default-content-wrapper {
         width:100%;
     }
 
-    main .body-wrapper .page-sidebar > div.form-container {
-        padding: 0 1.5rem;
-    }
-
     main .shredded-paper-background-column.two-column.form-container,
     main .hard-drive-background.two-column.form-container {
         background-image: none;

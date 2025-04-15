@@ -15,6 +15,7 @@ main .section > div.hero-wrapper {
   flex-direction: column;
   max-width: var(--section-width);
   margin: 0 auto;
+  padding: 0 24px;
 }
 
 .with-sidebar main > .body-wrapper > .page-sidebar > .section > div {
@@ -25,7 +26,7 @@ main .section > div.hero-wrapper {
 .with-sidebar main > .body-wrapper .default-content-wrapper:has(h1.mobile) {
   max-width: var(--section-width);
   margin-top: 2rem;
-  padding: 0 1.5rem;
+  padding: 0;
   order: 1;
 }
 
@@ -37,6 +38,11 @@ main .section > div.hero-wrapper {
   order: 3;
 }
 
+.with-sidebar main > .body-wrapper:has(h1.fullScreen) .page-content > div > div {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .with-sidebar main > .body-wrapper h1.mobile {
   display: block;
   margin-bottom: unset;
@@ -46,16 +52,25 @@ main .section > div.hero-wrapper {
   display: none;
 }
 
+@media (min-width: 768px /* breakpoint-l */) {
+  .with-sidebar main > .body-wrapper {
+    padding: 0 32px;
+  }
+}
+
 @media (min-width: 992px /* breakpoint-l */) {
   .with-sidebar main > .body-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 80px;
   }
 
   .with-sidebar main > .body-wrapper > .page-content {
     width: 66.6667%;
+  }
+
+  .with-sidebar main > .body-wrapper > .page-content .section > div {
+    padding-left: 0;
   }
 
   .with-sidebar main > .body-wrapper > .page-content .default-content-wrapper:first-of-type {
@@ -63,7 +78,7 @@ main .section > div.hero-wrapper {
   }
 
   .with-sidebar main > .body-wrapper > .page-sidebar {
-    width: 31%;
+    width: 34%;
     z-index: 1;
   }
 
@@ -81,5 +96,11 @@ main .section > div.hero-wrapper {
   }
   .with-sidebar main > .body-wrapper h1.fullScreen {
     display: block;
+  }
+}
+
+@media (min-width: 1200px /* breakpoint-l */) {
+  .with-sidebar main > .body-wrapper {
+    padding: 0 80px;
   }
 }
