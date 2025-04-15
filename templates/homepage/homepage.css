@@ -41,7 +41,7 @@ body.homepage.appear .hero.block .hero-background.mobile-only > img {
 
 @media screen and (min-width: 576px /* breakpoint-s */) {
   body.homepage.appear div.section.narrow.rounded-corners.tabs-container {
-    margin: 0 auto 24px;
+    margin: 24px auto 24px;
   }
 }
 

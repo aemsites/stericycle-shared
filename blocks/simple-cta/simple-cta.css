@@ -209,8 +209,7 @@ main .section > div.simple-cta-wrapper {
 
 @media screen and (min-width: 1200px) {
   .simple-cta.slim {
-    padding-top: 32px;
-    padding-bottom: 32px;
+    padding: 32px 80px;
   }
 }
 

@@ -132,6 +132,29 @@ html {
   }
 }
 
+.block.header nav {
+  padding: 0;
+}
+
+.block.header nav .logo {
+  padding: 0 0 0 24px;
+  margin: 0;
+}
+
+.block.header nav ul {
+  padding-right: 0 !important;
+}
+
+.block.header nav .quote-link {
+  padding-right: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .block.header nav {
+    padding: 0;
+  }
+}
+
 @media (min-width: 900px) {
   :root {
     --nav-height: 76px;
@@ -154,7 +177,7 @@ html {
       display: flex;
       align-items: stretch;
       justify-content: space-between;
-      max-width: 1920px;
+      max-width: var(--section-width);
       margin: 0 auto;
       z-index: 100;
       background-color: var(--color-background-header);
@@ -223,6 +246,14 @@ html {
 
   .block.header nav .nav-contact li.quote-link a {
     min-width: 186px;
+  }
+
+  .block.header nav {
+    padding: 0 80px;
+  }
+
+  .block.header nav .logo {
+    padding: 0;
   }
 }
 

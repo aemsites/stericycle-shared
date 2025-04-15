@@ -1188,11 +1188,11 @@ main .navy-background.cyan-border.two-column.form-container .form-wrapper {
         display: grid;
         grid-auto-rows: auto;
         margin: auto;
-        gap: 0;
+        gap: 32px;
         justify-content: center;
         width:100%;
         padding: 32px 80px 80px;
-        grid-template-columns: minmax(0, 880px) minmax(0, 600px) !important;
+        grid-template-columns: minmax(0, 1000px) minmax(0, 600px) !important;
     }
 }
 

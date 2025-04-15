@@ -965,4 +965,14 @@ main .section.columns-container.close-vertical {
   main .section.columns-container .block.columns.centered-icons.absolute-position > div div:last-of-type:has(.icon) p {
     position: absolute;
   }
+
+  /* Split Third */
+  main .section.columns-container .split-third > div > div:last-of-type .button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  main .section.columns-container .split-third > div > div:last-of-type .button-container a {
+    margin: 0;
+  }
 }

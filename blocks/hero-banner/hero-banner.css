@@ -184,6 +184,10 @@ main .section > div.hero-banner-wrapper {
     object-position: right;
 }
 
+.hero-container:has(.hero-banner.hero-banner-full) {
+    max-width: 100%;
+}
+
 .hero-banner.hero-banner-full {
     max-width: 100%;
     overflow: hidden;

@@ -192,6 +192,14 @@
     padding: 0 24px;
   }
 
+  .page-content .section > div {
+    padding: 0 24px 0 0 !important;
+  }
+
+  .page-content .section > div .video.block {
+    margin: 0;
+  }
+
   .section.two-column-offer .offer-box {
     flex: 0 0 calc(50% - 24px);
     max-width: calc(50% - 24px);
@@ -217,6 +225,11 @@
   .section.three-column-offer .offer-box-wrapper,
   .section.four-column-offer .offer-box-wrapper {
     padding: 0 80px;
+    justify-content: space-between;
+  }
+
+  .page-content .section > div {
+    padding: 0 48px 0 0 !important;
   }
 }
 
