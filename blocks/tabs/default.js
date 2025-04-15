@@ -142,6 +142,11 @@ export default async function decorate(block) {
       });
       tabpanel.setAttribute('aria-hidden', false);
       button.setAttribute('aria-selected', true);
+      button.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center',
+      });
     });
     tablist.append(button);
     tab.remove();
