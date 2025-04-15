@@ -9,7 +9,12 @@ function hasWrapper(el) {
 function modifyIcon(icon) {
   if (icon && !icon.classList.contains('custom-icon')) {
     icon.classList.add('custom-icon');
-    icon.querySelector('span').innerHTML = '';
+    const span = icon.querySelector('span');
+
+    if (span) {
+      span.innerHTML = '';
+    }
+
     decorateIcons(icon);
   }
 }
