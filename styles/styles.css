@@ -2093,7 +2093,7 @@ main .section.full-width > div {
 
 @media screen and (min-width: 1200px) {
   main .section.full-width > div {
-    padding: 0 80px;
+    padding: 32px 80px;
   }
 }
 
