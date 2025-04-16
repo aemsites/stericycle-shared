@@ -318,10 +318,6 @@ body header {
   }
 }
 
-body:has(.section.banner-container .block.banner.fixed-to-top) header {
-  top: 86px;
-}
-
 h1, h2, h3,
 h4, h5, h6,
 .heading-1, .heading-2, .heading-3,
