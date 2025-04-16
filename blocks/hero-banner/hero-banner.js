@@ -1,4 +1,15 @@
 export default function decorate(block) {
+  const sectionContainer = block.closest('.section');
+  if (sectionContainer) {
+    const heroContainer = document.createElement('div');
+    heroContainer.className = 'hero-container';
+    const sectionChildren = [...sectionContainer.children];
+    sectionChildren.forEach((child) => {
+      heroContainer.appendChild(child);
+    });
+    sectionContainer.appendChild(heroContainer);
+  }
+
   const isImageVariant = block.classList?.contains('hero-banner-image');
   const isFullWidthVariant = block.classList?.contains('hero-banner-full');
   let wrapper = block.children[0];

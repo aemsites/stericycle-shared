@@ -150,8 +150,12 @@ body.modal-open {
 
 .modal .modal-content .default-content-wrapper {
   margin-bottom: 0;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .modal .modal-content .form-wrapper {
   margin-top: 0;
+  padding-left: 24px;
+  padding-right: 24px;
 }
