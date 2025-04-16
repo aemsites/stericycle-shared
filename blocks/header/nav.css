@@ -1,4 +1,10 @@
 /* Updated CSS with .header added to each rule */
+:root {
+  --menu-offset-without-banner: 0px;
+  --menu-offset-with-banner: 146px;
+  --menu-desktop-offset-without-banner: 0px;
+  --menu-desktop-offset-with-banner: 168px;
+}
 
 header {
   position: sticky;
@@ -26,7 +32,7 @@ header {
 }
 
 .header nav.nav-alert {
-  top: 124px;
+  top: var(--menu-offset-with-banner);
 }
 
 .header nav.open {
@@ -89,7 +95,7 @@ header {
 }
 
 .header .submenu-alert.submenu {
-  top: 124px;
+  top: var(--menu-offset-with-banner);
 }
 
 .header .nav-item:not(.hover) {
@@ -797,11 +803,11 @@ header {
   }
 
   .header .submenu-alert.submenu {
-    top: 168px;
+    top: var(--menu-desktop-offset-with-banner);
   }
 
   .header .submenu-alert.submenu-scrolled {
-    top: 168px;
+    top: var(--menu-desktop-offset-with-banner);
   }
 
   .header .submenu.open {
