@@ -22,6 +22,31 @@
   margin: 0;
 }
 
+.block.banner.toast {
+  position: fixed;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  bottom: 42px;
+  padding: 36px 32px;
+  max-width: initial;
+}
+
+.block.banner.toast::before {
+  content: '';
+  position: absolute;
+  bottom: -42px;
+  left: -36px;
+  width: 100%;
+  height: 100%;
+  background-image: url('/icons/row-promo-banner-lines-mobile.svg');
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  z-index: 0;
+  transform: scale(-1, 1);
+}
+
+
 .block.banner.fixed-to-bottom {
   position: fixed;
   left: 0;
@@ -78,6 +103,21 @@
   text-decoration: underline;
 }
 
+.block.banner.toast > .banner-content > .banner-content-page * {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 25.2px */
+  letter-spacing: 0.18px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 24px;
+  flex-direction: column;
+}
+
 .block.banner > .banner-content > .banner-content-page {
   display: none;
 }
@@ -116,6 +156,13 @@
   font-size: 12px;
 }
 
+.block.banner.toast > .banner-actions > .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+
 .block.banner > .banner-actions > .close-button::before {
   content: "X";
   color: var(--color-white);
@@ -125,7 +172,7 @@
 .block.banner p:has(a) a:any-link,
 .block.banner p:has(strong+a) a:any-link,
 .block.banner p:has(strong > a) a:any-link {
-  color: var(--color-yellow);
+  color: var(--color-text-primary);
 }
 
 .block.banner p.button-container a:any-link {
@@ -169,4 +216,27 @@ button.fa-chevron-right {
   overflow: unset;
   text-overflow: unset;
   border-radius: unset;
+}
+
+@media (min-width: 1400px /* breakpoint-xl */) {
+  .block.banner.toast {
+    bottom: 0;
+  }
+
+  .block.banner.toast::before {
+    left: 0;
+    bottom: 0;
+    background-size: contain;
+  }
+
+  .block.banner.toast > .banner-actions > .close-button {
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+
+  .block.banner.toast > .banner-content > .banner-content-page * {
+    flex-direction: row;
+    gap: 48px;
+  }
 }

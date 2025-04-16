@@ -53,12 +53,32 @@ export default async function decorate(block) {
       block.append(child);
       child.classList.add('banner-content-page');
 
-      const arrowRightEl = p(
-        { class: 'button-container' },
-        span({ class: 'icon icon-right-arrow-bolder', 'data-icon-src': '/icons/right-arrow-bolder.svg', style: '--mask-image: url(/icons/right-arrow-bolder.svg);' }),
-      );
+      if (block.classList.contains('toast')) {
+        const ctas = child.querySelectorAll('a');
 
-      child.append(arrowRightEl);
+        ctas.forEach((cta) => {
+          const originalParent = cta.parentNode;
+          const topLevel = originalParent.parentNode;
+
+          if (topLevel && (topLevel.tagName === 'P' || topLevel.tagName === 'DIV')) {
+            const actionButton = originalParent.querySelector('a');
+            if (originalParent.tagName === 'STRONG') {
+              actionButton.classList.add('button', 'primary');
+            }
+
+            if (originalParent.tagName === 'EM') {
+              actionButton.classList.add('button', 'secondary');
+            }
+          }
+        });
+      } else {
+        const arrowRightEl = p(
+          { class: 'button-container' },
+          span({ class: 'icon icon-right-arrow-bolder', 'data-icon-src': '/icons/right-arrow-bolder.svg', style: '--mask-image: url(/icons/right-arrow-bolder.svg);' }),
+        );
+
+        child.append(arrowRightEl);
+      }
 
       if (idx === 0) {
         child.classList.add('active');
@@ -77,7 +97,7 @@ export default async function decorate(block) {
 
   decorateCloseButton(block);
 
-  if (block.classList.contains('fixed-to-top')) {
+  if (block.classList.contains('fixed-to-top') || block.classList.contains('toast')) {
     block.classList.add('cmp-notification-bar'); // analytics trigger
     contentWrapper.classList.add('cmp-carousel__item__content'); // analytics trigger
     const body = block.closest('body');
@@ -96,6 +116,7 @@ export default async function decorate(block) {
       copyBlock.prepend(leftChevron);
       copyBlock.append(rightChevron);
     }
+
     const closeButton = copyBlock.querySelector('button.close-button');
     closeButton.classList.add('cmp-carousel__action--close'); // analytics trigger
     closeButton.addEventListener('click', () => copyBlock.remove());
