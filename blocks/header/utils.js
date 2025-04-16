@@ -20,6 +20,7 @@ const FOCUSABLE_ELEMENTS =
 
 const MOBILE_MENU_OPEN_CLASSNAME = 'open';
 const DESKTOP_MENU_OPEN_CLASSNAME = 'hover';
+const ALERT_MENU_CLASSNAME = 'submenu-alert';
 
 const handleScroll = (submenu) => {
   if (window.scrollY > 50) {
@@ -200,7 +201,10 @@ export function generateMenuFromSection(
   }
 
   const nav = document.createElement('nav');
-  const hasAlertBanner = document.querySelector('.cmp-notification-bar');
+
+  const hasAlertBanner = document.querySelector(
+    '.cmp-notification-bar:not(.toast)',
+  );
 
   nav.role = 'menu';
   nav.id = 'nav';
@@ -266,10 +270,10 @@ export function generateMenuFromSection(
       if (hasAlertBanner) {
         const alertCloseButton = hasAlertBanner.querySelector('.close-button');
 
-        submenu.classList.add('submenu-alert');
+        submenu.classList.add(ALERT_MENU_CLASSNAME);
 
         alertCloseButton.addEventListener('click', () => {
-          submenu.classList.remove('submenu-alert');
+          submenu.classList.remove(ALERT_MENU_CLASSNAME);
           nav.classList.remove('nav-alert');
         });
 
@@ -746,8 +750,9 @@ export function buildCtasSection(
   const contactModalButtonTitle =
     placeHolders.contactustext || 'Open Contact Us Information';
   const searchModalButtonTitle = placeHolders.searchtext || 'Open Search box';
-  const hasAlertBanner = document.querySelector('.cmp-notification-bar');
-
+  const hasAlertBanner = document.querySelector(
+    '.cmp-notification-bar:not(.toast)',
+  );
   const contactModalButton = button({
     class: 'icon-button button contact-button',
     'aria-label': contactModalButtonTitle,
@@ -819,7 +824,7 @@ export function buildCtasSection(
   const contactModal = div(
     {
       class: `submenu modal contact-modal ${
-        hasAlertBanner ? 'submenu-alert' : ''
+        hasAlertBanner ? ALERT_MENU_CLASSNAME : ''
       }`,
       id: 'contact-modal',
     },
@@ -841,7 +846,9 @@ export function buildCtasSection(
 
   const searchModal = div(
     {
-      class: `submenu search-modal ${hasAlertBanner ? 'submenu-alert' : ''}`,
+      class: `submenu search-modal ${
+        hasAlertBanner ? ALERT_MENU_CLASSNAME : ''
+      }`,
       id: 'search-modal',
     },
     div(
@@ -880,8 +887,8 @@ export function buildCtasSection(
     const alertCloseButton = hasAlertBanner.querySelector('.close-button');
 
     alertCloseButton.addEventListener('click', () => {
-      searchModal.classList.remove('submenu-alert');
-      contactModal.classList.remove('submenu-alert');
+      searchModal.classList.remove(ALERT_MENU_CLASSNAME);
+      contactModal.classList.remove(ALERT_MENU_CLASSNAME);
     });
   }
 
