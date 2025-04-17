@@ -27,4 +27,28 @@ export default async function decorate(block) {
     // eslint-disable-next-line no-console
     console.log(`failed to load header ${type}`, error);
   }
+
+  // Move default-content-wrappers into the columns-wrapper
+  document.querySelectorAll('.section.two-column.form-container.columns-container').forEach((section) => {
+    const columnsWrapper = section.querySelector('.columns-wrapper');
+    if (!columnsWrapper) return;
+
+    const children = Array.from(section.children);
+    const before = [];
+    const after = [];
+
+    let beforeWrapper = true;
+
+    children.forEach((child) => {
+      if (child === columnsWrapper) {
+        beforeWrapper = false;
+      } else if (child.classList.contains('default-content-wrapper')) {
+        (beforeWrapper ? before : after).push(child);
+      }
+    });
+
+    // Move elements into the columns-wrapper
+    before.forEach((el) => columnsWrapper.insertBefore(el, columnsWrapper.firstChild));
+    after.forEach((el) => columnsWrapper.appendChild(el));
+  });
 }
