@@ -1,6 +1,6 @@
 import { decorateButtons } from '../../scripts/aem.js';
 import { a, h3, p } from '../../scripts/dom-helpers.js';
-import { fetchQueryIndex } from '../../scripts/scripts.js';
+import { fetchQueryIndexAllNoIndex } from '../../scripts/scripts.js';
 import { adjustHeightsOnResize } from './utils.js';
 
 export default async function decorate(block) {
@@ -25,7 +25,7 @@ export default async function decorate(block) {
 
   addButtonClasses('p > strong > a', 'primary');
   addButtonClasses('p > em > a', 'secondary');
-  const queryIdx = (await fetchQueryIndex().all());
+  const queryIdx = (await fetchQueryIndexAllNoIndex());
 
   queryIdx.forEach((item) => {
     if (Object.hasOwn(item, 'path') && Object.hasOwn(item, 'title') && Object.hasOwn(item, 'description') && Object.hasOwn(item, 'teaser')) {

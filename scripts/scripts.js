@@ -156,13 +156,23 @@ export const haversineDistance = (lat1, lon1, lat2, lon2) => {
 };
 
 /**
- * Fetch the query index sheet.
+ * Fetch the query index sheet. Includes noindex items.
  * @param {string} [locale] sheet locale (uses current page locale none is supplied)
  * @returns {*} fetched query index
  */
-export function fetchQueryIndex(locale) {
+export function fetchQueryIndex(locale, sheet = 'query') {
   const sheetLocale = locale || getLocale();
-  return ffetch(`/${sheetLocale}/query-index.json`);
+  return ffetch(`/${sheetLocale}/${sheet}-index.json`);
+}
+
+/**
+ * Fetch all query index items that are not noindex
+ * @param {string} [locale] sheet locale (uses current page locale none is supplied)
+ * @returns {*} fetched query index
+ */
+export async function fetchQueryIndexAllNoIndex(locale, sheet = 'query') {
+  const all = await fetchQueryIndex(locale, sheet).all();
+  return all.filter((item) => !item.robots?.trim().toLowerCase().includes('noindex'));
 }
 
 // Remove dedup based on name, specific to the locations
@@ -245,12 +255,10 @@ export async function getRelatedPosts(types, tags, limit) {
 
   // fetch all posts by type
   let posts = [];
-  const fetchResults = await Promise.all(sheets.map(async (sheet) => fetchQueryIndex().sheet(sheet).all()));
+  const fetchResults = await Promise.all(sheets.map(async (sheet) => fetchQueryIndex(null, sheet).all()));
   fetchResults.forEach((fetchResult) => posts.push(...fetchResult));
-  if (nTypes.length > 1) {
-    // this could become a performance problem with a huge volume of posts
-    posts = posts.sort((a, b) => b.date - a.date);
-  }
+  // this could become a performance problem with a huge volume of posts
+  posts = posts.sort((a, b) => b.date - a.date);
 
   // filter posts by tags
   const filteredPosts = [];
