@@ -3883,7 +3883,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/service-locations/baltimore</loc>
-    <lastmod>2025-03-10</lastmod>
+    <lastmod>2025-04-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/baltimore"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/baltimore"/>
   </url>
@@ -4009,7 +4009,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/service-locations/charlotte</loc>
-    <lastmod>2025-03-25</lastmod>
+    <lastmod>2025-04-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/charlotte"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/charlotte"/>
   </url>
@@ -4039,7 +4039,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/service-locations/denver</loc>
-    <lastmod>2025-03-25</lastmod>
+    <lastmod>2025-04-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/denver"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/denver"/>
   </url>
@@ -4160,7 +4160,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/service-locations/houston</loc>
-    <lastmod>2025-03-25</lastmod>
+    <lastmod>2025-04-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/houston"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/houston"/>
   </url>
@@ -4286,7 +4286,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/service-locations/los-angeles</loc>
-    <lastmod>2025-03-17</lastmod>
+    <lastmod>2025-04-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/los-angeles"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/los-angeles"/>
   </url>
@@ -4298,7 +4298,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/service-locations/memphis</loc>
-    <lastmod>2025-03-25</lastmod>
+    <lastmod>2025-04-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/memphis"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/memphis"/>
   </url>
@@ -4316,7 +4316,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/service-locations/minnesota</loc>
-    <lastmod>2025-03-25</lastmod>
+    <lastmod>2025-04-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/minnesota"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/minnesota"/>
   </url>
@@ -4406,7 +4406,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/service-locations/new-york</loc>
-    <lastmod>2025-03-25</lastmod>
+    <lastmod>2025-04-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/new-york"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/new-york"/>
   </url>
@@ -4569,7 +4569,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/service-locations/san-antonio</loc>
-    <lastmod>2025-04-03</lastmod>
+    <lastmod>2025-04-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/san-antonio"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/san-antonio"/>
   </url>
@@ -5037,5 +5037,12 @@
     <lastmod>2025-02-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/secure-shredding-services/one-off-test"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/secure-shredding-services/one-off-test"/>
+  </url>
+  <url>
+    <loc>https://www.shredit.com/en-us/blog/recycling-save-energy-protect-information</loc>
+    <lastmod>2025-04-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/blog/recycling-save-energy-protect-information"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.shredit.com/en-ca/blog/recycling-save-energy-protect-information"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/blog/recycling-save-energy-protect-information"/>
   </url>
 </urlset>
