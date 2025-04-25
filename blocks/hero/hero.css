@@ -9,6 +9,10 @@ main .section.hero-container {
   }
 }
 
+.block.hero.white-text > .hero-content-container > .hero-content > * {
+  color: white !important;
+}
+
 .block.hero {
   position: relative;
   padding: 2.625rem 0;
