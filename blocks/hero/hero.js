@@ -75,4 +75,8 @@ export default function decorate(block) {
   if (getMetadata('hero-bg-color') === 'navy') {
     block.parentElement.parentElement.classList.add('navy-background');
   }
+
+  if (getMetadata('homepage-hero-text-color') === 'white') {
+    block.classList.add('white-text');
+  }
 }
