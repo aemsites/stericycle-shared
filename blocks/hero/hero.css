@@ -9,8 +9,10 @@ main .section.hero-container {
   }
 }
 
-.block.hero.white-text > .hero-content-container > .hero-content > * {
-  color: white !important;
+@media (min-width: 992px) {
+  .block.hero.white-text > .hero-content-container > .hero-content > * {
+    color: white !important;
+  }
 }
 
 .block.hero {
