@@ -506,6 +506,36 @@ async function decorateTemplates(main) {
   }
 }
 
+function decorateLinks(main) {
+  const links = main.querySelectorAll('a');
+  const currentLocale = getLocale();
+  
+  links.forEach((link) => {
+    // Only process internal links (not external, anchors, or javascript)
+    if (link.href && 
+        link.href.startsWith(window.location.origin) && 
+        !link.href.startsWith('javascript:') &&
+        !link.href.startsWith('#')) {
+      
+      const url = new URL(link.href);
+      const pathParts = url.pathname.split('/');
+      
+      // Check if the link already has a locale segment
+      const hasLocaleSegment = pathParts.length > 1 && /^[a-z]{2}-[a-z]{2}$/i.test(pathParts[1]);
+      
+      if (hasLocaleSegment) {
+        // Replace the existing locale with the current one
+        pathParts[1] = currentLocale;
+        
+        // Reconstruct the URL with the current locale
+        url.pathname = pathParts.join('/');
+        link.href = url.toString();
+      }
+      // If no locale segment exists, leave the link as is
+    }
+  });
+}
+
 /**
  * decorates banners that are included via metadata
  */
@@ -781,6 +811,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateCtaButtons(main);
+  decorateLinks(main);
   modifyBigNumberList(main);
   decorateSectionTemplates(main);
   consolidateOfferBoxes(main);
