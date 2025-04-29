@@ -593,6 +593,34 @@ export function decorateAnchors(element = document) {
 }
 
 /**
+ * Rewrites links to ensure they are localized
+ * @param {Element} main main element
+ */
+function rewriteLinks(main) {
+  const links = main.querySelectorAll('a');
+  const currentLocale = getLocale();
+  links.forEach((link) => {
+    // Only process internal links (not external or anchors)
+    if (link.href
+      && link.href.startsWith(window.location.origin)
+      && !link.href.startsWith('#')) {
+      const url = new URL(link.href);
+      const pathParts = url.pathname.split('/');
+      // Check if the link already has a locale segment
+      const hasLocaleSegment = pathParts.length > 1 && /^[a-z]{2}-[a-z]{2}$/i.test(pathParts[1]);
+      if (hasLocaleSegment) {
+        // Replace the existing locale with the current one
+        pathParts[1] = currentLocale;
+        // Reconstruct the URL with the current locale
+        url.pathname = pathParts.join('/');
+        link.href = url.toString();
+      }
+      // If no locale segment exists, leave the link as is
+    }
+  });
+}
+
+/**
  * Loads footer-subscription-form
  * @param main main element
  * @returns {Promise}
@@ -778,6 +806,7 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateAnchors(main);
+  rewriteLinks(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
