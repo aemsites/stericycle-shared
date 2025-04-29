@@ -208,11 +208,11 @@ main .two-column.form-container.icon-list-container > div:first-child.default-co
 
     div.icon-list.block.two-column-icons > div {
         flex: 0 0 50%;
+        margin-bottom: 32px;
     }
 
-    div.icon-list.block.two-column-icons > div:last-child {
+    div.icon-list.block.two-column-icons .odd-last-child {
         flex: 1 1 100%;
-        margin-top: 32px;
     }
 
     div.icon-list > div {
