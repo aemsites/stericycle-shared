@@ -106,4 +106,12 @@ export default function decorate(block) {
 
     picture.appendChild(imgWrapper);
   }
+
+  const promoBadgeContainer = block.querySelector('.hero-banner-promo-badge');
+  if (promoBadgeContainer) {
+    const innerDiv = promoBadgeContainer.querySelector('div');
+    if (innerDiv && innerDiv.innerText.trim() === '') {
+      promoBadgeContainer.remove();
+    }
+  }
 }
