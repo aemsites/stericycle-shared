@@ -51,6 +51,7 @@
   max-width: 100%;
   overflow: clip;
   box-sizing: border-box;
+  border-radius: 8px;
 }
 
 .columns.block:not(.wrap-mobile) > div > .columns-img-col img {
