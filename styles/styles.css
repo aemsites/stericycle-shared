@@ -2179,10 +2179,3 @@ main .section.multi-icon-list .columns > div > div > ul > li > span {
   width: 29.5px;
   height: 29.5px;
 }
-
-@media (min-width: 992px) {
-  main .section.multi-icon-list .columns > div > div > ul > li > span {
-    height: 32px;
-    width: 32px;
-  }
-}
