@@ -225,7 +225,7 @@ main:has(.section.two-column.full-width) div.faq-container div {
 
 @media screen and (min-width: 992px) {
   .faq details[open] .faq-item-body p {
-    max-width: 948px;
+    max-width: 1248px;
   }
 }
 

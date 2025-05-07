@@ -129,12 +129,12 @@
 
 .cards > ul > li > .card-body > .card-section > p.button-container:last-child {
   flex: 0;
-  margin-top: auto;
 }
 
 .cards:not(.full-width) > ul > li > .card-body > .card-section > p.button-container > * {
   display: flex;
   justify-content: center;
+  margin: auto;
 }
 
 .cards.full-width > ul > li > .card-body > .card-section > p:not(.button-container) {
@@ -196,33 +196,8 @@
   margin-top: 16px;
 }
 
-.cards > ul > li > .card-body > .card-section > p.button-container:last-child a.button {
-  padding: .5rem 2rem;
-  background-color: var(--color-button-primary);
-  border: none;
-  color: var(--color-text-primary);
-  border-radius: 100px;
-}
-
-.cards > ul > li > .card-body > .card-section > p.button-container:last-child a.button:hover {
-  outline: 3px solid var(--color-black);
-}
-
 .cards.full-width > ul > li > .card-body > .card-section.button-container a.button.primary {
-  outline: 1px solid #1A242B;
   margin: 32px 0 0;
-}
-
-.cards.full-width > ul > li > .card-body > .card-section.button-container a.button.primary:hover {
-  outline: 3px solid var(--color-black);
-}
-
-.cards.full-width.light > ul > li > .card-body > .card-section.button-container a.button.primary {
-  outline: 1px solid var(--color-grey200);
-}
-
-.cards.full-width.light > ul > li > .card-body > .card-section.button-container a.button.primary:hover {
-  outline: 3px solid var(--color-black);
 }
 
 .cards > ul > li > .card-body > .card-section > .button-container a.button .icon {
