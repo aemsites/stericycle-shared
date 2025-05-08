@@ -51,6 +51,7 @@
   max-width: 100%;
   overflow: clip;
   box-sizing: border-box;
+  border-radius: 8px;
 }
 
 .columns.block:not(.wrap-mobile) > div > .columns-img-col img {
@@ -491,6 +492,7 @@ main .section.columns-container > div > div.columns.native-image-sizes.block > d
 
 main .section.columns-container > div > div.columns.native-image-sizes.block > div > div > p > strong {
   font-weight: 900;
+  font-size: 14px;
   line-height: 120%; /* 16.8px */
   letter-spacing: 1.4px;
   text-transform: uppercase;
@@ -569,6 +571,10 @@ main .section.columns-container > div > div.columns.style-three-default.block {
 
 main .section.columns-container > div > div.columns.cyan-accent-border {
   margin: 0;
+}
+
+main .section.columns-container > div > div.columns.cyan-accent-border > div > div > p:first-of-type > strong {
+  font-size: 18px;
 }
 
 main .section.columns-container:has(.columns.style-three-default.block) > div > div.columns.cyan-accent-border > div {
