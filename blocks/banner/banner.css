@@ -7,9 +7,9 @@
   position: relative;
   align-items: center;
   gap: 24px;
-  padding: 27px 32px;
+  padding: 0.5rem 1.5rem;
   margin: auto;
-  max-width: var(--section-width-xl);
+  max-width: var(--section-width);
   height: fit-content;
   background-color: var(--color-bg-tertiary);
 }
@@ -78,7 +78,6 @@
 @media screen and (min-width: 576px /* breakpoint-s */) {
   .block.banner > .banner-content {
     gap: 4rem;
-    white-space: nowrap;
   }
 }
 
