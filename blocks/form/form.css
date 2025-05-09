@@ -1151,6 +1151,7 @@ main .section.contact-us .form-wrapper {
     grid-row: span 3;
     margin-bottom: 1rem;
     padding-left: 0;
+    width: 100%;
 }
 
 main .two-column.form-container .form-wrapper {
@@ -1285,6 +1286,28 @@ main .contact-us .columns-wrapper .columns-has-image > div > div:nth-child(2)::b
 
 main .contact-us .columns-wrapper {
     box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+    padding: 0 2rem;
+    width: 100%;
+}
+
+main .section.contact-us {
+    grid-template-columns: 60% 40%;
+    width: 100%;
+    max-width: var(--section-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+@media screen and (min-width: 768px) {
+    main .section.contact-us {
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+main .section.contact-us {
+    padding: 0 80px;
+  }
 }
 
 main .section.contact-us > div:nth-child(3) {
@@ -1302,7 +1325,6 @@ main .section.contact-us > div:nth-child(4) {
 }
 
 main .section .default-content-wrapper h1[id='contact-us'] {
-    margin-left: 2rem;
     margin-bottom: 0;
 }
 
@@ -1617,4 +1639,9 @@ main .form form .panel-wrapper.splitbuttons .radio-wrapper.field-wrapper {
     width: fit-content;
     padding: 0;
     margin-top: 0;
+}
+
+main .section.contact-us > div:nth-child(4) img {
+    width: 100%;
+    height: 100%;
 }
