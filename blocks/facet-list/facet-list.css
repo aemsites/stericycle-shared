@@ -1,3 +1,5 @@
+@import url('../form/form.css');
+
 a.initial-caps {
     text-transform: capitalize;
 }
@@ -11,8 +13,12 @@ div.facet-list-container > div.default-content-wrapper {
 }
 
 div.facet-list-container h3 {
-    font-size: 1.125rem;
-    color: var(--color-primary-1);
+    margin-bottom: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: 0.32px;
+    color: var(--color-text-primary);
 }
 
 div.facet-list-container > div.facet {
@@ -41,11 +47,6 @@ div.facet-list-container > div.facet > ul {
 div.facet-list-container > div.results {
     flex-grow: 1;
     width: 100%;
-}
-
-div.facet-list-container > div.facet .head > i {
-    display: none;
-    cursor: pointer;
 }
 
 div.facet-list-container div.results div.item-date {
@@ -163,53 +164,66 @@ div.facet .facet-list-container.unhide {
 
 
 div.facet-list-container > div.facet div.facet-group {
-    margin: 1.5rem 0;
+    margin-bottom: 18px;
 }
 
-div.facet-list-container > div.facet ul {
-    margin: 0;
+div.facet-list-container > div.facet .facet-list:not(.slideout) {
+    margin: 24px 0 13px;
     padding-left: 0;
-    margin-bottom: 1rem;
 }
 
 div.facet-list-container > div.facet ul > li > div {
     display: flex;
-    font-size: 1rem;
-    line-height: 1.25rem;
-    font-weight: 400;
-    padding-right: 3.125rem;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
-div.facet-list-container > div.head {
-    font-family: var(--font-family-lato), sans-serif;
-    font-weight: 800;
-    text-transform: uppercase;
-    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 3.125rem;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 100%; /* 16px */
+    letter-spacing: 0.16px;
+    color: var(--color-text-primary);
 }
+
+div.facet-list-container > .head {
+    position: relative;
+    padding: 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+    font-family: var(--font-family-lato), sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 0.24px;
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-grey200);
+}
+
+
+div.facet-list-container > .head .toggle-icon {
+    position: absolute;
+    right: 16px;
+    top: 40%;
+    width: 24px;
+    height: 24px;
+    background-image: url('/icons/minus-sign.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    transition: background-image 0.3s ease;
+    cursor: pointer;
+  }
+
+  div.facet-list-container > .head .toggle-icon.open {
+    background-image: url('/icons/plus-sign.svg');
+  }
 
 div.facet-list-container > div.facet ul > li > div.facet-group {
     display: flex;
     justify-content: start;
 }
 
-div.facet-list-container > div.facet ul > li > div.facet-group > input[type="checkbox"] {
-    height: 1rem;
-    border: .1rem solid #1a242b;
-    border-radius: 10%;
-    vertical-align: bottom;
-    margin-right: 1rem;
-    width: 1rem;
-}
-
-div.facet-list-container > div.facet .head > i::before {
-    content: "";
-    font-size: .5rem;
-}
 
 div.facet-list-container > div.results h4 {
     font-size: 1rem;
@@ -258,9 +272,7 @@ div.facet-list-container > div.results ul {
 }
 
 div.facet-list-container > div.facet div.facet-group > input {
-    margin-right: 1rem;
-    width: 1rem;
-    vertical-align: bottom;
+    margin-right: 8px;
 }
 
 div.facet-list-container > div.results ul > li {
@@ -297,7 +309,7 @@ div.facet-list-container > div.results img {
 
 @media screen and (min-width: 992px) {
     div.facet-list-container h3 {
-        font-size: 1.625rem;
+        font-size: 32px;
     }
 
     div.section.facet-list-container {
@@ -335,13 +347,6 @@ div.facet-list-container > div.results img {
     div.facet-list-container > div.results {
         width: 75%;
         max-width: 75%;
-    }
-
-    div.facet-list-container > div.facet .head > i {
-        display: inline-block;
-        font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
-        text-transform: uppercase;
-        font-style: normal;
     }
 
     div.facet .facet-list-container {
