@@ -2,6 +2,25 @@ import { decorateButtons } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { span, button, p } from '../../scripts/dom-helpers.js';
 
+const TOAST_BANNER = 'toast';
+const TOAST_BANNER_COOKIE = 'bannerDismissed';
+
+function setCookie(name, value, days) {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = `expires=${date.toUTCString()}`;
+  document.cookie = `${name}=${value}; ${expires}; path=/`;
+}
+
+export function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) {
+    return parts.pop().split(';').shift();
+  }
+  return null;
+}
+
 function decorateCloseButton(block) {
   const buttonWrapper = document.createElement('div');
   buttonWrapper.classList.add('banner-actions');
@@ -30,6 +49,11 @@ function navigateContent(block, direction) {
 }
 
 export default async function decorate(block) {
+  if (getCookie(TOAST_BANNER_COOKIE) && block.classList.contains(TOAST_BANNER)) {
+    block.closest('.section').remove();
+    return;
+  }
+
   // Set default background if no other is present
   if (!(/-background/.test(block.className))) {
     block.classList.add('blue-background');
@@ -53,12 +77,32 @@ export default async function decorate(block) {
       block.append(child);
       child.classList.add('banner-content-page');
 
-      const arrowRightEl = p(
-        { class: 'button-container' },
-        span({ class: 'icon icon-right-arrow-bolder', 'data-icon-src': '/icons/right-arrow-bolder.svg', style: '--mask-image: url(/icons/right-arrow-bolder.svg);' }),
-      );
+      if (block.classList.contains(TOAST_BANNER)) {
+        const ctas = child.querySelectorAll('a');
 
-      child.append(arrowRightEl);
+        ctas.forEach((cta) => {
+          const originalParent = cta.parentNode;
+          const topLevel = originalParent.parentNode;
+
+          if (topLevel && (topLevel.tagName === 'P' || topLevel.tagName === 'DIV')) {
+            const actionButton = originalParent.querySelector('a');
+            if (originalParent.tagName === 'STRONG') {
+              actionButton.classList.add('button', 'primary');
+            }
+
+            if (originalParent.tagName === 'EM') {
+              actionButton.classList.add('button', 'secondary');
+            }
+          }
+        });
+      } else {
+        const arrowRightEl = p(
+          { class: 'button-container' },
+          span({ class: 'icon icon-right-arrow-bolder', 'data-icon-src': '/icons/right-arrow-bolder.svg', style: '--mask-image: url(/icons/right-arrow-bolder.svg);' }),
+        );
+
+        child.append(arrowRightEl);
+      }
 
       if (idx === 0) {
         child.classList.add('active');
@@ -77,7 +121,7 @@ export default async function decorate(block) {
 
   decorateCloseButton(block);
 
-  if (block.classList.contains('fixed-to-top')) {
+  if (block.classList.contains('fixed-to-top') || block.classList.contains(TOAST_BANNER)) {
     block.classList.add('cmp-notification-bar'); // analytics trigger
     contentWrapper.classList.add('cmp-carousel__item__content'); // analytics trigger
     const body = block.closest('body');
@@ -96,8 +140,17 @@ export default async function decorate(block) {
       copyBlock.prepend(leftChevron);
       copyBlock.append(rightChevron);
     }
+
     const closeButton = copyBlock.querySelector('button.close-button');
     closeButton.classList.add('cmp-carousel__action--close'); // analytics trigger
+
+    // Add event to set a cookie when the banner is closed
+    if (block.classList.contains(TOAST_BANNER)) {
+      closeButton.addEventListener('click', () => {
+        setCookie(TOAST_BANNER_COOKIE, 'true', 3);
+      });
+    }
+
     closeButton.addEventListener('click', () => copyBlock.remove());
     body.prepend(copySection);
     copySection.style = '{display: block;}';
