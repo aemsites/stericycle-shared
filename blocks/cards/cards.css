@@ -215,7 +215,8 @@
 }
 
 .cards.primary > ul > li > .card-body > hr {
-  border: 0.5px solid #C1C6C6;
+  border: 0.5px solid var(--color-accent-4);
+  opacity: 1;
 }
 
 .section.cards-container.list-styles ul {
