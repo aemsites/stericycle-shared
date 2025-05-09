@@ -29,7 +29,7 @@
   width: 100%;
   bottom: 42px;
   padding: 36px 32px;
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 8px 8px 0 0;
   max-width: initial;
 }
 
@@ -96,7 +96,7 @@
   }
 
   .block.banner.toast {
-    border-radius: 12px 12px 0px 0px;
+    border-radius: 12px 12px 0 0;
   }
 }
 
