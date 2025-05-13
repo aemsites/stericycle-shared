@@ -97,6 +97,7 @@
   --color-accent-1: #006CB4;
   --color-accent-2: #40BBD5;
   --color-accent-3: #FF5733;
+  --color-accent-4: #C1C6C6;
   --color-accent-link: #FFC62B;
 
   /* Interactive */
@@ -316,10 +317,6 @@ body header {
       display: none;
     }
   }
-}
-
-body:has(.section.banner-container .block.banner.fixed-to-top) header {
-  top: 86px;
 }
 
 h1, h2, h3,
@@ -1993,6 +1990,7 @@ main .columns.get-a-quote-popup.block .cta a {
 
 /* Reusable Header Styles */
 .quote-title {
+  text-align: center;
   margin-bottom: 32px;
 }
 

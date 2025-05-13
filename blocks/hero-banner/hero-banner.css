@@ -245,6 +245,17 @@ main .section > div.hero-banner-wrapper {
     }
 }
 
+@media screen and (max-width: 1199px) {
+    .hero-banner-asset:has(.masked-image-wrapper) {
+        height: 100% !important;
+    }
+
+
+    .hero-banner-asset:has(.masked-image-wrapper) img {
+        height: 100% !important;
+    }
+}
+
 @media screen and (min-width: 1200px) {
     .hero-banner-content {
         flex-direction: row;
@@ -275,18 +286,25 @@ main .section > div.hero-banner-wrapper {
         padding-top: 36px;
     }
 
+    main .section > div.hero-banner-wrapper:has(.masked-image-wrapper) {
+        position: relative;
+        overflow: hidden;
+    }
+
     .hero-banner-asset {
         position: absolute;
         right: 0;
         margin-bottom: 0;
         max-width: 838px;
-        height: 545px;
+    }
+
+    .hero-banner-asset:has(.masked-image-wrapper) {
+        width: fit-content;
     }
 
     .hero-banner-asset img {
         object-fit: contain;
         object-position: top;
-        height: 545px;
     }
 
     /* Variants */
