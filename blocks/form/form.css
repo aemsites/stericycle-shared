@@ -759,6 +759,7 @@ main .form form .wizard.left .panel-wrapper{
     main .form form .panel-wrapper {
         flex-flow: row wrap;
         gap: 10px 15px;
+        padding: 0;
     }
 }
 
@@ -1170,6 +1171,18 @@ main .two-column.form-container .form-wrapper {
         justify-content: center;
         width:100%;
     }
+
+    main .shredded-paper-background-column.two-column.form-container.full-width > div.form-content-container,
+    main .navy-background.cyan-border.two-column.form-container.full-width > div.form-content-container,
+    main .hard-drive-background.two-column.form-container.full-width > div.form-content-container {
+        margin: 0 auto;
+    }
+
+    main .shredded-paper-background-column.two-column.form-container.full-width > div.form-content-container > .default-content-wrapper,
+    main .navy-background.cyan-border.two-column.form-container.full-width > div.form-content-container > .default-content-wrapper,
+    main .hard-drive-background.two-column.form-container.full-width > div.form-content-container > .default-content-wrapper {
+        margin: 0;
+    }
 }
 
 main .two-column.full-width.form-container .form-wrapper {
@@ -1234,11 +1247,21 @@ main .two-column.form-container > div > div > div:first-child {
 main .two-column.form-container > div > div:nth-last-child(1) {
     grid-column: 2;
     grid-row: 1 / span 2;
+    margin: 0 auto;
+    width: 100%;
 }
 
 @media (min-width: 1000px) {
     main .two-column.form-container > div:nth-last-child(1) {
-        margin: 32px 0 64px;
+        margin: 0 auto;
+        padding-top: 32px;
+        padding-bottom: 64px;
+    }
+}
+
+@media (min-width: 1200px) {
+    main .two-column.form-container.shredded-paper-background-column > div:nth-last-child(1) {
+        margin: 32px auto 0;
     }
 }
 
@@ -1354,14 +1377,14 @@ main .section.contact-us-title > .default-content-wrapper {
     {
         display: grid;
         grid-template-columns: 1fr;
-        padding: 0 24px 32px;
+        padding: 32px 24px 32px;
+        margin: 0 auto;
         overflow: hidden;
 
         /* stylelint-disable */
         > .form-wrapper {
             grid-row:   2;
             padding: 0;
-            margin-bottom: 32px;
         }
 
         > .faq-wrapper {
@@ -1644,4 +1667,26 @@ main .form form .panel-wrapper.splitbuttons .radio-wrapper.field-wrapper {
 main .section.contact-us > div:nth-child(4) img {
     width: 100%;
     height: 100%;
+}
+
+main .two-column.form-container.sidebar-left > .form-content-container {
+    margin: 32px auto 64px;
+    padding: 0 24px;
+}
+
+main .two-column.form-container.sidebar-left > .form-content-container > div {
+    margin: 0;
+}
+
+
+@media (min-width: 768px) {
+  main .two-column.form-container.sidebar-left > .form-content-container {
+    padding: 0 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main .two-column.form-container.sidebar-left > .form-content-container {
+    padding: 0 80px;
+  }
 }

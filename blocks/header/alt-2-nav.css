@@ -171,6 +171,7 @@ html {
       justify-content: space-between;
       max-width: var(--section-width);
       margin: 0 auto;
+      padding: 0 32px;
       z-index: 100;
       background-color: var(--color-background-header);
 

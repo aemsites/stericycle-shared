@@ -2082,6 +2082,16 @@ main .section.full-width > div {
   padding: 0 24px;
 }
 
+/* main .section.full-width.fragment-container:has(.text-wrapper) {
+  border-top: 0.2px solid #204664;
+} */
+
+main .section.full-width.fragment-container > div.text-wrapper {
+  margin: 32px auto;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 @media screen and (min-width: 768px) {
   main .section.full-width > div {
     padding: 0 32px;
