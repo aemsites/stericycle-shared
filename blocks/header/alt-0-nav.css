@@ -43,7 +43,6 @@ header.header-wrapper {
 }
 
 @media (min-width: 600px) {
-
   .block.header {
     & nav {
       max-width: var(--section-width);
@@ -53,7 +52,6 @@ header.header-wrapper {
 }
 
 @media (min-width: 900px) {
-
   .block.header {
     & nav {
       max-width: var(--section-width);
@@ -62,7 +60,6 @@ header.header-wrapper {
 }
 
 @media (min-width: 1200px) {
-
   .block.header {
     & nav {
       max-width: var(--section-width);
@@ -72,7 +69,6 @@ header.header-wrapper {
 }
 
 @media (min-width: 1400px) {
-
   .block.header {
     & nav {
       max-width: var(--section-width);

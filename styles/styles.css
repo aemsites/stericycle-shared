@@ -1684,21 +1684,29 @@ main .list-with-background-image > .default-content-wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 16px 32px;
+  padding: 16px 24px;
 }
 
-@media screen and (min-width: 576px /* breakpoint-s */) {
+@media (min-width: 600px) {
   main .list-with-background-image > .default-content-wrapper {
-    padding: 16px 0;
+    padding: 16px 32px;
   }
 }
+
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
   main .list-with-background-image > .default-content-wrapper {
     display: grid;
-    grid-template-columns: 16.66% repeat(3, 1fr);
     grid-template-rows: repeat(3, auto);
-    gap: 0;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
+
+@media screen and (min-width: 1200px /* breakpoint-l */) {
+  main .list-with-background-image > .default-content-wrapper {
+    padding-left: 80px;
+    padding-right: 80px;
   }
 }
 
@@ -1750,6 +1758,8 @@ main .list-with-background-image > div > p:has(img) {
     display: flex;
     align-items: center;
     width: 100%;
+    margin: 0;
+    justify-content: center;
   }
 }
 
@@ -1799,7 +1809,7 @@ main .list-with-background-image > div > p:has(img) > span {
   main .list-with-background-image > div > p:has(img) > span {
     width: 100%;
     margin: 0;
-    padding: 0 12px;
+    padding: 0;
     max-height: 233.32px;
   }
 }
