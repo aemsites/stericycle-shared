@@ -176,14 +176,14 @@
   --breakpoint-xxl: 1400px;
 
   /* content width */
-  --content-width-s: 540px;
-  --content-width-m: 720px;
-  --content-width-l: 960px;
-  --content-width-xl: 1140px;
-  --content-width-xxl: 1320px;
-  --content-width-xxxl: 1920px;
+  --content-width-s: 100%;
+  --content-width-m: 100%;
+  --content-width-l: 100%;
+  --content-width-xl: 100%;
+  --content-width-xxl: 1760px;
+  --content-width-xxxl: 100%;
   --section-width: var(--content-width-s);
-  --section-width-xl: 1660px;
+  --section-width-xl: 1760px;
 
   /* Split Columns */
   --split-firstquarter: 25%:75%;
@@ -352,8 +352,25 @@ p, dl, ol, ul, pre, blockquote {
 main:has(.section.two-column.shredded-paper-background-column) .section.column-with-list .columns-wrapper,
 main:has(.section.two-column.hard-drive-background) .section.column-with-list .columns-wrapper,
 main:has(.section.shredded-paper-background) .section.column-with-list .columns-wrapper {
-  margin: 0 2rem;
-  max-width: 100%;
+  max-width: var(--section-width);
+  padding: 0 24px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px /* breakpoint-m */) {
+  main:has(.section.two-column.shredded-paper-background-column) .section.column-with-list .columns-wrapper,
+  main:has(.section.two-column.hard-drive-background) .section.column-with-list .columns-wrapper,
+  main:has(.section.shredded-paper-background) .section.column-with-list .columns-wrapper {
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
+  main:has(.section.two-column.shredded-paper-background-column) .section.column-with-list .columns-wrapper,
+  main:has(.section.two-column.hard-drive-background) .section.column-with-list .columns-wrapper,
+  main:has(.section.shredded-paper-background) .section.column-with-list .columns-wrapper {
+    padding: 0 80px;
+  }
 }
 
 main .section.column-with-list.navy-background.columns-container {
@@ -472,7 +489,6 @@ main .section.yellow-button-no-border  a.button {
 
 main .section.round-border {
   border-radius: 1rem;
-  max-width: 96%;
   margin: auto;
 }
 
@@ -736,7 +752,19 @@ main .section {
 main .section > div {
   max-width: var(--section-width);
   margin: 2rem auto;
-  padding: 0 1.5rem;
+  padding: 0 24px;
+}
+
+@media screen and (min-width: 768px /* breakpoint-xl */) {
+  main .section > div {
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
+  main .section > div {
+    padding: 0 80px;
+  }
 }
 
 main .section.no-spacing > div {
@@ -932,9 +960,37 @@ main .block.divider hr {
   color: inherit;
 }
 
-main .section.narrow {
-  max-width: var(--section-width);
-  margin: auto;
+main .section.narrow:not(.icon-list-container) {
+  max-width: 100%;
+  margin: 0 24px;
+  margin-left: 24px !important;
+  margin-right: 24px !important;
+}
+
+@media (min-width: 768px /* breakpoint-s */) {
+  main .section.narrow:not(.icon-list-container)  {
+    max-width: 100%;
+    margin: 0 32px;
+    margin-left: 32px !important;
+    margin-right: 32px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  main .section.narrow:not(.icon-list-container)  {
+    max-width: 100%;
+    margin: 0 80px;
+    margin-left: 80px !important;
+    margin-right: 80px !important;
+  }
+}
+
+@media (min-width: 1760px) {
+  main .section.narrow:not(.icon-list-container) {
+    max-width: calc(var(--section-width) - 160px);
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
 }
 
 main .section.orange-background {
@@ -1629,21 +1685,29 @@ main .list-with-background-image > .default-content-wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 16px 32px;
+  padding: 16px 24px;
 }
 
-@media screen and (min-width: 576px /* breakpoint-s */) {
+@media (min-width: 600px) {
   main .list-with-background-image > .default-content-wrapper {
-    padding: 16px 0;
+    padding: 16px 32px;
   }
 }
+
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
   main .list-with-background-image > .default-content-wrapper {
     display: grid;
-    grid-template-columns: 16.66% repeat(3, 1fr);
     grid-template-rows: repeat(3, auto);
-    gap: 0;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
+
+@media screen and (min-width: 1200px /* breakpoint-l */) {
+  main .list-with-background-image > .default-content-wrapper {
+    padding-left: 80px;
+    padding-right: 80px;
   }
 }
 
@@ -1695,6 +1759,8 @@ main .list-with-background-image > div > p:has(img) {
     display: flex;
     align-items: center;
     width: 100%;
+    margin: 0;
+    justify-content: center;
   }
 }
 
@@ -1744,7 +1810,7 @@ main .list-with-background-image > div > p:has(img) > span {
   main .list-with-background-image > div > p:has(img) > span {
     width: 100%;
     margin: 0;
-    padding: 0 12px;
+    padding: 0;
     max-height: 233.32px;
   }
 }
@@ -2014,10 +2080,39 @@ main .columns.get-a-quote-popup.block .cta a {
 }
 
 /* Full width will unset the default width of divs under section */
-main .section.full-width > div {
+
+/* main .section.full-width > div {
   max-width: 100%;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+} */
+
+main .section.full-width > div {
+  max-width: var(--section-width) !important;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* main .section.full-width.fragment-container:has(.text-wrapper) {
+  border-top: 0.2px solid #204664;
+} */
+
+main .section.full-width.fragment-container > div.text-wrapper {
+  margin: 32px auto;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+@media screen and (min-width: 768px) {
+  main .section.full-width > div {
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  main .section.full-width > div {
+    padding: 32px 80px;
+  }
 }
 
 @media screen and (max-width: 992px) {

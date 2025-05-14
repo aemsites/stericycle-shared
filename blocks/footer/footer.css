@@ -37,6 +37,12 @@ footer .footer-container > .section > div {
   padding: 0 1.5rem;
 }
 
+@media screen and (min-width: 768px /* breakpoint-xl */) {
+  footer .footer-container > .section > div {
+    padding: 0 32px;
+  }
+}
+
 @media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .footer-container > .section > div {
     max-width: initial;
@@ -55,13 +61,13 @@ footer .footer-container > .section > div {
     width: 100%;
     max-width: var(--section-width);
     margin: 0 auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 80px;
+    padding-right: 80px;
   }
-  
-  footer .footer-container.wide {
+
+  /* footer .footer-container.wide {
     max-width: var(--content-width-xxxl);
-  }
+  } */
 }
 
 @media screen and (min-width: 1400px /* breakpoint-xl */) {
@@ -522,7 +528,7 @@ footer .section.footer-compliance .columns-wrapper .columns > div > div:last-of-
 
 /* Footer Policies */
 footer .section.footer-policies {
-  padding: 16px 32px 48px;
+  padding: 16px 0 48px;
 }
 
 @media screen and (min-width: 1200px /* breakpoint-xl */) {

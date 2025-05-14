@@ -481,7 +481,7 @@ main .section.columns-container > div > div.columns.native-image-sizes.block > d
 
 main .section.columns-container > div > div.columns.native-image-sizes.block > div > div {
   gap: 16px;
-  max-width: 426px;
+  max-width: 100%;
 }
 
 main .section.columns-container > div > div.columns.native-image-sizes.block > div > div > p {
@@ -972,8 +972,13 @@ main .section.columns-container.close-vertical {
     position: absolute;
   }
 
-  main .section.columns-container .columns-wrapper:has(.cta.split-lastquarter) {
-    padding-right: 12px;
-    padding-left: 1.5rem;
+  /* Split Third */
+  main .section.columns-container .split-third > div > div:last-of-type .button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  main .section.columns-container .split-third > div > div:last-of-type .button-container a {
+    margin: 0;
   }
 }

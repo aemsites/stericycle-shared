@@ -14,6 +14,12 @@
   background-color: var(--color-bg-tertiary);
 }
 
+@media screen and (min-width: 992px /* breakpoint-l */) {
+  .block.banner {
+    padding: 27px 80px;
+  }
+}
+
 .block.banner > span {
   display: none;
 }

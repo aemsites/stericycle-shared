@@ -302,7 +302,7 @@
 
 @media (min-width: 992px /* breakpoint-l */) {
   main .section.narrow.cards-container {
-    max-width: 1400px;
+    max-width: calc(var(--section-width) - 160px);
   }
 
   main .section.narrow.cards-container > .cards-wrapper {

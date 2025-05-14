@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 main .section > div.simple-cta-wrapper {
   max-width: var(--content-width-xxl) !important;
   padding: 0;
@@ -24,7 +25,7 @@ main .section > div.simple-cta-wrapper {
 }
 
 .simple-cta-content-text {
-  padding: 24px 16px;
+  padding: 24px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -167,12 +168,12 @@ main .section > div.simple-cta-wrapper {
 
 .simple-cta-contained .simple-cta-content,
 .simple-cta-contained-dark .simple-cta-content {
-  margin: 24px 16px;
+  margin: 64px 24px;
   background-color: var(--color-white);
   border-radius: 16px;
   overflow: hidden;
   width: 100%;
-  max-width: var(--content-width-xxl);
+  max-width: 100%;
 }
 
 .simple-cta-contained-dark .simple-cta-content {
@@ -207,7 +208,19 @@ main .section > div.simple-cta-wrapper {
 }
 
 .simple-cta.slim {
-  padding: 32px;
+  padding: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .simple-cta.slim {
+    padding: 32px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .simple-cta.slim {
+    padding: 32px 80px;
+  }
 }
 
 .simple-cta.slim .simple-cta-content {
@@ -250,17 +263,19 @@ main .section > div.simple-cta-wrapper {
 
 @media screen and (min-width: 768px) {
   .simple-cta-content-text {
-    padding: 24px;
+    padding: 32px;
   }
 
   /* Variants */
   .simple-cta-contained .simple-cta-content,
   .simple-cta-contained-dark .simple-cta-content {
-    margin: 64px 80px;
+    margin: 64px 32px;
+    max-width: 100%;
   }
 
   .simple-cta.slim .simple-cta-content {
     flex-direction: row;
+    justify-content: space-between;
   }
 
   .simple-cta.slim .simple-cta-content .button-container a {
@@ -278,6 +293,12 @@ main .section > div.simple-cta-wrapper {
 }
 
 @media screen and (min-width: 1200px) {
+  .simple-cta-contained .simple-cta-content,
+  .simple-cta-contained-dark .simple-cta-content {
+    margin: 64px 80px;
+    max-width: calc(var(--section-width) - 160px);
+  }
+
   main .section > div.simple-cta-wrapper {
     max-width: 100% !important;
     margin: 0;
@@ -391,7 +412,8 @@ main .section > div.simple-cta-wrapper {
 
   .simple-cta-full .simple-cta-content {
     position: initial;
-    max-width: var(--content-width-xxl);
+    max-width: var(--section-width);
+    padding: 0 80px;
     margin: auto;
     min-height: 520px;
     align-items: center;

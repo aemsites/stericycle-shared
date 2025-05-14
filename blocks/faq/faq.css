@@ -1,21 +1,5 @@
-main .section.faq-container > div {
-  padding: 0 24px;
-}
-
-@media screen and (min-width: 992px) {
-  main .section.faq-container > div {
-    padding: 0 24px;
-  }
-}
-
 main .section.faq-container > .faq-wrapper {
   margin-top: 0;
-}
-
-@media screen and (min-width: 992px) {
-  main .section.faq-container > .faq-wrapper  {
-    padding: 0 8px;
-  }
 }
 
 main:has(.section.two-column.shredded-paper-background-column) div.faq-wrapper,
@@ -24,19 +8,9 @@ main:has(.section.shredded-paper-background) div.faq-container div.faq-wrapper{
   margin: 0 2rem;
 }
 
-main .section.faq-container:has(.plain):not(.form-container) {
-  margin: auto;
-
-  & > div.default-content-wrapper,
-  & > div.faq-wrapper {
-    max-width: 100%;
-    margin: 2rem auto;
-    padding: 0 2.5rem;
-  }
-}
-
 main:has(.section.two-column.full-width) div.faq-container div {
   max-width: 100%;
+  margin: 0;
 }
 
 .faq {
@@ -113,19 +87,13 @@ main:has(.section.two-column.full-width) div.faq-container div {
 
 @media screen and (min-width: 992px) {
   .faq details summary {
-    padding-right: 48px;
-    padding-left: 16px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
 .faq details[open] summary {
   padding: 24px 56px 24px 0;
-}
-
-@media screen and (min-width: 992px) {
-  .faq details[open] summary {
-    padding-left: 16px;
-  }
 }
 
 .faq details:not([open]) summary:focus-visible {
@@ -237,12 +205,6 @@ main:has(.section.two-column.full-width) div.faq-container div {
   padding: 2px 16px 16px 0;
   gap: 24px;
   animation: open-animation .3s ease-in-out forwards;
-}
-
-@media screen and (min-width: 992px) {
-  .faq-item.open .faq-item-body {
-    padding-left: 16px;
-  }
 }
 
 /* Applying keyframes when the details element is closed */
@@ -381,15 +343,39 @@ main .faq-container.cyan-border.form-container.navy-background .default-content-
   }
 }
 
-@media screen and (min-width: 1920px) {
-  main .section.faq-container:has(.plain):not(.form-container) {
-    max-width: 100%;
+main .section.faq-container:has(.plain):not(.form-container) {
+  max-width: 100%;
+  margin: auto;
 
+  /* & > div.default-content-wrapper,
+  & > div.faq-wrapper {
+    max-width: var(--content-width-xxxl);
+    margin: 2rem auto;
+    padding: 0 2.5rem;
+  } */
+  & > div.default-content-wrapper,
+  & > div.faq-wrapper {
+    max-width: var(--section-width);
+    margin: 2rem auto;
+    padding: 0 24px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main .section.faq-container:has(.plain):not(.form-container) {
     & > div.default-content-wrapper,
     & > div.faq-wrapper {
-      max-width: var(--content-width-xxxl);
-      margin: 2rem auto;
-      padding: 0 2.5rem;
+      padding: 0 32px;
     }
   }
 }
+
+@media screen and (min-width: 1200px) {
+  main .section.faq-container:has(.plain):not(.form-container) {
+    & > div.default-content-wrapper,
+    & > div.faq-wrapper {
+      padding: 0 80px;
+    }
+  }
+}
+

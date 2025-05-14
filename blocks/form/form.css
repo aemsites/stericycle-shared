@@ -100,7 +100,22 @@ main .form a:any-link {
 main .footer-subscription-form > div {
     max-width: var(--section-width);
     width: 100%;
-    padding: 2rem 1.5rem;
+    margin: auto;
+    padding: 2rem 24px;
+}
+
+@media screen and (min-width: 768px) {
+    main .footer-subscription-form > div {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+}
+
+@media (min-width: 1200px) {
+    main .footer-subscription-form > div {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
 }
 
 main .form > div:not(:first-child) {
@@ -744,6 +759,7 @@ main .form form .wizard.left .panel-wrapper{
     main .form form .panel-wrapper {
         flex-flow: row wrap;
         gap: 10px 15px;
+        padding: 0;
     }
 }
 
@@ -1104,7 +1120,7 @@ main .footer-subscription-form a[href="https://www.stericycle.com/en-us/privacy-
     main .footer-subscription-form {
         max-width: var(--section-width);
         margin: auto;
-        padding: 2rem 1.5rem;
+        padding: 2rem 0;
     }
 
     main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {
@@ -1136,68 +1152,116 @@ main .section.contact-us .form-wrapper {
     grid-row: span 3;
     margin-bottom: 1rem;
     padding-left: 0;
+    width: 100%;
 }
 
 main .two-column.form-container .form-wrapper {
     justify-self: flex-end;
 }
 
-main .shredded-paper-background-column.two-column.form-container,
-main .navy-background.cyan-border.two-column.form-container,
-main .hard-drive-background.two-column.form-container {
-    display: grid;
-    grid-template-columns: minmax(0, 1284px) minmax(0, 636px); /* Set max-width for each column */
-    grid-auto-rows: auto;
-    margin: auto;
-    gap: 0;
-    justify-content: center;
-    width:100%;
+@media (min-width: 1200px) {
+    main .shredded-paper-background-column.two-column.form-container > div,
+    main .navy-background.cyan-border.two-column.form-container > div,
+    main .hard-drive-background.two-column.form-container > div {
+        display: grid;
+        grid-template-columns: minmax(0, 1000px) minmax(0, 600px); /* Set max-width for each column */
+        grid-auto-rows: auto;
+        margin: auto;
+        gap: 0;
+        justify-content: center;
+        width:100%;
+    }
+
+    main .shredded-paper-background-column.two-column.form-container.full-width > div.form-content-container,
+    main .navy-background.cyan-border.two-column.form-container.full-width > div.form-content-container,
+    main .hard-drive-background.two-column.form-container.full-width > div.form-content-container {
+        margin: 0 auto;
+    }
+
+    main .shredded-paper-background-column.two-column.form-container.full-width > div.form-content-container > .default-content-wrapper,
+    main .navy-background.cyan-border.two-column.form-container.full-width > div.form-content-container > .default-content-wrapper,
+    main .hard-drive-background.two-column.form-container.full-width > div.form-content-container > .default-content-wrapper {
+        margin: 0;
+    }
 }
 
 main .two-column.full-width.form-container .form-wrapper {
-    max-width: 612px;
+    max-width: 100%;
 }
 
 main .two-column.form-container.narrow-top-margin .form-wrapper {
     margin-top: 1rem;
 }
 
-main .navy-background.cyan-border.two-column.form-container > .form-wrapper {
+main .navy-background.cyan-border.two-column.form-container .form-wrapper {
     padding: 0 2rem;
 }
 
-main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background) {
-    display: grid;
-    grid-template-columns: minmax(0, 879px) minmax(0, 441px);
-    grid-auto-rows: auto;
-    margin: auto;
-    gap: 0;
-    justify-content: center;
-    width:100%;
+@media (min-width: 1200px) {
+    main .two-column.form-container:not(.shredded-paper-background-column, .hard-drive-background, .hero-banner-form) > div {
+        display: grid;
+        grid-auto-rows: auto;
+        margin: auto;
+        gap: 32px;
+        justify-content: center;
+        width:100%;
+        padding: 32px 80px 80px;
+        grid-template-columns: minmax(0, 1000px) minmax(0, 600px) !important;
+    }
 }
 
-main .two-column.form-container > div {
+main .two-column.form-container > div > div {
     grid-column: 1;
+    margin: 0;
+    padding: 24px;
 }
 
-main .two-column.form-container > div:not(:first-child, .form-wrapper) {
+@media (min-width: 768px) {
+    main .two-column.form-container > div > div {
+        padding: 32px;
+    }
+
+    main .two-column.form-container.icon-list-container > div > div {
+        padding: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    main .two-column.form-container > div > div {
+        padding: 0;
+        margin-top: 32px;
+    }
+}
+
+main .two-column.form-container > div > div:not(:first-child, .form-wrapper) {
     margin: 0;
 }
 
-main .two-column.form-container > div:first-child {
+main .two-column.form-container > div > div > div:first-child {
     margin-bottom: 0;
+    padding-left: 0;
 }
 
 
 /* Place the last child in the second column */
-main .two-column.form-container > div:nth-last-child(1) {
+main .two-column.form-container > div > div:nth-last-child(1) {
     grid-column: 2;
     grid-row: 1 / span 2;
+    margin: 0 auto;
+    width: 100%;
 }
 
 @media (min-width: 1000px) {
     main .two-column.form-container > div:nth-last-child(1) {
-        margin: 32px 0 64px;
+        margin: 0 auto;
+        padding-top: 32px;
+        padding-bottom: 64px;
+    }
+}
+
+@media (min-width: 1200px) {
+    main .two-column.form-container.shredded-paper-background-column > div:nth-last-child(1) {
+        margin: 32px auto 0;
     }
 }
 
@@ -1245,6 +1309,28 @@ main .contact-us .columns-wrapper .columns-has-image > div > div:nth-child(2)::b
 
 main .contact-us .columns-wrapper {
     box-shadow: 0 0 4px 0 rgba(0 0 0 / 25%);
+    padding: 0 2rem;
+    width: 100%;
+}
+
+main .section.contact-us {
+    grid-template-columns: 60% 40%;
+    width: 100%;
+    max-width: var(--section-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+@media screen and (min-width: 768px) {
+    main .section.contact-us {
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+main .section.contact-us {
+    padding: 0 80px;
+  }
 }
 
 main .section.contact-us > div:nth-child(3) {
@@ -1262,7 +1348,6 @@ main .section.contact-us > div:nth-child(4) {
 }
 
 main .section .default-content-wrapper h1[id='contact-us'] {
-    margin-left: 2rem;
     margin-bottom: 0;
 }
 
@@ -1270,17 +1355,13 @@ main .section.contact-us-title > .default-content-wrapper {
     margin-bottom: 0;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
     main .two-column.form-container .default-content-wrapper {
-        width: 90%;
+        width: 100%;
     }
 
     main .two-column.form-container .form-wrapper {
-        width:90%;
-    }
-
-    main .body-wrapper .page-sidebar > div.form-container {
-        padding: 0 1.5rem;
+        width:100%;
     }
 
     main .shredded-paper-background-column.two-column.form-container,
@@ -1288,27 +1369,39 @@ main .section.contact-us-title > .default-content-wrapper {
         background-image: none;
     }
 
-    main .section.two-column.form-container,
-    main .section.two-column.form-container.full-width,
-    main .shredded-paper-background-column.two-column.form-container,
-    main .navy-background.cyan-border.two-column.form-container,
-    main .hard-drive-background.two-column.form-container
+    main .section.two-column.form-container > div,
+    main .section.two-column.form-container.full-width > div,
+    main .shredded-paper-background-column.two-column.form-container > div,
+    main .navy-background.cyan-border.two-column.form-container > div,
+    main .hard-drive-background.two-column.form-container > div
     {
         display: grid;
         grid-template-columns: 1fr;
-        padding: 0;
+        padding: 32px 24px 32px 0;
+        margin: 0 auto;
+        overflow: hidden;
+
         /* stylelint-disable */
         > .form-wrapper {
             grid-row:   2;
             padding: 0;
         }
+
+        > .faq-wrapper {
+            padding: 0;
+        }
+
+        > .default-content-wrapper {
+            padding: 0;
+            margin-left: 0;
+        }
     }
 
-    main .section.two-column.form-container > div,
-    main .section.two-column.form-container.full-width > div,
-    main .shredded-paper-background-column.two-column.form-container > div,
-    main .navy-background.cyan-border.two-column.form-container > div,
-    main .hard-drive-background.two-column.form-container > div {
+    main .section.two-column.form-container > div > div,
+    main .section.two-column.form-container.full-width  > div > div,
+    main .shredded-paper-background-column.two-column.form-container  > div > div,
+    main .navy-background.cyan-border.two-column.form-container  > div > div,
+    main .hard-drive-background.two-column.form-container  > div > div {
         grid-column: span 1;
         grid-row: unset;
     }
@@ -1413,6 +1506,7 @@ main .form form fieldset.splitbuttons {
     margin: 24px 0 0;
     gap: 8px;
 }
+
 @media (min-width: 370px) {
     main .form form fieldset.splitbuttons {
         flex-flow: row;
@@ -1568,4 +1662,31 @@ main .form form .panel-wrapper.splitbuttons .radio-wrapper.field-wrapper {
     width: fit-content;
     padding: 0;
     margin-top: 0;
+}
+
+main .section.contact-us > div:nth-child(4) img {
+    width: 100%;
+    height: 100%;
+}
+
+main .two-column.form-container.sidebar-left > .form-content-container {
+    margin: 32px auto 64px;
+    padding: 0 24px;
+}
+
+main .two-column.form-container.sidebar-left > .form-content-container > div {
+    margin: 0;
+}
+
+
+@media (min-width: 768px) {
+  main .two-column.form-container.sidebar-left > .form-content-container {
+    padding: 0 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main .two-column.form-container.sidebar-left > .form-content-container {
+    padding: 0 80px;
+  }
 }

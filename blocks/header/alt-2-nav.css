@@ -31,14 +31,15 @@ html {
 
   & nav {
     height: var(--nav-height);
+    padding: 0;
 
     & .logo {
       display: flex;
       height: 76px;
       max-width: 720px;
-      margin: 0 auto;
-      padding: 1rem 1.5rem;
       background-color: var(--color-background-header);
+      padding: 0 0 0 24px;
+      margin: 0;
 
       & a {
         display: block;
@@ -132,6 +133,20 @@ html {
   }
 }
 
+.block.header nav ul {
+  padding-right: 0 !important;
+}
+
+.block.header nav .quote-link {
+  padding-right: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .block.header nav {
+    padding: 0;
+  }
+}
+
 @media (min-width: 900px) {
   :root {
     --nav-height: 76px;
@@ -154,8 +169,9 @@ html {
       display: flex;
       align-items: stretch;
       justify-content: space-between;
-      max-width: 1920px;
+      max-width: var(--section-width);
       margin: 0 auto;
+      padding: 0 32px;
       z-index: 100;
       background-color: var(--color-background-header);
 
@@ -223,6 +239,14 @@ html {
 
   .block.header nav .nav-contact li.quote-link a {
     min-width: 186px;
+  }
+
+  .block.header nav {
+    padding: 0 80px;
+  }
+
+  .block.header nav .logo {
+    padding: 0;
   }
 }
 
