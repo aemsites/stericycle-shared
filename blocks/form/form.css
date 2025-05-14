@@ -173,7 +173,8 @@ main .form input[type='file'] {
     color: unset;
 }
 
-main .form input[type="checkbox"] {
+main .form input[type="checkbox"],
+main .facet input[type="checkbox"] {
     appearance: none;
     margin: .25rem;
     padding: .4rem;
@@ -187,7 +188,8 @@ main .form input[type="checkbox"] {
     transition: background 0.3s ease;
 }
 
-main .form input[type="checkbox"]:checked::after {
+main .form input[type="checkbox"]:checked::after,
+main .facet input[type="checkbox"]:checked::after {
     content: '';
     position: absolute;
     top: 1px;
@@ -200,42 +202,50 @@ main .form input[type="checkbox"]:checked::after {
     border-right: 1px solid var(--color-primary-1);
 }
 
-main .form input[type="checkbox"]:focus {
+main .form input[type="checkbox"]:focus,
+main .facet input[type="checkbox"]:focus {
   outline: none;
 }
 
-main .form input[type="checkbox"]:disabled {
+main .form input[type="checkbox"]:disabled,
+main .facet input[type="checkbox"]:disabled {
     background-color: var(--color-white);
     border: 1px solid var(--color-disabled) !important;
     cursor: not-allowed;
 }
 
-main .form input[type="checkbox"]:disabled::after {
+main .form input[type="checkbox"]:disabled::after,
+main .facet input[type="checkbox"]:disabled::after {
     border-bottom: 1px solid var(--color-disabled);
     border-right: 1px solid var(--color-disabled);
 }
 
-main .form input[type="checkbox"]:focus-visible::after {
+main .form input[type="checkbox"]:focus-visible::after,
+main .facet input[type="checkbox"]:focus-visible::after {
     border-bottom: 1px solid var(--color-primary-1);
     border-right: 1px solid var(--color-primary-1);
 }
 
-main .form input[type="checkbox"]:focus-visible {
+main .form input[type="checkbox"]:focus-visible,
+main .facet input[type="checkbox"]:focus-visible {
     background-color: var(--color-bg-secondary);
     outline: 2px solid var(--color-primary-1);
     outline-offset: 0;
 }
 
-main .form input[type="checkbox"]:focus-visible:hover {
+main .form input[type="checkbox"]:focus-visible:hover,
+main .facet input[type="checkbox"]:focus-visible:hover {
     background-color:  var(--color-primary-1);
 }
 
-main .form input[type="checkbox"]:hover:focus-visible::after {
+main .form input[type="checkbox"]:hover:focus-visible::after,
+main .facet input[type="checkbox"]:hover:focus-visible::after {
     border-bottom: 1px solid var(--color-white);
     border-right: 1px solid var(--color-white);
 }
 
-main .form input[type="checkbox"]:disabled:hover::after {
+main .form input[type="checkbox"]:disabled:hover::after,
+main .facet input[type="checkbox"]:disabled:hover::after {
     border-bottom: 1px solid var(--color-disabled);
     border-right: 1px solid var(--color-disabled);
 }
@@ -723,11 +733,13 @@ main .form form .wizard.left .panel-wrapper{
 
 /* Styles for devices that support hover (e.g., desktop) */
 @media (hover: hover) and (pointer: fine) {
-    main .form input[type="checkbox"]:hover {
+    main .form input[type="checkbox"]:hover,
+    main .facet input[type="checkbox"]:hover {
         background-color:  var(--color-primary-1);
     }
 
-    main .form input[type="checkbox"]:hover:not(:focus-visible)::after {
+    main .form input[type="checkbox"]:hover:not(:focus-visible)::after,
+    main .facet input[type="checkbox"]:hover:not(:focus-visible)::after {
         border-bottom: 1px solid var(--color-white);
         border-right: 1px solid var(--color-white);
     }
