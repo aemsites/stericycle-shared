@@ -50,7 +50,7 @@ main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
     right: 0;
     min-width: 10%;
     min-height: 100%;
-    background: linear-gradient(90deg, rgba(139, 167, 32, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(90deg, rgb(139 167 32 / 0%) 0%, rgb(255 255 255 / 100%) 100%);
     pointer-events: none;
 }
 
