@@ -22,7 +22,7 @@ header {
   width: 100%;
   left: 0;
   top: 60px;
-  height: 100vh;
+  height: 100%;
 }
 
 .header nav.nav-alert {
@@ -36,8 +36,8 @@ header {
   opacity: 1;
   padding: 18px 0;
   padding-bottom: 98px;
-  height: 100vh;
-  max-height: calc(100vh - 60px);
+  height: 100%;
+  max-height: calc(100% - 60px);
   z-index: 99;
 }
 
@@ -235,7 +235,7 @@ header {
 }
 
 .header .submenu .locate-form {
-  height: 100vh;
+  height: 100%;
 }
 
 .header .list-item .icon {

@@ -787,19 +787,19 @@ main .section.no-buttons {
 
 /* viewport based visibility */
 
-@media screen and (max-width: 575px /* breakpoint-s */) {
+@media (max-width: 575px) {
   main .hide-on-mobile {
     display: none;
   }
 }
 
-@media screen and (min-width: 576px /* breakpoint-s */) and (max-width: 1199px /* breakpoint-xl */) {
+@media (min-width: 576px) and (max-width: 1199px) {
   main .hide-on-tablet {
     display: none;
   }
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xl */) {
+@media (min-width: 1200px) {
   main .hide-on-desktop {
     display: none;
   }
@@ -833,13 +833,13 @@ main .show-on-desktop {
   }
 }
 
-@media screen and (min-width: 576px /* breakpoint-m */) and (max-width: 1199px /* breakpoint-xl */) {
+@media (min-width: 576px) and (max-width: 1199px) {
   main .show-on-tablet {
     display: block;
   }
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xl */) {
+@media (min-width: 1200px) {
   main .show-on-desktop {
     display: block;
   }

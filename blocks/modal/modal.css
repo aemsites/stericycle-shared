@@ -28,7 +28,7 @@ body.modal-open {
 }
 
 /* stylelint-disable-next-line media-feature-range-notation */
-@media (width >= 900px) {
+@media (min-width: 900px) {
   .modal dialog {
     width: calc(100vw - 64px);
   }
