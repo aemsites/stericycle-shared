@@ -265,6 +265,8 @@ body header {
     display: flex;
     gap: 3px;
     background-color: var(--color-white);
+    transform: translate(0);
+    -webkit-backface-visibility: hidden;
     z-index: 100;
 
     & > div {
