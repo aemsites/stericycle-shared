@@ -597,7 +597,7 @@ a.button.primary, button.primary {
   --icon-color: var(--color-primary-1);
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   a.button.primary:hover, button.primary:hover{
     outline: 3px solid var(--color-black);
   }
@@ -624,7 +624,7 @@ a.button.secondary.dark, button.secondary.dark {
   border-radius: 100px;
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   a.button.secondary:hover, button.secondary:hover {
     background-color: var(--color-primary-1);
     color: var(--color-white);
@@ -659,7 +659,7 @@ a.button.secondary.dark, button.secondary.dark {
   }
 }
 
-@media screen and (min-width: 768px /* breakpoint-m */) {
+@media (min-width: 768px /* breakpoint-m */) {
   a.button:any-link, button {
     font-size: 14px;
   }
@@ -669,7 +669,7 @@ a.button.secondary.dark, button.secondary.dark {
   }
 }
 
-@media screen and (min-width: 992px) {
+@media (min-width: 992px) {
   main .section.column-with-list .columns > div > div h2 {
     font-size: 48px;
     line-height: 56px;
@@ -827,7 +827,7 @@ main .show-on-desktop {
   display: none;
 }
 
-@media screen and (max-width: 575px /* breakpoint-s */) {
+@media (max-width: 575px /* breakpoint-s */) {
   main .show-on-mobile {
     display: block;
   }
@@ -883,7 +883,7 @@ main .block.navy-background {
   background-color: var(--color-bg-tertiary);
 }
 
-@media screen and (min-width: 576px /* breakpoint-s */) {
+@media (min-width: 576px /* breakpoint-s */) {
   main .section.navy-background.image {
     background-image: url("/icons/section-bg.svg"), linear-gradient(180deg, transparent 5rem, var(--color-primary-2) 0, var(--color-primary-2));
     background-position: top right;
@@ -1076,7 +1076,7 @@ main div.shredded-paper-background-column {
   background-position-y: 25%;
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
     main .section.with-image {
     display: grid;
     grid-template-columns: 41.6667% 1fr;
@@ -1105,7 +1105,7 @@ main .section.with-image > div.section-image-wrapper img {
   height: 100%;
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   main .section.with-image > div.section-image-wrapper img {
     max-width: 526px;
   }
@@ -1128,7 +1128,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
   margin-right: auto;
 }
 
-@media screen and (min-width: 576px /* breakpoint-s */) {
+@media (min-width: 576px /* breakpoint-s */) {
   .blog-page main .default-content-wrapper {
     max-width: 540px;
     margin-left: auto;
@@ -1137,13 +1137,13 @@ main .section.with-image > div.section-image-wrapper:first-child {
   }
 }
 
-@media screen and (min-width: 768px /* breakpoint-m */) {
+@media (min-width: 768px /* breakpoint-m */) {
   .blog-page main .default-content-wrapper {
     max-width: 720px;
   }
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   .blog-page main .default-content-wrapper {
     max-width: 960px;
     padding-bottom: 64px;
@@ -1161,7 +1161,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
   }
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xl */) {
+@media (min-width: 1200px /* breakpoint-xl */) {
   .blog-page main .default-content-wrapper {
     max-width: 1140px;
     padding-bottom: 64px;
@@ -1173,7 +1173,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
   }
 }
 
-@media screen and (min-width: 1400px /* breakpoint-xxl */) {
+@media (min-width: 1400px /* breakpoint-xxl */) {
   .blog-page main .default-content-wrapper {
     max-width: 1320px;
     padding-bottom: 64px;
@@ -1199,13 +1199,13 @@ main .section.with-image > div.section-image-wrapper:first-child {
   margin-bottom: 47px;
 }
 
-@media screen and (min-width: 768px /* breakpoint-m */) {
+@media (min-width: 768px /* breakpoint-m */) {
   .blog-page main div.blog-content {
     margin-bottom: 63px;
   }
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   .blog-page main div.blog-content {
     margin-bottom: 31px;
     padding: 0 12px;
@@ -1216,7 +1216,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
   margin-bottom: 32px;
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   .blog-page main .blog-content p:first-child img {
     width: 100%;
   }
@@ -1248,7 +1248,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
     font-weight: var(--font-weight-bold);
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   .blog-page main .blog-content h2 {
     font-size: 2rem;
     line-height: 2.375rem;
@@ -1262,7 +1262,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
   }
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   .blog-page main .blog-content h3 {
     font-size: 26px;
     line-height: 38px;
@@ -1277,7 +1277,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
   display: none;
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   .blog-page main .breadcrumb-wrapper {
     display: block;
     padding: 15px 0;
@@ -1319,7 +1319,7 @@ main .section.with-image > div.section-image-wrapper:first-child {
   list-style-type: none;
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   .blog-page main .related-content .related-content-teaser {
     margin-bottom: 0;
   }
@@ -1471,13 +1471,13 @@ main div.section.background-third-image {
   }
 }
 
-@media screen and (min-width: 1200px /* breakpoint-xl */) {
+@media (min-width: 1200px /* breakpoint-xl */) {
   .blog-page main .related-content .related-content-wrapper {
     min-width: 197px;
   }
 }
 
-@media screen and (min-width: 1400px /* breakpoint-xxl */) {
+@media (min-width: 1400px /* breakpoint-xxl */) {
   .blog-page main .related-content .related-content-wrapper {
     min-width: 242px;
   }
@@ -1632,13 +1632,13 @@ main .list-with-background-image > .default-content-wrapper {
   padding: 16px 32px;
 }
 
-@media screen and (min-width: 576px /* breakpoint-s */) {
+@media (min-width: 576px /* breakpoint-s */) {
   main .list-with-background-image > .default-content-wrapper {
     padding: 16px 0;
   }
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   main .list-with-background-image > .default-content-wrapper {
     display: grid;
     grid-template-columns: 16.66% repeat(3, 1fr);
@@ -1657,13 +1657,13 @@ main .list-with-background-image > div > h2 {
   padding: 0 47px;
 }
 
-@media screen and (min-width: 576px /* breakpoint-s */) {
+@media (min-width: 576px /* breakpoint-s */) {
   main .list-with-background-image > div > h2 {
     padding: 0;
   }
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   main .list-with-background-image > div > h2 {
     grid-area: 1 / 2 / 2 / 5;
     color: var(--color-primary-2);
@@ -1679,7 +1679,7 @@ main .list-with-background-image > div > p {
   padding: 0 47px;
 }
 
-@media screen and (min-width: 576px /* breakpoint-s */) {
+@media (min-width: 576px /* breakpoint-s */) {
   main .list-with-background-image > div > p {
     padding: 0;
   }
@@ -1689,7 +1689,7 @@ main .list-with-background-image > div > p:has(img) {
   width: fit-content;
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   main .list-with-background-image > div > p:has(img):first-child {
     grid-area: 1 / 1 / 4 / 2;
     display: flex;
@@ -1702,7 +1702,7 @@ main .list-with-background-image > div > p:nth-of-type(2) {
   margin-bottom: 16px;
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   main .list-with-background-image > div > p:nth-of-type(2) {
     grid-area: 2 / 2 / 3 / 5;
     padding: 0 12px;
@@ -1717,14 +1717,14 @@ main .list-with-background-image > div > ul {
   padding-left: 24px;
 }
 
-@media screen and (min-width: 576px /* breakpoint-s */) {
+@media (min-width: 576px /* breakpoint-s */) {
   main .list-with-background-image > div > ul {
     margin-left: 16px;
     margin-top: 32px;
   }
 }
 
-@media screen and (min-width: 992px /* breakpoint-s */) {
+@media (min-width: 992px /* breakpoint-s */) {
   main .list-with-background-image > div > ul {
     margin-left: 28px;
   }
@@ -1740,7 +1740,7 @@ main .list-with-background-image > div > p:has(img) > span {
   max-height: 189px;
 }
 
-@media screen and (min-width: 992px /* breakpoint-l */) {
+@media (min-width: 992px /* breakpoint-l */) {
   main .list-with-background-image > div > p:has(img) > span {
     width: 100%;
     margin: 0;
@@ -1808,7 +1808,7 @@ main .list-with-background-image > div > ul > li:last-child {
 }
 
 /*  Parallel Lines Decorator Section */
-@media screen and (min-width: 576px /* breakpoint-s */) {
+@media (min-width: 576px /* breakpoint-s */) {
   main .parallel-lines-decorator {
     margin: 5rem 0 0;
     position: relative;
@@ -2020,7 +2020,7 @@ main .section.full-width > div {
   padding-right: 2.5rem;
 }
 
-@media screen and (max-width: 992px) {
+@media (max-width: 992px) {
   main .page-sidebar .section.get-a-quote-form-wrapper {
     display: none;
   }
