@@ -2,7 +2,7 @@ import { createPostLink, formatDate, getDateFromExcel, getLocale, fetchQueryInde
 import {
   createOptimizedPicture, decorateButtons, decorateIcon, fetchPlaceholders, readBlockConfig,
 } from '../../scripts/aem.js';
-import { div } from '../../scripts/dom-helpers.js';
+import { div, h3, span } from '../../scripts/dom-helpers.js';
 
 const ITEMS_PER_PAGE = 10;
 let CURRENT_PAGE = 1;
@@ -229,10 +229,9 @@ function toggleFacets() {
   });
 }
 
-function clickChevron(chevron, facetList) {
+function clickIcon(icon, facetList) {
   facetList.classList.toggle('slideout');
-  chevron.classList.toggle('fa-chevron-down');
-  chevron.classList.toggle('fa-chevron-up');
+  icon.classList.toggle('open');
 }
 
 const isResourceCenterPages = () => {
@@ -245,16 +244,16 @@ const isResourceCenterPages = () => {
 
 const createFacetList = (name) => {
   const topDiv = div({ class: 'facet-list-container' });
-  const head = div({ class: 'head' }, name);
-  const chevron = document.createElement('i');
-  chevron.classList.add('fa-chevron-down');
-  chevron.addEventListener('click', () => {
-    const facetList = chevron.parentElement.nextElementSibling;
+  const head = h3({ class: 'head' }, span(name));
+  const toggleIcon = document.createElement('span');
+  toggleIcon.classList.add('toggle-icon');
+  toggleIcon.addEventListener('click', () => {
+    const facetList = toggleIcon.parentElement.nextElementSibling;
     if (facetList && facetList.classList.contains('facet-list')) {
-      clickChevron(chevron, facetList);
+      clickIcon(toggleIcon, facetList);
     }
   });
-  head.append(chevron);
+  head.append(toggleIcon);
   const formattedName = name?.toLowerCase().replace(/\s+/g, '-');
   const facetUL = document.createElement('ul');
   facetUL.classList.add('facet-list', formattedName);
