@@ -84,7 +84,6 @@
     .pr-page main .section:has(.related-content) > .default-content-wrapper {
         display: flex;
         flex-direction: row;
-        padding: 0;
         margin: 1rem auto;
     }
 
@@ -127,35 +126,5 @@
     .pr-page  main .related-content .related-content-date {
         font-size: 12px;
         line-height: 18px;
-    }
-
-    @media (min-width: 576px) {
-        .pr-page main .default-content-wrapper {
-            max-width: 540px;
-        }
-    }
-
-    @media (min-width: 768px) {
-        .pr-page main .default-content-wrapper {
-            max-width: 720px;
-        }
-    }
-
-    @media (min-width: 992px) {
-        .pr-page main .default-content-wrapper {
-            max-width: 960px;
-        }
-    }
-
-    @media (min-width: 1200px) {
-        .pr-page main .default-content-wrapper {
-            max-width: 1140px;
-        }
-    }
-
-    @media (min-width: 1400px) {
-        .pr-page main .default-content-wrapper {
-            max-width: 1320px;
-        }
     }
 }

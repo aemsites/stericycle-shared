@@ -1178,37 +1178,23 @@ main .section.with-image > div.section-image-wrapper:first-child {
 }
 
 .blog-page main .default-content-wrapper {
-  padding: .9375rem 1.5rem;
   margin-left: auto;
   margin-right: auto;
 }
 
 @media screen and (min-width: 576px /* breakpoint-s */) {
   .blog-page main .default-content-wrapper {
-    max-width: 540px;
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
   }
 }
 
-@media screen and (min-width: 768px /* breakpoint-m */) {
-  .blog-page main .default-content-wrapper {
-    max-width: 720px;
-  }
-}
-
 @media screen and (min-width: 992px /* breakpoint-l */) {
   .blog-page main .default-content-wrapper {
-    max-width: 960px;
     padding-bottom: 64px;
     padding-top: 0;
   }
-
-  .blog-page main .breadcrumb-wrapper {
-    max-width: 960px;
-  }
-
   main .section.column-with-list.gray-background.columns-container li,
   main .section.column-with-list.blue-background.columns-container li,
   main .section.column-with-list.navy-background.columns-container li {
@@ -1218,24 +1204,14 @@ main .section.with-image > div.section-image-wrapper:first-child {
 
 @media screen and (min-width: 1200px /* breakpoint-xl */) {
   .blog-page main .default-content-wrapper {
-    max-width: 1140px;
     padding-bottom: 64px;
     padding-top: 0;
-  }
-
-  .blog-page main .breadcrumb-wrapper {
-    max-width: 1140px;
   }
 }
 
 @media screen and (min-width: 1400px /* breakpoint-xxl */) {
   .blog-page main .default-content-wrapper {
-    max-width: 1320px;
     padding-bottom: 64px;
-  }
-
-  .blog-page main .breadcrumb-wrapper {
-    max-width: 1320px;
   }
 
   main div.shredded-paper-background-column {
@@ -1335,7 +1311,8 @@ main .section.with-image > div.section-image-wrapper:first-child {
 @media screen and (min-width: 992px /* breakpoint-l */) {
   .blog-page main .breadcrumb-wrapper {
     display: block;
-    padding: 15px 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   .blog-page main .breadcrumb-wrapper > .blog-breadcrumb {
@@ -1500,7 +1477,6 @@ main div.section.background-third-image {
   .blog-page main .section:first-of-type > .default-content-wrapper {
     display: flex;
     flex-direction: row;
-    padding: 0;
   }
 
   .blog-page main .blog-content {
