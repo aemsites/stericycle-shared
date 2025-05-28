@@ -121,6 +121,11 @@ main .section.blue-headings .columns span.icon {
   height: unset;
 }
 
+main .section.columns-container.reset-spacing {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 main .section.columns-container.list-style-orange-triangles ul{
   margin: 0 0 1rem 1.5rem;
 }
