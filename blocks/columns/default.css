@@ -702,6 +702,14 @@ main .section.columns-container > div > div.columns.style-four-default.block > d
   main .section.columns-container:has(.columns.style-four-default.block) {
     padding: 80px;
   }
+
+  main .section.columns-container:has(.columns.style-four-default.block) > .default-content-wrapper {
+    margin: 0 auto;
+  }
+
+  main .section.columns-container:has(.columns.style-four-default.block) > .columns-wrapper {
+    margin-bottom: 0;
+  }
 }
 
 /* Style Five Default */
