@@ -634,6 +634,7 @@ main .form form .field-privacy-policy p > a,
 main .form form .field-policy p > a {
     text-decoration: none;
     cursor: pointer;
+    color: var(--color-primary-1);
 }
 
 main .form form .field-privacy-policy p > a:hover,
