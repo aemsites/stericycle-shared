@@ -7,6 +7,8 @@ import { div } from '../../scripts/dom-helpers.js';
 const ITEMS_PER_PAGE = 10;
 let CURRENT_PAGE = 1;
 let CTA_TYPE = 'default';
+let facetsMap = new Map();
+
 
 /*
     * This function decorates the results from the query-index.json file
@@ -25,11 +27,17 @@ function decorateResults(posts, list) {
 
     if (post.type && post.type !== '0') {
       const categoryLink = document.createElement('a');
-      categoryLink.href = window.location.pathname;
+      categoryLink.href = "";
       categoryLink.innerText = post.type;
       categoryLink.classList.add('eyebrow-small');
       categoryLink.setAttribute('aria-label', post.type);
-
+      var type = post.type?.endsWith('s')?  post.type?.toLowerCase():  post.type.toLowerCase()+'s'
+      const facet = facetsMap.get(type);
+      categoryLink.onclick =  (e)=>{
+        e.preventDefault();
+        facet.checked = true;
+        facet.dispatchEvent(new Event("change", {"bubbles":true, "cancelable":false}));
+      };
       categoryDiv.append(categoryLink);
     }
 
@@ -392,6 +400,8 @@ const createFacet = (facets, topDiv, sheets) => {
     topic.append(label);
     facetItem.append(topic);
     topDiv?.querySelector('ul').append(facetItem);
+
+    facetsMap.set(facet.tag.toLowerCase(), checkbox);
   });
 };
 
@@ -411,14 +421,14 @@ export default async function decorate(block) {
   facetDiv.classList.add('facet');
   CTA_TYPE = cta;
 
-  const topDiv1 = createFacetList('Media Type');
-  const topDiv2 = createFacetList(blogtopic);
-  createFacet(facets.tags, topDiv2, cfg.sheet.split(','));
+  const topicDiv = createFacetList(blogtopic);
+  createFacet(facets.tags, topicDiv, cfg.sheet.split(','));
   if (isResourceCenterPages()) {
-    createFacet(facets.mediaType, topDiv1, cfg.sheet.split(','));
-    facetDiv.append(topDiv1, topDiv2);
+    const mediaTypeDiv = createFacetList('Media Type');
+    createFacet(facets.mediaType, mediaTypeDiv, cfg.sheet.split(','));
+    facetDiv.append(mediaTypeDiv, topicDiv);
   } else {
-    facetDiv.append(topDiv2);
+    facetDiv.append(topicDiv);
   }
 
   const resultsDiv = document.createElement('div');
