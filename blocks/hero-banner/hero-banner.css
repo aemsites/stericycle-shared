@@ -29,9 +29,16 @@ main .section > div.hero-banner-wrapper {
     align-items: center;
 }
 
+.hero-banner-content-text > * {
+    margin: 16px 0 0;
+}
+
+.hero-banner-content-text > *:first-child {
+    margin: 0;
+}
+
 .hero-banner-content-text {
-    padding: 24px 16px;
-    padding-top: 12px;
+    padding: 16px 16px 0;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -41,7 +48,6 @@ main .section > div.hero-banner-wrapper {
 
 .hero-banner-content-text .hero-banner-heading {
     display: block;
-    margin-bottom: 8px;
     font-size: 32px;
     line-height: 38px;
 }
@@ -95,7 +101,6 @@ main .section > div.hero-banner-wrapper {
 }
 
 .hero-banner  .hero-banner-content-text > ul {
-    margin: 54px 0;
     margin-bottom: 0;
 }
 
@@ -224,8 +229,16 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-content-text {
-        padding: 64px 0;
+        padding: 24px 0 0;
         max-width: 78%;
+    }
+
+    .hero-banner-content-text > * {
+        margin: 24px 0 0;
+    }
+
+    .hero-banner-content-text > *:first-child {
+        margin: 0;
     }
 
     .hero-banner-full .hero-banner-content {
@@ -263,14 +276,21 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-content-text {
-        padding: 80px 24px;
+        padding: 32px 24px 80px 24px;
         max-width: 500px;
     }
 
     .hero-banner-content-text .hero-banner-heading {
-        margin: 16px 0;
         font-size: 48px;
         line-height: 3.25rem;
+    }
+
+    .hero-banner-content-text > * {
+        margin: 24px 0 0;
+    }
+
+    .hero-banner-content-text > *:first-child {
+        margin-top: 0;
     }
 
     .hero-banner .hero-banner-content .eyebrow-small * {
@@ -278,7 +298,7 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-promo-badge {
-        margin-bottom: 28px;
+        margin-bottom: 0;
     }
 
     .hero-banner-content-ctas {
@@ -350,7 +370,7 @@ main .section > div.hero-banner-wrapper {
 
 @media screen and (min-width: 1400px) {
     .hero-banner-content-text {
-        padding: 80px 1.5rem;
+        padding: 32px 1.5rem 80px 1.5rem;
         max-width: 700px;
     }
 }
