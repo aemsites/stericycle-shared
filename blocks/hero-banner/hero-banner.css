@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 :root {
 /* Colors */
 --color-angle-1: var(--color-white);
@@ -276,7 +277,7 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-content-text {
-        padding: 32px 24px 80px 24px;
+        padding: 32px 24px 80px;
         max-width: 500px;
     }
 
@@ -370,7 +371,7 @@ main .section > div.hero-banner-wrapper {
 
 @media screen and (min-width: 1400px) {
     .hero-banner-content-text {
-        padding: 32px 1.5rem 80px 1.5rem;
+        padding: 32px 1.5rem 80px;
         max-width: 700px;
     }
 }
