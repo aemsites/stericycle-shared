@@ -1393,8 +1393,8 @@ main .section.with-image > div.section-image-wrapper:first-child {
 main .section.reset-spacing {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
 }
 
 main .section.reset-spacing > div:first-of-type {
@@ -1411,33 +1411,27 @@ main .section.reset-spacing .simple-cta-content {
 }
 
 main .section.basic-margin-bottom {
-  padding-bottom: 10px !important;
-  margin-bottom: 30px !important;
+  margin-bottom: 40px !important;
 }
 
 main .section.standard-margin-bottom {
-  padding-bottom: 10px !important;
-  margin-bottom: 70px !important;
+  margin-bottom: 80px !important;
 }
 
 main .section.extra-margin-bottom {
-  padding-bottom: 10px !important;
-  margin-bottom: 150px !important;
+  margin-bottom: 160px !important;
 }
 
 main .section.basic-margin-top {
-  padding-top: 10px !important;
-  margin-top: 30px !important;
+  margin-top: 40px !important;
 }
 
 main .section.standard-margin-top {
-  padding-top: 10px !important;
-  margin-top: 70px !important;
+  margin-top: 80px !important;
 }
 
 main .section.extra-margin-top {
-  padding-top: 10px !important;
-  margin-top: 150px !important;
+  margin-top: 160px !important;
 }
 
 main .section.rounded-corners {
