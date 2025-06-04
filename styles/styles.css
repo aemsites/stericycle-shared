@@ -1405,28 +1405,39 @@ main .section.reset-spacing > div:last-of-type {
   margin-bottom: 0 !important;
 }
 
+main .section.reset-spacing .simple-cta-content {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 main .section.basic-margin-bottom {
-  margin-bottom: 40px !important;
+  padding-bottom: 10px !important;
+  margin-bottom: 30px !important;
 }
 
 main .section.standard-margin-bottom {
-  margin-bottom: 80px !important;
+  padding-bottom: 10px !important;
+  margin-bottom: 70px !important;
 }
 
 main .section.extra-margin-bottom {
-  margin-bottom: 160px !important;
+  padding-bottom: 10px !important;
+  margin-bottom: 150px !important;
 }
 
 main .section.basic-margin-top {
-  margin-top: 40px !important;
+  padding-top: 10px !important;
+  margin-top: 30px !important;
 }
 
 main .section.standard-margin-top {
-  margin-top: 80px !important;
+  padding-top: 10px !important;
+  margin-top: 70px !important;
 }
 
 main .section.extra-margin-top {
-  margin-top: 160px !important;
+  padding-top: 10px !important;
+  margin-top: 150px !important;
 }
 
 main .section.rounded-corners {
