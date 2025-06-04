@@ -1393,8 +1393,8 @@ main .section.with-image > div.section-image-wrapper:first-child {
 main .section.reset-spacing {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
 }
 
 main .section.reset-spacing > div:first-of-type {
@@ -1402,6 +1402,11 @@ main .section.reset-spacing > div:first-of-type {
 }
 
 main .section.reset-spacing > div:last-of-type {
+  margin-bottom: 0 !important;
+}
+
+main .section.reset-spacing .simple-cta-content {
+  margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
 
