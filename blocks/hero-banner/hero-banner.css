@@ -39,7 +39,7 @@ main .section > div.hero-banner-wrapper {
 }
 
 .hero-banner-content-text {
-    padding: 16px 16px 0;
+    padding: 16px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -59,7 +59,6 @@ main .section > div.hero-banner-wrapper {
     align-items: center;
     flex-wrap: wrap;
     column-gap: 16px;
-    padding-top: 16px;
 }
 
 .hero-banner-promo-badge {
@@ -127,7 +126,7 @@ main .section > div.hero-banner-wrapper {
     line-height: 160%;
     color: var(--color-text-primary);
     transition: background-color 0.3s ease-in-out;
-  }
+    }
 
 /* Variants */
 .hero-banner-container {
@@ -158,7 +157,6 @@ main .section > div.hero-banner-wrapper {
 
 .hero-banner .hero-banner-content .eyebrow-small * {
     margin: 0;
-    margin-bottom: 16px;
     font-size: 14px;
     font-weight: 900;
     line-height: 16.8px;
@@ -230,7 +228,7 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-content-text {
-        padding: 24px 0 0;
+        padding: 24px 0;
         max-width: 78%;
     }
 
@@ -239,7 +237,7 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-content-text > *:first-child {
-        margin: 0;
+        margin: 0 0 4px;
     }
 
     .hero-banner-full .hero-banner-content {
@@ -277,8 +275,8 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-content-text {
-        padding: 32px 24px 80px;
-        max-width: 500px;
+        padding: 32px 24px;
+        max-width: 600px;
     }
 
     .hero-banner-content-text .hero-banner-heading {
@@ -291,7 +289,7 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-content-text > *:first-child {
-        margin-top: 0;
+        margin: 0 0 4px;
     }
 
     .hero-banner .hero-banner-content .eyebrow-small * {
@@ -304,7 +302,6 @@ main .section > div.hero-banner-wrapper {
 
     .hero-banner-content-ctas {
         column-gap: 24px;
-        padding-top: 36px;
     }
 
     main .section > div.hero-banner-wrapper:has(.masked-image-wrapper) {
@@ -371,7 +368,7 @@ main .section > div.hero-banner-wrapper {
 
 @media screen and (min-width: 1400px) {
     .hero-banner-content-text {
-        padding: 32px 1.5rem 80px;
-        max-width: 700px;
+        padding: 32px 1.5rem;
+        max-width: 720px;
     }
 }
