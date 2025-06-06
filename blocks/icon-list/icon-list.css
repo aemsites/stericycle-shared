@@ -326,21 +326,25 @@ main .two-column.form-container.icon-list-container > div:first-child.default-co
 }
 
 /* Vertical Numbers Styles */
-main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div {
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div,
+main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list > div {
     flex-direction: column;
 }
 
-main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list p span.icon {
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list p span.icon,
+main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list p span.icon {
     width: 103px;
     height: 41.963px;
 }
 
-main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-of-type {
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-of-type,
+main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-of-type {
     height: fit-content;
     width: 100%;
 }
 
-main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:nth-of-type(2) {
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:nth-of-type(2),
+main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:nth-of-type(2) {
     border: none;
     flex-direction: column;
     align-items: flex-start;
@@ -349,11 +353,13 @@ main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-lis
     height: fit-content;
 }
 
-main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:nth-of-type(2) p {
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:nth-of-type(2) p,
+main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:nth-of-type(2) p {
     padding-left: 0;
 }
 
-main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:nth-of-type(2) > h4 {
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:nth-of-type(2) > h4,
+main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:nth-of-type(2) > h4 {
     margin-bottom: 0;
 }
 
@@ -361,12 +367,14 @@ main .section.flex-row:has(.vertical-numbers) div.icon-list > div > div:nth-of-t
     border-left-color: var(--color-accent-2);
 }
 
-main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper {
+main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper,
+main .section.three-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper {
     margin: 24px 24px 40px;
     padding: 0;
 }
 
-main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper > h1 {
+main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper > h1,
+main .section.three-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper > h1 {
     font-size: 40px;
     font-weight: var(--font-weight-bold);
     line-height: 120%;
@@ -374,11 +382,13 @@ main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-co
     margin: 0;
 }
 
-main .section.two-column.icon-list-container:has(.vertical-numbers) > div:first-child.default-content-wrapper > p {
+main .section.two-column.icon-list-container:has(.vertical-numbers) > div:first-child.default-content-wrapper > p,
+main .section.three-column.icon-list-container:has(.vertical-numbers) > div:first-child.default-content-wrapper > p {
     margin: 0;
 }
 
-main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-child p:not(:has(> span.icon)) {
+main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-child p:not(:has(> span.icon)),
+main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-child p:not(:has(> span.icon)) {
     color: var(--color-icon-accent);
     font-size: 48px;
     font-weight: var(--font-weight-bold);
@@ -387,30 +397,35 @@ main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-lis
 }
 
 @media (min-width: 992px) {
-    main .section.two-column.icon-list-container:has(.vertical-numbers) {
+    main .section.two-column.icon-list-container:has(.vertical-numbers),
+    main .section.three-column.icon-list-container:has(.vertical-numbers) {
         padding: 64px;
         grid-template-columns: minmax(0, 700px) minmax(0, 561px);
         justify-content: space-between;
         margin: 0 auto;
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers)  div.icon-list.block {
+    main .section.two-column.icon-list-container:has(.vertical-numbers)  div.icon-list.block,
+    main .section.three-column.icon-list-container:has(.vertical-numbers)  div.icon-list.block {
         flex-direction: column;
         gap: 32px;
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div {
+    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div,
+    main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div {
         width: 100%;
         flex-direction: row;
         align-items: center;
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:first-of-type {
+    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:first-of-type,
+    main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:first-of-type {
         width: fit-content;
         margin: 0;
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:nth-of-type(2) {
+    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:nth-of-type(2),
+    main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:nth-of-type(2) {
         border-left: 4px solid var(--color-accent-2);
         flex-direction: column;
         justify-content: flex-start;
@@ -422,48 +437,57 @@ main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-lis
         min-height: 6rem;
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block.vertical-line-white > div > div:nth-of-type(2) {
+    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block.vertical-line-white > div > div:nth-of-type(2),
+    main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list.block.vertical-line-white > div > div:nth-of-type(2) {
         border-left: 4px solid var(--color-white);
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list p:has(> span.icon) {
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list p:has(> span.icon),
+    main .section.three-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list p:has(> span.icon) {
         display: flex;
         align-items: center;
         justify-content: flex-end;
         padding-right: 24px;
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-child p:not(:has(> span.icon)) {
+    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-child p:not(:has(> span.icon)),
+    main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-child p:not(:has(> span.icon)) {
         padding-right: 32px;
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:nth-of-type(2) > h4 {
+    main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:nth-of-type(2) > h4,
+    main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list.block > div > div:nth-of-type(2) > h4 {
         letter-spacing: 0.18px;
         margin-bottom: 4px;
     }
 
-    main .section.two-column.icon-list-container:not(.form-container):has(.vertical-numbers):not(.form-container) div.icon-list.block > div > div:nth-of-type(2) > * {
+    main .section.two-column.icon-list-container:not(.form-container):has(.vertical-numbers):not(.form-container) div.icon-list.block > div > div:nth-of-type(2) > *,
+    main .section.three-column.icon-list-container:not(.form-container):has(.vertical-numbers):not(.form-container) div.icon-list.block > div > div:nth-of-type(2) > * {
         padding: 0;
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list p span.icon {
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list p span.icon,
+    main .section.three-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list p span.icon {
         width: 103px;
         height: 41.963px;
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) {
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container),
+    main .section.three-column.icon-list-container:has(.vertical-numbers):not(.form-container) {
         display: flex;
         flex-direction: column;
         padding: 80px;
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper {
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper,
+    main .section.three-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper {
         padding: 0;
         margin: 0;
         margin-bottom: 40px;
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper > h1 {
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper > h1,
+    main .section.three-column.icon-list-container:has(.vertical-numbers):not(.form-container) > div:first-child.default-content-wrapper > h1 {
         padding: 0;
         margin: 0;
         font-size: var(--heading-font-size-xl);
@@ -472,7 +496,8 @@ main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-lis
         letter-spacing: 0.32px;
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > .icon-list-wrapper {
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > .icon-list-wrapper,
+    main .section.three-column.icon-list-container:has(.vertical-numbers):not(.form-container) > .icon-list-wrapper {
         display: flex;
         justify-content: center;
         width: 100%;
@@ -480,7 +505,8 @@ main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-lis
         padding: 0;
     }
 
-    main .two-column.icon-list-container:not(.form-container) > .icon-list-wrapper > .icon-list.vertical-numbers {
+    main .two-column.icon-list-container:not(.form-container) > .icon-list-wrapper > .icon-list.vertical-numbers,
+    main .three-column.icon-list-container:not(.form-container) > .icon-list-wrapper > .icon-list.vertical-numbers {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 40px 80px;
@@ -488,13 +514,15 @@ main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-lis
         max-width: 1400px;
     }
 
-    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > .icon-list-wrapper > .icon-list > div {
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) > .icon-list-wrapper > .icon-list > div,
+    main .section.three-column.icon-list-container:has(.vertical-numbers):not(.form-container) > .icon-list-wrapper > .icon-list > div {
         display: flex;
         flex-direction: row;
         align-items: center;
     }
 
-     main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list.block > div > div:nth-of-type(2) {
+    main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list.block > div > div:nth-of-type(2),
+    main .section.three-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list.block > div > div:nth-of-type(2) {
         padding-left: 32px;
     }
 }
@@ -502,5 +530,26 @@ main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-lis
 @media (min-width: 1500px) {
     .section.flex-row .icon-list:not(.plain) > div {
         flex: 0 0 35%;
+    }
+}
+
+main .section.three-column > div:not(.default-content-wrapper) > div.icon-list.vertical-numbers > div > div > p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 1200px) {
+    main .section.three-column > div:not(.default-content-wrapper) > div,
+    main .three-column.icon-list-container:not(.form-container) > .icon-list-wrapper > .icon-list.vertical-numbers {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    main .section.three-column > div:not(.default-content-wrapper) > div.icon-list.vertical-numbers > div,
+    main .three-column.icon-list-container:not(.form-container) > .icon-list-wrapper > .icon-list.vertical-numbers > div {
+        width: 100%;
+        align-items: center;
     }
 }
