@@ -334,7 +334,7 @@ main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-l
 main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list p span.icon,
 main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-list p span.icon {
     width: 103px;
-    height: 41.963px;
+    height: 103px;
 }
 
 main .section.two-column.icon-list-container:has(.vertical-numbers) div.icon-list > div > div:first-of-type,
@@ -469,7 +469,7 @@ main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-l
     main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list p span.icon,
     main .section.three-column.icon-list-container:has(.vertical-numbers):not(.form-container) div.icon-list p span.icon {
         width: 103px;
-        height: 41.963px;
+        height: 103px;
     }
 
     main .section.two-column.icon-list-container:has(.vertical-numbers):not(.form-container),
@@ -533,13 +533,13 @@ main .section.three-column.icon-list-container:has(.vertical-numbers) div.icon-l
     }
 }
 
-main .section.three-column > div:not(.default-content-wrapper) > div.icon-list.vertical-numbers > div > div > p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 @media (min-width: 1200px) {
+    main .section.three-column > div:not(.default-content-wrapper) > div.icon-list.vertical-numbers > div > div > p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     main .section.three-column > div:not(.default-content-wrapper) > div,
     main .three-column.icon-list-container:not(.form-container) > .icon-list-wrapper > .icon-list.vertical-numbers {
         display: grid;
