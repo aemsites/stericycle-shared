@@ -225,7 +225,7 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 }
 
 .columns.steps h3 {
-  color: var(--color-secondary-3);
+  color: var(--color-primary-1);
 }
 
 .columns.steps > div > div > p:nth-of-type(2) {
@@ -293,7 +293,7 @@ main .block.columns.left-align {
 
 .columns.cyan-accent-border > div > div::after,
 .columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img))::after {
-  background: var(--color-secondary-3);
+  background: var(--color-primary-1);
 }
 
 .block.columns.center-align > div {
@@ -308,7 +308,7 @@ main .block.columns.left-align {
 
 .columns.numeric-list h3 {
   font-size: 4rem;
-  color: var(--color-secondary-3);
+  color: var(--color-primary-1);
   margin-bottom: 1.5rem;
 }
 
@@ -344,7 +344,7 @@ main .block.columns.left-align {
 
 .columns.numeric-list li:first-of-type > strong {
   font-size: 4rem;
-  color: var(--color-secondary-3);
+  color: var(--color-primary-1);
 }
 
 .columns.box-shadow-hover > div > div > h3 {
@@ -764,7 +764,7 @@ main .section.columns-container > div > div.columns.cyan-line-divider.block > di
 }
 
 main .section.columns-container > div > div.columns.cyan-line-divider.block > div:first-of-type > div > p:first-of-type::after {
-  background: var(--color-secondary-3);
+  background: var(--color-primary-1);
   position: absolute;
   width: 103px;
   height: 3px;
@@ -1004,7 +1004,7 @@ main .section.columns-container.close-vertical {
 }
 
 .columns.steps-secondary .step-label {
-  color: var(--color-secondary-3);
+  color: var(--color-primary-1);
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -1045,7 +1045,7 @@ main .section.columns-container.close-vertical {
 }
 
 .columns.steps-secondary h3 {
-  color: var(--color-secondary-3);
+  color: var(--color-primary-1);
 }
 
 @media (max-width: 991px) {
