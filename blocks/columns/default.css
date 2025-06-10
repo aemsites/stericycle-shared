@@ -1053,6 +1053,7 @@ main .section.columns-container.close-vertical {
     flex-direction: column;
     gap: 1.5rem;
   }
+
   .columns.steps-secondary > div > div {
     width: 100%;
     align-items: flex-start;
@@ -1064,10 +1065,12 @@ main .section.columns-container.close-vertical {
   .columns.steps-secondary > div:has(> div:nth-child(2)):not(:has(> div:nth-child(3))) > div > p:last-of-type {
     max-width: 50%;
   }
+
   /* 3 cards */
   .columns.steps-secondary > div:has(> div:nth-child(3)):not(:has(> div:nth-child(4))) > div > p:last-of-type {
     max-width: 70%;
   }
+
   /* 4 or more cards */
   .columns.steps-secondary > div:has(> div:nth-child(4)) > div > p:last-of-type {
     max-width: 100%;
