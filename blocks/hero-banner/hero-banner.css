@@ -289,7 +289,7 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-content-text > *:first-child {
-        margin: 0 0 4px;
+        margin: 16px 0 4px;
     }
 
     .hero-banner .hero-banner-content .eyebrow-small * {
