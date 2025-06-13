@@ -102,6 +102,9 @@ export default async function decorate(block) {
   // Wrap content in pages
   const contentWrapper = document.createElement('div');
   contentWrapper.classList.add('banner-content');
+  if (block.classList.contains('centered')) {
+    contentWrapper.classList.add('centered');
+  }
   contentWrapper.innerHTML = block.innerHTML;
   block.innerHTML = '';
 

@@ -73,6 +73,10 @@
   margin: 0 auto;
 }
 
+.block.banner.fixed-to-bottom > .banner-content-wrapper > .banner-content.centered {
+  justify-content: center;
+}
+
 @media screen and (min-width: 576px /* breakpoint-s */) {
   .block.banner > .banner-content-wrapper > .banner-content {
     gap: 4rem;
