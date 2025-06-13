@@ -225,7 +225,7 @@ main .section.columns-container.list-style-orange-triangles .columns.box-shadow-
 }
 
 .columns.steps h3 {
-  color: var(--color-secondary-3);
+  color: var(--color-primary-1);
 }
 
 .columns.steps > div > div > p:nth-of-type(2) {
@@ -293,7 +293,7 @@ main .block.columns.left-align {
 
 .columns.cyan-accent-border > div > div::after,
 .columns.cyan-accent-border.columns-has-image > div > div > p:not(:has(img))::after {
-  background: var(--color-secondary-3);
+  background: var(--color-primary-1);
 }
 
 .block.columns.center-align > div {
@@ -308,7 +308,7 @@ main .block.columns.left-align {
 
 .columns.numeric-list h3 {
   font-size: 4rem;
-  color: var(--color-secondary-3);
+  color: var(--color-primary-1);
   margin-bottom: 1.5rem;
 }
 
@@ -344,7 +344,7 @@ main .block.columns.left-align {
 
 .columns.numeric-list li:first-of-type > strong {
   font-size: 4rem;
-  color: var(--color-secondary-3);
+  color: var(--color-primary-1);
 }
 
 .columns.box-shadow-hover > div > div > h3 {
@@ -764,7 +764,7 @@ main .section.columns-container > div > div.columns.cyan-line-divider.block > di
 }
 
 main .section.columns-container > div > div.columns.cyan-line-divider.block > div:first-of-type > div > p:first-of-type::after {
-  background: var(--color-secondary-3);
+  background: var(--color-primary-1);
   position: absolute;
   width: 103px;
   height: 3px;
@@ -983,5 +983,96 @@ main .section.columns-container.close-vertical {
   main .section.columns-container .columns-wrapper:has(.cta.split-lastquarter) {
     padding-right: 12px;
     padding-left: 1.5rem;
+  }
+}
+
+/* steps-secondary Variant */
+.columns.steps-secondary > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.columns.steps-secondary > div > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.columns.steps-secondary .step-label {
+  color: var(--color-primary-1);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.columns.steps-secondary .step-icon-box {
+  width: 100%;
+  min-height: 200px;
+  background: #e6eeef;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.columns.steps-secondary picture,
+.columns.steps-secondary img,
+.columns.steps-secondary svg {
+  max-height: 200px;
+  display: block;
+  object-fit: cover;
+}
+
+.columns.steps-secondary .step-desc {
+  color: #222;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0;
+  text-align: left;
+}
+
+.columns.steps-secondary h2, .columns.steps-secondary h3, .columns.steps-secondary h1 {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.columns.steps-secondary h3 {
+  color: var(--color-primary-1);
+}
+
+@media (max-width: 991px) {
+  .columns.steps-secondary > div {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .columns.steps-secondary > div > div {
+    width: 100%;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 992px) {
+  /* 2 cards */
+  .columns.steps-secondary > div:has(> div:nth-child(2)):not(:has(> div:nth-child(3))) > div > p:last-of-type {
+    max-width: 50%;
+  }
+
+  /* 3 cards */
+  .columns.steps-secondary > div:has(> div:nth-child(3)):not(:has(> div:nth-child(4))) > div > p:last-of-type {
+    max-width: 70%;
+  }
+
+  /* 4 or more cards */
+  .columns.steps-secondary > div:has(> div:nth-child(4)) > div > p:last-of-type {
+    max-width: 100%;
   }
 }
