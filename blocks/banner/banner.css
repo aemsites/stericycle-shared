@@ -29,7 +29,7 @@
   width: 100%;
   bottom: 0;
   background-color: var(--color-light-gray);
-  min-height: 64px;
+  max-height: 52px;
   max-width: none;
   padding: 0 1rem;
 }
@@ -90,6 +90,13 @@
     gap: 50px;
     color: var(--color-white);
     margin-left: 10px;
+  }
+}
+
+@media screen and (min-width: 1400px /* breakpoint-xl */) {
+  .block.banner.fixed-to-bottom {
+    min-height: 64px;
+    max-height: unset;
   }
 }
 
