@@ -288,9 +288,9 @@ export function generateMenuFromSection(
 
           // Handle different types of children (e.g., links, paragraphs, images)
           Array.from(nestedLi.childNodes).forEach((child) => {
-            if (child.nodeName === "UL") {
+            if (child.nodeName === 'UL') {
               listItem.appendChild(child.cloneNode(true));
-            } else if (child.nodeName === "P" || child.nodeType === Node.TEXT_NODE) {
+            } else if (child.nodeName === 'P' || child.nodeType === Node.TEXT_NODE) {
               const textWrapper = document.createElement('span');
 
               // check if textContent includes custom selector #name and add class with that name
