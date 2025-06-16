@@ -9,7 +9,12 @@ function hasWrapper(el) {
 function modifyIcon(icon) {
   if (icon && !icon.classList.contains('custom-icon')) {
     icon.classList.add('custom-icon');
-    icon.querySelector('span').innerHTML = '';
+    const span = icon.querySelector('span');
+
+    if (span) {
+      span.innerHTML = '';
+    }
+
     decorateIcons(icon);
   }
 }
@@ -137,6 +142,11 @@ export default async function decorate(block) {
       });
       tabpanel.setAttribute('aria-hidden', false);
       button.setAttribute('aria-selected', true);
+      button.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center',
+      });
     });
     tablist.append(button);
     tab.remove();
