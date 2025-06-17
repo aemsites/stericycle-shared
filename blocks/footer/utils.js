@@ -13,7 +13,7 @@ export function createMenuAccordion(footer) {
     menuListItems.forEach((item) => {
       item.classList.add('footer-accordion');
       const buttonContainer = item.querySelector(':scope > .button-container');
-      const itemTitle =  buttonContainer?.querySelector(':scope > a') || item.childNodes[0];
+      const itemTitle = buttonContainer?.querySelector(':scope > a') || item.childNodes[0];
       if (buttonContainer) {
         buttonContainer.remove();
       } else {
