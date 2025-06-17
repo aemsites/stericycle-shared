@@ -650,6 +650,10 @@ footer .section.footer-menu .default-content-wrapper .footer-accordion-link-wrap
   pointer-events: all;
 }
 
+footer .section.footer-menu .default-content-wrapper .footer-accordion-link-wrapper > a:hover {
+  text-decoration: underline;
+}
+
 footer .section.footer-menu .footer-accordion-content-wrapper {
   overflow: hidden;
   height: 0;
