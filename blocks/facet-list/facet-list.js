@@ -168,7 +168,7 @@ async function getFacets(sheets = []) {
   });
 
   facets.forEach((facet) => {
-    const tags = facet.tags;
+    const { tags } = facet;
     tags.forEach((tag) => {
       const cleanTag = tag.trim().replaceAll(/["[\]]/g, '');
       if (cleanTag === '') {
