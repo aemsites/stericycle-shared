@@ -1,9 +1,9 @@
 # Shredit.com
-Edge Delivery Services impl for Shredit.com
+Edge Delivery Services (DA) impl for Shredit.com
 
 ## Environments
-- Preview: https://main--shredit--aemsites.hlx.page/
-- Live: https://main--shredit--aemsites.hlx.live/
+- Preview: https://main--shred-it--aemsites.aem.page/
+- Live: https://main--shred-it--aemsites.aem.live/
 
 ## Installation
 
