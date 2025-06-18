@@ -16,7 +16,7 @@ async function buildPagination(ul, controls, sheet, page) {
   const storedPosts = sessionStorage.getItem(sheet);
   let releases = [];
   if (!storedPosts || storedPosts === '[]') {
-    const posts = await fetchQueryIndex().sheet(sheet).all();
+    const posts = await fetchQueryIndex(undefined, sheet).all();
     sessionStorage.setItem(sessionKey, JSON.stringify(posts));
     releases = posts;
   } else {
