@@ -240,7 +240,7 @@ async function handleSearch(e, block, config) {
   if (searchValue.length >= 3) {
     const allowedTypes = ['Blogs', 'Service Location', 'Press Releases', 'Service-page', 'Industry-page', 'Videos', 'Info Sheets'];
     const data = await fetchQueryIndex()
-      .filter((post) => allowedTypes.map(type => type.toLowerCase()).includes(post['media-type'].toLowerCase()))
+      .filter((post) => allowedTypes.map((type) => type.toLowerCase()).includes(post['media-type'].toLowerCase()))
       .all();
 
     data.sort((a, b) => b.date - a.date);
