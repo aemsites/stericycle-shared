@@ -170,7 +170,7 @@ export function fetchQueryIndex(locale, category) {
 // eslint-disable-next-line max-len
 export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.4672, limit = 5) => {
   const isDropoff = getMetadata('sub-type')?.trim().toLowerCase();
-  const locations = await fetchQueryIndex().sheet('locations')
+  const locations = await fetchQueryIndex(undefined, 'locations')
     .filter((x) => {
       const latitude = parseFloat(x.latitude);
       const longitude = parseFloat(x.longitude);

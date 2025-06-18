@@ -121,7 +121,7 @@ const calculateLocationListDistance = (locations, centerPoint) => {
 };
 
 async function fetchLocations(isDropoff, ph) {
-  return (await fetchQueryIndex().sheet('locations')
+  return (await fetchQueryIndex(undefined, 'locations')
     .filter((x) => (x.latitude !== '0' && x.longitude !== '0')
       && (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true)
       && (x.locale?.trim().toLowerCase() === getLocale()))
