@@ -138,8 +138,8 @@ async function getResults(sheets = []) {
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
   const postArray = [];
-  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex()
-    .sheet(sheet).all())).then((results) => results.flat());
+  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
+    .all())).then((results) => results.flat());
   posts.forEach((post) => {
     postArray.push(post);
   });
@@ -154,8 +154,8 @@ async function getFacets(sheets = []) {
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
   const facetArray = [];
-  const facets = await Promise.all(sheetList.map((sheet) => fetchQueryIndex()
-    .sheet(sheet).all()))
+  const facets = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
+    .all()))
     .then((results) => results.flat());
 
   const tagJson = {};
@@ -168,7 +168,7 @@ async function getFacets(sheets = []) {
   });
 
   facets.forEach((facet) => {
-    const tags = facet.tags.split(',');
+    const tags = facet.tags;
     tags.forEach((tag) => {
       const cleanTag = tag.trim().replaceAll(/["[\]]/g, '');
       if (cleanTag === '') {
