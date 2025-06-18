@@ -248,10 +248,8 @@ export async function getRelatedPosts(types, tags, limit) {
   let posts = [];
   const fetchResults = await Promise.all(sheets.map(async (sheet) => fetchQueryIndex(undefined, sheet).all()));
   fetchResults.forEach((fetchResult) => posts.push(...fetchResult));
-  if (nTypes.length > 1) {
-    // this could become a performance problem with a huge volume of posts
-    posts = posts.sort((a, b) => b.date - a.date);
-  }
+  // this could become a performance problem with a huge volume of posts
+  posts = posts.sort((a, b) => b.date - a.date);
 
   // filter posts by tags
   const filteredPosts = [];

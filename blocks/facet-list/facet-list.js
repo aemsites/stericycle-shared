@@ -318,7 +318,7 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
 
   const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
     .map((post) => ({
-      tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
+      tags: post.tags.map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
       title: post.title,
       date: post.date,
       image: post.image,
