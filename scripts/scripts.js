@@ -160,16 +160,17 @@ export const haversineDistance = (lat1, lon1, lat2, lon2) => {
  * @param {string} [locale] sheet locale (uses current page locale none is supplied)
  * @returns {*} fetched query index
  */
-export function fetchQueryIndex(locale) {
+export function fetchQueryIndex(locale, category) {
   const sheetLocale = locale || getLocale();
-  return ffetch(`/${sheetLocale}/query-index.json`);
+  const sheetCategory = category || 'query';
+  return ffetch(`/${sheetLocale}/${sheetCategory}-index.json`);
 }
 
 // Remove dedup based on name, specific to the locations
 // eslint-disable-next-line max-len
 export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.4672, limit = 5) => {
   const isDropoff = getMetadata('sub-type')?.trim().toLowerCase();
-  const locations = await fetchQueryIndex().sheet('locations')
+  const locations = await fetchQueryIndex(undefined, 'locations')
     .filter((x) => {
       const latitude = parseFloat(x.latitude);
       const longitude = parseFloat(x.longitude);
@@ -245,12 +246,10 @@ export async function getRelatedPosts(types, tags, limit) {
 
   // fetch all posts by type
   let posts = [];
-  const fetchResults = await Promise.all(sheets.map(async (sheet) => fetchQueryIndex().sheet(sheet).all()));
+  const fetchResults = await Promise.all(sheets.map(async (sheet) => fetchQueryIndex(undefined, sheet).all()));
   fetchResults.forEach((fetchResult) => posts.push(...fetchResult));
-  if (nTypes.length > 1) {
-    // this could become a performance problem with a huge volume of posts
-    posts = posts.sort((a, b) => b.date - a.date);
-  }
+  // this could become a performance problem with a huge volume of posts
+  posts = posts.sort((a, b) => b.date - a.date);
 
   // filter posts by tags
   const filteredPosts = [];
