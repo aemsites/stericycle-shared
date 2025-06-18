@@ -207,7 +207,7 @@ function assignOperations(generator, context) {
 }
 
 export default function ffetch(url) {
-  let chunkSize = 255;
+  let chunkSize = 10000;
   const fetch = (...rest) => window.fetch.apply(null, rest);
   const parseHtml = (html) => new window.DOMParser().parseFromString(html, 'text/html');
 
