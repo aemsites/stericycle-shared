@@ -2,16 +2,41 @@ import { decorateButtons } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { span, button, p } from '../../scripts/dom-helpers.js';
 
+const BANNER_COOKIE = 'privacy-banner-dismissed';
+const COOKIE_EXPIRY_DAYS = 365; // Cookie expires after 1 year
+
+function setCookie(name, value, days) {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = `expires=${date.toUTCString()}`;
+  document.cookie = `${name}=${value};${expires};path=/`;
+}
+
+function getCookie(name) {
+  const cookieName = `${name}=`;
+  const cookies = document.cookie.split(';');
+  for (let i = 0; i < cookies.length; i += 1) {
+    const cookie = cookies[i].trim();
+    if (cookie.indexOf(cookieName) === 0) {
+      return cookie.substring(cookieName.length, cookie.length);
+    }
+  }
+  return '';
+}
+
 function decorateCloseButton(block) {
   const buttonWrapper = document.createElement('div');
   buttonWrapper.classList.add('banner-actions');
   const closeButton = document.createElement('button');
   closeButton.classList.add('close-button');
   closeButton.onclick = () => {
+    if (block.classList.contains('use-cookie')) {
+      setCookie(BANNER_COOKIE, 'true', COOKIE_EXPIRY_DAYS);
+    }
     block.remove();
   };
   buttonWrapper.append(closeButton);
-  block.append(buttonWrapper);
+  return buttonWrapper;
 }
 
 function navigateContent(block, direction) {
@@ -30,6 +55,12 @@ function navigateContent(block, direction) {
 }
 
 export default async function decorate(block) {
+  // Check if banner should be hidden due to cookie
+  if (block.classList.contains('use-cookie') && getCookie(BANNER_COOKIE) === 'true') {
+    block.remove();
+    return;
+  }
+
   // Set default background if no other is present
   if (!(/-background/.test(block.className))) {
     block.classList.add('blue-background');
@@ -71,11 +102,19 @@ export default async function decorate(block) {
   // Wrap content in pages
   const contentWrapper = document.createElement('div');
   contentWrapper.classList.add('banner-content');
+  if (block.classList.contains('centered')) {
+    contentWrapper.classList.add('centered');
+  }
   contentWrapper.innerHTML = block.innerHTML;
   block.innerHTML = '';
-  block.append(contentWrapper);
 
-  decorateCloseButton(block);
+  // Create a wrapper for content and actions
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('banner-content-wrapper');
+  wrapper.append(contentWrapper);
+  const closeButtonWrapper = decorateCloseButton(block);
+  wrapper.append(closeButtonWrapper);
+  block.append(wrapper);
 
   if (block.classList.contains('fixed-to-top')) {
     block.classList.add('cmp-notification-bar'); // analytics trigger
@@ -98,7 +137,12 @@ export default async function decorate(block) {
     }
     const closeButton = copyBlock.querySelector('button.close-button');
     closeButton.classList.add('cmp-carousel__action--close'); // analytics trigger
-    closeButton.addEventListener('click', () => copyBlock.remove());
+    closeButton.addEventListener('click', () => {
+      if (copyBlock.classList.contains('use-cookie')) {
+        setCookie(BANNER_COOKIE, 'true', COOKIE_EXPIRY_DAYS);
+      }
+      copyBlock.remove();
+    });
     body.prepend(copySection);
     copySection.style = '{display: block;}';
     block.closest('.section').remove();
