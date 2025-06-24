@@ -2,6 +2,10 @@
   background-color: var(--color-bg-tertiary);
 }
 
+.section.banner-container:has(.fixed-to-bottom) {
+  background-color: transparent;
+}
+
 .block.banner {
   display: flex;
   position: relative;
