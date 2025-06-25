@@ -141,7 +141,7 @@ export default async function decorate(block) {
       if (copyBlock.classList.contains('use-cookie')) {
         setCookie(BANNER_COOKIE, 'true', COOKIE_EXPIRY_DAYS);
       }
-      copyBlock.remove();
+      copySection.remove();
     });
     body.prepend(copySection);
     copySection.style = '{display: block;}';
