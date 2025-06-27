@@ -25,6 +25,7 @@ function getCookie(name) {
 }
 
 function decorateCloseButton(block) {
+  const copySection = block.closest('.section');
   const buttonWrapper = document.createElement('div');
   buttonWrapper.classList.add('banner-actions');
   const closeButton = document.createElement('button');
@@ -33,7 +34,7 @@ function decorateCloseButton(block) {
     if (block.classList.contains('use-cookie')) {
       setCookie(BANNER_COOKIE, 'true', COOKIE_EXPIRY_DAYS);
     }
-    block.remove();
+    copySection.remove();
   };
   buttonWrapper.append(closeButton);
   return buttonWrapper;
