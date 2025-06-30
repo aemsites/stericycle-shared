@@ -7,6 +7,8 @@ async function fetchLocations() {
     .filter((x) => (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true))
     .all();
 
+  rawData.sort((a, b) => a.name.localeCompare(b.name));
+
   // group by region and sort regions
   const regionMap = new Map();
   rawData.forEach((entry) => {
