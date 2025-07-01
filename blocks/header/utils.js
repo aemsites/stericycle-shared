@@ -301,11 +301,10 @@ export function generateMenuFromSection(
                 const hashTag = child.textContent.match(/#\w+/);
 
                 // remove the #hashTag text
-                const childNodes = child.childNodes;
-                childNodes.forEach(node => {
+                [...child.childNodes].forEach((node) => {
                   if (node.nodeType === Node.TEXT_NODE) {
-                    let currentText = node.nodeValue;
-                    let newText = currentText.replaceAll(hashTag[0], '');
+                    const currentText = node.nodeValue;
+                    const newText = currentText.replaceAll(hashTag[0], '');
                     node.nodeValue = newText;
                   }
                 });
@@ -320,7 +319,6 @@ export function generateMenuFromSection(
 
               const icon = child.querySelector('.icon');
               if (icon) listItem.appendChild(icon);
-              
               listItem.appendChild(textWrapper);
             }
           });
