@@ -23,6 +23,7 @@ async function buildPagination(ul, controls, sheet, page) {
     releases = JSON.parse(storedPosts);
   }
 
+  releases.sort((a, b) => b.date - a.date);
   const totalPages = Math.ceil(releases.length / itemsPerPage);
   const start = (page - 1) * itemsPerPage;
   const end = start + itemsPerPage;
