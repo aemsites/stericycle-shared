@@ -82,6 +82,17 @@ export function getDateFromExcel(date) {
   return date;
 }
 
+/**
+ * Converts string date format like "D-Month-YY" to a Date object
+ * @returns {Date} Date object
+ */
+export function getDateFromString(date) {
+  if (!Number.isNaN(date)) {
+    return new Date(date);
+  }
+  return date;
+}
+
 export const formatDate = (date) => date.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',

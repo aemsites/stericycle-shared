@@ -1,5 +1,5 @@
 import { readBlockConfig } from '../../scripts/aem.js';
-import { fetchQueryIndex, getDateFromExcel } from '../../scripts/scripts.js';
+import { fetchQueryIndex, getDateFromString } from '../../scripts/scripts.js';
 
 let sessionKey = 'press-releases';
 
@@ -51,7 +51,7 @@ async function buildPagination(ul, controls, sheet, page) {
       listItem.append(desc);
     }
     const prSpan = document.createElement('span');
-    prSpan.textContent = formatDate(getDateFromExcel(release.date));
+    prSpan.textContent = formatDate(getDateFromString(release.date));
     prSpan.classList.add('date-published');
     listItem.append(prSpan);
     ul.appendChild(listItem);
