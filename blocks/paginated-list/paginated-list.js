@@ -1,5 +1,5 @@
 import { readBlockConfig } from '../../scripts/aem.js';
-import { fetchQueryIndex, getDateFromString } from '../../scripts/scripts.js';
+import { fetchQueryIndex, getDateFromExcel, getDateFromString } from '../../scripts/scripts.js';
 
 let sessionKey = 'press-releases';
 
@@ -51,7 +51,8 @@ async function buildPagination(ul, controls, sheet, page) {
       listItem.append(desc);
     }
     const prSpan = document.createElement('span');
-    prSpan.textContent = formatDate(getDateFromString(release.date));
+    // pages at /about/news-articles have a unique date format
+    prSpan.textContent = formatDate(sheet === 'in-the-news' ? getDateFromString(release.date) : getDateFromExcel(release.date));
     prSpan.classList.add('date-published');
     listItem.append(prSpan);
     ul.appendChild(listItem);
