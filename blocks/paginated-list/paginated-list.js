@@ -51,7 +51,6 @@ async function buildPagination(ul, controls, sheet, page) {
       listItem.append(desc);
     }
     const prSpan = document.createElement('span');
-    
     // pages at /about/news-articles have a unique date format
     prSpan.textContent = formatDate(sheet === 'in-the-news' ? getDateFromString(release.date) : getDateFromExcel(release.date));
     prSpan.classList.add('date-published');
