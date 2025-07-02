@@ -926,3 +926,154 @@ export function buildCtasSection(
 
   return { ctas: ctasContainer, ctasMobile };
 }
+
+/**
+ * Function to build the reduced version of the ctas section elements.
+ * @param {Object} placeHolders - The placeholder values for the modals.
+ * @param {Object} tools - The tools map for the extra header.
+ * @param {Object} contact - The contact map for the contact modal.
+ * @param {string} locale - The locale of the page.
+ * @returns {HTMLElement} - The contact and search modals section.
+ */
+export function buildCtasSectionReduced(
+  placeHolders = {},
+  tools = {},
+  contact = {},
+) {
+  const navModalPath = getMetadata('nav-modal-path') || '/forms/modals/modal';
+  const contactModalButtonTitle =
+    placeHolders.contactustext || 'Open Contact Us Information';
+  const hasAlertBanner = document.querySelector('.cmp-notification-bar');
+
+  const contactModalButton = button({
+    class: 'icon-button button contact-button',
+    'aria-label': contactModalButtonTitle,
+    id: 'contact-btn',
+  });
+
+  const contactLinks = div(
+    div(
+      { class: 'contact' },
+      img({
+        class: 'contact-icon',
+        src: '/icons/phone-ringing-black.svg',
+      }),
+      div(
+        { class: 'contact-info' },
+        a(
+          {
+            href: `tel:+1${contact?.customerserviceno?.text.trim()}`,
+            title: `${contact?.customerservicelabel?.text} number`,
+            'aria-label': `${contact?.customerservicelabel?.text} number`,
+          },
+          p({ class: 'modal-title' }, contact?.customerservicelabel?.text),
+        ),
+        a(
+          {
+            href: `tel:+1${contact?.customerserviceno?.text.trim()}`,
+            title: `${contact?.customerservicelabel?.text} number`,
+            'aria-label': `${contact?.customerservicelabel?.text} number`,
+          },
+          `${formatPhone(contact?.customerserviceno?.text, true)}`,
+        ),
+      ),
+    ),
+    div(
+      { class: 'contact' },
+      img({
+        class: 'contact-icon',
+        src: '/icons/phone-ringing-black.svg',
+      }),
+      div(
+        { class: 'contact-info' },
+        a(
+          {
+            href: `tel:+1${contact?.salesno?.text.trim()}`,
+            title: `${contact?.saleslabel?.text} number`,
+            'aria-label': `${contact?.saleslabel?.text} number`,
+          },
+          p({ class: 'modal-title' }, contact?.saleslabel?.text),
+        ),
+        a(
+          {
+            href: `tel:+1${contact?.salesno?.text.trim()}`,
+            title: `${contact?.saleslabel?.text} number`,
+            'aria-label': `${contact?.saleslabel?.text} number`,
+          },
+          `${formatPhone(contact?.salesno?.text, true)}`,
+        ),
+      ),
+    ),
+  );
+  const contactLinksMobile = contactLinks.cloneNode(true);
+
+  const contactModal = div(
+    {
+      class: `submenu modal contact-modal ${
+        hasAlertBanner ? 'submenu-alert' : ''
+      }`,
+      id: 'contact-modal',
+    },
+    div(
+      { class: 'modal-content' },
+      h3({ class: 'modal-title eyebrow-small' }, contact?.title?.text),
+      p({ class: 'modal-subtitle' }, contact?.description?.text),
+      contactLinks,
+      a(
+        {
+          href: navModalPath || contact?.requestacallback?.href,
+          class: 'quote-button button primary',
+          'aria-label': contact?.cta?.text,
+        },
+        contact?.cta?.text || 'Request a call back',
+      ),
+    ),
+  );
+
+  if (hasAlertBanner) {
+    const alertCloseButton = hasAlertBanner.querySelector('.close-button');
+
+    alertCloseButton.addEventListener('click', () => {
+      contactModal.classList.remove('submenu-alert');
+    });
+  }
+
+  const toolsCta = Object.keys(tools).map((tool) => {
+    const { href, text } = tools[tool];
+    const isLast = tool === Object.keys(tools).slice(-1)[0];
+
+    return a(
+      {
+        href: isLast ? navModalPath : href,
+        target: isLast ? '_self' : '_blank',
+        class: `quote-button button ${isLast ? 'primary' : 'secondary dark'}`,
+        'aria-label': text,
+      },
+      text,
+    );
+  });
+
+  const toolsCtaMobile = toolsCta.map((cta) => {
+    const clonedCta = cta.cloneNode(true);
+    clonedCta.classList.remove('dark');
+
+    return clonedCta;
+  });
+
+  const ctasContainer = domEl(
+    'div',
+    { class: 'ctas-container' },
+    div({ class: 'modal-actions' }, contactModalButton),
+    ...toolsCta,
+    contactModal,
+  );
+
+  setupModal(contactModalButton, contactModal);
+
+  const ctasMobile = div(
+    { class: 'ctas-container-mobile' },
+    div({ class: 'content' }, contactLinksMobile, ...toolsCtaMobile),
+  );
+
+  return { ctas: ctasContainer, ctasMobile };
+}
