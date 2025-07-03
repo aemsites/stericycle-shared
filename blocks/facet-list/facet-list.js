@@ -7,8 +7,7 @@ import { div, h3, span } from '../../scripts/dom-helpers.js';
 const ITEMS_PER_PAGE = 10;
 let CURRENT_PAGE = 1;
 let CTA_TYPE = 'default';
-let facetsMap = new Map();
-
+const facetsMap = new Map();
 
 /*
     * This function decorates the results from the query-index.json file
@@ -27,16 +26,16 @@ function decorateResults(posts, list) {
 
     if (post.type && post.type !== '0') {
       const categoryLink = document.createElement('a');
-      categoryLink.href = "";
+      categoryLink.href = '';
       categoryLink.innerText = post.type;
       categoryLink.classList.add('eyebrow-small');
       categoryLink.setAttribute('aria-label', post.type);
-      var type = post.type?.endsWith('s')?  post.type?.toLowerCase():  post.type.toLowerCase()+'s'
+      const type = post.type?.endsWith('s') ? post.type?.toLowerCase() : `${post.type.toLowerCase()}'s`;
       const facet = facetsMap.get(type);
-      categoryLink.onclick =  (e)=>{
+      categoryLink.onclick = (e) => {
         e.preventDefault();
         facet.checked = true;
-        facet.dispatchEvent(new Event("change", {"bubbles":true, "cancelable":false}));
+        facet.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
       };
       categoryDiv.append(categoryLink);
     }

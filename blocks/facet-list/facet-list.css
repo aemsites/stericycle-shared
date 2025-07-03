@@ -240,7 +240,6 @@ div.facet-list-container .results .item-title a {
 
 div.facet-list-container > div.results div.item-category {
     margin-bottom: .4rem;
-    line-height: 16px;
     text-decoration: underline;
     text-decoration-color: var(--color-link);
     text-decoration-thickness: 0.05rem;
