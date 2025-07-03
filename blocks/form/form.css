@@ -24,7 +24,7 @@
     --form-input-font-size: 1rem;
     --form-input-disabled-color: var(--color-bg-secondary);
     --form-input-border-size: 1px;
-    --form-input-border-color: #C1C6C6; /* value taken from Figma 3-18-25 */
+    --form-input-border-color: var(--color-accent-4); /* value taken from Figma 3-18-25 */
     --form-input-background-color: var(--form-styles-background-color-primary);
     --form-paragraph-color: var(--form-styles-label-color);
     --form-paragraph-margin: 0 0 0.9rem;
@@ -173,7 +173,8 @@ main .form input[type='file'] {
     color: unset;
 }
 
-main .form input[type="checkbox"] {
+main .form input[type="checkbox"],
+main .facet input[type="checkbox"] {
     appearance: none;
     margin: .25rem;
     padding: .4rem;
@@ -187,7 +188,8 @@ main .form input[type="checkbox"] {
     transition: background 0.3s ease;
 }
 
-main .form input[type="checkbox"]:checked::after {
+main .form input[type="checkbox"]:checked::after,
+main .facet input[type="checkbox"]:checked::after {
     content: '';
     position: absolute;
     top: 1px;
@@ -200,42 +202,50 @@ main .form input[type="checkbox"]:checked::after {
     border-right: 1px solid var(--color-primary-1);
 }
 
-main .form input[type="checkbox"]:focus {
+main .form input[type="checkbox"]:focus,
+main .facet input[type="checkbox"]:focus {
   outline: none;
 }
 
-main .form input[type="checkbox"]:disabled {
+main .form input[type="checkbox"]:disabled,
+main .facet input[type="checkbox"]:disabled {
     background-color: var(--color-white);
     border: 1px solid var(--color-disabled) !important;
     cursor: not-allowed;
 }
 
-main .form input[type="checkbox"]:disabled::after {
+main .form input[type="checkbox"]:disabled::after,
+main .facet input[type="checkbox"]:disabled::after {
     border-bottom: 1px solid var(--color-disabled);
     border-right: 1px solid var(--color-disabled);
 }
 
-main .form input[type="checkbox"]:focus-visible::after {
+main .form input[type="checkbox"]:focus-visible::after,
+main .facet input[type="checkbox"]:focus-visible::after {
     border-bottom: 1px solid var(--color-primary-1);
     border-right: 1px solid var(--color-primary-1);
 }
 
-main .form input[type="checkbox"]:focus-visible {
+main .form input[type="checkbox"]:focus-visible,
+main .facet input[type="checkbox"]:focus-visible {
     background-color: var(--color-bg-secondary);
     outline: 2px solid var(--color-primary-1);
     outline-offset: 0;
 }
 
-main .form input[type="checkbox"]:focus-visible:hover {
+main .form input[type="checkbox"]:focus-visible:hover,
+main .facet input[type="checkbox"]:focus-visible:hover {
     background-color:  var(--color-primary-1);
 }
 
-main .form input[type="checkbox"]:hover:focus-visible::after {
+main .form input[type="checkbox"]:hover:focus-visible::after,
+main .facet input[type="checkbox"]:hover:focus-visible::after {
     border-bottom: 1px solid var(--color-white);
     border-right: 1px solid var(--color-white);
 }
 
-main .form input[type="checkbox"]:disabled:hover::after {
+main .form input[type="checkbox"]:disabled:hover::after,
+main .facet input[type="checkbox"]:disabled:hover::after {
     border-bottom: 1px solid var(--color-disabled);
     border-right: 1px solid var(--color-disabled);
 }
@@ -624,6 +634,7 @@ main .form form .field-privacy-policy p > a,
 main .form form .field-policy p > a {
     text-decoration: none;
     cursor: pointer;
+    color: var(--color-primary-1);
 }
 
 main .form form .field-privacy-policy p > a:hover,
@@ -723,11 +734,13 @@ main .form form .wizard.left .panel-wrapper{
 
 /* Styles for devices that support hover (e.g., desktop) */
 @media (hover: hover) and (pointer: fine) {
-    main .form input[type="checkbox"]:hover {
+    main .form input[type="checkbox"]:hover,
+    main .facet input[type="checkbox"]:hover {
         background-color:  var(--color-primary-1);
     }
 
-    main .form input[type="checkbox"]:hover:not(:focus-visible)::after {
+    main .form input[type="checkbox"]:hover:not(:focus-visible)::after,
+    main .facet input[type="checkbox"]:hover:not(:focus-visible)::after {
         border-bottom: 1px solid var(--color-white);
         border-right: 1px solid var(--color-white);
     }
@@ -1192,7 +1205,13 @@ main .two-column.form-container > div:first-child {
 /* Place the last child in the second column */
 main .two-column.form-container > div:nth-last-child(1) {
     grid-column: 2;
-    grid-row: 1 / span 4;
+    grid-row: 1 / span 2;
+}
+
+@media (min-width: 1000px) {
+    main .two-column.form-container > div:nth-last-child(1) {
+        margin: 32px 0 64px;
+    }
 }
 
 main .two-column.narrow-top-margin > div:nth-child(1) {
@@ -1247,7 +1266,7 @@ main .section.contact-us > div:nth-child(3) {
 
 main .section.contact-us > div:nth-child(3) .button-container > a.button {
     border-color: var(--color-yellow);
-    max-width: 100%;
+    width: 100%;
 }
 
 main .section.contact-us > div:nth-child(4) {
@@ -1274,7 +1293,7 @@ main .section.contact-us-title > .default-content-wrapper {
     }
 
     main .body-wrapper .page-sidebar > div.form-container {
-        padding-left: 1.5rem;
+        padding: 0 1.5rem;
     }
 
     main .shredded-paper-background-column.two-column.form-container,

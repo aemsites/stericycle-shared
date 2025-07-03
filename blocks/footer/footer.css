@@ -58,6 +58,10 @@ footer .footer-container > .section > div {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+  
+  footer .footer-container.wide {
+    max-width: var(--content-width-xxxl);
+  }
 }
 
 @media screen and (min-width: 1400px /* breakpoint-xl */) {
@@ -217,7 +221,7 @@ footer .section.columns-container.footer-icon-list .columns.quote > div:last-chi
   footer .section.columns-container.footer-icon-list .columns.quote > div:last-child > div {
     border-left: 1px solid var(--color-grey200);
     padding-left: 19px;
-    justify-content: flex-start;
+    justify-content: space-between;
   }
 
   footer .section.columns-container.footer-icon-list .columns.quote > div > div > p {

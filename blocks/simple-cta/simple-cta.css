@@ -81,6 +81,10 @@ main .section > div.simple-cta-wrapper {
   color: var(--color-white);
 }
 
+.simple-cta-light.simple-cta-full .simple-cta-content-ctas a:not(:is(.primary, .secondary)) {
+  background: transparent;
+}
+
 .simple-cta-video .simple-cta-asset {
   display: flex;
   align-items: center;
@@ -99,10 +103,6 @@ main .section > div.simple-cta-wrapper {
 
 .simple-cta-graphic .simple-cta-asset {
   position: relative;
-}
-
-.simple-cta-graphic .simple-cta-asset img {
-  clip-path: polygon(0% 0, 100% 0, 100% 100%, 60% 100%);
 }
 
 .simple-cta-graphic .simple-cta-shape {
@@ -136,14 +136,27 @@ main .section > div.simple-cta-wrapper {
   left: -32%;
 }
 
+.simple-cta-graphic .simple-cta-asset img {
+  clip-path: polygon(0% 0, 100% 0, 100% 100%, 60% 100%);
+}
+
+.simple-cta-asset-left .simple-cta-content .simple-cta-asset img {
+  transform: scaleX(-1);
+}
+
 .simple-cta-graphic.simple-cta-full .simple-cta-asset img {
   clip-path: polygon(60% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.simple-cta-graphic.simple-cta-asset-left .simple-cta-content .simple-cta-asset img {
+  transform: scaleX(-1);
+  clip-path: polygon(0% 0, 100% 0, 50% 100%, 0% 100%);
 }
 
 .simple-cta-graphic.simple-cta-full.simple-cta-asset-left
   .simple-cta-asset
   img {
-  clip-path: polygon(0% 0, 100% 0, 100% 100%, 65% 100%);
+  clip-path: polygon(0% 0, 100% 0, 35% 100%, 0% 100%)
 }
 
 .simple-cta-contained,
@@ -297,7 +310,7 @@ main .section > div.simple-cta-wrapper {
 
   .simple-cta-asset {
     margin-bottom: 0;
-    max-width: 671px;
+    max-width: 638px;
     height: 361px;
   }
 
@@ -317,7 +330,18 @@ main .section > div.simple-cta-wrapper {
   }
 
   .simple-cta-graphic .simple-cta-content-text {
+    align-self: center;
     width: 50%;
+    padding: 40px;
+    padding-left: 80px;
+  }
+
+  .simple-cta-video .simple-cta-content-text {
+    width: 65%;
+  }
+
+  .simple-cta-graphic.simple-cta-asset-left .simple-cta-content-text {
+    padding-left: 40px;
   }
 
   .simple-cta-graphic .simple-cta-asset {
@@ -352,10 +376,6 @@ main .section > div.simple-cta-wrapper {
     max-width: 1038px;
     justify-content: flex-end;
     position: relative;
-  }
-
-  .simple-cta-video .simple-cta-content-text {
-    width: 65%;
   }
 
   .simple-cta-video .simple-cta-asset iframe {
@@ -432,6 +452,10 @@ main .section > div.simple-cta-wrapper {
 @media screen and (min-width: 1440px) {
   .simple-cta-graphic .simple-cta-asset img {
     clip-path: polygon(0% 0, 100% 0, 100% 100%, 50% 100%);
+  }
+
+  .simple-cta-graphic.simple-cta-asset-left .simple-cta-asset img {
+    clip-path: polygon(0% 0, 100% 0, 50% 100%, 0% 100%);
   }
 
   .simple-cta-video .simple-cta-asset iframe {
