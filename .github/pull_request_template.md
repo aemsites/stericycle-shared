@@ -4,6 +4,6 @@ Fix #<gh-issue-id>
 
 Test URLs:
 - Before: 
-  - https://main--shredit--stericycle.aem.page/
+  - https://main--shred-it--stericycle.aem.page/
 - After: 
-  - https://<branch>--shredit--stericycle.aem.page/
+  - https://<branch>--shred-it--stericycle.aem.page/

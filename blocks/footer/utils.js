@@ -12,8 +12,13 @@ export function createMenuAccordion(footer) {
     const menuListItems = menu.querySelectorAll(':scope > li');
     menuListItems.forEach((item) => {
       item.classList.add('footer-accordion');
-      const itemTitle = item.childNodes[0];
-      item.childNodes[0].remove();
+      const buttonContainer = item.querySelector(':scope > .button-container');
+      const itemTitle = buttonContainer?.querySelector(':scope > a') || item.childNodes[0];
+      if (buttonContainer) {
+        buttonContainer.remove();
+      } else {
+        item.childNodes[0].remove();
+      }
       const footerAccordionLinkWrapper = document.createElement('span');
       footerAccordionLinkWrapper.classList.add('footer-accordion-link-wrapper');
       footerAccordionLinkWrapper.append(itemTitle);
