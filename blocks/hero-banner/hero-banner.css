@@ -201,6 +201,15 @@ main .section > div.hero-banner-wrapper {
     background-repeat: no-repeat;
     background-position: right bottom;
     background-size: contain;
+    padding-bottom: 80px;
+}
+
+.hero-banner-form.background-hdd {
+    background-image: url('/icons/hero-form-graphic-hdd.png');
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: contain;
+    padding-bottom: 80px;
 }
 
 .hero-banner-form.hero-banner-form-secondary.hero-banner-container {
@@ -370,5 +379,11 @@ main .section > div.hero-banner-wrapper {
     .hero-banner-content-text {
         padding: 32px 1.5rem;
         max-width: 720px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-banner-form.hero-banner-container {
+        padding-bottom: 120px;
     }
 }

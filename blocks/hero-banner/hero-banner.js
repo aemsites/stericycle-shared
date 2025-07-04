@@ -1,4 +1,5 @@
 export default function decorate(block) {
+  console.log('block', block);
   const isImageVariant = block.classList?.contains('hero-banner-image');
   const isFullWidthVariant = block.classList?.contains('hero-banner-full');
   let wrapper = block.children[0];
