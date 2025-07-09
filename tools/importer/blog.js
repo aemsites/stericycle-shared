@@ -106,7 +106,6 @@ export default {
       'div.cmp-experiencefragment--footer-subscription-form',
       'div.cmp-experiencefragment--modal-form',
       'div.cmp-experiencefragment--footer',
-      'div.col-lg-3.cmp-columnrow__item',
       'div#onetrust-consent-sdk',
     ]);
 
