@@ -3,7 +3,7 @@ import { createOptimizedPicture, fetchPlaceholders, getMetadata } from '../../sc
 
 async function getResults() {
   const postArray = [];
-  const posts = await fetchQueryIndex().sheet('blogs')
+  const posts = await fetchQueryIndex(undefined, 'blogs')
     .limit(10).all();
   posts.forEach((post) => {
     postArray.push(post);
@@ -13,8 +13,7 @@ async function getResults() {
 
 async function getFacets() {
   const facetArray = [];
-  const facets = await fetchQueryIndex()
-    .sheet('blogs')
+  const facets = await fetchQueryIndex(undefined, 'blogs')
     .all();
   const tagJson = {};
   facets.forEach((facet) => {
@@ -104,7 +103,7 @@ function filterTags(cbox, includes) {
 
 async function updateResults(checkboxChange) {
   const postArray = [];
-  const posts = await fetchQueryIndex().sheet('blogs')
+  const posts = await fetchQueryIndex(undefined, 'blogs')
     .map((post) => ({
       tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
       title: post.title, // Include the title

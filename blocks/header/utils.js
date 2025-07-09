@@ -288,29 +288,37 @@ export function generateMenuFromSection(
 
           // Handle different types of children (e.g., links, paragraphs, images)
           Array.from(nestedLi.childNodes).forEach((child) => {
-            if (child.nodeType === Node.ELEMENT_NODE) {
+            if (child.nodeName === 'UL') {
               listItem.appendChild(child.cloneNode(true));
-            } else if (
-              child.nodeType === Node.TEXT_NODE &&
-              child.textContent.trim()
-            ) {
+            } else if (child.nodeName === 'P') {
               const textWrapper = document.createElement('span');
 
-              // check if textContent includes custom selector #name and add class with that name
+              // check if textContent includes custom selector #name (hashTag) and add class with that name
               if (child.textContent.includes('#')) {
                 const className = child.textContent.match(/#(\w+)/)[1];
-
                 listItem.classList.add(className);
 
-                const textContent = child?.textContent.split('#')[0];
+                const hashTag = child.textContent.match(/#\w+/);
 
-                child.textContent = textContent;
+                // remove the #hashTag text
+                [...child.childNodes].forEach((node) => {
+                  if (node.nodeType === Node.TEXT_NODE) {
+                    const currentText = node.nodeValue;
+                    const newText = currentText.replaceAll(hashTag[0], '');
+                    node.nodeValue = newText;
+                  }
+                });
               }
 
               textWrapper.textContent = child.textContent.trim();
               textWrapper.classList.add('nav-item-heading');
               textWrapper.classList.add('eyebrow-small');
 
+              const picture = child.querySelector('picture');
+              if (picture) listItem.appendChild(picture);
+
+              const icon = child.querySelector('.icon');
+              if (icon) listItem.appendChild(icon);
               listItem.appendChild(textWrapper);
             }
           });

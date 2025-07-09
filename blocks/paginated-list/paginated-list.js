@@ -1,5 +1,5 @@
 import { readBlockConfig } from '../../scripts/aem.js';
-import { fetchQueryIndex, getDateFromExcel } from '../../scripts/scripts.js';
+import { fetchQueryIndex, getDateFromExcel, getDateFromString } from '../../scripts/scripts.js';
 
 let sessionKey = 'press-releases';
 
@@ -16,13 +16,14 @@ async function buildPagination(ul, controls, sheet, page) {
   const storedPosts = sessionStorage.getItem(sheet);
   let releases = [];
   if (!storedPosts || storedPosts === '[]') {
-    const posts = await fetchQueryIndex().sheet(sheet).all();
+    const posts = await fetchQueryIndex(undefined, sheet).all();
     sessionStorage.setItem(sessionKey, JSON.stringify(posts));
     releases = posts;
   } else {
     releases = JSON.parse(storedPosts);
   }
 
+  releases.sort((a, b) => b.date - a.date);
   const totalPages = Math.ceil(releases.length / itemsPerPage);
   const start = (page - 1) * itemsPerPage;
   const end = start + itemsPerPage;
@@ -50,7 +51,8 @@ async function buildPagination(ul, controls, sheet, page) {
       listItem.append(desc);
     }
     const prSpan = document.createElement('span');
-    prSpan.textContent = formatDate(getDateFromExcel(release.date));
+    // pages at /about/news-articles have a unique date format
+    prSpan.textContent = formatDate(sheet === 'in-the-news' ? getDateFromString(release.date) : getDateFromExcel(release.date));
     prSpan.classList.add('date-published');
     listItem.append(prSpan);
     ul.appendChild(listItem);
