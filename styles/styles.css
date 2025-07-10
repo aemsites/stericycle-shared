@@ -173,7 +173,7 @@
   --breakpoint-m: 768px; /* <= tablet */
   --breakpoint-l: 992px;
   --breakpoint-xl: 1200px; /* <= desktop */
-  --breakpoint-xxl: 1400px;
+  --breakpoint-xxl: 1200px;
 
   /* content width */
   --content-width-s: 540px;
@@ -215,13 +215,6 @@
 }
 
 @media (min-width: 1200px /* breakpoint-xl */) {
-  :root {
-    --section-width: var(--content-width-xl);
-    --nav-height: 165px;
-  }
-}
-
-@media (min-width: 1400px /* breakpoint-xxl */) {
   :root {
     --section-width: var(--content-width-xxl);
     --nav-height: 128px;
@@ -309,7 +302,7 @@ body header {
   text-align: center;
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1200px) {
   .block.header .floating-contact {
     display: none;
   }
@@ -1159,20 +1152,9 @@ main .section.with-image > div.section-image-wrapper:first-child {
 
 @media screen and (min-width: 1200px /* breakpoint-xl */) {
   .blog-page main .default-content-wrapper {
-    max-width: 1140px;
-    padding-bottom: 64px;
-    padding-top: 0;
-  }
-
-  .blog-page main .breadcrumb-wrapper {
-    max-width: 1140px;
-  }
-}
-
-@media screen and (min-width: 1400px /* breakpoint-xxl */) {
-  .blog-page main .default-content-wrapper {
     max-width: 1320px;
     padding-bottom: 64px;
+    padding-top: 0;
   }
 
   .blog-page main .breadcrumb-wrapper {
@@ -1504,12 +1486,6 @@ main div.section.background-third-image {
 }
 
 @media screen and (min-width: 1200px /* breakpoint-xl */) {
-  .blog-page main .related-content .related-content-wrapper {
-    min-width: 197px;
-  }
-}
-
-@media screen and (min-width: 1400px /* breakpoint-xxl */) {
   .blog-page main .related-content .related-content-wrapper {
     min-width: 242px;
   }
@@ -2129,12 +2105,6 @@ main .section.multi-icon-list .columns > div {
 
 @media (min-width: 1200px) {
   main .section.multi-icon-list .columns > div {
-    gap: 32px;
-  }
-}
-
-@media (min-width: 1400px) {
-  main .section.multi-icon-list .columns > div {
     gap: 64px;
   }
 }
@@ -2150,12 +2120,6 @@ main .section.multi-icon-list .columns > div > div:first-of-type {
 }
 
 @media (min-width: 1200px) {
-  main .section.multi-icon-list .columns > div > div:first-of-type {
-      max-width: 454px;
-  }
-}
-
-@media (min-width: 1400px) {
   main .section.multi-icon-list .columns > div > div:first-of-type {
     max-width: 508px;
   }
