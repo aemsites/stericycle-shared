@@ -118,9 +118,8 @@ export default {
     main.append(mdb);
 
     WebImporter.rules.transformBackgroundImages(main, document);
-    WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
+    WebImporter.rules.adjustImageUrls(main, params.originalURL, params.originalURL);
     WebImporter.rules.convertIcons(main, document);
-
     return main;
   },
 
