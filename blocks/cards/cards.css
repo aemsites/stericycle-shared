@@ -88,6 +88,20 @@
   object-fit: contain;
 }
 
+/* Add rounded borders to images in card sections */
+.cards > ul > li > .card-body > .card-section picture img {
+  border-radius: 12px;
+}
+
+.cards.primary > ul > li > .card-body > .card-section picture img {
+  border-radius: 16px;
+}
+
+/* Add spacing above titles in card sections */
+.cards > ul > li > .card-body > .card-section h3 {
+  margin-top: 18px;
+}
+
 .cards > ul > li > .card-body {
   width: 100%;
   display: flex;
@@ -161,7 +175,6 @@
   font-weight: var(--font-weight-regular);
   line-height: 160%;
   letter-spacing: 0.16px;
-  padding-top: 12px;
   margin: 0;
 }
 
