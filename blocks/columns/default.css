@@ -1084,6 +1084,7 @@ main .section.columns-container.close-vertical {
     max-width: 90vw;
     aspect-ratio: 16 / 9;
   }
+
   .columns.video.block .video-iframe iframe {
     width: 100vw;
     max-width: 80vw;
