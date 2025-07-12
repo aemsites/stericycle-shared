@@ -402,6 +402,7 @@ main .section.blue-headings .columns span.icon > img {
 
 main .block.columns.video iframe {
   aspect-ratio: 16 / 9;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 25%);
 }
 
 main .section.columns-container .block.columns.columns-2-cols.icon-list > div > div > p.button-container:has(a) > a.button {
@@ -906,13 +907,13 @@ main .section.columns-container.close-vertical {
   main .block.columns.video.columns-2-cols > div div:last-of-type:has(iframe) {
     display: flex;
     flex-direction: column;
-    margin-left: 8.3333%;
   }
 
   main .block.columns.video.columns-2-cols > div div:first-of-type:has(iframe) {
     display: flex;
     flex-direction: column;
-    margin-right: 8.3333%;
+    align-items: flex-end;
+    margin-right: 1%;
   }
 
   main .block.columns.video.block.columns-2-cols > div div:has(iframe) {
@@ -1074,5 +1075,20 @@ main .section.columns-container.close-vertical {
   /* 4 or more cards */
   .columns.steps-secondary > div:has(> div:nth-child(4)) > div > p:last-of-type {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  .columns.video.block .video-iframe {
+    width: 100vw;
+    max-width: 90vw;
+    aspect-ratio: 16 / 9;
+  }
+  .columns.video.block .video-iframe iframe {
+    width: 100vw;
+    max-width: 80vw;
+    min-width: 0;
+    min-height: 180px;
+    aspect-ratio: 16 / 9;
   }
 }
