@@ -21,4 +21,4 @@ export const UNMIGRATED_SITES = [
   { lang: 'es-ES', url: 'https://www.shredit.es', sitemap: 'https://www.shredit.es/sitemap.xml' },
 ];
 
-export const EDS_URL = 'https://main--shredit--stericycle.aem.page/';
+export const EDS_URL = 'https://main--shred-it--stericycle.aem.page/';
