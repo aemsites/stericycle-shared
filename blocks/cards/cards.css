@@ -88,7 +88,6 @@
   object-fit: contain;
 }
 
-/* Add rounded borders to images in card sections */
 .cards > ul > li > .card-body > .card-section picture img {
   border-radius: 12px;
 }
@@ -97,9 +96,8 @@
   border-radius: 16px;
 }
 
-/* Add spacing above titles in card sections */
 .cards > ul > li > .card-body > .card-section h3 {
-  margin-top: 18px;
+  margin: 24px auto 0;
 }
 
 .cards > ul > li > .card-body {
@@ -220,7 +218,7 @@
 
 
 .cards > ul > li > .card-body > hr {
-  margin: 1rem auto;
+  margin: 24px auto;
   border: 0.5px solid #b2b1b1;
   opacity: .25;
   color: inherit;
