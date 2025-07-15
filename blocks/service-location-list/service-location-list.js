@@ -3,10 +3,11 @@ import { fetchQueryIndex } from '../../scripts/scripts.js';
 
 async function fetchLocations() {
   const isDropoff = Boolean(getMetadata('is-drop-off'));
-  const rawData = await fetchQueryIndex()
-    .sheet('locations')
+  const rawData = await fetchQueryIndex(undefined, 'locations')
     .filter((x) => (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true))
     .all();
+
+  rawData.sort((a, b) => a.name.localeCompare(b.name));
 
   // group by region and sort regions
   const regionMap = new Map();
