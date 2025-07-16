@@ -88,6 +88,18 @@
   object-fit: contain;
 }
 
+.cards > ul > li > .card-body > .card-section picture img {
+  border-radius: 12px;
+}
+
+.cards.primary > ul > li > .card-body > .card-section picture img {
+  border-radius: 16px;
+}
+
+.cards > ul > li > .card-body > .card-section h3 {
+  margin: 24px auto 0;
+}
+
 .cards > ul > li > .card-body {
   width: 100%;
   display: flex;
@@ -161,7 +173,6 @@
   font-weight: var(--font-weight-regular);
   line-height: 160%;
   letter-spacing: 0.16px;
-  padding-top: 12px;
   margin: 0;
 }
 
@@ -207,7 +218,7 @@
 
 
 .cards > ul > li > .card-body > hr {
-  margin: 1rem auto;
+  margin: 24px auto;
   border: 0.5px solid #b2b1b1;
   opacity: .25;
   color: inherit;
