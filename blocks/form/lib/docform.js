@@ -15,6 +15,11 @@ export async function extractFormDefinition(block) {
   const container = block.querySelector('a[href]');
   if (container) {
     const path = container.href;
+    if(path.startsWith('/forms') && document.location.host.match(/aem.(live|page)$/g)) {
+      path.replace('shred-it--stericycle.aem', 'shredit--stericycle.aem')
+
+    }
+    
     if (path.endsWith('.json')) {
       const { pathname } = new URL(path);
       const definition = await fetchForm(path);
