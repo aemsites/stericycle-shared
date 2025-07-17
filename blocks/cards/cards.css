@@ -398,7 +398,7 @@
   }
 }
 
-@media (min-width: 1400px) /* breakpoint-xl */ {
+@media (min-width: 1200px) /* breakpoint-xl */ {
   .cards.full-width > ul > li > .card-body > .card-section > p.button-container:last-child {
     flex: 1;
     margin: 0;

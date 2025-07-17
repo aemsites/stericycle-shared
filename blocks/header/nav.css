@@ -734,7 +734,7 @@ header {
   white-space: pre-wrap;
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1200px) {
   .header header {
     min-height: 70px;
   }
@@ -771,7 +771,7 @@ header {
   }
 
   .header .nav-item .nav-link {
-    padding: 28px 20px;
+    padding: 28px 16px;
     font-weight: 400;
     font-size: 16px;
     color: var(--color-white);
@@ -870,7 +870,7 @@ header {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   .header {
     gap: 40px;
   }

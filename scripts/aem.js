@@ -773,7 +773,7 @@ async function waitForLCP(section) {
 }
 
 const isDesktop = () => window.matchMedia('(min-width: 992px)')?.matches;
-const isLargeDesktop = () => window.matchMedia('(min-width: 1400px)')?.matches;
+const isLargeDesktop = () => window.matchMedia('(min-width: 1200px)')?.matches;
 
 init();
 
