@@ -14,11 +14,7 @@ async function fetchForm(path) {
 export async function extractFormDefinition(block) {
   const container = block.querySelector('a[href]');
   if (container) {
-    const path = container.href;
-    if(path.startsWith('/forms') && document.location.host.match(/aem.(live|page)$/g)) {
-      path.replace('shred-it--stericycle.aem', 'shredit--stericycle.aem')
-
-    }
+    const path = getFormPath(container.href);
     
     if (path.endsWith('.json')) {
       const { pathname } = new URL(path);
@@ -53,6 +49,19 @@ export async function renderForm(formDef) {
     return form;
   }
   return null;
+}
+
+function getFormPath(href) {
+    if (!document.location.host.match(/aem.(live|page)$/g)) {
+      return href;
+    }
+    if (href.startsWith('/forms') ) {
+      return `shredit--stericycle.aem${path}`;
+    }
+    if (href.startsWith('http')) {
+      return href.replace('shred-it', 'shredit');
+    }
+    return href;
 }
 
 export async function decorate(block, submitAction) {
