@@ -12,7 +12,7 @@
 /* global WebImporter */
 const req = new XMLHttpRequest();
 let tags = {};
-const baseDomain = 'https://main--shredit--stericycle.aem.page';
+const baseDomain = 'https://main--shred-it--stericycle.aem.page';
 const hr = (doc) => doc.createElement('hr');
 const TAGS = {};
 req.open('GET', '/tools/importer/shredit-meta.json', false);
@@ -142,10 +142,12 @@ function transformDownloadBlock(main, document) {
     cells.push(['title', title]);
     cells.push(['image', downloadBlock.querySelector('div.previeweddownload > div.cmp-previeweddownload > div.cmp-previeweddownload__image > a > img')]);
     const dlLink = downloadBlock.querySelector('div.previeweddownload > div.cmp-previeweddownload > div.cmp-previeweddownload__image > a');
+    dlLink.classList.add('cmp-linkcalltoaction', 'btn', 'btn-primary');  // Add classes to the link. They are not present in the final converted md, da files.
     dlLink.innerHTML = dlLink.href.replace('http://localhost:3001', baseDomain);
-    cells.push(['download', dlLink.href.replace('http://localhost:3001', baseDomain)]);
+    // cells.push(['download', dlLink.href.replace('http://localhost:3001', baseDomain)]);
+    cells.push(['download', dlLink]);
+    cells.push(['style', 'cmp-linkcalltoaction, btn, btn-primary']); // Add classes to the link. They are not present in the final converted md, da files.
     const dBlock = WebImporter.DOMUtils.createTable(cells, document);
-    main.append(hr(document));
     main.append(dBlock);
     const sectionMetaCells = [
       ['Section Metadata'],
@@ -205,7 +207,12 @@ export default {
     ]);
 
     fixDynamicMedia(main, document);
-    createSectionMetadataForListBullets(main, document);
+    const sectionSideBarRightCells = [
+      ['Sidebar Right'],
+      ["style", "cmp-linkcalltoaction, btn, btn-primary"],
+    ];
+    const sectionSideBarRight = WebImporter.DOMUtils.createTable(sectionSideBarRightCells, document);
+    main.append(sectionSideBarRight);
     transformDownloadBlock(main, document);
     transformFAQ(main);
 
@@ -232,7 +239,7 @@ export default {
     main.append(mdb);
 
     WebImporter.rules.transformBackgroundImages(main, document);
-    WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
+    WebImporter.rules.adjustImageUrls(main, params.originalURL, params.originalURL);
     WebImporter.rules.convertIcons(main, document);
 
     return results;
