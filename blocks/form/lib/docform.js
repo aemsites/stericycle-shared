@@ -3,6 +3,19 @@ import { createForm } from './forms-common.js';
 import { submitForm } from '../submit.js';
 import { getId } from './util.js';
 
+function getFormPath(href) {
+  if (!document.location.host.match(/aem.(live|page)$/g)) {
+    return href;
+  }
+  if (href.startsWith('/forms')) {
+    return `shredit--stericycle.aem${href}`;
+  }
+  if (href.startsWith('http')) {
+    return href.replace('shred-it', 'shredit');
+  }
+  return href;
+}
+
 async function fetchForm(path) {
   const resp = await fetch(path);
   if (resp?.headers?.get('Content-Type')?.includes('application/json')) {
@@ -15,7 +28,6 @@ export async function extractFormDefinition(block) {
   const container = block.querySelector('a[href]');
   if (container) {
     const path = getFormPath(container.href);
-    
     if (path.endsWith('.json')) {
       const { pathname } = new URL(path);
       const definition = await fetchForm(path);
@@ -49,19 +61,6 @@ export async function renderForm(formDef) {
     return form;
   }
   return null;
-}
-
-function getFormPath(href) {
-    if (!document.location.host.match(/aem.(live|page)$/g)) {
-      return href;
-    }
-    if (href.startsWith('/forms') ) {
-      return `shredit--stericycle.aem${path}`;
-    }
-    if (href.startsWith('http')) {
-      return href.replace('shred-it', 'shredit');
-    }
-    return href;
 }
 
 export async function decorate(block, submitAction) {
