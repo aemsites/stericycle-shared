@@ -1269,22 +1269,25 @@ main .section.with-image > div.section-image-wrapper:first-child {
     margin-bottom: 12px;
 }
 
-.blog-page main .breadcrumb-wrapper {
+.blog-page main .breadcrumb-wrapper, .pr-page main .breadcrumb-wrapper {
   display: none;
 }
 
 @media screen and (min-width: 992px /* breakpoint-l */) {
-  .blog-page main .breadcrumb-wrapper {
+  .blog-page main .breadcrumb-wrapper, .pr-page main .breadcrumb-wrapper {
     display: block;
     padding: 15px 0;
   }
 
-  .blog-page main .breadcrumb-wrapper > .blog-breadcrumb {
+  .blog-page main .breadcrumb-wrapper > .blog-breadcrumb, .pr-page main .breadcrumb-wrapper > .pr-breadcrumb {
     margin-bottom: 22px;
   }
 
   .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > a,
-  .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > span {
+  .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > span,
+  .pr-page main .breadcrumb-wrapper > .pr-breadcrumb > a,
+  .pr-page main .breadcrumb-wrapper > .pr-breadcrumb > span
+  {
     color: var(--color-secondary-5);
     font-family: var(--font-family-body);
     font-size: .875rem;
@@ -1294,11 +1297,13 @@ main .section.with-image > div.section-image-wrapper:first-child {
     letter-spacing: .0006rem;
   }
 
-  .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > a:hover {
+  .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > a:hover,
+  .pr-page main .breadcrumb-wrapper > .pr-breadcrumb > a:focus {
     text-decoration: underline;
   }
 
-  .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > .title-breadcrumb::before {
+  .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > .title-breadcrumb::before,
+  .pr-page main .breadcrumb-wrapper > .pr-breadcrumb > .title-breadcrumb::before {
     color: var(--color-secondary-5);
     content: "|";
     padding-left: 8px;
