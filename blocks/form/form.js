@@ -20,8 +20,8 @@ function updateFormUrl(block) {
 }
 
 export default async function decorate(block) {
-  const { container, formDef } = await extractSheetDefinition(block);
   updateFormUrl(block);
+  const { container, formDef } = await extractSheetDefinition(block);
   if (formDef && formDef.properties?.source === 'sheet') {
     const form = await renderDocForm(formDef);
     await decorateUTM(form);
