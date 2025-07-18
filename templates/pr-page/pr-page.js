@@ -2,10 +2,8 @@ import { getMetadata } from '../../scripts/aem.js';
 import { setJsonLd } from '../../scripts/scripts.js';
 
 function getAboutBaseUrl(url) {
-  console.log('url', url);
   try {
     const urlObj = new URL(url);
-    console.log('urlObj', urlObj);
     const pathParts = urlObj.pathname.split('/');
 
     if (pathParts.length > 2 && pathParts[2] === 'about') {
@@ -15,7 +13,6 @@ function getAboutBaseUrl(url) {
     } else {
       throw new Error('URL does not match expected pattern');
     }
-
     return urlObj.toString();
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -25,8 +22,8 @@ function getAboutBaseUrl(url) {
 }
 
 async function addBreadcrumbJsonLd(
-  blogBreadcrumb,
-  blogBreadcrumbUrl,
+  prBreadcrumb,
+  prBreadcrumbUrl,
   titleBreadcrumb,
   titleBreadcrumbUrl,
 ) {
@@ -35,8 +32,8 @@ async function addBreadcrumbJsonLd(
       {
         position: 1,
         item: {
-          name: blogBreadcrumb,
-          '@id': blogBreadcrumbUrl,
+          name: prBreadcrumb,
+          '@id': prBreadcrumbUrl,
         },
         '@type': 'ListItem',
       },
@@ -51,11 +48,11 @@ async function addBreadcrumbJsonLd(
     ],
     '@type': 'BreadcrumbList',
     '@context': 'https://schema.org/',
-  }, 'blog-breadcrumb');
+  }, 'pr-breadcrumb');
 }
 
 function decorate(main) {
-  const blogBreadcrumb = getMetadata('blog-breadcrumb') || 'Blog';
+  const prBreadcrumb = getMetadata('pr-breadcrumb') || 'About Us';
   const { title } = document;
   const leftColumn = document.createElement('div');
   leftColumn.classList.add('main-content');//main-content
@@ -80,25 +77,25 @@ function decorate(main) {
   titleBreadcrumb.classList.add('title-breadcrumb');
   titleBreadcrumb.textContent = title;
 
-  // Create blog breadcrumb with a link
-  const blogBreadcrumbElement = document.createElement('p');
-  blogBreadcrumbElement.classList.add('blog-breadcrumb');
-  // Get the blog base URL
-  const blogBaseUrl = getAboutBaseUrl(window.location.href);
-  const blogLinkElement = document.createElement('a');
-  blogLinkElement.textContent = blogBreadcrumb;
-  blogLinkElement.href = blogBaseUrl;
-  blogLinkElement.setAttribute('aria-label', blogBreadcrumb);
-  blogBreadcrumbElement.append(blogLinkElement, titleBreadcrumb);
+  // Create pr breadcrumb with a link
+  const prBreadcrumbElement = document.createElement('p');
+  prBreadcrumbElement.classList.add('pr-breadcrumb');
+  // Get the pr base URL
+  const prBaseUrl = getAboutBaseUrl(window.location.href);
+  const prLinkElement = document.createElement('a');
+  prLinkElement.textContent = prBreadcrumb;
+  prLinkElement.href = prBaseUrl;
+  prLinkElement.setAttribute('aria-label', prBreadcrumb);
+  prBreadcrumbElement.append(prLinkElement, titleBreadcrumb);
 
   // Create a wrapper div for breadcrumbs
   const breadcrumbWrapper = document.createElement('div');
   breadcrumbWrapper.classList.add('breadcrumb-wrapper');
-  breadcrumbWrapper.append(blogBreadcrumbElement);
+  breadcrumbWrapper.append(prBreadcrumbElement);
   // add the breadcrumbWrapper to the start of the leftColumn
   mainSection.prepend(breadcrumbWrapper);
 
-  addBreadcrumbJsonLd(blogBreadcrumb, blogBaseUrl, title, window.location.href);
+  addBreadcrumbJsonLd(prBreadcrumb, prBaseUrl, title, window.location.href);
 }
 
 export default decorate;

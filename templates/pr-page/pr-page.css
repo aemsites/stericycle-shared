@@ -10,6 +10,10 @@
     list-style: inherit;
 }
 
+.pr-page main .main-content a {
+  text-decoration: underline;
+}
+
 .pr-page  main div.main-content {
     margin-bottom: 31px;
     padding: 0 12px;
