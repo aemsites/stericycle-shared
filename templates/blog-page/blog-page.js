@@ -2,8 +2,10 @@ import { getMetadata } from '../../scripts/aem.js';
 import { setJsonLd } from '../../scripts/scripts.js';
 
 function getBlogBaseUrl(url) {
+  console.log('url', url);
   try {
     const urlObj = new URL(url);
+    console.log('urlObj', urlObj);
     const pathParts = urlObj.pathname.split('/');
 
     if (pathParts.length > 2 && pathParts[2] === 'blog') {
