@@ -3,8 +3,25 @@ import decorateUTM from './utm.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
 import { getFormName } from './utils.js';
 
+function updateFormUrl(block) {
+  const container = block.querySelector('a[href]');
+  const href = container?.href;
+
+  if (!document.location.host.match(/aem.(live|page)$/g) || !href) {
+    return;
+  }
+
+  if (href.startsWith('/forms')) {
+    container.href = `shredit--stericycle.aem${href}`;
+  }
+  if (href.startsWith('http')) {
+    container.href = container.href.replace('shred-it', 'shredit');
+  }
+}
+
 export default async function decorate(block) {
   const { container, formDef } = await extractSheetDefinition(block);
+  updateFormUrl(block);
   if (formDef && formDef.properties?.source === 'sheet') {
     const form = await renderDocForm(formDef);
     await decorateUTM(form);
