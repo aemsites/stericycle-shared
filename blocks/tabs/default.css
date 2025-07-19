@@ -40,6 +40,7 @@ main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
     overflow-x: auto;
     border-bottom: 1px solid var(--color-grey200);
     scrollbar-width: none;
+    height: 100%;
 }
 
 .block.tabs .tabs-list::after {
