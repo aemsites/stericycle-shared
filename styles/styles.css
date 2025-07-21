@@ -1309,6 +1309,14 @@ main .section.with-image > div.section-image-wrapper:first-child {
     padding-left: 8px;
     padding-right: 8px;
   }
+
+  .blog-page main .breadcrumb-wrapper > .blog-breadcrumb > a:not(:first-child)::before ,
+  .pr-page main .breadcrumb-wrapper > .pr-breadcrumb > a:not(:first-child)::before {
+    color: var(--color-secondary-5);
+    content: "|";
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }
 
 .blog-page main .related-content .related-content-teasers {
