@@ -61,7 +61,7 @@ async function addBreadcrumbJsonLd(
   prBreadcrumb,
   prBreadcrumbUrl,
   titleBreadcrumb,
-  titleBreadcrumbUrl
+  titleBreadcrumbUrl,
 ) {
   setJsonLd(
     {
@@ -102,19 +102,17 @@ async function addBreadcrumbJsonLd(
       '@type': 'BreadcrumbList',
       '@context': 'https://schema.org/',
     },
-    'pr-breadcrumb'
+    'pr-breadcrumb',
   );
 }
 
 function decorate(main) {
-  const prBreadcrumb =
-    getMetadata('pr-breadcrumb') ||
-    'Paper Shredding & Document Destruction Services Near You';
+  const prBreadcrumb = getMetadata('pr-breadcrumb') || 'Paper Shredding & Document Destruction Services Near You';
   const aboutUsBreadcrumb = getMetadata('aboutUs-breadcrumb') || 'About Us';
   const prPressBreadcrumb = getMetadata('pr-press-breadcrumb') || 'Press Room';
   const { title } = document;
   const leftColumn = document.createElement('div');
-  leftColumn.classList.add('main-content'); //main-content
+  leftColumn.classList.add('main-content'); // main-content
   const rightColumn = document.createElement('div');
   rightColumn.classList.add('related-content');
   // Create related content wrapper
@@ -125,9 +123,7 @@ function decorate(main) {
   rcHeader.classList.add('related-content-header');
   rcWrapper.append(rcHeader);
   const mainSection = main.querySelector('div.section');
-  const defaultContent = main.querySelector(
-    'div.section > div.default-content-wrapper'
-  );
+  const defaultContent = main.querySelector('div.section > div.default-content-wrapper');
   leftColumn.append(...defaultContent.childNodes);
   rightColumn.append(rcWrapper);
   defaultContent.prepend(rightColumn);
@@ -171,14 +167,14 @@ function decorate(main) {
   mainSection.prepend(breadcrumbWrapper);
 
   addBreadcrumbJsonLd(
-    localeBreadcrumb,
-    localeBreadcrumbUrl,
+    '',
+    window.location.href,
     aboutUsBreadcrumb,
-    aboutUsBreadcrumbUrl,
+    window.location.href,
     prBreadcrumb,
-    prBreadcrumbUrl,
+    window.location.href,
     title,
-    window.location.href
+    window.location.href,
   );
 }
 
