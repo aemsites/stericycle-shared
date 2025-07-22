@@ -54,6 +54,20 @@ function fixVideo(elm) {
   }
 }
 
+
+/**
+ * Converts the given URL to a valid format by replacing multiple consecutive hyphens
+ * in the pathname with a single hyphen.
+ * @param {Object} params - The parameters object.
+ * @param {string} params.originalURL - The original URL to be validated and updated.
+ * @returns {string} The updated URL with valid pathname.
+ */
+function updatetoValidUrl(params) {
+  const url = new URL(params.originalURL);
+  url.pathname = url.pathname.replace(/--+/g, '-');
+  return url.toString();
+}
+
 function transformFAQ(main) {
   const faqs = main.querySelectorAll('#accordion > div.cmp-accordion__item');
   if (faqs && faqs.length > 0) {
@@ -173,6 +187,7 @@ export default {
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
   }) => {
+    params.validUrl = updatetoValidUrl(params);
     // define the main element: the one that will be transformed to Markdown
     const main = document.body;
     const results = [];
@@ -239,7 +254,7 @@ export default {
     main.append(mdb);
 
     WebImporter.rules.transformBackgroundImages(main, document);
-    WebImporter.rules.adjustImageUrls(main, params.originalURL, params.originalURL);
+    WebImporter.rules.adjustImageUrls(main, params.validUrl, params.validUrl);
     WebImporter.rules.convertIcons(main, document);
 
     return results;
