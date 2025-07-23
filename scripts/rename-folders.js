@@ -34,7 +34,7 @@ function renameFoldersRecursively(dir) {
     // Rename if name changed
     if (newName !== entry.name) {
       fs.renameSync(oldPath, newPath);
-      console.log(`Renamed: ${entry.name} → ${newName}`);
+      // console.log(`Renamed: ${entry.name} → ${newName}`);
     }
 
     // Recurse into subdirectories
