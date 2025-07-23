@@ -1,21 +1,21 @@
 /**
- * Node JS Script to Rename Folders with UTF-8 Encoded Characters
+ * Node JS Script to Rename Folders with UTF-8 Encoded Characters without tilde
  * This script renames folders in a directory by decoding UTF-8 encoded characters in their names.
  * It recursively traverses the directory structure and renames folders that contain encoded characters.
  * The script uses Node.js's fs and path modules to read and rename directories.
- * It supports characters like á, é, í, ó, ú, and ñ.
+ * It supports characters like á, é, í, ó, ú, and ñ. A folder named évaluation will be renamed evaluation
  */
 const fs = require('fs');
 const path = require('path');
 
 // Map of encoded UTF-8 sequences to their decoded characters
 const replacements = {
-  '%C3%A1': 'á',
-  '%C3%A9': 'é',
-  '%C3%AD': 'í',
-  '%C3%B3': 'ó',
-  '%C3%BA': 'ú',
-  '%C3%B1': 'ñ',
+  '%C3%A1': 'a',
+  '%C3%A9': 'e',
+  '%C3%AD': 'i',
+  '%C3%B3': 'o',
+  '%C3%BA': 'u',
+  '%C3%B1': 'n',
 };
 
 // Recursively rename folders

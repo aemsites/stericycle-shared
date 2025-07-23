@@ -55,15 +55,22 @@ function fixVideo(elm) {
 }
 
 
+ /* Retrieves the canonical URL from a given HTML document.
+ * @param {Document} document - The HTML document to search for the canonical link element.
+ * @returns {string|null} The href value of the canonical link if found, otherwise null.
+ */
+function getCanonicalUrl(document) {
+  const canonicalLink = document.querySelector('link[rel="canonical"]');
+  return  canonicalLink ? canonicalLink.href : null;
+}
+
 /**
- * Converts the given URL to a valid format by replacing multiple consecutive hyphens
- * in the pathname with a single hyphen.
- * @param {Object} params - The parameters object.
- * @param {string} params.originalURL - The original URL to be validated and updated.
+ * Updates the given document's URL to a valid format.
+ * @param {Document} document - The HTML document to update.
  * @returns {string} The updated URL with valid pathname.
  */
-function updatetoValidUrl(params) {
-  const url = new URL(params.originalURL);
+function updatetoValidUrl(document) {
+  const url = new URL(getCanonicalUrl(document));
   url.pathname = url.pathname.replace(/--+/g, '-');
   return url.toString();
 }
@@ -187,7 +194,7 @@ export default {
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
   }) => {
-    params.validUrl = updatetoValidUrl(params);
+    params.originalUrl = updatetoValidUrl(document);
     // define the main element: the one that will be transformed to Markdown
     const main = document.body;
     const results = [];
@@ -254,7 +261,7 @@ export default {
     main.append(mdb);
 
     WebImporter.rules.transformBackgroundImages(main, document);
-    WebImporter.rules.adjustImageUrls(main, params.validUrl, params.validUrl);
+    WebImporter.rules.adjustImageUrls(main, params.originalUrl, params.originalUrl);
     WebImporter.rules.convertIcons(main, document);
 
     return results;
