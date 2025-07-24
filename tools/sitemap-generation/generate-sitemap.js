@@ -23,7 +23,7 @@ const fetchQueryIndices = async () => {
     siteLocs[site.lang] = [];
     json.data.forEach((row) => {
       const robots = row.robots || '';
-      if (robots.includes('noindex') || robots.includes('drafts')) {
+      if (robots.toLowerCase().includes('noindex') || robots.includes('drafts')) {
         return;
       }
 

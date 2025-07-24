@@ -64,7 +64,7 @@ footer .footer-container > .section > div {
   }
 }
 
-@media screen and (min-width: 1400px /* breakpoint-xl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .footer-container {
     position: unset;
   }
@@ -235,7 +235,7 @@ footer .section.columns-container.footer-icon-list .columns.quote > div:last-chi
   }
 }
 
-@media screen and (min-width: 1400px /* breakpoint-xl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.columns-container.footer-icon-list .columns.quote > div > div {
     gap: 32px;
   }
@@ -547,7 +547,7 @@ footer .section.footer-policies ul {
   }
 }
 
-@media screen and (min-width: 1400px /* breakpoint-xl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-policies ul {
     flex-direction: row;
     gap: 24px;
@@ -561,7 +561,7 @@ footer .section.footer-policies ul {
   }
 }
 
-@media screen and (min-width: 1400px /* breakpoint-xl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-policies ul > li:nth-child(n+2) {
     padding-left: 24px;
     border-left: 1px solid var(--color-grey200);
@@ -607,7 +607,7 @@ footer .section.footer-menu .default-content-wrapper ul.footer-accordion-contain
   }
 }
 
-@media screen and (min-width: 1400px /* breakpoint-xl */) {
+@media screen and (min-width: 1200px /* breakpoint-xl */) {
   footer .section.footer-menu .default-content-wrapper ul.footer-accordion-container {
     gap: 48px;
   }
@@ -648,6 +648,10 @@ footer .section.footer-menu .default-content-wrapper .footer-accordion-link-wrap
   line-height: 140%;
   letter-spacing: 0.24px;
   pointer-events: all;
+}
+
+footer .section.footer-menu .default-content-wrapper .footer-accordion-link-wrapper > a:hover {
+  text-decoration: underline;
 }
 
 footer .section.footer-menu .footer-accordion-content-wrapper {

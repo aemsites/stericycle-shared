@@ -7,6 +7,7 @@ import { div, h3, span } from '../../scripts/dom-helpers.js';
 const ITEMS_PER_PAGE = 10;
 let CURRENT_PAGE = 1;
 let CTA_TYPE = 'default';
+const facetsMap = new Map();
 
 /*
     * This function decorates the results from the query-index.json file
@@ -25,11 +26,17 @@ function decorateResults(posts, list) {
 
     if (post.type && post.type !== '0') {
       const categoryLink = document.createElement('a');
-      categoryLink.href = window.location.pathname;
+      categoryLink.href = '';
       categoryLink.innerText = post.type;
       categoryLink.classList.add('eyebrow-small');
       categoryLink.setAttribute('aria-label', post.type);
-
+      const type = post.type?.endsWith('s') ? post.type?.toLowerCase() : `${post.type.toLowerCase()}'s`;
+      const facet = facetsMap.get(type);
+      categoryLink.onclick = (e) => {
+        e.preventDefault();
+        facet.checked = true;
+        facet.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
+      };
       categoryDiv.append(categoryLink);
     }
 
@@ -138,8 +145,8 @@ async function getResults(sheets = []) {
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
   const postArray = [];
-  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex()
-    .sheet(sheet).all())).then((results) => results.flat());
+  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
+    .all())).then((results) => results.flat());
   posts.forEach((post) => {
     postArray.push(post);
   });
@@ -154,8 +161,8 @@ async function getFacets(sheets = []) {
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
   const facetArray = [];
-  const facets = await Promise.all(sheetList.map((sheet) => fetchQueryIndex()
-    .sheet(sheet).all()))
+  const facets = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
+    .all()))
     .then((results) => results.flat());
 
   const tagJson = {};
@@ -168,7 +175,7 @@ async function getFacets(sheets = []) {
   });
 
   facets.forEach((facet) => {
-    const tags = facet.tags.split(',');
+    const { tags } = facet;
     tags.forEach((tag) => {
       const cleanTag = tag.trim().replaceAll(/["[\]]/g, '');
       if (cleanTag === '') {
@@ -316,9 +323,9 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
     tempCheckedBoxes.push(checkboxChange);
   }
 
-  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex().sheet(sheet)
+  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
     .map((post) => ({
-      tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
+      tags: post.tags.map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
       title: post.title,
       date: post.date,
       image: post.image,
@@ -391,6 +398,8 @@ const createFacet = (facets, topDiv, sheets) => {
     topic.append(label);
     facetItem.append(topic);
     topDiv?.querySelector('ul').append(facetItem);
+
+    facetsMap.set(facet.tag.toLowerCase(), checkbox);
   });
 };
 
@@ -410,14 +419,14 @@ export default async function decorate(block) {
   facetDiv.classList.add('facet');
   CTA_TYPE = cta;
 
-  const topDiv1 = createFacetList('Media Type');
-  const topDiv2 = createFacetList(blogtopic);
-  createFacet(facets.tags, topDiv2, cfg.sheet.split(','));
+  const topicDiv = createFacetList(blogtopic);
+  createFacet(facets.tags, topicDiv, cfg.sheet.split(','));
   if (isResourceCenterPages()) {
-    createFacet(facets.mediaType, topDiv1, cfg.sheet.split(','));
-    facetDiv.append(topDiv1, topDiv2);
+    const mediaTypeDiv = createFacetList('Media Type');
+    createFacet(facets.mediaType, mediaTypeDiv, cfg.sheet.split(','));
+    facetDiv.append(mediaTypeDiv, topicDiv);
   } else {
-    facetDiv.append(topDiv2);
+    facetDiv.append(topicDiv);
   }
 
   const resultsDiv = document.createElement('div');
