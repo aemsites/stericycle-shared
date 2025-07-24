@@ -45,10 +45,12 @@ function renameFoldersRecursively(dir) {
 }
 
 // 🔁 Start from your root folder
-renameFoldersRecursively('D://downloads/fr-ca/centre-de-resources');
+renameFoldersRecursively('D://downloads/rc/fr-ca');
 // bash
 // node rename-folders.js
+
 // You can change the path to the directory you want to start from
 // For example, 'D://downloads/fr-ca/centre-de-resources' or any other directory
 // Make sure to run this script in an environment where you have permission to rename folders
 // and that the Node.js version supports the features used in this script.
+// this script doesn't work inside Engynite units
