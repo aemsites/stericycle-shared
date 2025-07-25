@@ -31,24 +31,45 @@ export default async function decorate(block) {
   imageDiv.append(picture);
   children.push(imageDiv);
 
-  // ✅ Reuse CTA div (3rd child)
-  const originalCtaDiv = block.children[2]?.cloneNode(true);
+  // ✅ Create consistent CTA structure
+  const originalCtaDiv = block.children[2];
   if (originalCtaDiv) {
-    originalCtaDiv.classList.add('download-cta');
+    const originalLink = originalCtaDiv.querySelector('a');
 
-    // remove the first child text element
-    originalCtaDiv.children[0].remove();
+    if (originalLink) {
+      const newCtaDiv = document.createElement('div');
+      newCtaDiv.classList.add('download-cta');
 
-    // replace a tag content with downloadnow
-    const aTag = originalCtaDiv.querySelector('a');
-    if (aTag) {
-      const aTagText = aTag.textContent;
-      if (aTagText && aTagText !== downloadnow) {
-        aTag.textContent = downloadnow;
-      }
+      const wrapperDiv = document.createElement('div');
+      const pElement = document.createElement('p');
+      pElement.classList.add('button-container');
+
+      const newLink = document.createElement('a');
+      newLink.href = originalLink.href;
+      newLink.title = originalLink.title;
+      newLink.setAttribute('aria-label', originalLink.getAttribute('aria-label') || originalLink.title);
+      newLink.target = originalLink.target || '_blank';
+      newLink.classList.add('button');
+
+      const originalClasses = originalLink.className.split(' ');
+      originalClasses.forEach((className) => {
+        if (className && className !== 'button') {
+          newLink.classList.add(className);
+        }
+      });
+
+      newLink.classList.add('secondary');
+      newLink.textContent = downloadnow;
+
+      const emElement = document.createElement('em');
+      emElement.appendChild(newLink);
+
+      pElement.appendChild(emElement);
+      wrapperDiv.appendChild(pElement);
+      newCtaDiv.appendChild(wrapperDiv);
+
+      children.push(newCtaDiv);
     }
-
-    children.push(originalCtaDiv);
   }
 
   block.replaceChildren(...children);
