@@ -11,6 +11,7 @@
  */
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
+
 const baseDomain = 'https://main--shredit--stericycle.aem.page';
 const req = new XMLHttpRequest();
 let tags = {};
@@ -170,14 +171,15 @@ function setMetadata(meta, document) {
  * Updates the given URL by replacing consecutive hyphens in the pathname with a single hyphen,
  * and removes a trailing hyphen from the pathname if present.
  *
- * @param {Object} params - The parameters object.
- * @param {string} params.originalURL - The original URL to be updated.
+ * @param {string} originalURL - The original URL to be updated.
  * @returns {string} The updated, valid URL as a string.
  */
-function updatetoValidUrl(params) {
-  const url = new URL(params.originalURL);
+function updatetoValidUrl(originalURL) {
+  const url = new URL(originalURL);
   url.pathname = url.pathname.replace(/--+/g, '-');
-  url.pathname = url.pathname.endsWith('-') ? url.pathname.slice(0, -1) : url.pathname;
+  url.pathname = url.pathname.endsWith('-')
+    ? url.pathname.slice(0, -1)
+    : url.pathname;
   return url.toString();
 }
 
@@ -248,7 +250,7 @@ export default {
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
   }) => {
-    url  = updatetoValidUrl(params);
+    url  = updatetoValidUrl(params.originalURL);
     let p = new URL(url).pathname;
     if (p.endsWith('/')) {
       p = `${p}index`;
