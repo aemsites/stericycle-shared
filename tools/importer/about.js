@@ -167,6 +167,24 @@ function setMetadata(meta, document) {
   }
 }
 
+function decodeAndReplace(str) {
+  const replacements = {
+    '%C3%A1': 'a',
+    '%C3%A9': 'e',
+    '%C3%AD': 'i',
+    '%C3%B3': 'o',
+    '%C3%BA': 'u',
+    '%C3%B1': 'n',
+  };
+  let updatedStr = str;
+  Object.entries(replacements).forEach(([encoded, plain]) => {
+    const regex = new RegExp(encoded, 'g');
+    updatedStr = updatedStr.replace(regex, plain);
+  });
+  return updatedStr;
+}
+
+
 /**
  * Updates the given URL by replacing consecutive hyphens in the pathname with a single hyphen,
  * and removes a trailing hyphen from the pathname if present.
@@ -180,7 +198,7 @@ function updatetoValidUrl(originalURL) {
   url.pathname = url.pathname.endsWith('-')
     ? url.pathname.slice(0, -1)
     : url.pathname;
-  return url.toString();
+  return decodeAndReplace(url.toString());
 }
 
 export default {
