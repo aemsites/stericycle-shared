@@ -166,6 +166,21 @@ function setMetadata(meta, document) {
   }
 }
 
+/**
+ * Updates the given URL by replacing consecutive hyphens in the pathname with a single hyphen,
+ * and removes a trailing hyphen from the pathname if present.
+ *
+ * @param {Object} params - The parameters object.
+ * @param {string} params.originalURL - The original URL to be updated.
+ * @returns {string} The updated, valid URL as a string.
+ */
+function updatetoValidUrl(params) {
+  const url = new URL(params.originalURL);
+  url.pathname = url.pathname.replace(/--+/g, '-');
+  url.pathname = url.pathname.endsWith('-') ? url.pathname.slice(0, -1) : url.pathname;
+  return url.toString();
+}
+
 export default {
   /**
      * Apply DOM operations to the provided document and return
@@ -199,6 +214,7 @@ export default {
       'div.col-lg-3.cmp-columnrow__item',
       'div#onetrust-consent-sdk',
       'div.related-content',
+      '.text.ss-font-color--white',
     ]);
 
     transformTabs(main);
@@ -232,6 +248,7 @@ export default {
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
   }) => {
+    url  = updatetoValidUrl(params);
     let p = new URL(url).pathname;
     if (p.endsWith('/')) {
       p = `${p}index`;
