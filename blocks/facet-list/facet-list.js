@@ -9,6 +9,15 @@ let CURRENT_PAGE = 1;
 let CTA_TYPE = 'default';
 const facetsMap = new Map();
 
+function capitalizePhrase(str) {
+  return str.toLowerCase().replace(/\b\w+\b/g, (word) => {
+    if (word.length === 1 && word !== 'i') {
+      return word;
+    }
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
+}
+
 /*
     * This function decorates the results from the query-index.json file
  */
@@ -228,8 +237,9 @@ const isResourceCenterPages = () => {
 };
 
 const createFacetList = (name) => {
+  const capitalizedName = capitalizePhrase(name);
   const topDiv = div({ class: 'facet-list-container' });
-  const head = h3({ class: 'head' }, span(name));
+  const head = h3({ class: 'head' }, span(capitalizedName));
   const toggleIcon = document.createElement('span');
   toggleIcon.classList.add('toggle-icon');
   toggleIcon.addEventListener('click', () => {
