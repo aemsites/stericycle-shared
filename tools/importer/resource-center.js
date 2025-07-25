@@ -13,6 +13,7 @@
 const req = new XMLHttpRequest();
 let tags = {};
 const baseDomain = 'https://main--shred-it--stericycle.aem.page';
+let originalDomain = 'https://www.shredit.com/';
 const hr = (doc) => doc.createElement('hr');
 const TAGS = {};
 req.open('GET', '/tools/importer/shredit-meta.json', false);
@@ -55,15 +56,26 @@ function fixVideo(elm) {
 }
 
 
+ /* Retrieves the canonical URL from a given HTML document.
+ * @param {Document} document - The HTML document to search for the canonical link element.
+ * @returns {string|null} The href value of the canonical link if found, otherwise null.
+ */
+function getCanonicalUrl(document) {
+  const canonicalLink = document.querySelector('link[rel="canonical"]');
+  return  canonicalLink ? canonicalLink.href : null;
+}
+
 /**
- * Converts the given URL to a valid format by replacing multiple consecutive hyphens
- * in the pathname with a single hyphen.
- * @param {Object} params - The parameters object.
- * @param {string} params.originalURL - The original URL to be validated and updated.
+ * Updates the given document's URL to a valid format.
+ * @param {Document} document - The HTML document to update.
  * @returns {string} The updated URL with valid pathname.
  */
-function updatetoValidUrl(params) {
-  const url = new URL(params.originalURL);
+function updatetoValidUrl(document, params) {
+  const originalUrl = new URL(params.originalURL || document.documentURI);
+  const canonicalUrl = new URL(getCanonicalUrl(document));
+  const origin = originalUrl.origin;
+  const pathname = canonicalUrl.pathname;
+  const url = new URL(origin+pathname);
   url.pathname = url.pathname.replace(/--+/g, '-');
   return url.toString();
 }
@@ -187,7 +199,8 @@ export default {
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
   }) => {
-    params.validUrl = updatetoValidUrl(params);
+    params.originalURL = updatetoValidUrl(document, params);
+    url=params.originalURL;
     // define the main element: the one that will be transformed to Markdown
     const main = document.body;
     const results = [];
@@ -201,18 +214,20 @@ export default {
       const href = a.getAttribute('href');
       if (href && href.startsWith('/') && href.endsWith('.pdf')) {
         const u = new URL(href, url);
-        const newPath = WebImporter.FileUtils.sanitizePath(u.pathname);
+        // const newPath = WebImporter.FileUtils.sanitizePath(u.pathname);
+        const newPath = u.pathname;
+        // const sanitizedPath =  newPath.replace('-pdf-coredownload.pdf', '.pdf.coredownload.pdf');
         // no "element", the "from" property is provided instead
         // importer will download the "from" resource as "path"
         results.push({
           path: newPath,
           from: u.toString(),
         });
-
+        console.log('results', results);
         // update the link to new path on the target host
         // this is required to be able to follow the links in Word
         // you will need to replace "main--repo--owner" by your project setup
-        const newHref = new URL(newPath, baseDomain).toString();
+        const newHref = new URL(newPath, originalDomain).toString();
         a.setAttribute('href', newHref);
       }
     });
@@ -239,6 +254,7 @@ export default {
       '.nav',
       'footer',
       '.footer',
+      'iframe',
       'noscript',
       'div.cmp-experiencefragment--footer-subscription-form',
       'div.cmp-experiencefragment--modal-form',
@@ -254,7 +270,7 @@ export default {
     main.append(mdb);
 
     WebImporter.rules.transformBackgroundImages(main, document);
-    WebImporter.rules.adjustImageUrls(main, params.validUrl, params.validUrl);
+    WebImporter.rules.adjustImageUrls(main, params.originalURL, params.originalURL);
     WebImporter.rules.convertIcons(main, document);
 
     return results;
