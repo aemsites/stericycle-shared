@@ -9,8 +9,16 @@ const createUtmInput = (name, value, form) => {
   form.appendChild(input);
 };
 
+function getHost() {
+  const { host } = document.location;
+  if (!host.match(/aem.(live|page)$/g)) {
+    host.replace('shred-it', 'shredit');
+  }
+  return `${document.location.protocol}//${host}`;
+}
+
 export default async function decorateUTM(form) {
-  const placeholders = await fetchPlaceholders('/forms/utm-sources');
+  const placeholders = await fetchPlaceholders(`${getHost()}/forms/utm-sources`);
   const utmSources = placeholders ? Object.values(placeholders).join(',') : null;
   const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
   const queryString = window.location.search;
