@@ -55,31 +55,6 @@ function fixVideo(elm) {
   }
 }
 
-
- /* Retrieves the canonical URL from a given HTML document.
- * @param {Document} document - The HTML document to search for the canonical link element.
- * @returns {string|null} The href value of the canonical link if found, otherwise null.
- */
-function getCanonicalUrl(document) {
-  const canonicalLink = document.querySelector('link[rel="canonical"]');
-  return  canonicalLink ? canonicalLink.href : null;
-}
-
-/**
- * Updates the given document's URL to a valid format.
- * @param {Document} document - The HTML document to update.
- * @returns {string} The updated URL with valid pathname.
- */
-function updatetoValidUrl(document, params) {
-  const originalUrl = new URL(params.originalURL || document.documentURI);
-  const canonicalUrl = new URL(getCanonicalUrl(document));
-  const origin = originalUrl.origin;
-  const pathname = canonicalUrl.pathname;
-  const url = new URL(origin+pathname);
-  url.pathname = url.pathname.replace(/--+/g, '-');
-  return url.toString();
-}
-
 function transformFAQ(main) {
   const faqs = main.querySelectorAll('#accordion > div.cmp-accordion__item');
   if (faqs && faqs.length > 0) {
@@ -185,6 +160,48 @@ function transformDownloadBlock(main, document) {
   }
 }
 
+function decodeAndReplace(str) {
+  const replacements = {
+    '%C3%A1': 'a',
+    '%C3%A9': 'e',
+    '%C3%AD': 'i',
+    '%C3%B3': 'o',
+    '%C3%BA': 'u',
+    '%C3%B1': 'n',
+  };
+  let updatedStr = str;
+  Object.entries(replacements).forEach(([encoded, plain]) => {
+    const regex = new RegExp(encoded, 'g');
+    updatedStr = updatedStr.replace(regex, plain);
+  });
+  return updatedStr;
+}
+
+/**
+ * Updates the given URL by replacing consecutive hyphens in the pathname with a single hyphen,
+ * and removes a trailing hyphen from the pathname if present.
+ *
+ * @param {string} originalURL - The original URL to be updated.
+ * @returns {string} The updated, valid URL as a string.
+ */
+function updatetoValidUrl(originalURL) {
+  const url = new URL(originalURL);
+  url.pathname = url.pathname.replace(/--+/g, '-');
+  url.pathname = url.pathname.endsWith('-')
+    ? url.pathname.slice(0, -1)
+    : url.pathname;
+  return decodeAndReplace(url.toString());
+}
+
+/* Retrieves the canonical URL from a given HTML document.
+ * @param {Document} document - The HTML document to search for the canonical link element.
+ * @returns {string|null} The href value of the canonical link if found, otherwise null.
+ */
+function getCanonicalUrl(document) {
+  const canonicalLink = document.querySelector('link[rel="canonical"]');
+  return canonicalLink ? canonicalLink.href : null;
+}
+
 export default {
   /**
      * Apply DOM operations to the provided document and return
@@ -199,7 +216,13 @@ export default {
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
   }) => {
-    params.originalURL = updatetoValidUrl(document, params);
+
+    const originalUrl = new URL(params.originalURL || document.documentURI);
+    const canonicalUrl = new URL(getCanonicalUrl(document));
+    const origin = originalUrl.origin;
+    const pathname = canonicalUrl.pathname;
+    const newUrl = new URL(origin+pathname);
+    params.originalURL = updatetoValidUrl(newUrl.toString());
     url=params.originalURL;
     // define the main element: the one that will be transformed to Markdown
     const main = document.body;
