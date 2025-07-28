@@ -153,19 +153,35 @@ export function buildCompanyLogo() {
 }
 
 /**
+ * Extracts the locale from a given URL.
+ * @param {string} url - The URL to extract the locale from.
+ * @returns {string} - The extracted locale or a default value.
+ */
+function getLocaleFromUrl(url) {
+  const match = url.match(/\/([a-z]{2}-[a-z]{2})(?:\/|$)/i);
+  let locale = 'en-us';
+  if (match) {
+    [, locale] = match;
+  }
+  return locale;
+}
+
+/**
  * Function to build the country selector element.
  * @returns {HTMLElement} - The country selector element.
  */
 export function createCountrySelector(countryListItems, countryListTitle) {
   const currentUrl = window.location.href;
+  const currentPath = new URL(currentUrl).pathname;
   const countryListArray = Array.from(countryListItems, (item) => {
     const anchor = item.querySelector('a');
     return {
       name: anchor.textContent,
       url: anchor.href,
+      locale: getLocaleFromUrl(anchor.href),
     };
   });
-  const currentCountry = countryListArray.find((country) => currentUrl.includes(new URL(country.url, window.location.origin).pathname))
+  const currentCountry = countryListArray.find((country) => currentPath.includes(country.locale))
     || countryListArray.find((country) => country.name === 'United States');
   const title = countryListTitle?.firstChild?.nodeValue.trim() || 'Country:';
   const label = document.createElement('label');
