@@ -153,6 +153,20 @@ export function getLocaleAsBCP47() {
   return parts.join('-');
 }
 
+export function getLocaleFromPath() {
+  const pathParts = window.location.pathname.split('/');
+  if (pathParts.length > 1) {
+    const locale = pathParts[1];
+    // Check if the locale is in the format of two lowercase letters followed by a hyphen and two lowercase letters
+    if (/^[a-z]{2}-[a-z]{2}$/.test(locale)) {
+      return locale;
+    }
+  }
+
+  // Default to result of getLocale() if no valid locale is found in the path
+  return getLocale();
+}
+
 const toRadians = (degrees) => ((degrees * Math.PI) / 180);
 
 export const haversineDistance = (lat1, lon1, lat2, lon2) => {
