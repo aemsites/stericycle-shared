@@ -1,6 +1,6 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { a, p } from '../../scripts/dom-helpers.js';
-import { getLocale } from '../../scripts/scripts.js';
+import { getLocale, getLocaleFromPath } from '../../scripts/scripts.js';
 import { isDesktop } from './constants.js';
 
 /**
@@ -152,24 +152,6 @@ export function buildCompanyLogo() {
   return logo;
 }
 
-/**
- * Extracts the locale from a given URL.
- * @param {string} url - The URL to extract the locale from.
- * @returns {string} - The extracted locale or a default value.
- */
-function getLocaleFromUrl(url) {
-  const match = url.match(/\/([a-z]{2}-[a-z]{2})(?:\/|$)/i);
-  let locale = 'en-us';
-  if (match) {
-    [, locale] = match;
-  }
-  return locale;
-}
-
-/**
- * Function to build the country selector element.
- * @returns {HTMLElement} - The country selector element.
- */
 export function createCountrySelector(countryListItems, countryListTitle) {
   const currentUrl = window.location.href;
   const currentPath = new URL(currentUrl).pathname;
@@ -178,7 +160,7 @@ export function createCountrySelector(countryListItems, countryListTitle) {
     return {
       name: anchor.textContent,
       url: anchor.href,
-      locale: getLocaleFromUrl(anchor.href),
+      locale: getLocaleFromPath(anchor.href),
     };
   });
   const currentCountry = countryListArray.find((country) => currentPath.includes(country.locale))
