@@ -91,7 +91,7 @@ export default function decorate(block) {
       // process embedded video blocks
       const video = body.querySelector('table');
       if (video) {
-        const vhead = video.querySelector('thead > tr > th');
+        const vhead = video.querySelector('tr:first-child > td');
         if (vhead && vhead.innerText === 'embed') {
           const vDiv = document.createElement('div');
           vDiv.append(video.cloneNode(true));

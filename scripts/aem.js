@@ -307,6 +307,9 @@ function getMetadata(name, doc = document) {
   const meta = [...doc.head.querySelectorAll(`meta[${attr}="${name}"]`)]
     .map((m) => m.content)
     .join(', ');
+  if (meta && meta.startsWith('/forms')) {
+    return `https://main--shredit--stericycle.aem.live${meta}`;
+  }
   return meta || '';
 }
 
@@ -555,7 +558,8 @@ async function fetchPlaceholders(prefix = 'default') {
   window.placeholders = window.placeholders || {};
   if (!window.placeholders[prefix]) {
     window.placeholders[prefix] = new Promise((resolve) => {
-      fetch(`${prefix === 'default' ? '' : prefix}/placeholders.json`)
+      const updatedPrefix = prefix.includes('forms') ? `https://main--shredit--stericycle.aem.live${prefix}` : prefix;
+      fetch(`${prefix === 'default' ? '' : updatedPrefix}/placeholders.json`)
         .then((resp) => {
           if (resp.ok) {
             return resp.json();
@@ -773,7 +777,7 @@ async function waitForLCP(section) {
 }
 
 const isDesktop = () => window.matchMedia('(min-width: 992px)')?.matches;
-const isLargeDesktop = () => window.matchMedia('(min-width: 1400px)')?.matches;
+const isLargeDesktop = () => window.matchMedia('(min-width: 1200px)')?.matches;
 
 init();
 

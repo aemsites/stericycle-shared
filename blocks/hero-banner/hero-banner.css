@@ -375,7 +375,7 @@ main .section > div.hero-banner-wrapper {
     }
 }
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1200px) {
     .hero-banner-content-text {
         padding: 32px 1.5rem;
         max-width: 720px;

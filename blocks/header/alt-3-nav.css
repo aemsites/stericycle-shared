@@ -734,7 +734,7 @@ header {
   white-space: pre-wrap;
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1200px) {
   .header header {
     min-height: 70px;
   }
