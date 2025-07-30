@@ -15,7 +15,7 @@ function handleCheckboxAndRadio(field) {
       field.enum = ['true']; // default html value
     }
     delete field.value;
-    field.checked = field.Checked?.toLowerCase() === 'true' || ph[field.Checked?.toLowerCase()] === 'true' ;
+    field.checked = field.Checked?.toLowerCase() === 'true' || ph[field.Checked?.toLowerCase()] === 'true';
   }
 }
 
