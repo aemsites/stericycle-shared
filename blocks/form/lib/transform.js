@@ -98,7 +98,7 @@ function convertStringToBoolean(value) {
 function handleFranklinSpecialCases(item) {
   booleanProperty.forEach((prop) => {
     if (item[prop]) {
-      item[prop] = convertStringToBoolean(item[prop]);
+      item[prop] = convertStringToBoolean(ph[item[prop]?.toLowerCase()] || item[prop]);
     }
   });
   // Franklin Mandatory uses x for true.
@@ -152,6 +152,7 @@ export default class DocBasedFormToAF {
     Default: 'default',
     Step: 'step',
     Pattern: 'pattern',
+    Charset: 'charset',
     Value: 'value',
     Placeholder: 'placeholder',
     Field: 'name',
