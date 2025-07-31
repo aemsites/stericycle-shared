@@ -152,6 +152,7 @@ export default class DocBasedFormToAF {
     Default: 'default',
     Step: 'step',
     Pattern: 'pattern',
+    Charset: 'charset',
     Value: 'value',
     Placeholder: 'placeholder',
     Field: 'name',

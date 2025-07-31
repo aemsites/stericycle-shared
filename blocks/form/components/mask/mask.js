@@ -1,3 +1,5 @@
+import { getLocale } from '../../../../scripts/scripts.js';
+
 const masking = {
   maskedNumber: '_XdDmMyY9',
   maskedLetter: '_',
@@ -55,20 +57,22 @@ const masking = {
     }
 
     if (e.target.dataset.type === 'postalCode') {
-      let placeholderValue = '_____-____';
-      if (e.target.value.length >= 6) {
-        e.target.setAttribute('placeholder', placeholderValue);
-        const placeholder = e.target.getAttribute('placeholder');
-        e.target.setAttribute('maxlength', placeholder?.length);
-        e.target.setAttribute('data-placeholder', placeholderValue);
-      }
+      if (getLocale() === 'en-us') {
+        let placeholderValue = '_____-____';
+        if (e.target.value.length >= 6) {
+          e.target.setAttribute('placeholder', placeholderValue);
+          const placeholder = e.target.getAttribute('placeholder');
+          e.target.setAttribute('maxlength', placeholder?.length);
+          e.target.setAttribute('data-placeholder', placeholderValue);
+        }
 
-      if (e.target.value.length === 6 && e.target.value.search('-') === 5) {
-        placeholderValue = '_____';
-        e.target.setAttribute('placeholder', placeholderValue);
-        const placeholder = e.target.getAttribute('placeholder');
-        e.target.setAttribute('maxlength', placeholder.length + 1);
-        e.target.setAttribute('data-placeholder', placeholderValue);
+        if (e.target.value.length === 6 && e.target.value.search('-') === 5) {
+          placeholderValue = '_____';
+          e.target.setAttribute('placeholder', placeholderValue);
+          const placeholder = e.target.getAttribute('placeholder');
+          e.target.setAttribute('maxlength', placeholder.length + 1);
+          e.target.setAttribute('data-placeholder', placeholderValue);
+        }
       }
     }
 

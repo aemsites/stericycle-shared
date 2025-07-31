@@ -28,6 +28,12 @@ function setPlaceholder(element, fd) {
   }
 }
 
+function setCharset(element, fd) {
+  if (fd.charset) {
+    element.setAttribute('data-charset', placeholders[fd.charset?.toLowerCase()] || fd.charset);
+  }
+}
+
 const constraintsDef = Object.entries({
   'password|tel|email|text': [['maxLength', 'maxlength'], ['minLength', 'minlength'], 'pattern'],
   'number|range|date': [['maximum', 'Max'], ['minimum', 'Min'], 'step'],
@@ -55,6 +61,7 @@ function createInput(fd) {
   input.type = getHTMLRenderType(fd);
   setPlaceholder(input, fd);
   setConstraints(input, fd);
+  setCharset(input, fd);
   return input;
 }
 
