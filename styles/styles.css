@@ -998,7 +998,6 @@ main .list-style-bullets ul {
 }
 
 main .list-style-bullets ul li {
-  list-style: disc;
   padding-bottom: 0.5rem;
   display: list-item;
 }
