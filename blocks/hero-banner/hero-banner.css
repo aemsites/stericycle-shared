@@ -119,7 +119,7 @@ main .section > div.hero-banner-wrapper {
 
 .bullet-list .hero-banner .hero-banner-content-text > ul > li::before {
     content: '•';
-    margin-right: 16px;
+    margin-right: 1rem;
 }
 
 .hero-banner  .hero-banner-content-text > ul > li:last-child {
