@@ -17,7 +17,7 @@ export async function extractFormDefinition(block) {
     const path = container.href;
     if (path.endsWith('.json')) {
       const { pathname } = new URL(path);
-      const definition = await fetchForm(window.location.origin.includes('shredit.com') ? path : `https://main--shredit--stericycle.aem.page{pathname}`);
+      const definition = await fetchForm(window.location.origin.includes('shredit.com') ? path : `https://main--shredit--stericycle.aem.page${pathname}`);
       if (definition && definition[':type'] === 'sheet') {
         const transformer = new DocBasedFormToAF();
         const formDef = transformer.transform(definition, pathname);

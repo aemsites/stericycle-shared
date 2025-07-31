@@ -20,7 +20,7 @@ import {
 export async function loadFragment(path) {
   if (path) {
     const pathname = path.startsWith('/') ? path : new URL(path).pathname;
-    const resp = await fetch(pathname.startsWith('/forms') ? `https://main--shredit--stericycle.aem.page{pathname}.plain.html` : `${path}.plain.html`);
+    const resp = await fetch(pathname.startsWith('/forms') ? `https://main--shredit--stericycle.aem.page${pathname}.plain.html` : `${path}.plain.html`);
     if (resp.ok) {
       const main = document.createElement('main');
       main.innerHTML = await resp.text();
