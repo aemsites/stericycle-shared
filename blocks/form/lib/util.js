@@ -242,7 +242,8 @@ export function appendFragment(wrapper, value) {
     const fragmentUrl = new URL(value);
     const fragmentPath = fragmentUrl.pathname;
     const url = fragmentPath.endsWith('.html') ? fragmentPath.replace('.html', '.plain.html') : `${fragmentPath}.plain.html`;
-    fetch(url.startsWith('/forms') ? `https://main--shredit--stericycle.aem.live${url}` : `${window.location.origin}${url}`).then(async (resp) => {
+    const formsUrl = window.location.origin.includes('shredit.com') ? url : `https://main--shredit--stericycle.aem.live${url}`;
+    fetch(url.startsWith('/forms') ? formsUrl : `${window.location.origin}${url}`).then(async (resp) => {
       if (resp.ok) {
         wrapper.innerHTML = await resp.text();
         wrapper.querySelectorAll('a[href]').forEach((link) => {
