@@ -133,7 +133,7 @@ async function constructPayload(form, captcha) {
   const [language, country] = getCountryAndLanguage();
   const payload = {
     __id__: generateUnique(),
-    ':currentPagePath': '/content/shred-it/us/en',
+    ':currentPagePath': `/content/shred-it/${country}/${language}`,
     currentPagePath: window.location.pathname,
     jobPropertiesUrl: `https://main--shredit--stericycle.aem.page${form.dataset.action}.json`,
     formName: form.dataset?.action,
