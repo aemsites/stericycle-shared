@@ -247,7 +247,7 @@ export function appendFragment(wrapper, value) {
     const fragmentUrl = new URL(value);
     const fragmentPath = fragmentUrl.pathname;
     const url = fragmentPath.endsWith('.html') ? fragmentPath.replace('.html', '.plain.html') : `${fragmentPath}.plain.html`;
-    fetch(url.startsWith('/forms') ? `https://main--shredit--stericycle.aem.live${url}` : `${window.location.origin}${url}`).then(async (resp) => {
+    fetch(url.startsWith('/forms') ? `https://main--shredit--stericycle.aem.page{url}` : `${window.location.origin}${url}`).then(async (resp) => {
       if (resp.ok) {
         wrapper.innerHTML = await resp.text();
         wrapper.querySelectorAll('a[href]').forEach((link) => {

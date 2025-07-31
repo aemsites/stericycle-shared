@@ -308,7 +308,7 @@ function getMetadata(name, doc = document) {
     .map((m) => m.content)
     .join(', ');
   if (meta && meta.startsWith('/forms')) {
-    return `https://main--shredit--stericycle.aem.live${meta}`;
+    return `https://main--shredit--stericycle.aem.page${meta}`;
   }
   return meta || '';
 }
@@ -558,7 +558,7 @@ async function fetchPlaceholders(prefix = 'default') {
   window.placeholders = window.placeholders || {};
   if (!window.placeholders[prefix]) {
     window.placeholders[prefix] = new Promise((resolve) => {
-      const updatedPrefix = prefix.includes('forms') ? `https://main--shredit--stericycle.aem.live${prefix}` : prefix;
+      const updatedPrefix = prefix.includes('forms') ? `https://main--shredit--stericycle.aem.page${prefix}` : prefix;
       fetch(`${prefix === 'default' ? '' : updatedPrefix}/placeholders.json`)
         .then((resp) => {
           if (resp.ok) {
