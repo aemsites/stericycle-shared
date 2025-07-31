@@ -113,7 +113,7 @@ const createSelect = withFieldWrapper((fd) => {
         });
     }
   } else {
-    options.forEach((value, index) => addOption(optionNames?.[index], value));
+    options.forEach((value, index) => addOption(placeholders[optionNames?.[index]?.toLowerCase()] || optionNames?.[index], value));
   }
 
   if (ph && optionSelected === false) {

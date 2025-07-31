@@ -244,7 +244,7 @@ export function checkValidation(fieldElement) {
 
 export function appendFragment(wrapper, value) {
   if (value) {
-    const fragmentUrl = new URL(value);
+    const fragmentUrl = new URL(ph[value.toLowerCase()] || value);
     const fragmentPath = fragmentUrl.pathname;
     const url = fragmentPath.endsWith('.html') ? fragmentPath.replace('.html', '.plain.html') : `${fragmentPath}.plain.html`;
     fetch(url.startsWith('/forms') ? `https://main--shredit--stericycle.aem.live${url}` : `${window.location.origin}${url}`).then(async (resp) => {
