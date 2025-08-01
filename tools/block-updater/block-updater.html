@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DA App SDK Sample</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="data:,">
+    <!-- Import DA App SDK -->
+    <script src="https://da.live/nx/utils/sdk.js" type="module"></script>
+    <!-- Project App Logic -->
+    <script src="/tools/block-updater/block-updater.js" type="module"></script>
+    <link rel="stylesheet" href="block-updater.css">
+  </head>
+  <body>
+    <h1>Block Updater</h1>
+    <div class="metadata-updater">
+      <div class="input-group">
+        <div class="input-field">
+          <label for="rootPath">Root Path</label>
+          <input type="text" id="rootPath" placeholder="e.g. /herodigital/stericycle-shared/en-ca" value="/herodigital/stericycle-shared/en-ca" />
+        </div>
+        <div class="input-field">
+          <label for="operation">Operation</label>
+          <select id="operation">
+            <option value="modify">Modify Existing Value</option>
+            <option value="add">Add New Row</option>
+            <option value="delete">Delete Row</option>
+          </select>
+        </div>
+        <div class="input-field">
+          <label for="metadataKey">Metadata Key</label>
+          <input type="text" id="metadataKey" placeholder="e.g. locale" />
+        </div>
+        <div class="input-field value-field">
+          <label for="metadataValue">New Value</label>
+          <input type="text" id="metadataValue" placeholder="e.g. en-ca" />
+        </div>
+      </div>
+      <div class="button-group">
+        <button id="dryRunButton">Dry Run</button>
+        <button id="updateBlocksButton">Update Blocks</button>
+      </div>
+      <div id="dryRunResults" class="results-table" style="display: none;">
+        <div class="results-summary"></div>
+        <div class="loading-spinner" style="display: none;">
+          <div class="spinner"></div>
+          <div class="spinner-text">Processing files...</div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Path</th>
+              <th>Changes</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <script type="module">
+      import { updateBlocks, dryRun } from './block-updater.js';
+      
+      function renderMetadataTable(htmlString) {
+        const dom = new DOMParser().parseFromString(htmlString, 'text/html');
+        const metadata = dom.querySelector('.metadata');
+        if (!metadata) return '';
+        
+        let tableHtml = '<table class="metadata-table">';
+        
+        Array.from(metadata.children).forEach(row => {
+          const [keyDiv, valueDiv] = row.children;
+          const key = keyDiv?.querySelector('p')?.textContent || '';
+          const value = valueDiv?.querySelector('p')?.textContent || '';
+          
+          tableHtml += `
+            <tr>
+              <td class="metadata-key">${key}</td>
+              <td>${value}</td>
+            </tr>
+          `;
+        });
+        
+        tableHtml += '</table>';
+        return tableHtml;
+      }
+      
+      function compareMetadataTables(before, after) {
+        const beforeDom = new DOMParser().parseFromString(before, 'text/html');
+        const afterDom = new DOMParser().parseFromString(after, 'text/html');
+        
+        const beforeMetadata = beforeDom.querySelector('.metadata');
+        const afterMetadata = afterDom.querySelector('.metadata');
+        
+        if (!beforeMetadata || !afterMetadata) return '';
+        
+        let tableHtml = `
+          <table class="metadata-table">
+            <thead>
+              <tr>
+                <th class="metadata-key">Key</th>
+                <th class="metadata-value">Before</th>
+                <th class="metadata-value">After</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+        
+        // Create maps of before and after values
+        const beforeValues = new Map();
+        const afterValues = new Map();
+        
+        Array.from(beforeMetadata.children).forEach(row => {
+          const [keyDiv, valueDiv] = row.children;
+          const key = keyDiv?.textContent?.trim() || '';
+          const value = valueDiv?.textContent?.trim() || '';
+          beforeValues.set(key, value);
+        });
+        
+        Array.from(afterMetadata.children).forEach(row => {
+          const [keyDiv, valueDiv] = row.children;
+          const key = keyDiv?.textContent?.trim() || '';
+          const value = valueDiv?.textContent?.trim() || '';
+          afterValues.set(key, value);
+        });
+        
+        // Process all keys from both before and after states
+        const allKeys = new Set([...beforeValues.keys(), ...afterValues.keys()]);
+        
+        allKeys.forEach(key => {
+          const beforeValue = beforeValues.get(key) || '';
+          const afterValue = afterValues.get(key) || '';
+          
+          // Determine row state
+          const isDeleted = beforeValue && !afterValue;
+          const isAdded = !beforeValue && afterValue;
+          const isChanged = beforeValue !== afterValue && !isDeleted && !isAdded;
+          
+          const rowClass = isDeleted ? 'metadata-row-deleted' : 
+                          isAdded ? 'metadata-row-added' :
+                          isChanged ? 'metadata-row-changed' : '';
+          
+          tableHtml += `
+            <tr class="${rowClass}">
+              <td class="metadata-key">${key}</td>
+              <td class="metadata-value">${beforeValue}</td>
+              <td class="metadata-value">${afterValue}</td>
+            </tr>
+          `;
+        });
+        
+        tableHtml += '</tbody></table>';
+        return tableHtml;
+      }
+
+      function getInputValues() {
+        const rootPath = document.getElementById('rootPath').value;
+        const key = document.getElementById('metadataKey').value;
+        const value = document.getElementById('metadataValue').value;
+        const operation = document.getElementById('operation').value;
+        
+        if (!rootPath || !key) {
+          alert('Please provide root path and key');
+          return null;
+        }
+        
+        if (operation !== 'delete' && !value) {
+          alert('Please provide a value');
+          return null;
+        }
+        
+        return { rootPath, key, value, operation };
+      }
+
+      function showLoading(show) {
+        const resultsTable = document.getElementById('dryRunResults');
+        const spinner = resultsTable.querySelector('.loading-spinner');
+        const table = resultsTable.querySelector('table');
+        
+        if (show) {
+          spinner.style.display = 'flex';
+          table.style.display = 'none';
+          resultsTable.style.display = 'block';
+        } else {
+          spinner.style.display = 'none';
+          table.style.display = 'table';
+        }
+      }
+
+      async function displayResults(results) {
+        const resultsTable = document.getElementById('dryRunResults');
+        const summary = resultsTable.querySelector('.results-summary');
+        const tbody = resultsTable.querySelector('tbody');
+        
+        // Show loading state
+        showLoading(true);
+        
+        try {
+          // Clear previous results
+          tbody.innerHTML = '';
+          
+          // Update summary
+          summary.textContent = `Found ${results.length} file${results.length !== 1 ? 's' : ''} with matching metadata`;
+          
+          // Process and display results
+          results.forEach(({ path, before, after }) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${path}</td>
+              <td colspan="2">${compareMetadataTables(before, after)}</td>
+            `;
+            tbody.appendChild(row);
+          });
+        } finally {
+          // Hide loading state
+          showLoading(false);
+        }
+      }
+
+      // Add event listener for operation changes
+      document.getElementById('operation').addEventListener('change', (e) => {
+        const valueField = document.querySelector('.value-field');
+        valueField.style.display = e.target.value === 'delete' ? 'none' : 'block';
+      });
+
+      document.getElementById('dryRunButton').addEventListener('click', async () => {
+        const inputs = getInputValues();
+        if (!inputs) return;
+        
+        showLoading(true);
+        try {
+          const results = await dryRun(inputs.rootPath, inputs.key, inputs.value, inputs.operation);
+          await displayResults(results);
+        } catch (error) {
+          console.error('Error during dry run:', error);
+          alert('An error occurred while processing the files');
+        } finally {
+          showLoading(false);
+        }
+      });
+
+      document.getElementById('updateBlocksButton').addEventListener('click', async () => {
+        const inputs = getInputValues();
+        if (!inputs) return;
+        
+        showLoading(true);
+        try {
+          const results = await updateBlocks(inputs.rootPath, inputs.key, inputs.value, inputs.operation);
+          await displayResults(results);
+        } catch (error) {
+          console.error('Error during update:', error);
+          alert('An error occurred while updating the files');
+        } finally {
+          showLoading(false);
+        }
+      });
+    </script>
+  </body>
+</html>
