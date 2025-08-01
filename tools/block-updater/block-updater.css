@@ -1,0 +1,159 @@
+.metadata-updater {
+  padding: 20px;
+}
+
+.input-group {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-field label {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Make all input fields and selects consistent */
+.input-field input,
+.input-field select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 36px; /* Consistent height */
+  box-sizing: border-box; /* Include padding in width/height */
+  background-color: white;
+}
+
+.input-field input:focus,
+.input-field select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Remove browser-specific select styling */
+.input-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  padding-right: 32px; /* Space for the arrow */
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.results-table {
+  margin-top: 20px;
+}
+
+.results-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.results-table th, 
+.results-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.results-table th {
+  background-color: #f5f5f5;
+}
+
+.results-summary {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-text {
+  margin-top: 10px;
+  color: #666;
+}
+
+.metadata-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+.metadata-table td {
+  padding: 4px 8px;
+  border: 1px solid #eee;
+}
+
+.metadata-row-deleted {
+  background-color: #ffe6e6;
+}
+
+.metadata-row-deleted .metadata-value {
+  text-decoration: line-through;
+  color: #dc3545;
+}
+
+.metadata-row-added {
+  background-color: #e6ffe6;
+}
+
+.metadata-row-added .metadata-value {
+  color: #28a745;
+}
+
+.metadata-row-changed {
+  background-color: #fff3cd;
+}
+
+.metadata-key {
+  font-weight: bold;
+  width: 20%;
+}
+
+.metadata-value {
+  width: 40%;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Hide table while loading */
+.loading .results-table table {
+  display: none;
+} 
