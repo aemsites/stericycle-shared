@@ -145,7 +145,7 @@ export class WizardLayout {
     wrapper.append(button);
   }
 
-  applyLayout(panel) {
+  async applyLayout(panel) {
     const ph = await fetchPlaceholders(`/${getLocale()}`);
     const children = panel.querySelectorAll(':scope > .panel-wrapper');
     if (children.length) {
