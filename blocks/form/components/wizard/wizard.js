@@ -6,7 +6,6 @@ import { getLocale } from '../../../../scripts/scripts.js';
 
 export class WizardLayout {
   inputFields = 'input,textarea,select';
-  const ph = await fetchPlaceholders(`/${getLocale()}`);
 
   constructor(includePrevBtn = true, includeNextBtn = true) {
     this.includePrevBtn = includePrevBtn;
@@ -147,6 +146,7 @@ export class WizardLayout {
   }
 
   applyLayout(panel) {
+    const ph = await fetchPlaceholders(`/${getLocale()}`);
     const children = panel.querySelectorAll(':scope > .panel-wrapper');
     if (children.length) {
       // create wizard menu
