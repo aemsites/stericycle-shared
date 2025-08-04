@@ -66,7 +66,6 @@ function decorate(main) {
   const rcHeader = document.createElement('h4');
   rcHeader.classList.add('related-content-header');
   rcWrapper.append(rcHeader);
-  const mainSection = main.querySelector('div.section');
   const defaultContent = main.querySelector('div.section > div.default-content-wrapper');
   leftColumn.append(...defaultContent.childNodes);
   rightColumn.append(rcWrapper);
@@ -99,6 +98,7 @@ function decorate(main) {
   // when we migrated en-ca and fr-ca. Leaving the code for now in case it is revisited
   //
   // add the breadcrumbWrapper to the start of the leftColumn
+  // const mainSection = main.querySelector('div.section');
   // mainSection.prepend(breadcrumbWrapper);
 
   addBreadcrumbJsonLd(blogBreadcrumb, blogBaseUrl, title, window.location.href);
