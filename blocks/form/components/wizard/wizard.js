@@ -1,9 +1,12 @@
 import { createButton } from '../../lib/util.js';
 import { sendDigitalDataEvent } from '../../../../scripts/martech.js';
 import { getFormName } from '../../utils.js';
+import { fetchPlaceholders } from '../../../../scripts/aem.js';
+import { getLocale } from '../../../../scripts/scripts.js';
 
 export class WizardLayout {
   inputFields = 'input,textarea,select';
+  const ph = await fetchPlaceholders(`/${getLocale()}`);
 
   constructor(includePrevBtn = true, includeNextBtn = true) {
     this.includePrevBtn = includePrevBtn;
@@ -158,13 +161,13 @@ export class WizardLayout {
     wrapper.className = 'wizard-button-wrapper';
     if (this.includePrevBtn && children.length) {
       this.addButton(wrapper, panel, {
-        label: { value: 'Back' }, fieldType: 'button', name: 'back', id: 'wizard-button-prev',
+        label: { value: ph.backlabel }, fieldType: 'button', name: 'back', id: 'wizard-button-prev',
       }, false);
     }
 
     if (this.includeNextBtn && children.length) {
       this.addButton(wrapper, panel, {
-        label: { value: 'Continue' }, fieldType: 'button', name: 'next', id: 'wizard-button-next',
+        label: { value: ph.continuelabel }, fieldType: 'button', name: 'next', id: 'wizard-button-next',
       });
     }
 
