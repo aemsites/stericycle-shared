@@ -93,8 +93,13 @@ function decorate(main) {
   const breadcrumbWrapper = document.createElement('div');
   breadcrumbWrapper.classList.add('breadcrumb-wrapper');
   breadcrumbWrapper.append(blogBreadcrumbElement);
+
+  // Temporarily removing breadcrumb from the top of the blog article template
+  // There was some confusion on the client's part as to whether this should be there
+  // when we migrated en-ca and fr-ca. Leaving the code for now in case it is revisited
+  //
   // add the breadcrumbWrapper to the start of the leftColumn
-  mainSection.prepend(breadcrumbWrapper);
+  // mainSection.prepend(breadcrumbWrapper);
 
   addBreadcrumbJsonLd(blogBreadcrumb, blogBaseUrl, title, window.location.href);
 }
