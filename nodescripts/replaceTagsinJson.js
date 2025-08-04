@@ -1,4 +1,5 @@
 const fs = require('fs');
+/* eslint-disable quotes */
 
 // Translation map (same as before)
 const translations = {
@@ -31,7 +32,7 @@ const translations = {
   "Breaches & Damage Control": "Brèches et maîtrise des dommages",
   "Corporate Information": "Information d'entreprise",
   "Workplace Security": "Sécurité du lieu de travail",
-  "Information Security Management": "Gestion des documents"
+  "Information Security Management": "Gestion des documents",
 };
 
 // Load JSON
@@ -39,9 +40,9 @@ const rawData = fs.readFileSync('../tools/importer/metadata/fr-ca-shredit-meta.j
 const items = JSON.parse(rawData);
 
 // Update Tags field
-const updatedItems = items.map(entry => {
+const updatedItems = items.map((entry) => {
   if (entry.Tags) {
-    const translatedTags = entry.Tags.split(';').map(tag => {
+    const translatedTags = entry.Tags.split(';').map((tag) => {
       const trimmed = tag.trim();
       return translations[trimmed] || trimmed;
     });
