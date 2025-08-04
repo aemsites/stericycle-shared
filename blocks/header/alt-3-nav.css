@@ -691,9 +691,9 @@ header {
   flex-direction: column;
   justify-content: center;
   max-width: var(--section-width);
-  margin: 0 auto;
+  margin: auto auto 0;
   width: 100%;
-  padding: 64px 1.5rem 82px;
+  padding: 64px 1.5rem 3rem;
 }
 
 .header .ctas-container-mobile .content {
