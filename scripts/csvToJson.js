@@ -16,5 +16,4 @@ csv()
   .fromFile(csvFilePath)
   .then((jsonObj) => {
     fs.writeFileSync(jsonFilePath, JSON.stringify(jsonObj, null, 2));
-    console.log('Conversion complete!');
   });
