@@ -16,7 +16,7 @@ const baseDomain = 'https://main--shredit--stericycle.aem.page';
 const req = new XMLHttpRequest();
 let tags = {};
 const TAGS = {};
-req.open('GET', '/tools/importer/shredit-meta.json', false);
+req.open('GET', '/tools/importer/metadata/en-us-shredit-meta.json', false);
 req.send(null);
 if (req.status === 200) {
   tags = JSON.parse(req.responseText);

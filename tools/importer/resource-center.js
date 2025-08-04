@@ -16,7 +16,7 @@ const baseDomain = 'https://main--shred-it--stericycle.aem.page';
 let originalDomain = 'https://www.shredit.com/';
 const hr = (doc) => doc.createElement('hr');
 const TAGS = {};
-req.open('GET', '/tools/importer/shredit-meta.json', false);
+req.open('GET', '/tools/importer/metadata/en-us-shredit-meta.json', false);
 req.send(null);
 if (req.status === 200) {
   tags = JSON.parse(req.responseText);
