@@ -55,7 +55,7 @@ function setMetadata(meta, document) {
   meta['og:type'] = 'website';
   meta.locale = getLocaleFromUrl(document);
   meta['og:url'] = getDocumentMetadata('og:url', document);
-  if (Object.hasOwn(TAGS, path)) {
+  if (Object.hasOwn(TAGS, path) && TAGS[path] !== '') {
     meta.tags = TAGS[path];
   }
 }
