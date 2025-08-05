@@ -11,6 +11,7 @@ import {
 import { addJsonLd, formatPhone, getLocale, getNearByLocations } from '../../scripts/scripts.js';
 import { decorateSidebarTemplate } from '../templates.js';
 import { createFormFromMetadata } from '../../blocks/form/utils.js';
+import { loadFragment } from '../../blocks/fragment/fragment.js';
 
 const createLocDiv = async () => {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
@@ -142,83 +143,66 @@ async function buildServiceLocationAutoBlocks(main) {
   formSection.append(locDiv);
   decorateBlock(form);
 
-  // QUOTE
-  const quoteContent = [
-    ['&ldquo;I like the set schedule of pick up dates the most. Drivers are always courteous and helpful.&rdquo;'],
-    ['Riggs & Associates, CPAs, P.C.'],
-  ];
-  const quoteWrapper = document.createElement('div');
-  const quote = buildBlock('quote', quoteContent);
+  if (getLocale() === 'en-us') {
+    // QUOTE
+    const quoteContent = [
+      ['&ldquo;I like the set schedule of pick up dates the most. Drivers are always courteous and helpful.&rdquo;'],
+      ['Riggs & Associates, CPAs, P.C.'],
+    ];
+    const quoteWrapper = document.createElement('div');
+    const quote = buildBlock('quote', quoteContent);
 
-  quote.classList.add('testimonial');
-  quoteWrapper.append(quote);
-  lastContentSection.append(quoteWrapper);
+    quote.classList.add('testimonial');
+    quoteWrapper.append(quote);
+    lastContentSection.append(quoteWrapper);
 
-  const firstChild = quote.firstElementChild;
-  const quoteChild = quote.lastElementChild;
+    const firstChild = quote.firstElementChild;
+    const quoteChild = quote.lastElementChild;
 
-  if (quoteChild) {
-    quote.removeChild(quoteChild);
+    if (quoteChild) {
+      quote.removeChild(quoteChild);
+    }
+
+    const authorWrapper = document.createElement('div');
+    const author = document.createElement('p');
+
+    authorWrapper.classList.add('quote-attribution', 'eyebrow-small');
+    author.textContent = quoteChild.textContent;
+
+    authorWrapper?.append(author);
+    firstChild?.append(authorWrapper);
+
+    decorateBlock(quote);
+
+    // CTA
+    const ctaWrapper = document.createElement('div');
+    const ctaText = document.createElement('H4');
+    ctaText.textContent = 'Buy your one-time shredding services online now';
+    const cta = buildBlock('simple-cta', { elems: [ctaText] });
+
+    cta.classList.add('slim');
+    ctaWrapper.classList.add('blue-background', 'section');
+
+    const ctaButtonWrapper = document.createElement('div');
+    const ctaButtonModifier = document.createElement('strong');
+    const ctaButton = document.createElement('a');
+    ctaButton.textContent = 'Buy Online';
+    // eslint-disable-next-line max-len
+    ctaButton.href = 'https://shop-shredit.stericycle.com/commerce_storefront_ui/PurgeWizard.aspx?referrer_url=https://www.shredit.com/en-us/service-locations/greensboro&adobe_mc=MCMID%3D62149416262388660511472413641287259536%7CMCORGID%3DFB4A583F5FEDA3EA0A495EE3%2540AdobeOrg%7CTS%3D1724077192';
+    ctaButtonModifier.append(ctaButton);
+    ctaButtonWrapper.append(ctaButtonModifier);
+    cta.querySelector('div').append(ctaButtonWrapper);
+    ctaWrapper.append(cta);
+    lastContentSection.append(ctaWrapper);
+    decorateBlock(cta);
   }
 
-  const authorWrapper = document.createElement('div');
-  const author = document.createElement('p');
-
-  authorWrapper.classList.add('quote-attribution', 'eyebrow-small');
-  author.textContent = quoteChild.textContent;
-
-  authorWrapper?.append(author);
-  firstChild?.append(authorWrapper);
-
-  decorateBlock(quote);
-
-  // CTA
-  const ctaWrapper = document.createElement('div');
-  const ctaText = document.createElement('H4');
-  ctaText.textContent = 'Buy your one-time shredding services online now';
-  const cta = buildBlock('simple-cta', { elems: [ctaText] });
-
-  cta.classList.add('slim');
-  ctaWrapper.classList.add('blue-background', 'section');
-
-  const ctaButtonWrapper = document.createElement('div');
-  const ctaButtonModifier = document.createElement('strong');
-  const ctaButton = document.createElement('a');
-  ctaButton.textContent = 'Buy Online';
-  // eslint-disable-next-line max-len
-  ctaButton.href = 'https://shop-shredit.stericycle.com/commerce_storefront_ui/PurgeWizard.aspx?referrer_url=https://www.shredit.com/en-us/service-locations/greensboro&adobe_mc=MCMID%3D62149416262388660511472413641287259536%7CMCORGID%3DFB4A583F5FEDA3EA0A495EE3%2540AdobeOrg%7CTS%3D1724077192';
-  ctaButtonModifier.append(ctaButton);
-  ctaButtonWrapper.append(ctaButtonModifier);
-  cta.querySelector('div').append(ctaButtonWrapper);
-  ctaWrapper.append(cta);
-  lastContentSection.append(ctaWrapper);
-  decorateBlock(cta);
-
   // SERVICES FLIP CARDS
-  const flipCardPages = [
-    { title: 'Learn More', icon: 'service-one-time-shredding-icon-w', href: '/en-us/secure-shredding-services/one-off-shredding-service' },
-    { title: 'Learn More', icon: 'service-regularly-schedule-shredding-icon-w', href: '/en-us/secure-shredding-services/paper-shredding-services' },
-    { title: 'Learn More', icon: 'service-hard-drive-icon-w', href: '/en-us/secure-shredding-services/hard-drive-destruction' },
-  ];
-  const flipCardsWrapper = document.createElement('div');
-  const flipCardsIconRow = [];
-  const flipCardsLinkRow = [];
-  flipCardPages.forEach((page) => {
-    const icon = document.createElement('span');
-    icon.classList.add('icon', `icon-${page.icon}`);
-    flipCardsIconRow.push(icon);
-    const link = document.createElement('a');
-    link.href = page.href;
-    link.classList.add('button', 'secondary');
-    link.title = 'Learn More';
 
-    flipCardsLinkRow.push(link);
-  });
-  const flipCards = buildBlock('flip-cards', [flipCardsIconRow, flipCardsLinkRow]);
-  decorateIcons(flipCards);
-  flipCardsWrapper.append(flipCards);
+  const flipCardFragment = await loadFragment(`/${getLocale()}/fragments/service-loc-flip-cards`);
+  const flipCardsWrapper = document.createElement('div');
+  flipCardsWrapper.append(flipCardFragment);
   lastContentSection.append(flipCardsWrapper);
-  decorateBlock(flipCards);
 
   // POST TEASER
   const teaserSection = document.createElement('div');
