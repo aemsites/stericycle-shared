@@ -1,6 +1,6 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { a, p } from '../../scripts/dom-helpers.js';
-import { getLocale, getLocaleFromPath } from '../../scripts/scripts.js';
+import { getLocale } from '../../scripts/scripts.js';
 import { isDesktop } from './constants.js';
 
 /**
@@ -152,18 +152,20 @@ export function buildCompanyLogo() {
   return logo;
 }
 
+/**
+ * Function to build the country selector element.
+ * @returns {HTMLElement} - The country selector element.
+ */
 export function createCountrySelector(countryListItems, countryListTitle) {
   const currentUrl = window.location.href;
-  const currentPath = new URL(currentUrl).pathname;
   const countryListArray = Array.from(countryListItems, (item) => {
     const anchor = item.querySelector('a');
     return {
       name: anchor.textContent,
       url: anchor.href,
-      locale: getLocaleFromPath(anchor.href),
     };
   });
-  const currentCountry = countryListArray.find((country) => currentPath.includes(country.locale))
+  const currentCountry = countryListArray.find((country) => currentUrl.includes(new URL(country.url, window.location.origin).pathname))
     || countryListArray.find((country) => country.name === 'United States');
   const title = countryListTitle?.firstChild?.nodeValue.trim() || 'Country:';
   const label = document.createElement('label');
