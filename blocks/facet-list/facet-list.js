@@ -5,6 +5,7 @@ import {
 import { div, h3, span } from '../../scripts/dom-helpers.js';
 
 const ITEMS_PER_PAGE = 10;
+const ph = await fetchPlaceholders(`/${getLocale()}`);
 let CURRENT_PAGE = 1;
 let CTA_TYPE = 'default';
 const facetsMap = new Map();
@@ -230,9 +231,8 @@ function clickIcon(icon, facetList) {
 
 const isResourceCenterPages = () => {
   const path = window.location.pathname;
-  if (path.endsWith('resource-center')
-    || path.endsWith('resource-centre')
-    || path.endsWith('centre-de-resources')) {
+  const { resourcecenter } = ph;
+  if (path.endsWith(resourcecenter)) {
     return true;
   }
   return false;
@@ -419,7 +419,6 @@ export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   const cta = cfg.cta || 'default';
   const facets = await getFacets(cfg.sheet.split(','));
-  const ph = await fetchPlaceholders(`/${getLocale()}`);
   const { blogtopic } = ph;
   const facetDiv = document.createElement('div');
   const mobileFilter = document.createElement('i');
