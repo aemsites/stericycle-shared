@@ -13,7 +13,7 @@ import {
   form,
   h2,
 } from '../../scripts/dom-helpers.js';
-import { formatPhone } from '../../scripts/scripts.js';
+import { formatPhone, getLocale } from '../../scripts/scripts.js';
 
 const FOCUSABLE_ELEMENTS =
   'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])';
@@ -722,13 +722,13 @@ export function buildCompanyLogo() {
   const logo = document.createElement('div');
   const logoLink = document.createElement('a');
   const logoImg = document.createElement('img');
-  logoImg.src = '/icons/shredit-logo.svg';
+  logoImg.src = `/icons/shredit-logo-${getLocale()}.svg`;
   logoImg.alt = 'Shredit Logo';
 
   logoLink.appendChild(logoImg);
   logo.appendChild(logoLink);
 
-  logoLink.href = '/';
+  logoLink.href = `/${getLocale()}`;
   logoLink.className = 'logo-link';
   logoLink['aria-label'] = 'Shredit Home';
   logo.className = 'logo';

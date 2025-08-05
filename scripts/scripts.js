@@ -153,19 +153,17 @@ export function getLocaleAsBCP47() {
   return parts.join('-');
 }
 
-/**
- * @param {string} [url] - The URL to extract the locale from. If not given, defaults to the current window location.
- * @returns {string} - The extracted locale or the default locale.
- */
-export function getLocaleFromPath(url) {
-  const path = url || window.location.pathname;
-  // Check if the locale is in the format of two lowercase letters followed by a hyphen and two lowercase letters and it's followed by / or the end of the string
-  const match = path.match(/\/([a-z]{2}-[a-z]{2})(?:\/|$)/i);
-  let locale = 'en-us';
-  if (match) {
-    [, locale] = match;
-    return locale;
+export function getLocaleFromPath() {
+  const pathParts = window.location.pathname.split('/');
+  if (pathParts.length > 1) {
+    const locale = pathParts[1];
+    // Check if the locale is in the format of two lowercase letters followed by a hyphen and two lowercase letters
+    if (/^[a-z]{2}-[a-z]{2}$/.test(locale)) {
+      return locale;
+    }
   }
+
+  // Default to result of getLocale() if no valid locale is found in the path
   return getLocale();
 }
 
@@ -623,7 +621,7 @@ export function decorateAnchors(element = document) {
  * @param {Element} main main element
  */
 function rewriteLinks(main) {
-  const links = main.querySelectorAll('a');
+  const links = Array.from(main.querySelectorAll('a:not(.footer-countries a)'));
   const currentLocale = getLocale();
   links.forEach((link) => {
     // Only process internal links (not external or anchors)
@@ -832,7 +830,6 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateAnchors(main);
-  rewriteLinks(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
@@ -842,6 +839,7 @@ export function decorateMain(main) {
   decorateSectionTemplates(main);
   consolidateOfferBoxes(main);
   decorateSectionIds(main);
+  rewriteLinks(main);
 }
 
 /**
