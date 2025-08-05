@@ -230,7 +230,9 @@ function clickIcon(icon, facetList) {
 
 const isResourceCenterPages = () => {
   const path = window.location.pathname;
-  if (path.endsWith('resource-center')) {
+  if (path.endsWith('resource-center')
+    || path.endsWith('resource-centre')
+    || path.endsWith('centre-de-resources')) {
     return true;
   }
   return false;
