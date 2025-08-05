@@ -38,7 +38,7 @@ const translations = {
 // Load JSON
 const rawData = fs.readFileSync(
   '../tools/importer/metadata/fr-ca-shredit-meta.json',
-  'utf8'
+  'utf8',
 );
 const items = JSON.parse(rawData);
 
@@ -58,6 +58,6 @@ const updatedItems = items.map((entry) => {
 fs.writeFileSync(
   '../tools/importer/metadata/fr-ca-shredit-meta.json',
   JSON.stringify(updatedItems, null, 2),
-  'utf8'
+  'utf8',
 );
 console.log('✔️ Multi-tag translations applied and saved.');
