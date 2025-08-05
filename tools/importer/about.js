@@ -12,7 +12,7 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
-const baseDomain = 'https://main--shredit--stericycle.aem.page';
+const baseDomain = 'https://main--shred-it--stericycle.aem.page';
 const req = new XMLHttpRequest();
 let tags = {};
 const TAGS = {};
@@ -156,7 +156,10 @@ function transformCards(main) {
 function setMetadata(meta, document) {
   const url = new URL(document.documentURI).pathname;
   const path = getPath(url);
-  meta.template = 'blog-page';
+  const pubDate = document.querySelector('.cmp-calendarattributeprojection');
+  meta.template = 'pr-page';
+  meta['media-type'] = 'Press Releases'; // all pages should have a value for this
+  meta['publication-date'] = pubDate.innerText;
   meta['twitter:title'] = meta.Title;
   meta['twitter:description'] = meta.Description;
   meta['og:type'] = 'website';
@@ -237,10 +240,12 @@ export default {
       '.text.ss-font-color--white',
     ]);
 
+    /*
     transformTabs(main);
     transformFlipCardsUnderColumn(main);
     transformCards(main);
     transformColumns(main);
+    */
 
     const meta = WebImporter.Blocks.getMetadata(document);
 
@@ -249,7 +254,7 @@ export default {
     const mdb = WebImporter.Blocks.getMetadataBlock(document, meta);
     main.append(mdb);
     WebImporter.rules.transformBackgroundImages(main, document);
-    WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
+    WebImporter.rules.adjustImageUrls(main, params.originalURL, params.originalURL);
     WebImporter.rules.convertIcons(main, document);
 
     return main;
