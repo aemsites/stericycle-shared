@@ -770,6 +770,11 @@ export function buildCtasSection(
 
   const contactLinks = div(
     div(
+      { class: 'contact-info' },
+      h3({ class: 'modal-title eyebrow-small' }, contact?.title?.text),
+      p({ class: 'modal-subtitle' }, contact?.description?.text),
+    ),
+    div(
       { class: 'contact' },
       img({
         class: 'contact-icon',
@@ -833,8 +838,6 @@ export function buildCtasSection(
     },
     div(
       { class: 'modal-content' },
-      h3({ class: 'modal-title eyebrow-small' }, contact?.title?.text),
-      p({ class: 'modal-subtitle' }, contact?.description?.text),
       contactLinks,
       a(
         {
