@@ -78,7 +78,7 @@
 .post-teaser-list > .teaser-list > .teaser > .teaser-content .teaser-date {
   display: block;
   font-size: var(--body-font-size-s);
-  color: var(---color-grey500);
+  color: var(--color-grey500);
 }
 
 /* LOADING */
