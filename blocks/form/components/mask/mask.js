@@ -99,7 +99,7 @@ const masking = {
 
       if ((matchesNumber && isInt) || (isCharsetPresent && matchesLetter && isLetter)) {
         // eslint-disable-next-line no-plusplus
-        newValue += strippedValue[j++];
+        newValue += strippedValue[j++].toUpperCase();
         // eslint-disable-next-line max-len
       } else if ((!isCharsetPresent && !isInt && matchesNumber) || (isCharsetPresent && ((matchesLetter && !isLetter) || (matchesNumber && !isInt)))) {
         return newValue;
