@@ -13,14 +13,12 @@
 
 .cards.full-width {
   --color-heading: var(--color-white) !important;
-
   border-radius: var(--border-radius-l);
   overflow: hidden;
 }
 
 .cards.full-width.light {
   --color-heading: var(--color-primary-2) !important;
-
   border-radius: var(--border-radius-l);
   overflow: hidden;
 }
