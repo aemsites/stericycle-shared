@@ -31,7 +31,7 @@ export default async function decorate(block) {
     div({ class: 'logo' },
       a({ href: `/${locale}`, class: 'logo-link', title: 'Shred-it' },
         img({
-          src: '/icons/shredit-logo.svg',
+          src: `/icons/shredit-logo-${locale}.svg`,
           alt: 'Paper Shredding & Document Destruction Services Near You. ',
         }),
       ),

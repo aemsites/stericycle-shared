@@ -60,4 +60,3 @@ fs.writeFileSync(
   JSON.stringify(updatedItems, null, 2),
   'utf8',
 );
-console.log('✔️ Multi-tag translations applied and saved.');
