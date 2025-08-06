@@ -77,7 +77,7 @@ function decorateResults(posts, list) {
     const button = createPostLink(post);
 
     icon.classList.add('icon', 'icon-right-arrow');
-    button.textContent = 'Read More';
+    button.textContent = ph.readmorelabel || 'Read More';
 
     if (CTA_TYPE === 'primary') {
       buttonWrapper = document.createElement('strong');
