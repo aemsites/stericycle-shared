@@ -87,12 +87,13 @@ const createLocDiv = async () => {
     const zipCodeText = zipCode ? `zip=${zipCode}&` : '';
     // eslint-disable-next-line max-len
     const url = `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?${zipCodeText}adobe_mc=MCMID%3D47228127826121584233605487843606294434%7CMCORGID%3DFB4A583F5FEDA3EA0A495EE3%2540AdobeOrg%7CTS%3D1729746363`;
-    const buyNowAnchor = a({ class: 'button primary', href: url, target: '_blank' }, ph.buynowtext || 'Buy Now');
-    decorateButtons(buyNowAnchor);
-    dropOffDiv.append(buyNowAnchor);
-    locationDiv.append(dropOffDiv);
+    if (getLocale() === 'en-us') {
+      const buyNowAnchor = a({ class: 'button primary', href: url, target: '_blank' }, ph.buynowtext || 'Buy Now');
+      decorateButtons(buyNowAnchor);
+      dropOffDiv.append(buyNowAnchor);
+      locationDiv.append(dropOffDiv);
+    }
   }
-
   if (nearByLocations.length > 0) {
     const nearByDiv = div({ class: 'nearby-locations' });
     nearByDiv.append(h4(`${ph.nearbylocationstext || 'See our nearby locations'}:`));
