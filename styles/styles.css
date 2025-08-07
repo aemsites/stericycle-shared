@@ -2178,9 +2178,3 @@ main .section.multi-icon-list .columns > div > div > ul > li > span {
   width: 29.5px;
   height: 29.5px;
 }
-
-a:not([href]), 
-a:not([href]):hover {
-  color: inherit;
-  text-decoration: none;
-}
