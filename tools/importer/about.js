@@ -205,6 +205,25 @@ function transformCards(main) {
   });
 }
 
+function removeAnchorTags(main) {
+  const anchors = main.querySelectorAll('a:not([href])');
+  anchors.forEach(anchor => {
+    const parent = anchor.parentNode;
+    while (anchor.firstChild) {
+      parent.insertBefore(anchor.firstChild, anchor);
+    }
+    parent.removeChild(anchor);
+  });
+}
+
+function removeParagraphWithPeriod(main) {
+  const ptags = main.querySelectorAll('p');
+  ptags.forEach(ptag => {
+    if (ptag.textContent === '.') {
+      ptag.remove();
+    }
+  });
+}
 
 export default {
   /**
@@ -260,6 +279,9 @@ export default {
     const mdb = WebImporter.Blocks.getMetadataBlock(document, meta);
     main.append(mdb);
 
+    removeAnchorTags(main);
+    removeParagraphWithPeriod(main);
+    
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, params.originalURL, params.originalURL);
     WebImporter.rules.convertIcons(main, document);
