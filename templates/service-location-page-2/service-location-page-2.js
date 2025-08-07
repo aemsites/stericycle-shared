@@ -107,8 +107,8 @@ const createLocDiv = async () => {
       const buyNowAnchor = a({ class: 'button primary', href: url, target: '_blank' }, ph.buynowtext || 'Buy Now');
       decorateButtons(buyNowAnchor);
       dropOffDiv.append(buyNowAnchor);
-      locationDiv.append(dropOffDiv);
     }
+    locationDiv.append(dropOffDiv);
   }
 
   const addressParts = [
