@@ -2179,7 +2179,6 @@ main .section.multi-icon-list .columns > div > div > ul > li > span {
   height: 29.5px;
 }
 
-// migrated from existing aem site during canada migration
 a:not([href]), 
 a:not([href]):hover {
   color: inherit;
