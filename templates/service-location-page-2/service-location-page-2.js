@@ -169,7 +169,7 @@ function addServiceCards(main) {
     const button = document.createElement('a');
     button.textContent = 'Get a Quote';
     button.ariaLabel = button.textContent;
-    button.href = '/forms/modals/modal';
+    button.href = ph.navmodalpath || '/forms/modals/modal';
     buttonModifier.append(button);
     buttonWrapper.append(buttonModifier);
     description.parentElement.append(buttonWrapper);

@@ -750,7 +750,7 @@ export function buildCtasSection(
   tools = {},
   contact = {},
 ) {
-  const navModalPath = getMetadata('nav-modal-path') || '/forms/modals/modal';
+  const navModalPath = getMetadata('nav-modal-path') || placeHolders.navmodalpath || '/forms/modals/modal';
   const contactModalButtonTitle =
     placeHolders.contactustext || 'Open Contact Us Information';
   const searchModalButtonTitle = placeHolders.searchtext || 'Open Search box';
@@ -948,7 +948,7 @@ export function buildCtasSectionReduced(
   tools = {},
   contact = {},
 ) {
-  const navModalPath = getMetadata('nav-modal-path') || '/forms/modals/modal';
+  const navModalPath = getMetadata('nav-modal-path') || placeHolders.navmodalpath || '/forms/modals/modal';
   const contactModalButtonTitle =
     placeHolders.contactustext || 'Open Contact Us Information';
   const hasAlertBanner = document.querySelector('.cmp-notification-bar');
