@@ -315,7 +315,7 @@ function inputDecorator(field, element) {
     } else if (input.type !== 'file') {
       input.value = field.value ?? '';
       if (input.type === 'radio' || input.type === 'checkbox') {
-        input.value = field?.enum?.[0] ?? 'true';
+        input.value = placeholders[field?.enum?.[0]?.toLowerCase()] || (field?.enum?.[0] ?? 'true');
         input.checked = field.checked;
       }
     } else {

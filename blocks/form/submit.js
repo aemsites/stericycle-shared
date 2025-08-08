@@ -138,7 +138,7 @@ async function constructPayload(form, captcha) {
     jobPropertiesUrl: `https://main--shredit--stericycle.aem.page${form.dataset.action}.json`,
     formName: form.dataset?.action,
     formURL: window.location.href,
-    webCountry: country,
+    webCountry: country === 'ca' ? country.toUpperCase() : country,
     webLanguage: language,
     googleAdwordsClickID1: getGoogleAdWordsClickID(),
   };
