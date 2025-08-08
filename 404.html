@@ -47,6 +47,13 @@
         homeBtn.textContent = ph.gohome;
       }
 
+      // Set the locale meta tag
+      const metaLocale = document.createElement('meta');
+      const head = document.querySelector('head');
+      metaLocale.name = 'locale';
+      metaLocale.content = locale;
+      head.appendChild(metaLocale);
+
       sampleRUM('404', { source: document.referrer });
     });
   </script>
