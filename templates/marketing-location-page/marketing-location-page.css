@@ -27,6 +27,7 @@ main .section > div.hero-wrapper {
   margin-top: 2rem;
   padding: 0 1.5rem;
   order: 1;
+  display: block;
 }
 
 .with-sidebar main > .body-wrapper:has(h1.fullScreen) .page-sidebar {
@@ -52,6 +53,10 @@ main .section > div.hero-wrapper {
     flex-direction: row;
     justify-content: space-between;
     padding: 0;
+  }
+
+  .with-sidebar main > .body-wrapper > .default-content-wrapper:has(h1.mobile) {
+    display: none;
   }
 
   .with-sidebar main > .body-wrapper > .page-content {
