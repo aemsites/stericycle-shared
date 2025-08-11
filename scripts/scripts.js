@@ -229,7 +229,7 @@ export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.
 export async function getFloatingContact() {
   const { div, a } = domHelper;
   const placeHolders = await fetchPlaceholders(`/${getLocale()}`);
-  const navModalPath = getMetadata('nav-modal-path') || '/forms/modals/modal';
+  const navModalPath = getMetadata('nav-modal-path') || placeHolders.navmodalpath || '/forms/modals/modal';
   const modalButtonTitle = placeHolders.requestafreequote || 'Request a Free Quote';
 
   return div(

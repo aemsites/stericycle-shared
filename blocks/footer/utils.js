@@ -71,7 +71,7 @@ export function createMenuAccordion(footer) {
  */
 export async function createModalButton(fragment, footerPath, locale) {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
-  const footerModalPath = getMetadata('footer-modal-path') || '/forms/modals/modal';
+  const footerModalPath = getMetadata('footer-modal-path') || ph.navmodalpath || '/forms/modals/modal';
   const modalButtonTitle = ph.requestafreequote || 'Request a Free Quote';
   const btn = p(
     { class: 'button-container quote-wrapper' },
