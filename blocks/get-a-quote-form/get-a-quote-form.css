@@ -43,7 +43,7 @@
   padding-left:1.5rem;
 }
 
-.get-a-quote-form  .content  form  .panel-wrapper {
+.get-a-quote-form  .content  form  .panel-wrapper, .field-header {
   padding: 5px;
   background-color: var(--color-gray);
 }
