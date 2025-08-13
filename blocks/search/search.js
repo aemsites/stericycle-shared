@@ -211,13 +211,15 @@ async function buildPagination(releases, ul, controls, page) {
 }
 
 async function handleSearch(e, block, config) {
+  const placeholders = await fetchPlaceholders(`/${getLocale()}`);
+
   // set currentPage pagination to 1
   currentPage = 1;
 
   // no results content
   const noResults = document.createElement('p');
   noResults.classList.add('no-results');
-  noResults.innerHTML = 'No Results. Please Try Again.&nbsp';
+  noResults.innerHTML = placeholders.nosearchresultstext || 'No Results. Please Try Again.&nbsp';
 
   let searchValue;
   const dispatchedEventCheck = Object.hasOwn(e, 'target') && Object.hasOwn(e.target, 'value');
@@ -245,7 +247,6 @@ async function handleSearch(e, block, config) {
 
     const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
     const filteredData = filterData(searchTerms, data);
-    const placeholders = await fetchPlaceholders(`/${getLocale()}`);
     block.innerHTML = '';
     block.append(
       // eslint-disable-next-line no-use-before-define
