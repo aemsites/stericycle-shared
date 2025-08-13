@@ -868,6 +868,10 @@ header {
   .header .submenu .locate-form {
     height: auto;
   }
+
+  .header .modal-subtitle {
+    display: block;
+  }
 }
 
 @media (min-width: 1200px) {

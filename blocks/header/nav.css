@@ -560,6 +560,7 @@ header {
 .header .modal-subtitle {
   font-size: 16px;
   margin-bottom: 16px;
+  display: none;
 }
 
 .header .contact {
@@ -867,6 +868,10 @@ header {
 
   .header .submenu .locate-form {
     height: auto;
+  }
+
+  .header .modal-subtitle {
+    display: block;
   }
 }
 
