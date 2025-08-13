@@ -1,8 +1,6 @@
-import {
-  fetchPlaceholders,
-} from '../../scripts/aem.js';
+import { fetchPlaceholders } from '../../scripts/aem.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
-import { fetchQueryIndex } from '../../scripts/scripts.js';
+import { fetchQueryIndex, getLocale } from '../../scripts/scripts.js';
 
 const searchParams = new URLSearchParams(window.location.search);
 
@@ -247,7 +245,7 @@ async function handleSearch(e, block, config) {
 
     const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
     const filteredData = filterData(searchTerms, data);
-    const placeholders = await fetchPlaceholders();
+    const placeholders = await fetchPlaceholders(`/${getLocale()}`);
     block.innerHTML = '';
     block.append(
       // eslint-disable-next-line no-use-before-define
@@ -296,7 +294,7 @@ function searchInput(block, config) {
   input.setAttribute('type', 'search');
   input.className = 'search-input';
 
-  const searchPlaceholder = config.placeholders.searchPlaceholder || 'Search...';
+  const searchPlaceholder = config.placeholders.searchplaceholder || 'Search...';
   input.placeholder = searchPlaceholder;
   input.setAttribute('aria-label', searchPlaceholder);
 
@@ -337,7 +335,7 @@ function searchBox(block, config) {
 }
 
 export default async function decorate(block) {
-  const placeholders = await fetchPlaceholders();
+  const placeholders = await fetchPlaceholders(`/${getLocale()}`);
   block.innerHTML = '';
   block.append(
     searchBox(block, { type: 'site search', placeholders }),
