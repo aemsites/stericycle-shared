@@ -50,10 +50,10 @@
 }
 
 .get-a-quote-form .content form .field-header {
-  margin: 2rem auto 0 auto;
+  margin: 2rem auto 0;
   padding: 0 1.5rem;
 }
 
-.get-a-quote-form .field-header p {
+.get-a-quote-form .content  form .field-header p {
   font-size: var(--form-font-size-xs);
 }
