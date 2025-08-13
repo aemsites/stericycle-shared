@@ -35,6 +35,7 @@
 
 .get-a-quote-form  .content  form {
   display: block;
+  background-color: var(--color-gray);
 }
 
 .get-a-quote-form  .content  form .form-message.error-message p{
@@ -43,7 +44,16 @@
   padding-left:1.5rem;
 }
 
-.get-a-quote-form  .content  form  .panel-wrapper, .field-header {
+.get-a-quote-form  .content  form  .panel-wrapper {
   padding: 5px;
   background-color: var(--color-gray);
+}
+
+.get-a-quote-form .content form .field-header {
+  margin: 2rem auto 0 auto;
+  padding: 0 1.5rem;
+}
+
+.get-a-quote-form .field-header p {
+  font-size: var(--form-font-size-xs);
 }
