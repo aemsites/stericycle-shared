@@ -1208,12 +1208,6 @@ main .two-column.form-container > div:nth-last-child(1) {
     grid-row: 1 / span 2;
 }
 
-@media (min-width: 1000px) {
-    main .two-column.form-container > div:nth-last-child(1) {
-        margin: 32px 0 64px;
-    }
-}
-
 main .two-column.narrow-top-margin > div:nth-child(1) {
     margin-top: 0;
 }
@@ -1283,7 +1277,7 @@ main .section.contact-us-title > .default-content-wrapper {
     margin-bottom: 0;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
     main .two-column.form-container .default-content-wrapper {
         width: 90%;
     }
@@ -1313,7 +1307,6 @@ main .section.contact-us-title > .default-content-wrapper {
         /* stylelint-disable */
         > .form-wrapper {
             grid-row:   2;
-            padding: 0;
         }
     }
 
