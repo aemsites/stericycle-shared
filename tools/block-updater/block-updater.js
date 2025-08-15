@@ -1,5 +1,6 @@
 // Import DA's public crawl function
 import { crawl } from 'https://da.live/nx/public/utils/tree.js';
+import DA_SDK from 'https://da.live/nx/utils/sdk.js';
 
 // Helper function to update metadata value and return both states
 function updateMetadataValue(dom, key, newValue, operation = 'modify') {
@@ -87,10 +88,14 @@ const createCallback = (key, newValue, isDryRun = false, operation = 'modify') =
   if (!item.path.endsWith('.html')) return;
 
   // if (item.path !== '/herodigital/stericycle-shared/en-ca/about/media-contacts.html') return;
+  const { token } = await DA_SDK;
+  const opts = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
 
   const url = `https://admin.da.live/source${item.path}`;
   // Fetch the doc & convert to DOM
-  const resp = await fetch(url);
+  const resp = await fetch(url, opts);
   if (!resp.ok) {
     console.log('Could not fetch item');
     return;
@@ -113,7 +118,7 @@ const createCallback = (key, newValue, isDryRun = false, operation = 'modify') =
     const body = new FormData();
     body.append('data', data);
 
-    const opts = { method: 'POST', body };
+    const opts = { method: 'POST', headers: { Authorization: `Bearer ${token}` }, body };
     const { status } = await fetch(url, opts);
     console.log(`Update HTTP status: ${status} - Path: ${item.path}`);
   }
