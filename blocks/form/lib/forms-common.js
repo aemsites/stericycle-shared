@@ -10,8 +10,11 @@ import GoogleReCaptcha from '../integrations/recaptcha.js';
 import componentDecorator from '../mappings.js';
 import transferRepeatableDOM from '../components/repeat/repeat.js';
 import { emailPattern, googleReCaptchaKey } from '../constant.js';
+import { fetchPlaceholders } from '../../../scripts/aem.js';
+import { getLocale } from '../../../scripts/scripts.js';
 
 let captchaField;
+const placeholders = await fetchPlaceholders(`/${getLocale()}`);
 
 const withFieldWrapper = (element) => (fd) => {
   const wrapper = createFieldWrapper(fd);
@@ -21,7 +24,13 @@ const withFieldWrapper = (element) => (fd) => {
 
 function setPlaceholder(element, fd) {
   if (fd.placeholder) {
-    element.setAttribute('placeholder', fd.placeholder);
+    element.setAttribute('placeholder', placeholders[fd.placeholder?.toLowerCase()] || fd.placeholder);
+  }
+}
+
+function setCharset(element, fd) {
+  if (fd.charset) {
+    element.setAttribute('data-charset', placeholders[fd.charset?.toLowerCase()] || fd.charset);
   }
 }
 
@@ -42,7 +51,7 @@ function setConstraints(element, fd) {
     constraints
       .filter(([nm]) => fd[nm])
       .forEach(([nm, htmlNm]) => {
-        element.setAttribute(htmlNm, fd[nm]);
+        element.setAttribute(htmlNm, placeholders[fd[nm]?.toLowerCase()] || fd[nm]);
       });
   }
 }
@@ -52,6 +61,7 @@ function createInput(fd) {
   input.type = getHTMLRenderType(fd);
   setPlaceholder(input, fd);
   setConstraints(input, fd);
+  setCharset(input, fd);
   return input;
 }
 
@@ -70,7 +80,7 @@ const createSelect = withFieldWrapper((fd) => {
   let ph;
   if (fd.placeholder) {
     ph = document.createElement('option');
-    ph.textContent = fd.placeholder;
+    ph.textContent = placeholders[fd.placeholder?.toLowerCase()] || fd.placeholder;
     ph.setAttribute('disabled', '');
     ph.setAttribute('value', '');
     select.append(ph);
@@ -103,13 +113,14 @@ const createSelect = withFieldWrapper((fd) => {
           const json = await response.json();
           const values = [];
           json.data.forEach((opt) => {
-            addOption(opt.Option, opt.Value);
-            values.push(opt.Value || opt.Option);
+            const value = placeholders[opt.Value?.toLowerCase()] || opt.Value;
+            addOption(opt.Option, value);
+            values.push(value || opt.Option);
           });
         });
     }
   } else {
-    options.forEach((value, index) => addOption(optionNames?.[index], value));
+    options.forEach((value, index) => addOption(placeholders[optionNames?.[index]?.toLowerCase()] || optionNames?.[index], value));
   }
 
   if (ph && optionSelected === false) {
@@ -176,7 +187,7 @@ function createFieldSet(fd) {
 
 function setConstraintsMessage(field, messages = {}) {
   Object.keys(messages).forEach((key) => {
-    field.dataset[`${key}ErrorMessage`] = messages[key];
+    field.dataset[`${key}ErrorMessage`] = placeholders[messages[key]?.toLowerCase()] || messages[key];
   });
 }
 
@@ -304,7 +315,7 @@ function inputDecorator(field, element) {
     } else if (input.type !== 'file') {
       input.value = field.value ?? '';
       if (input.type === 'radio' || input.type === 'checkbox') {
-        input.value = field?.enum?.[0] ?? 'true';
+        input.value = placeholders[field?.enum?.[0]?.toLowerCase()] || (field?.enum?.[0] ?? 'true');
         input.checked = field.checked;
       }
     } else {

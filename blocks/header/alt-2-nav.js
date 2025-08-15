@@ -17,7 +17,7 @@ export default async function decorate(block) {
   const navContact = fragment.querySelector('.section[data-section="contact" i]');
   navContact.replaceChildren(navContact.querySelector('ul'));
   navContact.classList.add('nav-contact');
-  const navModalPath = getMetadata('nav-modal-path') || '/forms/modals/modal';
+  const navModalPath = getMetadata('nav-modal-path') || ph.navmodalpath || '/forms/modals/modal';
   const modalButtonTitle = ph.getaquote || 'Get a Quote';
   const link = li(
     { class: 'quote-link' },
@@ -31,7 +31,7 @@ export default async function decorate(block) {
     div({ class: 'logo' },
       a({ href: `/${locale}`, class: 'logo-link', title: 'Shred-it' },
         img({
-          src: '/icons/shredit-logo.svg',
+          src: `/icons/shredit-logo-${locale}.svg`,
           alt: 'Paper Shredding & Document Destruction Services Near You. ',
         }),
       ),

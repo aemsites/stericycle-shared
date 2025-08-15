@@ -12,10 +12,11 @@
 /* global WebImporter */
 const req = new XMLHttpRequest();
 let tags = {};
-const baseDomain = 'https://main--shredit--stericycle.aem.page';
+const baseDomain = 'https://main--shred-it--stericycle.aem.page';
+let originalDomain = 'https://www.shredit.com/';
 const hr = (doc) => doc.createElement('hr');
 const TAGS = {};
-req.open('GET', '/tools/importer/shredit-meta.json', false);
+req.open('GET', '/tools/importer/metadata/en-us-shredit-meta.json', false);
 req.send(null);
 if (req.status === 200) {
   tags = JSON.parse(req.responseText);
@@ -142,10 +143,12 @@ function transformDownloadBlock(main, document) {
     cells.push(['title', title]);
     cells.push(['image', downloadBlock.querySelector('div.previeweddownload > div.cmp-previeweddownload > div.cmp-previeweddownload__image > a > img')]);
     const dlLink = downloadBlock.querySelector('div.previeweddownload > div.cmp-previeweddownload > div.cmp-previeweddownload__image > a');
+    dlLink.classList.add('cmp-linkcalltoaction', 'btn', 'btn-primary');  // Add classes to the link. They are not present in the final converted md, da files.
     dlLink.innerHTML = dlLink.href.replace('http://localhost:3001', baseDomain);
-    cells.push(['download', dlLink.href.replace('http://localhost:3001', baseDomain)]);
+    // cells.push(['download', dlLink.href.replace('http://localhost:3001', baseDomain)]);
+    cells.push(['download', dlLink]);
+    cells.push(['style', 'cmp-linkcalltoaction, btn, btn-primary']); // Add classes to the link. They are not present in the final converted md, da files.
     const dBlock = WebImporter.DOMUtils.createTable(cells, document);
-    main.append(hr(document));
     main.append(dBlock);
     const sectionMetaCells = [
       ['Section Metadata'],
@@ -155,6 +158,48 @@ function transformDownloadBlock(main, document) {
     main.append(sectionMetadata);
     main.append(hr(document));
   }
+}
+
+function decodeAndReplace(str) {
+  const replacements = {
+    '%C3%A1': 'a',
+    '%C3%A9': 'e',
+    '%C3%AD': 'i',
+    '%C3%B3': 'o',
+    '%C3%BA': 'u',
+    '%C3%B1': 'n',
+  };
+  let updatedStr = str;
+  Object.entries(replacements).forEach(([encoded, plain]) => {
+    const regex = new RegExp(encoded, 'g');
+    updatedStr = updatedStr.replace(regex, plain);
+  });
+  return updatedStr;
+}
+
+/**
+ * Updates the given URL by replacing consecutive hyphens in the pathname with a single hyphen,
+ * and removes a trailing hyphen from the pathname if present.
+ *
+ * @param {string} originalURL - The original URL to be updated.
+ * @returns {string} The updated, valid URL as a string.
+ */
+function updatetoValidUrl(originalURL) {
+  const url = new URL(originalURL);
+  url.pathname = url.pathname.replace(/--+/g, '-');
+  url.pathname = url.pathname.endsWith('-')
+    ? url.pathname.slice(0, -1)
+    : url.pathname;
+  return decodeAndReplace(url.toString());
+}
+
+/* Retrieves the canonical URL from a given HTML document.
+ * @param {Document} document - The HTML document to search for the canonical link element.
+ * @returns {string|null} The href value of the canonical link if found, otherwise null.
+ */
+function getCanonicalUrl(document) {
+  const canonicalLink = document.querySelector('link[rel="canonical"]');
+  return canonicalLink ? canonicalLink.href : null;
 }
 
 export default {
@@ -171,6 +216,14 @@ export default {
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
   }) => {
+
+    const originalUrl = new URL(params.originalURL || document.documentURI);
+    const canonicalUrl = new URL(getCanonicalUrl(document));
+    const origin = originalUrl.origin;
+    const pathname = canonicalUrl.pathname;
+    const newUrl = new URL(origin+pathname);
+    params.originalURL = updatetoValidUrl(newUrl.toString());
+    url=params.originalURL;
     // define the main element: the one that will be transformed to Markdown
     const main = document.body;
     const results = [];
@@ -184,18 +237,20 @@ export default {
       const href = a.getAttribute('href');
       if (href && href.startsWith('/') && href.endsWith('.pdf')) {
         const u = new URL(href, url);
-        const newPath = WebImporter.FileUtils.sanitizePath(u.pathname);
+        // const newPath = WebImporter.FileUtils.sanitizePath(u.pathname);
+        const newPath = u.pathname;
+        // const sanitizedPath =  newPath.replace('-pdf-coredownload.pdf', '.pdf.coredownload.pdf');
         // no "element", the "from" property is provided instead
         // importer will download the "from" resource as "path"
         results.push({
           path: newPath,
           from: u.toString(),
         });
-
+        console.log('results', results);
         // update the link to new path on the target host
         // this is required to be able to follow the links in Word
         // you will need to replace "main--repo--owner" by your project setup
-        const newHref = new URL(newPath, baseDomain).toString();
+        const newHref = new URL(newPath, originalDomain).toString();
         a.setAttribute('href', newHref);
       }
     });
@@ -205,7 +260,12 @@ export default {
     ]);
 
     fixDynamicMedia(main, document);
-    createSectionMetadataForListBullets(main, document);
+    const sectionSideBarRightCells = [
+      ['Sidebar Right'],
+      ["style", "cmp-linkcalltoaction, btn, btn-primary"],
+    ];
+    const sectionSideBarRight = WebImporter.DOMUtils.createTable(sectionSideBarRightCells, document);
+    main.append(sectionSideBarRight);
     transformDownloadBlock(main, document);
     transformFAQ(main);
 
@@ -217,6 +277,7 @@ export default {
       '.nav',
       'footer',
       '.footer',
+      'iframe',
       'noscript',
       'div.cmp-experiencefragment--footer-subscription-form',
       'div.cmp-experiencefragment--modal-form',
@@ -232,7 +293,7 @@ export default {
     main.append(mdb);
 
     WebImporter.rules.transformBackgroundImages(main, document);
-    WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
+    WebImporter.rules.adjustImageUrls(main, params.originalURL, params.originalURL);
     WebImporter.rules.convertIcons(main, document);
 
     return results;

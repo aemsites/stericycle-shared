@@ -16,7 +16,11 @@
   <meta property="og:title" content="Page not found">
   <script nonce="aem" src="/scripts/scripts.js" type="module"></script>
   <script nonce="aem" type="module">
-    import { sampleRUM } from '/scripts/aem.js';
+    import { sampleRUM, fetchPlaceholders } from '/scripts/aem.js';
+    import { getLocaleFromPath } from '/scripts/scripts.js';
+
+    const locale = getLocaleFromPath();
+    const ph = await fetchPlaceholders(`/${locale}`);
 
     window.addEventListener('load', () => {
       if (document.referrer) {
@@ -25,12 +29,24 @@
           const backBtn = document.createElement('a');
           backBtn.classList.add('button', 'error-button-back');
           backBtn.href = pathname;
-          backBtn.textContent = 'Go back';
-          backBtn.title = 'Go back';
+          backBtn.textContent = ph.goback || 'Go back';
+          backBtn.title = ph.goback || 'Go back';
           const btnContainer = document.querySelector('.button-container');
           btnContainer.append(backBtn);
         }
       }
+
+      if (ph.pagenotfound) {
+        const errorMessage = document.querySelector('.error-message');
+        errorMessage.textContent = ph.pagenotfound;
+      }
+
+      const homeBtn = document.querySelector('.error-button-home');
+      homeBtn.href = '/' + locale || '/';
+      if (ph.gohome) {
+        homeBtn.textContent = ph.gohome;
+      }
+
       sampleRUM('404', { source: document.referrer });
     });
   </script>

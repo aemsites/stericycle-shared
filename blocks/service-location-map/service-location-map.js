@@ -97,7 +97,7 @@ const locDivCreation = (location, ph) => {
     );
   }
 
-  if (location['buy-now']) {
+  if (location['buy-now'] && getLocale() === 'en-us') {
     locationDiv.appendChild(
       a(
         { class: 'buy-now', href: location['buy-now'] },

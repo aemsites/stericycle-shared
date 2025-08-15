@@ -14,7 +14,7 @@
 const req = new XMLHttpRequest();
 let tags = {};
 const TAGS = {};
-req.open('GET', '/tools/importer/shredit-meta.json', false);
+req.open('GET', '/tools/importer/metadata/en-us-shredit-meta.json', false);
 req.send(null);
 if (req.status === 200) {
   tags = JSON.parse(req.responseText);
@@ -55,7 +55,7 @@ function setMetadata(meta, document) {
   meta['og:type'] = 'website';
   meta.locale = getLocaleFromUrl(document);
   meta['og:url'] = getDocumentMetadata('og:url', document);
-  if (Object.hasOwn(TAGS, path)) {
+  if (Object.hasOwn(TAGS, path) && TAGS[path] !== '') {
     meta.tags = TAGS[path];
   }
 }
@@ -68,6 +68,39 @@ function fixDynamicMedia(main, document) {
     newImg.src = source;
     img.append(newImg);
   });
+}
+
+function decodeAndReplace(str) {
+  const replacements = {
+    '%C3%A1': 'a',
+    '%C3%A9': 'e',
+    '%C3%AD': 'i',
+    '%C3%B3': 'o',
+    '%C3%BA': 'u',
+    '%C3%B1': 'n',
+  };
+  let updatedStr = str;
+  Object.entries(replacements).forEach(([encoded, plain]) => {
+    const regex = new RegExp(encoded, 'g');
+    updatedStr = updatedStr.replace(regex, plain);
+  });
+  return updatedStr;
+}
+
+/**
+ * Updates the given URL by replacing consecutive hyphens in the pathname with a single hyphen,
+ * and removes a trailing hyphen from the pathname if present.
+ *
+ * @param {string} originalURL - The original URL to be updated.
+ * @returns {string} The updated, valid URL as a string.
+ */
+function updatetoValidUrl(originalURL) {
+  const url = new URL(originalURL);
+  url.pathname = url.pathname.replace(/--+/g, '-');
+  url.pathname = url.pathname.endsWith('-')
+    ? url.pathname.slice(0, -1)
+    : url.pathname;
+  return decodeAndReplace(url.toString());
 }
 
 export default {
@@ -118,9 +151,8 @@ export default {
     main.append(mdb);
 
     WebImporter.rules.transformBackgroundImages(main, document);
-    WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
+    WebImporter.rules.adjustImageUrls(main, params.originalURL, params.originalURL);
     WebImporter.rules.convertIcons(main, document);
-
     return main;
   },
 
@@ -137,6 +169,7 @@ export default {
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
   }) => {
+    url = updatetoValidUrl(url);
     let p = new URL(url).pathname;
     if (p.endsWith('/')) {
       p = `${p}index`;

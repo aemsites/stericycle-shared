@@ -1,6 +1,10 @@
 /* eslint-disable no-param-reassign */
 
 import { getId } from './util.js';
+import { fetchPlaceholders } from '../../../scripts/aem.js';
+import { getLocale } from '../../../scripts/scripts.js';
+
+const ph = await fetchPlaceholders(`/${getLocale()}`);
 
 function handleCheckboxAndRadio(field) {
   // if fieldType is checkbox and value is not empty then convert it to enum.
@@ -11,7 +15,7 @@ function handleCheckboxAndRadio(field) {
       field.enum = ['true']; // default html value
     }
     delete field.value;
-    field.checked = field.Checked?.toLowerCase() === 'true';
+    field.checked = field.Checked?.toLowerCase() === 'true' || ph[field.Checked?.toLowerCase()] === 'true';
   }
 }
 
@@ -94,7 +98,7 @@ function convertStringToBoolean(value) {
 function handleFranklinSpecialCases(item) {
   booleanProperty.forEach((prop) => {
     if (item[prop]) {
-      item[prop] = convertStringToBoolean(item[prop]);
+      item[prop] = convertStringToBoolean(ph[item[prop]?.toLowerCase()] || item[prop]);
     }
   });
   // Franklin Mandatory uses x for true.
@@ -148,6 +152,7 @@ export default class DocBasedFormToAF {
     Default: 'default',
     Step: 'step',
     Pattern: 'pattern',
+    Charset: 'charset',
     Value: 'value',
     Placeholder: 'placeholder',
     Field: 'name',

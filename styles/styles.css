@@ -994,11 +994,13 @@ main .list-style-bullets ul {
   position: relative;
   padding: 0;
   margin: 0 0 1rem 1rem;
+  list-style-type: disc;
 }
 
 main .list-style-bullets ul li {
   list-style: disc;
   padding-bottom: 0.5rem;
+  display: list-item;
 }
 
 main .list-style-checkmarks ul {

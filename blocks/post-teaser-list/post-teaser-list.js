@@ -3,14 +3,18 @@ import {
   createPostLink,
   formatDate,
   getDateFromExcel,
+  getLocale,
   getRelatedPosts,
 } from '../../scripts/scripts.js';
 import {
   createOptimizedPicture,
   decorateButtons,
   decorateIcon,
+  fetchPlaceholders,
   readBlockConfig,
 } from '../../scripts/aem.js';
+
+const ph = await fetchPlaceholders(`/${getLocale()}`);
 
 /**
  * Add a post to the list
@@ -99,7 +103,7 @@ function addPost(list, ctaType, post, isLoading) {
   const icon = document.createElement('span');
 
   icon.classList.add('icon', 'icon-right-arrow');
-  button.textContent = 'Read More';
+  button.textContent = ph.readmorelabel || 'Read More';
 
   const ctasWrapper = document.createElement('p');
   let buttonWrapper = document.createElement('div');

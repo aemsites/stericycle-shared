@@ -1,5 +1,7 @@
-import { getRelatedPosts } from '../../scripts/scripts.js';
-import { createOptimizedPicture } from '../../scripts/aem.js';
+import { getRelatedPosts, getLocale } from '../../scripts/scripts.js';
+import { createOptimizedPicture, fetchPlaceholders } from '../../scripts/aem.js';
+
+const ph = await fetchPlaceholders(`/${getLocale()}`);
 
 export default async function decorate(block) {
   const latestPosts = document.createElement('div');
@@ -28,7 +30,7 @@ export default async function decorate(block) {
     const buttonLink = document.createElement('a');
     buttonLink.href = post.path;
     buttonLink.title = post.title;
-    buttonLink.innerText = 'Read More';
+    buttonLink.innerText = ph.readmorelabel || 'Read More';
     buttonLink.classList.add('button', 'secondary');
     boldText.append(buttonLink);
     readMeButton.append(boldText);
