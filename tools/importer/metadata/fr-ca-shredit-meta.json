@@ -1,0 +1,1514 @@
+[
+  {
+    "Path": "/content/shred-it/ca/fr/25purge-offer",
+    "Title": "Promotion ponctuelle du service de déchiquetage de papier",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 14 Feb 2025 15:41:21 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/about",
+    "Title": "À propos de Shred-it : Sécurité de l’information et destruction de documents",
+    "Template": "/conf/shred-it/settings/wcm/templates/section-landing-page",
+    "Last Modified": "Mon, 12 May 2025 20:15:30 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/about/careers",
+    "Title": "Carrières",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 8 Oct 2021 15:48:05 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/about/careers/our-culture",
+    "Title": "Notre culture",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Sat, 25 Sep 2021 17:37:44 +0000",
+    "Tags": "",
+    "Replication Status": "DEACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/about/careers/search-and-apply",
+    "Title": "Rechercher et postuler",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Tue, 18 Jan 2022 22:08:08 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/about/company-overview",
+    "Title": "Présentation de l'entreprise",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Thu, 23 Sep 2021 20:41:49 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/about/company-overview/awards-and-recognition",
+    "Title": "Prix et distinctions",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Thu, 26 Jan 2023 21:39:45 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/about/company-overview/who-we-are",
+    "Title": "Qui sommes-nous ?",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Thu, 23 Sep 2021 20:42:23 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/about/media-contacts",
+    "Title": "Contacts médias",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Mon, 21 Mar 2022 14:45:35 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/about/social-responsibility",
+    "Title": "Responsabilité sociale",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 8 Oct 2021 15:47:05 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/about/social-responsibility/policies-and-positions",
+    "Title": "Politiques et positions",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Thu, 23 Sep 2021 20:44:43 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/about/social-responsibility/sustainability",
+    "Title": "Durabilité",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 25 Mar 2022 16:16:18 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/accueil",
+    "Title": "accueil",
+    "Template": "/conf/shred-it/settings/wcm/templates/empty-page",
+    "Last Modified": "Sat, 25 Sep 2021 14:44:35 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog",
+    "Title": "Blog",
+    "Template": "/conf/shred-it/settings/wcm/templates/section-landing-page",
+    "Last Modified": "Wed, 4 Jan 2023 16:30:48 +0000",
+    "Tags": "",
+    "Replication Status": "NOT_ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/5-meilleures-facons-de-proteger-les-informations-confidentielles",
+    "Title": "5 meilleures façons de protéger les informations confidentielles",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Thu, 14 Sep 2023 15:21:38 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données;Cybersécurité;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/be-careful-where-you-click-being-aware-of-phishing-tactics",
+    "Title": "Un guide essentiel pour reconnaître et prévenir les attaques d’hameçonnage",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Fri, 1 Nov 2024 18:21:15 +0000",
+    "Tags": "Blogs (en anglais);Cybersécurité",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/best-ways-to-protect-confidential-information",
+    "Title": "Stratégies efficaces pour protéger les renseignements confidentiels",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Mon, 24 Jun 2024 17:45:41 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données;Cybersécurité;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/cinq-conseils-pour-proteger-vos-donnees-pendant-vos-deplacements",
+    "Title": "Cinq conseils pour protéger vos données pendant vos déplacements",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page1",
+    "Last Modified": "Tue, 14 Feb 2023 16:13:14 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/dangers-de-la-thesaurisation-des-donnee",
+    "Title": "Dangers de la thésaurisation des données : protégez votre entreprise grâce à une gestion efficace des données",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Tue, 14 Nov 2023 16:00:46 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données;Cybersécurité;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/dechiquetage-de-documents-cycle-de-vie-dechiquetage-securise",
+    "Title": "Notre cycle de vie du déchiquetage de documents. Recyclage sécurisé avec Shred-it",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Mon, 16 Jan 2023 19:54:17 +0000",
+    "Tags": "Blogs (en anglais);Gestion de la sécurité des documents;Développement durable & Recyclage",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/diy-shredding-not-recommended-for-the-home-office",
+    "Title": "Explorer les coûts cachés du déchiquetage de papier à faire soi-même",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Mon, 15 Jul 2024 16:16:07 +0000",
+    "Tags": "Blogs (en anglais);Gestion de la sécurité des documents;Fraude et usurpation d’identité;Développement durable & Recyclage",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/document-management-how-to-declutter-the-office",
+    "Title": "Gestion des données de bureau : meilleures pratiques pour un désencombrement sécurisé",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Wed, 15 May 2024 17:56:32 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/employee-negligence-work-habits-cause-problems",
+    "Title": "7 habitudes de travail risquées qui peuvent compromettre les données confidentielles",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Wed, 16 Apr 2025 14:56:36 +0000",
+    "Tags": "Blogs (en anglais)",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/employee-training-why-you-should-do-it-now",
+    "Title": "Améliorer la sécurité des données grâce à la formation des employés de votre entreprise",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Wed, 26 Mar 2025 14:54:39 +0000",
+    "Tags": "Blogs (en anglais);Gestion des risques",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/how-a-community-shred-it-event-can-help-the-community",
+    "Title": "Événements communautaires Shred-it : Protégez votre quartier contre le vol d’identité",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Mon, 2 Dec 2024 15:15:17 +0000",
+    "Tags": "Sécurité des données;Fraude et usurpation d’identité;Développement durable & Recyclage",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/how-secure-are-byod-devices-in-workplace",
+    "Title": "Mise en œuvre efficace d’une politique BYOD : conseils de sécurité et de conformité",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page1",
+    "Last Modified": "Mon, 12 Aug 2024 16:17:31 +0000",
+    "Tags": "Blogs (en anglais)",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/how-to-implement-a-clean-desk-policy",
+    "Title": "L’importance d’une politique de bureau propre",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Thu, 12 Jun 2025 18:17:31 +0000",
+    "Tags": "Blogs (en anglais);Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/it-pays-to-know-how-data-knowledge-can-help-protect-sensitive-information",
+    "Title": "Il est payant de savoir : comment la connaissance des données peut aider à protéger les informations sensibles",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page1",
+    "Last Modified": "Fri, 21 Apr 2023 12:16:53 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données;Brèches et maîtrise des dommages",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/make-reputation-management-a-priority",
+    "Title": "Le rôle de la sécurité des données dans la protection de la réputation des entreprises",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Mon, 31 Jul 2023 12:10:49 +0000",
+    "Tags": "Blogs (en anglais)",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/obselete-technology-data-breach-waiting-to-happen",
+    "Title": "Comment une technologie obsolète met en danger vos données",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page1",
+    "Last Modified": "Tue, 20 May 2025 13:51:23 +0000",
+    "Tags": "Blogs (en anglais);Cybersécurité",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/proactive-data-protection-safeguarding-consumer-trust-and-reducing-breach-risks",
+    "Title": "Protection proactive des données : préserver la confiance des consommateurs et réduire les risques de violation",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page1",
+    "Last Modified": "Thu, 20 Feb 2025 21:00:45 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/protection-contre-le-vol-didentite-pour-les-aines",
+    "Title": "Protection contre le vol d’identité pour les aînés : stratégies efficaces et services de® déchiquetage",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page1",
+    "Last Modified": "Thu, 23 Nov 2023 16:56:17 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données;Gestion de la sécurité des documents;Fraude et usurpation d’identité",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/protection-des-donnees-dans-les-espaces-de-coworking",
+    "Title": "Protection des données dans les espaces de coworking",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page1",
+    "Last Modified": "Fri, 5 May 2023 17:13:44 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/proteger-les-concessionnaires-automobiles-les-risques-d-usurpation-d-identite",
+    "Title": "Protéger les concessionnaires automobiles : les risques d’usurpation d’identité",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Fri, 20 Oct 2023 20:05:27 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/reasons-tossing-hard-drive-doesnt-get-rid-of-data",
+    "Title": "Guide de destruction de disque dur pour la sécurité des données",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Fri, 13 Sep 2024 14:50:21 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données;Cybersécurité",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/renforcer-la-securite-des-donnees-dans-les-entreprises-a-domicile",
+    "Title": "Renforcer la sécurité des données dans les entreprises à domicile : stratégies et solutions essentielles",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Fri, 23 Feb 2024 18:40:17 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/renforcer-votre-entreprise",
+    "Title": "Renforcer votre entreprise : un guide utile pour la planification de la sécurité de l’information",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Thu, 18 Jan 2024 20:24:14 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données;Gestion des risques",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/surprising-ways-to-prevent-occupational-fraud",
+    "Title": "Comment protéger votre entreprise contre la fraude",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Thu, 17 Oct 2024 20:28:55 +0000",
+    "Tags": "Blogs (en anglais);Gestion de la sécurité des documents;Fraude et usurpation d’identité",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/the-power-of-preparation-data-protection-and-incident-response",
+    "Title": "Stratégie d’intervention en cas de violation de données : essentielle pour la sécurité de l’entreprise",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page1",
+    "Last Modified": "Tue, 19 Mar 2024 19:57:12 +0000",
+    "Tags": "Blogs (en anglais);Brèches et maîtrise des dommages",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/what-is-confidential-waste",
+    "Title": "Élimination des déchets confidentiels : meilleures pratiques et importance",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page1",
+    "Last Modified": "Mon, 20 Jan 2025 21:18:07 +0000",
+    "Tags": "Blogs (en anglais);Sécurité des données;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/blog/workplaces-should-have-document-retention-policy",
+    "Title": "Sécurisez votre entreprise : maîtriser la conservation et la destruction des documents avec Shred-it®",
+    "Template": "/conf/shred-it/settings/wcm/templates/blog-page",
+    "Last Modified": "Mon, 8 Apr 2024 20:10:21 +0000",
+    "Tags": "Blogs (en anglais);Gestion de la sécurité des documents;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/contact-us",
+    "Title": "Contactez-nous",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Wed, 15 Feb 2023 17:56:14 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/coronavirus",
+    "Title": "Coronavirus",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 17 Sep 2021 23:06:03 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/errors",
+    "Title": "Erreur",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Sat, 25 Sep 2021 19:30:06 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/faq",
+    "Title": "Foire aux questions",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Wed, 10 Aug 2022 19:24:47 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/frais-de-service",
+    "Title": "Service Fees (Redirect)",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Wed, 13 Apr 2022 20:18:04 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/marketing",
+    "Title": "Marketing",
+    "Template": "/conf/shred-it/settings/wcm/templates/empty-page1",
+    "Last Modified": "Fri, 10 Mar 2023 15:04:50 +0000",
+    "Tags": "Campaign",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/marketing/paper-shredding-for-one-time-and-regular",
+    "Title": "Service de déchiquetage de papier",
+    "Template": "/conf/shred-it/settings/wcm/templates/empty-page",
+    "Last Modified": "Tue, 7 May 2024 18:42:18 +0000",
+    "Tags": "Campaign",
+    "Replication Status": "MODIFIED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/marketing/semcontact-fr",
+    "Title": "Service de déchiquetage de papier",
+    "Template": "/conf/shred-it/settings/wcm/templates/empty-page",
+    "Last Modified": "Tue, 7 May 2024 18:42:34 +0000",
+    "Tags": "Campaign",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/professional-shredders-shred-it-and-skateboarding-legend-tony-hawk-team-up",
+    "Title": "Professional Shredders Unite: Shred-it et la légende du skateboard Tony Hawk font équipe",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page21",
+    "Last Modified": "Fri, 4 Aug 2023 18:31:14 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/protect-plus-terms-and-conditions",
+    "Title": "PROTECTPLUS TERMS AND CONDITIONS",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Wed, 21 Aug 2024 16:17:34 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/protection-des-donnees-raport-2021",
+    "Title": "Protection Des Donnees Raport 2021",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Tue, 6 Sep 2022 16:20:39 +0000",
+    "Tags": "Evaluation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons",
+    "Title": "Qui nous servons",
+    "Template": "/conf/shred-it/settings/wcm/templates/section-landing-page",
+    "Last Modified": "Wed, 31 Aug 2022 18:53:27 +0000",
+    "Tags": "",
+    "Replication Status": "MODIFIED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/assurance",
+    "Title": "Sécurité de l’information et déchiquetage pour les professionnels de l’assurance",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:36:21 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/auto",
+    "Title": "Sécurité de l’information et déchiquetage du papier pour les concessionnaires automobiles",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:26:47 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/c-suite-executive",
+    "Title": "Sécurité de l’information d’entreprise et destruction de documents",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:39:47 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/cabinets-davocats",
+    "Title": "Sécurité de l’information et destruction de documents pour les cabinets d’avocats",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:36:03 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/comptables",
+    "Title": "Déchiquetage de documents et gestion de la sécurité de l’information pour les comptables",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:35:03 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/education",
+    "Title": "Destruction de documents pour le secteur de l’éducation",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:29:02 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/enterprise",
+    "Title": "Destruction de documents. Où vous êtes.",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:42:00 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/finance",
+    "Title": "Sécurité de l’information et déchiquetage pour les professionnels de la finance",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:35:26 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/gouvernement",
+    "Title": "Sécurité de l’information et destruction de documents pour le gouvernement",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:38:31 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/hoteliers",
+    "Title": "Services de destruction de documents hôteliers et de sécurité de l’information",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:36:40 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/it",
+    "Title": "Destruction de documents, de disques durs et de supports pour les professionnels de l’informatique",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:37:52 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/moyennes-et-grandes-entreprises",
+    "Title": "Déchiquetage de documents commerciaux, destruction de papier et de disque dur pour les moyennes et grandes entreprises",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 26 Jul 2022 20:56:29 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/petites-et-moyennes-entreprises",
+    "Title": "Destruction de documents pour les petites et moyennes entreprises",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 15:04:18 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/professionnels-de-limmobilier",
+    "Title": "Sécurité de l’information et destruction de documents pour les professionnels de l’immobilier",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:38:12 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/ressources-humaines",
+    "Title": "Sécurité de l’information et déchiquetage pour les ressources humaines",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:35:44 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/sante",
+    "Title": "Services de sécurité et de déchiquetage de l’information sur les soins de santé",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page2",
+    "Last Modified": "Tue, 30 Aug 2022 14:30:18 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/que-nous-servons/toutes-les-industries",
+    "Title": "Toutes les industries",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Wed, 31 Aug 2022 18:38:51 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/regular-offer",
+    "Title": "Les violations d’renseignements se produisent tout le temps. Protégez votre entreprise.",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Thu, 23 Sep 2021 20:33:28 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center",
+    "Title": "Centre de ressources",
+    "Template": "/conf/shred-it/settings/wcm/templates/section-landing-page",
+    "Last Modified": "Wed, 4 Jan 2023 16:32:33 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/assessments",
+    "Title": "Évaluation",
+    "Template": "/conf/shred-it/settings/wcm/templates/section-landing-page",
+    "Last Modified": "Thu, 23 Sep 2021 20:56:55 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/assessments/jeu-questionnaire-sur-la-politique-de-bureau-range",
+    "Title": "Jeu-questionnaire sur la politique de bureau rangé",
+    "Template": "/conf/shred-it/settings/wcm/templates/assessment-page",
+    "Last Modified": "Tue, 19 Oct 2021 15:10:32 +0000",
+    "Tags": "Évaluation;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/assessments/securite-des-documents",
+    "Title": "Sécurité des Documents",
+    "Template": "/conf/shred-it/settings/wcm/templates/assessment-page",
+    "Last Modified": "Tue, 19 Oct 2021 15:09:03 +0000",
+    "Tags": "Évaluation;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/assessments/sondage-sur-la-securite-de-linformation--quel-est-votre-niveau-d",
+    "Title": "Sondage sur la sécurité de l’information : quel est votre niveau de risque?",
+    "Template": "/conf/shred-it/settings/wcm/templates/assessment-page",
+    "Last Modified": "Fri, 24 Sep 2021 10:11:00 +0000",
+    "Tags": "Évaluation;Gestion des risques",
+    "Replication Status": "DEACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets",
+    "Title": "Feuillet d’information",
+    "Template": "/conf/shred-it/settings/wcm/templates/section-landing-page",
+    "Last Modified": "Fri, 11 Nov 2022 17:24:20 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/apercu-de-lindustrie-des-services-financiers",
+    "Title": "Aperçu de l’industrie des services financiers",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:15:58 +0000",
+    "Tags": "Fiches d’information;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/cinq-facons-de-renforcer-vos-politiques-de-protection-des-donnee",
+    "Title": "Cinq façons de renforcer vos politiques de protection des données",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:05:05 +0000",
+    "Tags": "Fiches d’information;Sécurité des données",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/comment-choisir-une-entreprise-de-dechiquetage",
+    "Title": "Comment choisir une entreprise de déchiquetage",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:00:48 +0000",
+    "Tags": "Fiches d’information;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/comment-freiner-le-vol-didentite",
+    "Title": "Comment freiner le vol d’identité",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:00:07 +0000",
+    "Tags": "Fiches d’information;Fraude et usurpation d’identité",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/comment-les-concessionnaires-peuvent-proteger-les-documents-et-l",
+    "Title": "Comment les concessionnaires peuvent protéger les documents et les données de leurs clients.",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:25:51 +0000",
+    "Tags": "Fiches d’information;Sécurité des données",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/comment-proteger-votre-entreprise-des-bris-de-securite-et-de-la-",
+    "Title": "Comment protéger votre entreprise des bris de sécurité et de la fraude",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Wed, 21 Sep 2022 15:53:33 +0000",
+    "Tags": "Fiches d’information;Fraude et usurpation d’identité",
+    "Replication Status": "MODIFIED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/comprendre-la-loi-25-du-quebec-guide-essentiel-pour-les-entreprises",
+    "Title": "Comprendre la loi 25 du Québec : Guide essentiel pour les entreprises",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page1",
+    "Last Modified": "Mon, 23 Oct 2023 17:50:47 +0000",
+    "Tags": "Fiches d’information;Sécurité des données;Conformité et législation;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/conseils-pour-que-votre-entreprise-soit-plus-verte-et-plus-secur",
+    "Title": "Conseils pour que votre entreprise soit plus verte et plus sécuritaire",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:26:23 +0000",
+    "Tags": "Fiches d’information;Développement durable & Recyclage",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/couts-caches-dun-dechiqueteur-de-papier-au-bureau",
+    "Title": "Coûts cachés d'un déchiqueteur de papier au bureau",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 15:32:55 +0000",
+    "Tags": "Fiches d’information;Gestion de la sécurité des documents",
+    "Replication Status": "MODIFIED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/de-petites-actions-pour-de-gros-gains-de-shred-it",
+    "Title": "De petites actions pour de gros gains de Shred-it",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:07:20 +0000",
+    "Tags": "Fiches d’information;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/defi-de-desencombrement--comment-rester-en-securite-et-eliminer-",
+    "Title": "Défi de désencombrement : comment rester en sécurité et éliminer le papier encombrant",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:07:00 +0000",
+    "Tags": "Fiches d’information;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/elaboration-de-votre-politique-sur-le-travail-a-distance",
+    "Title": "Élaboration de votre politique sur le travail à distance",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:06:18 +0000",
+    "Tags": "Fiches d’information;Télétravail / Travail à distance",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/faire-le-meilleur-choix-en-matiere-de-destruction-securisee-de-d",
+    "Title": "Faire le meilleur choix en matière de destruction sécurisée de documents",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:05:43 +0000",
+    "Tags": "Fiches d’information;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/la-trousse-de-depart-pour-les-rh",
+    "Title": "La trousse de départ pour les RH",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:14:36 +0000",
+    "Tags": "Fiches d’information;Formation des collaborateurs",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/le-livre-electronique-de-shred-it-sur-les-solutions-de-gestion-d",
+    "Title": "Le livre électronique de Shred-it sur les solutions de gestion des documents",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:15:33 +0000",
+    "Tags": "Fiches d’information;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/le-recyclage-du-papier-dechiquete",
+    "Title": "Soutenez une économie circulaire avec Shred-it",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Wed, 21 Sep 2022 15:47:35 +0000",
+    "Tags": "Infographie;Développement durable & Recyclage",
+    "Replication Status": "MODIFIED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/le-recyclage-securise--evitez-le-bac-bleu-de-recyclage",
+    "Title": "Le recyclage sécurisé : évitez le bac bleu (de recyclage)",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Wed, 21 Sep 2022 15:38:15 +0000",
+    "Tags": "Fiches d’information;Développement durable & Recyclage",
+    "Replication Status": "MODIFIED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/le-rgpd--comment-sy-conformer",
+    "Title": "Le RGPD : comment s’y conformer",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:02:52 +0000",
+    "Tags": "Fiches d’information;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/le-rgpd-en-un-coup-dil",
+    "Title": "Le RGPD en un coup d’œil",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:04:26 +0000",
+    "Tags": "Fiches d’information;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/les-faits--pourquoi-les-bacs-bleus-de-recyclage-ne-suffisent-pas",
+    "Title": "Les faits : pourquoi les bacs bleus (de recyclage) ne suffisent pas",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:15:09 +0000",
+    "Tags": "Fiches d’information;Développement durable & Recyclage",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/liste-de-verification-de-la-securite-de-linformation-de-shred-it",
+    "Title": "Liste de vérification de la sécurité de l’information de Shred-it",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:17:41 +0000",
+    "Tags": "Fiches d’information;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/liste-de-verification-de-la-securite-pour-les-hotels-et-les-espa",
+    "Title": "Liste de vérification de la sécurité pour les hôtels et les espaces événementiels",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:01:35 +0000",
+    "Tags": "Fiches d’information;Formation des collaborateurs",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/mise-en-place-dune-politique-de-bureau-range",
+    "Title": "Mise en place d’une politique de bureau rangé",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:16:30 +0000",
+    "Tags": "Fiches d’information;Formation des collaborateurs",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/pourquoi-entreprises-de-dechiquetage-ne-sont-pas-tous-le-meme---",
+    "Title": "Pourquoi entreprises de déchiquetage ne ​​sont pas tous le même - ou même sécurisé",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:18:14 +0000",
+    "Tags": "Fiches d’information;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/pourquoi-la-formation-des-employes-est-une-priorite-en-matiere-d",
+    "Title": "Pourquoi la formation des employés est une priorité en matière de sécurité",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:02:11 +0000",
+    "Tags": "Fiches d’information;Formation des collaborateurs",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/pourquoi-le-fait-de-ne-pas-recourir-a-un-service-de-dechiquetage",
+    "Title": "Pourquoi le fait de ne pas recourir à un service de déchiquetage sécurisé pourrait coûter cher à votre organisation",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:30:15 +0000",
+    "Tags": "Fiches d’information;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/pourquoi-une-politique-de-itout-dechiquetage-shred-it-i-est-sens",
+    "Title": "Pourquoi une Politique de tout déchiquetage Shred-it est sensée",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:29:27 +0000",
+    "Tags": "Fiches d’information;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/quelles-sont-les-tendances-maintenir-la-securite-de-linformation",
+    "Title": "Quelles sont les tendances? Maintenir la sécurité de l’information en 2021",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Mon, 11 Oct 2021 22:37:14 +0000",
+    "Tags": "Fiches d’information;Sécurité des données",
+    "Replication Status": "DEACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/quest-ce-qui-est-confidentiel",
+    "Title": "Qu’est-ce qui est confidentiel?",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 15:20:07 +0000",
+    "Tags": "Fiches d’information;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/resume-legislatif--la-loi-sur-le-secteur-prive",
+    "Title": "Résumé législatif : La Loi sur le secteur privé",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:18:54 +0000",
+    "Tags": "Fiches d’information;Conformité et législation",
+    "Replication Status": "DEACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/risques-caches-des-fetes",
+    "Title": "Risques cachés des Fêtes",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Wed, 21 Sep 2022 15:52:20 +0000",
+    "Tags": "Fiches d’information;Gestion des risques",
+    "Replication Status": "MODIFIED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/savoir-ce-quil-faut-dechiqueter-dans-le-secteur-juridique",
+    "Title": "Savoir ce qu’il faut déchiqueter dans le secteur juridique",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:28:58 +0000",
+    "Tags": "Fiches d’information;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/savoir-ce-quil-faut-dechiqueter-dans-lindustrie-automobile",
+    "Title": "Savoir ce qu’il faut déchiqueter dans l’industrie automobile",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:27:24 +0000",
+    "Tags": "Fiches d’information;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/savoir-ce-quil-faut-dechiqueter-dans-lindustrie-des-services-fin",
+    "Title": "Savoir ce qu’il faut déchiqueter dans l’industrie des services financiers",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:28:30 +0000",
+    "Tags": "Fiches d’information;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/savoir-ce-quil-faut-dechiqueter-dans-lindustrie-du-tourisme-dacc",
+    "Title": "Savoir ce qu’il faut déchiqueter dans l’industrie du tourisme d’accueil",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:28:02 +0000",
+    "Tags": "Fiches d’information;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/savoir-ce-quil-faut-dechiqueter-est-vital",
+    "Title": "Savoir ce qu’il faut déchiqueter est vital",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:26:51 +0000",
+    "Tags": "Fiches d’information;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/secteurs-a-risque-courants",
+    "Title": "Secteurs à risque courants",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 15:22:27 +0000",
+    "Tags": "Fiches d’information;Gestion des risques",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/secteurs-a-risque-courants-dans-le-domaine-juridique",
+    "Title": "Secteurs à risque courants dans le domaine juridique",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 15:25:45 +0000",
+    "Tags": "Fiches d’information;Gestion des risques",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/secteurs-a-risque-courants-dans-lindustrie-automobile",
+    "Title": "Secteurs à risque courants dans l’industrie automobile",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 15:23:26 +0000",
+    "Tags": "Fiches d’information;Gestion des risques",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/secteurs-a-risque-courants-dans-lindustrie-de-lhebergement",
+    "Title": "Secteurs à risque courants dans l’industrie de l’hébergement",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 15:28:30 +0000",
+    "Tags": "Fiches d’information;Gestion des risques",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/secteurs-a-risque-courants-dans-lindustrie-des-services-financie",
+    "Title": "Secteurs à risque courants dans l’industrie des services financiers",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 15:31:27 +0000",
+    "Tags": "Fiches d’information;Événements de déchiquetage",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/sommaire-de-la-legislation-relative-a-la-protection-de-la-vie-pr",
+    "Title": "Sommaire de la législation relative à la protection de la vie privée",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Tue, 19 Oct 2021 16:25:27 +0000",
+    "Tags": "Fiches d’information;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/info-sheets/un-guide-shred-it-sur-la-conservation-de-documents",
+    "Title": "Un Guide Shred-it sur la conservation de documents",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-sheet-page",
+    "Last Modified": "Wed, 21 Sep 2022 15:52:35 +0000",
+    "Tags": "Fiches d’information;Gestion de la sécurité des documents",
+    "Replication Status": "MODIFIED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics",
+    "Title": "Infographie",
+    "Template": "/conf/shred-it/settings/wcm/templates/section-landing-page",
+    "Last Modified": "Fri, 11 Nov 2022 17:30:18 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/5-strategies-pour-rester-en-securite-pendant-les-fetes",
+    "Title": "5 stratégies pour rester en sécurité pendant les Fêtes",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:25:34 +0000",
+    "Tags": "Infographie;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/adding-it-all-up-data-protection-in-the-professional-services-industry",
+    "Title": "Additionner tout : la protection des données dans le secteur des services professionnels",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page1",
+    "Last Modified": "Thu, 25 Aug 2022 14:26:24 +0000",
+    "Tags": "Infographie;Sécurité des données;Conformité et législation",
+    "Replication Status": "MODIFIED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/apercu-de-lindustrie-automobile",
+    "Title": "Aperçu de l’industrie automobile",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:26:49 +0000",
+    "Tags": "Infographie;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/apercu-de-lindustrie-de-lhebergement",
+    "Title": "Aperçu de l’industrie de l’hébergement",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:35:01 +0000",
+    "Tags": "Infographie;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/apercu-de-lindustrie-des-services-financiers",
+    "Title": "Aperçu de l’industrie des services financiers",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:27:03 +0000",
+    "Tags": "Infographie;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/dechiquetages-communautaires-shred-it",
+    "Title": "Déchiquetages communautaires Shred-it",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:21:12 +0000",
+    "Tags": "Infographie;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/infographique-sur-le-secteur-juridique",
+    "Title": "Infographique sur le secteur juridique",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:35:13 +0000",
+    "Tags": "Infographie;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/la-securite-de-linformation-dans-lindustrie-des-services-financi",
+    "Title": "La sécurité de l’information dans l’industrie des services financiers",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:36:01 +0000",
+    "Tags": "Infographie;Sécurité des données",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/le-bureau-sans-papier--fiction-ou-realite",
+    "Title": "Le bureau sans papier : fiction ou réalité?",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:36:11 +0000",
+    "Tags": "Infographie;Cybersécurité",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/le-cycle-de-vie-dun-document",
+    "Title": "Le cycle de vie d’un document",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:26:31 +0000",
+    "Tags": "Infographie;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/le-suivi-sur-la-securite-2018-de-shred-it---canada",
+    "Title": "Le Suivi sur la sécurité 2018 de Shred-it - Canada",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:35:49 +0000",
+    "Tags": "Infographie;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/les-cinq-points-faibles-dun-lieu-de-travail",
+    "Title": "Les cinq points faibles d’un lieu de travail",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:21:00 +0000",
+    "Tags": "Infographie;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/les-petites-entreprises-sont-menacees",
+    "Title": "Les petites entreprises sont en danger",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 17 May 2022 13:50:40 +0000",
+    "Tags": "Infographie;Gestion des risques;Brèches et maîtrise des dommages;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/location-location-location-data-protection-in-the-real-estate",
+    "Title": "Emplacement, emplacement, emplacement: protection des données dans le secteur de l’immobilier",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page1",
+    "Last Modified": "Thu, 25 Aug 2022 14:25:55 +0000",
+    "Tags": "Infographie;Sécurité des données;Conformité et législation",
+    "Replication Status": "MODIFIED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/prevention-de-la-fraude-et-du-vol-didentite-cela-commence-par-la",
+    "Title": "Prévention de la fraude et du vol d’identité : cela commence par la sensibilisation",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:25:40 +0000",
+    "Tags": "Infographie;Fraude et usurpation d’identité",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/protecting-the-protectors-data-security-in-the-insurance-industy",
+    "Title": "Protéger les protecteurs : la sécurité des données dans le secteur de l’assurance",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page1",
+    "Last Modified": "Thu, 25 Aug 2022 14:24:11 +0000",
+    "Tags": "Infographie;Sécurité des données;Conformité et législation",
+    "Replication Status": "MODIFIED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/resume-graphique-du-rgpd",
+    "Title": "Résumé graphique du RGPD",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:21:23 +0000",
+    "Tags": "Infographie;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/securite-des-renseignements-confidentiels-des-petites-entreprise",
+    "Title": "Sécurité des renseignements confidentiels des petites entreprises",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:29:17 +0000",
+    "Tags": "Infographie;Sécurité des données",
+    "Replication Status": "DEACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/soins-de-sante",
+    "Title": "Soins de santé",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:35:37 +0000",
+    "Tags": "Infographie;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/soyez-vigilant-quant-a-la-prevention-de-la-fraude-dans-votre-ent",
+    "Title": "Soyez vigilant quant à la prévention de la fraude dans votre entreprise.",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:25:29 +0000",
+    "Tags": "Infographie;Fraude et usurpation d’identité",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/taking-stock-data-protection-in-the-financial-services-industry",
+    "Title": "Bilan : Protection des données dans le secteur des services financiers",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page1",
+    "Last Modified": "Thu, 25 Aug 2022 14:31:17 +0000",
+    "Tags": "Infographie;Sécurité des données;Conformité et législation",
+    "Replication Status": "MODIFIED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/infographics/the-best-medicine-data-protection-in-the-healthcare-industry",
+    "Title": "Le meilleur médicament : la protection des données dans le secteur de la santé",
+    "Template": "/conf/shred-it/settings/wcm/templates/info-graphic-page1",
+    "Last Modified": "Thu, 25 Aug 2022 14:25:26 +0000",
+    "Tags": "Infographie;Sécurité des données;Conformité et législation",
+    "Replication Status": "MODIFIED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/newsletters",
+    "Title": "Bulletin",
+    "Template": "/conf/shred-it/settings/wcm/templates/section-landing-page",
+    "Last Modified": "Thu, 23 Sep 2021 20:58:06 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/newsletters/destruction-de-renseignements-securisee--un-imperatif-juridique",
+    "Title": "Destruction de renseignements sécurisée : un impératif juridique",
+    "Template": "/conf/shred-it/settings/wcm/templates/newsletter-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:46:07 +0000",
+    "Tags": "Bulletin;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/newsletters/grandes-entreprises-vs-petites-entreprises--lesquelles-sacquitte",
+    "Title": "Grandes entreprises vs petites entreprises : lesquelles s’acquittent le mieux de leurs obligations en matière de sécurité de l’information?",
+    "Template": "/conf/shred-it/settings/wcm/templates/newsletter-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:55:56 +0000",
+    "Tags": "Bulletin;Conformité et législation",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/newsletters/lavenir-de-la-securite-des-donnees-et-des-documents",
+    "Title": "L’avenir de la sécurité des données et des documents",
+    "Template": "/conf/shred-it/settings/wcm/templates/newsletter-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:53:27 +0000",
+    "Tags": "Bulletin;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/newsletters/lennemi-interieur--pourquoi-les-bacs-de-recyclage-constituent-il",
+    "Title": "L’ennemi intérieur : pourquoi les bacs de recyclage constituent ils une grande source de criminalité économique?",
+    "Template": "/conf/shred-it/settings/wcm/templates/newsletter-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:57:31 +0000",
+    "Tags": "Bulletin;Développement durable & Recyclage",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/newsletters/les-entreprises-doivent-eviter-ces-erreurs-courantes",
+    "Title": "Les entreprises doivent éviter ces erreurs courantes",
+    "Template": "/conf/shred-it/settings/wcm/templates/newsletter-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:47:40 +0000",
+    "Tags": "Bulletin;Gestion des risques",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/newsletters/les-petites-entreprises-canadiennes-ignorent-les-menaces-pour-la",
+    "Title": "Les petites entreprises canadiennes ignorent les menaces pour la sécurité de l’information",
+    "Template": "/conf/shred-it/settings/wcm/templates/newsletter-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:45:34 +0000",
+    "Tags": "Bulletin;Sécurité des données",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/newsletters/nous-ne-sommes-pas-encore-numeriques",
+    "Title": "Nous ne sommes pas encore numériques",
+    "Template": "/conf/shred-it/settings/wcm/templates/newsletter-page",
+    "Last Modified": "Tue, 19 Oct 2021 19:13:07 +0000",
+    "Tags": "Bulletin;Cybersécurité",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/newsletters/rapport-dinformation-de-lindustrie-de-la-securite",
+    "Title": "Rapport d'information de l'industrie de la sécurité",
+    "Template": "/conf/shred-it/settings/wcm/templates/newsletter-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:58:45 +0000",
+    "Tags": "Bulletin;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/newsletters/responsabilite-environnementale-et-securite-des-documents-deux-c",
+    "Title": "Responsabilité environnementale et sécurité des documents: deux côtés de la même médaille?",
+    "Template": "/conf/shred-it/settings/wcm/templates/newsletter-page",
+    "Last Modified": "Tue, 19 Oct 2021 18:49:16 +0000",
+    "Tags": "Bulletin;Développement durable & Recyclage",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/posters",
+    "Title": "Posters",
+    "Template": "/conf/shred-it/settings/wcm/templates/section-landing-page",
+    "Last Modified": "Fri, 27 Aug 2021 20:22:48 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/posters/ameliorez-la-securite-dans-vos-bureaux-grace-a-ces-rappels-utile",
+    "Title": "Améliorez la sécurité dans vos bureaux grâce à ces rappels utiles du plan de sécurité.",
+    "Template": "/conf/shred-it/settings/wcm/templates/poster-page",
+    "Last Modified": "Tue, 19 Oct 2021 19:17:27 +0000",
+    "Tags": "Posters;Formation des collaborateurs",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/posters/ces-rappels-sur-la-securite-de-linformation-peuvent-aider-les-en",
+    "Title": "Ces rappels sur la sécurité de l’information peuvent aider les entreprises à protéger leurs données",
+    "Template": "/conf/shred-it/settings/wcm/templates/poster-page",
+    "Last Modified": "Tue, 19 Oct 2021 19:15:46 +0000",
+    "Tags": "Posters;Sécurité des données",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/topics",
+    "Title": "Les Sujets",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Mon, 4 Oct 2021 15:01:40 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/topics/breaches-and-damage-control",
+    "Title": "Infractions et contrôle des dommages",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 11 Nov 2022 19:14:17 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/topics/compliance-and-legislation",
+    "Title": "Conformité et législation",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 11 Nov 2022 19:07:03 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/topics/cybersecurity",
+    "Title": "La cyber-sécurité",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 11 Nov 2022 19:07:56 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/topics/data-security",
+    "Title": "Sécurité des données",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 11 Nov 2022 19:04:37 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/topics/document-security-management",
+    "Title": "Gestion de la sécurité des documents",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 11 Nov 2022 19:10:15 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/topics/employee-training",
+    "Title": "Entrainement d'employé",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 11 Nov 2022 19:10:51 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/topics/fraud-and-identify-theft",
+    "Title": "Fraude et vol d'identité",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 11 Nov 2022 19:11:57 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/topics/home-remote-office",
+    "Title": "Maison/Bureau à distance",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 11 Nov 2022 19:14:58 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/topics/risk-management",
+    "Title": "Gestion des risques",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 11 Nov 2022 19:05:55 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/topics/sustainability-and-recycling",
+    "Title": "Durabilité et recyclage",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 11 Nov 2022 19:13:15 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/videos",
+    "Title": "Vidéos",
+    "Template": "/conf/shred-it/settings/wcm/templates/section-landing-page",
+    "Last Modified": "Fri, 11 Nov 2022 17:35:50 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/videos/desencombrer-votre-espace-de-travail",
+    "Title": "Désencombrer votre espace de travail",
+    "Template": "/conf/shred-it/settings/wcm/templates/video-page",
+    "Last Modified": "Tue, 19 Oct 2021 19:20:51 +0000",
+    "Tags": "Vidéos;Télétravail / Travail à distance",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/videos/la-procedure-shred-it",
+    "Title": "La procédure Shred-it",
+    "Template": "/conf/shred-it/settings/wcm/templates/video-page",
+    "Last Modified": "Tue, 19 Oct 2021 19:28:20 +0000",
+    "Tags": "Vidéos;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/videos/le-service-securitaire-de-dechiquetage-shred-it-pour-dechiquetag",
+    "Title": "Le Service Sécuritaire de Déchiquetage Shred-It pour déchiquetage sur place et hors site.",
+    "Template": "/conf/shred-it/settings/wcm/templates/video-page",
+    "Last Modified": "Tue, 19 Oct 2021 19:22:41 +0000",
+    "Tags": "Vidéos;Gestion de la sécurité des documents",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/resource-center/videos/les-points-vulnerables-dun-bureau",
+    "Title": "Les points vulnérables d’un bureau",
+    "Template": "/conf/shred-it/settings/wcm/templates/video-page",
+    "Last Modified": "Tue, 19 Oct 2021 19:24:38 +0000",
+    "Tags": "Vidéos;Gestion des risques",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/search",
+    "Title": "Search",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Fri, 5 May 2023 13:17:48 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/secure-document-destruction-and-shredding-prices",
+    "Title": "Coût des services de déchiquetage de papier et de documents",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Wed, 15 Feb 2023 19:51:15 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/secure-shredding-services",
+    "Title": "Nos services",
+    "Template": "/conf/shred-it/settings/wcm/templates/section-landing-page",
+    "Last Modified": "Thu, 16 Mar 2023 20:23:45 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/secure-shredding-services/drop-off-shredding",
+    "Title": "Déchiquetage de dépôt",
+    "Template": "/conf/shred-it/settings/wcm/templates/section-landing-page",
+    "Last Modified": "Wed, 1 Dec 2021 16:20:10 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/secure-shredding-services/hard-drive-destruction",
+    "Title": "Services de destruction, de déchiquetage et d’élimination de disques durs",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page21",
+    "Last Modified": "Tue, 7 May 2024 17:10:42 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/secure-shredding-services/media-destruction-service",
+    "Title": "Destruction et élimination sécurisées des supports",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page21",
+    "Last Modified": "Tue, 7 May 2024 17:15:53 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/secure-shredding-services/one-off-shredding-service",
+    "Title": "Services ponctuels de déchiquetage de papier et de destruction de documents",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page21",
+    "Last Modified": "Mon, 6 May 2024 14:13:10 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/secure-shredding-services/paper-shredding-services",
+    "Title": "Services de déchiquetage de papier et de destruction de documents programmés",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page21",
+    "Last Modified": "Tue, 7 May 2024 17:20:40 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/secure-shredding-services/residential-shredding-services",
+    "Title": "Déchiquetage de papier résidentiel",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page21",
+    "Last Modified": "Tue, 7 May 2024 17:33:33 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/secure-shredding-services/shredding-events",
+    "Title": "Trouvez des événements de déchiquetage près de chez vous",
+    "Template": "/conf/shred-it/settings/wcm/templates/event-finder-page",
+    "Last Modified": "Thu, 20 Jan 2022 21:42:32 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/secure-shredding-services/specialty-shredding-service",
+    "Title": "Destruction sécurisée des produits et services de déchiquetage spécialisés",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page21",
+    "Last Modified": "Tue, 7 May 2024 17:18:22 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/service-fees",
+    "Title": "Frais",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Mon, 29 Jul 2024 16:39:35 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/service-locations",
+    "Title": "Lieux de Service",
+    "Template": "/conf/shred-it/settings/wcm/templates/section-landing-page",
+    "Last Modified": "Fri, 5 May 2023 13:26:38 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/service-locations/laval",
+    "Title": "Déchiquetage & destruction de papier Laval",
+    "Template": "/conf/shred-it/settings/wcm/templates/location",
+    "Last Modified": "Fri, 7 Jul 2023 18:26:13 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/service-locations/montreal",
+    "Title": "Déchiquetage & destruction de papier Montréal",
+    "Template": "/conf/shred-it/settings/wcm/templates/location",
+    "Last Modified": "Mon, 10 Jul 2023 12:49:24 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/service-locations/quebec-city",
+    "Title": "Déchiquetage & destruction de papier Québec City",
+    "Template": "/conf/shred-it/settings/wcm/templates/location",
+    "Last Modified": "Fri, 7 Jul 2023 18:25:14 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  },
+  {
+    "Path": "/content/shred-it/ca/fr/wm-update",
+    "Title": "Nous faisons maintenant partie de WM",
+    "Template": "/conf/shred-it/settings/wcm/templates/content-page",
+    "Last Modified": "Mon, 4 Nov 2024 15:10:32 +0000",
+    "Tags": "",
+    "Replication Status": "ACTIVATED"
+  }
+]

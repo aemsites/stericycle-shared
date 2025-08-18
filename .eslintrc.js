@@ -19,5 +19,6 @@ module.exports = {
     'import/extensions': ['error', {
       js: 'always',
     }],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
 };
