@@ -1,7 +1,9 @@
-import { decorateButtons } from '../../scripts/aem.js';
+import { decorateButtons, fetchPlaceholders } from '../../scripts/aem.js';
 import { a, h3, p } from '../../scripts/dom-helpers.js';
-import { fetchQueryIndex } from '../../scripts/scripts.js';
+import { fetchQueryIndex, getLocale } from '../../scripts/scripts.js';
 import { adjustHeightsOnResize } from './utils.js';
+
+const ph = await fetchPlaceholders(`/${getLocale()}`);
 
 export default async function decorate(block) {
   const rows = [...block.children];
@@ -64,7 +66,7 @@ export default async function decorate(block) {
 
       const readMoreButton = a(
         { class: page.classList.value || 'button primary', href: url, target: '_self' },
-        page.title || 'Read More',
+        page.title || ph.readmorelabel || 'Read More',
         existingSpan,
       );
 
@@ -108,7 +110,7 @@ export default async function decorate(block) {
         const url = page.href;
         const readMoreButton = a(
           { class: page.classList.value || 'button primary', href: url, target: '_self' },
-          page.title || 'Read More',
+          page.title || ph.readmorelabel || 'Read More',
           existingSpan,
         );
         decorateButtons(readMoreButton);

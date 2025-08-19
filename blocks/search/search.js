@@ -1,8 +1,6 @@
-import {
-  fetchPlaceholders,
-} from '../../scripts/aem.js';
+import { fetchPlaceholders } from '../../scripts/aem.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
-import { fetchQueryIndex } from '../../scripts/scripts.js';
+import { fetchQueryIndex, getLocale } from '../../scripts/scripts.js';
 
 const searchParams = new URLSearchParams(window.location.search);
 
@@ -213,13 +211,15 @@ async function buildPagination(releases, ul, controls, page) {
 }
 
 async function handleSearch(e, block, config) {
+  const placeholders = await fetchPlaceholders(`/${getLocale()}`);
+
   // set currentPage pagination to 1
   currentPage = 1;
 
   // no results content
   const noResults = document.createElement('p');
   noResults.classList.add('no-results');
-  noResults.innerHTML = 'No Results. Please Try Again.&nbsp';
+  noResults.innerHTML = placeholders.nosearchresultstext || 'No Results. Please Try Again.&nbsp';
 
   let searchValue;
   const dispatchedEventCheck = Object.hasOwn(e, 'target') && Object.hasOwn(e.target, 'value');
@@ -247,7 +247,6 @@ async function handleSearch(e, block, config) {
 
     const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
     const filteredData = filterData(searchTerms, data);
-    const placeholders = await fetchPlaceholders();
     block.innerHTML = '';
     block.append(
       // eslint-disable-next-line no-use-before-define
@@ -296,7 +295,7 @@ function searchInput(block, config) {
   input.setAttribute('type', 'search');
   input.className = 'search-input';
 
-  const searchPlaceholder = config.placeholders.searchPlaceholder || 'Search...';
+  const searchPlaceholder = config.placeholders.searchplaceholder || 'Search...';
   input.placeholder = searchPlaceholder;
   input.setAttribute('aria-label', searchPlaceholder);
 
@@ -337,7 +336,7 @@ function searchBox(block, config) {
 }
 
 export default async function decorate(block) {
-  const placeholders = await fetchPlaceholders();
+  const placeholders = await fetchPlaceholders(`/${getLocale()}`);
   block.innerHTML = '';
   block.append(
     searchBox(block, { type: 'site search', placeholders }),
