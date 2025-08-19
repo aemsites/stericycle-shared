@@ -153,6 +153,20 @@ export function getLocaleAsBCP47() {
   return parts.join('-');
 }
 
+export function getLocaleFromPath() {
+  const pathParts = window.location.pathname.split('/');
+  if (pathParts.length > 1) {
+    const locale = pathParts[1];
+    // Check if the locale is in the format of two lowercase letters followed by a hyphen and two lowercase letters
+    if (/^[a-z]{2}-[a-z]{2}$/.test(locale)) {
+      return locale;
+    }
+  }
+
+  // Default to result of getLocale() if no valid locale is found in the path
+  return getLocale();
+}
+
 const toRadians = (degrees) => ((degrees * Math.PI) / 180);
 
 export const haversineDistance = (lat1, lon1, lat2, lon2) => {
@@ -215,7 +229,7 @@ export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.
 export async function getFloatingContact() {
   const { div, a } = domHelper;
   const placeHolders = await fetchPlaceholders(`/${getLocale()}`);
-  const navModalPath = getMetadata('nav-modal-path') || '/forms/modals/modal';
+  const navModalPath = getMetadata('nav-modal-path') || placeHolders.navmodalpath || '/forms/modals/modal';
   const modalButtonTitle = placeHolders.requestafreequote || 'Request a Free Quote';
 
   return div(
@@ -603,6 +617,34 @@ export function decorateAnchors(element = document) {
 }
 
 /**
+ * Rewrites links to ensure they are localized
+ * @param {Element} main main element
+ */
+function rewriteLinks(main) {
+  const links = Array.from(main.querySelectorAll('a:not(.footer-countries a)'));
+  const currentLocale = getLocale();
+  links.forEach((link) => {
+    // Only process internal links (not external or anchors)
+    if (link.href
+      && link.href.startsWith(window.location.origin)
+      && !link.href.startsWith('#')) {
+      const url = new URL(link.href);
+      const pathParts = url.pathname.split('/');
+      // Check if the link already has a locale segment
+      const hasLocaleSegment = pathParts.length > 1 && /^[a-z]{2}-[a-z]{2}$/i.test(pathParts[1]);
+      if (hasLocaleSegment) {
+        // Replace the existing locale with the current one
+        pathParts[1] = currentLocale;
+        // Reconstruct the URL with the current locale
+        url.pathname = pathParts.join('/');
+        link.href = url.toString();
+      }
+      // If no locale segment exists, leave the link as is
+    }
+  });
+}
+
+/**
  * Loads footer-subscription-form
  * @param main main element
  * @returns {Promise}
@@ -797,6 +839,7 @@ export function decorateMain(main) {
   decorateSectionTemplates(main);
   consolidateOfferBoxes(main);
   decorateSectionIds(main);
+  rewriteLinks(main);
 }
 
 /**
