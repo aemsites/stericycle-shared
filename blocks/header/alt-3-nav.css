@@ -691,13 +691,26 @@ header {
   flex-direction: column;
   justify-content: center;
   max-width: var(--section-width);
-  margin: auto auto 0;
+  margin: 0 auto 0;
   width: 100%;
-  padding: 64px 1.5rem 3rem;
+  height: 100%;
+  padding: 3rem 1.5rem 3rem;
 }
 
 .header .ctas-container-mobile .content {
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.header .ctas-container-mobile .content > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .header .ctas-container-mobile .content .contact {
