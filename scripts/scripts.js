@@ -93,7 +93,7 @@ export function getDateFromString(date) {
   return date;
 }
 
-export const formatDate = (date) => date.toLocaleDateString('en-US', {
+export const formatDate = (date) => new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: '2-digit',
