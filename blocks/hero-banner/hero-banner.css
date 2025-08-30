@@ -12,10 +12,9 @@
 }
 
 main .section > div.hero-banner-wrapper {
-    max-width: 100%;
-    padding: 0;
     margin-top: 0;
     margin-bottom: 0;
+    max-width: unset;
 }
 
 .hero-banner {
@@ -223,7 +222,6 @@ main .section > div.hero-banner-wrapper {
 .hero-banner-form.hero-banner-container .form-wrapper {
     width: 100%;
     margin-top: 0;
-    max-width: 660px;
 }
 
 .hero-banner-form .hero-banner-asset {
@@ -238,7 +236,6 @@ main .section > div.hero-banner-wrapper {
 
     .hero-banner-content-text {
         padding: 24px 0;
-        max-width: 78%;
     }
 
     .hero-banner-content-text > * {
