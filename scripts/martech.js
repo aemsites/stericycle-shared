@@ -25,7 +25,7 @@ function initDataLayer() {
         currentPagePath: window.location.pathname,
         pageType: getMetadata('template') || '',
         pageDescription: getMetadata('og:description'),
-        country: 'US', // TODO: fetch country dynamically?
+        country: getLocaleAsBCP47().split('-')[1] || 'US',
       },
       category: {
         primaryCategory: '',
