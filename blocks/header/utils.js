@@ -97,6 +97,12 @@ function closeNavigationMenu() {
   document.body.style.overflow = '';
   hamburger.focus();
 
+  // Show OneTrust cookie banner when mobile nav is closed
+  const oneTrustBanner = document.querySelector('#ot-sdk-btn-floating');
+  if (oneTrustBanner) {
+    oneTrustBanner.style.display = '';
+  }
+
   document.querySelectorAll('.nav-item').forEach((item) => {
     item.classList.remove(MOBILE_MENU_OPEN_CLASSNAME);
     item.classList.remove(DESKTOP_MENU_OPEN_CLASSNAME);
@@ -550,6 +556,12 @@ function hamburgerMenuClick(hamburger) {
   if (isOpen) {
     document.body.style.overflow = 'hidden';
 
+    // Hide OneTrust cookie banner when mobile nav is open
+    const oneTrustBanner = document.querySelector('#ot-sdk-btn-floating');
+    if (oneTrustBanner) {
+      oneTrustBanner.style.display = 'none';
+    }
+
     trapFocus(nav, closeNavigationMenu);
   } else {
     closeNavigationMenu();
@@ -770,6 +782,11 @@ export function buildCtasSection(
 
   const contactLinks = div(
     div(
+      { class: 'contact-info' },
+      h3({ class: 'modal-title eyebrow-small' }, contact?.title?.text),
+      p({ class: 'modal-subtitle' }, contact?.description?.text),
+    ),
+    div(
       { class: 'contact' },
       img({
         class: 'contact-icon',
@@ -833,8 +850,6 @@ export function buildCtasSection(
     },
     div(
       { class: 'modal-content' },
-      h3({ class: 'modal-title eyebrow-small' }, contact?.title?.text),
-      p({ class: 'modal-subtitle' }, contact?.description?.text),
       contactLinks,
       a(
         {
