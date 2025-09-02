@@ -560,6 +560,7 @@ header {
 .header .modal-subtitle {
   font-size: 16px;
   margin-bottom: 16px;
+  display: none;
 }
 
 .header .contact {
@@ -693,11 +694,24 @@ header {
   max-width: var(--section-width);
   margin: 0 auto;
   width: 100%;
-  padding: 64px 1.5rem 82px;
+  height: 100%;
+  padding: 3rem 1.5rem;
 }
 
 .header .ctas-container-mobile .content {
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.header .ctas-container-mobile .content > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .header .ctas-container-mobile .content .contact {
@@ -867,6 +881,10 @@ header {
 
   .header .submenu .locate-form {
     height: auto;
+  }
+
+  .header .modal-subtitle {
+    display: block;
   }
 }
 
