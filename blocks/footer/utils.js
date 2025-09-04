@@ -35,6 +35,7 @@ export function createMenuAccordion(footer) {
         accordionContent.classList.add('footer-accordion-content');
         const accordionButton = document.createElement('button');
         accordionButton.classList.add('footer-accordion-button');
+        accordionButton.setAttribute('aria-label', 'Open panel');
         accordionButton.innerHTML = '<span class="footer-accordion-button-icon"><img data-icon-name="home-white" src="/icons/plus-sign.svg" alt="" loading="lazy"></span>';
         footerAccordionLinkWrapper.append(accordionButton);
         footerAccordionLinkWrapper.addEventListener('click', () => {
