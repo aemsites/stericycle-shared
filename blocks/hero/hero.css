@@ -1,11 +1,17 @@
-
 main .section.hero-container {
   padding: 0;
+  padding-left: 1.5rem;
+}
 
-  & .hero-wrapper {
-    max-width: unset;
-    margin: unset;
-    padding: 0;
+main .section.hero-container .hero-wrapper {
+  max-width: unset;
+  margin: unset;
+  padding: 0;
+}
+
+@media (min-width: 992px) {
+  .block.hero.white-text > .hero-content-container > .hero-content > * {
+    color: white !important;
   }
 }
 
@@ -13,112 +19,103 @@ main .section.hero-container {
   position: relative;
   padding: 2.625rem 0;
   overflow: hidden;
+}
 
-  & picture.hero-background {
-    position: absolute;
-    top: 0;
-    display: none;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.block.hero picture.hero-background {
+  position: absolute;
+  top: 0;
+  display: none;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
-    & img {
-      object-fit: cover;
-      object-position: center;
-      width: 100%;
-      height: 100%;
-    }
+.block.hero picture.hero-background img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
 
-    &.mobile-only {
-      display: block;
-    }
+.block.hero picture.hero-background.mobile-only {
+  display: block;
+}
 
-    &.desktop-only {
-      display: none;
-    }
-  }
+.block.hero picture.hero-background.desktop-only {
+  display: none;
+}
 
-  & .hero-content-container {
-    max-width: var(--section-width);
-    margin: auto;
-    position: relative;
-    padding: 0 1.5rem;
-    width: 100%;
+.block.hero .hero-content-container {
+  max-width: var(--section-width);
+  margin: auto;
+  position: relative;
+  padding: 0 1.5rem;
+  width: 100%;
+}
 
-    & .hero-content {
-      display: flex;
-      flex-flow: column wrap;
-      gap: 20px;
+.block.hero .hero-content-container .hero-content {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 20px;
+}
 
-      & > h1 {
-        font-weight: var(--font-weight-bold);
-        margin: 0 0 8px;
-        line-height: 34px;
-        letter-spacing: -0.015px;
-      }
+.block.hero .hero-content-container .hero-content > h1 {
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 8px;
+  line-height: 34px;
+  letter-spacing: -0.015px;
+}
 
-      & p.button-container {
-        & a {
-          font-weight: var(--font-weight-bold);
-          font-size: var(--body-font-size-s);
-          border-width: 1px;
-        }
+.block.hero .hero-content-container .hero-content p.button-container a {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--body-font-size-s);
+  border-width: 1px;
+}
 
-        & > a:hover {
-          background-color: unset;
-          color: unset;
-          text-decoration: underline;
-        }
-      }
-    }
-  }
+.block.hero .hero-content-container .hero-content p.button-container > a:hover {
+  background-color: unset;
+  color: unset;
+  text-decoration: underline;
 }
 
 @media (min-width: 576px) {
-  .block.hero {
-    & div.hero-content-container {
-      padding: 0 12px;
-      margin: 1rem auto;
-      max-width: var(--section-width);
-    }
+  .block.hero div.hero-content-container {
+    padding: 0 12px;
+    margin: 1rem auto;
+    max-width: var(--section-width);
   }
 }
 
-/* breakpoint-l */
-@media screen and (min-width: 992px) {
-  .block.hero {
-    & picture.hero-background {
-      display: block;
+@media (min-width: 992px) {
+  .block.hero picture.hero-background {
+    display: block;
+  }
 
-      &.mobile-only {
-        display: none;
-      }
+  .block.hero picture.hero-background.mobile-only {
+    display: none;
+  }
 
-      &.desktop-only {
-        display: block;
-      }
-    }
+  .block.hero picture.hero-background.desktop-only {
+    display: block;
+  }
 
-    & .hero-content-container {
-      & .hero-content {
-        width: 58.3333%;
+  .block.hero .hero-content-container .hero-content {
+    width: 58.3333%;
+  }
 
-        & > h1 {
-          font-weight: var(--font-weight-bold);
-          margin: 0 0 8px;
-          line-height: 52px;
-          letter-spacing: -0.015px;
-        }
+  .block.hero .hero-content-container .hero-content > h1 {
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 8px;
+    line-height: 52px;
+    letter-spacing: -0.015px;
+  }
 
-        & p.button-container a {
-          border-width: 2px;
-          font-size: var(--body-font-size-default);
-        }
+  .block.hero .hero-content-container .hero-content p.button-container a {
+    border-width: 2px;
+    font-size: var(--body-font-size-default);
+  }
 
-        .mobile-only {
-          display:none;
-        }
-      }
-    }
+  .block.hero .hero-content-container .hero-content .mobile-only {
+    display: none;
   }
 }

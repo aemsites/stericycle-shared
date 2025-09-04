@@ -1,11 +1,11 @@
 export const MIGRATED_SITES = [
   { lang: 'en-US', url: 'https://www.shredit.com', sitemap: 'https://www.shredit.com/en-us/sitemap.xml' }, // default must be first
+  { lang: 'en-CA', url: 'https://www.shredit.com', sitemap: 'https://www.shredit.com/en-ca/sitemap.xml' },
+  { lang: 'fr-CA', url: 'https://www.shredit.com', sitemap: 'https://www.shredit.com/fr-ca/sitemap.xml' },
 ];
 export const DEFAULT_LOCALE = MIGRATED_SITES[0];
 
 export const UNMIGRATED_SITES = [
-  { lang: 'en-CA', url: 'https://www.shredit.com', sitemap: 'https://www.shredit.com/en-ca/sitemap.xml' },
-  { lang: 'fr-CA', url: 'https://www.shredit.com', sitemap: 'https://www.shredit.com/fr-ca/sitemap.xml' },
   { lang: 'en-GB', url: 'https://www.shredit.co.uk', sitemap: 'https://www.shredit.co.uk/en-gb/sitemap.xml' },
   { lang: 'de-DE', url: 'https://www.shredit.de', sitemap: 'https://www.shredit.de/de-de/sitemap.xml' },
   { lang: 'en-IE', url: 'https://www.shredit.ie', sitemap: 'https://www.shredit.ie/en-ie/sitemap.xml' },
@@ -21,4 +21,4 @@ export const UNMIGRATED_SITES = [
   { lang: 'es-ES', url: 'https://www.shredit.es', sitemap: 'https://www.shredit.es/sitemap.xml' },
 ];
 
-export const EDS_URL = 'https://main--shredit--stericycle.aem.page/';
+export const EDS_URL = 'https://main--shred-it--stericycle.aem.page/';

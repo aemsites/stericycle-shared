@@ -2,11 +2,22 @@ import { createPostLink, formatDate, getDateFromExcel, getLocale, fetchQueryInde
 import {
   createOptimizedPicture, decorateButtons, decorateIcon, fetchPlaceholders, readBlockConfig,
 } from '../../scripts/aem.js';
-import { div } from '../../scripts/dom-helpers.js';
+import { div, h3, span } from '../../scripts/dom-helpers.js';
 
 const ITEMS_PER_PAGE = 10;
+const ph = await fetchPlaceholders(`/${getLocale()}`);
 let CURRENT_PAGE = 1;
 let CTA_TYPE = 'default';
+const facetsMap = new Map();
+
+function capitalizePhrase(str) {
+  return str.toLowerCase().replace(/\b\w+\b/g, (word) => {
+    if (word.length === 1 && word !== 'i') {
+      return word;
+    }
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
+}
 
 /*
     * This function decorates the results from the query-index.json file
@@ -25,11 +36,17 @@ function decorateResults(posts, list) {
 
     if (post.type && post.type !== '0') {
       const categoryLink = document.createElement('a');
-      categoryLink.href = window.location.pathname;
+      categoryLink.href = '';
       categoryLink.innerText = post.type;
       categoryLink.classList.add('eyebrow-small');
       categoryLink.setAttribute('aria-label', post.type);
-
+      const type = post.type?.endsWith('s') ? post.type?.toLowerCase() : `${post.type.toLowerCase()}'s`;
+      const facet = facetsMap.get(type);
+      categoryLink.onclick = (e) => {
+        e.preventDefault();
+        facet.checked = true;
+        facet.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
+      };
       categoryDiv.append(categoryLink);
     }
 
@@ -60,7 +77,7 @@ function decorateResults(posts, list) {
     const button = createPostLink(post);
 
     icon.classList.add('icon', 'icon-right-arrow');
-    button.textContent = 'Read More';
+    button.textContent = ph.readmorelabel || 'Read More';
 
     if (CTA_TYPE === 'primary') {
       buttonWrapper = document.createElement('strong');
@@ -138,8 +155,8 @@ async function getResults(sheets = []) {
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
   const postArray = [];
-  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex()
-    .sheet(sheet).all())).then((results) => results.flat());
+  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
+    .all())).then((results) => results.flat());
   posts.forEach((post) => {
     postArray.push(post);
   });
@@ -154,8 +171,8 @@ async function getFacets(sheets = []) {
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
   const facetArray = [];
-  const facets = await Promise.all(sheetList.map((sheet) => fetchQueryIndex()
-    .sheet(sheet).all()))
+  const facets = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
+    .all()))
     .then((results) => results.flat());
 
   const tagJson = {};
@@ -168,7 +185,7 @@ async function getFacets(sheets = []) {
   });
 
   facets.forEach((facet) => {
-    const tags = facet.tags.split(',');
+    const { tags } = facet;
     tags.forEach((tag) => {
       const cleanTag = tag.trim().replaceAll(/["[\]]/g, '');
       if (cleanTag === '') {
@@ -207,32 +224,33 @@ function toggleFacets() {
   });
 }
 
-function clickChevron(chevron, facetList) {
+function clickIcon(icon, facetList) {
   facetList.classList.toggle('slideout');
-  chevron.classList.toggle('fa-chevron-down');
-  chevron.classList.toggle('fa-chevron-up');
+  icon.classList.toggle('open');
 }
 
 const isResourceCenterPages = () => {
   const path = window.location.pathname;
-  if (path.endsWith('resource-center')) {
+  const { resourcecenter } = ph;
+  if (path.endsWith(resourcecenter)) {
     return true;
   }
   return false;
 };
 
 const createFacetList = (name) => {
+  const capitalizedName = capitalizePhrase(name);
   const topDiv = div({ class: 'facet-list-container' });
-  const head = div({ class: 'head' }, name);
-  const chevron = document.createElement('i');
-  chevron.classList.add('fa-chevron-down');
-  chevron.addEventListener('click', () => {
-    const facetList = chevron.parentElement.nextElementSibling;
+  const head = h3({ class: 'head' }, span(capitalizedName));
+  const toggleIcon = document.createElement('span');
+  toggleIcon.classList.add('toggle-icon');
+  toggleIcon.addEventListener('click', () => {
+    const facetList = toggleIcon.parentElement.nextElementSibling;
     if (facetList && facetList.classList.contains('facet-list')) {
-      clickChevron(chevron, facetList);
+      clickIcon(toggleIcon, facetList);
     }
   });
-  head.append(chevron);
+  head.append(toggleIcon);
   const formattedName = name?.toLowerCase().replace(/\s+/g, '-');
   const facetUL = document.createElement('ul');
   facetUL.classList.add('facet-list', formattedName);
@@ -317,9 +335,9 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
     tempCheckedBoxes.push(checkboxChange);
   }
 
-  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex().sheet(sheet)
+  const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
     .map((post) => ({
-      tags: post.tags.split(',').map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
+      tags: post.tags.map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
       title: post.title,
       date: post.date,
       image: post.image,
@@ -392,6 +410,8 @@ const createFacet = (facets, topDiv, sheets) => {
     topic.append(label);
     facetItem.append(topic);
     topDiv?.querySelector('ul').append(facetItem);
+
+    facetsMap.set(facet.tag.toLowerCase(), checkbox);
   });
 };
 
@@ -399,7 +419,6 @@ export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   const cta = cfg.cta || 'default';
   const facets = await getFacets(cfg.sheet.split(','));
-  const ph = await fetchPlaceholders(`/${getLocale()}`);
   const { blogtopic } = ph;
   const facetDiv = document.createElement('div');
   const mobileFilter = document.createElement('i');
@@ -411,14 +430,14 @@ export default async function decorate(block) {
   facetDiv.classList.add('facet');
   CTA_TYPE = cta;
 
-  const topDiv1 = createFacetList('Media Type');
-  const topDiv2 = createFacetList(blogtopic);
-  createFacet(facets.tags, topDiv2, cfg.sheet.split(','));
+  const topicDiv = createFacetList(blogtopic);
+  createFacet(facets.tags, topicDiv, cfg.sheet.split(','));
   if (isResourceCenterPages()) {
-    createFacet(facets.mediaType, topDiv1, cfg.sheet.split(','));
-    facetDiv.append(topDiv1, topDiv2);
+    const mediaTypeDiv = createFacetList('Media Type');
+    createFacet(facets.mediaType, mediaTypeDiv, cfg.sheet.split(','));
+    facetDiv.append(mediaTypeDiv, topicDiv);
   } else {
-    facetDiv.append(topDiv2);
+    facetDiv.append(topicDiv);
   }
 
   const resultsDiv = document.createElement('div');

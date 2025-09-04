@@ -82,7 +82,18 @@ export function getDateFromExcel(date) {
   return date;
 }
 
-export const formatDate = (date) => date.toLocaleDateString('en-US', {
+/**
+ * Converts string date format like "D-Month-YY" to a Date object
+ * @returns {Date} Date object
+ */
+export function getDateFromString(date) {
+  if (!Number.isNaN(date)) {
+    return new Date(date);
+  }
+  return date;
+}
+
+export const formatDate = (date) => new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: '2-digit',
@@ -142,6 +153,20 @@ export function getLocaleAsBCP47() {
   return parts.join('-');
 }
 
+export function getLocaleFromPath() {
+  const pathParts = window.location.pathname.split('/');
+  if (pathParts.length > 1) {
+    const locale = pathParts[1];
+    // Check if the locale is in the format of two lowercase letters followed by a hyphen and two lowercase letters
+    if (/^[a-z]{2}-[a-z]{2}$/.test(locale)) {
+      return locale;
+    }
+  }
+
+  // Default to result of getLocale() if no valid locale is found in the path
+  return getLocale();
+}
+
 const toRadians = (degrees) => ((degrees * Math.PI) / 180);
 
 export const haversineDistance = (lat1, lon1, lat2, lon2) => {
@@ -160,16 +185,17 @@ export const haversineDistance = (lat1, lon1, lat2, lon2) => {
  * @param {string} [locale] sheet locale (uses current page locale none is supplied)
  * @returns {*} fetched query index
  */
-export function fetchQueryIndex(locale) {
+export function fetchQueryIndex(locale, category) {
   const sheetLocale = locale || getLocale();
-  return ffetch(`/${sheetLocale}/query-index.json`);
+  const sheetCategory = category || 'query';
+  return ffetch(`/${sheetLocale}/${sheetCategory}-index.json`);
 }
 
 // Remove dedup based on name, specific to the locations
 // eslint-disable-next-line max-len
 export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.4672, limit = 5) => {
   const isDropoff = getMetadata('sub-type')?.trim().toLowerCase();
-  const locations = await fetchQueryIndex().sheet('locations')
+  const locations = await fetchQueryIndex(undefined, 'locations')
     .filter((x) => {
       const latitude = parseFloat(x.latitude);
       const longitude = parseFloat(x.longitude);
@@ -203,7 +229,7 @@ export const getNearByLocations = async (currentLoc, thresholdDistanceInKm = 80.
 export async function getFloatingContact() {
   const { div, a } = domHelper;
   const placeHolders = await fetchPlaceholders(`/${getLocale()}`);
-  const navModalPath = getMetadata('nav-modal-path') || '/forms/modals/modal';
+  const navModalPath = getMetadata('nav-modal-path') || placeHolders.navmodalpath || '/forms/modals/modal';
   const modalButtonTitle = placeHolders.requestafreequote || 'Request a Free Quote';
 
   return div(
@@ -245,12 +271,10 @@ export async function getRelatedPosts(types, tags, limit) {
 
   // fetch all posts by type
   let posts = [];
-  const fetchResults = await Promise.all(sheets.map(async (sheet) => fetchQueryIndex().sheet(sheet).all()));
+  const fetchResults = await Promise.all(sheets.map(async (sheet) => fetchQueryIndex(undefined, sheet).all()));
   fetchResults.forEach((fetchResult) => posts.push(...fetchResult));
-  if (nTypes.length > 1) {
-    // this could become a performance problem with a huge volume of posts
-    posts = posts.sort((a, b) => b.date - a.date);
-  }
+  // this could become a performance problem with a huge volume of posts
+  posts = posts.sort((a, b) => b.date - a.date);
 
   // filter posts by tags
   const filteredPosts = [];
@@ -593,6 +617,34 @@ export function decorateAnchors(element = document) {
 }
 
 /**
+ * Rewrites links to ensure they are localized
+ * @param {Element} main main element
+ */
+function rewriteLinks(main) {
+  const links = Array.from(main.querySelectorAll('a:not(.footer-countries a)'));
+  const currentLocale = getLocale();
+  links.forEach((link) => {
+    // Only process internal links (not external or anchors)
+    if (link.href
+      && link.href.startsWith(window.location.origin)
+      && !link.href.startsWith('#')) {
+      const url = new URL(link.href);
+      const pathParts = url.pathname.split('/');
+      // Check if the link already has a locale segment
+      const hasLocaleSegment = pathParts.length > 1 && /^[a-z]{2}-[a-z]{2}$/i.test(pathParts[1]);
+      if (hasLocaleSegment) {
+        // Replace the existing locale with the current one
+        pathParts[1] = currentLocale;
+        // Reconstruct the URL with the current locale
+        url.pathname = pathParts.join('/');
+        link.href = url.toString();
+      }
+      // If no locale segment exists, leave the link as is
+    }
+  });
+}
+
+/**
  * Loads footer-subscription-form
  * @param main main element
  * @returns {Promise}
@@ -787,6 +839,7 @@ export function decorateMain(main) {
   decorateSectionTemplates(main);
   consolidateOfferBoxes(main);
   decorateSectionIds(main);
+  rewriteLinks(main);
 }
 
 /**
@@ -878,5 +931,11 @@ async function loadPage() {
   await loadLazy(document);
   loadDelayed();
 }
+
+(async function loadDa() {
+  if (!new URL(window.location.href).searchParams.get('dapreview')) return;
+  // eslint-disable-next-line import/no-unresolved
+  import('https://da.live/scripts/dapreview.js').then(({ default: daPreview }) => daPreview(loadPage));
+}());
 
 loadPage();

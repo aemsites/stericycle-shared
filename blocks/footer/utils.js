@@ -12,8 +12,13 @@ export function createMenuAccordion(footer) {
     const menuListItems = menu.querySelectorAll(':scope > li');
     menuListItems.forEach((item) => {
       item.classList.add('footer-accordion');
-      const itemTitle = item.childNodes[0];
-      item.childNodes[0].remove();
+      const buttonContainer = item.querySelector(':scope > .button-container');
+      const itemTitle = buttonContainer?.querySelector(':scope > a') || item.childNodes[0];
+      if (buttonContainer) {
+        buttonContainer.remove();
+      } else {
+        item.childNodes[0].remove();
+      }
       const footerAccordionLinkWrapper = document.createElement('span');
       footerAccordionLinkWrapper.classList.add('footer-accordion-link-wrapper');
       footerAccordionLinkWrapper.append(itemTitle);
@@ -67,7 +72,7 @@ export function createMenuAccordion(footer) {
  */
 export async function createModalButton(fragment, footerPath, locale) {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
-  const footerModalPath = getMetadata('footer-modal-path') || '/forms/modals/modal';
+  const footerModalPath = getMetadata('footer-modal-path') || ph.navmodalpath || '/forms/modals/modal';
   const modalButtonTitle = ph.requestafreequote || 'Request a Free Quote';
   const btn = p(
     { class: 'button-container quote-wrapper' },
@@ -134,13 +139,13 @@ export function buildCompanyLogo() {
   const logo = document.createElement('div');
   const logoLink = document.createElement('a');
   const logoImg = document.createElement('img');
-  logoImg.src = '/icons/shredit-logo.svg';
+  logoImg.src = `/icons/shredit-logo-${getLocale()}.svg`;
   logoImg.alt = 'Shredit Logo';
 
   logoLink.appendChild(logoImg);
   logo.appendChild(logoLink);
 
-  logoLink.href = '/';
+  logoLink.href = `/${getLocale()}`;
   logoLink.className = 'logo-link';
   logoLink['aria-label'] = 'Shredit Home';
   logo.className = 'logo';

@@ -1,6 +1,9 @@
-import { createOptimizedPicture, getMetadata } from '../../scripts/aem.js';
+import { createOptimizedPicture, fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
+import { getLocale } from '../../scripts/scripts.js';
 
-export default function decorate(block) {
+export default async function decorate(block) {
+  const ph = await fetchPlaceholders(`/${getLocale()}`);
+
   const wrapper = block.querySelector('div');
   const contentContainer = document.createElement('div');
   contentContainer.classList.add('hero-content-container');
@@ -49,7 +52,7 @@ export default function decorate(block) {
   if (getMetadata('template') === 'service-location-page') {
     const link = document.createElement('a');
     link.classList.add('mobile-only', 'button', 'primary');
-    link.href = getMetadata('nav-modal-path') || '/forms/modals/modal';
+    link.href = getMetadata('nav-modal-path') || ph.navmodalpath || '/forms/modals/modal';
     link.textContent = 'Request a Quote';
     content.append(link);
   }
@@ -74,5 +77,9 @@ export default function decorate(block) {
 
   if (getMetadata('hero-bg-color') === 'navy') {
     block.parentElement.parentElement.classList.add('navy-background');
+  }
+
+  if (getMetadata('homepage-hero-text-color') === 'white') {
+    block.classList.add('white-text');
   }
 }

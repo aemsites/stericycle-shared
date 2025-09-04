@@ -18,8 +18,10 @@ import {
  * @returns {HTMLElement} The root element of the fragment
  */
 export async function loadFragment(path) {
-  if (path && path.startsWith('/')) {
-    const resp = await fetch(`${path}.plain.html`);
+  if (path) {
+    const pathname = path.startsWith('/') ? path : new URL(path).pathname;
+    const formsUrl = window.location.origin.includes('shredit.com') ? pathname : `https://main--shredit--stericycle.aem.live${pathname}`;
+    const resp = await fetch(pathname.startsWith('/forms') ? `${formsUrl}.plain.html` : `${path}.plain.html`);
     if (resp.ok) {
       const main = document.createElement('main');
       main.innerHTML = await resp.text();

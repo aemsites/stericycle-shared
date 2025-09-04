@@ -473,7 +473,7 @@ header {
   width: 100%;
   height: 48px;
   border-radius: 4px;
-  border: 1px solid #C1C6C6;
+  border: 1px solid var(--color-accent-4);
   background: var(--color-white);
   font-size: 16px;
   color: var(--color-text-primary);
@@ -560,6 +560,7 @@ header {
 .header .modal-subtitle {
   font-size: 16px;
   margin-bottom: 16px;
+  display: none;
 }
 
 .header .contact {
@@ -693,11 +694,24 @@ header {
   max-width: var(--section-width);
   margin: 0 auto;
   width: 100%;
-  padding: 64px 1.5rem 82px;
+  height: 100%;
+  padding: 3rem 1.5rem;
 }
 
 .header .ctas-container-mobile .content {
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.header .ctas-container-mobile .content > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .header .ctas-container-mobile .content .contact {
@@ -734,7 +748,7 @@ header {
   white-space: pre-wrap;
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1200px) {
   .header header {
     min-height: 70px;
   }
@@ -771,7 +785,7 @@ header {
   }
 
   .header .nav-item .nav-link {
-    padding: 28px 20px;
+    padding: 28px 16px;
     font-weight: 400;
     font-size: 16px;
     color: var(--color-white);
@@ -868,9 +882,13 @@ header {
   .header .submenu .locate-form {
     height: auto;
   }
+
+  .header .modal-subtitle {
+    display: block;
+  }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   .header {
     gap: 40px;
   }

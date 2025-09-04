@@ -1,4 +1,8 @@
-import { readBlockConfig, fetchPlaceholders } from '../../scripts/aem.js';
+import {
+  readBlockConfig,
+  fetchPlaceholders,
+  decorateButtons,
+} from '../../scripts/aem.js';
 import { getLocale } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
@@ -17,6 +21,7 @@ export default async function decorate(block) {
     headDiv.appendChild(h4);
     children.push(headDiv);
   }
+
   const imageDiv = document.createElement('div');
   imageDiv.classList.add('download-image');
   const picture = block.children[imgIdx].children[1].querySelector('picture');
@@ -26,20 +31,48 @@ export default async function decorate(block) {
   imageDiv.append(picture);
   children.push(imageDiv);
 
-  const ctaDiv = document.createElement('div');
-  ctaDiv.classList.add('download-cta');
-  const ctaP = document.createElement('p');
-  ctaP.classList.add('button-container');
-  const ctaStrong = document.createElement('strong');
-  const ctaA = document.createElement('a');
-  ctaA.classList.add('button');
-  ctaA.target = '_blank';
-  ctaA.href = cfg.download;
-  ctaA.textContent = downloadnow;
-  ctaStrong.appendChild(ctaA);
-  ctaP.appendChild(ctaStrong);
-  ctaDiv.appendChild(ctaP);
-  children.push(ctaDiv);
+  // ✅ Create consistent CTA structure
+  const originalCtaDiv = block.children[2];
+  if (originalCtaDiv) {
+    const originalLink = originalCtaDiv.querySelector('a');
+
+    if (originalLink) {
+      const newCtaDiv = document.createElement('div');
+      newCtaDiv.classList.add('download-cta');
+
+      const wrapperDiv = document.createElement('div');
+      const pElement = document.createElement('p');
+      pElement.classList.add('button-container');
+
+      const newLink = document.createElement('a');
+      newLink.href = originalLink.href;
+      newLink.title = originalLink.title;
+      newLink.setAttribute('aria-label', originalLink.getAttribute('aria-label') || originalLink.title);
+      newLink.target = originalLink.target || '_blank';
+      newLink.classList.add('button');
+
+      const originalClasses = originalLink.className.split(' ');
+      originalClasses.forEach((className) => {
+        if (className && className !== 'button') {
+          newLink.classList.add(className);
+        }
+      });
+
+      newLink.classList.add('secondary');
+      newLink.textContent = downloadnow;
+
+      const emElement = document.createElement('em');
+      emElement.appendChild(newLink);
+
+      pElement.appendChild(emElement);
+      wrapperDiv.appendChild(pElement);
+      newCtaDiv.appendChild(wrapperDiv);
+
+      children.push(newCtaDiv);
+    }
+  }
 
   block.replaceChildren(...children);
+
+  decorateButtons(block);
 }

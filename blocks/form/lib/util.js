@@ -1,8 +1,11 @@
 // create a string containing head tags from h1 to h5
 import { defaultErrorMessages } from '../constant.js';
+import { fetchPlaceholders } from '../../../scripts/aem.js';
+import { getLocale } from '../../../scripts/scripts.js';
 
 const headings = Array.from({ length: 5 }, (_, i) => `<h${i + 1}>`).join('');
 const allowedTags = `${headings}<a><b><p><i><em><strong><ul><li><ol>`;
+const ph = await fetchPlaceholders(`/${getLocale()}`);
 
 export function stripTags(input, allowd = allowedTags) {
   if (typeof input !== 'string') {
@@ -66,10 +69,11 @@ export function createLabel(fd, tagName = 'label') {
     const label = document.createElement(tagName);
     label.setAttribute('for', fd.id);
     label.className = 'field-label';
+    const labelValue = ph[fd.label.value?.toLowerCase()] || fd.label.value;
     if (fd.label.richText === true) {
-      label.innerHTML = stripTags(fd.label.value);
+      label.innerHTML = stripTags(labelValue);
     } else {
-      label.textContent = fd.label.value;
+      label.textContent = labelValue;
     }
     if (fd.label.visible === false) {
       label.dataset.visible = 'false';
@@ -111,13 +115,14 @@ export function createButton(fd) {
     wrapper.classList.add(`${fd?.buttonType}-wrapper`);
   }
   const button = document.createElement('button');
-  button.textContent = fd?.label?.visible === false ? '' : fd?.label?.value;
+  const buttonLabel = ph[fd?.label?.value?.toLowerCase()] || fd?.label?.value;
+  button.textContent = fd?.label?.visible === false ? '' : buttonLabel;
   button.type = fd.buttonType || 'button';
   button.classList.add('button');
   button.id = fd.id;
   button.name = fd.name;
   if (fd?.label?.visible === false) {
-    button.setAttribute('aria-label', fd?.label?.value || '');
+    button.setAttribute('aria-label', buttonLabel || '');
   }
   if (fd.enabled === false) {
     button.disabled = true;
@@ -239,10 +244,11 @@ export function checkValidation(fieldElement) {
 
 export function appendFragment(wrapper, value) {
   if (value) {
-    const fragmentUrl = new URL(value);
+    const fragmentUrl = new URL(ph[value.toLowerCase()] || value);
     const fragmentPath = fragmentUrl.pathname;
     const url = fragmentPath.endsWith('.html') ? fragmentPath.replace('.html', '.plain.html') : `${fragmentPath}.plain.html`;
-    fetch(url).then(async (resp) => {
+    const formsUrl = window.location.origin.includes('shredit.com') ? url : `https://main--shredit--stericycle.aem.live${url}`;
+    fetch(url.startsWith('/forms') ? formsUrl : `${window.location.origin}${url}`).then(async (resp) => {
       if (resp.ok) {
         wrapper.innerHTML = await resp.text();
         wrapper.querySelectorAll('a[href]').forEach((link) => {
