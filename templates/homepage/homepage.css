@@ -47,7 +47,7 @@ body.homepage.appear .hero.block .hero-background.mobile-only > img {
 
 @media (min-width: 992px) {
   body.homepage.appear .hero.block .hero-background.desktop-only img {
-    object-fit: fill;
+    object-fit: cover;
   }
 
   body.homepage.appear div.section.narrow.rounded-corners.tabs-container {
