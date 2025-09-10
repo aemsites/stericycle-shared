@@ -4,6 +4,9 @@
     <title>DA App SDK Sample</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" href="data:,">
+    <!-- Import DA SDK UI Components -->
+    <!-- <style>body {display: none;}</style> -->
+    <script src="https://da.live/nx/public/sl/components.js" type="module"></script>
     <!-- Import DA App SDK -->
     <script src="https://da.live/nx/utils/sdk.js" type="module"></script>
     <!-- Project App Logic -->
@@ -16,28 +19,28 @@
       <div class="input-group">
         <div class="input-field">
           <label for="rootPath">Root Path</label>
-          <input type="text" id="rootPath" placeholder="e.g. /herodigital/stericycle-shared/en-ca" value="/herodigital/stericycle-shared/en-ca" />
+          <sl-input type="text" id="rootPath" placeholder="e.g. /herodigital/stericycle-shared/en-ca" value="/herodigital/stericycle-shared/en-ca"></sl-input>
         </div>
         <div class="input-field">
           <label for="operation">Operation</label>
-          <select id="operation">
+          <sl-select id="operation">
             <option value="modify">Modify Existing Value</option>
             <option value="add">Add New Row</option>
             <option value="delete">Delete Row</option>
-          </select>
+          </sl-select>
         </div>
         <div class="input-field">
           <label for="metadataKey">Metadata Key</label>
-          <input type="text" id="metadataKey" placeholder="e.g. locale" />
+          <sl-input type="text" id="metadataKey" placeholder="e.g. locale"></sl-input>
         </div>
         <div class="input-field value-field">
           <label for="metadataValue">New Value</label>
-          <input type="text" id="metadataValue" placeholder="e.g. en-ca" />
+          <sl-input type="text" id="metadataValue" placeholder="e.g. en-ca"></sl-input>
         </div>
       </div>
       <div class="button-group">
-        <button id="dryRunButton">Dry Run</button>
-        <button id="updateBlocksButton">Update Blocks</button>
+        <sl-button id="dryRunButton">Dry Run</sl-button>
+        <sl-button id="updateBlocksButton">Update Blocks</sl-button>
       </div>
       <div id="dryRunResults" class="results-table" style="display: none;">
         <div class="results-summary"></div>
