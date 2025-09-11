@@ -12,9 +12,6 @@ let CURRENT_PAGE = 1;
 let CTA_TYPE = 'default';
 const facetsMap = new Map();
 
-console.log(luxon.DateTime.fromFormat("juin 13, 2025", 'MMMM dd, yyyy', { locale:'fr' }).valueOf());
-
-
 function capitalizePhrase(str) {
   return str.toLowerCase().replace(/\b\w+\b/g, (word) => {
     if (word.length === 1 && word !== 'i') {
@@ -360,6 +357,7 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
       image: post.image,
       path: post.path,
       type: post['media-type'],
+      rawDate: post.rawDate
     }))
     .filter((post) => allCheckedBoxes.length === 0 || filterTags(
       tempCheckedBoxes,
