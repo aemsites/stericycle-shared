@@ -3,9 +3,11 @@ import {
   createOptimizedPicture, decorateButtons, decorateIcon, fetchPlaceholders, readBlockConfig,
 } from '../../scripts/aem.js';
 import { div, h3, span } from '../../scripts/dom-helpers.js';
+import { luxon } from '../../ext-libs/luxon/luxon.min.js';
 
 const ITEMS_PER_PAGE = 10;
-const ph = await fetchPlaceholders(`/${getLocale()}`);
+const PAGE_LOCALE = getLocale();
+const ph = await fetchPlaceholders(`/${PAGE_LOCALE}`);
 let CURRENT_PAGE = 1;
 let CTA_TYPE = 'default';
 const facetsMap = new Map();
@@ -147,6 +149,12 @@ function createPaginationControls(totalPages, currentPage, ul, controls, sheet) 
  */
 const filterTags = (checkedBoxes, tags) => checkedBoxes.every((cbox) => tags.includes(cbox.value));
 
+function translateDates(posts, format, locale) {
+  posts.forEach((post) => {
+    post.date = luxon.DateTime.fromFormat(post.rawDate, format, { locale }).valueOf();
+  });
+}
+
 /*
     * This function gets the results from the query-index.json file based on sheet name
  */
@@ -154,13 +162,14 @@ async function getResults(sheets = []) {
   let sheetList = Array.isArray(sheets) ? sheets : [sheets];
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
-  const postArray = [];
   const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
     .all())).then((results) => results.flat());
-  posts.forEach((post) => {
-    postArray.push(post);
-  });
-  return postArray;
+
+  if (PAGE_LOCALE === 'fr-ca') {
+    translateDates(posts, 'MMMM dd, yyyy', 'fr');
+  }
+
+  return posts;
 }
 
 /*
@@ -349,7 +358,9 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
       post.tags,
     ))
     .all())).then((results) => results.flat());
-
+  if (PAGE_LOCALE === 'fr-ca') {
+    translateDates(posts, 'MMMM dd, yyyy', 'fr');
+  }
   posts.sort((a, b) => b.date - a.date);
 
   if (updateFacetsOrNot) {
