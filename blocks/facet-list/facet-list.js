@@ -154,7 +154,12 @@ const filterTags = (checkedBoxes, tags) => checkedBoxes.every((cbox) => tags.inc
 
 function translateDates(posts, format, locale) {
   posts.forEach((post) => {
-    post.date = luxon.DateTime.fromFormat(post.rawDate, format, { locale }).valueOf();
+    if (post.rawDate) {
+      const newDate = luxon.DateTime.fromFormat(post.rawDate, format, { locale });
+      if (!newDate.invalid) {
+        post.date = newDate.valueOf();
+      }
+    }
   });
 }
 
