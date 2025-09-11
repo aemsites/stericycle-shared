@@ -1,9 +1,9 @@
 import { createPostLink, formatDate, getDateFromExcel, getLocale, fetchQueryIndex } from '../../scripts/scripts.js';
 import {
-  createOptimizedPicture, decorateButtons, decorateIcon, fetchPlaceholders, readBlockConfig, loadScript,
+  createOptimizedPicture, decorateButtons, decorateIcon, fetchPlaceholders, readBlockConfig,
 } from '../../scripts/aem.js';
 import { div, h3, span } from '../../scripts/dom-helpers.js';
-import luxon from '../../ext-libs/luxon/luxon.min.js'
+import luxon from '../../ext-libs/luxon/luxon.min.js';
 
 const ITEMS_PER_PAGE = 10;
 const PAGE_LOCALE = getLocale();
@@ -64,7 +64,7 @@ function decorateResults(posts, list) {
     const dateDiv = document.createElement('div');
 
     dateDiv.classList.add('item-date');
-    dateDiv.innerText = formatDate(getDateFromExcel(post.date));
+    dateDiv.innerText = PAGE_LOCALE === 'fr-ca' ? new Date(post.date) : formatDate(getDateFromExcel(post.date));
 
     const img = createOptimizedPicture(post.image, post.title);
     itemLeft.append(img);
@@ -357,7 +357,7 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
       image: post.image,
       path: post.path,
       type: post['media-type'],
-      rawDate: post.rawDate
+      rawDate: post.rawDate,
     }))
     .filter((post) => allCheckedBoxes.length === 0 || filterTags(
       tempCheckedBoxes,
@@ -433,7 +433,6 @@ const createFacet = (facets, topDiv, sheets) => {
 };
 
 export default async function decorate(block) {
-
   const cfg = readBlockConfig(block);
   const cta = cfg.cta || 'default';
   const facets = await getFacets(cfg.sheet.split(','));
