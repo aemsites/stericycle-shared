@@ -1301,12 +1301,12 @@ main .section.contact-us-title > .default-content-wrapper {
     main .navy-background.cyan-border.two-column.form-container,
     main .hard-drive-background.two-column.form-container
     {
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         padding: 0;
         /* stylelint-disable */
         > .form-wrapper {
-            grid-row:   2;
+            order: 2;
         }
     }
 

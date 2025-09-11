@@ -12,9 +12,8 @@
 }
 
 main .section > div.hero-banner-wrapper {
-    margin-top: 0;
     margin-bottom: 0;
-    max-width: unset;
+    max-width: var(--section-width);
 }
 
 .hero-banner {
@@ -308,6 +307,10 @@ main .section > div.hero-banner-wrapper {
 
     .hero-banner-content-ctas {
         column-gap: 24px;
+    }
+
+    main .section > div.hero-banner-wrapper {
+        margin-top: 0;
     }
 
     main .section > div.hero-banner-wrapper:has(.masked-image-wrapper) {
