@@ -3,7 +3,7 @@ import {
   createOptimizedPicture, decorateButtons, decorateIcon, fetchPlaceholders, readBlockConfig,
 } from '../../scripts/aem.js';
 import { div, h3, span } from '../../scripts/dom-helpers.js';
-import { luxon } from '../../ext-libs/luxon/luxon.min.js';
+import { DateTime } from '../../ext-libs/luxon/luxon.min.js';
 
 const ITEMS_PER_PAGE = 10;
 const PAGE_LOCALE = getLocale();
@@ -151,7 +151,7 @@ const filterTags = (checkedBoxes, tags) => checkedBoxes.every((cbox) => tags.inc
 
 function translateDates(posts, format, locale) {
   posts.forEach((post) => {
-    post.date = luxon.DateTime.fromFormat(post.rawDate, format, { locale }).valueOf();
+    post.date = DateTime.fromFormat(post.rawDate, format, { locale }).valueOf();
   });
 }
 
