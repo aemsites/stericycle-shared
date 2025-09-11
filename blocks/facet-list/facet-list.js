@@ -64,7 +64,7 @@ function decorateResults(posts, list) {
     const dateDiv = document.createElement('div');
 
     dateDiv.classList.add('item-date');
-    dateDiv.innerText = PAGE_LOCALE === 'fr-ca' ? new Date(post.date) : formatDate(getDateFromExcel(post.date));
+    dateDiv.innerText = formatDate(PAGE_LOCALE === 'fr-ca' ? new Date(post.date) : getDateFromExcel(post.date));
 
     const img = createOptimizedPicture(post.image, post.title);
     itemLeft.append(img);
