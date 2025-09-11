@@ -1,9 +1,9 @@
 import { createPostLink, formatDate, getDateFromExcel, getLocale, fetchQueryIndex } from '../../scripts/scripts.js';
 import {
-  createOptimizedPicture, decorateButtons, decorateIcon, fetchPlaceholders, readBlockConfig,
+  createOptimizedPicture, decorateButtons, decorateIcon, fetchPlaceholders, readBlockConfig, loadScript,
 } from '../../scripts/aem.js';
 import { div, h3, span } from '../../scripts/dom-helpers.js';
-import { DateTime } from '../../ext-libs/luxon/luxon.min.js';
+import luxon from '../../ext-libs/luxon/luxon.min.js'
 
 const ITEMS_PER_PAGE = 10;
 const PAGE_LOCALE = getLocale();
@@ -11,6 +11,9 @@ const ph = await fetchPlaceholders(`/${PAGE_LOCALE}`);
 let CURRENT_PAGE = 1;
 let CTA_TYPE = 'default';
 const facetsMap = new Map();
+
+console.log(luxon.DateTime.fromFormat("juin 13, 2025", 'MMMM dd, yyyy', { locale:'fr' }).valueOf());
+
 
 function capitalizePhrase(str) {
   return str.toLowerCase().replace(/\b\w+\b/g, (word) => {
@@ -151,7 +154,7 @@ const filterTags = (checkedBoxes, tags) => checkedBoxes.every((cbox) => tags.inc
 
 function translateDates(posts, format, locale) {
   posts.forEach((post) => {
-    post.date = DateTime.fromFormat(post.rawDate, format, { locale }).valueOf();
+    post.date = luxon.DateTime.fromFormat(post.rawDate, format, { locale }).valueOf();
   });
 }
 
@@ -427,6 +430,7 @@ const createFacet = (facets, topDiv, sheets) => {
 };
 
 export default async function decorate(block) {
+
   const cfg = readBlockConfig(block);
   const cta = cfg.cta || 'default';
   const facets = await getFacets(cfg.sheet.split(','));
