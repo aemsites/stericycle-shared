@@ -73,7 +73,8 @@
 }
 
 .flip-cards > .wrapper > div .clamp-title {
-  max-height: calc(1.5em* 2);
+  max-height: calc(1.5em* 3);
+  height: auto !important;
   overflow: hidden;
   margin-bottom: 0;
 }
