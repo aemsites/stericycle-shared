@@ -87,7 +87,6 @@ const createCallback = (key, newValue, isDryRun = false, operation = 'modify') =
   // Die if not a document
   if (!item.path.endsWith('.html')) return;
 
-  // if (item.path !== '/herodigital/stericycle-shared/en-ca/about/media-contacts.html') return;
   const { token } = await DA_SDK;
   const opts = {
     headers: { Authorization: `Bearer ${token}` },
