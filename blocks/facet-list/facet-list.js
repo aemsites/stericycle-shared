@@ -64,7 +64,10 @@ function decorateResults(posts, list) {
     const dateDiv = document.createElement('div');
 
     dateDiv.classList.add('item-date');
-    dateDiv.innerText = formatDate(PAGE_LOCALE === 'fr-ca' ? new Date(post.date) : getDateFromExcel(post.date));
+    if (post.date) {
+      // Canada dates have a different format from US, the difference seems to be between SharePoint and DA
+      dateDiv.innerText = formatDate(PAGE_LOCALE === 'fr-ca' ? new Date(post.date) : getDateFromExcel(post.date));
+    }
 
     const img = createOptimizedPicture(post.image, post.title);
     itemLeft.append(img);
