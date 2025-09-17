@@ -326,8 +326,11 @@ h3, h4, h5, h6,
   line-height: 1.4;
 }
 
+#shreditcom-da-migration {
+  margin-top: 0;
+}
 h1, .heading-1 { font-size: var(--heading-font-size-xxl); }
-h2, .heading-2 { font-size: var(--heading-font-size-xl); }
+h2, .heading-2 { font-size: var(--heading-font-size-xl); margin-top: 120px; }
 h3, .heading-3 { font-size: var(--heading-font-size-l); }
 h4, .heading-4 { font-size: var(--heading-font-size-m); }
 h5, .heading-5 { font-size: var(--heading-font-size-s); }
