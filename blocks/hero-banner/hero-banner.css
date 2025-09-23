@@ -12,8 +12,9 @@
 }
 
 main .section > div.hero-banner-wrapper {
-    margin-bottom: 0;
-    max-width: var(--section-width);
+    margin: 0;
+    max-width: unset;
+    padding: 0;
 }
 
 .hero-banner {
@@ -37,7 +38,7 @@ main .section > div.hero-banner-wrapper {
 }
 
 .hero-banner-content-text {
-    padding: 16px;
+    padding: 2rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -234,7 +235,7 @@ main .section > div.hero-banner-wrapper {
     }
 
     .hero-banner-content-text {
-        padding: 24px 0;
+        padding: 2rem 4rem;
     }
 
     .hero-banner-content-text > * {
@@ -311,6 +312,7 @@ main .section > div.hero-banner-wrapper {
 
     main .section > div.hero-banner-wrapper {
         margin-top: 0;
+        max-width: 100%;
     }
 
     main .section > div.hero-banner-wrapper:has(.masked-image-wrapper) {
