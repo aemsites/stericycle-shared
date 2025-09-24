@@ -22,6 +22,7 @@ import * as domHelper from './dom-helpers.js';
 import ffetch from './ffetch.js';
 // eslint-disable-next-line import/no-cycle
 import { decorateCtaButtons, initMartech } from './martech.js';
+import luxon from '../ext-libs/luxon/luxon.min.js';
 
 export const BREAKPOINTS = {
   mobile: window.matchMedia('(max-width: 767px)'),
@@ -274,6 +275,17 @@ export async function getRelatedPosts(types, tags, limit) {
   const fetchResults = await Promise.all(sheets.map(async (sheet) => fetchQueryIndex(undefined, sheet).all()));
   fetchResults.forEach((fetchResult) => posts.push(...fetchResult));
   // this could become a performance problem with a huge volume of posts
+  if (getLocale() === 'fr-ca') {
+    posts.forEach((post) => {
+      if (post.rawDate) {
+        const newDate = luxon.DateTime.fromFormat(post.rawDate, 'MMMM dd, yyyy', { locale: 'fr' });
+        if (!newDate.invalid) {
+          post.date = newDate.valueOf();
+        }
+      }
+    });
+  }
+
   posts = posts.sort((a, b) => b.date - a.date);
 
   // filter posts by tags
