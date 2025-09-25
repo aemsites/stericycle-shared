@@ -6,6 +6,10 @@
   background-color: transparent;
 }
 
+.section.banner-container > .banner-wrapper:empty {
+  margin: 0 !important;
+}
+
 .block.banner {
   display: flex;
   position: relative;
