@@ -3,9 +3,11 @@ import {
   createOptimizedPicture, decorateButtons, decorateIcon, fetchPlaceholders, readBlockConfig,
 } from '../../scripts/aem.js';
 import { div, h3, span } from '../../scripts/dom-helpers.js';
+import luxon from '../../ext-libs/luxon/luxon.min.js';
 
 const ITEMS_PER_PAGE = 10;
-const ph = await fetchPlaceholders(`/${getLocale()}`);
+const PAGE_LOCALE = getLocale();
+const ph = await fetchPlaceholders(`/${PAGE_LOCALE}`);
 let CURRENT_PAGE = 1;
 let CTA_TYPE = 'default';
 const facetsMap = new Map();
@@ -62,7 +64,10 @@ function decorateResults(posts, list) {
     const dateDiv = document.createElement('div');
 
     dateDiv.classList.add('item-date');
-    dateDiv.innerText = formatDate(getDateFromExcel(post.date));
+    if (post.date) {
+      // Canada dates have a different format from US, the difference seems to be between SharePoint and DA
+      dateDiv.innerText = formatDate(PAGE_LOCALE === 'fr-ca' ? new Date(post.date) : getDateFromExcel(post.date));
+    }
 
     const img = createOptimizedPicture(post.image, post.title);
     itemLeft.append(img);
@@ -147,6 +152,17 @@ function createPaginationControls(totalPages, currentPage, ul, controls, sheet) 
  */
 const filterTags = (checkedBoxes, tags) => checkedBoxes.every((cbox) => tags.includes(cbox.value));
 
+function translateDates(posts, format, locale) {
+  posts.forEach((post) => {
+    if (post.rawDate) {
+      const newDate = luxon.DateTime.fromFormat(post.rawDate, format, { locale });
+      if (!newDate.invalid) {
+        post.date = newDate.valueOf();
+      }
+    }
+  });
+}
+
 /*
     * This function gets the results from the query-index.json file based on sheet name
  */
@@ -154,13 +170,14 @@ async function getResults(sheets = []) {
   let sheetList = Array.isArray(sheets) ? sheets : [sheets];
   sheetList = sheetList.map((sheet) => String(sheet.trim()));
 
-  const postArray = [];
   const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
     .all())).then((results) => results.flat());
-  posts.forEach((post) => {
-    postArray.push(post);
-  });
-  return postArray;
+
+  if (PAGE_LOCALE === 'fr-ca') {
+    translateDates(posts, 'MMMM dd, yyyy', 'fr');
+  }
+
+  return posts;
 }
 
 /*
@@ -343,13 +360,16 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
       image: post.image,
       path: post.path,
       type: post['media-type'],
+      rawDate: post.rawDate,
     }))
     .filter((post) => allCheckedBoxes.length === 0 || filterTags(
       tempCheckedBoxes,
       post.tags,
     ))
     .all())).then((results) => results.flat());
-
+  if (PAGE_LOCALE === 'fr-ca') {
+    translateDates(posts, 'MMMM dd, yyyy', 'fr');
+  }
   posts.sort((a, b) => b.date - a.date);
 
   if (updateFacetsOrNot) {

@@ -88,7 +88,7 @@ function addPost(list, ctaType, post, isLoading) {
   const dateSpan = document.createElement('span');
 
   dateSpan.classList.add('teaser-date');
-  dateSpan.textContent = formatDate(getDateFromExcel(post.date));
+  dateSpan.textContent = formatDate(getLocale() === 'fr-ca' ? new Date(post.date) : getDateFromExcel(post.date));
 
   dateAnchor.append(dateSpan);
   eyebrowWrapper.append(dateAnchor);
