@@ -15,6 +15,8 @@ export default async function decorateUTM(form) {
   const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
+  const referrerUrl = document.referrer.match(/:\/\/(.[^/]+)/)[1];
+
   utmParams.forEach((item) => {
     let utmValue = urlParams.get(item);
     const now = new Date();
@@ -34,12 +36,13 @@ export default async function decorateUTM(form) {
     } else if (item === 'utm_medium' || item === 'utm_source') {
       // Check if utm_medium or utm_source can be determined from the referrer
       if (utmSources && document.referrer) {
-        const url = document.referrer.match(/:\/\/(.[^/]+)/)[1];
-        if (utmSources.includes(url)) {
+        if (utmSources.includes(referrerUrl)) {
           utmValue = item === 'utm_medium' ? 'organic' : document.referrer;
-          document.cookie = `${item}=${utmValue}; path=/; expires=${now.toUTCString()}`;
-          createUtmInput(item, utmValue, form); // Create input dynamically from referrer
+        } else {
+          utmValue = item === 'utm_medium' ? 'referral' : document.referrer;
         }
+        document.cookie = `${item}=${utmValue}; path=/; expires=${now.toUTCString()}`;
+        createUtmInput(item, utmValue, form); // Create input dynamically from referrer
       }
     }
   });
