@@ -15,7 +15,7 @@ export default async function decorateUTM(form) {
   const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const referrerUrl = document.referrer.match(/:\/\/(.[^/]+)/)[1];
+  const referrerUrl = document.referrer && document.referrer.match(/:\/\/(.[^/]+)/)[1];
 
   utmParams.forEach((item) => {
     let utmValue = urlParams.get(item);
@@ -35,7 +35,7 @@ export default async function decorateUTM(form) {
       createUtmInput(item, utmValue, form); // Create input dynamically using cookie value
     } else if (item === 'utm_medium' || item === 'utm_source') {
       // Check if utm_medium or utm_source can be determined from the referrer
-      if (utmSources && document.referrer) {
+      if (utmSources && referrerUrl) {
         if (utmSources.includes(referrerUrl)) {
           utmValue = item === 'utm_medium' ? 'organic' : document.referrer;
         } else {
