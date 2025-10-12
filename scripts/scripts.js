@@ -182,6 +182,23 @@ export const haversineDistance = (lat1, lon1, lat2, lon2) => {
 };
 
 /**
+ * Formats distance based on locale
+ * @param {number} distanceInKm - Distance in kilometers
+ * @returns {string} Formatted distance string with appropriate unit
+ */
+export const formatDistance = (distanceInKm) => {
+  const MILES_LOCALES = ['en-us'];
+  const currentLocale = getLocale();
+
+  if (MILES_LOCALES.includes(currentLocale)) {
+    const miles = Math.round(distanceInKm * 0.621371);
+    return `${miles} mi`;
+  }
+
+  return `${Math.round(distanceInKm)} km`;
+};
+
+/**
  * Fetch the query index sheet.
  * @param {string} [locale] sheet locale (uses current page locale none is supplied)
  * @returns {*} fetched query index
