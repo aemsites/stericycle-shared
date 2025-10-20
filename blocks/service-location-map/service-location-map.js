@@ -17,7 +17,7 @@ import {
   readBlockConfig,
 } from '../../scripts/aem.js';
 import usStates from './us-states.js';
-import { decorateAnchors, fetchQueryIndex, getLocale, haversineDistance } from '../../scripts/scripts.js';
+import { decorateAnchors, fetchQueryIndex, getLocale, haversineDistance, formatDistance } from '../../scripts/scripts.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
 
 let map = null;
@@ -52,7 +52,7 @@ const locDivCreation = (location, ph) => {
   }
 
   locationDiv.appendChild(
-    p({ class: 'distance' }, `${location.distance} km`),
+    p({ class: 'distance' }, formatDistance(location.distance)),
   );
 
   if (location['opening-hours']) {
