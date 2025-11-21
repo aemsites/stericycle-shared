@@ -22,6 +22,26 @@ function capitalizePhrase(str) {
 }
 
 /*
+  * Helper function to fetch the query-index.json file
+  * @param {string} param - The name of the query parameter to get
+*/
+function getQueryParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+/**
+ * * Helper function to set query parameters
+ * @param {string} param - The name of the query parameter to set
+ * @param {string} value - The value to set for the query parameter
+ */
+function setQueryParam(param, value) {
+  const url = new URL(window.location.href);
+  url.searchParams.set(param, value);
+  window.history.replaceState({}, '', url);
+}
+
+/*
     * This function decorates the results from the query-index.json file
  */
 function decorateResults(posts, list) {
@@ -124,6 +144,7 @@ function createPaginationControls(totalPages, currentPage, ul, controls, sheet) 
   buttonPrev.disabled = currentPage === 1;
   buttonPrev.addEventListener('click', () => {
     CURRENT_PAGE -= 1;
+    setQueryParam('page', CURRENT_PAGE); // Update the query parameter
     // eslint-disable-next-line no-use-before-define
     updateResults(null, sheet, CURRENT_PAGE);
   });
@@ -135,6 +156,7 @@ function createPaginationControls(totalPages, currentPage, ul, controls, sheet) 
   buttonNext.disabled = currentPage === totalPages;
   buttonNext.addEventListener('click', () => {
     CURRENT_PAGE += 1;
+    setQueryParam('page', CURRENT_PAGE); // Update the query parameter
     // eslint-disable-next-line no-use-before-define
     updateResults(null, sheet, CURRENT_PAGE);
   });
@@ -348,6 +370,13 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
       .every((cls) => checkboxChangeParentClassList.includes(cls)) : false;
     return !allClassesMatch;
   });
+
+  if (checkboxChange) {
+    // Reset pagination when a filter changes
+    CURRENT_PAGE = 1 || page;
+    setQueryParam('page', CURRENT_PAGE);
+  }
+
   if (checkboxChange && checkboxChange.checked) {
     tempCheckedBoxes.push(checkboxChange);
   }
@@ -377,7 +406,7 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
   }
 
   const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
-  const start = (page - 1) * ITEMS_PER_PAGE;
+  const start = (CURRENT_PAGE - 1) * ITEMS_PER_PAGE;
   const end = start + ITEMS_PER_PAGE;
   const paginatedPosts = posts.slice(start, end);
 
@@ -386,7 +415,7 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
   decorateResults(paginatedPosts, flc, sheetList.join(', '));
 
   const paginationControls = document.querySelector('div.pagination-controls');
-  createPaginationControls(totalPages, page, flc, paginationControls, sheetList.join(', '));
+  createPaginationControls(totalPages, CURRENT_PAGE, flc, paginationControls, sheetList.join(', '));
 
   if (checkboxChange) {
     const checkboxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]');
@@ -475,5 +504,10 @@ export default async function decorate(block) {
   const paginationControls = document.createElement('div');
   paginationControls.classList.add('pagination-controls');
   blogFilterContainer.insertAdjacentElement('afterend', paginationControls);
+
+  // Get the initial page from the query parameter
+  const initialPage = parseInt(getQueryParam('page'), 10) || 1;
+  CURRENT_PAGE = initialPage;
+
   await updateResults(null, cfg.sheet, CURRENT_PAGE);
 }
