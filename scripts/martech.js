@@ -1,6 +1,7 @@
 import { getMetadata, loadScript } from './aem.js';
 // eslint-disable-next-line import/no-cycle
 import { getLocaleAsBCP47 } from './scripts.js';
+import { getOneTrustConfig } from './otconfing.js';
 
 function initDataLayer() {
   let author = '';
@@ -121,7 +122,7 @@ export async function initMartech(env) {
 }
 
 export async function addCookieBanner() {
-  const token = getMetadata('cookie-banner-token');
+  const token = getOneTrustConfig(window.location.href).domainScript;
   if (!token || token.trim() === '') {
     return; // no token -> no cookie banner
   }
