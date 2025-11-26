@@ -1,7 +1,7 @@
 import { getMetadata, loadScript } from './aem.js';
 // eslint-disable-next-line import/no-cycle
 import { getLocaleAsBCP47 } from './scripts.js';
-import { getOneTrustConfig } from './otconfing.js';
+import getOneTrustConfig from './otconfing.js';
 
 function initDataLayer() {
   let author = '';
