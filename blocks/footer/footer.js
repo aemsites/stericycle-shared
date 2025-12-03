@@ -8,6 +8,7 @@ import { buildBreadcrumb, buildCompanyLogo, createCountrySelector, createMenuAcc
  */
 export default async function decorate(block) {
   const locale = getMetadata('locale') || 'en-us';
+  const noSocialIcons = ['fr-ca'];
   // load footer as fragment
   const footerMeta = getMetadata('footer')?.toLowerCase();
   const navMeta = getMetadata('nav');
@@ -29,6 +30,10 @@ export default async function decorate(block) {
   if (companyLogo) {
     const logo = buildCompanyLogo();
     companyLogo.prepend(logo);
+    if (noSocialIcons.includes(locale)) {
+      const socialIcons = companyLogo.querySelector('ul');
+      socialIcons?.remove();
+    }
   }
   // Build country selector
   const countrySelector = fragment.querySelector('.section.footer-countries');
