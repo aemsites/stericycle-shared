@@ -351,10 +351,11 @@ main .section.two-column {
     margin: 2rem auto;
     padding: 0 1.5rem;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 main .section.two-column > div {
-    flex-basis: 50%;
+    flex-basis: 90%;
     margin: 0 1rem;
 }
 
@@ -668,6 +669,16 @@ a.button.secondary.dark, button.secondary.dark {
 
   a.button.primary, button.primary, a.button.secondary, button.secondary {
     font-size: 16px;
+  }
+  
+  main .section.two-column {
+      flex-wrap: nowrap;
+      justify-content: center;
+  }
+  
+  main .section.two-column > div {
+      flex-basis: 50%;
+      margin: 0 1rem;
   }
 }
 
