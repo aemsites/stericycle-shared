@@ -3,7 +3,7 @@
  * Recreate an accordion
  * https://www.hlx.live/developer/block-collection/accordion
  */
-import { decorate as embed } from '../embed/embed.js';
+import embed from '../embed/embed.js';
 import { addJsonLd } from '../../scripts/scripts.js';
 
 function hasWrapper(el) {

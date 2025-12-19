@@ -4,12 +4,18 @@
  * https://www.hlx.live/developer/block-collection/embed
  */
 
-const loadScript = (url, callback, type) => {
+const loadScript = (url, callback, attrs) => {
   const head = document.querySelector('head');
   const script = document.createElement('script');
   script.src = url;
-  if (type) {
-    script.setAttribute('type', type);
+  if (attrs) {
+    if (typeof attrs === 'string') {
+      script.setAttribute('type', attrs);
+    } else {
+      Object.entries(attrs).forEach(([key, value]) => {
+        script.setAttribute(key, value);
+      });
+    }
   }
   script.onload = callback;
   head.append(script);
@@ -89,9 +95,42 @@ const loadEmbed = (block, link, autoplay) => {
 };
 
 export default function decorate(block) {
+  const contentCell = block.querySelector(':scope > div > div');
+  if (!contentCell) return;
+
+  // AEM sanitizes pasted HTML, so we must read the text content.
+  const potentialHtml = contentCell.textContent.trim();
+
+  // Check if the text content is our raw HTML snippet.
+  if (potentialHtml.startsWith('<script')) {
+    // Re-render the text content as live HTML.
+    block.innerHTML = potentialHtml;
+
+    // Scripts inserted via innerHTML do not execute by default. We must recreate them.
+    Array.from(block.querySelectorAll('script')).forEach((oldScript) => {
+      const newScript = document.createElement('script');
+      // Copy all attributes (e.g., src, async, type).
+      Array.from(oldScript.attributes).forEach((attr) => {
+        newScript.setAttribute(attr.name, attr.value);
+      });
+      // Copy any inline script content.
+      if (oldScript.innerHTML) {
+        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      }
+      // Replace the old, non-executable script with the new, executable one.
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    return; // Stop further processing.
+  }
+
+  // --- Original logic for link-based embeds (if no script was found) ---
   const placeholder = block.querySelector('picture');
-  const link = block.querySelector('a').href;
-  block.textContent = '';
+  const linkEl = block.querySelector('a');
+  if (!linkEl) {
+    return;
+  }
+  const link = linkEl.href;
+  block.textContent = ''; // Clear the block for the iframe/placeholder.
 
   if (placeholder) {
     const wrapper = document.createElement('div');
@@ -112,5 +151,3 @@ export default function decorate(block) {
     observer.observe(block);
   }
 }
-
-export { decorate };
