@@ -44,21 +44,21 @@ export default async function decorateUTM(form) {
     if (utmValue != null && utmValue !== '') {
       createUtmInput(item, utmValue, form);
       document.cookie = `${item}=${utmValue}; path=/; expires=${now.toUTCString()}`;
-      hasMediium = true;
+      hasMediium = item === 'utm_medium' ? true : hasMediium;
     } else if (document.cookie.split('; ').find((row) => row.startsWith(`${item}=`))) {
       // eslint-disable-next-line prefer-destructuring
       utmValue = document.cookie.split('; ')
         .find((row) => row.startsWith(`${item}=`))
         .split('=')[1];
       createUtmInput(item, utmValue, form); // Create input dynamically using cookie value
-      hasMediium = true;
+      hasMediium = item === 'utm_medium' ? true : hasMediium;
     }
   }
 
   if (!hasMediium) {
     const ecid = await getECID();
     if (ecid) {
-      createUtmInput('utm_source', ecid, form);
+      createUtmInput('utm_content', ecid, form);
     }
   }
 }
