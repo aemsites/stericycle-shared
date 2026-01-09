@@ -5,6 +5,11 @@
     margin: 32px auto;
 }
 
+.no-margin-vertical .embed {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .embed > div {
     display: flex;
     justify-content: center;
