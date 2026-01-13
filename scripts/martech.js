@@ -126,7 +126,8 @@ export async function addCookieBanner() {
   if ((!token || token.trim() === '' ) && (!scriptUrl || scriptUrl.trim() === '')) {
     return; // no config -> no cookie banner
   }
-  await loadScript(otConfig.script, { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': otConfig.domainScript });
+  await loadScript(otConfig.script, { type: 'text/javascript'});
+  await loadScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js', { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': otConfig.domainScript });
 }
 
 /**
