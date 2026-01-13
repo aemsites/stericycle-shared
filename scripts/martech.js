@@ -122,11 +122,11 @@ export async function initMartech(env) {
 }
 
 export async function addCookieBanner() {
-  const token = getOneTrustConfig(window.location.href).domainScript;
-  if (!token || token.trim() === '') {
-    return; // no token -> no cookie banner
+  const otConfig = getOneTrustConfig(window.location.href);
+  if ((!token || token.trim() === '' ) && (!scriptUrl || scriptUrl.trim() === '')) {
+    return; // no config -> no cookie banner
   }
-  await loadScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js', { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': token });
+  await loadScript(otConfig.script, { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': otConfig.domainScript });
 }
 
 /**
