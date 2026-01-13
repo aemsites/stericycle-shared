@@ -2,8 +2,8 @@ export default function getOneTrustConfig(pageUrl) {
   const otConfigMap = [
     {
       pattern: /^https?:\/\/(www\.)?shredit\.com(\/|$)/,
-      domainScript: 'https://cdn.cookielaw.org/consent/94a9f9f7-2ccd-4f46-b1a1-d11d479ed08c/OtAutoBlock.js',
-      script: ''
+      domainScript: '94a9f9f7-2ccd-4f46-b1a1-d11d479ed08c',
+      script: 'https://cdn.cookielaw.org/consent/94a9f9f7-2ccd-4f46-b1a1-d11d479ed08c/OtAutoBlock.js'
     },
     {
       pattern: /^https?:\/\/dev-us\.shredit\.com(\/|$)/,
