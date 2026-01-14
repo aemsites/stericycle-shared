@@ -374,6 +374,7 @@ main .section > div.hero-banner-wrapper {
 
     .hero-banner-form.hero-banner-container.form-container {
         gap: 120px !important;
+        max-width: 100%;
     }
 }
 
