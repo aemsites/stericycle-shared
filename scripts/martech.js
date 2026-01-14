@@ -123,7 +123,7 @@ export async function initMartech(env) {
 
 export async function addCookieBanner() {
   const otConfig = getOneTrustConfig(window.location.href);
-  if ((!token || token.trim() === '' ) && (!scriptUrl || scriptUrl.trim() === '')) {
+  if (otConfig) {
     return; // no config -> no cookie banner
   }
   await loadScript(otConfig.script, { type: 'text/javascript'});
