@@ -18,7 +18,7 @@ export const defaultErrorMessages = {
 
 // eslint-disable-next-line no-useless-escape
 export const emailPattern = '([A-Za-z0-9][_.\\-]?)+[A-Za-z0-9]@[A-Za-z0-9\.]+(\.?[A-Za-z0-9]){2}\.([A-Za-z0-9]{2,4})?';
-let submitBaseUrl = 'https://shredit.com/en-us';
+let submitBaseUrl = 'https://dev-us.shredit.com/en-us';
 
 const RECAPTCHA_KEYS = {
   'www.shredit.com': '6LfrVLIaAAAAAAXITOp0kZDmKaUjciDyodYVm3id',
