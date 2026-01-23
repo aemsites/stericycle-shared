@@ -1,3 +1,5 @@
+import { loadScript } from './aem.js';
+
 export default function getOneTrustConfig(pageUrl) {
   const otConfigMap = [
     {
@@ -16,3 +18,11 @@ export default function getOneTrustConfig(pageUrl) {
   if (matched) return matched;
   return otConfigMap[0]; // default config
 }
+
+async function addCookieBanner() {
+  const otConfig = getOneTrustConfig(window.location.href);
+  await loadScript(otConfig.script, { type: 'text/javascript' });
+  await loadScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js', { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': otConfig.domainScript });
+}
+
+await addCookieBanner();
