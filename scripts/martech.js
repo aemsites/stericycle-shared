@@ -1,7 +1,6 @@
 import { getMetadata, loadScript } from './aem.js';
 // eslint-disable-next-line import/no-cycle
 import { getLocaleAsBCP47 } from './scripts.js';
-import getOneTrustConfig from './otconfing.js';
 
 function initDataLayer() {
   let author = '';
@@ -119,12 +118,6 @@ export async function initMartech(env) {
   await initAdobeDataLayer();
   await initLaunch(env);
   await cmpLoaded();
-}
-
-export async function addCookieBanner() {
-  const otConfig = getOneTrustConfig(window.location.href);
-  await loadScript(otConfig.script, { type: 'text/javascript'});
-  await loadScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js', { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': otConfig.domainScript });
 }
 
 /**
