@@ -98,7 +98,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-ca/service-update</loc>
-    <lastmod>2025-07-10</lastmod>
+    <lastmod>2026-01-26</lastmod>
   </url>
   <url>
     <loc>https://www.shredit.com/en-ca/secure-shredding-services/myshredit</loc>
@@ -2723,5 +2723,9 @@
   <url>
     <loc>https://www.shredit.com/en-ca/blog/shredding-vs-burning-documents</loc>
     <lastmod>2026-01-08</lastmod>
+  </url>
+  <url>
+    <loc>https://www.shredit.com/en-ca/fragments/banner-fragment</loc>
+    <lastmod>2026-01-26</lastmod>
   </url>
 </urlset>
