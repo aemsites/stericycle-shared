@@ -9,8 +9,8 @@ export default function getOneTrustConfig(pageUrl) {
     },
     {
       pattern: /^https?:\/\/dev-us\.shredit\.com(\/|$)/,
-      domainScript: '94a9f9f7-2ccd-4f46-b1a1-d11d479ed08c-test',
-      script: 'https://cdn.cookielaw.org/consent/94a9f9f7-2ccd-4f46-b1a1-d11d479ed08c-test/OtAutoBlock.js',
+      domainScript: '01d321a2-a334-4d0d-929a-54a02223a1dc',
+      script: 'https://cdn.cookielaw.org/consent/01d321a2-a334-4d0d-929a-54a02223a1dc/OtAutoBlock.js"',
     },
   ];
 
@@ -23,6 +23,7 @@ async function addCookieBanner() {
   const otConfig = getOneTrustConfig(window.location.href);
   await loadScript(otConfig.script, { type: 'text/javascript' });
   await loadScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js', { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': otConfig.domainScript });
+  window.OptanonWrapper = function() {};
 }
 
 await addCookieBanner();
