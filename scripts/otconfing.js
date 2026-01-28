@@ -10,7 +10,7 @@ export default function getOneTrustConfig(pageUrl) {
     {
       pattern: /^https?:\/\/dev-us\.shredit\.com(\/|$)/,
       domainScript: '01d321a2-a334-4d0d-929a-54a02223a1dc',
-      script: 'https://cdn.cookielaw.org/consent/01d321a2-a334-4d0d-929a-54a02223a1dc/OtAutoBlock.js"',
+      script: 'https://cdn.cookielaw.org/consent/01d321a2-a334-4d0d-929a-54a02223a1dc/OtAutoBlock.js',
     },
   ];
 
