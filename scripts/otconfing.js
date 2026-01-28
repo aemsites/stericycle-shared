@@ -9,8 +9,8 @@ export default function getOneTrustConfig(pageUrl) {
     },
     {
       pattern: /^https?:\/\/dev-us\.shredit\.com(\/|$)/,
-      domainScript: '94a9f9f7-2ccd-4f46-b1a1-d11d479ed08c-test',
-      script: 'https://cdn.cookielaw.org/consent/94a9f9f7-2ccd-4f46-b1a1-d11d479ed08c-test/OtAutoBlock.js',
+      domainScript: '01d321a2-a334-4d0d-929a-54a02223a1dc',
+      script: 'https://cdn.cookielaw.org/consent/01d321a2-a334-4d0d-929a-54a02223a1dc/OtAutoBlock.js"',
     },
   ];
 
