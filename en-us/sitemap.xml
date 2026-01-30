@@ -2805,7 +2805,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/fragments/banner-fragment</loc>
-    <lastmod>2026-01-26</lastmod>
+    <lastmod>2026-01-29</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/fragments/banner-fragment"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/fragments/banner-fragment"/>
   </url>
@@ -4837,7 +4837,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/service-update</loc>
-    <lastmod>2026-01-26</lastmod>
+    <lastmod>2026-01-29</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-update"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-update"/>
   </url>
@@ -5021,5 +5021,11 @@
     <lastmod>2026-01-06</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/blog/shredding-vs-burning-documents"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/blog/shredding-vs-burning-documents"/>
+  </url>
+  <url>
+    <loc>https://www.shredit.com/en-us/fragments/trusted-for-secure-data-destruction</loc>
+    <lastmod>2026-01-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/fragments/trusted-for-secure-data-destruction"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/fragments/trusted-for-secure-data-destruction"/>
   </url>
 </urlset>
