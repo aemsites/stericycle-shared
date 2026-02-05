@@ -201,26 +201,27 @@
   margin-right: 8px;
   color: var(--color-white);
 }
-
-button.fa-chevron-left,
-button.fa-chevron-right {
-  box-sizing: border-box;
-  position: relative;
-  display: none; /* Hide the button element */
-  transform: scale(var(--ggs, 1));
-  width: 22px;
-  text-decoration: unset;
-  border: unset;
-  padding: unset;
-  line-height: unset;
-  text-align: unset;
-  font-style: unset;
-  font-weight: unset;
-  cursor: pointer;
-  color: unset;
-  background-color: unset;
-  white-space: nowrap;
-  overflow: unset;
-  text-overflow: unset;
-  border-radius: unset;
+.block.banner { 
+    button.fa-chevron-left,
+    button.fa-chevron-right {
+    box-sizing: border-box;
+    position: relative;
+    display: none; /* Hide the button element */
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    text-decoration: unset;
+    border: unset;
+    padding: unset;
+    line-height: unset;
+    text-align: unset;
+    font-style: unset;
+    font-weight: unset;
+    cursor: pointer;
+    color: unset;
+    background-color: unset;
+    white-space: nowrap;
+    overflow: unset;
+    text-overflow: unset;
+    border-radius: unset;
+    }
 }
