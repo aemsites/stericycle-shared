@@ -2590,7 +2590,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-ca/service-locations/montreal</loc>
-    <lastmod>2025-08-04</lastmod>
+    <lastmod>2026-02-04</lastmod>
   </url>
   <url>
     <loc>https://www.shredit.com/en-ca/service-locations/cambridge</loc>
@@ -2614,7 +2614,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-ca/service-locations/moncton</loc>
-    <lastmod>2025-08-04</lastmod>
+    <lastmod>2026-02-04</lastmod>
   </url>
   <url>
     <loc>https://www.shredit.com/en-ca/service-locations/stoney-creek</loc>
@@ -2735,5 +2735,9 @@
   <url>
     <loc>https://www.shredit.com/en-ca/blog/schedule-one-time-purge-shred</loc>
     <lastmod>2026-02-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.shredit.com/en-ca/blog/moving-offices-one-time-purge-shred</loc>
+    <lastmod>2026-02-04</lastmod>
   </url>
 </urlset>
