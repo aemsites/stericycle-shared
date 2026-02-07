@@ -4837,7 +4837,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/service-update</loc>
-    <lastmod>2026-02-03</lastmod>
+    <lastmod>2026-02-06</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-update"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-update"/>
   </url>
@@ -5033,5 +5033,23 @@
     <lastmod>2026-01-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/blog/moving-offices-one-time-purge-shred"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/blog/moving-offices-one-time-purge-shred"/>
+  </url>
+  <url>
+    <loc>https://www.shredit.com/en-us/materials-acceptance-policy</loc>
+    <lastmod>2026-02-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/materials-acceptance-policy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/materials-acceptance-policy"/>
+  </url>
+  <url>
+    <loc>https://www.shredit.com/en-us/service-locations/san-jose</loc>
+    <lastmod>2026-02-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/san-jose"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/san-jose"/>
+  </url>
+  <url>
+    <loc>https://www.shredit.com/en-us/service-locations/san-francisco</loc>
+    <lastmod>2026-02-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/san-francisco"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/san-francisco"/>
   </url>
 </urlset>
