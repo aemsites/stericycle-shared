@@ -535,12 +535,26 @@ main .form .button-wrapper button:hover {
     border: 2px solid var(--form-button-background-color);
 }
 
+ main .form .button-wrapper.submit-wrapper .required-fields-label {
+    color: var(--color-text-primary);
+    font-size: 14px;
+    letter-spacing: 0.14px;
+    margin-top: 24px;
+    margin-bottom: 16px;
+}
+
+main .section.hero-banner-container .form .button-wrapper.submit-wrapper .required-fields-label {
+    margin-top: 16px;
+}
+
 main .form .button-wrapper.wizard-button-next button, main .form .button-wrapper.submit-wrapper button{
     background-color: var(--color-secondary-4);
     border: none;
     outline: 1px solid var(--color-bg-secondary);
     color: var(--color-text-primary);
     margin-left: auto;
+    margin-bottom: 16px;
+    margin-top: 16px;
 }
 
 main .form .button-wrapper button[disabled], main .form .button-wrapper.wizard-button-next button:disabled {
