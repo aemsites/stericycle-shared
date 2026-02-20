@@ -4,6 +4,10 @@
   font-size: 0.75rem;
 }
 
+.text-container li {
+    list-style-type: disc;
+}
+
 @media screen and (min-width: 1920px) {
   main .section.full-width.text-container .text-wrapper {
     max-width: var(--content-width-xxxl);
