@@ -22,7 +22,7 @@ import { sendDigitalDataEvent } from '../../scripts/martech.js';
 
 let map = null;
 
-const getAccessToken = () => 'pk.eyJ1Ijoic3RlcmljeWNsZSIsImEiOiJjbDNhZ3M5b3AwMWphM2RydWJobjY3ZmxmIn0.xt2cRdtjXnnZXXXLt3bOlQ';
+const getAccessToken = () => 'pk.eyJ1IjoiY29saW4tdmxhc2FrIiwiYSI6ImNtbTJlZDk1NjA3YzgyeHEyaHcycjRsOHAifQ.l8VGncsCvMaPyEpwkCSPPg';
 
 const locDivCreation = (location, ph) => {
   const locationDiv = div(
