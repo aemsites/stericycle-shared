@@ -17,6 +17,7 @@ import {
   loadBlock,
   loadSection,
   fetchPlaceholders,
+  loadScript,
 } from './aem.js';
 import * as domHelper from './dom-helpers.js';
 import ffetch from './ffetch.js';
@@ -902,6 +903,10 @@ async function loadEager(doc) {
   }
   setWebPageJsonLd(doc);
   fetchAndSetCustomJsonLd(doc);
+  loadScript(
+    'https://www.google.com/recaptcha/api.js?render=6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2',
+    { async: '', type: 'text/plain', class: 'optanon-category-C0001' },
+  );
 
   try {
     /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
