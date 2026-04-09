@@ -452,7 +452,6 @@ export async function createForm(formDef, data, {
   if (captchaField || googleReCaptchaKey) {
     const siteKey = captchaField?.properties?.['fd:captcha']?.config?.siteKey || captchaField?.value;
     captcha = new GoogleReCaptcha(siteKey || googleReCaptchaKey, captchaField?.id);
-    captcha.loadCaptcha(form);
   }
 
   enableValidation(form);
