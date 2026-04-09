@@ -24,6 +24,7 @@ import ffetch from './ffetch.js';
 // eslint-disable-next-line import/no-cycle
 import { decorateCtaButtons, initMartech } from './martech.js';
 import luxon from '../ext-libs/luxon/luxon.min.js';
+import { googleReCaptchaKey } from '../blocks/form/constant.js';
 
 export const BREAKPOINTS = {
   mobile: window.matchMedia('(max-width: 767px)'),
@@ -872,6 +873,17 @@ export function decorateMain(main) {
   rewriteLinks(main);
 }
 
+function loadCaptcha() {
+  const url = `https://www.google.com/recaptcha/api.js?render=${googleReCaptchaKey}`;
+  const head = document.head || document.querySelector('head');
+  const script = document.createElement('script');
+  script.src = url;
+  script.async = true;
+  script.type = 'text/plain';
+  script.classList.add('optanon-category-C0001');
+  head.append(script);
+}
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -912,6 +924,7 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
+  loadCaptcha();
 }
 
 /**
