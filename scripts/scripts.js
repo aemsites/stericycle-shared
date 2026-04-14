@@ -17,7 +17,6 @@ import {
   loadBlock,
   loadSection,
   fetchPlaceholders,
-  loadScript,
 } from './aem.js';
 import * as domHelper from './dom-helpers.js';
 import ffetch from './ffetch.js';
