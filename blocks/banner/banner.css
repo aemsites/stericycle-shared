@@ -20,6 +20,43 @@
   max-width: var(--section-width);
   height: fit-content;
   background-color: var(--color-bg-tertiary);
+  
+  .fa-chevron-left::before {
+    content: "";
+    font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+    margin-left: 8px;
+    color: var(--color-white);
+  }
+  
+  .fa-chevron-right::after {
+    content: "";
+    font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
+    margin-right: 8px;
+    color: var(--color-white);
+  }
+  
+  button.fa-chevron-left,
+  button.fa-chevron-right {
+      box-sizing: border-box;
+      position: relative;
+      display: none; /* Hide the button element */
+      transform: scale(var(--ggs, 1));
+      width: 22px;
+      text-decoration: unset;
+      border: unset;
+      padding: unset;
+      line-height: unset;
+      text-align: unset;
+      font-style: unset;
+      font-weight: unset;
+      cursor: pointer;
+      color: unset;
+      background-color: unset;
+      white-space: nowrap;
+      overflow: unset;
+      text-overflow: unset;
+      border-radius: unset;
+  }
 }
 
 .block.banner > span {
@@ -186,41 +223,4 @@
   background-color: var(--color-button-primary);
   border-color: var(--color-button-primary);
   color: var(--color-black);
-}
-
-.fa-chevron-left::before {
-  content: "";
-  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
-  margin-left: 8px;
-  color: var(--color-white);
-}
-
-.fa-chevron-right::after {
-  content: "";
-  font-family: "Font Awesome\ 6 Free", "Font Awesome\ 5 Free", serif;
-  margin-right: 8px;
-  color: var(--color-white);
-}
-
-button.fa-chevron-left,
-button.fa-chevron-right {
-  box-sizing: border-box;
-  position: relative;
-  display: none; /* Hide the button element */
-  transform: scale(var(--ggs, 1));
-  width: 22px;
-  text-decoration: unset;
-  border: unset;
-  padding: unset;
-  line-height: unset;
-  text-align: unset;
-  font-style: unset;
-  font-weight: unset;
-  cursor: pointer;
-  color: unset;
-  background-color: unset;
-  white-space: nowrap;
-  overflow: unset;
-  text-overflow: unset;
-  border-radius: unset;
 }
