@@ -21,6 +21,7 @@ export default function getOneTrustConfig(pageUrl) {
 
 async function addCookieBanner() {
   const otConfig = getOneTrustConfig(window.location.href);
+  await loadScript(otConfig.script, { type: 'text/javascript' });
   await loadScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js', { type: 'text/javascript', charset: 'UTF-8', 'data-domain-script': otConfig.domainScript });
 }
 
