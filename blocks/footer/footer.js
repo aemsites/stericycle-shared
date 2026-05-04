@@ -44,7 +44,7 @@ export default async function decorate(block) {
         alt: 'Shred-it Logo',
         style: 'height: 70px;',
       });
-      parent.parentElement.style = 'flex-basis: content;';
+      parent.style = 'flex-basis: content;';
       parent.replaceChild(logo, altLogo);
     }
   }
