@@ -39,7 +39,7 @@ export default async function decorate(block) {
     const parent = altLogo?.parentElement;
     if (altLogo && parent) {
       const logo = document.createElement('img');
-      logo.src = altLogo.dataSet.iconSrc || '';
+      logo.src = altLogo.dataset.iconSrc || '';
       logo.alt = 'Shred-it Logo';
       parent.replaceChild(logo, altLogo);
     }
