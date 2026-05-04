@@ -42,9 +42,9 @@ export default async function decorate(block) {
       const logo = img({
         src: altLogo.dataset.iconSrc || '',
         alt: 'Shred-it Logo',
-        style: 'width: 179px; height: 64px;',
+        style: 'height: 70px;',
       });
-      parent.parentElement.style = 'align-items: start;';
+      parent.parentElement.style = 'flex-basis: content;';
       parent.replaceChild(logo, altLogo);
     }
   }
