@@ -41,8 +41,7 @@ export default async function decorate(block) {
       const logo = document.createElement('img');
       logo.src = altLogo.dataset.iconSrc || '';
       logo.alt = 'Shred-it Logo';
-      logo.width = '179px';
-      logo.height = '64px';
+      logo.style ="width: 179px; height: 64px;";
       parent.replaceChild(logo, altLogo);
     }
   }
