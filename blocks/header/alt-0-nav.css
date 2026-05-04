@@ -46,6 +46,10 @@ header.header-wrapper {
     & nav {
       max-width: var(--section-width);
       padding: 1rem 1.5rem;
+
+      & .logo {
+        padding: 1rem 0;
+      }
     }
   }
 }
