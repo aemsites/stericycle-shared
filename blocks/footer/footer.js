@@ -34,6 +34,15 @@ export default async function decorate(block) {
       const socialIcons = companyLogo.querySelector('ul');
       socialIcons?.remove();
     }
+  }else {
+    const altLogo = fragment.querySelector('icon icon-shred-it-logo-white');
+    const parent = altLogo?.parentElement;
+    if (altLogo && parent) {
+      const logo = document.createElement('img');
+      logo.src = altLogo.dataSet.iconSrc || '';
+      logo.alt = 'Shred-it Logo';
+      parent.replaceChild(logo, altLogo);
+    }
   }
   // Build country selector
   const countrySelector = fragment.querySelector('.section.footer-countries');
