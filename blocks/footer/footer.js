@@ -34,14 +34,15 @@ export default async function decorate(block) {
       const socialIcons = companyLogo.querySelector('ul');
       socialIcons?.remove();
     }
-  }else {
+  } else {
     const altLogo = fragment.querySelector('.icon.icon-shred-it-logo-white');
     const parent = altLogo?.parentElement;
     if (altLogo && parent) {
       const logo = document.createElement('img');
       logo.src = altLogo.dataset.iconSrc || '';
       logo.alt = 'Shred-it Logo';
-      logo.style ="width: 179px; height: 64px;";
+      logo.style = 'width: 179px; height: 64px;';
+      parent.parentElement.style = 'align-items: start;';
       parent.replaceChild(logo, altLogo);
     }
   }
