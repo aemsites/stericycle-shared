@@ -35,7 +35,7 @@ export default async function decorate(block) {
       socialIcons?.remove();
     }
   }else {
-    const altLogo = fragment.querySelector('icon icon-shred-it-logo-white');
+    const altLogo = fragment.querySelector('.icon.icon-shred-it-logo-white');
     const parent = altLogo?.parentElement;
     if (altLogo && parent) {
       const logo = document.createElement('img');
