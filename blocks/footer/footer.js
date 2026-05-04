@@ -1,4 +1,5 @@
 import { getMetadata } from '../../scripts/aem.js';
+import { img } from '../../scripts/dom-helpers.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { buildBreadcrumb, buildCompanyLogo, createCountrySelector, createMenuAccordion, createModalButton } from './utils.js';
 
@@ -38,10 +39,11 @@ export default async function decorate(block) {
     const altLogo = fragment.querySelector('.icon.icon-shred-it-logo-white');
     const parent = altLogo?.parentElement;
     if (altLogo && parent) {
-      const logo = document.createElement('img');
-      logo.src = altLogo.dataset.iconSrc || '';
-      logo.alt = 'Shred-it Logo';
-      logo.style = 'width: 179px; height: 64px;';
+      const logo = img({
+        src: altLogo.dataset.iconSrc || '',
+        alt: 'Shred-it Logo',
+        style: 'width: 179px; height: 64px;',
+      });
       parent.parentElement.style = 'align-items: start;';
       parent.replaceChild(logo, altLogo);
     }
