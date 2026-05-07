@@ -45,6 +45,7 @@ export default async function decorate(block) {
         style: 'height: 70px;',
       });
       parent.style = 'flex-basis: content;';
+      parent.href = `/${locale}`;
       parent.replaceChild(logo, altLogo);
     }
   }
