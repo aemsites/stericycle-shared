@@ -1,4 +1,5 @@
 import { getMetadata } from '../../scripts/aem.js';
+import { img } from '../../scripts/dom-helpers.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { buildBreadcrumb, buildCompanyLogo, createCountrySelector, createMenuAccordion, createModalButton } from './utils.js';
 
@@ -33,6 +34,18 @@ export default async function decorate(block) {
     if (noSocialIcons.includes(locale)) {
       const socialIcons = companyLogo.querySelector('ul');
       socialIcons?.remove();
+    }
+  } else {
+    const altLogo = fragment.querySelector('.icon.icon-shred-it-logo-white');
+    const parent = altLogo?.parentElement;
+    if (altLogo && parent) {
+      const logo = img({
+        src: altLogo.dataset.iconSrc || '',
+        alt: 'Shred-it Logo',
+        style: 'height: 70px;',
+      });
+      parent.style = 'flex-basis: content;';
+      parent.replaceChild(logo, altLogo);
     }
   }
   // Build country selector
