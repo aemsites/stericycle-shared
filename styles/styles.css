@@ -338,6 +338,11 @@ p, dl, ol, ul, pre, blockquote {
   margin: 0;
 }
 
+html body,
+html ul {
+  font-family: var(--font-family-body);
+}
+
 main:has(.section.two-column.shredded-paper-background-column) .section.column-with-list .columns-wrapper,
 main:has(.section.two-column.hard-drive-background) .section.column-with-list .columns-wrapper,
 main:has(.section.shredded-paper-background) .section.column-with-list .columns-wrapper {
