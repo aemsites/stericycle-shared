@@ -23,7 +23,6 @@ header.header-wrapper {
     max-width: var(--section-width);
 
     & .logo {
-      padding: 1rem 0;
       width: 50%;
 
       & a {
@@ -31,8 +30,7 @@ header.header-wrapper {
         display: block;
 
         & img {
-          height: 100%;
-          width: 100%;
+          height: 80px;
         }
       }
     }
@@ -48,6 +46,10 @@ header.header-wrapper {
     & nav {
       max-width: var(--section-width);
       padding: 1rem 1.5rem;
+
+      & .logo {
+        padding: 1rem 0;
+      }
     }
   }
 }
