@@ -36,7 +36,7 @@ export default async function decorate(block) {
       socialIcons?.remove();
     }
   } else {
-    const altLogo = fragment.querySelector('.icon.icon-shred-it-logo-white');
+    const altLogo = fragment.querySelector('.icon.icon-shred-it-logo-white') || fragment.querySelector('.icon.icon-shred-it-logo-fr-white');
     const parent = altLogo?.parentElement;
     if (altLogo && parent) {
       const logo = img({
@@ -45,6 +45,7 @@ export default async function decorate(block) {
         style: 'height: 70px;',
       });
       parent.style = 'flex-basis: content;';
+      parent.href = `/${locale}`;
       parent.replaceChild(logo, altLogo);
     }
   }
