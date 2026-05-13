@@ -121,7 +121,6 @@
   margin-top: 0;
   margin-bottom: 0;
   font-size: 1.1rem;
-  border-radius: 0.25rem;
   height: 2.5rem;
 }
 
@@ -136,14 +135,6 @@
 .block.service-location-map .map-search .map-input-details .map-input-search:active,
 .block.service-location-map .map-search .map-input-details .map-input-location:active {
   opacity: 0.6;
-}
-
-.block.service-location-map .map-search .map-input-details .map-input-search:focus,
-.block.service-location-map .map-search .map-input-details .map-input-location:focus,
-.block.service-location-map .map-search .map-input-details .map-input-search:hover,
-.block.service-location-map .map-search .map-input-details .map-input-location:hover {
-  background-color: var(--color-button-default);
-  color: var(--color-white);
 }
 
 .block.service-location-map .mapboxgl-ctrl-bottom-left,
