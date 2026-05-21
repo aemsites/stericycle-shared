@@ -112,7 +112,7 @@ function arraysHaveMatchingItem(array1, array2) {
 
 export function getEnvironment() {
   const { hostname } = window.location;
-  if (hostname === 'localhost' || hostname.endsWith('.aem.page') || hostname.endsWith('.aem.live') || (hostname.startsWith('stage') && hostname.endsWith('.shredit.com'))) {
+  if (hostname === 'localhost' || hostname.startsWith('dev-') || hostname.endsWith('.aem.page') || hostname.endsWith('.aem.live') || (hostname.startsWith('stage') && hostname.endsWith('.shredit.com'))) {
     return 'dev';
   }
   if (hostname === 'www.shredit.com') {
