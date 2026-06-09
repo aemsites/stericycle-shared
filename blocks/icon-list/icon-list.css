@@ -167,11 +167,11 @@ main .two-column.form-container.icon-list-container > div:first-child.default-co
     margin: 0;
 }
 
-@media (min-width: 992px) {
-    main .section.narrow.icon-list-container  {
-        max-width: var(--content-width-xxl);
-    }
+main .section.narrow.icon-list-container  {
+    max-width: 96%;
+}
 
+@media (min-width: 992px) {
     main .section.two-column.form-container.icon-list-container > div.form-wrapper {
         margin-top: 24px;
         grid-row: 1 / span 4;
