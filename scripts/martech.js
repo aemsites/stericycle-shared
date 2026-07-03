@@ -96,21 +96,20 @@ function initGTM() {
 async function initLaunch(env) {
   const launchUrls = {
     dev: [
-      'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js', 
-      'https://assets.adobedtm.com/3010f46ab2ec/a3cbfcd83a52/launch-01b1cb6f5edd-development.min.js'
+      'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js',
+      'https://assets.adobedtm.com/3010f46ab2ec/a3cbfcd83a52/launch-01b1cb6f5edd-development.min.js',
     ],
     stage: ['https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-930cbc9eaafb-staging.min.js'],
     prod: [
-      'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-e21320e8ed46.min.js', 
-      'https://assets.adobedtm.com/3010f46ab2ec/a3cbfcd83a52/launch-4688d17a7429.min.js'
+      'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-e21320e8ed46.min.js',
+      'https://assets.adobedtm.com/3010f46ab2ec/a3cbfcd83a52/launch-4688d17a7429.min.js',
     ],
   };
   if (!Object.keys(launchUrls).includes(env)) {
     return; // unknown env -> skip martech initialization
   }
-  for (const url of launchUrls[env]) {
-    await loadScript(url, { async: '', defer: '' });
-  }
+
+  await Promise.all(launchUrls[env].map((url) => loadScript(url, { async: '', defer: '' })));
 }
 
 function cmpLoaded() {
