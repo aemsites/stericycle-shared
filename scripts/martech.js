@@ -97,7 +97,7 @@ async function initLaunch(env) {
   const launchUrls = {
     dev: 'https://assets.adobedtm.com/69ddc3de7b21/6dccef370d16/launch-bd9c26789d96-development.min.js',
     stage: 'https://assets.adobedtm.com/69ddc3de7b21/6dccef370d16/launch-a296d17c2a8a-staging.min.js',
-    prod: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-e21320e8ed46.min.js',
+    prod: 'https://assets.adobedtm.com/69ddc3de7b21/6dccef370d16/launch-93778b50a989.min.js',
   };
   if (!Object.keys(launchUrls).includes(env)) {
     return; // unknown env -> skip martech initialization
