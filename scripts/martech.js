@@ -95,8 +95,8 @@ function initGTM() {
 
 async function initLaunch(env) {
   const launchUrls = {
-    dev: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js',
-    stage: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-930cbc9eaafb-staging.min.js',
+    dev: 'https://assets.adobedtm.com/69ddc3de7b21/6dccef370d16/launch-bd9c26789d96-development.min.js',
+    stage: 'https://assets.adobedtm.com/69ddc3de7b21/6dccef370d16/launch-a296d17c2a8a-staging.min.js',
     prod: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-e21320e8ed46.min.js',
   };
   if (!Object.keys(launchUrls).includes(env)) {
