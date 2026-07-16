@@ -126,6 +126,11 @@ export function getLocale() {
   if (locale && locale.length > 0) {
     return locale;
   }
+  // no locale metadata (e.g. the static 404 page): fall back to the URL path
+  const pathLocale = window.location.pathname.split('/')[1];
+  if (/^[a-z]{2}-[a-z]{2}$/.test(pathLocale)) {
+    return pathLocale;
+  }
   // defaulting to en-us
   return 'en-us';
 }
