@@ -30,6 +30,14 @@ function normalizeTopicValue(value) {
   return (value || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
+const ALL_CONTENT_TYPE_SHEETS = ['info-sheets', 'videos', 'blogs', 'posters', 'infographics'];
+
+function getEffectiveSheetList(sheets) {
+  const sheetList = (Array.isArray(sheets) ? sheets : sheets.split(','))
+    .map((sheet) => String(sheet.trim()));
+  return getPageTopic() ? ALL_CONTENT_TYPE_SHEETS : sheetList;
+}
+
 function capitalizePhrase(str) {
   return str.toLowerCase().replace(/\b\w+\b/g, (word) => {
     if (word.length === 1 && word !== 'i') {
@@ -185,8 +193,7 @@ function translateDates(posts, format, locale) {
     * This function gets the results from the query-index.json file based on sheet name
  */
 async function getResults(sheets = []) {
-  let sheetList = Array.isArray(sheets) ? sheets : [sheets];
-  sheetList = sheetList.map((sheet) => String(sheet.trim()));
+  const sheetList = getEffectiveSheetList(sheets);
 
   const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
     .all())).then((results) => results.flat());
@@ -208,8 +215,7 @@ async function getResults(sheets = []) {
     * This function gets the facets from the query-index.json file based on sheet name
  */
 async function getFacets(sheets = []) {
-  let sheetList = Array.isArray(sheets) ? sheets : sheets.split(',');
-  sheetList = sheetList.map((sheet) => String(sheet.trim()));
+  const sheetList = getEffectiveSheetList(sheets);
 
   const facetArray = [];
   const allFacets = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
@@ -365,8 +371,7 @@ const updateFacets = (posts, sheetList) => {
     * @param {String} sheet - the sheet name
  */
 async function updateResults(checkboxChange, sheets = [], page = 1, updateFacetsOrNot = false) {
-  let sheetList = Array.isArray(sheets) ? sheets : sheets.split(',');
-  sheetList = sheetList.map((sheet) => String(sheet.trim()));
+  const sheetList = getEffectiveSheetList(sheets);
   const allCheckedBoxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]:checked');
 
   const checkboxChangeParentUl = checkboxChange?.closest('ul');
