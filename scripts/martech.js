@@ -105,10 +105,39 @@ async function initLaunch(env) {
   await loadScript(launchUrls[env], { async: '' });
 }
 
+function buildPagePayload() {
+  const locale = getLocaleAsBCP47();
+  const language = locale.split('-')[0];
+  const country = (locale.split('-')[1] || 'US').toUpperCase();
+  const currencyMap = { US: 'USD', CA: 'CAD' };
+  const pathParts = window.location.pathname.split('/').filter(Boolean);
+
+  return {
+    baseUrl: window.location.origin,
+    pageUrl: window.location.href,
+    countryLanguage: language,
+    currencyCode: currencyMap[country] || 'USD',
+    device: window.matchMedia('(max-width: 767px)').matches ? 'm' : 'd',
+    pageName: getMetadata('og:title') || document.title,
+    pagenameConcat: pathParts.slice(1).join(':'),
+    pageType: getMetadata('template') || getMetadata('page-type') || '',
+    previousPageName: document.referrer,
+    siteSection: pathParts[1] || '',
+    lobType: getMetadata('lob-type') || '',
+    templateName: getMetadata('template') || '',
+    gisIds: getMetadata('gis-ids') || '',
+    channel: getMetadata('channel') || '',
+    digitalPropertyID: 'SHR',
+  };
+}
+
 function cmpLoaded() {
   window.adobeDataLayer = window.adobeDataLayer || [];
+  window.adobeDataLayer.push({ event: 'cmp:loaded' });
   window.adobeDataLayer.push({
-    event: 'cmp:loaded',
+    event: 'landed',
+    eventInfo: { eventName: 'landed' },
+    page: buildPagePayload(),
   });
 }
 
@@ -150,7 +179,9 @@ export function pushToDataLayer(data) {
 export async function decorateCtaButtons(element) {
   setTimeout(() => {
     element.querySelectorAll('.button:not(form):not(.exclude-from-cta-events):not(.quote-button)').forEach((a) => {
-      a.classList.add('cmp-linkcalltoaction');
+      a.classList.add('cmp-linkcalltoaction', 'a-taggable');
+      const analyticsLabel = a.getAttribute('aria-label') || a.textContent.trim() || a.title;
+      if (analyticsLabel) a.setAttribute('analytics', analyticsLabel);
     });
   }, 100);
 }
