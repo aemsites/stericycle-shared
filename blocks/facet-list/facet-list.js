@@ -8,9 +8,35 @@ import luxon from '../../ext-libs/luxon/luxon.min.js';
 const ITEMS_PER_PAGE = 10;
 const PAGE_LOCALE = getLocale();
 const ph = await fetchPlaceholders(`/${PAGE_LOCALE}`);
+const NO_RESULTS_MESSAGE = ph.noresultsmessage || 'No resources found for this topic.';
 let CURRENT_PAGE = 1;
 let CTA_TYPE = 'default';
+let PAGE_TOPIC_OVERRIDE = null;
 const facetsMap = new Map();
+
+function getPageTopic() {
+  if (PAGE_TOPIC_OVERRIDE) {
+    return PAGE_TOPIC_OVERRIDE;
+  }
+  if (PAGE_LOCALE === 'fr-ca') {
+    return null;
+  }
+  const { pathname } = window.location;
+  const match = pathname.match(/\/topics\/([^/]+)/);
+  return match ? match[1] : null;
+}
+
+function normalizeTopicValue(value) {
+  return (value || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+const ALL_CONTENT_TYPE_SHEETS = ['info-sheets', 'videos', 'blogs', 'posters', 'infographics'];
+
+function getEffectiveSheetList(sheets) {
+  const sheetList = (Array.isArray(sheets) ? sheets : sheets.split(','))
+    .map((sheet) => String(sheet.trim()));
+  return getPageTopic() ? ALL_CONTENT_TYPE_SHEETS : sheetList;
+}
 
 function capitalizePhrase(str) {
   return str.toLowerCase().replace(/\b\w+\b/g, (word) => {
@@ -167,8 +193,7 @@ function translateDates(posts, format, locale) {
     * This function gets the results from the query-index.json file based on sheet name
  */
 async function getResults(sheets = []) {
-  let sheetList = Array.isArray(sheets) ? sheets : [sheets];
-  sheetList = sheetList.map((sheet) => String(sheet.trim()));
+  const sheetList = getEffectiveSheetList(sheets);
 
   const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
     .all())).then((results) => results.flat());
@@ -177,20 +202,30 @@ async function getResults(sheets = []) {
     translateDates(posts, 'MMMM dd, yyyy', 'fr');
   }
 
-  return posts;
+  const pageTopic = getPageTopic();
+  if (!pageTopic) {
+    return posts;
+  }
+  const normalizedTopic = normalizeTopicValue(pageTopic);
+  return posts.filter((post) => (post.tags || [])
+    .some((tag) => normalizeTopicValue(tag) === normalizedTopic));
 }
 
 /*
     * This function gets the facets from the query-index.json file based on sheet name
  */
 async function getFacets(sheets = []) {
-  let sheetList = Array.isArray(sheets) ? sheets : sheets.split(',');
-  sheetList = sheetList.map((sheet) => String(sheet.trim()));
+  const sheetList = getEffectiveSheetList(sheets);
 
   const facetArray = [];
-  const facets = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
+  const allFacets = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
     .all()))
     .then((results) => results.flat());
+
+  const pageTopic = getPageTopic();
+  const normalizedTopic = normalizeTopicValue(pageTopic);
+  const facets = !pageTopic ? allFacets : allFacets.filter((facet) => (facet.tags || [])
+    .some((tag) => normalizeTopicValue(tag) === normalizedTopic));
 
   const tagJson = {};
   const mediaTypeArr = [];
@@ -336,8 +371,7 @@ const updateFacets = (posts, sheetList) => {
     * @param {String} sheet - the sheet name
  */
 async function updateResults(checkboxChange, sheets = [], page = 1, updateFacetsOrNot = false) {
-  let sheetList = Array.isArray(sheets) ? sheets : sheets.split(',');
-  sheetList = sheetList.map((sheet) => String(sheet.trim()));
+  const sheetList = getEffectiveSheetList(sheets);
   const allCheckedBoxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]:checked');
 
   const checkboxChangeParentUl = checkboxChange?.closest('ul');
@@ -352,6 +386,9 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
     tempCheckedBoxes.push(checkboxChange);
   }
 
+  const pageTopic = getPageTopic();
+  const normalizedTopic = normalizeTopicValue(pageTopic);
+
   const posts = await Promise.all(sheetList.map((sheet) => fetchQueryIndex(undefined, sheet)
     .map((post) => ({
       tags: post.tags.map((tag) => tag.trim().replaceAll(/["[\]]/g, '')),
@@ -362,10 +399,12 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
       type: post['media-type'],
       rawDate: post.rawDate,
     }))
-    .filter((post) => allCheckedBoxes.length === 0 || filterTags(
+    .filter((post) => (!pageTopic || post.tags.some(
+      (tag) => normalizeTopicValue(tag) === normalizedTopic,
+    )) && (allCheckedBoxes.length === 0 || filterTags(
       tempCheckedBoxes,
       post.tags,
-    ))
+    )))
     .all())).then((results) => results.flat());
   if (PAGE_LOCALE === 'fr-ca') {
     translateDates(posts, 'MMMM dd, yyyy', 'fr');
@@ -383,10 +422,18 @@ async function updateResults(checkboxChange, sheets = [], page = 1, updateFacets
 
   const flc = document.querySelector('div.facet-list-container> div.results> ul');
   flc.innerHTML = '';
-  decorateResults(paginatedPosts, flc, sheetList.join(', '));
-
   const paginationControls = document.querySelector('div.pagination-controls');
-  createPaginationControls(totalPages, page, flc, paginationControls, sheetList.join(', '));
+
+  if (posts.length === 0) {
+    paginationControls.innerHTML = '';
+    const noResultsItem = document.createElement('li');
+    noResultsItem.classList.add('no-results-message');
+    noResultsItem.textContent = NO_RESULTS_MESSAGE;
+    flc.append(noResultsItem);
+  } else {
+    decorateResults(paginatedPosts, flc, sheetList.join(', '));
+    createPaginationControls(totalPages, page, flc, paginationControls, sheetList.join(', '));
+  }
 
   if (checkboxChange) {
     const checkboxes = document.querySelectorAll('div.facet-list-container div.facet input[type="checkbox"]');
@@ -438,6 +485,7 @@ const createFacet = (facets, topDiv, sheets) => {
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   const cta = cfg.cta || 'default';
+  PAGE_TOPIC_OVERRIDE = cfg.topic || null;
   const facets = await getFacets(cfg.sheet.split(','));
   const { blogtopic } = ph;
   const facetDiv = document.createElement('div');
