@@ -20,33 +20,39 @@
     import { getLocaleFromPath } from '/scripts/scripts.js';
 
     const locale = getLocaleFromPath();
+
+    // Set home button href synchronously before any async work so the link is
+    // always correct regardless of how long fetchPlaceholders takes to resolve.
+    const homeBtn = document.querySelector('.error-button-home');
+    if (homeBtn) homeBtn.href = `/${locale}`;
+
     const ph = await fetchPlaceholders(`/${locale}`);
 
+    // DOM is already parsed when a module runs, so no need to wait for 'load'
+    // to update content — except for sampleRUM which intentionally fires on load.
+    if (document.referrer) {
+      const { origin, pathname } = new URL(document.referrer);
+      if (origin === window.location.origin) {
+        const backBtn = document.createElement('a');
+        backBtn.classList.add('button', 'error-button-back');
+        backBtn.href = pathname;
+        backBtn.textContent = ph.goback || 'Go back';
+        backBtn.title = ph.goback || 'Go back';
+        const btnContainer = document.querySelector('.button-container');
+        if (btnContainer) btnContainer.append(backBtn);
+      }
+    }
+
+    if (ph.pagenotfound) {
+      const errorMessage = document.querySelector('.error-message');
+      if (errorMessage) errorMessage.textContent = ph.pagenotfound;
+    }
+
+    if (ph.gohome && homeBtn) {
+      homeBtn.textContent = ph.gohome;
+    }
+
     window.addEventListener('load', () => {
-      if (document.referrer) {
-        const { origin, pathname } = new URL(document.referrer);
-        if (origin === window.location.origin) {
-          const backBtn = document.createElement('a');
-          backBtn.classList.add('button', 'error-button-back');
-          backBtn.href = pathname;
-          backBtn.textContent = ph.goback || 'Go back';
-          backBtn.title = ph.goback || 'Go back';
-          const btnContainer = document.querySelector('.button-container');
-          btnContainer.append(backBtn);
-        }
-      }
-
-      if (ph.pagenotfound) {
-        const errorMessage = document.querySelector('.error-message');
-        errorMessage.textContent = ph.pagenotfound;
-      }
-
-      const homeBtn = document.querySelector('.error-button-home');
-      homeBtn.href = '/' + locale || '/';
-      if (ph.gohome) {
-        homeBtn.textContent = ph.gohome;
-      }
-
       sampleRUM('404', { source: document.referrer });
     });
   </script>

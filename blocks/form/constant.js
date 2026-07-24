@@ -17,14 +17,14 @@ export const defaultErrorMessages = {
 };
 
 // eslint-disable-next-line no-useless-escape
-export const emailPattern = '([A-Za-z0-9][_.\\-]?)+[A-Za-z0-9]@[A-Za-z0-9\.]+(\.?[A-Za-z0-9]){2}\.([A-Za-z0-9]{2,4})?';
+export const emailPattern = '([A-Za-z0-9][_.\\-]?)+[A-Za-z0-9]@([A-Za-z0-9\\-]+\.)+[A-Za-z]{2,}';
 let submitBaseUrl = 'https://dev-us.shredit.com/en-us';
 
 const RECAPTCHA_KEYS = {
   'www.shredit.com': '6LfrVLIaAAAAAAXITOp0kZDmKaUjciDyodYVm3id',
-  'stage-us.shredit.com': '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2',
+  'stage-us.shredit.com': '6LfrVLIaAAAAAAXITOp0kZDmKaUjciDyodYVm3id',
   'dev-us.shredit.com': '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2',
-  'stage-ca.shredit.com': '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2',
+  'stage-ca.shredit.com': '6LfrVLIaAAAAAAXITOp0kZDmKaUjciDyodYVm3id',
   'dev-ca.shredit.com': '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2',
   // Add more domains as needed
 };

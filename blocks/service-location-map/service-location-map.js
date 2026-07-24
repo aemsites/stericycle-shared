@@ -493,12 +493,12 @@ const mapInputLocationOnClick = (block, locations, ph) => {
  * @returns
  */
 const mapSearch = (ph, block, locations, type) => {
-  const mapInputSearch = button({ class: 'map-input-search disabled' }, ph.searchtext);
+  const mapInputSearch = button({ class: 'map-input-search secondary disabled' }, ph.searchtext);
   mapInputSearch.addEventListener('click', async () => {
     await mapInputSearchOnCLick(block, locations, ph, type);
   });
 
-  const mapInputLocation = button({ class: 'map-input-location disabled' }, ph.uselocationtext);
+  const mapInputLocation = button({ class: 'map-input-location secondary disabled' }, ph.uselocationtext);
   mapInputLocation.addEventListener('click', async () => {
     mapInputLocationOnClick(block, locations, ph);
   });
