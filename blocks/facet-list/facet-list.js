@@ -27,7 +27,9 @@ function getPageTopic() {
 }
 
 function normalizeTopicValue(value) {
-  return (value || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  return (value || '').toLowerCase()
+    .replace(/\band\b/g, '')
+    .replace(/[^a-z0-9]/g, '');
 }
 
 const ALL_CONTENT_TYPE_SHEETS = ['info-sheets', 'videos', 'blogs', 'posters', 'infographics'];
