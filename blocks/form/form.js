@@ -1,14 +1,23 @@
 import { extractFormDefinition as extractSheetDefinition, renderForm as renderDocForm } from './lib/docform.js';
 import decorateUTM from './utm.js';
+import { readBlockConfig } from '../../scripts/aem.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
 import { getFormName } from './utils.js';
 
 export default async function decorate(block) {
   const { container, formDef } = await extractSheetDefinition(block);
   if (formDef && formDef.properties?.source === 'sheet') {
+    // eCommerce redirect settings authored as block metadata rows (see blocks/form/ecommerce.js)
+    const cfg = readBlockConfig(block);
     const form = await renderDocForm(formDef);
     await decorateUTM(form);
     if (form) {
+      form.dataset.ecommerceEnable = String(cfg['ecommerce-enable'] || '').trim().toLowerCase();
+      form.dataset.ecommerceFlow = cfg['ecommerce-flow'] || '';
+      // strip the two-cell config rows so they don't render as stray text (link row has one cell)
+      block.querySelectorAll(':scope > div').forEach((row) => {
+        if (row.children.length >= 2) row.remove();
+      });
       form.setAttribute('tabindex', '-1');
       container.replaceWith(form);
       const inputs = form.querySelectorAll('.field-wrapper input');

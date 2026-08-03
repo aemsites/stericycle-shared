@@ -3,6 +3,7 @@ import { appendFragment } from './lib/util.js';
 import { getMetadata } from '../../scripts/aem.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
 import { getFormName } from './utils.js';
+import { resolveEcommerceRedirectUrl } from './ecommerce.js';
 
 function sendDataToAnalytics(form) {
   const quoteTypeField = form.querySelectorAll("input[name='quote_type'], input[name='Quote_Type'], input[name='QuoteType']");
@@ -180,6 +181,14 @@ async function prepareRequest(form, captcha) {
 
 export async function submitForm(form, captcha) {
   try {
+    // eCommerce flow: redirect to the external checkout instead of the lead-capture POST.
+    // Falls through to the normal POST when disabled, off globally, or no URL resolves.
+    const redirectUrl = await resolveEcommerceRedirectUrl(form);
+    if (redirectUrl) {
+      sendDataToAnalytics(form);
+      window.location.assign(redirectUrl);
+      return;
+    }
     // eslint-disable-next-line no-unused-vars
     const { headers, body, url } = await prepareRequest(form, captcha);
     const formData = createFormData(body.data);
