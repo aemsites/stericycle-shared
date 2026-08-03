@@ -956,6 +956,11 @@ main .get-a-quote-form-alternate form {
     row-gap: 0.4rem;
 }
 
+
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='ecommerce-notice']  p {
+    font-size: 14px;
+}
+
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='privacy-policy']  p,
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='policy'] p {
     font-size: 0.75rem;
