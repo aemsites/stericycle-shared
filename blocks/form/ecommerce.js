@@ -74,8 +74,8 @@ function resolveBaseUrl(form, flowType, map) {
   const flow = normalize(flowType);
   if (flow === 'byservicetype') {
     const serviceType = normalize(getFieldValue(form, 'serviceType1'));
-    if (serviceType === 'onetime') return map.purge || null;
-    if (serviceType === 'ongoing') return map.protectplus || null;
+    if (serviceType === 'purge') return map.purge || null;
+    if (serviceType === 'regular') return map.protectplus || null;
     return null;
   }
   return map[flow] || null;
