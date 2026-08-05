@@ -138,6 +138,19 @@ function cmpLoaded() {
     event: 'landed',
     eventInfo: { eventName: 'landed' },
     page: buildPagePayload(),
+    visitor: {
+      experienceCloudId: '',
+      isRepeat: 'no',
+      lob: '',
+      userId: '',
+      isLoggedIn: 'no',
+      customerType: '',
+      wmCustomerId: '',
+      isBot: 'no',
+      marketingCloudVisitorID: '',
+      serviceLine: '',
+      sessionId: '',
+    },
   });
 }
 
