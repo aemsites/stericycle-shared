@@ -3,6 +3,8 @@
 import {
   a,
   div,
+  h2,
+  label,
   p,
   span,
   input,
@@ -19,8 +21,35 @@ import {
 import usStates from './us-states.js';
 import { decorateAnchors, fetchQueryIndex, getLocale, haversineDistance, formatDistance } from '../../scripts/scripts.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
+import { resolveFlowUrl } from '../../scripts/ecommerce-flow.js';
+import getUtmParams from '../../scripts/utm-params.js';
 
 let map = null;
+let referencePoint = null;
+
+const RADIUS_KM = 80.4672;
+const LEGACY_BUY_NOW = 'https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip={zip}';
+
+let ecommerceFlowTemplate = null;
+let resolvedUtmParams = {};
+
+const setReferencePoint = (latitude, longitude) => {
+  referencePoint = { latitude, longitude };
+};
+
+const buildBuyNowUrl = (template, zip, utmParams) => {
+  let url = template;
+  if (url.includes('{zip}')) {
+    if (zip) {
+      url = url.replace('{zip}', encodeURIComponent(zip));
+    } else {
+      url = url.replace(/[^?&]*\{zip\}[^&]*(&|$)/, '$1').replace(/[?&]$/, '');
+    }
+  }
+  const extra = Object.entries(utmParams ?? {}).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&');
+  if (!extra) return url;
+  return url.includes('?') ? `${url}&${extra}` : `${url}?${extra}`;
+};
 
 const getAccessToken = () => 'pk.eyJ1IjoiY29saW4tdmxhc2FrIiwiYSI6ImNtbTJlZDk1NjA3YzgyeHEyaHcycjRsOHAifQ.l8VGncsCvMaPyEpwkCSPPg';
 
@@ -65,7 +94,7 @@ const locDivCreation = (location, ph) => {
     locationDiv.appendChild(
       p(
         { class: 'gmap' },
-        a({ href: location['gmap-link'] }, 'Get Directions'),
+        a({ href: location['gmap-link'] }, ph.getdirectionstext || 'Get Directions'),
       ),
     );
   }
@@ -97,12 +126,11 @@ const locDivCreation = (location, ph) => {
     );
   }
 
-  if (location['buy-now'] && getLocale() === 'en-us') {
+  if (location['sub-type']?.toLowerCase() === 'drop-off' && getLocale() === 'en-us') {
+    const template = ecommerceFlowTemplate ?? LEGACY_BUY_NOW;
+    const href = buildBuyNowUrl(template, location['zip-code'], resolvedUtmParams);
     locationDiv.appendChild(
-      a(
-        { class: 'buy-now', href: location['buy-now'] },
-        ph.buynowtext,
-      ),
+      a({ class: 'buy-now', href }, ph.buynowtext),
     );
   }
 
@@ -120,16 +148,25 @@ const calculateLocationListDistance = (locations, centerPoint) => {
   });
 };
 
+const toCoord = (value) => {
+  const n = Number.parseFloat(value);
+  return Number.isFinite(n) && n !== 0 ? n : null;
+};
+
 async function fetchLocations(isDropoff, ph) {
   return (await fetchQueryIndex(undefined, 'locations')
-    .filter((x) => (x.latitude !== '0' && x.longitude !== '0')
-      && (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true)
-      && (x.locale?.trim().toLowerCase() === getLocale()))
+    .filter((x) => {
+      const lat = toCoord(x.latitude);
+      const lng = toCoord(x.longitude);
+      return lat !== null && lng !== null
+        && (isDropoff ? x['sub-type']?.trim().toLowerCase() === 'drop-off' : true)
+        && (x.locale?.trim().toLowerCase() === getLocale());
+    })
     .map((x) => {
       const getValueOrNull = (value) => (value == null || value === 0 || value === '0' ? null : value);
       const mp = {
-        lat: x.latitude,
-        lng: x.longitude,
+        lat: toCoord(x.latitude),
+        lng: toCoord(x.longitude),
         'zip-code': getValueOrNull(x['zip-code']),
         city: getValueOrNull(x.city),
         state: getValueOrNull(x.state),
@@ -145,9 +182,6 @@ async function fetchLocations(isDropoff, ph) {
         mp['address-line-1'] = getValueOrNull(x['address-line-2']);
         mp['address-line-2'] = [mp.city, usStates[mp.state], mp['zip-code']].filter(Boolean).join(', ');
         mp['gmap-link'] = `https://www.google.com/maps/dir/${[mp.title, mp['address-line-1'], mp['address-line-2']].filter(Boolean).join(', ')}`;
-        mp['buy-now'] = mp['zip-code']
-          ? `https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip=${mp['zip-code']}`
-          : 'https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx';
         mp['opening-hours'] = getValueOrNull(x['opening-hours']);
         mp['appointment-date-time'] = getValueOrNull(x['appointment-date-time']);
         mp['appointment-policy'] = getValueOrNull(x['appointment-policy']);
@@ -233,23 +267,31 @@ const getCountry = () => {
 
 const getContactUshref = (ph) => `/${getLocale()}/${ph.contactuslinktext}`;
 
-/**
- * Renders the location list
- * @param {*} locations
- * @param {*} block
- */
-const renderLocationList = (locations, block, ph) => {
+const renderLocationList = (locations, block, ph, state) => {
   const locationContainer = block.querySelector('.map-list');
   locationContainer.innerHTML = '';
+  locationContainer.classList.remove('no-result', 'prompt');
+  locationContainer.appendChild(
+    h2({ class: 'map-list-heading' }, ph.dropoffpanelheadingtext || 'Shred-It Facilities'),
+  );
 
-  if (locations.length === 0) {
-    const tempP = p({ class: 'no-result' }, span({}, `${ph.servicemapcurrentlocationnoresulttextpre} `));
+  const resolvedState = state ?? (locations.length === 0 ? 'no-results' : 'results');
+
+  if (resolvedState === 'prompt') {
+    locationContainer.classList.add('prompt');
+    const promptCard = div({ class: 'location-item prompt-card' });
+    promptCard.appendChild(p({}, ph.dropoffsearchprompttext
+      || 'Please enter, State, City or ZIP in the search and your facility will populate'));
+    locationContainer.appendChild(promptCard);
+  } else if (resolvedState === 'no-results') {
+    const noResultCard = div({ class: 'location-item' });
+    const tempP = p({}, span({}, `${ph.servicemapcurrentlocationnoresulttextpre} `));
     tempP.appendChild(a({ href: getContactUshref(ph) }, ph.contactustext));
     tempP.appendChild(span({}, ` ${ph.servicemapcurrentlocationnoresulttextpost}`));
-    locationContainer.appendChild(tempP);
+    noResultCard.appendChild(tempP);
+    locationContainer.appendChild(noResultCard);
     locationContainer.classList.add('no-result');
   } else {
-    locationContainer.classList.remove('no-result');
     locations.forEach((location) => {
       locationContainer.appendChild(locDivCreation(location, ph));
     });
@@ -267,9 +309,9 @@ const sortLocationList = (locations) => locations
   .sort((x, y) => x.country && y.country && x.country.localeCompare(y.country))
   .sort((x, y) => x.distance - y.distance);
 
-const renderAndSortLocationList = (locations, block, ph) => {
+const renderAndSortLocationList = (locations, block, ph, state) => {
   sortLocationList(locations);
-  renderLocationList(locations, block, ph);
+  renderLocationList(locations, block, ph, state);
 };
 
 /**
@@ -301,29 +343,39 @@ const getCenterPoint = () => {
   return countryCoordinates.default;
 };
 
-const dragAndZoom = (locations, block, ph) => {
+const fitMapToRadius = (lat, lng) => {
+  if (!map) return;
+  const dLat = RADIUS_KM / 111.32;
+  const dLng = RADIUS_KM / (111.32 * Math.cos(lat * (Math.PI / 180)));
+  map.fitBounds(
+    [[lng - dLng, lat - dLat], [lng + dLng, lat + dLat]],
+    { padding: 20 },
+  );
+};
+
+const dragAndZoom = (locations, block, ph, isDropoff) => {
+  if (isDropoff && !referencePoint) return;
   const bounds = map?.getBounds();
 
   const tempLocations = locations
-    .filter((location) => bounds?.contains([location.lng, location.lat]))
+    .filter((location) => {
+      if (!bounds?.contains([location.lng, location.lat])) return false;
+      if (isDropoff && referencePoint) {
+        return haversineDistance(location.lat, location.lng, referencePoint.latitude, referencePoint.longitude) <= RADIUS_KM;
+      }
+      return true;
+    })
     .map((location) => {
-      location.distance = haversineDistance(
-        location.lat,
-        location.lng,
-        map?.getCenter().lat,
-        map?.getCenter().lng,
-      );
+      const refLat = (isDropoff && referencePoint) ? referencePoint.latitude : map?.getCenter().lat;
+      const refLng = (isDropoff && referencePoint) ? referencePoint.longitude : map?.getCenter().lng;
+      location.distance = haversineDistance(location.lat, location.lng, refLat, refLng);
       return location;
     });
 
   renderAndSortLocationList(tempLocations, block, ph);
 };
 
-/**
- * Renders the initial markers on the map
- * @param {*} locations
- */
-const mapInitialization = async (locations, block, ph) => {
+const mapInitialization = async (locations, block, ph, isDropoff) => {
   const centerPoint = getCenterPoint();
   await loadScript('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.js');
   await loadCSS('/ext-libs/mapbox-gl-js/v3.6.0/mapbox-gl.css');
@@ -346,19 +398,25 @@ const mapInitialization = async (locations, block, ph) => {
   applyMarkers(locations);
 
   map.on('load', () => {
-    map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+    if (isDropoff && referencePoint) {
+      fitMapToRadius(referencePoint.latitude, referencePoint.longitude);
+    } else {
+      map.setCenter([centerPoint.longitude, centerPoint.latitude]);
+    }
     const mapInputLocationButton = block.querySelector('.map-input-location');
     mapInputLocationButton?.classList.remove('disabled');
+    mapInputLocationButton?.removeAttribute('disabled');
     const mapInputSearchButton = block.querySelector('.map-input-search');
     mapInputSearchButton?.classList.remove('disabled');
+    mapInputSearchButton?.removeAttribute('disabled');
   });
 
   map.on('dragend', () => {
-    dragAndZoom(locations, block, ph);
+    dragAndZoom(locations, block, ph, isDropoff);
   });
 
   map.on('zoomend', () => {
-    dragAndZoom(locations, block, ph);
+    dragAndZoom(locations, block, ph, isDropoff);
   });
 };
 
@@ -387,12 +445,12 @@ const mapInputSearchOnCLick = async (block, locations, ph, type) => {
 
     const data = await response.json();
 
-    // trigger analytics
     sendDigitalDataEvent({
       event: 'search',
       searchType: type,
       searchTerm: inputText,
       searchResultRange: data?.features?.length || 0,
+      searchMethod: 'typed',
     });
 
     if (data?.features?.length === 0) {
@@ -419,6 +477,8 @@ const mapInputSearchOnCLick = async (block, locations, ph, type) => {
       zipcode: data.features[0].zipcode,
     };
 
+    setReferencePoint(resultObj.lat, resultObj.lng);
+
     if (map && locations.length > 0) {
       if (stateFound) {
         const { bbox } = stateFound;
@@ -427,15 +487,7 @@ const mapInputSearchOnCLick = async (block, locations, ph, type) => {
           [bbox[2], bbox[3]],
         ]);
       } else {
-        await map.flyTo({
-          center: [resultObj.lng, resultObj.lat],
-          zoom: 8,
-          speed: 1.2,
-          curve: 1.5,
-          easing: (t) => t,
-          essential: true,
-          duration: 1000,
-        });
+        fitMapToRadius(resultObj.lat, resultObj.lng);
       }
     } else {
       setMapError(block, ph.nolocationfoundtext);
@@ -445,60 +497,71 @@ const mapInputSearchOnCLick = async (block, locations, ph, type) => {
   }
 };
 
-/**
- * Method to get current location on click
- * @param {*} block
- * @param {*} locations
- * @param {*} ph
- */
-const mapInputLocationOnClick = (block, locations, ph) => {
-  const successCallback = async (position) => {
-    await map?.flyTo({
-      center: [position.coords.longitude, position.coords.latitude],
-      zoom: 8,
-      speed: 2,
-      curve: 1.5,
-      easing: (t) => t,
-      essential: true,
+const requestGeolocation = (block, locations, ph, isAutomatic, onSuccess, onDenied) => {
+  const successCallback = (position) => {
+    const { latitude, longitude } = position.coords;
+    setReferencePoint(latitude, longitude);
+    fitMapToRadius(latitude, longitude);
+    sendDigitalDataEvent({
+      event: 'search',
+      searchResultRange: locations.filter(
+        (loc) => haversineDistance(loc.lat, loc.lng, latitude, longitude) <= RADIUS_KM,
+      ).length,
+      searchMethod: isAutomatic ? 'auto-geolocation' : 'use-my-location',
     });
+    if (onSuccess) onSuccess(position);
   };
 
-  const errorCallback = async () => {
-    if (navigator.permissions) {
-      const res = await navigator.permissions.query({ name: 'geolocation' });
-      if (res.state === 'denied') {
-        // eslint-disable-next-line no-alert
-        alert(ph.servicemapcurrentlocationdeniederrortext);
-      }
-    } else {
-      // eslint-disable-next-line no-alert
-      alert(ph.servicemapcurrentlocationunableerrortext);
+  const errorCallback = () => {
+    if (!isAutomatic) {
+      setMapError(block, ph.servicemapcurrentlocationdeniederrortext);
     }
+    if (onDenied) onDenied();
   };
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+  if (!navigator.geolocation) {
+    if (!isAutomatic) setMapError(block, ph.servicemapcurrentlocationunableerrortext);
+    if (onDenied) onDenied();
+    return;
+  }
+
+  if (navigator.permissions) {
+    navigator.permissions.query({ name: 'geolocation' }).then((result) => {
+      if (result.state === 'denied') {
+        if (!isAutomatic) setMapError(block, ph.servicemapcurrentlocationdeniederrortext);
+        if (onDenied) onDenied();
+      } else {
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+      }
+    });
   } else {
-    // eslint-disable-next-line no-alert
-    alert(ph.servicemapcurrentlocationunableerrortext);
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   }
 };
 
-/**
- * Map search component
- * @param {*} ph
- * @param {*} block
- * @param {*} locations
- * @param {*} isDropoff
- * @returns
- */
+const mapInputLocationOnClick = (block, locations, ph) => {
+  requestGeolocation(block, locations, ph, false, null, null);
+};
+
 const mapSearch = (ph, block, locations, type) => {
-  const mapInputSearch = button({ class: 'map-input-search secondary disabled' }, ph.searchtext);
+  const mapInputSearch = button(
+    {
+      class: 'map-input-search primary disabled',
+      type: 'button',
+      disabled: 'disabled',
+      'aria-label': ph.searchtext,
+    },
+    span({ class: 'map-input-search-text' }, ph.searchtext),
+    span({ class: 'icon icon-search-mobile' }),
+  );
   mapInputSearch.addEventListener('click', async () => {
     await mapInputSearchOnCLick(block, locations, ph, type);
   });
 
-  const mapInputLocation = button({ class: 'map-input-location secondary disabled' }, ph.uselocationtext);
+  const mapInputLocation = button(
+    { class: 'map-input-location secondary disabled', type: 'button', disabled: 'disabled' },
+    ph.uselocationtext,
+  );
   mapInputLocation.addEventListener('click', async () => {
     mapInputLocationOnClick(block, locations, ph);
   });
@@ -507,18 +570,26 @@ const mapSearch = (ph, block, locations, type) => {
     { class: 'map-search' },
     div(
       { class: 'map-input-details' },
-      input({ class: 'map-input', 'aria-label': 'Search' }),
+      div(
+        { class: 'map-input-field' },
+        label({ class: 'map-input-label', for: 'map-input' }, ph.searchtext),
+        input({
+          class: 'map-input',
+          id: 'map-input',
+          placeholder: ph.searchinputplaceholdertext || 'search by State, City or ZIP',
+        }),
+      ),
       mapInputSearch,
       mapInputLocation,
     ),
-    div({ class: 'map-search-error' }),
+    div({ class: 'map-search-error', role: 'alert' }),
   );
 };
 
 export default async function decorate(block) {
   const config = readBlockConfig(block);
   const searchType = config.type.textContent || config.type || 'undefined';
-  const defaultImageSrc = config.placeholder; // Default Image which we need to show initially
+  const defaultImageSrc = config.placeholder;
   block.replaceChildren();
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const isDropoff = Boolean(getMetadata('is-drop-off'));
@@ -528,36 +599,72 @@ export default async function decorate(block) {
 
   block.append(
     mapSearch(ph, block, locations, searchType),
-    div({ class: 'map-details' }, div({ class: 'map-list' }), div({ class: 'map' })),
+    div(
+      { class: 'map-details' },
+      div({ class: 'map-list', 'aria-live': 'polite' }),
+      div({ class: 'map' }),
+    ),
   );
+  decorateIcons(block);
 
   if (defaultImageSrc) {
     const mapContainer = block.querySelector('.map');
     mapContainer.style.backgroundImage = `url(${defaultImageSrc})`;
   }
 
+  const hashTerm = window.location.hash ? window.location.hash.substring(1) : null;
+
+  if (isDropoff) {
+    [ecommerceFlowTemplate, resolvedUtmParams] = await Promise.all([
+      resolveFlowUrl('drop off'),
+      getUtmParams(),
+    ]);
+  }
+
   calculateLocationListDistance(locations, getCenterPoint());
-  renderAndSortLocationList(locations, block, ph);
+  if (isDropoff) {
+    renderLocationList([], block, ph, 'prompt');
+  } else {
+    renderAndSortLocationList(locations, block, ph);
+  }
   decorateAnchors(block);
 
-  window.setTimeout(async () => {
-    await mapInitialization(locations, block, ph);
+  if (isDropoff && !hashTerm) {
+    requestGeolocation(block, locations, ph, true, (position) => {
+      const { latitude, longitude } = position.coords;
+      calculateLocationListDistance(locations, { latitude, longitude });
+      const nearby = locations.filter(
+        (loc) => haversineDistance(loc.lat, loc.lng, latitude, longitude) <= RADIUS_KM,
+      );
+      renderAndSortLocationList(nearby, block, ph, nearby.length > 0 ? 'results' : 'no-results');
+    }, () => {
+      renderLocationList([], block, ph, 'prompt');
+    });
+  }
 
-    if (useMyLocation) {
-      map.on('load', () => {
-        window.setTimeout(() => {
-          mapInputLocationOnClick(block, locations, ph);
-        }, 1000);
-      });
+  const initMap = async () => {
+    await mapInitialization(locations, block, ph, isDropoff);
+    if (hashTerm) {
+      block.querySelector('.map-input').value = hashTerm;
+      await mapInputSearchOnCLick(block, locations, ph, searchType);
+    } else if (useMyLocation) {
+      mapInputLocationOnClick(block, locations, ph);
     }
+  };
 
-    if (window.location.hash) {
-      map.on('load', () => {
-        window.setTimeout(() => {
-          block.querySelector('.map-input').value = window.location.hash.substring(1);
-          mapInputSearchOnCLick(block, locations, ph, searchType);
-        }, 1000);
-      });
+  const launchMapInit = () => {
+    if (window.requestIdleCallback) {
+      requestIdleCallback(() => initMap());
+    } else {
+      initMap();
     }
-  }, 3000);
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      launchMapInit();
+    }
+  }, { rootMargin: '200px' });
+  observer.observe(block);
 }
