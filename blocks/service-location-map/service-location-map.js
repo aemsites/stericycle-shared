@@ -80,9 +80,11 @@ const locDivCreation = (location, ph) => {
     );
   }
 
-  locationDiv.appendChild(
-    p({ class: 'distance' }, formatDistance(location.distance)),
-  );
+  if (Number.isFinite(location.distance)) {
+    locationDiv.appendChild(
+      p({ class: 'distance' }, formatDistance(location.distance)),
+    );
+  }
 
   if (location['opening-hours']) {
     const tempP = p({ class: 'opening-hours' });
@@ -203,11 +205,7 @@ async function fetchLocations(isDropoff, ph) {
     });
 }
 
-/**
- * Method to apply markers on the map
- * @param {*} locations
- */
-function applyMarkers(locations) {
+function applyMarkers(locations, block, ph, isDropoff) {
   locations.forEach((location) => {
     const el = div({ class: 'marker' }, span({ class: 'icon icon-marker', id: `marker-${location.index}`, title: location.title }));
 
@@ -223,6 +221,9 @@ function applyMarkers(locations) {
           const targetDiv = document.getElementById(`location-${id}`);
           if (targetDiv) {
             targetDiv.classList.remove('highlight');
+            if (isDropoff && targetDiv.dataset.revealed === 'true') {
+              targetDiv.remove();
+            }
           }
           marker.innerHTML = '';
           decorateIcons(marker.parentElement);
@@ -231,10 +232,18 @@ function applyMarkers(locations) {
         spanEl.classList.remove('icon-marker');
         spanEl.classList.add('icon-marker-bold');
 
-        const id = spanEl.id.split('-')[1];
+        const mapList = block.querySelector('.map-list');
+        let targetDiv = document.getElementById(`location-${location.index}`);
 
-        const mapList = document.querySelector('.block.service-location-map .map-list');
-        const targetDiv = document.getElementById(`location-${id}`);
+        if (!targetDiv && isDropoff && mapList) {
+          mapList.querySelector('.prompt-card')?.remove();
+          location.distance = referencePoint
+            ? haversineDistance(location.lat, location.lng, referencePoint.latitude, referencePoint.longitude)
+            : undefined;
+          targetDiv = locDivCreation(location, ph);
+          targetDiv.dataset.revealed = 'true';
+          mapList.append(targetDiv);
+        }
 
         if (targetDiv && mapList) {
           mapList.scrollTop = targetDiv.offsetTop - mapList.offsetTop;
@@ -248,6 +257,9 @@ function applyMarkers(locations) {
         const targetDiv = document.getElementById(`location-${id}`);
         if (targetDiv) {
           targetDiv.classList.remove('highlight');
+          if (isDropoff && targetDiv.dataset.revealed === 'true') {
+            targetDiv.remove();
+          }
         }
       }
 
@@ -269,6 +281,17 @@ const getContactUshref = (ph) => `/${getLocale()}/${ph.contactuslinktext}`;
 
 const renderLocationList = (locations, block, ph, state) => {
   const locationContainer = block.querySelector('.map-list');
+  locationContainer.querySelectorAll('.location-item[data-revealed="true"]').forEach((revealedCard) => {
+    const id = revealedCard.id.split('-')[1];
+    const marker = document.getElementById(`marker-${id}`);
+    if (marker) {
+      marker.classList.remove('icon-marker-bold');
+      marker.classList.add('icon-marker');
+      marker.innerHTML = '';
+      decorateIcons(marker.parentElement);
+    }
+  });
+
   locationContainer.innerHTML = '';
   locationContainer.classList.remove('no-result', 'prompt');
   locationContainer.appendChild(
@@ -395,7 +418,7 @@ const mapInitialization = async (locations, block, ph, isDropoff) => {
 
   map.setCenter([centerPoint.longitude, centerPoint.latitude]);
   map.setZoom(centerPoint.zoom);
-  applyMarkers(locations);
+  applyMarkers(locations, block, ph, isDropoff);
 
   map.on('load', () => {
     if (isDropoff && referencePoint) {
