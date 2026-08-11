@@ -26,6 +26,7 @@ import getUtmParams from '../../scripts/utm-params.js';
 
 let map = null;
 let referencePoint = null;
+let dropoffMode = false;
 
 const RADIUS_KM = 80.4672;
 const LEGACY_BUY_NOW = 'https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip={zip}';
@@ -128,7 +129,7 @@ const locDivCreation = (location, ph) => {
     );
   }
 
-  if (location['sub-type']?.toLowerCase() === 'drop-off' && getLocale() === 'en-us') {
+  if (dropoffMode && location['sub-type']?.toLowerCase() === 'drop-off' && getLocale() === 'en-us') {
     const template = ecommerceFlowTemplate ?? LEGACY_BUY_NOW;
     const href = buildBuyNowUrl(template, location['zip-code'], resolvedUtmParams);
     locationDiv.appendChild(
@@ -309,12 +310,18 @@ const renderLocationList = (locations, block, ph, state) => {
       || 'Please enter, State, City or ZIP in the search and your facility will populate'));
     locationContainer.appendChild(promptCard);
   } else if (resolvedState === 'no-results') {
-    const noResultCard = div({ class: 'location-item' });
-    const tempP = p({}, span({}, `${ph.servicemapcurrentlocationnoresulttextpre} `));
+    const tempP = dropoffMode
+      ? p({}, span({}, `${ph.servicemapcurrentlocationnoresulttextpre} `))
+      : p({ class: 'no-result' }, span({}, `${ph.servicemapcurrentlocationnoresulttextpre} `));
     tempP.appendChild(a({ href: getContactUshref(ph) }, ph.contactustext));
     tempP.appendChild(span({}, ` ${ph.servicemapcurrentlocationnoresulttextpost}`));
-    noResultCard.appendChild(tempP);
-    locationContainer.appendChild(noResultCard);
+    if (dropoffMode) {
+      const noResultCard = div({ class: 'location-item' });
+      noResultCard.appendChild(tempP);
+      locationContainer.appendChild(noResultCard);
+    } else {
+      locationContainer.appendChild(tempP);
+    }
     locationContainer.classList.add('no-result');
   } else {
     locations.forEach((location) => {
@@ -568,7 +575,30 @@ const mapInputLocationOnClick = (block, locations, ph) => {
   requestGeolocation(block, locations, ph, false, null, null);
 };
 
-const mapSearch = (ph, block, locations, type) => {
+const mapSearch = (ph, block, locations, type, isDropoff) => {
+  if (!isDropoff) {
+    const mapInputSearch = button({ class: 'map-input-search secondary disabled' }, ph.searchtext);
+    mapInputSearch.addEventListener('click', async () => {
+      await mapInputSearchOnCLick(block, locations, ph, type);
+    });
+
+    const mapInputLocation = button({ class: 'map-input-location secondary disabled' }, ph.uselocationtext);
+    mapInputLocation.addEventListener('click', async () => {
+      mapInputLocationOnClick(block, locations, ph);
+    });
+
+    return div(
+      { class: 'map-search' },
+      div(
+        { class: 'map-input-details' },
+        input({ class: 'map-input', 'aria-label': 'Search' }),
+        mapInputSearch,
+        mapInputLocation,
+      ),
+      div({ class: 'map-search-error' }),
+    );
+  }
+
   const mapInputSearch = button(
     {
       class: 'map-input-search primary disabled',
@@ -618,6 +648,7 @@ export default async function decorate(block) {
   block.replaceChildren();
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const isDropoff = Boolean(getMetadata('is-drop-off'));
+  dropoffMode = isDropoff;
   if (isDropoff) {
     block.classList.add('drop-off');
   }
@@ -626,7 +657,7 @@ export default async function decorate(block) {
   const useMyLocation = urlParams.get('useMyLocation');
 
   block.append(
-    mapSearch(ph, block, locations, searchType),
+    mapSearch(ph, block, locations, searchType, isDropoff),
     div(
       { class: 'map-details' },
       div({ class: 'map-list', 'aria-live': 'polite' }),
