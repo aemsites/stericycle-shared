@@ -512,6 +512,9 @@ const mapInputSearchOnCLick = async (block, locations, ph, type) => {
     setReferencePoint(resultObj.lat, resultObj.lng);
 
     if (map && locations.length > 0) {
+      if (dropoffMode) {
+        map.once('moveend', () => dragAndZoom(locations, block, ph, true));
+      }
       if (stateFound) {
         const { bbox } = stateFound;
         await map.fitBounds([
