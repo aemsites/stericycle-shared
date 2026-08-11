@@ -294,9 +294,11 @@ const renderLocationList = (locations, block, ph, state) => {
 
   locationContainer.innerHTML = '';
   locationContainer.classList.remove('no-result', 'prompt');
-  locationContainer.appendChild(
-    h2({ class: 'map-list-heading' }, ph.dropoffpanelheadingtext || 'Shred-It Facilities'),
-  );
+  if (block.classList.contains('drop-off')) {
+    locationContainer.appendChild(
+      h2({ class: 'map-list-heading' }, ph.dropoffpanelheadingtext || 'Shred-It Facilities'),
+    );
+  }
 
   const resolvedState = state ?? (locations.length === 0 ? 'no-results' : 'results');
 
@@ -616,6 +618,9 @@ export default async function decorate(block) {
   block.replaceChildren();
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const isDropoff = Boolean(getMetadata('is-drop-off'));
+  if (isDropoff) {
+    block.classList.add('drop-off');
+  }
   const locations = await fetchLocations(isDropoff, ph);
   const urlParams = new URLSearchParams(window.location.search);
   const useMyLocation = urlParams.get('useMyLocation');
