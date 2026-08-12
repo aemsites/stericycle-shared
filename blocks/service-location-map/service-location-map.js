@@ -466,6 +466,7 @@ const mapInputSearchOnCLick = async (block, locations, ph, type) => {
     const countryCode = getCountry();
     const response = await fetch(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${inputText}.json?access_token=${getAccessToken()}&limit=10&country=${countryCode}&types=region,postcode,place`,
+      { referrerPolicy: 'origin' },
     );
 
     if (!response.ok) {
