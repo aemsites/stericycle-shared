@@ -60,6 +60,11 @@ export default async function decorate(block) {
           formName: getFormName(form),
         });
       }, { once: true });
+
+      if (String(cfg['popup-form'] || '').trim().toLowerCase() === 'yes') {
+        const { initPopupForm } = await import('./popup.js');
+        initPopupForm(form, cfg, formDef);
+      }
     }
   }
 }
