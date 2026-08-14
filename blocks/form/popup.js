@@ -110,11 +110,11 @@ function buildPopupDOM(title, defs, ph, submitLabel) {
         ${buildField(defs.zip, ph, { autocomplete: 'postal-code', maskPlaceholder: zipMask })}
       </div>
       <div class="form-popup-extra-fields">
-        <div class="form-popup-row form-popup-row--split">
+        <div class="form-popup-row form-popup-row-split">
           ${buildField(defs.first_name, ph, { autocomplete: 'given-name' })}
           ${buildField(defs.last_name, ph, { autocomplete: 'family-name' })}
         </div>
-        <div class="form-popup-row form-popup-row--split">
+        <div class="form-popup-row form-popup-row-split">
           ${buildField(defs.email, ph, { autocomplete: 'email' })}
           ${buildField(defs.phone, ph, { autocomplete: 'tel', maskPlaceholder: phoneMask })}
         </div>
@@ -170,7 +170,7 @@ export default async function initPopupForm(mainForm, cfg, formDef) {
   popupForm.addEventListener('change', (e) => checkValidation(e.target));
 
   zipInput.addEventListener('focus', () => {
-    popup.classList.add('form-popup--expanded');
+    popup.classList.add('form-popup-expanded');
   });
 
   ['action', 'redirectUrl', 'thankYouMsg', 'submitErrorMessage', 'source',
@@ -210,9 +210,9 @@ export default async function initPopupForm(mainForm, cfg, formDef) {
     entries.forEach((entry) => {
       if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
         positionPopup(popup);
-        popup.classList.add('form-popup--visible');
+        popup.classList.add('form-popup-visible');
       } else if (entry.isIntersecting) {
-        popup.classList.remove('form-popup--visible', 'form-popup--expanded');
+        popup.classList.remove('form-popup-visible', 'form-popup-expanded');
       }
     });
   }, { root: null, threshold: 0 });
@@ -220,7 +220,7 @@ export default async function initPopupForm(mainForm, cfg, formDef) {
   observer.observe(mainForm);
 
   closeBtn.addEventListener('click', () => {
-    popup.classList.remove('form-popup--visible');
+    popup.classList.remove('form-popup-visible');
     popupDismissed = true;
     observer.disconnect();
   });

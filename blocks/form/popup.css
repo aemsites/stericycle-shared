@@ -19,7 +19,7 @@
         visibility 0s 0.3s;
 }
 
-.form-popup--visible {
+.form-popup-visible {
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
@@ -75,7 +75,7 @@
     margin: 0;
 }
 
-.form-popup--expanded .form-popup-inner {
+.form-popup-expanded .form-popup-inner {
     padding-bottom: 20px;
 }
 
@@ -86,7 +86,7 @@
     width: 100%;
 }
 
-.form-popup-row--split {
+.form-popup-row-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
@@ -100,11 +100,12 @@
     gap: 10px;
     max-height: 0;
     overflow: hidden;
+
     /* delay overflow hidden until after collapse animation finishes */
     transition: max-height 0.35s ease, overflow 0s 0.35s;
 }
 
-.form-popup--expanded .form-popup-extra-fields {
+.form-popup-expanded .form-popup-extra-fields {
     max-height: 500px;
     overflow: visible; /* immediately visible so focus outlines are never clipped */
     transition: max-height 0.35s ease; /* overflow has no delay when expanding */
@@ -338,7 +339,7 @@
     transition: max-height 0.35s ease, opacity 0.25s ease;
 }
 
-.form-popup--expanded .form-popup-privacy {
+.form-popup-expanded .form-popup-privacy {
     max-height: 100px;
     opacity: 1;
     transition: max-height 0.35s ease, opacity 0.25s ease 0.2s;
