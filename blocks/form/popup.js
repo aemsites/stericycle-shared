@@ -76,10 +76,9 @@ function buildField(fd, ph, { autocomplete, maskPlaceholder } = {}) {
   const label = resolve(ph, fd.label?.value, null);
   const required = fd.required ? ' data-required="true"' : '';
   const constraintAttrs = buildConstraintAttrs(fd, ph);
+  const input = buildInputAttrs(fd, ph, { autocomplete, maskPlaceholder });
   return `<div class="form-popup-field field-wrapper"${required}${constraintAttrs ? ` ${constraintAttrs}` : ''}>`
-    + `<input ${buildInputAttrs(fd, ph, { autocomplete, maskPlaceholder })}>`
-    + (label ? `<label>${label}</label>` : '')
-    + '</div>';
+    + `<input ${input}>${label ? `<label>${label}</label>` : ''}</div>`;
 }
 
 function applyMask(fieldEl) {
@@ -134,7 +133,7 @@ function buildPopupDOM(title, defs, ph, submitLabel) {
   return popup;
 }
 
-export async function initPopupForm(mainForm, cfg, formDef) {
+export default async function initPopupForm(mainForm, cfg, formDef) {
   if (popupDismissed) return;
   if (document.querySelector('.form-popup')) return;
 
@@ -174,12 +173,6 @@ export async function initPopupForm(mainForm, cfg, formDef) {
     popup.classList.add('form-popup--expanded');
   });
 
-  closeBtn.addEventListener('click', () => {
-    popup.classList.remove('form-popup--visible');
-    popupDismissed = true;
-    observer.disconnect();
-  });
-
   ['action', 'redirectUrl', 'thankYouMsg', 'submitErrorMessage', 'source',
     'ecommerceEnable', 'ecommerceFlow'].forEach((key) => {
     if (mainForm.dataset[key] !== undefined) popupForm.dataset[key] = mainForm.dataset[key];
@@ -207,8 +200,8 @@ export async function initPopupForm(mainForm, cfg, formDef) {
 
     if (popupForm.getAttribute('data-submitting') === 'true') return;
     popupForm.setAttribute('data-submitting', 'true');
-    const submitBtn = e.submitter || popupForm.querySelector('button[type="submit"]');
-    if (submitBtn) submitBtn.disabled = true;
+    const submitEl = e.submitter || popupForm.querySelector('button[type="submit"]');
+    if (submitEl) submitEl.disabled = true;
 
     await submitForm(popupForm, null);
   });
@@ -225,4 +218,10 @@ export async function initPopupForm(mainForm, cfg, formDef) {
   }, { root: null, threshold: 0 });
 
   observer.observe(mainForm);
+
+  closeBtn.addEventListener('click', () => {
+    popup.classList.remove('form-popup--visible');
+    popupDismissed = true;
+    observer.disconnect();
+  });
 }

@@ -62,7 +62,7 @@ export default async function decorate(block) {
       }, { once: true });
 
       if (String(cfg['popup-form'] || '').trim().toLowerCase() === 'yes') {
-        const { initPopupForm } = await import('./popup.js');
+        const { default: initPopupForm } = await import('./popup.js');
         initPopupForm(form, cfg, formDef);
       }
     }
