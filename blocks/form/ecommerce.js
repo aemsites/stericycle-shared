@@ -82,6 +82,29 @@ function resolveBaseUrl(form, flowType, map) {
 }
 
 /**
+ * Resolve the analytics `serviceLine` label for a form from its eCommerce flow config.
+ * Mirrors {@link resolveBaseUrl}'s mapping but returns the canonical reporting label instead
+ * of a URL: 'by service type' + serviceType1 one-time(purge) -> 'Purge', ongoing(regular) ->
+ * 'ProtectPlus'; the 'drop off' flow -> 'Drop-Off'. Returns '' when it cannot be determined.
+ * NOTE: canonical label spelling (Drop-Off / Purge / ProtectPlus) pending analytics/PO sign-off.
+ * @param {HTMLFormElement} form
+ * @returns {string}
+ */
+export function resolveServiceLine(form) {
+  const flow = normalize(form?.dataset?.ecommerceFlow);
+  if (flow === 'byservicetype') {
+    const serviceType = normalize(getFieldValue(form, 'serviceType1'));
+    if (serviceType === 'purge') return 'Purge';
+    if (serviceType === 'regular') return 'ProtectPlus';
+    return '';
+  }
+  if (flow === 'dropoff') return 'Drop-Off';
+  if (flow === 'purge') return 'Purge';
+  if (flow === 'protectplus') return 'ProtectPlus';
+  return '';
+}
+
+/**
  * Collect every non-empty user field into a plain object (field name -> value).
  * Buttons, fieldsets, disabled controls and unchecked radios/checkboxes are skipped.
  * Repeated names (e.g. checkbox groups) collapse into an array.

@@ -70,6 +70,21 @@ function initDataLayer() {
       timeStamp: ev?.timeStamp !== undefined ? ev.timeStamp : new Date(),
       quoteType: ev?.quoteType !== undefined ? ev.quoteType : null,
       serviceType: ev?.serviceType !== undefined ? ev.serviceType : null,
+      // BR.430 Lead Form Submission data points (STERICMS-1011). `formType` is already
+      // whitelisted above. PII fields (FN/LN/Email/Phone) carry Y/N presence flags only,
+      // never raw values. Field names/casing pending analytics confirmation.
+      formSource: ev?.formSource !== undefined ? ev.formSource : null,
+      leadId: ev?.leadId !== undefined ? ev.leadId : null,
+      eCommEntryPoint: ev?.eCommEntryPoint !== undefined ? ev.eCommEntryPoint : null,
+      serviceAddress: ev?.serviceAddress !== undefined ? ev.serviceAddress : null,
+      zipCode: ev?.zipCode !== undefined ? ev.zipCode : null,
+      serviceLine: ev?.serviceLine !== undefined ? ev.serviceLine : null,
+      requestType: ev?.requestType !== undefined ? ev.requestType : null,
+      frequency: ev?.frequency !== undefined ? ev.frequency : null,
+      FN: ev?.FN !== undefined ? ev.FN : null,
+      LN: ev?.LN !== undefined ? ev.LN : null,
+      Email: ev?.Email !== undefined ? ev.Email : null,
+      Phone: ev?.Phone !== undefined ? ev.Phone : null,
     };
     window.digitalData.events.push(event);
     window.digitalData.page.attributes.analytics.event = event;
