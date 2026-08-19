@@ -20,7 +20,7 @@ import {
 } from '../../scripts/aem.js';
 import usStates from './us-states.js';
 import { decorateAnchors, fetchQueryIndex, getLocale, haversineDistance, formatDistance } from '../../scripts/scripts.js';
-import { sendDigitalDataEvent } from '../../scripts/martech.js';
+import { sendDigitalDataEvent, sendEcommEntryPointEvent } from '../../scripts/martech.js';
 import { resolveFlowUrl } from '../../scripts/ecommerce-flow.js';
 import { getUtmParams } from '../form/utm.js';
 
@@ -132,9 +132,21 @@ const locDivCreation = (location, ph) => {
   if (dropoffMode && location['sub-type']?.toLowerCase() === 'drop-off' && getLocale() === 'en-us') {
     const template = ecommerceFlowTemplate ?? LEGACY_BUY_NOW;
     const href = buildBuyNowUrl(template, location['zip-code'], resolvedUtmParams);
-    locationDiv.appendChild(
-      a({ class: 'buy-now', href }, ph.buynowtext),
-    );
+    const buyNow = a({ class: 'buy-now', href }, ph.buynowtext);
+    // BR.410 drop-off eComm entry point (STERICMS-1028). The buy-now anchor navigates to the
+    // eComm portal; fire the tracking event synchronously on click, before navigation. No form
+    // context here, so PII flags default to 'N' and leadId to null. In drop-off mode the address
+    // is carried in title + address-line-1/2.
+    buyNow.addEventListener('click', () => {
+      sendEcommEntryPointEvent({
+        serviceLine: 'Drop-Off',
+        eCommEntryPoint: 'Y',
+        serviceAddress: [location.title, location['address-line-1'], location['address-line-2']]
+          .filter((part) => part && part !== '0').join(', '),
+        zipCode: location['zip-code'] || '',
+      });
+    });
+    locationDiv.appendChild(buyNow);
   }
 
   return locationDiv;
