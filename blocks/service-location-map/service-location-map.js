@@ -653,8 +653,18 @@ export default async function decorate(block) {
   const ph = await fetchPlaceholders(`/${getLocale()}`);
   const isDropoff = Boolean(getMetadata('is-drop-off'));
   dropoffMode = isDropoff;
+  // Kick off the Buy Now resolution up front so its network round-trips overlap with
+  // fetchLocations + DOM construction instead of blocking the critical path just before
+  // the first render. The results are only consumed once cards render (after geolocation
+  // or a user search), so awaiting `ecommerceReady` later adds ~0 to time-to-render.
+  let ecommerceReady = Promise.resolve();
   if (isDropoff) {
     block.classList.add('drop-off');
+    ecommerceReady = Promise.all([resolveFlowUrl('drop off'), getUtmParams()])
+      .then(([template, utm]) => {
+        ecommerceFlowTemplate = template;
+        resolvedUtmParams = utm;
+      });
   }
   const locations = await fetchLocations(isDropoff, ph);
   const urlParams = new URLSearchParams(window.location.search);
@@ -677,11 +687,10 @@ export default async function decorate(block) {
 
   const hashTerm = window.location.hash ? window.location.hash.substring(1) : null;
 
+  // Ensure the Buy Now template/UTM params are resolved before any cards render. These were
+  // started earlier and have almost certainly settled by now, so this rarely blocks.
   if (isDropoff) {
-    [ecommerceFlowTemplate, resolvedUtmParams] = await Promise.all([
-      resolveFlowUrl('drop off'),
-      getUtmParams(),
-    ]);
+    await ecommerceReady;
   }
 
   calculateLocationListDistance(locations, getCenterPoint());
