@@ -1,7 +1,7 @@
 import { getSubmitBaseUrl } from './constant.js';
 import { appendFragment } from './lib/util.js';
 import { getMetadata } from '../../scripts/aem.js';
-import { sendDigitalDataEvent } from '../../scripts/martech.js';
+import { sendDigitalDataEvent, sendEcommEntryPointEvent } from '../../scripts/martech.js';
 import { getFormName } from './utils.js';
 import { resolveEcommerceRedirectUrl, resolveServiceLine } from './ecommerce.js';
 
@@ -260,6 +260,20 @@ export async function submitForm(form, captcha) {
     if (redirectUrl) {
       // eComm entry point: the form hands off to the external checkout, so eCommEntryPoint = 'Y'.
       sendDataToAnalytics(form, { eCommEntryPoint: 'Y' });
+      // BR.410: fire the service-line entry-point event (Purge/ProtectPlus via the form flow;
+      // resolveServiceLine returns the matching label). STERICMS-1027 / 1026. The helper no-ops
+      // when serviceLine has no mapped event (e.g. ProtectPlus not enabled).
+      const lead = collectLeadDataPoints(form);
+      sendEcommEntryPointEvent({
+        serviceLine: lead.serviceLine,
+        eCommEntryPoint: 'Y',
+        serviceAddress: lead.serviceAddress,
+        zipCode: lead.zipCode,
+        FN: lead.FN,
+        LN: lead.LN,
+        Email: lead.Email,
+        Phone: lead.Phone,
+      });
       window.location.assign(redirectUrl);
       return;
     }
