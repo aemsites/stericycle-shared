@@ -144,6 +144,104 @@
   z-index: unset;
 }
 
+.block.service-location-map.drop-off .map-list {
+  background: #e4eced;
+  border-radius: 1rem;
+  padding: 1.5rem 0.75rem;
+}
+
+.block.service-location-map.drop-off .map-list .map-list-heading {
+  text-align: center;
+  color: #0c2941;
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.block.service-location-map.drop-off .map-list.no-result,
+.block.service-location-map.drop-off .map-list.prompt {
+  height: auto;
+}
+
+.block.service-location-map.drop-off .map-list .location-item.highlight p {
+  color: var(--color-text);
+}
+
+.block.service-location-map.drop-off .map-search .map-input-details {
+  flex-flow: row wrap;
+  align-items: flex-end;
+  gap: 1.25rem 0.5rem;
+}
+
+.block.service-location-map.drop-off .map-search .map-input-details .map-input-field {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: 0.25rem;
+}
+
+.block.service-location-map.drop-off .map-search .map-input-details .map-input-label {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1f1f2f;
+}
+
+.block.service-location-map.drop-off .map-search .map-input-details .map-input {
+  height: 3rem;
+  width: 100%;
+  padding: 0.875rem 0.5rem 0.875rem 0.75rem;
+  color: #1f1f2f;
+  background-color: #f9f9f9;
+  border: 1px solid var(--color-light-silver);
+  border-radius: 0.5rem;
+}
+
+.block.service-location-map.drop-off .map-search .map-input-details .map-input::placeholder {
+  color: #b1b1b1;
+}
+
+.block.service-location-map.drop-off .map-search .map-input-details .map-input-search,
+.block.service-location-map.drop-off .map-search .map-input-details .map-input-location {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  height: 3rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+}
+
+.block.service-location-map.drop-off .map-search .map-input-details .map-input-search {
+  width: 3rem;
+  padding: 0;
+  background-color: #ffba3c;
+  color: #0c2941;
+  border: none;
+}
+
+.block.service-location-map.drop-off .map-search .map-input-details .map-input-search-text {
+  display: none;
+}
+
+.block.service-location-map.drop-off .map-search .map-input-details .map-input-location {
+  flex-basis: 100%;
+  width: 100%;
+  padding: 0.5rem 2rem;
+  background-color: var(--color-white);
+  color: #0c2941;
+  border: 2px solid #1f1f2f;
+}
+
+.block.service-location-map.drop-off .map-search .map-input-details .map-input:focus-visible,
+.block.service-location-map.drop-off .map-search .map-input-details .map-input-search:focus-visible,
+.block.service-location-map.drop-off .map-search .map-input-details .map-input-location:focus-visible {
+  outline: 2px solid var(--color-primary-1);
+  outline-offset: 2px;
+}
+
 @media screen and (min-width: 768px) {
   .block.service-location-map .map-search .map-input-details {
     flex-direction: row;
@@ -156,6 +254,39 @@
   .block.service-location-map .map-search .map-input-details .map-input-search,
   .block.service-location-map .map-search .map-input-details .map-input-location {
     width: 30%;
+  }
+
+  .block.service-location-map.drop-off .map-search .map-input-details {
+    flex-wrap: nowrap;
+    gap: 1rem;
+  }
+
+  .block.service-location-map.drop-off .map-search .map-input-details .map-input {
+    width: 100%;
+  }
+
+  .block.service-location-map.drop-off .map-search .map-input-details .map-input-location {
+    flex-basis: auto;
+    width: auto;
+    margin-left: 1rem;
+  }
+
+  .block.service-location-map.drop-off .map-search .map-input-details .map-input-search {
+    width: auto;
+    flex-basis: 10.25rem;
+    padding: 0.5rem 2rem;
+  }
+
+  .block.service-location-map.drop-off .map-search .map-input-details .map-input-search-text {
+    display: inline;
+  }
+
+  .block.service-location-map.drop-off .map-search .map-input-details .map-input-search .icon-search-mobile {
+    display: none;
+  }
+
+  .block.service-location-map.drop-off .map-list .map-list-heading {
+    font-size: 1.5rem;
   }
 }
 
@@ -187,6 +318,19 @@
 
   .block.service-location-map .map-list .location-item .drop-off-details p:has(a) {
     width: 70% !important;
+  }
+
+  .block.service-location-map.drop-off .map-search .map-input-details .map-input {
+    width: 100%;
+  }
+
+  .block.service-location-map.drop-off .map-search .map-input-details .map-input-search {
+    width: auto;
+    flex-basis: 10.25rem;
+  }
+
+  .block.service-location-map.drop-off .map-search .map-input-details .map-input-location {
+    width: auto;
   }
 }
 
