@@ -22,7 +22,7 @@ import usStates from './us-states.js';
 import { decorateAnchors, fetchQueryIndex, getLocale, haversineDistance, formatDistance } from '../../scripts/scripts.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
 import { resolveFlowUrl } from '../../scripts/ecommerce-flow.js';
-import getUtmParams from '../../scripts/utm-params.js';
+import { getUtmParams } from '../form/utm.js';
 
 let map = null;
 let referencePoint = null;

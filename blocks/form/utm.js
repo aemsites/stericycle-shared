@@ -1,5 +1,68 @@
-// eslint-disable-next-line import/no-unresolved
-import { fetchPlaceholders } from '../../../../../../../scripts/aem.js';
+import { fetchPlaceholders } from '../../scripts/aem.js';
+
+const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+const COOKIE_TTL_MS = 30 * 60 * 1000;
+
+const readCookie = (name) => {
+  const entry = document.cookie.split('; ').find((c) => c.startsWith(`${name}=`));
+  return entry ? entry.split('=')[1] : null;
+};
+
+const writeCookie = (name, value) => {
+  const expires = new Date(Date.now() + COOKIE_TTL_MS).toUTCString();
+  document.cookie = `${name}=${value}; path=/; expires=${expires}`;
+};
+
+/**
+ * Resolve the active UTM parameters as a plain { key: value } object.
+ * Values are sourced (in priority order) from the current URL, a 30-minute cookie, and
+ * finally the referrer host when it matches a known utm-source placeholder. Any value
+ * found in the URL or via the referrer is persisted to a cookie so it survives navigation.
+ * @returns {Promise<Record<string, string>>}
+ */
+export async function getUtmParams() {
+  const params = new URLSearchParams(window.location.search);
+  const result = {};
+
+  UTM_KEYS.forEach((key) => {
+    const urlVal = params.get(key);
+    if (urlVal) {
+      result[key] = urlVal;
+      writeCookie(key, urlVal);
+    }
+  });
+
+  UTM_KEYS.forEach((key) => {
+    if (!result[key]) {
+      const cookieVal = readCookie(key);
+      if (cookieVal) result[key] = cookieVal;
+    }
+  });
+
+  if (!result.utm_source || !result.utm_medium) {
+    try {
+      const referrerHost = document.referrer ? new URL(document.referrer).hostname : '';
+      if (referrerHost) {
+        const ph = await fetchPlaceholders('/forms/utm-sources');
+        const sources = ph ? Object.values(ph) : [];
+        if (sources.includes(referrerHost)) {
+          if (!result.utm_source) {
+            result.utm_source = referrerHost;
+            writeCookie('utm_source', referrerHost);
+          }
+          if (!result.utm_medium) {
+            result.utm_medium = 'organic';
+            writeCookie('utm_medium', 'organic');
+          }
+        }
+      }
+    } catch {
+      /* empty */
+    }
+  }
+
+  return result;
+}
 
 const createUtmInput = (name, value, form) => {
   const input = document.createElement('input');
@@ -9,38 +72,11 @@ const createUtmInput = (name, value, form) => {
   form.appendChild(input);
 };
 
+/**
+ * Append the resolved UTM parameters as hidden inputs to a form so they are submitted.
+ * @param {HTMLFormElement} form
+ */
 export default async function decorateUTM(form) {
-  const placeholders = await fetchPlaceholders('/forms/utm-sources');
-  const utmSources = placeholders ? Object.values(placeholders).join(',') : null;
-  const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  utmParams.forEach((item) => {
-    let utmValue = urlParams.get(item);
-    const now = new Date();
-    const minutes = 30;
-    now.setTime(now.getTime() + (minutes * 60 * 1000));
-
-    // Check if UTM value exists in URL or cookies
-    if (utmValue != null && utmValue !== '') {
-      createUtmInput(item, utmValue, form);
-      document.cookie = `${item}=${utmValue}; path=/; expires=${now.toUTCString()}`;
-    } else if (document.cookie.split('; ').find((row) => row.startsWith(`${item}=`))) {
-      // eslint-disable-next-line prefer-destructuring
-      utmValue = document.cookie.split('; ')
-        .find((row) => row.startsWith(`${item}=`))
-        .split('=')[1];
-      createUtmInput(item, utmValue, form); // Create input dynamically using cookie value
-    } else if (item === 'utm_medium' || item === 'utm_source') {
-      // Check if utm_medium or utm_source can be determined from the referrer
-      if (utmSources && document.referrer) {
-        const url = document.referrer.match(/:\/\/(.[^/]+)/)[1];
-        if (utmSources.includes(url)) {
-          utmValue = item === 'utm_medium' ? 'organic' : document.referrer;
-          document.cookie = `${item}=${utmValue}; path=/; expires=${now.toUTCString()}`;
-          createUtmInput(item, utmValue, form); // Create input dynamically from referrer
-        }
-      }
-    }
-  });
+  const utmParams = await getUtmParams();
+  Object.entries(utmParams).forEach(([name, value]) => createUtmInput(name, value, form));
 }
