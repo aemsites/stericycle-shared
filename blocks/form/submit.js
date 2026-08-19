@@ -101,6 +101,7 @@ function sendDataToAnalytics(form, options = {}) {
 
   sendDigitalDataEvent({
     event: 'formSubmit',
+    eventName: 'formSubmit',
     formName: getFormName(form),
     formElement: form,
     quoteType,

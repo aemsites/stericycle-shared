@@ -57,6 +57,8 @@ function initDataLayer() {
     const eventContainer = {};
     const event = {
       event: ev?.event !== undefined ? ev.event : null,
+      // Per updated BR.430 AC: event === eventName on the pushed event.
+      eventName: ev?.eventName !== undefined ? ev.eventName : null,
       formType: ev?.formType !== undefined ? ev.formType : null,
       formName: ev?.formName !== undefined ? ev.formName : null,
       formStep: ev?.formStep !== undefined ? ev.formStep : null,
