@@ -52,7 +52,6 @@ function getFormSource(form) {
  */
 function collectLeadDataPoints(form) {
   return {
-    serviceAddress: readValue(form, ['serviceAddress', 'address', 'streetAddress', 'street_address', 'Address', 'address1']),
     zipCode: readValue(form, ['zip', 'zipCode', 'zipcode', 'postalCode', 'postal_code', 'Zip']),
     serviceLine: resolveServiceLine(form),
     requestType: readFieldsetValue(form, 'field-requesttype'),
@@ -99,10 +98,6 @@ function sendDataToAnalytics(form, options = {}) {
     }
   });
 
-  // serviceAddress is intentionally excluded from the formSubmit event per PII request
-  // (Ivan, STERICMS-1011); it remains on the BR.410 entry-point events. ignoreRestSiblings
-  // keeps the unused `serviceAddress` binding lint-clean.
-  const { serviceAddress, ...formSubmitData } = collectLeadDataPoints(form);
   sendDigitalDataEvent({
     event: 'formSubmit',
     eventName: 'formSubmit',
@@ -110,12 +105,13 @@ function sendDataToAnalytics(form, options = {}) {
     formElement: form,
     quoteType,
     serviceType,
-    // BR.430 data points (formType already whitelisted; PII fields are Y/N flags via collect*)
+    // BR.430 data points (formType already whitelisted; PII fields are Y/N flags via collect*).
+    // serviceAddress removed entirely per PII request (Ivan/Vivek, STERICMS-1011).
     formType: getFormType(form),
     formSource: getFormSource(form),
     leadId,
     eCommEntryPoint,
-    ...formSubmitData,
+    ...collectLeadDataPoints(form),
   });
 }
 
@@ -271,7 +267,6 @@ export async function submitForm(form, captcha) {
       sendEcommEntryPointEvent({
         serviceLine: lead.serviceLine,
         eCommEntryPoint: 'Y',
-        serviceAddress: lead.serviceAddress,
         zipCode: lead.zipCode,
         FN: lead.FN,
         LN: lead.LN,
