@@ -135,14 +135,12 @@ const locDivCreation = (location, ph) => {
     const buyNow = a({ class: 'buy-now', href }, ph.buynowtext);
     // BR.410 drop-off eComm entry point (STERICMS-1028). The buy-now anchor navigates to the
     // eComm portal; fire the tracking event synchronously on click, before navigation. No form
-    // context here, so PII flags default to 'N' and leadId to null. In drop-off mode the address
-    // is carried in title + address-line-1/2.
+    // context here, so PII flags default to 'N' and leadId to null. serviceAddress removed per
+    // PII request (Ivan/Vivek, STERICMS-1011).
     buyNow.addEventListener('click', () => {
       sendEcommEntryPointEvent({
         serviceLine: 'Drop-Off',
         eCommEntryPoint: 'Y',
-        serviceAddress: [location.title, location['address-line-1'], location['address-line-2']]
-          .filter((part) => part && part !== '0').join(', '),
         zipCode: location['zip-code'] || '',
       });
     });

@@ -78,7 +78,6 @@ function initDataLayer() {
       formSource: ev?.formSource !== undefined ? ev.formSource : null,
       leadId: ev?.leadId !== undefined ? ev.leadId : null,
       eCommEntryPoint: ev?.eCommEntryPoint !== undefined ? ev.eCommEntryPoint : null,
-      serviceAddress: ev?.serviceAddress !== undefined ? ev.serviceAddress : null,
       zipCode: ev?.zipCode !== undefined ? ev.zipCode : null,
       serviceLine: ev?.serviceLine !== undefined ? ev.serviceLine : null,
       requestType: ev?.requestType !== undefined ? ev.requestType : null,
@@ -182,14 +181,13 @@ function getUrlSubdirectory() {
  *
  * Uses the existing flat window.digitalData / newEvent model (confirmed by analytics — no WM
  * adobeDataLayer/clicks.object_content mirroring). BR.410's eventInfo/page fields are emitted flat.
- * @param {{serviceLine:string, eCommEntryPoint?:('Y'|'N'), serviceAddress?:string, zipCode?:string,
+ * @param {{serviceLine:string, eCommEntryPoint?:('Y'|'N'), zipCode?:string,
  *   leadId?:(string|null), FN?:string, LN?:string, Email?:string, Phone?:string}} data
  */
 export function sendEcommEntryPointEvent(data = {}) {
   const {
     serviceLine,
     eCommEntryPoint = 'Y',
-    serviceAddress = '',
     zipCode = '',
     leadId = null,
     FN = 'N',
@@ -207,7 +205,6 @@ export function sendEcommEntryPointEvent(data = {}) {
     digitalPropertyID: 'SHR',
     eCommEntryPoint,
     serviceLine,
-    serviceAddress,
     zipCode,
     leadId,
     FN,
