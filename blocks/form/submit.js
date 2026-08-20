@@ -99,6 +99,10 @@ function sendDataToAnalytics(form, options = {}) {
     }
   });
 
+  // serviceAddress is intentionally excluded from the formSubmit event per PII request
+  // (Ivan, STERICMS-1011); it remains on the BR.410 entry-point events. ignoreRestSiblings
+  // keeps the unused `serviceAddress` binding lint-clean.
+  const { serviceAddress, ...formSubmitData } = collectLeadDataPoints(form);
   sendDigitalDataEvent({
     event: 'formSubmit',
     eventName: 'formSubmit',
@@ -111,7 +115,7 @@ function sendDataToAnalytics(form, options = {}) {
     formSource: getFormSource(form),
     leadId,
     eCommEntryPoint,
-    ...collectLeadDataPoints(form),
+    ...formSubmitData,
   });
 }
 
