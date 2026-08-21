@@ -40,14 +40,20 @@ const setReferencePoint = (latitude, longitude) => {
 
 const buildBuyNowUrl = (template, zip, utmParams) => {
   let url = template;
+  const params = {};
+  // The configured URL is a base. If it explicitly carries a `{zip}` token we honor it
+  // (back-compat: lets an author place the zip in a path segment or a custom param name);
+  // otherwise we append `zip` as a standard query param. Either way the `?`/`&` join below
+  // preserves any params already present on — or added later to — the base URL.
   if (url.includes('{zip}')) {
-    if (zip) {
-      url = url.replace('{zip}', encodeURIComponent(zip));
-    } else {
-      url = url.replace(/[^?&]*\{zip\}[^&]*(&|$)/, '$1').replace(/[?&]$/, '');
-    }
+    url = zip
+      ? url.replace('{zip}', encodeURIComponent(zip))
+      : url.replace(/[^?&]*\{zip\}[^&]*(&|$)/, '$1').replace(/[?&]$/, '');
+  } else if (zip) {
+    params.zip = zip;
   }
-  const extra = Object.entries(utmParams ?? {}).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&');
+  Object.assign(params, utmParams ?? {});
+  const extra = Object.entries(params).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&');
   if (!extra) return url;
   return url.includes('?') ? `${url}&${extra}` : `${url}?${extra}`;
 };
@@ -307,7 +313,7 @@ const renderLocationList = (locations, block, ph, state) => {
   locationContainer.classList.remove('no-result', 'prompt');
   if (block.classList.contains('drop-off')) {
     locationContainer.appendChild(
-      h2({ class: 'map-list-heading' }, ph.dropoffpanelheadingtext || 'Shred-It Facilities'),
+      h2({ class: 'map-list-heading' }, ph.dropoffpanelheadingtext || 'Shred-it Facilities'),
     );
   }
 
