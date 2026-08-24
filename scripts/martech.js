@@ -142,9 +142,11 @@ function buildPagePayload() {
   };
 }
 
-function cmpLoaded() {
+function pushPageLoadEvents() {
   window.adobeDataLayer = window.adobeDataLayer || [];
-  window.adobeDataLayer.push({ event: 'cmp:loaded' });
+  // `landed` must be the first event in the ACDL sequence: Launch rules and data
+  // elements read page/visitor values via _satellite.getVar() when they execute,
+  // so the payload has to be in the data layer before any other event.
   window.adobeDataLayer.push({
     event: 'landed',
     eventInfo: { eventName: 'landed' },
@@ -163,15 +165,16 @@ function cmpLoaded() {
       sessionId: '',
     },
   });
+  window.adobeDataLayer.push({ event: 'cmp:loaded' });
 }
 
 export async function initMartech(env) {
   initDataLayer();
   initGTM();
   await initAdobeDataLayer();
+  pushPageLoadEvents();
   await initLaunch(env);
   await initWMLaunch(env);
-  await cmpLoaded();
 }
 
 /**
