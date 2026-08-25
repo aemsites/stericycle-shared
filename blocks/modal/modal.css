@@ -108,7 +108,12 @@ body.modal-open {
 .modal dialog .modal-content form .fragment-wrapper[data-id^='policy']  p{
   font-size: 0.75rem;
   padding-top: 0.5rem;
-  padding-bottom: 1rem;
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+}
+
+.modal dialog .modal-content form .fragment-wrapper[data-id^='ecommerce-notice']  p{
+  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 768px) {
