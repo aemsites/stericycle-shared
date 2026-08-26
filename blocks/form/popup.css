@@ -328,7 +328,8 @@
 }
 
 /* ── Privacy note ────────────────────────────────────────────────── */
-.form-popup-privacy {
+.form-popup-privacy,
+.form-popup-notice {
     font-size: 0.75rem;
     color: #666;
     line-height: 1.5;
@@ -339,13 +340,15 @@
     transition: max-height 0.35s ease, opacity 0.25s ease;
 }
 
-.form-popup-expanded .form-popup-privacy {
+.form-popup-expanded .form-popup-privacy,
+.form-popup-expanded .form-popup-notice {
     max-height: 100px;
     opacity: 1;
     transition: max-height 0.35s ease, opacity 0.25s ease 0.2s;
 }
 
-.form-popup-privacy a {
+.form-popup-privacy a,
+.form-popup-notice a {
     color: var(--color-link, #003087);
 }
 

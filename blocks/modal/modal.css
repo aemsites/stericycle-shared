@@ -107,12 +107,13 @@ body.modal-open {
 .modal dialog .modal-content form .fragment-wrapper[data-id^='privacypolicy']  p,
 .modal dialog .modal-content form .fragment-wrapper[data-id^='policy']  p{
   font-size: 0.75rem;
-  padding-top: 0.5rem;
+  padding-top: 0;
   padding-bottom: 0;
   margin-bottom: 0;
 }
 
 .modal dialog .modal-content form .fragment-wrapper[data-id^='ecommerce-notice']  p{
+  font-size: 0.75rem;
   margin-bottom: 0.5rem;
 }
 

@@ -126,6 +126,7 @@ function buildPopupDOM(title, defs, ph, submitLabel) {
       <div class="form-popup-row">
         <button class="form-popup-submit" type="submit">${submitLabel}</button>
       </div>
+      <div class="form-popup-notice"></div>
       <div class="form-popup-privacy"></div>
     </form>
   `;
@@ -144,7 +145,8 @@ export default async function initPopupForm(mainForm, cfg, formDef) {
   const items = formDef?.items || [];
   const fieldNames = ['zip', 'first_name', 'last_name', 'email', 'phone', 'newslettersignup'];
   const defs = Object.fromEntries(fieldNames.map((name) => [name, findField(items, name)]));
-  const fragmentField = findField(items, 'privacy-policy');
+  const privacyField = findField(items, 'privacy-policy');
+  const noticeField = findField(items, 'ecommerce-notice');
   const submitBtn = findSubmitButton(items);
   const submitLabel = resolve(ph, submitBtn?.label?.value, 'Submit');
 
@@ -153,7 +155,8 @@ export default async function initPopupForm(mainForm, cfg, formDef) {
   document.body.appendChild(popup);
 
   // same helper the main form uses for its fragment fields (see createFragment in forms-common.js)
-  appendFragment(popup.querySelector('.form-popup-privacy'), fragmentField?.value);
+  appendFragment(popup.querySelector('.form-popup-privacy'), privacyField?.value);
+  appendFragment(popup.querySelector('.form-popup-notice'), noticeField?.value);
 
   const zipField = popup.querySelector('[name="zip"]')?.closest('.form-popup-field');
   const phoneField = popup.querySelector('[name="phone"]')?.closest('.form-popup-field');
