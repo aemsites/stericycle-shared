@@ -49,7 +49,7 @@ function buildInputAttrs(fd, ph, maskPlaceholder) {
     `type="${type}"`,
     `name="${fd.name}"`,
     `placeholder="${maskPlaceholder || ' '}"`,
-    `autocomplete='off'`,
+    'autocomplete="off"',
     fd.required ? 'required' : '',
     fd.maxLength ? `maxlength="${ph[String(fd.maxLength).toLowerCase()] || fd.maxLength}"` : '',
     fd.minLength ? `minlength="${ph[String(fd.minLength).toLowerCase()] || fd.minLength}"` : '',
@@ -76,7 +76,7 @@ function buildField(fd, ph, maskPlaceholder) {
   const label = resolve(ph, fd.label?.value, null);
   const required = fd.required ? ' data-required="true"' : '';
   const constraintAttrs = buildConstraintAttrs(fd, ph);
-  const input = buildInputAttrs(fd, ph, maskPlaceholder );
+  const input = buildInputAttrs(fd, ph, maskPlaceholder);
   return `<div class="form-popup-field field-wrapper"${required}${constraintAttrs ? ` ${constraintAttrs}` : ''}>`
     + `<input ${input}>${label ? `<label>${label}</label>` : ''}</div>`;
 }
@@ -107,7 +107,7 @@ function buildPopupDOM(title, defs, ph, submitLabel) {
     </div>
     <form class="form-popup-inner" novalidate>
       <div class="form-popup-row">
-        ${buildField(defs.zip, ph,  zipMask )}
+        ${buildField(defs.zip, ph, zipMask)}
       </div>
       <div class="form-popup-extra-fields">
         <div class="form-popup-row form-popup-row-split">
