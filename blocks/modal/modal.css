@@ -12,7 +12,7 @@ body.modal-open {
   position: fixed;
   width: calc(100vw - 48px);
   max-width: 540px;
-  max-height: calc(100dvh - 64px);
+  max-height: calc(100dvh - 16px);
   padding: 0;
   border: 1px solid var(--dark-color);
 }
@@ -134,7 +134,6 @@ body.modal-open {
   .modal dialog  {
     max-width: none;
     width: calc(100vw - 16px);
-    max-height: calc(100dvh - 16px);
   }
 }
 
