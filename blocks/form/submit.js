@@ -1,43 +1,117 @@
 import { getSubmitBaseUrl } from './constant.js';
 import { appendFragment } from './lib/util.js';
 import { getMetadata } from '../../scripts/aem.js';
-import { sendDigitalDataEvent } from '../../scripts/martech.js';
+import { sendDigitalDataEvent, sendEcommEntryPointEvent } from '../../scripts/martech.js';
 import { getFormName } from './utils.js';
+import { resolveEcommerceRedirectUrl, resolveServiceLine } from './ecommerce.js';
 
-function sendDataToAnalytics(form) {
+/**
+ * Read the first matching form control by candidate name(s), with an optional fallback selector.
+ * Field names are author-driven (sheet-defined), so the candidate lists are best-effort and
+ * pending confirmation with the analytics team / form authors (see STERICMS-1011 comms doc).
+ */
+function findControl(form, names, extraSelector) {
+  const parts = names.map((n) => `[name="${n}"]`);
+  if (extraSelector) parts.push(extraSelector);
+  return form.querySelector(parts.join(', '));
+}
+
+/** Y/N presence flag for a control's value — used for PII fields; never emits the raw value. */
+function presenceFlag(el) {
+  return el && `${el.value ?? ''}`.trim() !== '' ? 'Y' : 'N';
+}
+
+/** Trimmed value of the first matching control, or '' when absent/empty. */
+function readValue(form, names, extraSelector) {
+  const el = findControl(form, names, extraSelector);
+  return `${el?.value ?? ''}`.trim();
+}
+
+/** Value of the checked radio/checkbox inside a fieldset matched by a class fragment. */
+function readFieldsetValue(form, classFragment) {
+  const fieldset = form.querySelector(`fieldset[class*="${classFragment}"]`);
+  return fieldset?.querySelector('input:checked')?.value || '';
+}
+
+/** modal vs inline, from the form's placement. */
+function getFormType(form) {
+  return form.closest('.modal') ? 'modal' : 'inline';
+}
+
+/** header / footer / body, from the form's placement. */
+function getFormSource(form) {
+  if (form.closest('header, .header')) return 'header';
+  if (form.closest('footer, .footer')) return 'footer';
+  return 'body';
+}
+
+/**
+ * Collect the shared lead-form data points (used by both the BR.430 formSubmit event and the
+ * BR.410 eComm entry-point event). PII fields are Y/N presence flags only — never raw values.
+ * @param {HTMLFormElement} form
+ */
+function collectLeadDataPoints(form) {
+  return {
+    zipCode: readValue(form, ['zip', 'zipCode', 'zipcode', 'postalCode', 'postal_code', 'Zip']),
+    serviceLine: resolveServiceLine(form),
+    requestType: readFieldsetValue(form, 'field-requesttype'),
+    frequency: readFieldsetValue(form, 'field-frequncy'),
+    FN: presenceFlag(findControl(form, ['firstName', 'first_name', 'FirstName', 'fname'], '[autocomplete="given-name"]')),
+    LN: presenceFlag(findControl(form, ['lastName', 'last_name', 'LastName', 'lname'], '[autocomplete="family-name"]')),
+    Email: presenceFlag(findControl(form, ['email', 'emailAddress', 'Email', 'email_address'], 'input[type="email"]')),
+    Phone: presenceFlag(findControl(form, ['phone', 'phoneNumber', 'Phone', 'phone_number'], 'input[type="tel"]')),
+  };
+}
+
+/**
+ * Fire the BR.430 `formSubmit` analytics event with the lead-form data points (STERICMS-1011).
+ * PII fields (FN/LN/Email/Phone) are emitted as Y/N presence flags only. `leadId` is not
+ * available client-side yet (the submit response body is not returned to the client) — it is
+ * passed through here so it can be wired once the backend returns it (see comms doc).
+ * @param {HTMLFormElement} form
+ * @param {{ eCommEntryPoint?: 'Y'|'N', leadId?: string|null }} [options]
+ */
+function sendDataToAnalytics(form, options = {}) {
+  const { eCommEntryPoint = 'N', leadId = null } = options;
+
   const quoteTypeField = form.querySelectorAll("input[name='quote_type'], input[name='Quote_Type'], input[name='QuoteType']");
   let quoteType = '';
-  if (quoteTypeField) {
-    quoteTypeField.forEach((option) => {
-      const value = option?.value;
-      if (option.type === 'hidden' || option.checked || option.selected) {
-        if (value) {
-          // eslint-disable-next-line no-unsafe-optional-chaining
-          quoteType = value?.charAt(0)?.toUpperCase() + value?.slice(1);
-        }
+  quoteTypeField.forEach((option) => {
+    const value = option?.value;
+    if (option.type === 'hidden' || option.checked || option.selected) {
+      if (value) {
+        // eslint-disable-next-line no-unsafe-optional-chaining
+        quoteType = value?.charAt(0)?.toUpperCase() + value?.slice(1);
       }
-    });
-  }
+    }
+  });
 
   const serviceTypeField = form.querySelectorAll("input[name='serviceType1']");
   let serviceType;
-  if (serviceTypeField) {
-    serviceTypeField.forEach((option) => {
-      const value = option?.value;
-      if (option.type === 'hidden' || option.checked || option.selected) {
-        if (value) {
-          // eslint-disable-next-line no-unsafe-optional-chaining
-          serviceType = value?.charAt(0)?.toUpperCase() + value?.slice(1);
-        }
+  serviceTypeField.forEach((option) => {
+    const value = option?.value;
+    if (option.type === 'hidden' || option.checked || option.selected) {
+      if (value) {
+        // eslint-disable-next-line no-unsafe-optional-chaining
+        serviceType = value?.charAt(0)?.toUpperCase() + value?.slice(1);
       }
-    });
-  }
+    }
+  });
+
   sendDigitalDataEvent({
     event: 'formSubmit',
+    eventName: 'formSubmit',
     formName: getFormName(form),
     formElement: form,
     quoteType,
     serviceType,
+    // BR.430 data points (formType already whitelisted; PII fields are Y/N flags via collect*).
+    // serviceAddress removed entirely per PII request (Ivan/Vivek, STERICMS-1011).
+    formType: getFormType(form),
+    formSource: getFormSource(form),
+    leadId,
+    eCommEntryPoint,
+    ...collectLeadDataPoints(form),
   });
 }
 
@@ -180,6 +254,28 @@ async function prepareRequest(form, captcha) {
 
 export async function submitForm(form, captcha) {
   try {
+    // eCommerce flow: redirect to the external checkout instead of the lead-capture POST.
+    // Falls through to the normal POST when disabled, off globally, or no URL resolves.
+    const redirectUrl = await resolveEcommerceRedirectUrl(form);
+    if (redirectUrl) {
+      // eComm entry point: the form hands off to the external checkout, so eCommEntryPoint = 'Y'.
+      sendDataToAnalytics(form, { eCommEntryPoint: 'Y' });
+      // BR.410: fire the service-line entry-point event (Purge/ProtectPlus via the form flow;
+      // resolveServiceLine returns the matching label). STERICMS-1027 / 1026. The helper no-ops
+      // when serviceLine has no mapped event (e.g. ProtectPlus not enabled).
+      const lead = collectLeadDataPoints(form);
+      sendEcommEntryPointEvent({
+        serviceLine: lead.serviceLine,
+        eCommEntryPoint: 'Y',
+        zipCode: lead.zipCode,
+        FN: lead.FN,
+        LN: lead.LN,
+        Email: lead.Email,
+        Phone: lead.Phone,
+      });
+      window.location.assign(redirectUrl);
+      return;
+    }
     // eslint-disable-next-line no-unused-vars
     const { headers, body, url } = await prepareRequest(form, captcha);
     const formData = createFormData(body.data);

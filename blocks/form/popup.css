@@ -1,0 +1,362 @@
+.form-popup {
+    position: fixed;
+    top: 0;
+    right: max(1.5rem, calc((100vw - var(--section-width)) / 2 + 1.5rem));
+    z-index: 500;
+    width: 468px;
+    background-color: var(--color-white, #fff);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgb(0 0 0 / 18%);
+    overflow: hidden;
+
+    /* Hidden: slid off-screen upward */
+    transform: translateY(-110%);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.3s ease,
+        visibility 0s 0.3s;
+}
+
+.form-popup-visible {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    transition:
+        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.3s ease,
+        visibility 0s 0s;
+}
+
+/* ── Header ──────────────────────────────────────────────────────── */
+.form-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 20px 0;
+}
+
+.form-popup-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--color-text-primary, #1a1a1a);
+    margin: 0;
+    padding-right: 8px;
+}
+
+.form-popup-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--color-text-primary, #1a1a1a);
+    padding: 2px 4px;
+    margin: 0;
+    border-radius: 4px;
+    opacity: 0.7;
+    margin-top: 2px;
+}
+
+.form-popup-close:hover {
+    opacity: 1;
+    background-color: var(--color-bg-secondary, #e8e8e8);
+}
+
+/* ── Form inner ──────────────────────────────────────────────────── */
+.form-popup-inner {
+    padding: 16px 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+}
+
+.form-popup-expanded .form-popup-inner {
+    padding-bottom: 20px;
+}
+
+/* ── Rows ────────────────────────────────────────────────────────── */
+.form-popup-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.form-popup-row-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+}
+
+/* ── Extra fields (expand / collapse) ───────────────────────────── */
+.form-popup-extra-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 0;
+    overflow: hidden;
+
+    /* delay overflow hidden until after collapse animation finishes */
+    transition: max-height 0.35s ease, overflow 0s 0.35s;
+}
+
+.form-popup-expanded .form-popup-extra-fields {
+    max-height: 500px;
+    overflow: visible; /* immediately visible so focus outlines are never clipped */
+    transition: max-height 0.35s ease; /* overflow has no delay when expanding */
+}
+
+/* ── Field wrappers (floating labels) ───────────────────────────── */
+.form-popup-field {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+
+.form-popup-field > label {
+    position: absolute;
+    top: 14px;
+    left: 0.75rem;
+    font-size: 1rem;
+    color: var(--color-text-secondary, #555);
+    transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    pointer-events: none;
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 1.5rem);
+}
+
+/* label floats up when field has value or is focused */
+.form-popup-field input:not(:placeholder-shown) + label,
+.form-popup-field input:focus + label {
+    top: 7px;
+    font-size: 10px;
+    color: var(--color-text-secondary, #555);
+}
+
+/* required asterisk */
+.form-popup-field[data-required="true"] > label::after {
+    content: "*";
+}
+
+/* ── Inputs ──────────────────────────────────────────────────────── */
+.form-popup-input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 48px;
+    padding: 1.5rem 0.75rem 0.5rem;
+    border: var(--form-input-border-size, 1px) solid var(--form-input-border-color, var(--color-accent-4, #818a91));
+    border-radius: 4px;
+    font-size: var(--form-input-font-size, 1rem);
+    font-family: inherit;
+    color: var(--color-text-primary, #1a1a1a);
+    background-color: var(--color-white, #fff);
+}
+
+.form-popup-input:focus {
+    outline: 3px solid var(--color-bg-tertiary, #40bbd5);
+    outline-offset: 3px;
+}
+
+/* hide the space placeholder used for :placeholder-shown detection */
+.form-popup-input::placeholder {
+    color: transparent;
+}
+
+/* ── Input mask overlay ──────────────────────────────────────────── */
+.form-popup-field.mask .shell {
+    position: absolute;
+    line-height: 1;
+    display: flex;
+    top: 21px;
+    left: 9px;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.form-popup-field.mask .shell span {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    pointer-events: none;
+    width: 100%;
+    letter-spacing: 1px;
+    font-size: var(--form-input-font-size, 1rem);
+    font-family: inherit;
+    color: var(--color-text-secondary, #555);
+}
+
+.form-popup-field.mask .shell i {
+    color: transparent;
+    opacity: 0;
+    visibility: hidden;
+    letter-spacing: 1px;
+}
+
+.form-popup-field.mask.focus .shell {
+    opacity: 1;
+}
+
+.form-popup-field.mask input:focus::placeholder {
+    opacity: 0;
+}
+
+.form-popup-field.mask .form-popup-input {
+    letter-spacing: 1px;
+}
+
+/* ── Validation states ───────────────────────────────────────────── */
+.form-popup-field.field-invalid .form-popup-input {
+    border-color: var(--form-input-invalid-border-color, var(--color-ui-error, #dc3545));
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url('../../icons/invalid.svg');
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.form-popup-field.field-valid .form-popup-input {
+    border-color: var(--color-ui-success, #198754);
+}
+
+.form-popup-field .field-description {
+    font-size: 0.75rem;
+    color: var(--form-error-color, var(--color-ui-error, #dc3545));
+    margin-top: 2px;
+}
+
+.form-popup-field.field-invalid[data-required="true"] > label::after {
+    color: var(--form-error-color, var(--color-ui-error, #dc3545));
+}
+
+/* ── Checkbox row ────────────────────────────────────────────────── */
+.form-popup-checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+}
+
+.form-popup-checkbox {
+    appearance: none;
+    flex-shrink: 0;
+    margin: 0.25rem;
+    padding: 0.4rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 4px;
+    background-color: var(--color-bg-secondary, #e8e8e8);
+    border: 1px solid var(--color-primary-1, #003087);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.form-popup-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 5px;
+    transform: rotate(45deg);
+    display: inline-block;
+    height: 10px;
+    width: 4px;
+    border-bottom: 1px solid var(--color-primary-1, #003087);
+    border-right: 1px solid var(--color-primary-1, #003087);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .form-popup-checkbox:hover {
+        background-color: var(--color-primary-1, #003087);
+    }
+
+    .form-popup-checkbox:hover:not(:focus-visible)::after {
+        border-bottom: 1px solid var(--color-white, #fff);
+        border-right: 1px solid var(--color-white, #fff);
+    }
+}
+
+.form-popup-checkbox:focus-visible {
+    background-color: var(--color-bg-secondary, #e8e8e8);
+    outline: 2px solid var(--color-primary-1, #003087);
+    outline-offset: 0;
+}
+
+.form-popup-checkbox-label {
+    font-size: 14px;
+    color: var(--color-text-primary, #1a1a1a);
+    cursor: pointer;
+    font-weight: 400;
+    line-height: 160%;
+    letter-spacing: 0.14px;
+}
+
+/* ── Submit button ───────────────────────────────────────────────── */
+.form-popup-submit {
+    width: 100%;
+    margin: 0;
+    padding: 4px 18px;
+    background-color: var(--color-secondary-4, #f0b400);
+    color: var(--color-text-primary, #1a1a1a);
+    border: none;
+    outline: 1px solid var(--color-bg-secondary, #e8e8e8);
+    border-radius: 100px;
+    font-size: var(--form-button-font-size, 1rem);
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.form-popup-submit:hover {
+    outline-width: 3px;
+    background-color: var(--color-secondary-4, #ffc62b);
+    color: var(--color-text-primary, #1a1a1a);
+}
+
+.form-popup-submit:focus {
+    outline: 3px solid var(--color-bg-tertiary, #40bbd5);
+    outline-offset: 3px;
+    border: 3px solid var(--color-bg-secondary, #e8e8e8);
+}
+
+/* ── Privacy note ────────────────────────────────────────────────── */
+.form-popup-privacy,
+.form-popup-notice {
+    font-size: 0.75rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+}
+
+.form-popup-expanded .form-popup-privacy,
+.form-popup-expanded .form-popup-notice {
+    max-height: 100px;
+    opacity: 1;
+    transition: max-height 0.35s ease, opacity 0.25s ease 0.2s;
+}
+
+.form-popup-privacy a,
+.form-popup-notice a {
+    color: var(--color-link, #003087);
+}
+
+/* ── Mobile: full-width strip ────────────────────────────────────── */
+@media (max-width: 480px) {
+    .form-popup {
+        left: 0.5rem;
+        right: 0.5rem;
+        width: auto;
+    }
+}

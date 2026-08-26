@@ -12,9 +12,14 @@ body.modal-open {
   position: fixed;
   width: calc(100vw - 48px);
   max-width: 540px;
-  max-height: calc(100dvh - (2 * var(--header-height)));
+  max-height: calc(100dvh - 16px);
   padding: 0;
   border: 1px solid var(--dark-color);
+}
+
+.modal dialog[open] {
+  display: flex;
+  flex-direction: column;
 }
 
 .modal dialog .modal-content {
@@ -22,7 +27,7 @@ body.modal-open {
   overflow-y: auto;
   overscroll-behavior: none;
   width: 100%;
-  max-height: calc(100dvh - (2 * var(--header-height)) - 48px);
+  min-height: 0;
   padding: 0;
   margin:0;
 }
@@ -31,11 +36,6 @@ body.modal-open {
 @media (width >= 900px) {
   .modal dialog {
     width: calc(100vw - 64px);
-  }
-
-  .modal dialog .modal-content {
-    max-height: calc(100dvh - (2 * var(--header-height)) - 64px);
-    padding: 0;
   }
 }
 
@@ -107,8 +107,14 @@ body.modal-open {
 .modal dialog .modal-content form .fragment-wrapper[data-id^='privacypolicy']  p,
 .modal dialog .modal-content form .fragment-wrapper[data-id^='policy']  p{
   font-size: 0.75rem;
-  padding-top: 0.5rem;
-  padding-bottom: 1rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.modal dialog .modal-content form .fragment-wrapper[data-id^='ecommerce-notice']  p{
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 768px) {
@@ -128,7 +134,6 @@ body.modal-open {
   .modal dialog  {
     max-width: none;
     width: calc(100vw - 16px);
-    max-height: calc(100dvh - 16px);
   }
 }
 

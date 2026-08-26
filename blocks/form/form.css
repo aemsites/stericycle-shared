@@ -618,6 +618,14 @@ main .get-a-quote-form-alternate form > .field-wrapper {
     padding-left: 24px;
 }
 
+main .get-a-quote-form-alternate form > .field-wrapper.col-6:has(+ .field-wrapper.col-6) {
+    padding-right: 12px;
+}
+
+main .get-a-quote-form-alternate form > .field-wrapper.col-6 + .field-wrapper.col-6 {
+    padding-left: 12px;
+}
+
 main .form form .wizard .wizard-button-wrapper .field-wrapper {
     flex: unset;
     width: fit-content;
@@ -959,10 +967,15 @@ main .get-a-quote-form-alternate form {
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='privacy-policy']  p,
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='policy'] p {
     font-size: 0.75rem;
-    padding-top: 0.5rem;
+    padding-top: 0;
     padding-bottom: 1rem;
     margin-bottom:0;
     color: var(--color-black);
+}
+
+main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='ecommerce-notice'] p {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 main .get-a-quote-form-alternate form .fragment-wrapper[data-id^='header'] {

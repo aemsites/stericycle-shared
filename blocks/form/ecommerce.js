@@ -1,0 +1,167 @@
+import { fetchFlows, isYes, normalize } from '../../scripts/ecommerce-flow.js';
+
+/**
+ * Read the value of a named form control (checked value for radio/checkbox groups).
+ * @param {HTMLFormElement} form
+ * @param {string} name
+ * @returns {string}
+ */
+function getFieldValue(form, name) {
+  let value = '';
+  form.querySelectorAll(`[name='${name}']`).forEach((el) => {
+    if (el.type === 'radio' || el.type === 'checkbox') {
+      if (el.checked) value = el.value;
+    } else if (el.value) {
+      value = el.value;
+    }
+  });
+  return value;
+}
+
+/**
+ * Resolve the destination URL for a form's flow from the spreadsheet map.
+ * For 'by service type' the URL depends on the `serviceType1` field value:
+ * one time -> Purge URL, ongoing -> ProtectPLUS URL.
+ * @param {HTMLFormElement} form
+ * @param {string} flowType the block's `eCommerce Flow` value
+ * @param {Record<string, string>} map
+ * @returns {string|null}
+ */
+function resolveBaseUrl(form, flowType, map) {
+  const flow = normalize(flowType);
+  if (flow === 'byservicetype') {
+    const serviceType = normalize(getFieldValue(form, 'serviceType1'));
+    if (serviceType === 'purge') return map.purge || null;
+    if (serviceType === 'regular') return map.protectplus || null;
+    return null;
+  }
+  return map[flow] || null;
+}
+
+/**
+ * Resolve the analytics `serviceLine` label for a form from its eCommerce flow config.
+ * Mirrors {@link resolveBaseUrl}'s mapping but returns the canonical reporting label instead
+ * of a URL: 'by service type' + serviceType1 one-time(purge) -> 'Purge', ongoing(regular) ->
+ * 'ProtectPlus'; the 'drop off' flow -> 'Drop-Off'. Returns '' when it cannot be determined.
+ * NOTE: canonical label spelling (Drop-Off / Purge / ProtectPlus) pending analytics/PO sign-off.
+ * @param {HTMLFormElement} form
+ * @returns {string}
+ */
+export function resolveServiceLine(form) {
+  const flow = normalize(form?.dataset?.ecommerceFlow);
+  if (flow === 'byservicetype') {
+    const serviceType = normalize(getFieldValue(form, 'serviceType1'));
+    if (serviceType === 'purge') return 'Purge';
+    if (serviceType === 'regular') return 'ProtectPlus';
+    return '';
+  }
+  if (flow === 'dropoff') return 'Drop-Off';
+  if (flow === 'purge') return 'Purge';
+  if (flow === 'protectplus') return 'ProtectPlus';
+  return '';
+}
+
+/**
+ * Collect every non-empty user field into a plain object (field name -> value).
+ * Buttons, fieldsets, disabled controls and unchecked radios/checkboxes are skipped.
+ * Repeated names (e.g. checkbox groups) collapse into an array.
+ * @param {HTMLFormElement} form
+ * @returns {Record<string, string|string[]>}
+ */
+function collectFormData(form) {
+  const data = {};
+  [...form.elements].forEach((fe) => {
+    if (!fe.name || fe.disabled || fe.matches('button') || fe.tagName === 'FIELDSET') return;
+    if ((fe.type === 'radio' || fe.type === 'checkbox') && !fe.checked) return;
+    const { value } = fe;
+    if (value == null || `${value}`.trim() === '') return;
+    if (Object.prototype.hasOwnProperty.call(data, fe.name)) {
+      data[fe.name] = [].concat(data[fe.name], value);
+    } else {
+      data[fe.name] = value;
+    }
+  });
+  return data;
+}
+
+/**
+ * Decode a hex string (optionally 0x-prefixed) into bytes. Throws on invalid input.
+ * @param {string} hex
+ * @returns {Uint8Array}
+ */
+function hexToBytes(hex) {
+  const clean = String(hex).trim().replace(/^0x/i, '');
+  if (clean.length % 2 !== 0 || !/^[0-9a-f]+$/i.test(clean)) {
+    throw new Error('invalid hex key');
+  }
+  const bytes = new Uint8Array(clean.length / 2);
+  for (let i = 0; i < bytes.length; i += 1) {
+    bytes[i] = parseInt(clean.slice(i * 2, i * 2 + 2), 16);
+  }
+  return bytes;
+}
+
+/**
+ * Encode bytes as URL-safe base64 without padding (safe to drop straight into a query value).
+ * @param {Uint8Array} bytes
+ * @returns {string}
+ */
+function bytesToBase64Url(bytes) {
+  let binary = '';
+  bytes.forEach((b) => { binary += String.fromCharCode(b); });
+  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+/**
+ * Encrypt a plaintext string with AES-256-GCM using a 32-byte hex key.
+ * Envelope layout: base64url( IV[12 bytes] + ciphertext + GCM auth tag[16 bytes] ) — the
+ * form a SubtleCrypto/Web Crypto receiver decrypts directly (Web Crypto appends the tag).
+ * Requires a secure context (https/localhost), which EDS pages always are.
+ * @param {string} plaintext
+ * @param {string} hexKey 64-char (32-byte) hex string
+ * @returns {Promise<string>}
+ */
+async function encryptAesGcm(plaintext, hexKey) {
+  const keyBytes = hexToBytes(hexKey);
+  if (keyBytes.length !== 32) {
+    throw new Error('AES-256 requires a 32-byte (64 hex char) key');
+  }
+  const key = await crypto.subtle.importKey('raw', keyBytes, { name: 'AES-GCM' }, false, ['encrypt']);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const plaintextBytes = new TextEncoder().encode(plaintext);
+  const cipher = new Uint8Array(
+    await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, plaintextBytes),
+  );
+  const envelope = new Uint8Array(iv.length + cipher.length);
+  envelope.set(iv, 0);
+  envelope.set(cipher, iv.length);
+  return bytesToBase64Url(envelope);
+}
+
+/**
+ * Resolve the full eCommerce redirect URL for a submitted form, or null when the
+ * current (POST) behaviour should be used instead. The form data is serialized to JSON,
+ * encrypted with AES-256-GCM (hex key from the sheet's `encryption-key` row) and passed as a
+ * single `data` query param. Returns null when the form is not eCommerce-enabled, the global
+ * toggle is off, no URL resolves, the key is missing/invalid, or encryption fails.
+ * @param {HTMLFormElement} form
+ * @returns {Promise<string|null>}
+ */
+export async function resolveEcommerceRedirectUrl(form) {
+  if (!isYes(form.dataset.ecommerceEnable)) return null;
+  const map = await fetchFlows();
+  if (!isYes(map.enabled)) return null;
+  const baseUrl = resolveBaseUrl(form, form.dataset.ecommerceFlow, map);
+  if (!baseUrl) return null;
+  const hexKey = map.encryptionkey;
+  if (!hexKey) return null;
+  try {
+    const json = JSON.stringify(collectFormData(form));
+    const data = await encryptAesGcm(json, hexKey);
+    const param = `data=${data}`;
+    return baseUrl.includes('?') ? `${baseUrl}&${param}` : `${baseUrl}?${param}`;
+  } catch {
+    // missing/invalid key or crypto failure -> fall back to the normal POST behaviour
+    return null;
+  }
+}
