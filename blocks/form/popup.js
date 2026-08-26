@@ -41,7 +41,7 @@ function resolve(ph, raw, fallback) {
   return ph[raw.toLowerCase()] || raw;
 }
 
-function buildInputAttrs(fd, ph, { autocomplete, maskPlaceholder } = {}) {
+function buildInputAttrs(fd, ph, maskPlaceholder) {
   const type = (fd.fieldType || 'text').replace('-input', '');
   const parts = [
     'class="form-popup-input"',
@@ -49,7 +49,7 @@ function buildInputAttrs(fd, ph, { autocomplete, maskPlaceholder } = {}) {
     `type="${type}"`,
     `name="${fd.name}"`,
     `placeholder="${maskPlaceholder || ' '}"`,
-    `autocomplete="off"`,
+    `autocomplete='off'`,
     fd.required ? 'required' : '',
     fd.maxLength ? `maxlength="${ph[String(fd.maxLength).toLowerCase()] || fd.maxLength}"` : '',
     fd.minLength ? `minlength="${ph[String(fd.minLength).toLowerCase()] || fd.minLength}"` : '',
@@ -71,12 +71,12 @@ function buildConstraintAttrs(fd, ph) {
     .join(' ');
 }
 
-function buildField(fd, ph, { autocomplete, maskPlaceholder } = {}) {
+function buildField(fd, ph, maskPlaceholder) {
   if (!fd) return '';
   const label = resolve(ph, fd.label?.value, null);
   const required = fd.required ? ' data-required="true"' : '';
   const constraintAttrs = buildConstraintAttrs(fd, ph);
-  const input = buildInputAttrs(fd, ph, { autocomplete, maskPlaceholder });
+  const input = buildInputAttrs(fd, ph, maskPlaceholder );
   return `<div class="form-popup-field field-wrapper"${required}${constraintAttrs ? ` ${constraintAttrs}` : ''}>`
     + `<input ${input}>${label ? `<label>${label}</label>` : ''}</div>`;
 }
@@ -107,16 +107,16 @@ function buildPopupDOM(title, defs, ph, submitLabel) {
     </div>
     <form class="form-popup-inner" novalidate>
       <div class="form-popup-row">
-        ${buildField(defs.zip, ph, { autocomplete: 'postal-code', maskPlaceholder: zipMask })}
+        ${buildField(defs.zip, ph,  zipMask )}
       </div>
       <div class="form-popup-extra-fields">
         <div class="form-popup-row form-popup-row-split">
-          ${buildField(defs.first_name, ph, { autocomplete: 'given-name' })}
-          ${buildField(defs.last_name, ph, { autocomplete: 'family-name' })}
+          ${buildField(defs.first_name, ph)}
+          ${buildField(defs.last_name, ph)}
         </div>
         <div class="form-popup-row form-popup-row-split">
-          ${buildField(defs.email, ph, { autocomplete: 'email' })}
-          ${buildField(defs.phone, ph, { autocomplete: 'tel', maskPlaceholder: phoneMask })}
+          ${buildField(defs.email, ph)}
+          ${buildField(defs.phone, ph, phoneMask)}
         </div>
         <label class="form-popup-checkbox-row">
           <input class="form-popup-checkbox" type="checkbox" name="newslettersignup" value="true" checked>
