@@ -49,7 +49,7 @@ function buildInputAttrs(fd, ph, { autocomplete, maskPlaceholder } = {}) {
     `type="${type}"`,
     `name="${fd.name}"`,
     `placeholder="${maskPlaceholder || ' '}"`,
-    autocomplete ? `autocomplete="${autocomplete}"` : '',
+    `autocomplete="off"`,
     fd.required ? 'required' : '',
     fd.maxLength ? `maxlength="${ph[String(fd.maxLength).toLowerCase()] || fd.maxLength}"` : '',
     fd.minLength ? `minlength="${ph[String(fd.minLength).toLowerCase()] || fd.minLength}"` : '',
