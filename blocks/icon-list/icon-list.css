@@ -155,6 +155,10 @@ main .two-column.form-container.icon-list-container > div:first-child.default-co
     margin: 24px 24px 40px;
 }
 
+main .two-column.form-container.icon-list-container > div:not(:first-child).default-content-wrapper {
+    margin: 0 24px;
+}
+
 main .two-column.form-container.icon-list-container > div:first-child.default-content-wrapper > h1 {
     font-size: 40px;
     font-weight: var(--font-weight-bold);
@@ -189,6 +193,10 @@ main .two-column.form-container.icon-list-container > div:first-child.default-co
 
     main .two-column.form-container.icon-list-container > div:first-child.default-content-wrapper {
         margin: 24px 0 80px;
+    }
+    
+    main .two-column.form-container.icon-list-container > div:not(:first-child).default-content-wrapper {
+        margin: 0;
     }
 
     div.icon-list.plain.block {
