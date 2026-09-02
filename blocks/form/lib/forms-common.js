@@ -407,6 +407,28 @@ function enableValidation(form) {
   });
 }
 
+let pageshowResetBound = false;
+
+function resetSubmittingForms(event) {
+  if (event.persisted) {
+    document.querySelectorAll('form[data-submitting="true"]').forEach((form) => {
+      form.setAttribute('data-submitting', 'false');
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) {
+        submitButton.disabled = false;
+      }
+    });
+  }
+}
+
+function bindPageshowReset() {
+  if (pageshowResetBound) {
+    return;
+  }
+  pageshowResetBound = true;
+  window.addEventListener('pageshow', resetSubmittingForms);
+}
+
 async function handleSubmit(e, form, captcha, submitHandler) {
   e.preventDefault();
   const hiddenFields = form.querySelectorAll('[data-visible="false"]');
@@ -441,6 +463,7 @@ export async function createForm(formDef, data, {
   submitHandler,
   onFormLoad,
 }) {
+  bindPageshowReset();
   const form = document.createElement('form');
   form.noValidate = true;
   if (formDef.appliedCssClassNames) {
