@@ -427,6 +427,7 @@ async function handleSubmit(e, form, captcha, submitHandler) {
           captcha,
         });
       }
+      e.submitter?.removeAttribute('disabled');
     }
   } else {
     const firstInvalidEl = form.querySelector(':invalid:not(fieldset)');
