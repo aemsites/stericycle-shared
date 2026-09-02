@@ -252,7 +252,7 @@ async function prepareRequest(form, captcha) {
   return { headers, body, url };
 }
 
-export async function submitForm(form, captcha) {
+export async function submitForm(e, form, captcha) {
   try {
     // eCommerce flow: redirect to the external checkout instead of the lead-capture POST.
     // Falls through to the normal POST when disabled, off globally, or no URL resolves.
@@ -273,6 +273,9 @@ export async function submitForm(form, captcha) {
         Email: lead.Email,
         Phone: lead.Phone,
       });
+
+      e.submitter?.removeAttribute('disabled');
+      form.setAttribute('data-submitting', 'true');
       window.location.assign(redirectUrl);
       return;
     }

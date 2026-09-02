@@ -423,12 +423,11 @@ async function handleSubmit(e, form, captcha, submitHandler) {
 
       if (typeof submitHandler === 'function') {
         await submitHandler({
+          e,
           formEl: form,
           captcha,
         });
       }
-      e.submitter?.removeAttribute('disabled');
-      form.setAttribute('data-submitting', 'true');
     }
   } else {
     const firstInvalidEl = form.querySelector(':invalid:not(fieldset)');
