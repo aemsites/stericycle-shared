@@ -1372,6 +1372,13 @@ main .section.contact-us-title > .default-content-wrapper {
         grid-column: span 12;
     }
 
+    /* stacked first/last name keep the same gutters as the other full-width fields */
+    main .get-a-quote-form-alternate form > .field-wrapper.col-6.field-first-name:has(+ .field-wrapper.col-6),
+    main .get-a-quote-form-alternate form > .field-wrapper.col-6 + .field-wrapper.col-6.field-last-name {
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+
     main .campaign-form.form {
         max-width: unset;
     }
