@@ -428,6 +428,12 @@ async function handleSubmit(e, form, captcha, submitHandler) {
         });
       }
       e.submitter?.removeAttribute('disabled');
+      // clear all forms fields except hidden fields
+      form.querySelectorAll('input,textarea,select').forEach((input) => {
+        if (input.type !== 'hidden') {
+          input.value = '';
+        }
+      });
     }
   } else {
     const firstInvalidEl = form.querySelector(':invalid:not(fieldset)');
