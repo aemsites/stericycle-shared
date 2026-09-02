@@ -206,7 +206,7 @@ export default async function initPopupForm(mainForm, cfg, formDef) {
     const submitEl = e.submitter || popupForm.querySelector('button[type="submit"]');
     if (submitEl) submitEl.disabled = true;
 
-    await submitForm(popupForm, null);
+    await submitForm(e, popupForm, null);
   });
 
   const observer = new IntersectionObserver((entries) => {
