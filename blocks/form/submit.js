@@ -273,9 +273,6 @@ export async function submitForm(e, form, captcha) {
         Email: lead.Email,
         Phone: lead.Phone,
       });
-
-      e.submitter?.removeAttribute('disabled');
-      form.setAttribute('data-submitting', 'true');
       window.location.assign(redirectUrl);
       return;
     }
@@ -313,3 +310,27 @@ export async function submitForm(e, form, captcha) {
     }, form);
   }
 }
+
+/**
+ * Clear the "currently submitting" lock so the form can be used again.
+ * The eCommerce hand-off intentionally leaves the lock set (the page is navigating away to the
+ * external checkout), so it has to be unwound when the user comes back to a restored page.
+ */
+export function resetSubmitState(form) {
+  if (!form) return;
+  form.setAttribute('data-submitting', 'false');
+  form.querySelectorAll('button[type="submit"]').forEach((button) => {
+    button.disabled = false;
+    button.removeAttribute('disabled');
+  });
+}
+
+// The eCommerce flow leaves the page via window.location.assign(). Browsers keep the page in the
+// back/forward cache, so pressing Back restores the frozen DOM and JS state as-is — the disabled
+// submit button and data-submitting="true" included — without re-running any block code
+// (no DOMContentLoaded, no decorate()). pageshow with event.persisted is the only signal for that
+// restore, so unwind the submit lock there.
+window.addEventListener('pageshow', (event) => {
+  if (!event.persisted) return;
+  document.querySelectorAll('form[data-submitting="true"]').forEach(resetSubmitState);
+});
