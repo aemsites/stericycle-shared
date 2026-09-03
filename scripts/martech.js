@@ -93,6 +93,7 @@ function initGTM() {
   });
 }
 
+// eslint-disable-next-line no-unused-vars
 async function initLaunch(env) {
   const launchUrls = {
     dev: 'https://assets.adobedtm.com/69ddc3de7b21/022e4d026e4d/launch-d08b621bd166-development.min.js',
@@ -173,7 +174,7 @@ export async function initMartech(env) {
   initGTM();
   await initAdobeDataLayer();
   pushPageLoadEvents();
-  await initLaunch(env);
+  // STERICMS-1043 removingfor testing: await initLaunch(env);
   await initWMLaunch(env);
 }
 
