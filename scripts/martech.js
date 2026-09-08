@@ -105,7 +105,7 @@ async function initLaunch(env) {
   }
   await loadScript(launchUrls[env], { async: '' });
 }
-
+// eslint-disable-next-line no-unused-vars
 async function initWMLaunch(env) {
   const wmLaunchUrls = {
     dev: 'https://assets.adobedtm.com/3010f46ab2ec/a3cbfcd83a52/launch-01b1cb6f5edd-development.min.js',
@@ -169,13 +169,14 @@ function pushPageLoadEvents() {
   window.adobeDataLayer.push({ event: 'cmp:loaded' });
 }
 
+// eslint-disable-next-line no-unused-vars
 export async function initMartech(env) {
   initDataLayer();
   initGTM();
   await initAdobeDataLayer();
   pushPageLoadEvents();
   // STERICMS-1043 removingfor testing: await initLaunch(env);
-  await initWMLaunch(env);
+  // await initWMLaunch(env);
 }
 
 /**
