@@ -10,39 +10,37 @@
   function OptanonWrapper() { }  
 </script> 
 
-<script nonce="aem">
-  (function() {
+<script>
+var satellite1;
 
-    var sdk1 = document.createElement('script');
-    sdk1.src = 'https://assets.adobedtm.com/3010f46ab2ec/a3cbfcd83a52/launch-01b1cb6f5edd-development.min.js';
-    sdk1.async = true;
+var script1 = document.createElement('script');
+script1.src = 'https://assets.adobedtm.com/3010f46ab2ec/a3cbfcd83a52/launch-01b1cb6f5edd-development.min.js';
 
-    sdk1.onload = function() {
-      console.log('SDK 1 loaded');
+script1.onload = function() {
 
-      setTimeout(function() {
+    satellite1 = window._satellite;
 
-      var sdk2 = document.createElement('script');
-      sdk2.src = 'https://assets.adobedtm.com/69ddc3de7b21/e78867b139f7/launch-44dd6983c070-development.min.js';
-      sdk2.async = true;
+    console.log('Launch 1 loaded');
 
-      sdk2.onload = function() {
-        console.log('SDK 2 loaded');
+    var script2 = document.createElement('script');
+    script2.src = 'https://assets.adobedtm.com/69ddc3de7b21/e78867b139f7/launch-44dd6983c070-development.min.js';
 
-        // Example event after both are available
-        if (window.alloy) {
-          alloy("sendEvent");
-        }
-      };
+    script2.onload = function() {
 
-      document.head.appendChild(sdk2);
+        var satellite2 = window._satellite;
 
-      }, 10000);
+        console.log('Launch 2 loaded');
+
+        // Test direct rule triggering
+        satellite1.track('customEvent');
+        satellite2.track('customEvent');
+
     };
 
-    document.head.appendChild(sdk1);
+    document.head.appendChild(script2);
+};
 
-  })();
+document.head.appendChild(script1);
 </script>
 <script nonce="aem" src="/scripts/aem.js" type="module"></script>
 <script nonce="aem" src="/scripts/scripts.js" type="module"></script>
