@@ -10,29 +10,40 @@
   function OptanonWrapper() { }  
 </script> 
 
-<script nonce="aem">
+<script>
   (function() {
-    // Load first Adobe Launch script immediately
-    var launch1 = document.createElement('script');
-    launch1.src = 'https://assets.adobedtm.com/3010f46ab2ec/a3cbfcd83a52/launch-01b1cb6f5edd-development.min.js';
-    launch1.async = true;
 
-    launch1.onload = function() {
-      console.log('Adobe Launch Script 1 loaded');
+    var sdk1 = document.createElement('script');
+    sdk1.src = 'https://assets.adobedtm.com/3010f46ab2ec/a3cbfcd83a52/launch-01b1cb6f5edd-development.min.js';
+    sdk1.async = true;
 
-      // Wait 3 seconds before loading the second script
+    sdk1.onload = function() {
+      console.log('SDK 1 loaded');
+
       setTimeout(function() {
-        var launch2 = document.createElement('script');
-        launch2.src = 'https://assets.adobedtm.com/69ddc3de7b21/e78867b139f7/launch-44dd6983c070-development.min.js';
-        launch2.async = true;
 
-        launch2.onload = function() {
-          console.log('Adobe Launch Script 2 loaded');
-        };
+      var sdk2 = document.createElement('script');
+      sdk2.src = 'https://assets.adobedtm.com/69ddc3de7b21/e78867b139f7/launch-44dd6983c070-development.min.js';
+      sdk2.async = true;
 
-        document.head.appendChild(launch2);
-      }, 3000); // 3000 ms = 3 seconds
-  };
+      sdk2.onload = function() {
+        console.log('SDK 2 loaded');
+
+        // Example event after both are available
+        if (window.alloy) {
+          alloy("sendEvent");
+        }
+      };
+
+      document.head.appendChild(sdk2);
+
+      }, 2000);
+    };
+
+    document.head.appendChild(sdk1);
+
+  })();
+</script>
 
 document.head.appendChild(launch1);
 })();
