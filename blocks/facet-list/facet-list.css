@@ -288,6 +288,15 @@ div.facet-list-container > div.results ul > li {
     padding-bottom: .75rem;
 }
 
+div.facet-list-container > div.results ul > li.no-results-message {
+    display: block;
+    border-bottom: unset;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-size: var(--body-font-size-default);
+    color: var(--color-text-secondary);
+}
+
 div.facet-list-container > div.results ul > li div.item-left {
     border-radius: var(--border-radius-l);
     width: 192px;
