@@ -176,7 +176,7 @@ export async function initMartech(env) {
   await initAdobeDataLayer();
   pushPageLoadEvents();
   // STERICMS-1043 removingfor testing: await initLaunch(env);
-  // await initWMLaunch(env);
+  await initWMLaunch(env);
 }
 
 /**
