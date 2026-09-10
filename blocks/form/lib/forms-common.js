@@ -341,6 +341,7 @@ function inputDecorator(field, element) {
     }
     if (input.type === 'email') {
       input.pattern = emailPattern || '';
+      input.maxLength = 80;
     }
     setConstraintsMessage(element, field.constraintMessages);
     element.dataset.required = field.required;
@@ -423,6 +424,7 @@ async function handleSubmit(e, form, captcha, submitHandler) {
 
       if (typeof submitHandler === 'function') {
         await submitHandler({
+          e,
           formEl: form,
           captcha,
         });

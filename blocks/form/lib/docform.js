@@ -32,8 +32,8 @@ export async function extractFormDefinition(block) {
 export async function renderForm(formDef) {
   if (formDef) {
     const form = await createForm(formDef, undefined, {
-      submitHandler({ formEl, captcha }) {
-        submitForm(formEl, captcha);
+      submitHandler({ e, formEl, captcha }) {
+        submitForm(e, formEl, captcha);
       },
     });
     try {

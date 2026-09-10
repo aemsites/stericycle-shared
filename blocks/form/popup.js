@@ -43,6 +43,7 @@ function resolve(ph, raw, fallback) {
 
 function buildInputAttrs(fd, ph, maskPlaceholder) {
   const type = (fd.fieldType || 'text').replace('-input', '');
+  const maxLength = fd.maxLength || (type === 'email' ? 80 : undefined);
   const parts = [
     'class="form-popup-input"',
     `id="popup-${fd.name}"`,
@@ -51,7 +52,7 @@ function buildInputAttrs(fd, ph, maskPlaceholder) {
     `placeholder="${maskPlaceholder || ' '}"`,
     'autocomplete="off"',
     fd.required ? 'required' : '',
-    fd.maxLength ? `maxlength="${ph[String(fd.maxLength).toLowerCase()] || fd.maxLength}"` : '',
+    maxLength ? `maxlength="${ph[String(maxLength).toLowerCase()] || maxLength}"` : '',
     fd.minLength ? `minlength="${ph[String(fd.minLength).toLowerCase()] || fd.minLength}"` : '',
     fd.pattern ? `pattern="${ph[fd.pattern.toLowerCase()] || fd.pattern}"` : '',
     fd.charset ? `data-charset="${resolve(ph, fd.charset, fd.charset)}"` : '',
@@ -206,7 +207,7 @@ export default async function initPopupForm(mainForm, cfg, formDef) {
     const submitEl = e.submitter || popupForm.querySelector('button[type="submit"]');
     if (submitEl) submitEl.disabled = true;
 
-    await submitForm(popupForm, null);
+    await submitForm(e, popupForm, null);
   });
 
   const observer = new IntersectionObserver((entries) => {

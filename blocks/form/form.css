@@ -1372,6 +1372,13 @@ main .section.contact-us-title > .default-content-wrapper {
         grid-column: span 12;
     }
 
+    /* stacked first/last name keep the same gutters as the other full-width fields */
+    main .get-a-quote-form-alternate form > .field-wrapper.col-6.field-first-name:has(+ .field-wrapper.col-6),
+    main .get-a-quote-form-alternate form > .field-wrapper.col-6 + .field-wrapper.col-6.field-last-name {
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+
     main .campaign-form.form {
         max-width: unset;
     }
@@ -1445,8 +1452,9 @@ main .form form fieldset.splitbuttons {
 main .form form fieldset.splitbuttons .radio-wrapper-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    row-gap: 8px;
+    flex-wrap: nowrap;
+    flex: 0 0 auto;
+    min-width: max-content;
     height: 100%;
 }
 
@@ -1484,9 +1492,9 @@ main .form form fieldset.splitbuttons legend {
 
 main .form form .panel-wrapper.splitbuttons .radio-wrapper {
     position: relative;
-    grid-column: 2;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
     gap: 0;
     background: var(--color-bg-secondary);
@@ -1502,42 +1510,46 @@ main .form form .panel-wrapper.splitbuttons .radio-wrapper input {
 }
 
 main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
-    padding: 11px 22px;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 11px 8px;
 }
 
 @media (min-width: 410px) {
     main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
-        padding: 11px 32px;
+        gap: 8px;
+        padding: 11px 14px;
     }
 }
 
 main .two-column.form-container .form form .panel-wrapper.splitbuttons .radio-wrapper label {
-    padding: 11px 22px;
+    gap: 4px;
+    padding: 11px 8px;
 }
 
 main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) {
     background: var(--form-styles-button-primary-color);
 }
 
-main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label::before {
+main .form form .panel-wrapper.splitbuttons .radio-wrapper label::before,
+main .form form .panel-wrapper.splitbuttons .radio-wrapper label::after {
     content: '';
-    display: block;
-    position: absolute;
-    left: 22px;
-    background: url("/icons/check-mark-new.svg") no-repeat left center;
-    background-size: cover;
+    flex: 0 0 16px;
     width: 16px;
     height: 16px;
 }
 
-@media (min-width: 410px) {
-    main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label::before {
-        left: 32px;
-    }
+main .form form .panel-wrapper.splitbuttons .radio-wrapper label::before {
+    background: url("/icons/check-mark-new.svg") no-repeat center;
+    background-size: contain;
+    visibility: hidden;
 }
 
-main .two-column.form-container .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label::before {
-    left: 22px;
+main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label::before {
+    visibility: visible;
 }
 
 main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
@@ -1556,35 +1568,16 @@ main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
     }
 }
 
-main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) {
-    position: relative;
-    min-width: 139px;
-}
-
 main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label {
-    display: flex;
-    align-items: center;
     color: var(--color-white);
-    cursor: pointer;
-    padding-left: 46px;
 }
 
 main .form form .panel-wrapper.splitbuttons .radio-wrapper label {
     white-space: nowrap;
 }
 
-@media (min-width: 410px) {
-    main .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label {
-       padding-left: 56px;
-    }
-}
-
-main .two-column.form-container .form form .panel-wrapper.splitbuttons .radio-wrapper:has(input:checked) label {
-    padding-left: 46px;
-}
-
 main .form form .panel-wrapper.splitbuttons .radio-wrapper.field-wrapper {
-    width: fit-content;
+    width: auto;
     padding: 0;
     margin-top: 0;
 }
