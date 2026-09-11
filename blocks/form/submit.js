@@ -5,11 +5,7 @@ import { sendDigitalDataEvent, sendEcommEntryPointEvent } from '../../scripts/ma
 import { getFormName } from './utils.js';
 import { resolveEcommerceRedirectUrl, resolveServiceLine } from './ecommerce.js';
 
-/**
- * Read the first matching form control by candidate name(s), with an optional fallback selector.
- * Field names are author-driven (sheet-defined), so the candidate lists are best-effort and
- * pending confirmation with the analytics team / form authors (see STERICMS-1011 comms doc).
- */
+/** Read the first matching form control by candidate name(s), with an optional fallback selector. */
 function findControl(form, names, extraSelector) {
   const parts = names.map((n) => `[name="${n}"]`);
   if (extraSelector) parts.push(extraSelector);
@@ -45,11 +41,7 @@ function getFormSource(form) {
   return 'body';
 }
 
-/**
- * Collect the shared lead-form data points (used by both the BR.430 formSubmit event and the
- * BR.410 eComm entry-point event). PII fields are Y/N presence flags only — never raw values.
- * @param {HTMLFormElement} form
- */
+/** Collect the shared lead-form data points (PII fields as Y/N presence flags only). */
 function collectLeadDataPoints(form) {
   return {
     zipCode: readValue(form, ['zip', 'zipCode', 'zipcode', 'postalCode', 'postal_code', 'Zip']),
@@ -64,10 +56,8 @@ function collectLeadDataPoints(form) {
 }
 
 /**
- * Fire the BR.430 `formSubmit` analytics event with the lead-form data points (STERICMS-1011).
- * PII fields (FN/LN/Email/Phone) are emitted as Y/N presence flags only. `leadId` is not
- * available client-side yet (the submit response body is not returned to the client) — it is
- * passed through here so it can be wired once the backend returns it (see comms doc).
+ * Fire the `formSubmit` analytics event with the lead-form data points. PII is emitted as Y/N
+ * presence flags only. `leadId` is passed through (currently null until the backend returns it).
  * @param {HTMLFormElement} form
  * @param {{ eCommEntryPoint?: 'Y'|'N', leadId?: string|null }} [options]
  */
@@ -105,8 +95,6 @@ function sendDataToAnalytics(form, options = {}) {
     formElement: form,
     quoteType,
     serviceType,
-    // BR.430 data points (formType already whitelisted; PII fields are Y/N flags via collect*).
-    // serviceAddress removed entirely per PII request (Ivan/Vivek, STERICMS-1011).
     formType: getFormType(form),
     formSource: getFormSource(form),
     leadId,
@@ -260,13 +248,13 @@ export async function submitForm(e, form, captcha) {
     if (redirectUrl) {
       // eComm entry point: the form hands off to the external checkout, so eCommEntryPoint = 'Y'.
       sendDataToAnalytics(form, { eCommEntryPoint: 'Y' });
-      // BR.410: fire the service-line entry-point event (Purge/ProtectPlus via the form flow;
-      // resolveServiceLine returns the matching label). STERICMS-1027 / 1026. The helper no-ops
-      // when serviceLine has no mapped event (e.g. ProtectPlus not enabled).
+      // Fire the eComm entry-point event; entryPointLocation from the form placement.
       const lead = collectLeadDataPoints(form);
+      const src = getFormSource(form); // header | footer | body
       sendEcommEntryPointEvent({
         serviceLine: lead.serviceLine,
         eCommEntryPoint: 'Y',
+        entryPointLocation: `${src.charAt(0).toUpperCase() + src.slice(1)} Form`, // Header Form | Footer Form | Body Form
         zipCode: lead.zipCode,
         FN: lead.FN,
         LN: lead.LN,
