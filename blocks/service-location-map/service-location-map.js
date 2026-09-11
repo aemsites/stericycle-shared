@@ -3,6 +3,7 @@
 import {
   a,
   div,
+  form,
   h2,
   label,
   p,
@@ -139,14 +140,12 @@ const locDivCreation = (location, ph) => {
     const template = ecommerceFlowTemplate ?? LEGACY_BUY_NOW;
     const href = buildBuyNowUrl(template, location['zip-code'], resolvedUtmParams);
     const buyNow = a({ class: 'buy-now', href }, ph.buynowtext);
-    // BR.410 drop-off eComm entry point (STERICMS-1028). The buy-now anchor navigates to the
-    // eComm portal; fire the tracking event synchronously on click, before navigation. No form
-    // context here, so PII flags default to 'N' and leadId to null. serviceAddress removed per
-    // PII request (Ivan/Vivek, STERICMS-1011).
+    // Fire the entry-point event on click, before navigation (no form context here).
     buyNow.addEventListener('click', () => {
       sendEcommEntryPointEvent({
         serviceLine: 'Drop-Off',
         eCommEntryPoint: 'Y',
+        entryPointLocation: 'Drop-Off Map',
         zipCode: location['zip-code'] || '',
       });
     });
@@ -549,6 +548,13 @@ const mapInputSearchOnCLick = async (block, locations, ph, type) => {
   }
 };
 
+const handleSearchSubmit = async (event, block, locations, ph, type) => {
+  event.preventDefault();
+  const mapInputSearchButton = block.querySelector('.map-input-search');
+  if (mapInputSearchButton?.classList.contains('disabled') || mapInputSearchButton?.disabled) return;
+  await mapInputSearchOnCLick(block, locations, ph, type);
+};
+
 const requestGeolocation = (block, locations, ph, isAutomatic, onSuccess, onDenied) => {
   const successCallback = (position) => {
     const { latitude, longitude } = position.coords;
@@ -597,24 +603,32 @@ const mapInputLocationOnClick = (block, locations, ph) => {
 
 const mapSearch = (ph, block, locations, type, isDropoff) => {
   if (!isDropoff) {
-    const mapInputSearch = button({ class: 'map-input-search secondary disabled' }, ph.searchtext);
-    mapInputSearch.addEventListener('click', async () => {
-      await mapInputSearchOnCLick(block, locations, ph, type);
-    });
+    const mapInputSearch = button(
+      { class: 'map-input-search secondary disabled', type: 'submit' },
+      ph.searchtext,
+    );
 
-    const mapInputLocation = button({ class: 'map-input-location secondary disabled' }, ph.uselocationtext);
+    const mapInputLocation = button(
+      { class: 'map-input-location secondary disabled', type: 'button' },
+      ph.uselocationtext,
+    );
     mapInputLocation.addEventListener('click', async () => {
       mapInputLocationOnClick(block, locations, ph);
     });
 
+    const mapInputField = input({ class: 'map-input', 'aria-label': 'Search' });
+
+    const mapInputDetails = form(
+      { class: 'map-input-details' },
+      mapInputField,
+      mapInputSearch,
+      mapInputLocation,
+    );
+    mapInputDetails.addEventListener('submit', (event) => handleSearchSubmit(event, block, locations, ph, type));
+
     return div(
       { class: 'map-search' },
-      div(
-        { class: 'map-input-details' },
-        input({ class: 'map-input', 'aria-label': 'Search' }),
-        mapInputSearch,
-        mapInputLocation,
-      ),
+      mapInputDetails,
       div({ class: 'map-search-error' }),
     );
   }
@@ -622,16 +636,13 @@ const mapSearch = (ph, block, locations, type, isDropoff) => {
   const mapInputSearch = button(
     {
       class: 'map-input-search primary disabled',
-      type: 'button',
+      type: 'submit',
       disabled: 'disabled',
       'aria-label': ph.searchtext,
     },
     span({ class: 'map-input-search-text' }, ph.searchtext),
     span({ class: 'icon icon-search-mobile' }),
   );
-  mapInputSearch.addEventListener('click', async () => {
-    await mapInputSearchOnCLick(block, locations, ph, type);
-  });
 
   const mapInputLocation = button(
     { class: 'map-input-location secondary disabled', type: 'button', disabled: 'disabled' },
@@ -641,22 +652,27 @@ const mapSearch = (ph, block, locations, type, isDropoff) => {
     mapInputLocationOnClick(block, locations, ph);
   });
 
+  const mapInputField = input({
+    class: 'map-input',
+    id: 'map-input',
+    placeholder: ph.searchinputplaceholdertext || 'search by State, City or ZIP',
+  });
+
+  const mapInputDetails = form(
+    { class: 'map-input-details' },
+    div(
+      { class: 'map-input-field' },
+      label({ class: 'map-input-label', for: 'map-input' }, ph.searchtext),
+      mapInputField,
+    ),
+    mapInputSearch,
+    mapInputLocation,
+  );
+  mapInputDetails.addEventListener('submit', (event) => handleSearchSubmit(event, block, locations, ph, type));
+
   return div(
     { class: 'map-search' },
-    div(
-      { class: 'map-input-details' },
-      div(
-        { class: 'map-input-field' },
-        label({ class: 'map-input-label', for: 'map-input' }, ph.searchtext),
-        input({
-          class: 'map-input',
-          id: 'map-input',
-          placeholder: ph.searchinputplaceholdertext || 'search by State, City or ZIP',
-        }),
-      ),
-      mapInputSearch,
-      mapInputLocation,
-    ),
+    mapInputDetails,
     div({ class: 'map-search-error', role: 'alert' }),
   );
 };

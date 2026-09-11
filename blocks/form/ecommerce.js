@@ -39,11 +39,8 @@ function resolveBaseUrl(form, flowType, map) {
 }
 
 /**
- * Resolve the analytics `serviceLine` label for a form from its eCommerce flow config.
- * Mirrors {@link resolveBaseUrl}'s mapping but returns the canonical reporting label instead
- * of a URL: 'by service type' + serviceType1 one-time(purge) -> 'Purge', ongoing(regular) ->
- * 'ProtectPlus'; the 'drop off' flow -> 'Drop-Off'. Returns '' when it cannot be determined.
- * NOTE: canonical label spelling (Drop-Off / Purge / ProtectPlus) pending analytics/PO sign-off.
+ * Resolve the analytics `serviceLine` label ('Purge' / 'ProtectPlus' / 'Drop-Off') from a form's
+ * eCommerce flow config. Returns '' when it cannot be determined.
  * @param {HTMLFormElement} form
  * @returns {string}
  */

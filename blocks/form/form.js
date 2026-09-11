@@ -54,11 +54,7 @@ export default async function decorate(block) {
         }
       });
 
-      // STERICMS-1011: tag the lead-form submit button for Adobe Analytics.
-      // `a-taggable` + analytics="Lead Form Submit" mirror the WM parent-site tagging convention;
-      // `cmp-linkcalltoaction` is the repo's existing Adobe Launch CTA hook (also applied by
-      // decorateCtaButtons). Kept explicit here per the ticket, pending analytics confirmation of
-      // which hook EDS Launch rules key on (see comms doc).
+      // Tag the lead-form submit button for analytics.
       const submitButton = form.querySelector('button[type="submit"]') || form.querySelector('.submit-wrapper button');
       if (submitButton) {
         submitButton.classList.add('cmp-linkcalltoaction', 'a-taggable');
