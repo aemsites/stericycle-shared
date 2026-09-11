@@ -57,7 +57,6 @@ function initDataLayer() {
     const eventContainer = {};
     const event = {
       event: ev?.event !== undefined ? ev.event : null,
-      // Per updated BR.430 AC: event === eventName on the pushed event.
       eventName: ev?.eventName !== undefined ? ev.eventName : null,
       formType: ev?.formType !== undefined ? ev.formType : null,
       formName: ev?.formName !== undefined ? ev.formName : null,
@@ -72,9 +71,6 @@ function initDataLayer() {
       timeStamp: ev?.timeStamp !== undefined ? ev.timeStamp : new Date(),
       quoteType: ev?.quoteType !== undefined ? ev.quoteType : null,
       serviceType: ev?.serviceType !== undefined ? ev.serviceType : null,
-      // BR.430 Lead Form Submission data points (STERICMS-1011). `formType` is already
-      // whitelisted above. PII fields (FN/LN/Email/Phone) carry Y/N presence flags only,
-      // never raw values. Field names/casing pending analytics confirmation.
       formSource: ev?.formSource !== undefined ? ev.formSource : null,
       leadId: ev?.leadId !== undefined ? ev.leadId : null,
       eCommEntryPoint: ev?.eCommEntryPoint !== undefined ? ev.eCommEntryPoint : null,
@@ -86,8 +82,7 @@ function initDataLayer() {
       LN: ev?.LN !== undefined ? ev.LN : null,
       Email: ev?.Email !== undefined ? ev.Email : null,
       Phone: ev?.Phone !== undefined ? ev.Phone : null,
-      // BR.410 eComm entry-point data points (STERICMS-1026/1027/1028). Flattened from the
-      // spec's eventInfo/page nesting under this flat data-layer model (see sendEcommEntryPointEvent).
+      entryPointLocation: ev?.entryPointLocation !== undefined ? ev.entryPointLocation : null,
       digitalPropertyID: ev?.digitalPropertyID !== undefined ? ev.digitalPropertyID : null,
       pageUrl: ev?.pageUrl !== undefined ? ev.pageUrl : null,
       urlSubdirectory: ev?.urlSubdirectory !== undefined ? ev.urlSubdirectory : null,
@@ -212,20 +207,11 @@ export function sendDigitalDataEvent(ev) {
   window.digitalData.newEvent(ev);
 }
 
-/**
- * serviceLine (normalized) -> BR.410 eComm entry-point event name.
- */
-const ENTRY_POINT_EVENTS = {
-  purge: 'shrEcommPurgeEntryPoint',
-  protectplus: 'shrEcommProtectPlusEntryPoint',
-  dropoff: 'shrEcommDropOffEntryPoint',
-};
+// Service lines with a valid eComm entry point; all emit ECOMM_ENTRY_POINT_EVENT.
+const ENTRY_POINT_SERVICE_LINES = new Set(['purge', 'protectplus', 'dropoff']);
+const ECOMM_ENTRY_POINT_EVENT = 'shrEcommEntryPoint';
 
-/**
- * The top-level site section of the current page (locale prefix stripped), e.g.
- * 'secure-shredding-services', 'service-locations', 'resource-center'.
- * @returns {string}
- */
+// Top-level site section of the current page (locale prefix stripped).
 function getUrlSubdirectory() {
   const segments = window.location.pathname.split('/').filter(Boolean);
   if (segments[0] && /^[a-z]{2}-[a-z]{2}$/i.test(segments[0])) segments.shift();
@@ -233,20 +219,16 @@ function getUrlSubdirectory() {
 }
 
 /**
- * Fire a BR.410 eComm entry-point event (STERICMS-1026/1027/1028):
- * shrEcommProtectPlusEntryPoint / shrEcommPurgeEntryPoint / shrEcommDropOffEntryPoint.
- * Only fires when `eCommEntryPoint === 'Y'` and `serviceLine` maps to a known event.
- * PII (FN/LN/Email/Phone) are Y/N presence flags only.
- *
- * Uses the existing flat window.digitalData / newEvent model (confirmed by analytics — no WM
- * adobeDataLayer/clicks.object_content mirroring). BR.410's eventInfo/page fields are emitted flat.
- * @param {{serviceLine:string, eCommEntryPoint?:('Y'|'N'), zipCode?:string,
- *   leadId?:(string|null), FN?:string, LN?:string, Email?:string, Phone?:string}} data
+ * Fire the eComm entry-point event. Fires only when eCommEntryPoint is 'Y' (gate, not emitted)
+ * and serviceLine is a known eComm line. PII (FN/LN/Email/Phone) are Y/N presence flags.
+ * @param {{serviceLine:string, eCommEntryPoint?:('Y'|'N'), entryPointLocation?:string,
+ *   zipCode?:string, leadId?:(string|null), FN?:string, LN?:string, Email?:string, Phone?:string}} data
  */
 export function sendEcommEntryPointEvent(data = {}) {
   const {
     serviceLine,
     eCommEntryPoint = 'Y',
+    entryPointLocation = '',
     zipCode = '',
     leadId = null,
     FN = 'N',
@@ -254,16 +236,15 @@ export function sendEcommEntryPointEvent(data = {}) {
     Email = 'N',
     Phone = 'N',
   } = data;
-  if (eCommEntryPoint !== 'Y') return;
+  if (eCommEntryPoint !== 'Y') return; // gate only — not emitted
   const key = String(serviceLine ?? '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '');
-  const event = ENTRY_POINT_EVENTS[key];
-  if (!event) return;
+  if (!ENTRY_POINT_SERVICE_LINES.has(key)) return;
   sendDigitalDataEvent({
-    event,
-    eventName: event,
+    event: ECOMM_ENTRY_POINT_EVENT,
+    eventName: ECOMM_ENTRY_POINT_EVENT,
     digitalPropertyID: 'SHR',
-    eCommEntryPoint,
     serviceLine,
+    entryPointLocation,
     zipCode,
     leadId,
     FN,

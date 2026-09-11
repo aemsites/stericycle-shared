@@ -140,14 +140,12 @@ const locDivCreation = (location, ph) => {
     const template = ecommerceFlowTemplate ?? LEGACY_BUY_NOW;
     const href = buildBuyNowUrl(template, location['zip-code'], resolvedUtmParams);
     const buyNow = a({ class: 'buy-now', href }, ph.buynowtext);
-    // BR.410 drop-off eComm entry point (STERICMS-1028). The buy-now anchor navigates to the
-    // eComm portal; fire the tracking event synchronously on click, before navigation. No form
-    // context here, so PII flags default to 'N' and leadId to null. serviceAddress removed per
-    // PII request (Ivan/Vivek, STERICMS-1011).
+    // Fire the entry-point event on click, before navigation (no form context here).
     buyNow.addEventListener('click', () => {
       sendEcommEntryPointEvent({
         serviceLine: 'Drop-Off',
         eCommEntryPoint: 'Y',
+        entryPointLocation: 'Drop-Off Map',
         zipCode: location['zip-code'] || '',
       });
     });
