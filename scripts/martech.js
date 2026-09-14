@@ -58,6 +58,7 @@ function initDataLayer() {
     const event = {
       event: ev?.event !== undefined ? ev.event : null,
       eventName: ev?.eventName !== undefined ? ev.eventName : null,
+      eventType: ev?.eventType ?? ev?.event ?? null,
       formType: ev?.formType !== undefined ? ev.formType : null,
       formName: ev?.formName !== undefined ? ev.formName : null,
       formStep: ev?.formStep !== undefined ? ev.formStep : null,
@@ -242,6 +243,7 @@ export function sendEcommEntryPointEvent(data = {}) {
   sendDigitalDataEvent({
     event: ECOMM_ENTRY_POINT_EVENT,
     eventName: ECOMM_ENTRY_POINT_EVENT,
+    eventType: ECOMM_ENTRY_POINT_EVENT,
     digitalPropertyID: 'SHR',
     serviceLine,
     entryPointLocation,
