@@ -341,6 +341,7 @@ function inputDecorator(field, element) {
     }
     if (input.type === 'email') {
       input.pattern = emailPattern || '';
+      input.maxLength = 80;
     }
     setConstraintsMessage(element, field.constraintMessages);
     element.dataset.required = field.required;
