@@ -21,7 +21,12 @@ export default async function decorate(block) {
   const modalButtonTitle = ph.getaquote || 'Get a Quote';
   const link = li(
     { class: 'quote-link' },
-    a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle }, modalButtonTitle),
+    a({
+      href: navModalPath,
+      class: 'quote-button button primary a-taggable cmp-linkcalltoaction',
+      'aria-label': modalButtonTitle,
+      analytics: 'Request a Quote - Header',
+    }, modalButtonTitle),
   );
   navContact.querySelector('ul').append(link);
 

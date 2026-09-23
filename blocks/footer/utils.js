@@ -78,8 +78,9 @@ export async function createModalButton(fragment, footerPath, locale) {
     { class: 'button-container quote-wrapper' },
     a({
       href: footerModalPath,
-      class: 'quote-button button primary',
+      class: 'quote-button button primary a-taggable cmp-linkcalltoaction',
       'aria-label': modalButtonTitle,
+      analytics: 'Request a Quote - Footer',
     }, modalButtonTitle),
   );
 
