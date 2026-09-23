@@ -916,8 +916,9 @@ export function buildCtasSection(
       {
         href: isLast ? navModalPath : href,
         target: isLast ? '_self' : '_blank',
-        class: `quote-button button ${isLast ? 'primary' : 'secondary dark'}`,
+        class: `quote-button button ${isLast ? 'primary a-taggable cmp-linkcalltoaction' : 'secondary dark'}`,
         'aria-label': text,
+        ...(isLast ? { analytics: 'Request a Quote - Header' } : {}),
       },
       text,
     );
@@ -1069,8 +1070,9 @@ export function buildCtasSectionReduced(
       {
         href: isLast ? navModalPath : href,
         target: isLast ? '_self' : '_blank',
-        class: `quote-button button ${isLast ? 'primary' : 'secondary dark'}`,
+        class: `quote-button button ${isLast ? 'primary a-taggable cmp-linkcalltoaction' : 'secondary dark'}`,
         'aria-label': text,
+        ...(isLast ? { analytics: 'Request a Quote - Header' } : {}),
       },
       text,
     );

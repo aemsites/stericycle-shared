@@ -265,7 +265,12 @@ export async function getFloatingContact() {
     ),
     div(
       { class: 'quote-container' },
-      a({ href: navModalPath, class: 'quote-button button primary', 'aria-label': modalButtonTitle }, modalButtonTitle),
+      a({
+        href: navModalPath,
+        class: 'quote-button button primary a-taggable cmp-linkcalltoaction',
+        'aria-label': modalButtonTitle,
+        analytics: 'Request a Quote - Header',
+      }, modalButtonTitle),
     ),
   );
 }

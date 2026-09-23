@@ -3,6 +3,7 @@ import decorateUTM from './utm.js';
 import { readBlockConfig } from '../../scripts/aem.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
 import { getFormName } from './utils.js';
+import { resolveServiceLine } from './ecommerce.js';
 
 export default async function decorate(block) {
   const { container, formDef } = await extractSheetDefinition(block);
@@ -54,11 +55,17 @@ export default async function decorate(block) {
         }
       });
 
-      // Tag the lead-form submit button for analytics.
       const submitButton = form.querySelector('button[type="submit"]') || form.querySelector('.submit-wrapper button');
       if (submitButton) {
         submitButton.classList.add('cmp-linkcalltoaction', 'a-taggable');
-        submitButton.setAttribute('analytics', 'Lead Form Submit');
+        const updateSubmitAnalyticsLabel = () => {
+          const line = resolveServiceLine(form);
+          submitButton.setAttribute('analytics', line ? `Lead Form Submit - ${line} Entry Point` : 'Lead Form Submit');
+        };
+        updateSubmitAnalyticsLabel();
+        form.addEventListener('change', (event) => {
+          if (event.target.matches('[name="serviceType1"]')) updateSubmitAnalyticsLabel();
+        });
       }
 
       form.addEventListener('focusin', () => {

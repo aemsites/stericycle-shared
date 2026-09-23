@@ -51,9 +51,10 @@ export default async function decorate(block) {
 
   if (getMetadata('template') === 'service-location-page') {
     const link = document.createElement('a');
-    link.classList.add('mobile-only', 'button', 'primary');
+    link.classList.add('mobile-only', 'button', 'primary', 'cmp-linkcalltoaction', 'a-taggable', 'exclude-from-cta-events');
     link.href = getMetadata('nav-modal-path') || ph.navmodalpath || '/forms/modals/modal';
     link.textContent = 'Request a Quote';
+    link.setAttribute('analytics', 'Request a Quote - Body');
     content.append(link);
   }
 
