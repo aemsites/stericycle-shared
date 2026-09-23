@@ -3,6 +3,7 @@ import { getLocale } from '../../scripts/scripts.js';
 import maskDecorate from './components/mask/mask.js';
 import { appendFragment, checkValidation } from './lib/util.js';
 import { submitForm } from './submit.js';
+import { resolveServiceLine } from './ecommerce.js';
 
 let popupDismissed = false;
 
@@ -181,6 +182,13 @@ export default async function initPopupForm(mainForm, cfg, formDef) {
     'ecommerceEnable', 'ecommerceFlow'].forEach((key) => {
     if (mainForm.dataset[key] !== undefined) popupForm.dataset[key] = mainForm.dataset[key];
   });
+
+  const popupSubmitButton = popupForm.querySelector('button[type="submit"]');
+  if (popupSubmitButton) {
+    popupSubmitButton.classList.add('cmp-linkcalltoaction', 'a-taggable');
+    const line = resolveServiceLine(popupForm);
+    popupSubmitButton.setAttribute('analytics', line ? `Lead Form Submit - ${line} Entry Point` : 'Lead Form Submit');
+  }
 
   // Mirror the main form's hidden inputs: the UTM params decorateUTM appended to it, plus any
   // sheet-authored hidden fields. constructPayload iterates form.elements, so without these the
