@@ -139,7 +139,8 @@ const locDivCreation = (location, ph) => {
   if (dropoffMode && location['sub-type']?.toLowerCase() === 'drop-off' && getLocale() === 'en-us') {
     const template = ecommerceFlowTemplate ?? LEGACY_BUY_NOW;
     const href = buildBuyNowUrl(template, location['zip-code'], resolvedUtmParams);
-    const buyNow = a({ class: 'buy-now', href }, ph.buynowtext);
+    const buyNow = a({ class: 'buy-now cmp-linkcalltoaction a-taggable', href }, ph.buynowtext);
+    buyNow.setAttribute('analytics', `${ph.buynowtext} - DropOff Entry Point`);
     // Fire the entry-point event on click, before navigation (no form context here).
     buyNow.addEventListener('click', () => {
       sendEcommEntryPointEvent({
