@@ -185,7 +185,7 @@ export default async function initPopupForm(mainForm, cfg, formDef) {
 
   const popupSubmitButton = popupForm.querySelector('button[type="submit"]');
   if (popupSubmitButton) {
-    popupSubmitButton.classList.add('cmp-linkcalltoaction', 'a-taggable');
+    popupSubmitButton.classList.add('cmp-linkcalltoaction', 'a-taggable', 'exclude-from-cta-events');
     const line = resolveServiceLine(popupForm);
     popupSubmitButton.setAttribute('analytics', line ? `Lead Form Submit - ${line} Entry Point` : 'Lead Form Submit');
   }
