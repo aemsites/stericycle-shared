@@ -934,6 +934,7 @@ async function loadLazy(doc) {
   setupRandomEmailGeneration(doc);
   const main = doc.querySelector('main');
   await loadBlocks(main);
+  await decorateCtaButtons(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
