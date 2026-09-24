@@ -57,7 +57,7 @@ export default async function decorate(block) {
 
       const submitButton = form.querySelector('button[type="submit"]') || form.querySelector('.submit-wrapper button');
       if (submitButton) {
-        submitButton.classList.add('cmp-linkcalltoaction', 'a-taggable');
+        submitButton.classList.add('cmp-linkcalltoaction', 'a-taggable', 'exclude-from-cta-events');
         const updateSubmitAnalyticsLabel = () => {
           const line = resolveServiceLine(form);
           submitButton.setAttribute('analytics', line ? `Lead Form Submit - ${line} Entry Point` : 'Lead Form Submit');
