@@ -269,6 +269,17 @@ export function pushToDataLayer(data) {
   window.dataLayer.push(data);
 }
 
+const ECOMM_MODAL_SERVICE_LINES = {
+  'single-step-modal': 'Purge',
+  'single-step-modal-regular': 'ProtectPlus',
+};
+
+function resolveModalServiceLine(a) {
+  const href = a.getAttribute('href') || '';
+  const modalPath = href.split('?')[0].split('#')[0].split('/').filter(Boolean).pop();
+  return ECOMM_MODAL_SERVICE_LINES[modalPath];
+}
+
 /**
  * Decorate all CTA buttons with the analytics trigger classname.
  * @param {Element} element container element
@@ -278,7 +289,9 @@ export async function decorateCtaButtons(element) {
     element.querySelectorAll('.button:not(form):not(.exclude-from-cta-events):not(.quote-button)').forEach((a) => {
       a.classList.add('cmp-linkcalltoaction', 'a-taggable');
       const analyticsLabel = a.getAttribute('aria-label') || a.textContent.trim() || a.title;
-      if (analyticsLabel) a.setAttribute('analytics', analyticsLabel);
+      if (!analyticsLabel) return;
+      const serviceLine = resolveModalServiceLine(a);
+      a.setAttribute('analytics', serviceLine ? `${analyticsLabel} - ${serviceLine} Entry Point` : analyticsLabel);
     });
   }, 100);
 }
