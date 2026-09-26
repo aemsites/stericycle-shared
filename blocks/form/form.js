@@ -52,5 +52,21 @@ export default async function decorate(block) {
         });
       }, { once: true });
     }
+    // create a label for required fields
+    const submitButton = form.querySelector('button[type="submit"]');
+    if (submitButton) {
+      const label = document.createElement('div');
+      label.classList.add('required-fields-label');
+      label.innerHTML = '<span class="required-indicator">*</span>Indicated required field';
+      const isHeroBannerForm = form.closest('.section.hero-banner-container');
+
+      if (isHeroBannerForm) {
+        // Insert before button for bigger form
+        submitButton.insertAdjacentElement('beforebegin', label);
+      } else {
+        // Insert after button for smaller form
+        submitButton.insertAdjacentElement('afterend', label);
+      }
+    }
   }
 }
