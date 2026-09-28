@@ -46,15 +46,13 @@ function resolveBaseUrl(form, flowType, map) {
  */
 export function resolveServiceLine(form) {
   const flow = normalize(form?.dataset?.ecommerceFlow);
-  if (flow === 'byservicetype') {
-    const serviceType = normalize(getFieldValue(form, 'serviceType1'));
-    if (serviceType === 'purge') return 'Purge';
-    if (serviceType === 'regular') return 'ProtectPlus';
-    return '';
-  }
   if (flow === 'dropoff') return 'Drop-Off';
   if (flow === 'purge') return 'Purge';
   if (flow === 'protectplus') return 'ProtectPlus';
+  // 'byservicetype' flow and general (non-eComm) lead forms: derive from serviceType1.
+  const serviceType = normalize(getFieldValue(form, 'serviceType1'));
+  if (serviceType === 'purge') return 'Purge';
+  if (serviceType === 'regular') return 'ProtectPlus';
   return '';
 }
 
