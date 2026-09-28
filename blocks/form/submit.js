@@ -23,10 +23,15 @@ function readValue(form, names, extraSelector) {
   return `${el?.value ?? ''}`.trim();
 }
 
-/** Value of the checked radio/checkbox inside a fieldset matched by a class fragment. */
-function readFieldsetValue(form, classFragment) {
+/** Visible label (button title) of the checked radio inside a fieldset matched by a class fragment. */
+function readFieldsetLabel(form, classFragment) {
   const fieldset = form.querySelector(`fieldset[class*="${classFragment}"]`);
-  return fieldset?.querySelector('input:checked')?.value || '';
+  const checked = fieldset?.querySelector('input:checked');
+  if (!checked) return '';
+  const label = (checked.id && fieldset.querySelector(`label[for="${checked.id}"]`))
+    || checked.closest('.radio-wrapper')?.querySelector('label')
+    || checked.parentElement?.querySelector('label');
+  return `${label?.textContent ?? checked.value ?? ''}`.trim();
 }
 
 /** modal vs inline, from the form's placement. */
@@ -46,8 +51,8 @@ function collectLeadDataPoints(form) {
   return {
     zipCode: readValue(form, ['zip', 'zipCode', 'zipcode', 'postalCode', 'postal_code', 'Zip']),
     serviceLine: resolveServiceLine(form),
-    requestType: readFieldsetValue(form, 'field-requesttype'),
-    frequency: readFieldsetValue(form, 'field-frequncy'),
+    requestType: readFieldsetLabel(form, 'field-requesttype'),
+    frequency: readFieldsetLabel(form, 'field-frequncy'),
     FN: presenceFlag(findControl(form, ['firstName', 'first_name', 'FirstName', 'fname'], '[autocomplete="given-name"]')),
     LN: presenceFlag(findControl(form, ['lastName', 'last_name', 'LastName', 'lname'], '[autocomplete="family-name"]')),
     Email: presenceFlag(findControl(form, ['email', 'emailAddress', 'Email', 'email_address'], 'input[type="email"]')),
@@ -99,6 +104,7 @@ function sendDataToAnalytics(form, options = {}) {
     formSource: getFormSource(form),
     leadId,
     eCommEntryPoint,
+    pageUrl: window.location.href,
     ...collectLeadDataPoints(form),
   });
 }
@@ -111,6 +117,8 @@ export async function submitSuccess(e, form) {
     errorMessage.remove();
   }
   sessionStorage.setItem('formSubmitted', 'true');
+  // Read analytics from the populated form before it is reset below.
+  sendDataToAnalytics(form);
   const { payload } = e;
   const thankYouMessageURL = payload?.body?.thankYouMessage;
   if (thankYouMessageURL) {
@@ -142,7 +150,6 @@ export async function submitSuccess(e, form) {
   }
   form.setAttribute('data-submitting', 'false');
   form.querySelector('button[type="submit"]').disabled = false;
-  sendDataToAnalytics(form);
 }
 
 // eslint-disable-next-line no-unused-vars
