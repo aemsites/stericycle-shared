@@ -105,6 +105,17 @@ async function initLaunch(env) {
   await loadScript(launchUrls[env], { async: '' });
 }
 
+async function initWMLaunch(env) {
+  const wmLaunchUrls = {
+    dev: 'https://assets.adobedtm.com/3010f46ab2ec/a3cbfcd83a52/launch-01b1cb6f5edd-development.min.js',
+    prod: 'https://assets.adobedtm.com/3010f46ab2ec/a3cbfcd83a52/launch-4688d17a7429.min.js',
+  };
+  if (!Object.keys(wmLaunchUrls).includes(env)) {
+    return;
+  }
+  await loadScript(wmLaunchUrls[env], { async: '' });
+}
+
 function cmpLoaded() {
   window.adobeDataLayer = window.adobeDataLayer || [];
   window.adobeDataLayer.push({
@@ -117,6 +128,7 @@ export async function initMartech(env) {
   initGTM();
   await initAdobeDataLayer();
   await initLaunch(env);
+  await initWMLaunch(env);
   await cmpLoaded();
 }
 
