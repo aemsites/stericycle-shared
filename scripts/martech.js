@@ -105,19 +105,76 @@ async function initLaunch(env) {
   await loadScript(launchUrls[env], { async: '' });
 }
 
-function cmpLoaded() {
+async function initWMLaunch(env) {
+  const wmLaunchUrls = {
+    dev: 'https://assets.adobedtm.com/3010f46ab2ec/a3cbfcd83a52/launch-01b1cb6f5edd-development.min.js',
+    prod: 'https://assets.adobedtm.com/3010f46ab2ec/a3cbfcd83a52/launch-4688d17a7429.min.js',
+  };
+  if (!Object.keys(wmLaunchUrls).includes(env)) {
+    return;
+  }
+  await loadScript(wmLaunchUrls[env], { async: '' });
+}
+
+function buildPagePayload() {
+  const locale = getLocaleAsBCP47();
+  const language = locale.split('-')[0];
+  const country = (locale.split('-')[1] || 'US').toUpperCase();
+  const currencyMap = { US: 'USD', CA: 'CAD' };
+  const pathParts = window.location.pathname.split('/').filter(Boolean);
+
+  return {
+    baseUrl: window.location.origin,
+    pageUrl: window.location.href,
+    countryLanguage: language,
+    currencyCode: currencyMap[country] || 'USD',
+    device: window.matchMedia('(max-width: 767px)').matches ? 'm' : 'd',
+    pageName: getMetadata('og:title') || document.title,
+    pagenameConcat: pathParts.slice(1).join(':'),
+    pageType: getMetadata('template') || getMetadata('page-type') || '',
+    previousPageName: document.referrer,
+    siteSection: pathParts[1] || '',
+    lobType: getMetadata('lob-type') || '',
+    templateName: getMetadata('template') || '',
+    gisIds: getMetadata('gis-ids') || '',
+    channel: getMetadata('channel') || '',
+    digitalPropertyID: 'SHR',
+  };
+}
+
+function pushPageLoadEvents() {
   window.adobeDataLayer = window.adobeDataLayer || [];
+  // `landed` must be the first event in the ACDL sequence: Launch rules and data
+  // elements read page/visitor values via _satellite.getVar() when they execute,
+  // so the payload has to be in the data layer before any other event.
   window.adobeDataLayer.push({
-    event: 'cmp:loaded',
+    event: 'landed',
+    eventInfo: { eventName: 'landed' },
+    page: buildPagePayload(),
+    visitor: {
+      experienceCloudId: '',
+      isRepeat: 'no',
+      lob: '',
+      userId: '',
+      isLoggedIn: 'no',
+      customerType: '',
+      wmCustomerId: '',
+      isBot: 'no',
+      marketingCloudVisitorID: '',
+      serviceLine: '',
+      sessionId: '',
+    },
   });
+  window.adobeDataLayer.push({ event: 'cmp:loaded' });
 }
 
 export async function initMartech(env) {
   initDataLayer();
   initGTM();
   await initAdobeDataLayer();
+  pushPageLoadEvents();
   await initLaunch(env);
-  await cmpLoaded();
+  await initWMLaunch(env);
 }
 
 /**
@@ -150,7 +207,9 @@ export function pushToDataLayer(data) {
 export async function decorateCtaButtons(element) {
   setTimeout(() => {
     element.querySelectorAll('.button:not(form):not(.exclude-from-cta-events):not(.quote-button)').forEach((a) => {
-      a.classList.add('cmp-linkcalltoaction');
+      a.classList.add('cmp-linkcalltoaction', 'a-taggable');
+      const analyticsLabel = a.getAttribute('aria-label') || a.textContent.trim() || a.title;
+      if (analyticsLabel) a.setAttribute('analytics', analyticsLabel);
     });
   }, 100);
 }
