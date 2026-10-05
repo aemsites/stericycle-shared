@@ -443,6 +443,15 @@ export function fetchTriggerConfig() {
   };
 }
 
+function getOpenerRegion(anchor) {
+  const label = anchor.getAttribute('analytics') || '';
+  const match = label.match(/(Header|Footer|Body)$/i);
+  if (match) return match[1].toLowerCase();
+  if (anchor.closest('header, .header')) return 'header';
+  if (anchor.closest('footer, .footer')) return 'footer';
+  return 'body';
+}
+
 async function autolinkModals(element) {
   element.addEventListener('click', async (e) => {
     const origin = e.target.closest('a');
@@ -450,7 +459,7 @@ async function autolinkModals(element) {
     if (origin && origin.href && origin.href.includes('/modals/')) {
       e.preventDefault();
       const { openModal } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
-      openModal(origin.href);
+      openModal(origin.href, { formSource: getOpenerRegion(origin) });
     }
   });
   const { openOnTrigger } = await import(`${window.hlx.codeBasePath}/blocks/form/trigger.js`);

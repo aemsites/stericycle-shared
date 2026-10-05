@@ -16,6 +16,9 @@ export async function createModal(contentNodes, config) {
   const dialog = document.createElement('dialog');
   const dialogContent = document.createElement('div');
   dialogContent.classList.add('modal-content');
+  if (config?.formSource) {
+    dialogContent.dataset.formSource = config.formSource;
+  }
   dialogContent.append(...contentNodes);
   dialog.append(dialogContent);
 

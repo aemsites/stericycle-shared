@@ -39,8 +39,10 @@ function getFormType(form) {
   return form.closest('.modal') ? 'modal' : 'inline';
 }
 
-/** header / footer / body, from the form's placement. */
+/** header / footer / body, from the carried opener origin or the form's placement. */
 function getFormSource(form) {
+  const carried = form.closest('[data-form-source]')?.dataset.formSource;
+  if (carried === 'header' || carried === 'footer' || carried === 'body') return carried;
   if (form.closest('header, .header')) return 'header';
   if (form.closest('footer, .footer')) return 'footer';
   return 'body';
