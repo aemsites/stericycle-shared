@@ -281,6 +281,37 @@ function resolveModalServiceLine(a) {
 }
 
 /**
+ * Checks whether an anchor's href points at the drop-off checkout handoff.
+ * @param {string} href anchor href
+ * @returns {boolean}
+ */
+function isDropoffCheckoutLink(href) {
+  try {
+    return new URL(href).pathname === '/dropoff';
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Wires a drop-off checkout CTA link to fire the eComm entry-point event once per anchor.
+ * @param {HTMLAnchorElement} a anchor element
+ */
+function wireDropoffCtaEntryPoint(a) {
+  if (a.dataset.ecommEntryWired) return;
+  a.dataset.ecommEntryWired = 'true';
+  a.addEventListener('click', () => {
+    const zipCode = new URL(a.href).searchParams.get('zip') || '';
+    sendEcommEntryPointEvent({
+      serviceLine: 'Drop-Off',
+      eCommEntryPoint: 'Y',
+      entryPointLocation: 'Drop-Off Location Page',
+      zipCode,
+    });
+  });
+}
+
+/**
  * Decorate all CTA buttons with the analytics trigger classname.
  * @param {Element} element container element
  */
@@ -289,9 +320,11 @@ export async function decorateCtaButtons(element) {
     element.querySelectorAll('.button:not(form):not(.exclude-from-cta-events):not(.quote-button)').forEach((a) => {
       a.classList.add('cmp-linkcalltoaction', 'a-taggable');
       const analyticsLabel = a.getAttribute('aria-label') || a.textContent.trim() || a.title;
-      if (!analyticsLabel) return;
-      const serviceLine = resolveModalServiceLine(a);
-      a.setAttribute('analytics', serviceLine ? `${analyticsLabel} - ${serviceLine} Entry Point` : analyticsLabel);
+      if (analyticsLabel) {
+        const serviceLine = resolveModalServiceLine(a);
+        a.setAttribute('analytics', serviceLine ? `${analyticsLabel} - ${serviceLine} Entry Point` : analyticsLabel);
+      }
+      if (isDropoffCheckoutLink(a.href)) wireDropoffCtaEntryPoint(a);
     });
   }, 100);
 }
