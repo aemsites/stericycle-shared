@@ -280,14 +280,21 @@ function resolveModalServiceLine(a) {
   return ECOMM_MODAL_SERVICE_LINES[modalPath];
 }
 
+const LEGACY_DROPOFF_HOST = 'shop-shredit.stericycle.com';
+const LEGACY_DROPOFF_PATH = '/commerce_storefront_ui/walkin.aspx';
+
 /**
- * Checks whether an anchor's href points at the drop-off checkout handoff.
+ * Checks whether an anchor's href points at the drop-off checkout handoff — either the current
+ * checkout flow or the legacy walk-in portal still linked from the individual location-page
+ * templates.
  * @param {string} href anchor href
  * @returns {boolean}
  */
 function isDropoffCheckoutLink(href) {
   try {
-    return new URL(href).pathname === '/dropoff';
+    const url = new URL(href);
+    if (url.pathname === '/dropoff') return true;
+    return url.hostname === LEGACY_DROPOFF_HOST && url.pathname === LEGACY_DROPOFF_PATH;
   } catch {
     return false;
   }
