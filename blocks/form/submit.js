@@ -35,12 +35,12 @@ function readFieldsetLabel(form, classFragment) {
 }
 
 /** modal vs inline, from the form's placement. */
-function getFormType(form) {
+export function getFormType(form) {
   return form.closest('.modal') ? 'modal' : 'inline';
 }
 
 /** header / footer / body, from the carried opener origin or the form's placement. */
-function getFormSource(form) {
+export function getFormSource(form) {
   const carried = form.closest('[data-form-source]')?.dataset.formSource;
   if (carried === 'header' || carried === 'footer' || carried === 'body') return carried;
   if (form.closest('header, .header')) return 'header';
@@ -59,6 +59,23 @@ function collectLeadDataPoints(form) {
     LN: presenceFlag(findControl(form, ['lastName', 'last_name', 'LastName', 'lname'], '[autocomplete="family-name"]')),
     Email: presenceFlag(findControl(form, ['email', 'emailAddress', 'Email', 'email_address'], 'input[type="email"]')),
     Phone: presenceFlag(findControl(form, ['phone', 'phoneNumber', 'Phone', 'phone_number'], 'input[type="tel"]')),
+  };
+}
+
+/**
+ * The BR.430 field set shared by `formStart` and `formSubmit` — same shape, read fresh at
+ * whatever point the caller fires. PII fields are Y/N presence flags only.
+ * @param {HTMLFormElement} form
+ * @returns {{formType:string, formSource:string, leadId:null, eCommEntryPoint:'N', pageUrl:string}}
+ */
+export function buildLeadFormFields(form) {
+  return {
+    formType: getFormType(form),
+    formSource: getFormSource(form),
+    leadId: null,
+    eCommEntryPoint: 'N',
+    pageUrl: window.location.href,
+    ...collectLeadDataPoints(form),
   };
 }
 
@@ -102,12 +119,9 @@ function sendDataToAnalytics(form, options = {}) {
     formElement: form,
     quoteType,
     serviceType,
-    formType: getFormType(form),
-    formSource: getFormSource(form),
+    ...buildLeadFormFields(form),
     leadId,
     eCommEntryPoint,
-    pageUrl: window.location.href,
-    ...collectLeadDataPoints(form),
   });
 }
 
