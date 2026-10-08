@@ -4,6 +4,7 @@ import { readBlockConfig } from '../../scripts/aem.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
 import { getFormName } from './utils.js';
 import { resolveServiceLine } from './ecommerce.js';
+import { buildLeadFormFields } from './submit.js';
 
 export default async function decorate(block) {
   const { container, formDef } = await extractSheetDefinition(block);
@@ -71,7 +72,9 @@ export default async function decorate(block) {
       form.addEventListener('focusin', () => {
         sendDigitalDataEvent({
           event: 'formStart',
+          eventName: 'formStart',
           formName: getFormName(form),
+          ...buildLeadFormFields(form),
         });
       }, { once: true });
 
