@@ -697,6 +697,12 @@ export default async function decorate(block) {
       .then(([template, utm]) => {
         ecommerceFlowTemplate = template;
         resolvedUtmParams = utm;
+      })
+      .catch(() => {
+        // STERICMS-1054: never let a failed /ecommerce-flow.json fetch reject and abort
+        // decorate(); fall back to the legacy Buy Now link.
+        ecommerceFlowTemplate = null;
+        resolvedUtmParams = {};
       });
   }
   const locations = await fetchLocations(isDropoff, ph);
@@ -720,12 +726,6 @@ export default async function decorate(block) {
 
   const hashTerm = window.location.hash ? window.location.hash.substring(1) : null;
 
-  // Ensure the Buy Now template/UTM params are resolved before any cards render. These were
-  // started earlier and have almost certainly settled by now, so this rarely blocks.
-  if (isDropoff) {
-    await ecommerceReady;
-  }
-
   calculateLocationListDistance(locations, getCenterPoint());
   if (isDropoff) {
     renderLocationList([], block, ph, 'prompt');
@@ -734,19 +734,8 @@ export default async function decorate(block) {
   }
   decorateAnchors(block);
 
-  if (isDropoff && !hashTerm) {
-    requestGeolocation(block, locations, ph, true, (position) => {
-      const { latitude, longitude } = position.coords;
-      calculateLocationListDistance(locations, { latitude, longitude });
-      const nearby = locations.filter(
-        (loc) => haversineDistance(loc.lat, loc.lng, latitude, longitude) <= RADIUS_KM,
-      );
-      renderAndSortLocationList(nearby, block, ph, nearby.length > 0 ? 'results' : 'no-results');
-    }, () => {
-      renderLocationList([], block, ph, 'prompt');
-    });
-  }
-
+  // STERICMS-1054: set up map init + observer before the eCommerce-flow await so the
+  // Search / Use My Location buttons enable on map load regardless of the sheet fetch.
   const initMap = async () => {
     await mapInitialization(locations, block, ph, isDropoff);
     if (hashTerm) {
@@ -772,4 +761,23 @@ export default async function decorate(block) {
     }
   }, { rootMargin: '200px' });
   observer.observe(block);
+
+  // Only the Buy Now template/UTM params (consumed when result cards render) need to be
+  // resolved before the geolocation auto-render below.
+  if (isDropoff) {
+    await ecommerceReady;
+  }
+
+  if (isDropoff && !hashTerm) {
+    requestGeolocation(block, locations, ph, true, (position) => {
+      const { latitude, longitude } = position.coords;
+      calculateLocationListDistance(locations, { latitude, longitude });
+      const nearby = locations.filter(
+        (loc) => haversineDistance(loc.lat, loc.lng, latitude, longitude) <= RADIUS_KM,
+      );
+      renderAndSortLocationList(nearby, block, ph, nearby.length > 0 ? 'results' : 'no-results');
+    }, () => {
+      renderLocationList([], block, ph, 'prompt');
+    });
+  }
 }
