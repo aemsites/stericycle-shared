@@ -4,6 +4,9 @@ import { getMetadata } from '../../scripts/aem.js';
 import { sendDigitalDataEvent } from '../../scripts/martech.js';
 import { getFormName } from './utils.js';
 
+// Every submission opts the user in to email communications (STERICMS-1055)
+const OPT_IN_FIELD = 'newslettersignup';
+
 function sendDataToAnalytics(form) {
   const quoteTypeField = form.querySelectorAll("input[name='quote_type'], input[name='Quote_Type'], input[name='QuoteType']");
   let quoteType = '';
@@ -152,6 +155,7 @@ async function constructPayload(form, captcha) {
       }
     }
   });
+  payload[OPT_IN_FIELD] = 'true';
 
   if (captcha) {
     const token = await captcha.getToken();
