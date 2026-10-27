@@ -30,7 +30,6 @@ let referencePoint = null;
 let dropoffMode = false;
 
 const RADIUS_KM = 80.4672;
-const LEGACY_BUY_NOW = 'https://shop-shredit.stericycle.com/commerce_storefront_ui/walkin.aspx?zip={zip}';
 
 let ecommerceFlowTemplate = null;
 let resolvedUtmParams = {};
@@ -136,9 +135,8 @@ const locDivCreation = (location, ph) => {
     );
   }
 
-  if (dropoffMode && location['sub-type']?.toLowerCase() === 'drop-off' && getLocale() === 'en-us') {
-    const template = ecommerceFlowTemplate ?? LEGACY_BUY_NOW;
-    const href = buildBuyNowUrl(template, location['zip-code'], resolvedUtmParams);
+  if (dropoffMode && location['sub-type']?.toLowerCase() === 'drop-off' && getLocale() === 'en-us' && ecommerceFlowTemplate) {
+    const href = buildBuyNowUrl(ecommerceFlowTemplate, location['zip-code'], resolvedUtmParams);
     const buyNow = a({ class: 'buy-now cmp-linkcalltoaction a-taggable', href }, ph.buynowtext);
     buyNow.setAttribute('analytics', `${ph.buynowtext} - DropOff Entry Point`);
     // Fire the entry-point event on click, before navigation (no form context here).
@@ -700,7 +698,7 @@ export default async function decorate(block) {
       })
       .catch(() => {
         // STERICMS-1054: never let a failed /ecommerce-flow.json fetch reject and abort
-        // decorate(); fall back to the legacy Buy Now link.
+        // decorate(); Buy Now is simply omitted.
         ecommerceFlowTemplate = null;
         resolvedUtmParams = {};
       });
