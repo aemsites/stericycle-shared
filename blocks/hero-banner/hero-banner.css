@@ -386,6 +386,30 @@ main .section > div.hero-banner-wrapper {
     }
 }
 
+@media screen and (min-width: 1200px) and (max-width: 1619px) {
+    .hero-banner-image .hero-banner-asset {
+        left: calc(632px + max(0px, (100% - var(--content-width-xxl)) / 2));
+        right: 0;
+        width: auto;
+        display: flex;
+    }
+
+    .hero-banner-image .hero-banner-asset picture {
+        display: flex;
+        flex: none;
+        height: 100%;
+        margin-left: auto;
+    }
+
+    .hero-banner-image .masked-image-wrapper {
+        height: 100%;
+    }
+
+    .hero-banner-image .hero-banner-asset img {
+        width: auto;
+    }
+}
+
 @media (max-width: 600px) {
     .hero-banner-form.hero-banner-container {
         padding-bottom: 120px;
