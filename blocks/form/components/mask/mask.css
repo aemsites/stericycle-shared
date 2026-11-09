@@ -20,11 +20,12 @@ main .form.get-a-quote-form-alternate form >.field-wrapper.mask .shell{
 main .form form .field-wrapper.mask .shell span {
     position: absolute;
     left: 3px;
-    top: 3px;
+    top: 0;
     pointer-events: none;
     width: 100%;
     letter-spacing: 1px;
     font-family: var(--font-family-lato), sans-serif;
+    font-size: var(--form-input-font-size);
 }
 
 main .form form .field-wrapper.mask .shell i {
@@ -33,6 +34,7 @@ main .form form .field-wrapper.mask .shell i {
     visibility: hidden;
     letter-spacing: 1px;
     font-family: var(--font-family-lato), sans-serif;
+    font-size: var(--form-input-font-size);
 }
 
 main .form form .field-wrapper.mask.focus .shell {
@@ -45,5 +47,7 @@ main .form form .field-wrapper.mask input:focus::placeholder {
 
 main .form form .field-wrapper.mask input {
     letter-spacing: 1px;
+    font-family: var(--font-family-lato), sans-serif;
+    font-size: var(--form-input-font-size);
 }
 

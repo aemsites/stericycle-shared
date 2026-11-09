@@ -12,8 +12,12 @@ const masking = {
     const text = document.createElement('span');
     const placeholder = input.getAttribute('placeholder');
 
-    // eslint-disable-next-line no-unsafe-optional-chaining
-    input.setAttribute('maxlength', input.dataset.type === 'postalCode' ? placeholder?.length + 1 : placeholder?.length);
+    let maxLength = placeholder?.length;
+    if (input.dataset.type === 'postalCode') {
+      // eslint-disable-next-line no-unsafe-optional-chaining
+      maxLength = getLocale() === 'en-us' ? 5 : placeholder?.length + 1;
+    }
+    input.setAttribute('maxlength', maxLength);
     input.setAttribute('data-placeholder', placeholder);
 
     if (input.dataset.type === 'postalCode') {
@@ -56,24 +60,8 @@ const masking = {
         return;
     }
 
-    if (e.target.dataset.type === 'postalCode') {
-      if (getLocale() === 'en-us') {
-        let placeholderValue = '_____-____';
-        if (e.target.value.length >= 6) {
-          e.target.setAttribute('placeholder', placeholderValue);
-          const placeholder = e.target.getAttribute('placeholder');
-          e.target.setAttribute('maxlength', placeholder?.length);
-          e.target.setAttribute('data-placeholder', placeholderValue);
-        }
-
-        if (e.target.value.length === 6 && e.target.value.search('-') === 5) {
-          placeholderValue = '_____';
-          e.target.setAttribute('placeholder', placeholderValue);
-          const placeholder = e.target.getAttribute('placeholder');
-          e.target.setAttribute('maxlength', placeholder.length + 1);
-          e.target.setAttribute('data-placeholder', placeholderValue);
-        }
-      }
+    if (e.target.dataset.type === 'postalCode' && getLocale() === 'en-us') {
+      e.target.setAttribute('maxlength', 5);
     }
 
     e.target.value = masking.handleCurrentValue(e);
