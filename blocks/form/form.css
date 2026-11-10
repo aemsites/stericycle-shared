@@ -1100,7 +1100,7 @@ main .footer-subscription-form .button-wrapper.field-wrapper.submit-wrapper butt
 }
 
 
-main .footer-subscription-form #get-informed-stay-protected{
+main .footer-subscription-form h3{
     color:var(--color-primary-1);
 }
 
