@@ -25,7 +25,7 @@ const RECAPTCHA_KEYS = {
   'stage-us.shredit.com': '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2',
   'dev-us.shredit.com': '6LfrVLIaAAAAAAXITOp0kZDmKaUjciDyodYVm3id',
   'stage-ca.shredit.com': '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2',
-  'dev-ca.shredit.com': '6LeZawIgAAAAAHfOLwMhLJR2ymRvNKbMHqeVSEk2',
+  'dev-ca.shredit.com': '6LfrVLIaAAAAAAXITOp0kZDmKaUjciDyodYVm3id',
   // Add more domains as needed
 };
 
