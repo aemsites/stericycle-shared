@@ -22,17 +22,42 @@ export const normalize = (value) => String(value ?? '').trim().toLowerCase().rep
 export const isYes = (value) => ['yes', 'true'].includes(normalize(value));
 
 /**
- * Fetch the eCommerce flow spreadsheet and reduce it to a { normalizedFlow: url } map.
- * The `enabled` row acts as the global on/off toggle. Column headers are read tolerantly
- * (Flow/Key and Url/Value, any casing). Returns {} on any failure so callers fall back.
+ * Resolve which spreadsheet column applies to the current host.
+ * - www.shredit.com                 -> prod
+ * - stage.* on shredit.com         -> stage
+ * - anything else (localhost, *.aem.page, *.aem.live, dev.*) -> dev
+ * @returns {'dev'|'stage'|'prod'}
+ */
+export function getFlowEnvironment() {
+  const { hostname } = window.location;
+  if (hostname === 'www.shredit.com') return 'prod';
+  if (hostname.endsWith('.shredit.com') && hostname.startsWith('stage')) return 'stage';
+  return 'dev';
+}
+
+/**
+ * Fetch the eCommerce flow spreadsheet and reduce it to a { normalizedProperty: value } map
+ * for the current environment. Each row is a property (e.g. `enabled`, `encryption-key`,
+ * a flow name) and each environment has its own column (`dev`, `stage`, `prod`):
+ *
+ *   | Property       | dev   | stage | prod  |
+ *   | enabled        | yes   | yes   | no    |
+ *   | encryption-key | ...   | ...   | ...   |
+ *   | drop off       | https | https | https |
+ *
+ * The property column is read tolerantly (Property/Flow/Key, any casing), as are the
+ * environment column headers. Returns {} on any failure so callers fall back.
+ * @param {string} [env] environment column to read; defaults to the current host's environment
  * @returns {Promise<Record<string, string>>}
  */
-export async function fetchFlows() {
+export async function fetchFlows(env = getFlowEnvironment()) {
   try {
     const rows = await ffetch(ECOMMERCE_FLOW_SHEET).all();
+    const column = normalize(env);
     return rows.reduce((map, row) => {
-      const key = normalize(row.Flow ?? row.flow ?? row.Key ?? row.key ?? '');
-      const value = row.Url ?? row.url ?? row.URL ?? row.Value ?? row.value ?? '';
+      const cells = Object.fromEntries(Object.entries(row).map(([k, v]) => [normalize(k), v]));
+      const key = normalize(cells.property ?? cells.flow ?? cells.key ?? '');
+      const value = cells[column] ?? '';
       if (key) {
         map[key] = typeof value === 'string' ? value.trim() : value;
       }
