@@ -29,13 +29,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us"/>
   </url>
   <url>
-    <loc>https://www.shredit.com/en-us/about/news-articles</loc>
-    <lastmod>2026-05-08</lastmod>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/about/news-articles"/>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.shredit.com/en-ca/about/news-articles"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/about/news-articles"/>
-  </url>
-  <url>
     <loc>https://www.shredit.com/en-us/about/press-releases/old-data-may-create-new-risks-for-businesses</loc>
     <lastmod>2025-04-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/about/press-releases/old-data-may-create-new-risks-for-businesses"/>
@@ -51,7 +44,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/about/company-overview/who-we-are</loc>
-    <lastmod>2025-04-22</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/about/company-overview/who-we-are"/>
     <xhtml:link rel="alternate" hreflang="en-IE" href="https://www.shredit.com/en-ie/about/company-overview/who-we-are"/>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.shredit.com/en-gb/about/company-overview/who-we-are"/>
@@ -78,7 +71,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/about</loc>
-    <lastmod>2025-04-22</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/about"/>
     <xhtml:link rel="alternate" hreflang="en-IE" href="https://www.shredit.com/en-ie/about/social-responsibility"/>
     <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.shredit.com/en-gb/about"/>
@@ -208,14 +201,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/about/press-releases/five-actions-to-reduce-the-risk-of-fraud"/>
   </url>
   <url>
-    <loc>https://www.shredit.com/en-us/about/press-releases</loc>
-    <lastmod>2025-04-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/about/press-releases"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.shredit.com/en-gb/about/press-releases"/>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.shredit.com/en-ca/about/press-releases"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/about/press-releases"/>
-  </url>
-  <url>
     <loc>https://www.shredit.com/en-us/about/press-releases/say-goodbye-to-unpleasant-memories-from-2016-at-the-tenth-annual</loc>
     <lastmod>2025-04-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/about/press-releases/say-goodbye-to-unpleasant-memories-from-2016-at-the-tenth-annual"/>
@@ -242,19 +227,6 @@
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/about/press-releases/shred-it-and-national-cyber-security-alliance-call-on-organizati"/>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.shredit.com/en-ca/about/press-releases/shred-it-and-national-cyber-security-alliance-call-on-organizati"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/about/press-releases/shred-it-and-national-cyber-security-alliance-call-on-organizati"/>
-  </url>
-  <url>
-    <loc>https://www.shredit.com/en-us/about/media-contacts</loc>
-    <lastmod>2025-04-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/about/media-contacts"/>
-    <xhtml:link rel="alternate" hreflang="en-IE" href="https://www.shredit.com/en-ie/about/media-contacts"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.shredit.com/en-gb/about/media-contacts"/>
-    <xhtml:link rel="alternate" hreflang="en-NL" href="https://www.shredit.com/en-nl/about/media-contacts"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.shredit.com/fr-ca/%C3%A0-propos-de-Shred-it/contacts-m%C3%A9dias"/>
-    <xhtml:link rel="alternate" hreflang="en-BE" href="https://www.shredit.com/en-be/about/media-contacts"/>
-    <xhtml:link rel="alternate" hreflang="en-LU" href="https://www.shredit.com/en-lu/about/media-contacts"/>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.shredit.com/en-ca/about/media-contacts"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/about/media-contacts"/>
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/about/press-releases/professional-shredders-shred-it-and-tony-hawk-team-up-to-raise-awareness-of-consumer-fraud-and-identity-theft</loc>
@@ -465,32 +437,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/about/press-releases/shred-it-urges-businesses-to-be-increasingly-vigilant-as-interna"/>
   </url>
   <url>
-    <loc>https://www.shredit.com/en-us/about/social-responsibility/diversity-inclusion</loc>
-    <lastmod>2025-04-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/about/social-responsibility/diversity-inclusion"/>
-    <xhtml:link rel="alternate" hreflang="en-IE" href="https://www.shredit.com/en-ie/about/social-responsibility/diversity-inclusion"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.shredit.com/en-gb/about/social-responsibility/diversity-inclusion"/>
-    <xhtml:link rel="alternate" hreflang="en-NL" href="https://www.shredit.com/en-nl/about/social-responsibility/diversity-inclusion"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.shredit.com/fr-ca/%C3%A0-propos-de-Shred-it/social-responsibility/diversit%C3%A9-et-inclusion"/>
-    <xhtml:link rel="alternate" hreflang="en-BE" href="https://www.shredit.com/en-be/about/social-responsibility/diversity-inclusion"/>
-    <xhtml:link rel="alternate" hreflang="en-LU" href="https://www.shredit.com/en-lu/about/social-responsibility/diversity-inclusion"/>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.shredit.com/en-ca/about/social-responsibility/diversity-inclusion"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/about/social-responsibility/diversity-inclusion"/>
-  </url>
-  <url>
-    <loc>https://www.shredit.com/en-us/about/social-responsibility/sustainability</loc>
-    <lastmod>2026-04-29</lastmod>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/about/social-responsibility/sustainability"/>
-    <xhtml:link rel="alternate" hreflang="en-IE" href="https://www.shredit.com/en-ie/about/social-responsibility/sustainability"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.shredit.com/en-gb/about/social-responsibility/sustainability"/>
-    <xhtml:link rel="alternate" hreflang="en-NL" href="https://www.shredit.com/en-nl/about/social-responsibility/sustainability"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.shredit.com/fr-ca/%C3%A0-propos-de-Shred-it/social-responsibility/durabilit%C3%A9"/>
-    <xhtml:link rel="alternate" hreflang="en-BE" href="https://www.shredit.com/en-be/about/social-responsibility/sustainability"/>
-    <xhtml:link rel="alternate" hreflang="en-LU" href="https://www.shredit.com/en-lu/about/social-responsibility/sustainability"/>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.shredit.com/en-ca/about/social-responsibility/sustainability"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/about/social-responsibility/sustainability"/>
-  </url>
-  <url>
     <loc>https://www.shredit.com/en-us/blog</loc>
     <lastmod>2025-06-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/blog"/>
@@ -507,19 +453,6 @@
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.shredit.com/en-ca/blog"/>
     <xhtml:link rel="alternate" hreflang="es-ES" href="https://www.shredit.com/es-es/blog"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/blog"/>
-  </url>
-  <url>
-    <loc>https://www.shredit.com/en-us/about/social-responsibility/policies-and-positions</loc>
-    <lastmod>2026-05-14</lastmod>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/about/social-responsibility/policies-and-positions"/>
-    <xhtml:link rel="alternate" hreflang="en-IE" href="https://www.shredit.com/en-ie/about/social-responsibility/policies-and-positions"/>
-    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.shredit.com/en-gb/about/social-responsibility/policies-and-positions"/>
-    <xhtml:link rel="alternate" hreflang="en-NL" href="https://www.shredit.com/en-nl/about/social-responsibility/policies-and-positions"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.shredit.com/fr-ca/%C3%A0-propos-de-Shred-it/social-responsibility/politiques-et-positions"/>
-    <xhtml:link rel="alternate" hreflang="en-BE" href="https://www.shredit.com/en-be/about/social-responsibility/policies-and-positions"/>
-    <xhtml:link rel="alternate" hreflang="en-LU" href="https://www.shredit.com/en-lu/about/social-responsibility/policies-and-positions"/>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.shredit.com/en-ca/about/social-responsibility/policies-and-positions"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/about/social-responsibility/policies-and-positions"/>
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/blog/10-most-dangerous-ways-to-dispose-of-hard-drives</loc>
