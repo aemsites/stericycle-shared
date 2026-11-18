@@ -326,34 +326,60 @@ main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
     border: 1px solid var(--border-border-primary-light, var(--color-grey200));
     background-color: var(--color-grey200);
     max-width: 100%;
+    position: relative;
 }
 
-.block.tabs.cta-list .tabs-panel > div > a {
+/* the title link is stretched over the whole tile so the entire tile stays clickable */
+.block.tabs.cta-list .cta-title-link:any-link,
+.block.tabs.cta-list .cta-title-link:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.block.tabs.cta-list .cta-title-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+}
+
+/* draw the ring inside the tile: .tabs-panel has overflow: auto and would clip an outer ring */
+.block.tabs.cta-list .tabs-panel > div:has(.cta-title-link:focus-visible) {
+    outline: 2px solid var(--color-primary-1);
+    outline-offset: -2px;
+}
+
+.block.tabs.cta-list .cta-title-link:focus-visible {
+    outline: none;
+}
+
+.block.tabs.cta-list .tabs-panel > div > .wrapped-content {
     display: flex;
     flex-direction: row;
     align-items: center;
+    color: var(--color-link);
     text-decoration: none;
     gap: 12px;
     padding: 12px 8px;
     max-width: 100%;
 }
 
-.block.tabs.cta-list .tabs-panel > div > a > p:has(.icon) {
+.block.tabs.cta-list .tabs-panel > div > .wrapped-content > p:has(.icon) {
     display: flex;
     height: fit-content;
 }
 
-.block.tabs.cta-list .tabs-panel > div > a > div.tab-item-body > p {
+.block.tabs.cta-list .tabs-panel > div > .wrapped-content > div.tab-item-body > p {
     line-height: 160%;
     letter-spacing: 0.14px;
 }
 
-.block.tabs.cta-list .tabs-panel > div > a > div.tab-item-body > h4 {
+.block.tabs.cta-list .tabs-panel > div > .wrapped-content > div.tab-item-body > h4 {
     display: flex;
     flex-direction: column-reverse;
 }
 
-.block.tabs.cta-list .tabs-panel > div > a > div.tab-item-body > h4 > strong {
+.block.tabs.cta-list .tabs-panel > div > .wrapped-content > div.tab-item-body > h4 > strong {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -369,16 +395,16 @@ main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
     width: fit-content;
 }
 
-.block.tabs.cta-list .tabs-panel > div > a > p:has(.icon) > a {
+.block.tabs.cta-list .tabs-panel > div > .wrapped-content > p:has(.icon) > a {
     margin: 0;
     padding: 0;
 }
 
-.block.tabs.cta-list .tabs-panel > div > a > p:has(.icon) > a:hover {
+.block.tabs.cta-list .tabs-panel > div > .wrapped-content > p:has(.icon) > a:hover {
     background-color: unset;
 }
 
-.block.tabs.cta-list .tabs-panel > div > a > p span.icon {
+.block.tabs.cta-list .tabs-panel > div > .wrapped-content > p span.icon {
     --icon-color: var(--color-primary-1);
 
     background-color: var(--icon-color);
@@ -388,12 +414,12 @@ main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
     mask-image: var(--mask-image);
 }
 
-.block.tabs.cta-list .tabs-panel > div > a > p.first-icon-paragraph span.icon {
+.block.tabs.cta-list .tabs-panel > div > .wrapped-content > p.first-icon-paragraph span.icon {
     width: 48px;
     height: 48px;
 }
 
-.block.tabs.cta-list .tabs-panel > div > a > p.last-icon-paragraph span.icon {
+.block.tabs.cta-list .tabs-panel > div > .wrapped-content > p.last-icon-paragraph span.icon {
     width: 24px;
     height: 24px;
 }
@@ -420,13 +446,13 @@ main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
         color: white;
     }
 
-    .block.tabs.cta-list .tabs-panel > div > a {
+    .block.tabs.cta-list .tabs-panel > div > .wrapped-content {
         gap: 16px;
         padding: 16px;
         width: 100%;
     }
 
-    .block.tabs.cta-list .tabs-panel > div:hover > a > p span.icon {
+    .block.tabs.cta-list .tabs-panel > div:hover > .wrapped-content > p span.icon {
         --icon-color: var(--color-white);
 
         background-color: var(--color-white);
@@ -537,12 +563,12 @@ main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
         width: 100%;
     }
 
-    .block.tabs.cta-list .tabs-panel > div > a > div.tab-item-body > h4 {
+    .block.tabs.cta-list .tabs-panel > div > .wrapped-content > div.tab-item-body > h4 {
         display: flex;
         flex-direction: row;
     }
 
-    .block.tabs.cta-list .tabs-panel > div > a > div.tab-item-body > h4 > strong {
+    .block.tabs.cta-list .tabs-panel > div > .wrapped-content > div.tab-item-body > h4 > strong {
         margin-left: 8px;
         margin-bottom: 0;
     }
