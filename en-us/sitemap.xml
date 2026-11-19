@@ -4284,7 +4284,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/service-locations/sacramento</loc>
-    <lastmod>2025-04-22</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/sacramento"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/sacramento"/>
   </url>
@@ -4929,5 +4929,11 @@
     <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/lake-city"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/lake-city"/>
+  </url>
+  <url>
+    <loc>https://www.shredit.com/en-us/service-locations/birmingham</loc>
+    <lastmod>2026-11-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/birmingham"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/birmingham"/>
   </url>
 </urlset>
