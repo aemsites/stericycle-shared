@@ -3851,7 +3851,7 @@
   </url>
   <url>
     <loc>https://www.shredit.com/en-us/service-locations/central-pa-lancaster</loc>
-    <lastmod>2025-04-22</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/central-pa-lancaster"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/central-pa-lancaster"/>
   </url>
@@ -4935,5 +4935,35 @@
     <lastmod>2026-11-18</lastmod>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/birmingham"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/birmingham"/>
+  </url>
+  <url>
+    <loc>https://www.shredit.com/en-us/service-locations/chantilly</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/chantilly"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/chantilly"/>
+  </url>
+  <url>
+    <loc>https://www.shredit.com/en-us/service-locations/mobile</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/mobile"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/mobile"/>
+  </url>
+  <url>
+    <loc>https://www.shredit.com/en-us/service-locations/sioux-falls</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/sioux-falls"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/sioux-falls"/>
+  </url>
+  <url>
+    <loc>https://www.shredit.com/en-us/service-locations/spartanburg</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/spartanburg"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/spartanburg"/>
+  </url>
+  <url>
+    <loc>https://www.shredit.com/en-us/service-locations/sharon</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.shredit.com/en-us/service-locations/sharon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.shredit.com/en-us/service-locations/sharon"/>
   </url>
 </urlset>
