@@ -732,7 +732,7 @@ export function setJsonLd(schema, name, doc = document) {
     existingScript.innerHTML = JSON.stringify(schema);
     return;
   }
-  addJsonLd(schema, name);
+  addJsonLd(schema, name, doc);
 }
 
 async function setWebPageJsonLd(doc = document) {
@@ -754,27 +754,14 @@ async function setWebPageJsonLd(doc = document) {
   setJsonLd(schema, 'webpage');
 }
 
-async function fetchAndSetCustomJsonLd(doc = document) {
-  // schema.xls
-  let customSchemas = await ffetch('/schemas.json')
-    .filter((e) => e.page?.trim().toLowerCase() === new URL(doc.documentURI).pathname.toLowerCase()
-      || (e.page?.trim().endsWith('/*')
-        && new URL(doc.documentURI).pathname.toLowerCase().startsWith(e.page.trim().toLowerCase().substring(0, e.page.trim().length - 1))))
-    .all();
-  customSchemas = customSchemas.sort((e1, e2) => e1.page.localeCompare(e2.page));
-  customSchemas.forEach((e) => {
-    let schema;
-    try {
-      schema = JSON.parse(e.schema);
-    } catch (ignored) {
-      // eslint-disable-next-line
-      console.error('Tried to add invalid JSON-LD schema');
-      return;
-    }
-    setJsonLd(schema, e.name || '');
-  });
-
-  // per-page metadata
+/**
+ * Converts per-page ld-json metadata (<meta name="ld-json"> / <meta property="ld-json:NAME">)
+ * into JSON-LD script tags. Synchronous so it can run before any network call.
+ * @param doc The document
+ * @returns {Set<string>} names of the schemas set from metadata
+ */
+function convertMetadataJsonLd(doc = document) {
+  const names = new Set();
   [...doc.head.querySelectorAll('meta')].filter((m) => m.name === 'ld-json' || m.attributes?.property?.value?.startsWith('ld-json:')).forEach((m) => {
     if (m.content && m.content !== '') {
       const name = m.attributes?.property?.value?.substring(8, m.attributes.property.value.length);
@@ -787,12 +774,44 @@ async function fetchAndSetCustomJsonLd(doc = document) {
         return;
       }
       if (name) {
-        setJsonLd(schema, name);
+        setJsonLd(schema, name, doc);
+        names.add(name);
       } else {
-        addJsonLd(schema, null);
+        addJsonLd(schema, null, doc);
       }
     }
     m.remove();
+  });
+  return names;
+}
+
+async function fetchAndSetCustomJsonLd(doc = document, metadataNames = new Set()) {
+  // schema.xls
+  let customSchemas;
+  try {
+    customSchemas = await ffetch('/schemas.json')
+      .filter((e) => e.page?.trim().toLowerCase() === new URL(doc.documentURI).pathname.toLowerCase()
+        || (e.page?.trim().endsWith('/*')
+          && new URL(doc.documentURI).pathname.toLowerCase().startsWith(e.page.trim().toLowerCase().substring(0, e.page.trim().length - 1))))
+      .all();
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error('Failed to fetch custom JSON-LD schemas', e);
+    return;
+  }
+  customSchemas = customSchemas.sort((e1, e2) => e1.page.localeCompare(e2.page));
+  customSchemas.forEach((e) => {
+    let schema;
+    try {
+      schema = JSON.parse(e.schema);
+    } catch (ignored) {
+      // eslint-disable-next-line
+      console.error('Tried to add invalid JSON-LD schema');
+      return;
+    }
+    // per-page metadata keeps precedence over the sheet, as before
+    if (e.name && metadataNames.has(e.name)) return;
+    setJsonLd(schema, e.name || '', doc);
   });
 }
 
@@ -883,6 +902,11 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = getLocaleAsBCP47();
 
+  // convert authored ld-json metadata into JSON-LD scripts before any await
+  const metadataSchemaNames = convertMetadataJsonLd(doc);
+  setWebPageJsonLd(doc);
+  fetchAndSetCustomJsonLd(doc, metadataSchemaNames);
+
   const urlParams = new URLSearchParams(window.location.search);
   if ((window.location.hostname.endsWith('.aem.page') || window.location.hostname.endsWith('.aem.live'))) {
     if (urlParams.get('load-martech')?.toLowerCase() === 'eager') {
@@ -905,9 +929,6 @@ async function loadEager(doc) {
       await loadBlocks(main.querySelector('div.page-sidebar'));
     }
   }
-  setWebPageJsonLd(doc);
-  fetchAndSetCustomJsonLd(doc);
-
   try {
     /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
     if (window.innerWidth >= 900 || sessionStorage.getItem('fonts-loaded')) {
