@@ -1,7 +1,7 @@
 import { getSubmitBaseUrl } from './constant.js';
 import { appendFragment } from './lib/util.js';
 import { getMetadata } from '../../scripts/aem.js';
-import { sendDigitalDataEvent, sendEcommEntryPointEvent } from '../../scripts/martech.js';
+import { sendDigitalDataEvent, sendEcommEntryPointEvent, pushToDataLayer } from '../../scripts/martech.js';
 import { getFormName } from './utils.js';
 import { resolveEcommerceRedirectUrl, resolveServiceLine } from './ecommerce.js';
 
@@ -80,7 +80,7 @@ export function buildLeadFormFields(form) {
 }
 
 /**
- * Fire the `formSubmit` analytics event with the lead-form data points. PII is emitted as Y/N
+ * Fire the `formSubmit` analytics event (digitalData + GTM dataLayer) with the lead-form data points. PII is emitted as Y/N
  * presence flags only. `leadId` is passed through (currently null until the backend returns it).
  * @param {HTMLFormElement} form
  * @param {{ eCommEntryPoint?: 'Y'|'N', leadId?: string|null }} [options]
@@ -112,17 +112,19 @@ function sendDataToAnalytics(form, options = {}) {
     }
   });
 
-  sendDigitalDataEvent({
+  const eventData = {
     event: 'formSubmit',
     eventName: 'formSubmit',
     formName: getFormName(form),
-    formElement: form,
     quoteType,
     serviceType,
     ...buildLeadFormFields(form),
     leadId,
     eCommEntryPoint,
-  });
+  };
+  sendDigitalDataEvent({ ...eventData, formElement: form });
+  // Same event/payload to the GTM dataLayer (Google Ads); DOM element left out.
+  pushToDataLayer(eventData);
 }
 
 // eslint-disable-next-line no-unused-vars
