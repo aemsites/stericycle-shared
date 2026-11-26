@@ -77,7 +77,7 @@ export default async function decorate(block) {
   const ulElements = block.querySelectorAll('.section.footer-menu .default-content-wrapper > ul');
 
   // Loop through each <ul> element and add a unique class
-  ulElements.forEach((ul, index) => {
+  ulElements.forEach((ul) => {
     ul.classList.add('footer-accordion-container');
   });
   const accordionsContainer = block.querySelectorAll('.section.footer-menu .footer-accordion-container');
