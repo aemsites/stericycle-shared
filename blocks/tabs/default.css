@@ -424,6 +424,11 @@ main .section.tabs-container:has(.cta-list) > .default-content-wrapper > p > a {
     height: 24px;
 }
 
+/* let clicks on the chevron fall through to the title-link overlay so it navigates too */
+.block.tabs.cta-list .tabs-panel > div > .wrapped-content > p.last-icon-paragraph {
+    pointer-events: none;
+}
+
 @media (min-width: 992px) {
     main .section.tabs-container > .tabs-wrapper:has(.cta-list) {
         margin: 16px 0 0;
