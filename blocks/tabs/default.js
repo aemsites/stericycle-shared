@@ -169,10 +169,6 @@ export default async function decorate(block) {
           const linkElement = childElements.find((el) => el.tagName === 'P' && el.classList.contains('button-container') && el.querySelector('a[href]'));
           if (linkElement) {
             const href = linkElement.querySelector('a').getAttribute('href');
-            const wrapper = document.createElement('a');
-            wrapper.setAttribute('href', href);
-            wrapper.className = 'wrapped-content';
-
             const firstIconParagraph = childElements.find((el) => el.tagName === 'P' && el.querySelector('span.icon'));
             const lastIconParagraph = [...childElements].reverse().find((el) => el.tagName === 'P' && el.querySelector('span.icon'));
             const remainingContent = childElements.filter((el) => el !== firstIconParagraph && el !== lastIconParagraph && el !== linkElement);
@@ -181,6 +177,27 @@ export default async function decorate(block) {
               const wrapperContent = document.createElement('div');
               wrapperContent.className = 'tab-item-body';
               wrapperContent.append(...remainingContent);
+
+              // SEO: link the tile title text; a CSS overlay keeps the whole tile clickable.
+              // Without a title, fall back to wrapping the whole tile in the link.
+              const title = wrapperContent.querySelector('h1, h2, h3, h4, h5, h6');
+              // keep badges (<strong>) outside of the link text
+              const titleNodes = title
+                ? [...title.childNodes].filter((node) => node.nodeName !== 'STRONG')
+                : [];
+              let wrapper;
+              if (titleNodes.some((node) => node.textContent.trim())) {
+                wrapper = document.createElement('div');
+                const titleLink = document.createElement('a');
+                titleLink.setAttribute('href', href);
+                titleLink.className = 'cta-title-link';
+                titleLink.append(...titleNodes);
+                title.prepend(titleLink);
+              } else {
+                wrapper = document.createElement('a');
+                wrapper.setAttribute('href', href);
+              }
+              wrapper.className = 'wrapped-content';
 
               if (firstIconParagraph) {
                 firstIconParagraph.classList.add('first-icon-paragraph');
