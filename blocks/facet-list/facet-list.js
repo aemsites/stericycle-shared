@@ -49,6 +49,14 @@ function capitalizePhrase(str) {
   });
 }
 
+function mediaTypeKey(value) {
+  const key = (value || '').trim().toLowerCase();
+  if (key === '' || key === '0') {
+    return '';
+  }
+  return key.endsWith('s') ? key : `${key}s`;
+}
+
 /*
     * This function decorates the results from the query-index.json file
  */
@@ -70,10 +78,13 @@ function decorateResults(posts, list) {
       categoryLink.innerText = post.type;
       categoryLink.classList.add('eyebrow-small');
       categoryLink.setAttribute('aria-label', post.type);
-      const type = post.type?.endsWith('s') ? post.type?.toLowerCase() : `${post.type.toLowerCase()}'s`;
-      const facet = facetsMap.get(type);
+      const type = mediaTypeKey(post.type);
       categoryLink.onclick = (e) => {
         e.preventDefault();
+        const facet = facetsMap.get(type);
+        if (!facet) {
+          return;
+        }
         facet.checked = true;
         facet.dispatchEvent(new Event('change', { bubbles: true, cancelable: false }));
       };
